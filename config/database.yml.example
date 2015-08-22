@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: shopstory_dev
+
+test:
+  <<: *default
+  database: shopstory_test
+
+production:
+  <<: *default
+  database: shopstory_production
+
+
