@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   #     collection do
   #       get 'sold'
   #     end
-  #   end
+  # end
 
   # Example resource route with sub-resources:
   #   resources :products do
@@ -54,4 +54,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  root "pages#home"
+  get :showcase, to: "pages#showcase"
+  get :pricing, to: "pages#pricing"
+  get :preview, to: "pages#preview"
+  get :features, to: "pages#features"
 end
