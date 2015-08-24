@@ -1,0 +1,20 @@
+en:
+  buttons:
+    get_started: Get Started
+  menu:
+    features: Features
+    pricing: Pricing
+    showcase: Showcase
+    preview: Preview
+  pages:
+    home:
+      title: Home
+      store_name: Store name
+    pricing:
+      title: Pricing
+    features:
+      title: Features
+    showcase:
+      title: Showcase
+    preview:
+      title: Preview

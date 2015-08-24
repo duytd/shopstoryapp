@@ -1,2 +1,5 @@
 en:
-  hello: "Hello world"
+  application:
+    title: ShopStory
+    brand: ShopStory
+    copyright: Copyright

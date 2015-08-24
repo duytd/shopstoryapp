@@ -163,9 +163,9 @@ ActiveRecord::Schema.define(version: 20150821141535) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "type"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "role",                   default: 3
     t.string   "subdomain"
     t.string   "company"
     t.string   "phone"

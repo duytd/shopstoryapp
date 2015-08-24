@@ -1,0 +1,33 @@
+<div class="navbar navbar-inverse navbar-fixed-top navbar-shopstory">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+        data-target="#navbarCollapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to t("application.brand"), root_path, class: "navbar-brand" %>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-right" id="navbarCollapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to t("menu.features"), features_path %>
+        </li>
+        <li>
+          <%= link_to t("menu.pricing"), pricing_path %>
+        </li>
+        <li>
+          <%= link_to t("menu.showcase"), showcase_path %>
+        </li>
+        <li>
+          <%= link_to t("menu.preview"), preview_path %>
+        </li>
+        <li>
+          <%= link_to t("buttons.get_started"), "#", class: "btn btn-success" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
