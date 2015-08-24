@@ -1,0 +1,26 @@
+<div class="form password col-md-6 col-md-offset-3">
+  <h2><%= t("merchant.passwords.change_password") %></h2>
+
+  <%= form_for resource, as: resource_name, url: password_path(resource_name), html: {method: :put} do |f| %>
+    <%= f.hidden_field :reset_password_token %>
+    <div class="form-group">
+      <%= render "shared/form_errors", object: f.object %>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password, autofocus: true, autocomplete: "off",
+        placeholder: t("merchant.registrations.new_password"), 
+        class: "form-control input-lg" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :password_confirmation, autocomplete: "off", 
+        placeholder: t("merchant.registrations.password_confirmation"), 
+        class: "form-control input-lg" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit t("merchant.passwords.change_password"), 
+        class: "btn btn-lg btn-success pull-right" %>
+    </div>
+  <% end %>
+</div>

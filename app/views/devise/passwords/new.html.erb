@@ -1,0 +1,17 @@
+<div class="form password col-md-6 col-md-offset-3">
+  <h2 class="text-center"><%= t("merchant.passwords.title") %></h2>
+  <h3 class="text-center"><%= t("merchant.passwords.subtitle") %></h3>
+
+  <%= form_for resource, as: resource_name, url: password_path(resource_name), html: {method: :post} do |f| %>
+    <%= render "shared/form_errors", object: f.object %>
+
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, placeholder: t("merchant.registrations.email"), 
+        class: "form-control input-lg" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit t("merchant.passwords.submit"), class: "btn btn-lg btn-success pull-right" %>
+    </div>
+  <% end %>
+</div>

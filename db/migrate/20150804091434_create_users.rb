@@ -1,9 +1,9 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      t.string :type
       t.string :first_name
       t.string :last_name
-      t.integer :role, default: User.roles[:customer]
       t.string :subdomain
       t.string :company
       t.string :phone

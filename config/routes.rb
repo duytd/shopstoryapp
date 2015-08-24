@@ -1,62 +1,33 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  constraints Constraints::RootDomainConstraint do
+    root "pages#home"
+    get :showcase, to: "pages#showcase"
+    get :pricing, to: "pages#pricing"
+    get :preview, to: "pages#preview"
+    get :features, to: "pages#features"
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+    devise_for :merchants, path: "", path_names: {sign_in: "login",
+      sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
+      unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "registrations"}
+  end
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  constraints Constraints::AdminDomainConstraint do
+    namespace :admin, path: "" do
+      root "pages#dashboard"
+    end
+  end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  constraints Constraints::SubdomainConstraint do
+    devise_for :customers, path: "", path_names: {sign_in: "login",
+      sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
+      unlock: "unblock", sign_up: "signup"}
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    namespace :customer, path: "" do
+      root "pages#home"
+    end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  # end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-  root "pages#home"
-  get :showcase, to: "pages#showcase"
-  get :pricing, to: "pages#pricing"
-  get :preview, to: "pages#preview"
-  get :features, to: "pages#features"
+    namespace :merchant, path: "admin" do
+      root "pages#dashboard"
+    end
+  end
 end

@@ -7,7 +7,7 @@ RSpec.describe PagesController, type: :controller do
       expect(response).to render_template :home
     end
   end
-  
+
   describe "GET #pricing" do
    it "renders pricing template" do
     get :pricing

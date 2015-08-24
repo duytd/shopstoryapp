@@ -4,8 +4,8 @@
   <div class="container">
     <h1>Fastest way to build your store in Korea</h1>
     <p>ShopStory can help you to launch your online store in no time. Start your journey today!</p>
-    <%= form_tag "#", method: :post, class: "form-inline" do |f| %>
-      <%= text_field_tag :store_name, nil, placeholder: t("pages.home.store_name"),
+    <%= form_tag new_merchant_registration_path, method: :get, class: "form-inline" do |f| %>
+      <%= text_field_tag :shop_name, nil, placeholder: t("pages.home.shop_name"),
         class: "form-control input-lg" %>
       <%= submit_tag t("buttons.get_started"), class: "btn btn-lg btn-inline btn-success"%>
     <% end %>
