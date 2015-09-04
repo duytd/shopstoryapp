@@ -1,20 +1,38 @@
 en:
   buttons:
-    get_started: Get Started
+    get_started: "Get Started"
   menu:
-    features: Features
-    pricing: Pricing
-    showcase: Showcase
-    preview: Preview
+    features: "Features"
+    pricing: "Pricing"
+    showcase: "Showcase"
+    preview: "Preview"
   pages:
     home:
-      title: Home
-      store_name: Store name
+      title: "Home"
+      store_name: "Store name"
     pricing:
-      title: Pricing
+      title: "Pricing"
     features:
-      title: Features
+      title: "Features"
     showcase:
-      title: Showcase
+      title: "Showcase"
     preview:
-      title: Preview
+      title: "Preview"
+  merchant:
+    registrations:
+      title: "Create your store now !"
+      store_name: "Store name"
+      email: "Email"
+      password: "Password"
+      new_password: "New password"
+      password_confirmation: "Password confirmation"
+      submit: "Create your store"
+    login: 
+      title: "Login to your store"
+      submit: "Login"
+      forgot: "Forgot?"
+    passwords:
+      title: "Forgot your password?"
+      subtitle: "Don't worry. Enter your email address to reset it"
+      submit: "Get password instructions"
+      change_password: "Change password"

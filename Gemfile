@@ -34,6 +34,7 @@ gem "capistrano-rails", group: :development
 # Use devise for authentication
 gem "devise"
 gem "cancancan", "~> 1.10"
+gem "apartment"
 
 gem "figaro"
 
@@ -51,6 +52,7 @@ group :development, :test do
   gem "rspec-rails", "~> 3.0"
   gem "rspec-collection_matchers"
   gem "shoulda-matchers"
+  gem "shoulda-callback-matchers", "~> 1.1.1"
   gem "factory_girl_rails"
   gem "faker"
   gem "capybara"

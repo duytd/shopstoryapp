@@ -1,0 +1,21 @@
+ko:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Email cannot be blank"
+              invalid: "Email must be a valid address (E.g: example@shopstoryapp.com)"
+              taken: "We're sorry. That email is already taken"
+            password:
+              too_short: "must be at least 8 characters"
+              blank: "cannot be empty"
+            subdomain: 
+              blank: "cannot be empty"
+              invalid: "must contain only characters and numbers (E.g: example)"
+    attributes:
+      merchant:
+        email: ""
+        password: "Password"
+        subdomain: "Store name"

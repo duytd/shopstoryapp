@@ -24,6 +24,10 @@ module ShopStory
     config.active_record.raise_in_transactional_callbacks = true
 
     config.generators do |g|
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper      = false
+
       g.test_framework :rspec,
         fixtures: true,
         view_specs: false,
@@ -35,6 +39,6 @@ module ShopStory
     end
 
     config.assets.paths << Rails.root.join("vendor", "assets", "bower_components")
-    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
+    config.autoload_paths << Rails.root.join("lib")
   end
 end
