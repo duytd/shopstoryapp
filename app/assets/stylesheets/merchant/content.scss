@@ -1,0 +1,55 @@
+section.content {
+  .top-bar {
+    height: 50px;
+    background: $white;
+    border-bottom: 3px solid darken($white-dark, 3%);
+    .navbar-toggle {
+      display: block;
+      padding-top: 7px;
+      .icon-bar {
+        background: $gray;
+      }
+    }
+    .search-form {
+      padding-top: 5px;
+      input[name='q'] {
+        padding-left: 10px;
+        &:before {
+          content: "\f002";
+          font-family: "FontAwesome";
+          position: absolute;
+        }
+      }
+    }
+    .navbar-right {
+      padding-right: 20px;
+      .open a {
+        background: transparent;
+      }
+      a {
+        padding: 5px;
+        &:hover, &:focus {
+          background: transparent !important;
+        }
+      }
+      img {
+        display: block;
+        background: lighten($sea-light, 60%);
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+      }
+      .dropdown-menu {
+        border: none;
+        border-radius: 0;
+        padding: 10px;
+        box-shadow: none;
+        color: $gray;
+        a {
+          color: $gray;
+        }
+      }
+    }
+  }
+}
+

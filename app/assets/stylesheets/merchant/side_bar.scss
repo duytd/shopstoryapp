@@ -1,0 +1,81 @@
+$menu-item-color: #cccccc;
+
+aside.left-panel {
+  .merchant-logo {
+    color: $white !important;
+    background: $sea-light;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 15px 25px;
+    text-transform: uppercase;
+    .logo {
+      float: left;
+    }
+    .name {
+      width: 150px;
+      overflow: hidden;
+      float: left;
+      padding-left: 5px;
+      color: $white;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .navigation {
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .item {
+      padding: 15px 25px;
+      &:hover {
+        transition: all 0.2s ease 0s;
+        border-left: 3px solid $green;
+        background: $sea-light;
+        cursor: pointer;
+      }
+      .subitems {
+        display: none;
+      }
+    }
+    i {
+      float: left;
+      font-size: 18px;
+      margin-right: 6px;
+      width: 25px;
+    }
+    li > a {
+      color: $menu-item-color;
+      text-decoration: none;
+      transition: all 0.4s ease 0s;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+  .subitems {
+    margin-top: 10px;
+    line-height: 1.3;
+    li > a {
+      display: block;
+      font-size: 13px;
+      padding: 10px 25px 10px 25px;
+      text-align: left;
+      transition: all 0.2s ease 0s;
+      white-space: nowrap;
+    }
+    i {
+      font-size: 13px;
+    }
+  }
+  &.collapsed {
+    width: 80px;
+    .item {
+      padding: 25px;
+      i {
+        margin-top: -10px;
+      }
+    }
+  }
+}
