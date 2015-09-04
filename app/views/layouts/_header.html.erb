@@ -24,6 +24,22 @@
         <li>
           <%= link_to t("menu.preview"), preview_path %>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle"
+            data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">
+            <%= t "menu.language" %>
+            <i class="fa fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to t("menu.korean"), locale: "ko" %>
+            </li>
+            <li>
+              <%= link_to t("menu.english"), locale: "en" %>
+            </li>
+          </ul>
+        </li>
         <% if merchant_signed_in? %>
           <li>
             <%= link_to t("buttons.go_to_store"), merchant_root_url(subdomain: current_merchant.subdomain), 
