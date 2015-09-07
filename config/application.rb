@@ -38,7 +38,8 @@ module ShopStory
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
-    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components")
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
+    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts")
     config.autoload_paths << Rails.root.join("lib")
   end
 end

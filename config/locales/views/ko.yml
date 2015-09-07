@@ -36,4 +36,21 @@ ko:
       subtitle: "Don't worry. Enter your email address to reset it"
       submit: "Get password instructions"
       change_password: "Change password"
+    admin:
+      menu:
+        dashboard: "Dashboard"
+        orders: "Orders"
+        customers: "Customers"
+        products: "Products"
+        categories: "Categories"
+        discounts: "Discounts"
+        reports: "Reports"
+        pages: "Pages"
+        navigation: "Navigation"
+        settings: "Settings"
+        basic_settings: "Basic Settings"
+        payment_settings: "Payment Settings"
+        delivery_settings: "Delivery Settings"
+        user_settings: "User Settings"
+        search: "Search"
 

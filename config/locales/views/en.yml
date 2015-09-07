@@ -36,3 +36,6 @@ en:
       subtitle: "Don't worry. Enter your email address to reset it"
       submit: "Get password instructions"
       change_password: "Change password"
+    admin:
+      menu:
+        dashboard: "Dashboard"

@@ -1,0 +1,31 @@
+<div class="top-bar">
+  <button class="navbar-toggle pull-left" type="button">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+
+  <%= form_tag "#", class: "form-inline search-form navbar-left" do %>
+    <%= text_field_tag :q, nil, placeholder: t("merchant.admin.menu.search"),
+      class: "form-control" %>
+  <% end %>
+
+  <div class="nav navbar navbar-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle avatar"
+        data-toggle="dropdown" role="button" aria-haspopup="true"
+        aria-expanded="false">
+        <%= image_tag "#", alt: "", size: "35x35" %>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <i class="fa fa-power-off"></i>
+          <span>
+            <%= link_to t("merchant.admin.menu.logout"), destroy_merchant_session_path %>
+          </span>
+        </li>
+      </ul>
+    </li>
+  </div>
+</div>

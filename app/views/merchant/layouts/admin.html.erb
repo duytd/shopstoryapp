@@ -1,1 +1,18 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title yield :title %></title>
+    <%= stylesheet_link_tag "merchant/application", media: "all", "data-turbolinks-track": true %>
+    <%= javascript_include_tag "merchant/application", "data-turbolinks-track": true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <aside class="left-panel">
+      <%= render "merchant/layouts/side_bar" %>
+    </aside>
+    <section class="content">
+      <%= render "merchant/layouts/top_bar" %>
+      <%= yield %>
+    </section>
+  </body>
+</html>
