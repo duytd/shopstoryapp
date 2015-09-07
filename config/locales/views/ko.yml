@@ -6,6 +6,9 @@ ko:
     pricing: "Pricing"
     showcase: "Showcase"
     preview: "Preview"
+    language: "Language"
+    korean: "Korean"
+    english: "English"
   pages:
     home:
       title: "Home"
