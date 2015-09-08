@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821141535) do
+ActiveRecord::Schema.define(version: 20150907075825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "categories", ["shop_id"], name: "index_categories_on_shop_id", using: :btree
 
   create_table "category_products", force: :cascade do |t|
     t.integer  "category_id"
@@ -32,6 +34,17 @@ ActiveRecord::Schema.define(version: 20150821141535) do
 
   add_index "category_products", ["category_id"], name: "index_category_products_on_category_id", using: :btree
   add_index "category_products", ["product_id"], name: "index_category_products_on_product_id", using: :btree
+
+  create_table "category_translations", force: :cascade do |t|
+    t.integer  "category_id", null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+  end
+
+  add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
+  add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
 
   create_table "discounts", force: :cascade do |t|
     t.string   "code"
@@ -194,6 +207,7 @@ ActiveRecord::Schema.define(version: 20150821141535) do
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
+  add_foreign_key "categories", "shops"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "order_products", "orders"

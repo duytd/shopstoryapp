@@ -1,0 +1,10 @@
+<div class="row categories">
+  <div class="col-md-12">
+    <h3 class="title"><%= t "merchant.categories.edit_category" %></h3>
+    <div class="block">
+      <%= react_component "CategoryForm", {en_data: load_translation(@category.translations, :en),
+        ko_data: load_translation(@category.translations, :ko), url: merchant_category_path(@category),
+        method: :put, redirect_url: merchant_categories_path}, {prerender: true} %>
+    </div>
+  </div>
+</div>

@@ -56,4 +56,16 @@ ko:
         delivery_settings: "Delivery Settings"
         user_settings: "User Settings"
         search: "Search"
-
+      buttons:
+        add: "Add"
+        save: "Save"
+        delete: "Delete"
+        delete_selected: "Delete selected"
+      forms:
+        ko_lang: "Korean"
+        en_lang: "English"
+        selected: "selected"
+        confirm: "Are you sure?"
+      categories:
+        title: "Categories"
+        add_category: "Add Category"

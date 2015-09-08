@@ -21,7 +21,33 @@ body {
   position: relative;
   line-height: 1.3;
   width: 100%;
+  font-size: 13px;
   background: $white-dark;
+}
+
+.label {
+  color: $gray;
+  font-size: 13px;
+  line-height: 2em;
+  padding: 10px 0;
+}
+
+.block {
+  border-color: 1px solid $white-dark;
+  box-shadow: 0 2px 4px #ddd;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background: $white;
+  padding: 10px 10px;
+  .block-header {
+   .title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+  .block-body {
+    background: $white;
+  }
 }
 
 h1, h2, h3, h4 {
@@ -30,6 +56,7 @@ h1, h2, h3, h4 {
 
 a {
   text-decoration: none;
+  color: $blue;
   &:hover, &:focus {
     text-decoration: none;
   }

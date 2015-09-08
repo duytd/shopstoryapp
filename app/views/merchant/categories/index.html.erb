@@ -1,0 +1,6 @@
+<div class="row categories">
+  <div class="col-md-12">
+    <%= react_component "CategoryBox", {data: @categories.to_json,
+      url: new_merchant_category_path}, {prerender: true} %>
+  </div>
+</div>

@@ -5,6 +5,11 @@
     <%= stylesheet_link_tag "merchant/application", media: "all", "data-turbolinks-track": true %>
     <%= javascript_include_tag "merchant/application", "data-turbolinks-track": true %>
     <%= csrf_meta_tags %>
+
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
   </head>
   <body>
     <aside class="left-panel">
@@ -12,7 +17,9 @@
     </aside>
     <section class="content">
       <%= render "merchant/layouts/top_bar" %>
-      <%= yield %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
     </section>
   </body>
 </html>

@@ -3,6 +3,10 @@ class Merchant::BaseController < ApplicationController
 
   before_action :authenticate_merchant!
 
+  def current_ability
+    @current_ability ||= Ability.new current_merchant
+  end
+
   private
   def authenticate_merchant!
     unless merchant_signed_in? && current_merchant.subdomain == Apartment::Tenant.current

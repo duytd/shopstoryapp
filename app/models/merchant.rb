@@ -1,7 +1,7 @@
 class Merchant < User
   attr_accessor :shop_name
-  
-  before_validation :generate_subdomain, on: :create, if: :email
+
+  before_validation :generate_subdomain, on: :create, if: Proc.new {|a| a.email.present?}
   after_create :create_merchant_shop, :create_tenant
 
   has_one :shop, foreign_key: "user_id"

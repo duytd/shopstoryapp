@@ -3,3 +3,13 @@
     box-shadow: none;
   }
 }
+.btn-group {
+  .btn {
+    text-transform: none;
+    font-weight: normal;
+    color: $gray;
+    &.disabled {
+      cursor: inherit;
+    }
+  }
+}
