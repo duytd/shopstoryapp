@@ -5,8 +5,11 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= nprogress-ajax
+//= require summernote/dist/summernote
+//= require dropzone/dist/dropzone
+//= require merchant/functions
 //= require react
 //= require react_ujs
-//= require components
+//= require merchant/components
 //= require jquery.nicescroll/jquery.nicescroll
-//= require_tree .
+//= require merchant/base

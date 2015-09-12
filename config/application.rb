@@ -32,7 +32,12 @@ module ShopStory
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
-    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts")
+    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts", "node_modules")
     config.autoload_paths << Rails.root.join("lib")
+
+    config.react.server_renderer_options = {
+      files: ["react.js", "merchant/components.js"],
+      replay_console: true,
+    }
   end
 end

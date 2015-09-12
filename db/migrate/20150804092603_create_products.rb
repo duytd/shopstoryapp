@@ -3,8 +3,8 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.text :description
-      t.decimal :price
-      t.decimal :sale_off
+      t.decimal :price, default: 0
+      t.decimal :sale_off, default: 0
       t.boolean :visibility, default: true
       t.string :vendor
       t.string :sku

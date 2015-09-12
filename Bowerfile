@@ -1,2 +1,4 @@
 asset "font-awesome"
 asset "jquery.nicescroll"
+asset "summernote"
+asset "dropzone"

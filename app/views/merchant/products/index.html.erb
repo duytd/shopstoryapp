@@ -1,0 +1,6 @@
+<div class="row products">
+  <div class="col-md-12">
+    <%= react_component "ProductBox", {data: @products.to_json,
+      url: new_merchant_product_path}, {prerender: true} %>
+  </div>
+</div>

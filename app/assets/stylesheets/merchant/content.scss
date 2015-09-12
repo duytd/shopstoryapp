@@ -1,4 +1,9 @@
 section.content {
+  padding-bottom: 10px;
+  overflow-x: hidden;
+  .title {
+    margin-top: 0;
+  }
   .top-bar {
     height: 50px;
     background: $white;
@@ -52,4 +57,3 @@ section.content {
     }
   }
 }
-

@@ -130,3 +130,31 @@ $input-bg-color: #e9ebed;
     width: 20px;
   }
 }
+
+.form-group {
+  .note-editor {
+    border-color: $white-dark;
+  }
+  .panel-heading {
+    padding: 5px;
+  }
+  .btn {
+    border-radius: 4px;
+  }
+}
+
+.dropzone {
+  border: 2px dashed $input-bg-color;
+  .dz-message {
+    font-size: 20px;
+    line-height: 1em;
+    color: $input-border-color;
+  }
+  .dz-progress {
+    background: rgba(255, 255, 255, 0.5) !important;
+  }
+  .fa-trash {
+    color: $input-border-color;
+    cursor: pointer;
+  }
+}

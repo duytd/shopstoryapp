@@ -1,0 +1,9 @@
+<div class="row products">
+  <div class="col-md-12">
+    <h3 class="title"><%= t "merchant.products.add_product" %></h3>
+    <div class="row">
+      <%= react_component "ProductForm", {data: @product, categories: @categories, url: merchant_products_path,
+        redirect_url: merchant_products_path, method: "post"}, {prerender: true} %>
+    </div>
+  </div>
+</div>

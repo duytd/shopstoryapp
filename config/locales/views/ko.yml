@@ -58,7 +58,9 @@ ko:
         search: "Search"
       buttons:
         add: "Add"
+        add_variation: "Add variation"
         save: "Save"
+        cancel: "Cancel"
         delete: "Delete"
         delete_selected: "Delete selected"
       forms:
@@ -66,6 +68,19 @@ ko:
         en_lang: "English"
         selected: "selected"
         confirm: "Are you sure?"
+        pricing_title: "Pricing"
+        visibility_title: "Visibility"
+        inventory_title: "Inventory"
+        categories_title: "Categories"
+        images_title: "Images"
+        variations_title: "Variations"
+        online: "Online"
+        dropzone_instruction: "Drop files or click here to upload"
       categories:
-        title: "Categories"
+        title: "All Categories"
         add_category: "Add Category"
+      products: 
+        title: "All Products"
+        add_product: "Add Product"
+        color_placeholder: "E.g: Red, Blue, White, etc.."
+        size_placeholder: "E.g: S, M, L, etc.."
