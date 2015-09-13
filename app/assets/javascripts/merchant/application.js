@@ -2,5 +2,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require nprogress
+//= require nprogress-turbolinks
+//= nprogress-ajax
+//= require react
+//= require react_ujs
+//= require components
 //= require jquery.nicescroll/jquery.nicescroll
 //= require_tree .

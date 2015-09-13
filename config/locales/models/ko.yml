@@ -11,11 +11,23 @@ ko:
             password:
               too_short: "must be at least 8 characters"
               blank: "cannot be empty"
-            subdomain: 
+            subdomain:
               blank: "cannot be empty"
               invalid: "must contain only characters and numbers (E.g: example)"
+      format: "%{attribute} %{message}"
+      messages:
+        blank: "%{attribute} can't be blank"
+        too_short:
+          one: "%{attribute} is too short (minimum is 1 character)"
+          other: "%{attribute} is too short (minimum is %{count} characters)"
+        taken: "%{attribute} is already taken"
+
     attributes:
       merchant:
         email: ""
         password: "Password"
         subdomain: "Store name"
+      category:
+        name: "Name"
+        name_ko: "Name"
+        name_en: "Name"

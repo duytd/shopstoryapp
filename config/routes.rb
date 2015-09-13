@@ -28,6 +28,11 @@ Rails.application.routes.draw do
 
     namespace :merchant, path: "admin" do
       root "pages#dashboard"
+      resources :categories, except: :show do
+        collection do
+          delete :index
+        end
+      end
     end
   end
 end

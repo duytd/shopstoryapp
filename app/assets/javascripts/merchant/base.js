@@ -14,4 +14,5 @@ $(document).on("page:change", function() {
   $sideBar.on("click", ".item", function(){
     $(this).find(".subitems").slideToggle();
   })
+  NProgress.configure({ showSpinner: false });
 });

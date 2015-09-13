@@ -1,10 +1,16 @@
 @import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "nprogress";
+@import "nprogress-bootstrap";
 @import "font-awesome/css/font-awesome";
 @import "alerts";
 @import "buttons";
 @import "forms";
+@import "checkboxes";
+@import "tabs";
+@import "tables";
 @import "merchant/base";
 @import "merchant/side_bar";
 @import "merchant/content";
+@import "merchant/categories";

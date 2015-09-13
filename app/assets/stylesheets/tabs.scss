@@ -1,0 +1,14 @@
+.nav-tabs {
+  background: $white-light;
+  border-bottom: none;
+  margin: -10px -10px 5px;
+  a {
+    border: none !important;
+    color: $gray !important;
+    font-size: 13px;
+    &:hover {
+      background: transparent !important;
+      color: $gray-dark !important;
+    }
+  }
+}

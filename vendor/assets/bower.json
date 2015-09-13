@@ -2,6 +2,7 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "font-awesome": "latest",
-    "jquery.nicescroll": "latest"
+    "jquery.nicescroll": "latest",
+    "awesome-bootstrap-checkbox": "latest"
   }
 }

@@ -5,6 +5,7 @@ $input-bg-color: #e9ebed;
   border: none;
   box-shadow: none;
   background: $input-bg-color;
+  color: $gray-dark;
   &:focus {
     box-shadow: none;
   }
@@ -72,6 +73,20 @@ $input-bg-color: #e9ebed;
   .form-control {
     border-color: $red-dark !important; 
   }
+}
+
+.form-errors {
+  color: $red-dark;
+  font-size: 12px;
+  span {
+    display: block;
+    line-height: 1.5em;
+  }
+}
+
+.badge-danger {
+  margin-left: 5px;
+  background: $red-dark;
 }
 
 .shopstory-checkbox {

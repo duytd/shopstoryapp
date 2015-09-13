@@ -1,0 +1,14 @@
+.table {
+  margin-top: 10px;
+  td {
+    border-top: 1px solid $white-light !important;
+  }
+  .btn {
+    border-radius: 3px;
+    font-size: 11px;
+  }
+  th {
+    border-bottom: 1px solid $white-light !important;
+    font-weight: normal;
+  }
+}
