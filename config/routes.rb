@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       resources :products, except: :show do
         delete :index, on: :collection
       end
+
+      resources :shops, only: [:edit, :update]
     end
   end
 end

@@ -1,6 +1,20 @@
 $input-border-color: #959ea7;
 $input-bg-color: #e9ebed;
 
+.form-title {
+  color: $gray;
+  font-weight: 400;
+}
+
+.form-group {
+  .label {
+    .hint {
+      font-size: 10px;
+      font-weight: normal;
+    }
+  }
+}
+
 .form-control {
   border: none;
   box-shadow: none;
@@ -156,5 +170,36 @@ $input-bg-color: #e9ebed;
   .fa-trash {
     color: $input-border-color;
     cursor: pointer;
+  }
+}
+
+.select {
+  position: relative;
+  &:after {
+    content:'\f0d7';
+    font-family: 'FontAwesome';
+    font-size: 18px;
+    padding: 0 0 2px;
+    pointer-events: none;
+    position: absolute;
+    right: 8px;
+    top: 4px;
+  }
+  &:before {
+    content: '';
+    right: 6px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    pointer-events: none;
+    display: block;
+  }
+  select {
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
   }
 }

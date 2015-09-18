@@ -11,19 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912084735) do
+ActiveRecord::Schema.define(version: 20150923093229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.integer  "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "categories", ["shop_id"], name: "index_categories_on_shop_id", using: :btree
 
   create_table "category_products", force: :cascade do |t|
     t.integer  "category_id"
@@ -92,8 +89,9 @@ ActiveRecord::Schema.define(version: 20150912084735) do
     t.text     "description"
     t.decimal  "price"
     t.decimal  "transaction_fee"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "default",         default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -130,8 +128,8 @@ ActiveRecord::Schema.define(version: 20150912084735) do
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.decimal  "price"
-    t.decimal  "sale_off"
+    t.decimal  "price",       default: 0.0
+    t.decimal  "sale_off",    default: 0.0
     t.boolean  "visibility",  default: true
     t.string   "vendor"
     t.string   "sku"
@@ -140,9 +138,21 @@ ActiveRecord::Schema.define(version: 20150912084735) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "shop_translations", force: :cascade do |t|
+    t.integer  "shop_id",    null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "street"
+  end
+
+  add_index "shop_translations", ["locale"], name: "index_shop_translations_on_locale", using: :btree
+  add_index "shop_translations", ["shop_id"], name: "index_shop_translations_on_shop_id", using: :btree
+
   create_table "shops", force: :cascade do |t|
     t.string   "name"
     t.string   "legal_name"
+    t.string   "email"
     t.string   "phone"
     t.string   "street"
     t.string   "city"
@@ -150,7 +160,6 @@ ActiveRecord::Schema.define(version: 20150912084735) do
     t.string   "country"
     t.string   "zip_code"
     t.string   "time_zone"
-    t.integer  "metric_system"
     t.integer  "weight_unit"
     t.string   "currency"
     t.integer  "plan_id"
@@ -174,10 +183,14 @@ ActiveRecord::Schema.define(version: 20150912084735) do
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
+    t.string   "directory"
+    t.string   "author"
+    t.decimal  "version"
     t.text     "description"
-    t.boolean  "actived"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "actived",     default: true
+    t.boolean  "default",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -219,7 +232,6 @@ ActiveRecord::Schema.define(version: 20150912084735) do
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
-  add_foreign_key "categories", "shops"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "order_products", "orders"

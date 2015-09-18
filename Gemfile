@@ -26,6 +26,9 @@ gem "react-rails", "~> 1.0"
 gem "i18n-js"
 gem "carrierwave"
 gem "mini_magick"
+gem "money-rails"
+gem "country_select"
+gem "config"
 
 group :development, :test do
   gem "byebug"

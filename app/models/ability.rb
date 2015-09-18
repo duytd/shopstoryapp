@@ -6,9 +6,15 @@ class Ability
     if user.is_a? Admin
       can :manage, :all
     elsif user.is_a? Merchant
-      can [:read, :create, :update, :destroy], Category if Apartment::Tenant.current == user.subdomain
-      can [:read, :create, :update, :destroy], Product if Apartment::Tenant.current == user.subdomain
+      can [:read, :create, :update, :destroy], Category if current_tenant? user
+      can [:read, :create, :update, :destroy], Product if current_tenant? user
+      can [:read, :create, :update], Shop if current_tenant? user
     else
     end
+  end
+
+  private
+  def current_tenant? user
+    Apartment::Tenant.current == user.subdomain
   end
 end

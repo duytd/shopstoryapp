@@ -4,12 +4,16 @@ include Devise::TestHelpers
 RSpec.describe Merchant::ProductsController, type: :controller do
   let(:product) {create :product}
   let(:merchant) {create :merchant}
+  let(:theme) {create :default_theme}
+  let(:plan) {create :default_plan}
   let(:input_en_name) {"Product English Name"}
   let(:input_ko_name) {"Product Korean Name"}
   let(:input_en_desc) {"Product English Description"}
   let(:input_ko_desc) {"Product Korean Description"}
 
   before do
+    allow(Theme).to receive(:default).and_return(theme)
+    allow(Plan).to receive(:default).and_return(plan)
     sign_in merchant
     Apartment::Tenant.switch! merchant.subdomain
   end

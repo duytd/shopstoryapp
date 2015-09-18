@@ -63,9 +63,9 @@
       </a>
       <ul class="subitems">
         <li>
-          <%= link_to "#" do %>
+          <%= link_to edit_merchant_shop_path(current_merchant.shop) do %>
             <i class="fa fa-globe"></i>
-            <%= t "merchant.admin.menu.basic_settings" %>
+            <%= t "merchant.admin.menu.general_settings" %>
           <% end %>
         </li>
         <li>

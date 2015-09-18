@@ -5,6 +5,7 @@ class CreatePlans < ActiveRecord::Migration
       t.text :description
       t.decimal :price
       t.decimal :transaction_fee
+      t.boolean :default, default: false
 
       t.timestamps null: false
     end

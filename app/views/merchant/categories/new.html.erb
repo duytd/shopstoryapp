@@ -1,6 +1,6 @@
 <div class="row categories">
   <div class="col-md-12">
-    <h3 class="title"><%= t "merchant.categories.add_category" %></h3>
+    <h3 class="title"><%= t "merchant.admin.categories.add_category" %></h3>
     <div class="block">
       <%= react_component "CategoryForm", {data: @category, url: merchant_categories_path,
         redirect_url: merchant_categories_path, method: "post"}, {prerender: true} %>

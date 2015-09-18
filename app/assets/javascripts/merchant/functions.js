@@ -5,3 +5,11 @@ Dropzone.prototype._getParamName = function(n) {
     return "" + this.options.paramName1 + (this.options.uploadMultiple ? "[" + n + "]" : "") + this.options.paramName2 + "";
   }
 };
+
+function openDaumPostcode(callback) {
+  new daum.Postcode({
+    oncomplete: function(data) {
+      callback(data);
+    }
+  }).open();
+}
