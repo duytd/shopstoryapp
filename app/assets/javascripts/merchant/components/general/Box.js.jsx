@@ -1,13 +1,13 @@
-var CategoryBox = React.createClass({
+var Box = React.createClass({
   render: function() {
     return (
-      <div className="category-box block">
+      <div className={this.props.name + "-box block"}>
         <div className="block-header">
-          <span className="title">{I18n.t("merchant.admin.categories.title")}</span>
+          <span className="title">{this.props.title}</span>
           <a className="btn btn-sm btn-primary pull-right" href={this.props.url}>{I18n.t("merchant.admin.buttons.add")}</a>
         </div>
         <div className="block-body">
-          <CategoryList categories={this.props.data} />
+          {this.props.list}
         </div>
       </div>
     );

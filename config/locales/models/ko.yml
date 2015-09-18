@@ -31,3 +31,17 @@ ko:
         name: "Name"
         name_ko: "Name"
         name_en: "Name"
+      product:
+        name: "Name"
+        name_en: "Name"
+        name_ko: "Name"
+        description_en: "Description"
+        description_ko: "Description"
+        price: "Price"
+        sku: "SKU (Stock Keeping Unit)"
+        sale_off: "Sale Off"
+        in_stock: "In Stock"
+      variation:
+        color: "Color"
+        size: "Size"
+        in_stock: "In Stock"

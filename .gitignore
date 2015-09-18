@@ -17,3 +17,6 @@
 /vendor/assets/bower_components/
 /vendor/assets/.bowerrc
 /vendor/assets/bower.json
+
+/public/uploads
+/app/assets/javascripts/i18n

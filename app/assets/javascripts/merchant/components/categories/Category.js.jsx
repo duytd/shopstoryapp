@@ -10,8 +10,10 @@ var Category = React.createClass({
           </label>
         </td>
         <td className="name">
-          <a href={"/admin/categories/"+this.props.category.id+"/edit"}>{this.props.category.name}</a>
-          </td>
+          <a href={"/admin/categories/"+this.props.category.id+"/edit"}>
+            {(this.props.category.name == "") ? this.props.category.name_en : this.props.category.name}
+          </a>
+        </td>
         <td>
           <a className="btn btn-sm btn-danger" href={"/admin/categories/"+this.props.category.id}
             data-confirm={I18n.t("merchant.admin.forms.confirm")} onClick={this.handleDelete}>
