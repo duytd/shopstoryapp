@@ -1,6 +1,6 @@
 <div class="row products">
   <div class="col-md-12">
-    <h3 class="title"><%= t "merchant.products.edit_product" %></h3>
+    <h3 class="title"><%= t "merchant.admin.products.edit_product" %></h3>
     <div class="row">
       <%= react_component "ProductForm", {product: @product, en_product: load_translation(@product.translations, :en),
         ko_product: load_translation(@product.translations, :ko), categories: @categories, 

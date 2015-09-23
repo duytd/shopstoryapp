@@ -3,6 +3,7 @@ class CreateShops < ActiveRecord::Migration
     create_table :shops do |t|
       t.string :name
       t.string :legal_name
+      t.string :email
       t.string :phone
       t.string :street
       t.string :city
@@ -10,7 +11,6 @@ class CreateShops < ActiveRecord::Migration
       t.string :country
       t.string :zip_code
       t.string :time_zone
-      t.integer :metric_system
       t.integer :weight_unit
       t.string :currency
       t.references :plan, index: true, foreign_key: true

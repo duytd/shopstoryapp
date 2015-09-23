@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
   subject(:product) {build :product}
 
   describe "associations" do
-    it {expect have_many :product_products}
+    it {expect  :category_products}
     it {expect have_many :categories}
     it {expect have_many :variations}
     it {expect have_many :product_tags}
