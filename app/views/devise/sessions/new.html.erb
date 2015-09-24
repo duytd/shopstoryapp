@@ -18,8 +18,11 @@
 
     <div class="form-group remember-password">
       <% if devise_mapping.rememberable? %>
-        <%= f.check_box :remember_me, class: "shopstory-checkbox" %>
-        <%= f.label :remember_me, class: "shopstory-checkbox-label" %>
+        <%= f.label :remember_me, class: "styled-cb" do %>
+          <%= f.check_box :remember_me %>
+          <i class="fa"></i>
+          <%= t "merchant.login.remember_me" %>
+        <% end %>
       <% end %>
       <%= f.submit t("merchant.login.submit"), class: "btn btn-lg btn-success pull-right" %>
     </div>

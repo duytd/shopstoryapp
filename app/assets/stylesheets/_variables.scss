@@ -31,7 +31,7 @@ $navbar-inverse-brand-color:                $navbar-inverse-link-color !default;
 $navbar-inverse-brand-hover-color:          $white !default;
 $navbar-inverse-brand-hover-bg:             transparent !default;
 // Inverted navbar toggle
-$navbar-inverse-toggle-hover-bg:            $blue !default;
+$navbar-inverse-toggle-hover-bg:            lighten($sea, 5%) !default;
 $navbar-inverse-toggle-icon-bar-bg:         $white-dark !default;
 $navbar-inverse-toggle-border-color:        $white-dark !default;
 

@@ -1,5 +1,15 @@
 .btn {
   margin-right: 5px;
+  border-radius: 300px;
+  font-weight: 700;
+  text-transform: uppercase;
+  &.btn-success:hover, &.btn-success:focus {
+    background: $btn-success-border !important;
+    border-color: $btn-success-border !important;
+  }
+  &.btn-inline {
+    border-radius: 4px !important;
+  }
   &:hover, &:focus {
     box-shadow: none;
   }

@@ -16,7 +16,8 @@ var SubmitButtons = React.createClass({
       goBack: true
     }
   },
-  goBack: function() {
+  goBack: function(e) {
+    e.preventDefault();
     Turbolinks.visit(this.props.redirect_url);
   },
 });
