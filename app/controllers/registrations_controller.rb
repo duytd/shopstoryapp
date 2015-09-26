@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
   def sign_up_params
-    params.require(:merchant).permit :subdomain, :email, :password,
+    params.require(:merchant).permit :email, :password,
       :password_confirmation, :shop_name
   end
 

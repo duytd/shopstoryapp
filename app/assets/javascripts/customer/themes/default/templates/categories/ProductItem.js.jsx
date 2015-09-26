@@ -1,0 +1,1 @@
+/* Product item in category grid layout */

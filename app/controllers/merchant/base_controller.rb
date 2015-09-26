@@ -9,7 +9,7 @@ class Merchant::BaseController < ApplicationController
 
   private
   def authenticate_merchant!
-    unless merchant_signed_in? && current_merchant.subdomain == Apartment::Tenant.current
+    unless merchant_signed_in? && current_merchant.shop.subdomain == Apartment::Tenant.current
       render text: "Access Denied"
     end
   end

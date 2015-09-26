@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :type
       t.string :first_name
       t.string :last_name
-      t.string :subdomain
       t.string :company
       t.string :phone
       t.string :address
