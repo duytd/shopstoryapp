@@ -17,10 +17,9 @@ html {
 
 body {
   font-family: "Noto Sans", sans-serif;
-  min-height: 100%;
-  position: relative;
   line-height: 1.3;
   width: 100%;
+  height: 100%;
 }
 
 h1, h2, h3, h4 {
@@ -38,6 +37,13 @@ a {
   clear: both;
 }
 
+.main-wrapper {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  padding-bottom: 30px;
+}
+
 #footer {
   width: 100%;
   padding: 5px 0;
@@ -45,17 +51,9 @@ a {
   background: $white-light;
   position: absolute;
   z-index: 9999;
-}
-
-.btn {
-  border-radius: 300px;
-  font-weight: 700;
-  text-transform: uppercase;
-  &.btn-success:hover, &.btn-success:focus {
-    background: $btn-success-border !important;
-    border-color: $btn-success-border !important;
-  }
-  &.btn-inline {
-    border-radius: 4px !important;
+  height: 30px;
+  .copyright {
+    color: $gray;
+    font-weight: bold;
   }
 }

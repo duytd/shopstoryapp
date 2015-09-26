@@ -11,12 +11,14 @@ $(document).on("page:change", function() {
   $(".navbar-toggle").click(function() {
     $sideBar.toggleClass("collapsed");
     $content.toggleClass("expansed");
-    $sideBar.find(".subitems, .item-label, .merchant-logo .name").toggleClass("hide");
+    $(".subitems").hide();
   });
 
   $sideBar.on("click", ".item", function(){
-    $(this).find(".subitems").slideToggle();
-  })
+    if (!$sideBar.hasClass("collapsed") || $(window).width() <= 768) {
+      $(this).find(".subitems").slideToggle();
+    }
+  });
 
   NProgress.configure({ showSpinner: false });
 

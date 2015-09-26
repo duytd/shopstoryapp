@@ -34,6 +34,7 @@ ko:
       title: "Login to your shop"
       submit: "Login"
       forgot: "Forgot?"
+      remember_me: "Remember me"
     passwords:
       title: "Forgot your password?"
       subtitle: "Don't worry. Enter your email address to reset it"

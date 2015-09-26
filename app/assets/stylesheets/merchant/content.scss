@@ -1,13 +1,17 @@
 section.content {
   padding-bottom: 10px;
-  overflow-x: hidden;
   .title {
-    margin-top: 0;
+    font-size: 22px;
+    margin-top: 10px;
   }
   .top-bar {
     height: 50px;
     background: $white;
     border-bottom: 3px solid darken($white-dark, 3%);
+    margin-bottom: 10px;
+    .navbar {
+      margin-bottom: 0;
+    }
     .navbar-toggle {
       display: block;
       padding-top: 7px;
@@ -27,7 +31,6 @@ section.content {
       }
     }
     .navbar-right {
-      padding-right: 20px;
       .open a {
         background: transparent;
       }
@@ -48,12 +51,23 @@ section.content {
         border: none;
         border-radius: 0;
         padding: 10px;
-        box-shadow: none;
         color: $gray;
+        background: $white-dark;
+        right: 0;
+        left: auto;
         a {
           color: $gray;
         }
       }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  section.content {
+    .title {
+      margin-top: 0;
+      font-size: 24px;
     }
   }
 }

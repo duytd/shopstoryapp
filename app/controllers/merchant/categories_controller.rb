@@ -1,4 +1,6 @@
 class Merchant::CategoriesController < Merchant::BaseController
+  include ApplicationHelper
+
   load_and_authorize_resource
 
   def index
@@ -10,6 +12,12 @@ class Merchant::CategoriesController < Merchant::BaseController
   end
 
   def new
+    @props = {
+      data: @category,
+      url: merchant_categories_path,
+      redirect_url: merchant_categories_path,
+      method: :post
+    }
   end
 
   def create
@@ -22,6 +30,13 @@ class Merchant::CategoriesController < Merchant::BaseController
   end
 
   def edit
+    @props = {
+      en_category: load_translation(@category.translations, :en),
+      ko_category: load_translation(@category.translations, :ko),
+      url: merchant_category_path(@category),
+      method: :put,
+      redirect_url: merchant_categories_path
+    }
   end
 
   def update
@@ -39,7 +54,11 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   private
   def list_all
-    @categories = Category.all
+    categories = Category.all
+    @props = {
+      data: categories.to_json,
+      url: new_merchant_category_path
+    }
   end
 
   def delete_all

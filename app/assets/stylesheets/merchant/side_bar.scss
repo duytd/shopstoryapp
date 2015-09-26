@@ -1,6 +1,7 @@
 $menu-item-color: #cccccc;
 
 aside.left-panel {
+  left: 100%;
   .merchant-logo {
     color: $white !important;
     background: $sea-light;
@@ -70,11 +71,50 @@ aside.left-panel {
     }
   }
   &.collapsed {
-    width: 80px;
-    .item {
-      padding: 25px;
-      i {
-        margin-top: -10px;
+    left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  aside.left-panel {
+    left: 0;
+    &.collapsed {
+      display: block;
+      width: 80px;
+      overflow: visible !important;
+      bottom: 0;
+      position: absolute;
+      left: 0;
+      .merchant-logo {
+        .name {
+          display: none;
+        }
+      }
+      .item {
+        padding: 25px;
+        position: relative;
+        i {
+          margin-top: -10px;
+        }
+        .item-label {
+          display: none;
+        }
+        &:hover > .subitems {
+          display: block !important;
+        }
+      }
+      .subitems {
+        background-color: darken($sea, 5%);
+        box-shadow: none;
+        left: 100%;
+        min-width: 150px;
+        padding: 10px 0;
+        position: absolute;
+        top: -100%;
+        z-index: 999;
+        i {
+          display: none;
+        }
       }
     }
   }

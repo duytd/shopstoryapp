@@ -173,6 +173,7 @@ var ShopForm = React.createClass({
     if (!this.state.koreanMode) {
       this.refs.street_ko.getDOMNode().value = this.refs.street_en.getDOMNode().value;
     }
+
     var formData = $(this.refs.form.getDOMNode()).serialize();
 
     this.handleShopSubmit(formData, this.props.url, this.props.method);
@@ -186,6 +187,7 @@ var ShopForm = React.createClass({
       success: function(data) {
         if (data.status == "success") {
           Turbolinks.visit(this.props.redirect_url);
+
           this.setState({
             errors: [],
           })
@@ -204,15 +206,12 @@ var ShopForm = React.createClass({
     }
   },
   handleStreetClick: function(data) {
-    this.refs.zip_code.getDOMNode().value = data.zonecode;
-    this.refs.street_ko.getDOMNode().value = data.address;
-    this.refs.street_en.getDOMNode().value = data.addressEnglish;
+    this.setAddress(data.address, data.addressEnglish, data.zonecode);
   },
   countryChange: function() {
     var country = this.refs.country.getDOMNode().value;
 
-    this.refs.street_ko.getDOMNode().value = "";
-    this.refs.street_en.getDOMNode().value = "";
+    this.setAddress();
 
     if (country == this.props.config.default_country) {
       this.setState({koreanMode: true});
@@ -220,5 +219,14 @@ var ShopForm = React.createClass({
     else {
       this.setState({koreanMode: false});
     }
+  },
+  setAddress: function(address, englishAddress, zipcode) {
+    address = typeof address !== "undefined" ? address : "";
+    englishAddress = typeof englishAddress !== "undefined" ? englishAddress : "";
+    zipcode = typeof zipcode !== "undefined" ? zipcode : "";
+
+    this.refs.street_ko.getDOMNode().value = address;
+    this.refs.street_en.getDOMNode().value = englishAddress;
+    this.refs.zip_code.getDOMNode().value = zipcode;
   }
 });

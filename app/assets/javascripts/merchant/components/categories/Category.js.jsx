@@ -37,6 +37,7 @@ var Category = React.createClass({
   },
   handleSelect: function() {
     var checked = !this.props.check;
+
     this.props.handleSelect(this.props.category, checked);
   }
 });
