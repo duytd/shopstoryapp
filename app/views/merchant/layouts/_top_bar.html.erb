@@ -11,7 +11,11 @@
       class: "form-control" %>
   <% end %>
 
-  <div class="nav navbar navbar-right pull-right">
+  <div class="nav navbar-nav navbar-right pull-right">
+    <li>
+      <%= link_to t("merchant.admin.menu.view_shop"), customer_root_url(subdomain: current_merchant.shop.subdomain),
+        "data-no-turbolink": true %>
+    </li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle avatar"
         data-toggle="dropdown" role="button" aria-haspopup="true"

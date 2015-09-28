@@ -5,6 +5,18 @@ RSpec.describe Shop, type: :model do
   let(:theme) {create :default_theme}
   let(:plan) {create :default_plan}
 
+  context "validations" do
+    before do
+      shop.theme = theme
+      shop.plan = plan
+    end
+
+    it {should validate_uniqueness_of :subdomain}
+    it {should allow_value("subdomain").for(:subdomain)}
+    it {should_not allow_value("wrong name").for(:subdomain)}
+    it {should_not allow_value("wrong_name").for(:subdomain)}
+  end
+
   describe "associations" do
     it {expect have_many :discounts}
     it {expect have_many :pages}

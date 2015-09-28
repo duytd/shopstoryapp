@@ -15,6 +15,8 @@ class Shop < ActiveRecord::Base
   validates :theme, presence: true
   validates :email, presence: true, on: :update
   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, allow_blank: true
+  validates :subdomain, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/},
+    uniqueness: true
 
   before_validation :load_defaults
 

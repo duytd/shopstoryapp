@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20150923093229) do
 
   create_table "shops", force: :cascade do |t|
     t.string   "name"
+    t.string   "subdomain"
     t.string   "legal_name"
     t.string   "email"
     t.string   "phone"
@@ -197,7 +198,6 @@ ActiveRecord::Schema.define(version: 20150923093229) do
     t.string   "type"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "subdomain"
     t.string   "company"
     t.string   "phone"
     t.string   "address"

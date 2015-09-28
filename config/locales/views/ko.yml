@@ -57,6 +57,7 @@ ko:
         delivery_settings: "Delivery"
         user_settings: "Account"
         search: "Search"
+        view_shop: "View your shop"
       buttons:
         add: "Add"
         add_variation: "Add variation"

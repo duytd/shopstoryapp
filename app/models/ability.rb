@@ -15,6 +15,6 @@ class Ability
 
   private
   def current_tenant? user
-    Apartment::Tenant.current == user.subdomain
+    Apartment::Tenant.current == user.shop.subdomain
   end
 end

@@ -34,8 +34,11 @@ section.content {
       .open a {
         background: transparent;
       }
+      li {
+        float: left;
+      }
       a {
-        padding: 5px;
+        line-height: 1em;
         &:hover, &:focus {
           background: transparent !important;
         }
@@ -46,6 +49,7 @@ section.content {
         border-radius: 50%;
         width: 35px;
         height: 35px;
+        margin-top: -10px;
       }
       .dropdown-menu {
         border: none;
