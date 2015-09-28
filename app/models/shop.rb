@@ -8,7 +8,7 @@ class Shop < ActiveRecord::Base
   has_many :discounts, dependent: :destroy
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
-  
+
   validates :name, presence: true
   validates :merchant, presence: true
   validates :plan, presence: true
@@ -21,6 +21,8 @@ class Shop < ActiveRecord::Base
   before_validation :load_defaults
 
   enum weight_unit: [:kg, :g]
+
+  scope :current,->subdomain {find_by subdomain: subdomain}
 
   def as_json options={}
     super.as_json(options).merge({street_en: street_en, street_ko: street_ko})

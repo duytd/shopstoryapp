@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+/* Buttons */
+.btn {
+  font-weight: 400;
+}
+.btn-primary:hover {
+  background: #f1c40f;
+  color: #fff !important;
+  border: 1px solid #f1c40f;
+}
+
+/* Alert, Label */ 
+.alert {
+  margin-bottom: 0;
+}
+label {
+  font-weight: 400;
+}
+
+/* Header */
+.header .top {
+  background: #f0f0f0;
+}
+.header .top a {
+  padding-right: 10px;
+}
+.header .languages a {
+  color #222;
+}
+.header .languages a:not(:last-child) {
+  padding-right: 10px;
+}
+
+/* Navigation */
+.navbar {
+  border-radius: 0px;
+  border-bottom: 1px solid #222;
+  border-top: none;
+}
+.navbar-default {
+  background: #222;
+}
+.navbar-default .navbar-brand {
+  color: #f0f0f0;
+}
+.navbar-default .navbar-brand:hover {
+  color: #fafafa;
+}
+
+/* Login, register */
+.login .title {
+  margin-bottom: 15px;
+}
+.login p.small, .register p.small {
+  margin-top: 10px;
+}
