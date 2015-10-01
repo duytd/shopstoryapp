@@ -1,14 +1,15 @@
-module ThemesLoading 
+module ShopsLoading 
   extend ActiveSupport::Concern
 
   included do
     layout "customer/layouts/application"
-    before_action :load_theme, :load_global_variables
+    before_action :load_shop, :load_global_variables
   end
 
   private
-  def load_theme
-    @current_theme = current_theme
+  def load_shop
+    @current_shop = current_shop
+    @current_theme = @current_shop.theme
   end
 
   def load_global_variables
@@ -20,8 +21,8 @@ module ThemesLoading
     }
   end
 
-  def current_theme
+  def current_shop
     subdomain = Apartment::Tenant.current
-    Theme.current subdomain
+    Shop.current subdomain
   end
 end

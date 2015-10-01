@@ -3,12 +3,10 @@
   <head>
     <title><%= full_title yield :title %></title>
     <%= stylesheet_link_tag "customer/application", media: "all", "data-turbolinks-track": true %>
-    <%= stylesheet_link_tag "customer/themes/#{@current_theme.directory}/assets/style", media: "all", 
-      "data-turbolinks-track": true %>
+    <%= stylesheet_link_tag customer_theme_editor_path, media: "all", "data-turbolinks-track": true %>
     <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/application", 
       "data-turbolinks-track": true %>
-    <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/assets/shop", 
-      "data-turbolinks-track": true %>
+    <%= javascript_include_tag customer_theme_editor_path, "data-turbolinks-track": true %>
     <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/i18n/en", 
       "data-turbolinks-track": true %>
     <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/i18n/ko", 

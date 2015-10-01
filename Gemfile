@@ -29,6 +29,7 @@ gem "mini_magick"
 gem "money-rails"
 gem "country_select"
 gem "config"
+gem "actionpack-action_caching"
 
 group :development, :test do
   gem "byebug"

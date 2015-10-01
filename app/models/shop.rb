@@ -8,6 +8,7 @@ class Shop < ActiveRecord::Base
   has_many :discounts, dependent: :destroy
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
+  has_many :theme_editors, dependent: :destroy
 
   validates :name, presence: true
   validates :merchant, presence: true
@@ -19,6 +20,7 @@ class Shop < ActiveRecord::Base
     uniqueness: true
 
   before_validation :load_defaults
+  after_create :initialize_theme_editor
 
   enum weight_unit: [:kg, :g]
 
@@ -32,5 +34,9 @@ class Shop < ActiveRecord::Base
   def load_defaults
     self.theme = Theme.default
     self.plan = Plan.default
+  end
+
+  def initialize_theme_editor
+    self.theme.import_theme_editor self
   end
 end

@@ -1,5 +1,5 @@
 class Customer::SessionsController < Devise::SessionsController
-  include ThemesLoading
+  include ShopsLoading
 
   def new
     @props = {
