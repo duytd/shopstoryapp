@@ -1,5 +1,5 @@
 .styled-cb {
-  display: block;
+  display: inline-block;
   i {
     border: 1px solid lighten($gray, 10%);
     border-radius: 3px;
@@ -20,8 +20,9 @@
     content: "\f00c";
   }
   input:checked + i {
-    border-color: $blue;
-    color: $blue;
+    border-color: $checkbox-border-color;
+    color: $checkbox-color;
+    background: $checkbox-bg-color;
   }
   span {
     margin-left: 5px;

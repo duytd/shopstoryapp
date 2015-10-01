@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
   end
 
   def account_url resource
-    case resource.type
+    case resource.class.name
     when "Admin"
       admin_root_url
     when "Merchant"
       merchant_root_url subdomain: resource.shop.subdomain
     when "Customer"
-      customer_root_url subdomain: resource.shop.subdomain
+      customer_root_url subdomain: Apartment::Tenant.current
     else
       root_url
     end

@@ -43,6 +43,30 @@ ActiveRecord::Schema.define(version: 20150923093229) do
   add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
   add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
 
+  create_table "customers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "gender"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "country"
+    t.string   "zip_code"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+  end
+
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
+  add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
+
   create_table "discounts", force: :cascade do |t|
     t.string   "code"
     t.date     "start_date"
@@ -76,13 +100,13 @@ ActiveRecord::Schema.define(version: 20150923093229) do
   add_index "order_products", ["product_id"], name: "index_order_products_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "customer_id"
     t.decimal  "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
     t.string   "name"
@@ -218,7 +242,7 @@ ActiveRecord::Schema.define(version: 20150923093229) do
     t.string   "last_sign_in_ip"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "variations", force: :cascade do |t|
@@ -236,7 +260,7 @@ ActiveRecord::Schema.define(version: 20150923093229) do
   add_foreign_key "category_products", "products"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
-  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "customers"
   add_foreign_key "product_images", "products"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"

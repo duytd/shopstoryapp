@@ -3,8 +3,10 @@
 var Home = React.createClass({
   render: function() {
     return (
-      <div className="home">
-      </div>
+      <Layout globalVars={this.props.globalVars}>
+        <div className="home">
+        </div>
+      </Layout>
     );
   }
 });
