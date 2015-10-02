@@ -24,17 +24,21 @@ label {
 }
 
 /* Header */
-.header .top {
-  background: #f0f0f0;
-}
-.header .top a {
-  padding-right: 10px;
-}
-.header .languages a {
-  color #222;
-}
-.header .languages a:not(:last-child) {
-  padding-right: 10px;
+.header {
+  .top {
+    background: #f0f0f0;
+    a {
+      padding-right: 10px;
+    }
+  }
+  .languages {
+    a {
+      color: #222;
+      &:not(:last-child) {
+        padding-right: 10px;
+      }
+    }
+  }
 }
 
 /* Navigation */
@@ -45,18 +49,20 @@ label {
 }
 .navbar-default {
   background: #222;
-}
-.navbar-default .navbar-brand {
-  color: #f0f0f0;
-}
-.navbar-default .navbar-brand:hover {
-  color: #fafafa;
+  .navbar-brand {
+    color: #f0f0f0;
+    &:hover {
+      color: #fafafa;
+    }
+  }
 }
 
 /* Login, register */
-.login .title {
-  margin-bottom: 15px;
-}
-.login p.small, .register p.small {
-  margin-top: 10px;
+.login, .register {
+  .title {
+    margin-bottom: 15px;
+  }
+  p.small {
+    margin-top: 10px;
+  }
 }

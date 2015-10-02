@@ -1,5 +1,5 @@
 class Customer::RegistrationsController < Devise::RegistrationsController
-  include ThemesLoading
+  include ShopsLoading
   
   def new
     @props = {
