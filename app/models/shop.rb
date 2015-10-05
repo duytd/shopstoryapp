@@ -34,6 +34,9 @@ class Shop < ActiveRecord::Base
   def load_defaults
     self.theme = Theme.default
     self.plan = Plan.default
+    self.currency = Settings.shop.default_currency
+    self.time_zone = Settings.shop.default_timezone
+    self.country = Settings.shop.default_country
   end
 
   def initialize_theme_editor

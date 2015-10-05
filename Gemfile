@@ -30,6 +30,7 @@ gem "money-rails"
 gem "country_select"
 gem "config"
 gem "actionpack-action_caching"
+gem "kaminari"
 
 group :development, :test do
   gem "byebug"

@@ -25,7 +25,7 @@ var ProductForm = React.createClass({
       var auth_token = $('meta[name="csrf-token"]').attr("content");
       var headers = {"X-CSRF-Token": auth_token};
       var template = '<div class="dz-preview dz-file-preview"><div className="dz-details">' +
-                     '<img data-dz-thumbnail width="120" height="120" /></div>' +
+                     '<img data-dz-thumbnail width="120" height="auto" /></div>' +
                      '<div class="dz-progress"><span className="dz-upload" data-dz-uploadprogress></span></div>' +
                      '<i class="fa fa-trash" data-dz-remove></i>' +
                      '</div>';
@@ -89,11 +89,6 @@ var ProductForm = React.createClass({
                 </div>
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
-                  <div className="form-errors">
-                    {(this.state.errors.description_ko) ? this.state.errors.description_ko.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
                   <textarea ref="description_ko" name="product[description_ko]" 
                     className="form-control summernote" defaultValue={(this.props.ko_product) ? this.props.ko_product.description : ""}>
                   </textarea>
@@ -189,7 +184,7 @@ var ProductForm = React.createClass({
               <label className="styled-cb">
                 <input type="hidden" name="product[visibility]" value="0" />
                 <input ref="checkbox" type="checkbox" name="product[visibility]" value="1"
-                  defaultChecked={this.props.product && this.props.product.visibility} />
+                  defaultChecked={(this.props.product) ? this.props.product.visibility : true} />
                 <i className="fa"></i>
                 {I18n.t("merchant.admin.forms.online")}
               </label>

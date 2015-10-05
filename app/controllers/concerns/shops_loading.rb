@@ -13,11 +13,10 @@ module ShopsLoading
   end
 
   def load_global_variables
-    subdomain = Apartment::Tenant.current
-
     @globalVars = {
-      shop_name: Shop.current(subdomain).name,
-      logged_in: customer_signed_in?
+      shop_name: @current_shop.name,
+      logged_in: customer_signed_in?,
+      currency: @current_shop.currency
     }
   end
 
