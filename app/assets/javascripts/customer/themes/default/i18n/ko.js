@@ -28,6 +28,9 @@ I18n.translations = {
           "return_customer": "Returning Customer? "
         }
       }
+    },
+    "categories": {
+      "products": "products"
     }
   }
 }

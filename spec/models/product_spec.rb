@@ -38,25 +38,6 @@ RSpec.describe Product, type: :model do
     it {expect(product.error_on(:name_ko).size).to eq 1}
   end
 
-  context "is invalid without a description" do
-    before do
-      product.description_ko = nil
-      product.description_en = nil
-    end
-    it {expect(product.error_on(:description_en).size).to eq 1}
-    it {expect(product.error_on(:description_ko).size).to eq 1}
-  end
-
-
-  context "is invalid with a short description" do
-    before do
-      product.description_en = "a"
-      product.description_ko = "b"
-    end
-    it {expect(product.error_on(:description_en).size).to eq 1}
-    it {expect(product.error_on(:description_ko).size).to eq 1}
-  end
-
   context "is invalid without a price" do
     before {product.price = nil}
     it {expect(product.error_on(:price).size).to eq 1}
