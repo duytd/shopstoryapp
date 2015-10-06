@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_locale
+  before_action :set_locale, :authenticate
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
@@ -25,5 +25,14 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for resource
     stored_location_for(resource) || account_url(resource)
+  end
+
+  protected
+  def authenticate
+    if Rails.env.production?
+       authenticate_or_request_with_http_basic do |username, password|
+         username == Settings.tester.name && password == Settings.tester.password
+       end
+    end
   end
 end

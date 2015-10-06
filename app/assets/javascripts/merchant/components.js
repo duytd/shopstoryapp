@@ -1,4 +1,4 @@
 //= require i18n
-//= require i18n/en.js
-//= require i18n/ko.js
+//= require locales/en
+//= require locales/ko
 //= require_tree ./components
