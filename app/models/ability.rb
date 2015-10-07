@@ -9,6 +9,7 @@ class Ability
       can [:read, :create, :update, :destroy], Category if current_tenant? user
       can [:read, :create, :update, :destroy], Product if current_tenant? user
       can [:read, :create, :update], Shop if current_tenant? user
+      can [:read, :update], ThemeEditor if current_tenant? user
     elsif user.is_a? Customer
       can :read, Category
     else

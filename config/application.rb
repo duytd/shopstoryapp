@@ -24,11 +24,11 @@ module ShopStory
     end
 
     config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts")
-    types = %w( *.png *.gif *.jpg *.eot *.woff *.ttf )
-    config.assets.precompile += types
+    config.assets.precompile << /\.(?:png|gif|jpg|svg|eot|woff|ttf)$/
 
     config.autoload_paths << Rails.root.join("lib")
 
+    config.react.server_renderer = React::ServerRendering::SprocketsRenderer
     config.react.server_renderer_options = {
       files: ["react.js", "merchant/components.js"],
       replay_console: true,

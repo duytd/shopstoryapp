@@ -8,10 +8,8 @@
     <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/application", 
       "data-turbolinks-track": true %>
     <%= javascript_include_tag customer_theme_editor_path, "data-turbolinks-track": true %>
-    <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/i18n/en", 
-      "data-turbolinks-track": true %>
-    <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/i18n/ko", 
-      "data-turbolinks-track": true %>    
+    <%= javascript_include_tag customer_theme_editor_path(type: :en_locale), "data-turbolinks-track": true %>
+    <%= javascript_include_tag customer_theme_editor_path(type: :ko_locale), "data-turbolinks-track": true %>
     <%= csrf_meta_tags %>
 
     <script type="text/javascript">

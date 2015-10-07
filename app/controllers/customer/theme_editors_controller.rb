@@ -9,11 +9,30 @@ class Customer::ThemeEditorsController < Customer::BaseController
 
     respond_to do |format|
       format.css {load_stylesheet}
-      format.js {load_javascript}
+      format.js do
+        case params[:type]
+        when "en_locale"
+          load_en_locale
+        when "ko_locale"
+          load_ko_locale
+        else
+          load_javascript
+        end
+      end
     end
   end
 
   private
+  def load_en_locale
+    en_locale = Minifier.minify_js @theme_editor.en_locale
+    render js: en_locale
+  end
+
+  def load_ko_locale
+    ko_locale = Minifier.minify_js @theme_editor.ko_locale
+    render js: ko_locale
+  end
+
   def load_stylesheet
     stylesheet = Minifier.minify_css @theme_editor.stylesheet
     render text: stylesheet, content_type: "text/css"

@@ -81,6 +81,7 @@ aside.left-panel {
     &.collapsed {
       display: block;
       width: 80px;
+      min-height: 600px;
       overflow: visible !important;
       bottom: 0;
       position: absolute;
@@ -110,7 +111,7 @@ aside.left-panel {
         min-width: 150px;
         padding: 10px 0;
         position: absolute;
-        top: -100%;
+        bottom: 0;
         z-index: 999;
         i {
           display: none;

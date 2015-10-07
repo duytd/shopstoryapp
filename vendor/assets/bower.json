@@ -4,6 +4,7 @@
     "font-awesome": "latest",
     "jquery.nicescroll": "latest",
     "summernote": "latest",
-    "dropzone": "latest"
+    "dropzone": "latest",
+    "ace-builds": "latest"
   }
 }

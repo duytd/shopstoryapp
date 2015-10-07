@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       end
 
       resources :shops, only: [:edit, :update]
+      resources :theme_editors, only: [:edit, :update]
     end
   end
 end
