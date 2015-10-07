@@ -23,7 +23,10 @@ module ShopStory
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
-    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts", "node_modules")
+    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts")
+    types = %w( *.png *.gif *.jpg *.eot *.woff *.ttf )
+    config.assets.precompile += types
+
     config.autoload_paths << Rails.root.join("lib")
 
     config.react.server_renderer_options = {

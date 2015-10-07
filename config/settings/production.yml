@@ -1,0 +1,8 @@
+shop:
+  default_name: ShopStory
+  default_currency: KRW
+  default_country: KR
+  default_timezone: Asia/Seoul
+tester:
+  name: shopstory_staging
+  password: n3vermind

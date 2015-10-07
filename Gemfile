@@ -23,7 +23,7 @@ gem "globalize", "~> 5.0.0"
 gem "globalize-accessors"
 gem "nprogress-rails"
 gem "react-rails", "~> 1.0"
-gem "i18n-js"
+gem "i18n-js", ">= 3.0.0.rc11"
 gem "carrierwave"
 gem "mini_magick"
 gem "money-rails"
@@ -46,4 +46,9 @@ group :development, :test do
   gem "database_cleaner"
   gem "launchy"
   gem "selenium-webdriver"
+end
+
+group :production do
+  gem "passenger"
+  gem "rails_12factor"
 end

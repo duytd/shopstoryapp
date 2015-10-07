@@ -1,10 +1,7 @@
 # encoding: utf-8
 
 class ProductImageUploader < CarrierWave::Uploader::Base
-
   include CarrierWave::MiniMagick
-
-  MiniMagick.shell_api = "open3"
 
   storage :file
 
