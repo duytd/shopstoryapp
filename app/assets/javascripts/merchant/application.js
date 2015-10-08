@@ -7,6 +7,10 @@
 //= nprogress-ajax
 //= require summernote/dist/summernote
 //= require dropzone/dist/dropzone
+//= require ace-builds/src/ace
+//= require ace-builds/src/theme-github
+//= require ace-builds/src/mode-javascript
+//= require ace-builds/src/mode-css
 //= require merchant/functions
 //= require react
 //= require react_ujs

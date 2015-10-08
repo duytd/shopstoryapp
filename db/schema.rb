@@ -209,6 +209,8 @@ ActiveRecord::Schema.define(version: 20151001092139) do
   create_table "theme_editors", force: :cascade do |t|
     t.text     "stylesheet"
     t.text     "javascript"
+    t.text     "en_locale"
+    t.text     "ko_locale"
     t.integer  "shop_id"
     t.integer  "theme_id"
     t.datetime "created_at", null: false

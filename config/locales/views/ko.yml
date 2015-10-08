@@ -58,6 +58,8 @@ ko:
         user_settings: "Account"
         search: "Search"
         view_shop: "View your shop"
+        theme: "Themes"
+        theme_editor: "Editor"
       buttons:
         add: "Add"
         add_variation: "Add variation"
@@ -97,3 +99,8 @@ ko:
         gram: "Gram (g)"
         kilogram: "Kilogram (kg)"
         zipcode_hint: " (Enter street address to get zipcode automatically)"
+      theme_editors:
+        title: "Edit themes"
+        assets: "Assets"
+        translations: "Translations"
+        reset: "Reset Default Content"

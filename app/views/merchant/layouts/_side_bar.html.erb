@@ -57,13 +57,27 @@
       <% end %>
     </li>
     <li class="item">
+      <%= link_to "#" do %>
+        <i class="fa fa-th-large"></i>
+        <span class="item-label"><%= t "merchant.admin.menu.theme" %></span>
+      <% end %>
+      <ul class="subitems">
+        <li>
+          <%= link_to edit_merchant_theme_editor_path(@current_theme_editor) do %>
+            <i class="fa fa-code"></i>
+            <%= t "merchant.admin.menu.theme_editor" %>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="item">
       <a href="#">
         <i class="fa fa-gear"></i>
         <span class="item-label"><%= t "merchant.admin.menu.settings" %></span>
       </a>
       <ul class="subitems">
         <li>
-          <%= link_to edit_merchant_shop_path(current_merchant.shop) do %>
+          <%= link_to edit_merchant_shop_path(@current_shop) do %>
             <i class="fa fa-globe"></i>
             <%= t "merchant.admin.menu.general_settings" %>
           <% end %>
