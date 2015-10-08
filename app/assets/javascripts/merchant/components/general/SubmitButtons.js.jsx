@@ -1,13 +1,13 @@
 var SubmitButtons = React.createClass({
   render: function() {
-    var goBackButton = <button onClick={this.goBack} className="btn btn-sm btn-default">
+    var goBackButton = <button onClick={this.goBack} className="btn btn-default">
       {I18n.t("merchant.admin.buttons.cancel")}</button>
     goBackButton = (this.props.goBack == true) ? goBackButton : "";
 
     return (
       <div className="form-submit">
         {goBackButton}
-        <button type="submit" className="btn btn-sm btn-success">{I18n.t("merchant.admin.buttons.save")}</button>
+        <button type="submit" className="btn btn-success">{I18n.t("merchant.admin.buttons.save")}</button>
       </div>
     );
   },

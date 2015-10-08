@@ -10,8 +10,9 @@ var ThemeEditorForm = React.createClass({
     var CssMode = ace.require("ace/mode/css").Mode;
 
     editor.$blockScrolling = Infinity;
+    editor.setOptions({fontSize: "14px", fontFamily: "Inconsolata"});
     editor.setValue(this.props.data[this.props.file], -1);
-    editor.setTheme("ace/theme/github");
+    editor.setTheme("ace/theme/tomorrow");
     editor.getSession().setUseWorker(false);
 
     if (this.props.file == "stylesheet") {
@@ -20,6 +21,8 @@ var ThemeEditorForm = React.createClass({
     else {
       editor.getSession().setMode(new JavaScriptMode());
     }
+
+    $(".ace_scroller").perfectScrollbar();
 
     this.setState({editor: editor});
   },
@@ -69,23 +72,7 @@ var ThemeEditorForm = React.createClass({
 
     return (
       <div className="row theme-editors">
-        <div className="col-md-9">
-          <form ref="form" id="theme-editor-form" action={this.props.url}
-            acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
-            <div className="form-group">
-              <div id="editor" ref="editor" className="code-editor">
-              </div>
-              <input ref="code" type="hidden" name={"theme_editor["+this.props.file+"]"} />
-            </div>
-            <div className="pull-left">
-              <button onClick={this.reset} className="btn btn-sm btn-danger">{I18n.t("merchant.admin.theme_editors.reset")}</button>
-            </div>
-            <div className="text-right">
-              <SubmitButtons redirect_url={this.props.redirect_url} />
-            </div>
-          </form>
-        </div>
-        <div className="col-md-3 files">
+        <div className="col-md-3 col-md-push-9 files">
           <div className="block">
             <h4>
               <span><i className="fa fa-folder-o"></i></span>
@@ -102,6 +89,23 @@ var ThemeEditorForm = React.createClass({
               {translationNodes}
             </ul>
           </div>
+        </div>
+
+        <div className="col-md-9 col-md-pull-3">
+          <form ref="form" id="theme-editor-form" action={this.props.url}
+            acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
+            <div className="form-group">
+              <div id="editor" ref="editor" className="code-editor">
+              </div>
+              <input ref="code" type="hidden" name={"theme_editor["+this.props.file+"]"} />
+            </div>
+            <div className="pull-left">
+              <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.theme_editors.reset")}</button>
+            </div>
+            <div className="text-right">
+              <SubmitButtons redirect_url={this.props.redirect_url} />
+            </div>
+          </form>
         </div>
       </div>
     );

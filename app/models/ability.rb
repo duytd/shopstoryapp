@@ -12,8 +12,12 @@ class Ability
       can [:read, :update], ThemeEditor if current_tenant? user
     elsif user.is_a? Customer
       can :read, Category
+      can :read, Product
+      can [:read, :create, :update, :destroy], OrderProduct
     else
       can :read, Category
+      can :read, Product
+      can [:read, :create, :update, :destroy], OrderProduct
     end
   end
 

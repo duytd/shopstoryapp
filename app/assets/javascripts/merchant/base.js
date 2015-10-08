@@ -2,13 +2,7 @@ $(document).on("page:change", function() {
   $sideBar = $("aside.left-panel");
   $content = $("section.content");
 
-  $sideBar.niceScroll({
-    cursorcolor: "#5c6d7e",
-    background: "#34495e",
-    cursorborder: "none",
-    cursorwidth: "7px",
-    autohidemode: false
-  });
+  $sideBar.perfectScrollbar();
 
   $(".navbar-toggle").click(function() {
     $sideBar.toggleClass("collapsed");
@@ -18,9 +12,9 @@ $(document).on("page:change", function() {
   });
 
   $sideBar.on("click", ".item", function(){
-    if (!$sideBar.hasClass("collapsed") || $(window).width() <= 768) {
+    if (!$sideBar.hasClass("collapsed")) {
       $(this).find(".subitems").slideToggle("slow", "swing", function() {
-        $sideBar.getNiceScroll().resize();
+        $sideBar.perfectScrollbar("update"); 
       });
     }
   });

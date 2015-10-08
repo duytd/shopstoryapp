@@ -1,5 +1,3 @@
-/* Customer login form */
-
 var Login = React.createClass({
   getInitialState: function() {
     return {

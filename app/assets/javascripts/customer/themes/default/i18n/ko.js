@@ -2,8 +2,8 @@ var I18n = I18n || {};
 I18n.translations = {
   "ko": {
     "languages": {
-      "korean": "Korean",
-      "english": "English"
+      "korean": "KO",
+      "english": "EN"
     },
     "buttons": {
       "login": "Log in",
@@ -31,6 +31,18 @@ I18n.translations = {
     },
     "categories": {
       "products": "products"
+    },
+    "products": {
+      "in_stock": "In Stock",
+      "out_of_order": "Out of order",
+      "add_to_cart": "Add To Cart"
+    },
+    cart: {
+      "empty": "It appears that your cart is currently empty!",
+      "subtotal": "Subtotal",
+      "buy_now": "Buy now",
+      "continue_shopping": "Continue shopping",
+      "remove": "Remove"
     }
   }
 }

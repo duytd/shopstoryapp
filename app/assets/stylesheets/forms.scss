@@ -98,7 +98,7 @@ $input-bg-color: #e9ebed;
 
 .form-control {
   border: none;
-  box-shadow: none;
+  box-shadow: none !important;
   background: $input-bg-color;
   color: $gray-dark;
   &:focus {

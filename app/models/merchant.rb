@@ -5,6 +5,7 @@ class Merchant < User
   after_create :create_merchant_shop, :create_tenant
 
   has_one :shop, foreign_key: "user_id"
+  has_one :theme, through: :shop
 
   private
   def create_merchant_shop

@@ -14,6 +14,7 @@ ko:
             subdomain:
               blank: "cannot be empty"
               invalid: "must contain only characters and numbers (E.g: example)"
+
       format: "%{attribute} %{message}"
       messages:
         blank: "can't be blank"
@@ -21,6 +22,7 @@ ko:
           one: "is too short (minimum is 1 character)"
           other: "is too short (minimum is %{count} characters)"
         taken: "is already taken"
+        out_of_order: "has been set to an amount that is currently available."
 
     attributes:
       merchant:

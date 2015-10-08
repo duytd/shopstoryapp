@@ -8,12 +8,12 @@
 //= require summernote/dist/summernote
 //= require dropzone/dist/dropzone
 //= require ace-builds/src/ace
-//= require ace-builds/src/theme-github
+//= require ace-builds/src/theme-tomorrow
 //= require ace-builds/src/mode-javascript
 //= require ace-builds/src/mode-css
 //= require merchant/functions
 //= require react
 //= require react_ujs
 //= require merchant/components
-//= require jquery.nicescroll/jquery.nicescroll
+//= require perfect-scrollbar/js/perfect-scrollbar.jquery
 //= require merchant/base

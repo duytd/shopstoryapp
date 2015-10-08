@@ -2,9 +2,10 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "font-awesome": "latest",
-    "jquery.nicescroll": "latest",
+    "perfect-scrollbar": "latest",
     "summernote": "latest",
     "dropzone": "latest",
-    "ace-builds": "latest"
+    "ace-builds": "latest",
+    "elevatezoom": "latest"
   }
 }
