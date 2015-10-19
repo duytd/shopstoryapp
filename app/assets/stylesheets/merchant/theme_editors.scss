@@ -2,6 +2,14 @@
   .code-editor {
     width: 100%;
     height: 500px;
+    border-radius: 5px;
+    color: $gray-dark;
+    .ace_scrollbar {
+      display: none;
+    }
+    .ace_scroller {
+      right: 0 !important;
+    }
   }
   .files {
     h4 {
@@ -17,8 +25,8 @@
     li {
       list-style-type: none;
       line-height: 1.5;
-      &.active {
-        font-weight: 700;
+      &.active > a {
+        color: $sea;
       }
     }
   }

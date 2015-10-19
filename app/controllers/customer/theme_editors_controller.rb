@@ -1,28 +1,30 @@
 require "minifier"
 
 class Customer::ThemeEditorsController < Customer::BaseController
-  protect_from_forgery except: :show
-  caches_action :show
+  protect_from_forgery only: []
+  before_action :load_theme_editor
 
-  def show
-    @theme_editor = @current_shop.theme_editors.with_theme @current_theme
+  def styles
+    load_stylesheet
+  end
 
-    respond_to do |format|
-      format.css {load_stylesheet}
-      format.js do
-        case params[:type]
-        when "en_locale"
-          load_en_locale
-        when "ko_locale"
-          load_ko_locale
-        else
-          load_javascript
-        end
-      end
-    end
+  def scripts
+    load_javascript
+  end
+
+  def en
+    load_en_locale
+  end
+
+  def ko
+    load_ko_locale
   end
 
   private
+  def load_theme_editor
+    @theme_editor = @current_shop.theme_editors.with_theme @current_shop.theme_id
+  end
+
   def load_en_locale
     en_locale = Minifier.minify_js @theme_editor.en_locale
     render js: en_locale

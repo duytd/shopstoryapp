@@ -1,15 +1,28 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+@import url(https://fonts.googleapis.com/css?family=Glegoo:400,700);
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-weight: 300;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Glegoo", sans-serif;
+  font-weight: 400;
+}
+
+a {
+  color: #666;
+  &:hover, &:focus, &:active {
+    color: #f1c40f;
+  }
 }
 
 /* Buttons */
 .btn {
   font-weight: 400;
 }
-.btn-primary:hover {
+.btn-primary {
   background: #f1c40f;
   color: #fff !important;
   border: 1px solid #f1c40f;
@@ -45,8 +58,7 @@ label {
 /* Navigation */
 .navbar {
   border-radius: 0px;
-  border-bottom: 1px solid #222;
-  border-top: none;
+  border: none;
 }
 .navbar-default {
   background: #222;
@@ -54,6 +66,28 @@ label {
     color: #f0f0f0;
     &:hover {
       color: #fafafa;
+    }
+  }
+  .navbar-collapse {
+    border-color: transparent;
+  }
+  .navbar-toggle {
+    border-color: #eee;
+    &:hover, &:active, &:focus {
+      background: transparent;
+      border-color: #f1c40f;
+      .icon-bar {
+        background-color: #f1c40f;
+      }
+    }
+    .icon-bar {
+      background-color: #eee;
+      height: 1px;
+    }
+  }
+  .cart {
+    i {
+      margin-right: 5px;
     }
   }
 }
@@ -83,3 +117,90 @@ label {
     font-weight: 400;
   }
 }
+
+/* Cart */
+.cart-container {
+  width: 320px;
+  background: #eee;
+  bottom: 0;
+  display: block;
+  padding: 0px;
+  position: fixed;
+  right: -320px;
+  top: 0;
+  z-index: 999;
+  padding: 5px;
+  transition-property: all;
+	transition-duration: 0.5s;
+  -webkit-transform: translateZ(0);
+  overflow: hidden;
+  .col-xs-3 {
+    padding: 0;
+    text-align: center;
+  }
+  &.open {
+    right: 0;
+  }
+  .row {
+    margin-bottom: 10px;
+  }
+  .item {
+    .fa {
+      font-size: 10px;
+      margin: 0 5px;
+    }
+  }
+  .fa {
+    color: #aaa;
+    cursor: pointer;
+  }
+  .alert-danger {
+    margin-bottom: 15px;
+  }
+  .cart-buttons {
+    .btn {
+      margin: 5px;
+    }
+  }
+  .image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: inline-block;
+  }
+}
+
+/* Product Slider */
+.ps-container {
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .ps-feature {
+    margin: auto;
+    max-width: 400px;
+    overflow: hidden;
+    li {
+      text-align: center;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    img {
+      display: inline-block;
+    }
+  }
+  .ps-navigation {
+    text-align: center;
+    li {
+      margin: 10px;
+      display: inline-block;
+      margin: 15px 5px;
+    }
+    img {
+      cursor: pointer;
+    }
+  }
+}
+

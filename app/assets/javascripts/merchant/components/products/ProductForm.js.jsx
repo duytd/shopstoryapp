@@ -25,8 +25,7 @@ var ProductForm = React.createClass({
       var auth_token = $('meta[name="csrf-token"]').attr("content");
       var headers = {"X-CSRF-Token": auth_token};
       var template = '<div class="dz-preview dz-file-preview"><div className="dz-details">' +
-                     '<img data-dz-thumbnail width="120" height="auto" /></div>' +
-                     '<div class="dz-progress"><span className="dz-upload" data-dz-uploadprogress></span></div>' +
+                     '<img data-dz-thumbnail width="200" height="auto" /></div>' +
                      '<i class="fa fa-trash" data-dz-remove></i>' +
                      '</div>';
 
@@ -40,7 +39,9 @@ var ProductForm = React.createClass({
         paramName1: "product[product_images_attributes]",
         paramName2: "[image]",
         uploadMultiple: true,
-        autoProcessQueue: false
+        autoProcessQueue: false,
+        thumbnailWidth: 200,
+        thumbnailHeight: null
       });
 
       productDropzone.on("removedfile", function(file) {
@@ -287,8 +288,9 @@ var ProductForm = React.createClass({
       success: function(data) {
         if (data.status == "success") {
           var productId = data.data.id;
+          var url = data.url;
 
-          this.postImages(productId);
+          this.postImages(productId, url);
           Turbolinks.visit(this.props.redirect_url);
         }
         else {
@@ -309,11 +311,12 @@ var ProductForm = React.createClass({
       }.bind(this)
     });
   },
-  postImages: function(productId) {
+  postImages: function(productId, url) {
     productDropzone.on("sending", function(file, xhr, formData) {
       formData.append("product[id]", productId);
     });
 
+    productDropzone.options.url = url;
     productDropzone.processQueue();
   },
   handleDeleteImage: function(data) {

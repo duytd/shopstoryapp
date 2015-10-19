@@ -4,5 +4,5 @@ class ThemeEditor < ActiveRecord::Base
 
   validates :shop_id, uniqueness: {scope: :theme_id}
 
-  scope :with_theme, ->theme{find_by theme_id: theme.id}
+  scope :with_theme, ->theme_id{find_by theme_id: theme_id}
 end

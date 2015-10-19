@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20151001092139) do
   create_table "order_products", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
+    t.decimal  "unit_price"
     t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,9 +102,16 @@ ActiveRecord::Schema.define(version: 20151001092139) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "customer_id"
+    t.decimal  "subtotal"
+    t.decimal  "shipping"
+    t.decimal  "tax"
     t.decimal  "total"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "status",         default: 0
+    t.string   "token"
+    t.string   "ip_address"
+    t.integer  "payment_status", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree

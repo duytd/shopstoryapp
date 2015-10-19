@@ -4,9 +4,9 @@
   border-radius: 0;
   font-weight: bold;
   a {
-    text-transform: uppercase;
     &:not(.btn) {
       background: none !important;
+      padding: 15px 10px;
     }
   }
   .dropdown-menu {
@@ -17,5 +17,8 @@
     a {
       color: $gray;
     }
+  }
+  .navbar-brand {
+    padding: 15px 0;
   }
 }

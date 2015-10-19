@@ -26,7 +26,7 @@ class Merchant::ProductsController < Merchant::BaseController
   def create
     @product = Product.new product_params
     if @product.save
-      render json: {data: @product, status: :success}
+      render json: {data: @product, url: merchant_product_path(@product), status: :success}
     else
       render json: {data: @product.errors, status: :unprocessed_entity}
     end
@@ -49,7 +49,7 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def update
     if @product.update product_params
-      render json: {data: @product, status: :success}
+      render json: {data: @product, url: merchant_product_path(@product), status: :success}
     else
       render json: {data: @product.errors, status: :unprocessed_entity}
     end

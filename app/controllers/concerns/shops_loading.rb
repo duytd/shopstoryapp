@@ -1,27 +1,19 @@
-module ShopsLoading 
+module ShopsLoading
   extend ActiveSupport::Concern
+  include Customer::ApplicationHelper
 
   included do
     layout "customer/layouts/application"
-    before_action :load_shop, :load_global_variables
+    before_action :load_global_variables
   end
 
   private
-  def load_shop
-    @current_shop = current_shop
-    @current_theme = @current_shop.theme
-  end
-
   def load_global_variables
     @globalVars = {
-      shop_name: @current_shop.name,
+      shop_name: current_shop.name,
       logged_in: customer_signed_in?,
-      currency: @current_shop.currency
+      currency: current_shop.currency,
+      cart: current_order.order_products
     }
-  end
-
-  def current_shop
-    subdomain = Apartment::Tenant.current
-    Shop.current subdomain
   end
 end

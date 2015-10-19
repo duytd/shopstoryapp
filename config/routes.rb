@@ -26,8 +26,14 @@ Rails.application.routes.draw do
 
     namespace :customer, path: "" do
       root "pages#home"
-      resource :theme_editor, only: :show
+      get :styles, to: "theme_editors#styles"
+      get :scripts, to: "theme_editors#scripts"
+      get :en, to: "theme_editors#en"
+      get :ko, to: "theme_editors#ko"      
+      
       resources :categories, only: [:index, :show]
+      resources :products, only: :show
+      resources :order_products, only: [:create, :update, :destroy]
     end
 
     namespace :merchant, path: "admin" do

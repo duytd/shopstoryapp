@@ -1,5 +1,6 @@
 asset "font-awesome"
-asset "jquery.nicescroll"
+asset "perfect-scrollbar"
 asset "summernote"
 asset "dropzone"
 asset "ace-builds"
+asset "elevatezoom"

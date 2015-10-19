@@ -2,14 +2,16 @@
 <html>
   <head>
     <title><%= full_title yield :title %></title>
-    <%= stylesheet_link_tag "customer/application", media: "all", "data-turbolinks-track": true %>
-    <%= stylesheet_link_tag customer_theme_editor_path, media: "all", "data-turbolinks-track": true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= javascript_include_tag "customer/themes/#{@current_theme.directory}/application", 
+    <%= stylesheet_link_tag "customer/application", media: "all", "data-turbolinks-track": true %>
+    <%= stylesheet_link_tag customer_styles_path, media: "all", "data-turbolinks-track": true %>
+
+    <%= javascript_include_tag "customer/themes/#{current_theme.directory}/application", 
       "data-turbolinks-track": true %>
-    <%= javascript_include_tag customer_theme_editor_path, "data-turbolinks-track": true %>
-    <%= javascript_include_tag customer_theme_editor_path(type: :en_locale), "data-turbolinks-track": true %>
-    <%= javascript_include_tag customer_theme_editor_path(type: :ko_locale), "data-turbolinks-track": true %>
+    <%= javascript_include_tag customer_scripts_path, "data-turbolinks-track": true %>
+    <%= javascript_include_tag customer_en_path, "data-turbolinks-track": true %>
+    <%= javascript_include_tag customer_ko_path, "data-turbolinks-track": true %>
     <%= csrf_meta_tags %>
 
     <script type="text/javascript">

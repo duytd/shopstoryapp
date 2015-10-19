@@ -1,5 +1,3 @@
-/* Customer registration form */
-
 var Register = React.createClass({
   getInitialState: function() {
     return {
