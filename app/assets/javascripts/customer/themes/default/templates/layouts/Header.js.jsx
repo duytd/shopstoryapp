@@ -24,7 +24,7 @@ var Header = React.createClass({
       <header className="header">
         <div className="container-fluid top">
           <div className="pull-left">
-            {(this.props.globalVars.logged_in) ? logOutLink : logInRegisterLink}
+            {(this.props.globalVars.current_customer) ? logOutLink : logInRegisterLink}
           </div>
 
           <div className="pull-right languages">
@@ -35,7 +35,7 @@ var Header = React.createClass({
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" 
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
                 data-target="#shopstory-navbar-collapse" aria-expanded="false">
                 <span className="sr-only"></span>
                 <span className="icon-bar"></span>
@@ -58,13 +58,13 @@ var Header = React.createClass({
           </div>
         </nav>
 
-        <Cart 
-          globalVars = {this.props.globalVars} 
-          isCartOpened = {isCartOpened} 
-          openCart = {this.openCart} 
-          closeCart = {this.closeCart} 
+        <Cart
+          globalVars = {this.props.globalVars}
+          isCartOpened = {isCartOpened}
+          openCart = {this.openCart}
+          closeCart = {this.closeCart}
           updateCart = {this.props.updateCart}
-          cartErrors = {this.props.cartErrors} 
+          cartErrors = {this.props.cartErrors}
           setCartErrors = {this.props.setCartErrors}
           emptyCartErrors = {this.props.emptyCartErrors}
         />

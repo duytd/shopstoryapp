@@ -23,10 +23,10 @@ var Cart = React.createClass({
           </div>
 
           <div className="col-xs-3">
-            <i className="fa fa-minus" data-item={item.id} data-quantity={item.quantity} 
+            <i className="fa fa-minus" data-item={item.id} data-quantity={item.quantity}
               onClick={this.substractItemQuantity}></i>
             <span className="quantity">{item.quantity}</span>
-            <i className="fa fa-plus" data-item={item.id} data-quantity={item.quantity} 
+            <i className="fa fa-plus" data-item={item.id} data-quantity={item.quantity}
               onClick={this.addItemQuantity}></i>
             <p className="small">
               <a href="#" data-item={item.id} onClick={this.removeItem}>{I18n.t("cart.remove")}</a>
@@ -42,7 +42,7 @@ var Cart = React.createClass({
       </button>
     );
 
-    var buyBtn = <button className="btn btn-primary">{I18n.t("cart.buy_now")}</button>;
+    var buyBtn = <button className="btn btn-primary" onClick={this.checkout}>{I18n.t("cart.buy_now")}</button>;
     var cartErrors = this.props.cartErrors || this.state.cartErrors;
 
     return (
@@ -64,12 +64,18 @@ var Cart = React.createClass({
       </div>
     );
   },
+  checkout: function() {
+    var url = (this.props.globalVars.current_customer) ? Routes.new_customer_order_path() : Routes.customer_checkout_path();
+
+    Turbolinks.visit(url);
+   },
   closeCart: function(e) {
     e.preventDefault();
 
     this.props.closeCart();
   },
   removeItem: function(e) {
+    e.preventDefault();
     var itemId = parseInt(e.target.getAttribute("data-item"));
 
     this.handleRemoveItem(itemId);
@@ -117,7 +123,7 @@ var Cart = React.createClass({
       success: function(data) {
         if (data.status == "success") {
           var cartData = data.data;
-        
+
           this.props.updateCart(cartData);
           this.emptyCartErrors();
         }

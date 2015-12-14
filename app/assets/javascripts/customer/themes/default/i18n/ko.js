@@ -23,8 +23,8 @@ I18n.translations = {
         }
       },
       "register": {
-        title: "Register",
-        texts: {
+        "title": "Register",
+        "texts": {
           "return_customer": "Returning Customer? "
         }
       }
@@ -37,7 +37,15 @@ I18n.translations = {
       "out_of_order": "Out of order",
       "add_to_cart": "Add To Cart"
     },
-    cart: {
+    "checkout": {
+      "texts": {
+        "new_customer": "New Customer",
+        "returning_customer": "Returning Customer?",
+        "checkout_as_guest": "Checkout As Guest",
+        "or": "or"
+      }
+    },
+    "cart": {
       "empty": "It appears that your cart is currently empty!",
       "subtotal": "Subtotal",
       "buy_now": "Buy now",

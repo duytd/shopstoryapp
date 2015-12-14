@@ -4,7 +4,8 @@
 //= require bootstrap-sprockets
 //= require nprogress
 //= require nprogress-turbolinks
-//= nprogress-ajax
+//= require nprogress-ajax
+//= require js-routes
 //= require summernote/dist/summernote
 //= require dropzone/dist/dropzone
 //= require ace-builds/src/ace

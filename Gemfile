@@ -31,6 +31,7 @@ gem "country_select"
 gem "config"
 gem "actionpack-action_caching"
 gem "kaminari"
+gem "js-routes"
 
 group :development, :test do
   gem "byebug"

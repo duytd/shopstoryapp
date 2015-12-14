@@ -1,8 +1,8 @@
 /* Below are props of layout:
-* - globalVars: including shop_name (Shop Name), currency (Shop Currency), 
-*     logged_in (Authentication Status) and cart (Current Shopping Cart)
+* - globalVars: including shop_name (Shop Name), currency (Shop Currency),
+*     current_customer (Authentication Status) and cart (Current Shopping Cart)
 *
-* - isCartOpened: check whether cart popup is opening or not. If this prop is 
+* - isCartOpened: check whether cart popup is opening or not. If this prop is
 *     set (not undefined), parent component can invoke action to open the cart popup
 *
 * - closeCart: invoke action to close cart popup (set isCartOpened state in parent component to false)
@@ -26,12 +26,12 @@ var Layout = React.createClass({
   render: function() {
     return (
       <div className="main-wrapper">
-        <Header 
+        <Header
           globalVars = {this.state.globalVars}
           isCartOpened = {this.props.isCartOpened}
           closeCart = {this.props.closeCart}
           updateCart = {this.updateCart}
-          cartErrors = {this.props.cartErrors} 
+          cartErrors = {this.props.cartErrors}
           setCartErrors = {this.props.setCartErrors}
           emptyCartErrors = {this.props.emptyCartErrors}
         />

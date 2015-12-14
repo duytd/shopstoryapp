@@ -11,7 +11,7 @@ module ShopsLoading
   def load_global_variables
     @globalVars = {
       shop_name: current_shop.name,
-      logged_in: customer_signed_in?,
+      current_customer: current_customer,
       currency: current_shop.currency,
       cart: current_order.order_products
     }

@@ -29,10 +29,12 @@ Rails.application.routes.draw do
       get :styles, to: "theme_editors#styles"
       get :scripts, to: "theme_editors#scripts"
       get :en, to: "theme_editors#en"
-      get :ko, to: "theme_editors#ko"      
-      
+      get :ko, to: "theme_editors#ko"
+      get :checkout, to: "pages#checkout"
+
       resources :categories, only: [:index, :show]
       resources :products, only: :show
+      resources :orders, only: [:new, :create, :update]
       resources :order_products, only: [:create, :update, :destroy]
     end
 

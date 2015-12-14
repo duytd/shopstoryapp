@@ -14,10 +14,12 @@ class Ability
       can :read, Category
       can :read, Product
       can [:read, :create, :update, :destroy], OrderProduct
+      can [:read, :create], Order
     else
       can :read, Category
       can :read, Product
       can [:read, :create, :update, :destroy], OrderProduct
+      can [:read, :create, :update, :destroy], Order
     end
   end
 
