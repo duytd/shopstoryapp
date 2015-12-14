@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001092139) do
+ActiveRecord::Schema.define(version: 20151214095223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip_code"
+    t.string   "phone_number"
+    t.string   "fax"
+    t.integer  "order_id"
+    t.string   "type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -102,16 +123,17 @@ ActiveRecord::Schema.define(version: 20151001092139) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "customer_id"
-    t.decimal  "subtotal"
-    t.decimal  "shipping"
-    t.decimal  "tax"
-    t.decimal  "total"
+    t.decimal  "subtotal",       default: 0.0
+    t.decimal  "shipping",       default: 0.0
+    t.decimal  "tax",            default: 0.0
+    t.integer  "product_count"
+    t.decimal  "total",          default: 0.0
     t.integer  "status",         default: 0
     t.string   "token"
     t.string   "ip_address"
     t.integer  "payment_status", default: 0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -278,6 +300,7 @@ ActiveRecord::Schema.define(version: 20151001092139) do
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
+  add_foreign_key "addresses", "orders"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "order_products", "orders"

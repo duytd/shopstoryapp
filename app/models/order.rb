@@ -2,12 +2,17 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   has_many :order_products, dependent: :destroy
   has_many :products, through: :order_products
+  has_one :shipping_address, dependent: :destroy
+  has_one :billing_address, dependent: :destroy
 
   enum status: [:incomplete, :pending, :processed, :shipping, :shipped, :returned, :cancelled]
   enum payment_status: [:payment_pending, :payment_authorized, :paid, :refunded]
 
   before_create :generate_token
   before_save :summarize
+
+  accepts_nested_attributes_for :shipping_address, reject_if: :all_blank
+  accepts_nested_attributes_for :billing_address, reject_if: :all_blank
 
   attr_accessor :current_step
 
@@ -23,8 +28,13 @@ class Order < ActiveRecord::Base
     current_step == steps.last
   end
 
+  def change_status status
+    self.update_attributes status: status
+  end
+
   def as_json options={}
-    super.as_json(options).merge({current_step: current_step})
+    super.as_json(options).merge({current_step: current_step,
+      shipping_address: shipping_address, billing_address: billing_address})
   end
 
   private
@@ -34,9 +44,7 @@ class Order < ActiveRecord::Base
   end
 
   def summarize
-    items_in_cart = order_products
-    self.quantity = item_in_carts.inject{|sum, item| sum + item.quantity}
-    self.total = item_in_carts.inject{|sum, item| sum + (item.quantity * item.unit_price)}
+    self.subtotal = order_products.inject{|sum, item| sum + (item.quantity * item.unit_price)}
   end
 
   def steps

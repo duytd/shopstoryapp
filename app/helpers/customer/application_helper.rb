@@ -14,11 +14,19 @@ module Customer::ApplicationHelper
     else
       @current_order ||= initialize_order
     end
+
+    @current_order.current_step = session[:order_step]
+    @current_order
   end
 
   def initialize_order
-    order = Order.create ip_address: ip_address
-    cookies[:cart] = {value: order.token, http_only: true, 
+    if customer_signed_in?
+      current_customer.orders.create ip_address: ip_address
+    else
+      order = Order.create ip_address: ip_address
+    end
+
+    cookies[:cart] = {value: order.token, http_only: true,
                                 expires: 3.days.from_now}
     order
   end

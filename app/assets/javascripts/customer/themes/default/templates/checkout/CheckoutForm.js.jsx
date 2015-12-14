@@ -7,16 +7,53 @@ var CheckoutForm = React.createClass({
   render: function() {
     var steps = ["shipping", "billing"];
 
-    var stepHeaders = steps.map(function(step){
+    var stepHeaders = steps.map(function(step, index){
+      var active = (this.state.order.current_step == step) ? "active" : "";
+      return (
+        <li>
+          <span className={"badge " + active}>{index+1}</span>
+          {I18n.t("checkout.steps." + step)}
+        </li>
+      )
+    }.bind(this))
 
-    })
+    var form = (this.state.order.shipping_address) ?
+      <BillingForm
+        order={this.state.order}
+        updateOrder={this.updateOrder}
+        lang={this.props.globalVars.lang}
+        countries={this.props.countries}
+        default_country={this.props.default_country} /> :
+      <ShippingForm
+        order={this.state.order}
+        updateOrder={this.updateOrder}
+        lang={this.props.globalVars.lang}
+        countries={this.props.countries}
+        default_country={this.props.default_country} />;
 
     return (
       <Layout globalVars={this.props.globalVars}>
-        <div className="checkout-form">
+        <div className="row checkout-form">
+          <div className="col-sm-8">
+            <ul className="steps">
+              {stepHeaders}
+            </ul>
+            {form}
+          </div>
 
+          <div className="col-sm-4">
+            <Summary
+              step={this.state.order.current_step}
+              order={this.state.order}
+              cart={this.props.globalVars.cart}
+              currency={this.props.globalVars.currency}
+            />
+          </div>
         </div>
       </Layout>
     )
+  },
+  updateOrder: function(order) {
+    this.setState({order: order})
   }
 })
