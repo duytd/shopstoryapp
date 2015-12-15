@@ -1,5 +1,3 @@
-app:
-  domain: shopstory.com
 shop:
   default_name: ShopStory
   default_currency: KRW

@@ -34,7 +34,11 @@ Rails.application.routes.draw do
 
       resources :categories, only: [:index, :show]
       resources :products, only: :show
-      resources :orders, only: [:new, :create, :update]
+      resources :orders, only: [:new, :create, :update] do
+        resource :payment, only: :show
+      end
+
+      mount Inicis::Standard::Rails::Engine, at: "/inicis", as: "inicis"
       resources :order_products, only: [:create, :update, :destroy]
     end
 

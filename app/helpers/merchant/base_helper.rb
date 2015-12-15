@@ -1,4 +1,4 @@
-module Merchant::ApplicationHelper
+module Merchant::BaseHelper
   def current_ability
     @current_ability ||= Ability.new current_merchant
   end

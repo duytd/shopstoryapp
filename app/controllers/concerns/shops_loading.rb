@@ -1,6 +1,6 @@
 module ShopsLoading
   extend ActiveSupport::Concern
-  include Customer::ApplicationHelper
+  include Customer::BaseHelper
 
   included do
     layout "customer/layouts/application"

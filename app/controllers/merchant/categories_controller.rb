@@ -1,7 +1,6 @@
 class Merchant::CategoriesController < Merchant::BaseController
-  include ApplicationHelper
-
   load_and_authorize_resource
+  include TranslationsHelper
 
   def index
     if request.delete?

@@ -1,7 +1,6 @@
 class Merchant::BaseController < ApplicationController
   layout "merchant/layouts/admin"
-
-  include Merchant::ApplicationHelper
+  include Merchant::BaseHelper
 
   before_action :authenticate_merchant!
 

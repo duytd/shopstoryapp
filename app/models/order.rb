@@ -44,7 +44,7 @@ class Order < ActiveRecord::Base
   end
 
   def summarize
-    self.subtotal = order_products.inject{|sum, item| sum + (item.quantity * item.unit_price)}
+    self.subtotal = order_products.inject(0){|sum, item| sum + (item.quantity * item.unit_price)}
   end
 
   def steps

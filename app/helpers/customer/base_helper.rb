@@ -1,4 +1,4 @@
-module Customer::ApplicationHelper
+module Customer::BaseHelper
   def current_shop
     subdomain = Apartment::Tenant.current
     @current_shop ||= Shop.find_by_subdomain subdomain

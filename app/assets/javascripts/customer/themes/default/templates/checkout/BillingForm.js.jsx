@@ -202,7 +202,7 @@ var BillingForm = React.createClass({
       method: "PUT",
       url: Routes.customer_order_path(this.props.order.id),
       success: function(order) {
-        this.props.updateOrder(order);
+        location.href = Routes.customer_order_payment_path(order.id);
       }.bind(this),
       error: function(xhr) {
         this.setState({errors: xhr.responseJSON});

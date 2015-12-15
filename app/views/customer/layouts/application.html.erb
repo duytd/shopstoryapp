@@ -13,8 +13,13 @@
     <%= javascript_include_tag "customer/themes/#{current_theme.directory}/application",
       "data-turbolinks-track": true %>
     <%= javascript_include_tag customer_scripts_path, "data-turbolinks-track": true %>
-    <%= javascript_include_tag customer_en_path, "data-turbolinks-track": true %>
-    <%= javascript_include_tag customer_ko_path, "data-turbolinks-track": true %>
+    <% if I18n.locale == :ko %>
+      <%= javascript_include_tag customer_ko_path, "data-turbolinks-track": true %>
+    <% else %>
+      <%= javascript_include_tag customer_en_path, "data-turbolinks-track": true %>
+    <% end %>
+
+    <%= yield :inicis_javascript  %>
     <%= csrf_meta_tags %>
 
     <script type="text/javascript">
