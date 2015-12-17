@@ -31,6 +31,7 @@ gem "actionpack-action_caching"
 gem "kaminari"
 gem "js-routes"
 gem "inicis-standard-rails", git: "https://github.com/duytd/inicis-standard-rails", branch: "develop"
+gem "puma"
 
 group :development, :test do
   gem "byebug"
@@ -59,5 +60,4 @@ end
 
 group :production do
   gem "rails_12factor"
-  gem "puma"
 end

@@ -3,6 +3,7 @@ module ShopsLoading
   include Customer::BaseHelper
 
   included do
+    helper Customer::BaseHelper
     layout "customer/layouts/application"
     before_action :load_global_variables
   end

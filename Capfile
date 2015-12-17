@@ -6,6 +6,7 @@ require "capistrano/rails"
 require "capistrano/bundler"
 require "capistrano/rvm"
 require "capistrano/puma"
+require "capistrano/puma/nginx"
 require "capistrano/linked_files"
 
 # Loads custom tasks from `lib/capistrano/tasks" if you have any defined.

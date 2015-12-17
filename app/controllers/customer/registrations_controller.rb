@@ -1,6 +1,6 @@
 class Customer::RegistrationsController < Devise::RegistrationsController
   include ShopsLoading
-  
+
   def new
     @props = {
       globalVars: @globalVars,

@@ -1,2 +1,5 @@
-DATABASE_USERNAME: "username"
-DATABASE_PASSWORD: "password"
+development:
+  APP_DOMAIN: "example.com"
+staging:
+  APP_DOMAIN: "example.com"
+  SECRET_KEY_BASE: "s3cr3tk3yba2e"
