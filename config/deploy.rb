@@ -33,7 +33,7 @@ set :keep_releases, 3
 
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml config/application.yml}
-set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads public/system keys}
 
 namespace :puma do
   desc "Create Directories for Puma Pids and Socket"
@@ -67,6 +67,17 @@ namespace :deploy do
     end
   end
 
+  desc "Symlinks application"
+  task :symlinks do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "symlinks:inicis_server"
+        end
+      end
+    end
+  end
+
   desc "Restart application"
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -76,6 +87,7 @@ namespace :deploy do
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
+  after  :finishing,    :symlinks
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end

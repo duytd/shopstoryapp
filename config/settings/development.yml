@@ -3,3 +3,5 @@ shop:
   default_currency: KRW
   default_country: KR
   default_timezone: Asia/Seoul
+paging:
+  order: 20

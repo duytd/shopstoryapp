@@ -13,6 +13,7 @@
 //= require ace-builds/src/mode-javascript
 //= require ace-builds/src/mode-css
 //= require merchant/functions
+//= require js-routes
 //= require react
 //= require react_ujs
 //= require merchant/components

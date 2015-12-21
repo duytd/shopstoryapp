@@ -67,3 +67,5 @@ ko:
         facebook_url: "Facebook Link"
         instagram_url: "Instagram Link"
         pinterest_url: "Pinterest Link"
+      payment_method_shop:
+        key: "Key (*.zip)"

@@ -30,8 +30,11 @@ gem "config"
 gem "actionpack-action_caching"
 gem "kaminari"
 gem "js-routes"
-gem "inicis-standard-rails", git: "https://github.com/duytd/inicis-standard-rails", branch: "develop"
+gem "inicis-standard-rails", git: "https://github.com/duytd/inicis-standard-rails.git", branch: "develop"
+#gem "inicis-standard-rails", path: "/home/duytd/workspace/inicis-standard-rails"
 gem "puma"
+gem "rubyzip"
+gem "browser"
 
 group :development, :test do
   gem "byebug"

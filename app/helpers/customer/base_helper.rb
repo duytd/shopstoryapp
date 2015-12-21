@@ -21,9 +21,9 @@ module Customer::BaseHelper
 
   def initialize_order
     if customer_signed_in?
-      current_customer.orders.create ip_address: ip_address
+      current_customer.orders.where(ip_address: ip_address, status: 0).first_or_create
     else
-      order = Order.create ip_address: ip_address
+      order = Order.where(ip_address: ip_address, status: 0).first_or_create
     end
 
     cookies[:cart] = {value: order.token, http_only: true,

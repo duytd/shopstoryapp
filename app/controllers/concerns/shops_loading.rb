@@ -1,3 +1,6 @@
+require "rubygems"
+require "browser"
+
 module ShopsLoading
   extend ActiveSupport::Concern
   include Customer::BaseHelper
@@ -15,7 +18,8 @@ module ShopsLoading
       shop_name: current_shop.name,
       current_customer: current_customer,
       currency: current_shop.currency,
-      cart: current_order.order_products
+      cart: current_order.order_products,
+      mobile: browser.mobile?
     }
   end
 end

@@ -19,10 +19,12 @@ var CheckoutForm = React.createClass({
 
     var form = (this.state.order.shipping_address) ?
       <BillingForm
+        mobile={this.props.globalVars.mobile}
         order={this.state.order}
         updateOrder={this.updateOrder}
         lang={this.props.globalVars.lang}
         countries={this.props.countries}
+        payment_methods={this.props.payment_methods}
         default_country={this.props.default_country} /> :
       <ShippingForm
         order={this.state.order}

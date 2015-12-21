@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get :en, to: "theme_editors#en"
       get :ko, to: "theme_editors#ko"
       get :checkout, to: "pages#checkout"
+      get :thank_you, to: "pages#thank_you"
 
       resources :categories, only: [:index, :show]
       resources :products, only: :show
@@ -54,6 +55,7 @@ Rails.application.routes.draw do
 
       resources :shops, only: [:edit, :update]
       resources :theme_editors, only: [:edit, :update]
+      resources :payment_method_shops, only: [:index, :update]
     end
   end
 end

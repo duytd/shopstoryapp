@@ -1,9 +1,10 @@
 GIT
-  remote: https://github.com/duytd/inicis-standard-rails
-  revision: 013e9dac34262228e8591a275de7c4d6813e4cd8
+  remote: https://github.com/duytd/inicis-standard-rails.git
+  revision: 011bd57c4945b76d917d1b03ccb77a8f29b94c65
   branch: develop
   specs:
     inicis-standard-rails (0.1.0)
+      browser
       thrift
 
 GEM
@@ -65,6 +66,7 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     bower-rails (0.10.0)
+    browser (1.0.1)
     builder (3.2.2)
     byebug (6.0.2)
     cancancan (1.12.0)
@@ -321,6 +323,7 @@ DEPENDENCIES
   apartment
   bootstrap-sass (~> 3.3.5)
   bower-rails (~> 0.10.0)
+  browser
   byebug
   cancancan (~> 1.10)
   capistrano
@@ -358,6 +361,7 @@ DEPENDENCIES
   react-rails (~> 1.0)
   rspec-collection_matchers
   rspec-rails (~> 3.0)
+  rubyzip
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver

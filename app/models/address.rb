@@ -7,7 +7,7 @@ class Address < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
   validates :country, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, numericality: {only_integer: true}
   validates :zip_code, presence: true
   validates :order, presence: true
 end

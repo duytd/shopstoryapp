@@ -11,7 +11,7 @@ var Cart = React.createClass({
       return (
         <div className="row item" key={index}>
           <div className="col-xs-3">
-            <img src={item.product.images[0].image.thumb.url} className="img-responsive image" />
+            <img src={(item.product.images.length > 0) ? item.product.images[0].image.thumb.url : ""} className="img-responsive image" />
           </div>
 
           <div className="col-xs-3">

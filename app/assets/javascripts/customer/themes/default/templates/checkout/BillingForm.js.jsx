@@ -1,15 +1,24 @@
 var BillingForm = React.createClass({
   getInitialState: function() {
+    var paymentMethod = (this.props.order.payment) ?
+      this.props.order.payment.payment_method :
+      this.props.payment_methods[0]
+
     return {
       billingAddress: this.props.order.billing_address,
       errors: {},
-      useShippingAddress: true
+      useShippingAddress: true,
+      paymentMethod: paymentMethod
     }
   },
   render: function() {
-    var countryNodes = this.props.countries.map(function (country, index) {
-      return <option key={index} value={country[0]}>{country[1]}</option>
+    var countryNodes = this.props.countries.map(function(country, index) {
+      return <option key={"country" + index} value={country[0]}>{country[1]}</option>
     });
+
+    var paymentMethodNodes = this.props.payment_methods.map(function(method, index) {
+      return <option key={"method" + index} value={method.id} onClick={this.changePaymentMethod.bind(this, index)}>{method.name}</option>
+    }.bind(this))
 
     var englishName = (
       <div className="form-group row">
@@ -38,6 +47,42 @@ var BillingForm = React.createClass({
         </div>
       </div>
     );
+
+    var mobileSubmethods = this.state.paymentMethod.mobile_submethods.split("|").map(function(method, index) {
+        var checked = false;
+
+        if ((this.props.order.payment && this.props.order.payment.submethod == method) || index == 0) {
+          checked = true
+        }
+
+        return (
+          <span>
+            <input type="radio" name="order[payment_attributes][submethod]" value={method}
+              defaultChecked={checked} />
+            {method.toUpperCase()}
+          </span>
+        );
+    }.bind(this))
+
+    var paymentMethods = (
+      <div>
+        {(this.props.order.payment) ? <input type="hidden" name="order[payment_attributes][id]" value={this.props.order.payment.id} /> : ""}
+        <div className="form-group row">
+          <div className="col-sm-8">
+            <select name="order[payment_attributes][payment_method_id]"
+              defaultValue={(this.props.order.payment) ? this.props.order.payment.payment_method.id : this.props.payment_methods[0].id}>
+              {paymentMethodNodes}
+            </select>
+          </div>
+        </div>
+
+        <div className="form-group row">
+          <div className="col-sm-8">
+            {(this.props.mobile) ? mobileSubmethods : ""}
+          </div>
+        </div>
+      </div>
+    )
 
     var billingForm = (
       <form ref="form" id="billingForm">
@@ -118,6 +163,9 @@ var BillingForm = React.createClass({
               defaultValue={(this.state.billingAddress) ? this.state.billingAddress.fax : ""} className="form-control" />
           </div>
         </div>
+
+        {paymentMethods}
+
         <div className="form-group row">
           <div className="col-sm-8">
             <input type="submit" className="btn btn-lg btn-primary pull-right" value={I18n.t("checkout.buttons.place_order")} onClick={this.updateOrder} />
@@ -153,7 +201,12 @@ var BillingForm = React.createClass({
         </p>
 
         <hr/>
+        {paymentMethods}
+        <hr/>
+
         <input type="submit" className="btn btn-lg btn-primary pull-right" value={I18n.t("checkout.buttons.place_order")} onClick={this.updateOrder} />
+        <div className="clearfix"></div>
+        <hr/>
       </form>
     );
 
@@ -174,6 +227,9 @@ var BillingForm = React.createClass({
       this.setState({useShippingAddress: true})
     else
       this.setState({useShippingAddress: false})
+  },
+  changePaymentMethod: function(index) {
+    this.setState({paymentMethod: this.props.payment_methods[index]})
   },
   streetClick: function() {
     if (this.props.lang == "ko") {
