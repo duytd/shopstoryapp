@@ -17,6 +17,7 @@ ko:
 
       format: "%{attribute} %{message}"
       messages:
+        invalid: "is not valid"
         blank: "can't be blank"
         too_short:
           one: "is too short (minimum is 1 character)"
@@ -66,3 +67,5 @@ ko:
         facebook_url: "Facebook Link"
         instagram_url: "Instagram Link"
         pinterest_url: "Pinterest Link"
+      payment_method_shop:
+        key: "Key (*.zip)"

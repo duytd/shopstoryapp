@@ -1,5 +1,5 @@
 class Merchant::ProductsController < Merchant::BaseController
-  include ApplicationHelper
+  include TranslationsHelper
 
   load_and_authorize_resource
 
@@ -15,10 +15,10 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def new
     @props = {
-      data: @product, 
-      categories: @categories, 
+      data: @product,
+      categories: @categories,
       url: merchant_products_path,
-      redirect_url: merchant_products_path, 
+      redirect_url: merchant_products_path,
       method: :post
     }
   end
@@ -79,8 +79,8 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def product_params
-    permitted = Product.globalize_attribute_names + [:price, :sale_off, :visibility, 
-      :vendor, :sku, :in_stock, category_ids: [], product_images: [], 
+    permitted = Product.globalize_attribute_names + [:price, :sale_off, :visibility,
+      :vendor, :sku, :in_stock, category_ids: [], product_images: [],
       variations_attributes: [:id, :color, :size, :in_stock, :_destroy],
       product_images_attributes: [:id, :image, :_destroy]]
     params.require(:product).permit *permitted

@@ -7,6 +7,7 @@ Bundler.require(*Rails.groups)
 module ShopStory
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
+    config.action_controller.include_all_helpers = false
 
     config.generators do |g|
       g.stylesheets = false

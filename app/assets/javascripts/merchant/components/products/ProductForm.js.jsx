@@ -64,7 +64,7 @@ var ProductForm = React.createClass({
   },
   render: function () {
     var variationNodes = this.state.variations.map(function (variation) {
-      return <Variation key={variation.position} validateInt={this.validateInt} variation={variation} 
+      return <Variation key={variation.position} validateInt={this.validateInt} variation={variation}
         deleteVariation={this.deleteVariation} />
     }.bind(this));
 
@@ -85,12 +85,12 @@ var ProductForm = React.createClass({
                       return object;
                     }) : ""}
                   </div>
-                  <input ref="name_ko" type="text" name="product[name_ko]" 
+                  <input ref="name_ko" type="text" name="product[name_ko]"
                     className="form-control" defaultValue={(this.props.ko_product) ? this.props.ko_product.name : ""} />
                 </div>
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
-                  <textarea ref="description_ko" name="product[description_ko]" 
+                  <textarea ref="description_ko" name="product[description_ko]"
                     className="form-control summernote" defaultValue={(this.props.ko_product) ? this.props.ko_product.description : ""}>
                   </textarea>
                 </div>
@@ -103,7 +103,7 @@ var ProductForm = React.createClass({
                       return object;
                     }) : ""}
                   </div>
-                  <input ref="name_en" type="text" name="product[name_en]" 
+                  <input ref="name_en" type="text" name="product[name_en]"
                     className="form-control" defaultValue={(this.props.en_product) ? this.props.en_product.name : ""} />
                 </div>
                 <div className="form-group">
@@ -113,7 +113,7 @@ var ProductForm = React.createClass({
                       return object;
                     }) : ""}
                   </div>
-                  <textarea ref="description_en" name="product[description_en]" 
+                  <textarea ref="description_en" name="product[description_en]"
                     className="form-control summernote" defaultValue={(this.props.en_product) ? this.props.en_product.description : ""}>
                   </textarea>
                 </div>
@@ -147,7 +147,7 @@ var ProductForm = React.createClass({
             <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
             <div className={(this.state.variation_count > 0) ? "hide" : "form-group"}>
               <label className="label">{I18n.t("activerecord.attributes.product.in_stock")}</label>
-              <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control" 
+              <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
                 name="product[in_stock]" defaultValue={(this.props.product) ? this.props.product.in_stock : "0"} />
             </div>
             <button className="btn btn-sm btn-primary" onClick={this.addVariation}>
@@ -196,7 +196,7 @@ var ProductForm = React.createClass({
             <h4>{I18n.t("merchant.admin.forms.inventory_title")}</h4>
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.product.sku")}</label>
-              <input type="text" className="form-control" name="product[sku]" 
+              <input type="text" className="form-control" name="product[sku]"
                 defaultValue={(this.props.product) ? this.props.product.sku : ""}/>
             </div>
           </div>
@@ -206,7 +206,7 @@ var ProductForm = React.createClass({
             {this.props.categories.map(function(category){
               return  <label className="styled-cb" key={category.id}>
                         <input type="hidden" name="product[category_ids][]" value="" />
-                        <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id} 
+                        <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
                           defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
                         <i className="fa"></i>
                         {(category.name == "") ? category.name_en : category.name}
@@ -265,8 +265,8 @@ var ProductForm = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var description_en = $(this.refs.description_en.getDOMNode()).code();
-    var description_ko = $(this.refs.description_ko.getDOMNode()).code();
+    var description_en = $(this.refs.description_en.getDOMNode()).summernote("code");
+    var description_ko = $(this.refs.description_ko.getDOMNode()).summernote("code");
 
     this.refs.description_en.value = description_en;
     this.refs.description_ko.value = description_ko;
@@ -297,13 +297,13 @@ var ProductForm = React.createClass({
           var ko_count = 0;
           var en_count = 0;
 
-          ko_count += (data.data.name_ko) ? data.data.name_ko.length : 0; 
+          ko_count += (data.data.name_ko) ? data.data.name_ko.length : 0;
           ko_count += (data.data.description_ko) ? data.data.description_ko.length : 0;
           en_count += (data.data.name_en) ? data.data.name_en.length : 0;
           en_count += (data.data.description_en) ? data.data.description_en.length : 0;
 
           this.setState({
-            errors: data.data, 
+            errors: data.data,
             ko_count: ko_count,
             en_count: en_count
           });

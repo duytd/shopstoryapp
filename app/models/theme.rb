@@ -6,6 +6,9 @@ class Theme < ActiveRecord::Base
   scope :current, ->subdomain {joins(:shops)
     .where("shops.subdomain = ?", subdomain).first}
 
+  validates :name, presence: true, uniqueness: true
+  validates :directory, uniqueness: true
+
   def import_theme_editor shop
     editor = load_default_theme_editor
 

@@ -9,6 +9,8 @@ class Shop < ActiveRecord::Base
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :theme_editors, dependent: :destroy
+  has_many :payment_method_shops
+  has_many :payment_methods, through: :payment_method_shops
 
   validates :name, presence: true
   validates :merchant, presence: true
@@ -21,6 +23,7 @@ class Shop < ActiveRecord::Base
 
   before_validation :load_defaults
   after_create :initialize_theme_editor
+  after_create :load_payment_methods
 
   enum weight_unit: [:kg, :g]
 
@@ -41,5 +44,15 @@ class Shop < ActiveRecord::Base
 
   def initialize_theme_editor
     self.theme.import_theme_editor self
+  end
+
+  def load_payment_methods
+    PaymentMethod.all.each do |payment_method|
+      payment_method_shop = self.payment_method_shops.create payment_method_id: payment_method.id
+
+      payment_method.payment_method_options.each do |option|
+        payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
+      end
+    end
   end
 end

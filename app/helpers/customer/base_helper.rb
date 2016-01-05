@@ -1,4 +1,4 @@
-module Customer::ApplicationHelper
+module Customer::BaseHelper
   def current_shop
     subdomain = Apartment::Tenant.current
     @current_shop ||= Shop.find_by_subdomain subdomain
@@ -14,11 +14,19 @@ module Customer::ApplicationHelper
     else
       @current_order ||= initialize_order
     end
+
+    @current_order.current_step = session[:order_step]
+    @current_order
   end
 
   def initialize_order
-    order = Order.create ip_address: ip_address
-    cookies[:cart] = {value: order.token, http_only: true, 
+    if customer_signed_in?
+      current_customer.orders.where(ip_address: ip_address, status: 0).first_or_create
+    else
+      order = Order.where(ip_address: ip_address, status: 0).first_or_create
+    end
+
+    cookies[:cart] = {value: order.token, http_only: true,
                                 expires: 3.days.from_now}
     order
   end

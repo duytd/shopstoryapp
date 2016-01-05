@@ -1,7 +1,7 @@
-app:
-  domain: shopstory.com
 shop:
   default_name: ShopStory
   default_currency: KRW
   default_country: KR
   default_timezone: Asia/Seoul
+paging:
+  order: 20

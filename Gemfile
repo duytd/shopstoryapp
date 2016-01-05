@@ -13,8 +13,6 @@ gem "jquery-rails"
 gem "jbuilder", "~> 2.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "bower-rails", "~> 0.10.0"
-gem "unicorn"
-gem "capistrano-rails", group: :development
 gem "devise"
 gem "cancancan", "~> 1.10"
 gem "apartment"
@@ -31,6 +29,11 @@ gem "country_select"
 gem "config"
 gem "actionpack-action_caching"
 gem "kaminari"
+gem "js-routes"
+gem "inicis-standard-rails", git: "https://github.com/duytd/inicis-standard-rails.git", branch: "develop"
+gem "puma"
+gem "rubyzip"
+gem "browser"
 
 group :development, :test do
   gem "byebug"
@@ -59,5 +62,4 @@ end
 
 group :production do
   gem "rails_12factor"
-  gem "puma"
 end

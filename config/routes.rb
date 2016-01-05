@@ -29,10 +29,17 @@ Rails.application.routes.draw do
       get :styles, to: "theme_editors#styles"
       get :scripts, to: "theme_editors#scripts"
       get :en, to: "theme_editors#en"
-      get :ko, to: "theme_editors#ko"      
-      
+      get :ko, to: "theme_editors#ko"
+      get :checkout, to: "pages#checkout"
+      get :success, to: "pages#success"
+
       resources :categories, only: [:index, :show]
       resources :products, only: :show
+      resources :orders, only: [:new, :create, :update] do
+        resource :payment, only: :show
+      end
+
+      mount Inicis::Standard::Rails::Engine, at: "/inicis", as: "inicis"
       resources :order_products, only: [:create, :update, :destroy]
     end
 
@@ -46,8 +53,10 @@ Rails.application.routes.draw do
         delete :index, on: :collection
       end
 
+      resources :orders
       resources :shops, only: [:edit, :update]
       resources :theme_editors, only: [:edit, :update]
+      resources :payment_method_shops, only: [:index, :update]
     end
   end
 end

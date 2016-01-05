@@ -1,3 +1,1 @@
-# Be sure to restart your server when you modify this file.
-
-Rails.application.config.session_store :cookie_store, key: '_magic-shop_session', domain: Settings.app.domain
+Rails.application.config.session_store :cookie_store, key: "_magic-shop_session", domain: ENV["APP_DOMAIN"]

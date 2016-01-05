@@ -1,8 +1,12 @@
+require "rubygems"
+require "browser"
+
 module ShopsLoading
   extend ActiveSupport::Concern
-  include Customer::ApplicationHelper
+  include Customer::BaseHelper
 
   included do
+    helper Customer::BaseHelper
     layout "customer/layouts/application"
     before_action :load_global_variables
   end
@@ -10,10 +14,12 @@ module ShopsLoading
   private
   def load_global_variables
     @globalVars = {
+      lang: I18n.locale,
       shop_name: current_shop.name,
-      logged_in: customer_signed_in?,
+      current_customer: current_customer,
       currency: current_shop.currency,
-      cart: current_order.order_products
+      cart: current_order.order_products,
+      mobile: browser.mobile?
     }
   end
 end

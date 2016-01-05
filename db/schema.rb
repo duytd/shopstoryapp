@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001092139) do
+ActiveRecord::Schema.define(version: 20151221085634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip_code"
+    t.string   "phone_number"
+    t.string   "fax"
+    t.integer  "order_id"
+    t.string   "type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -102,19 +123,80 @@ ActiveRecord::Schema.define(version: 20151001092139) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "customer_id"
-    t.decimal  "subtotal"
-    t.decimal  "shipping"
-    t.decimal  "tax"
-    t.decimal  "total"
-    t.integer  "status",         default: 0
+    t.decimal  "subtotal",      default: 0.0
+    t.decimal  "shipping",      default: 0.0
+    t.decimal  "tax",           default: 0.0
+    t.integer  "product_count", default: 0
+    t.decimal  "total",         default: 0.0
+    t.integer  "status",        default: 0
     t.string   "token"
     t.string   "ip_address"
-    t.integer  "payment_status", default: 0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+
+  create_table "payment_method_option_shops", force: :cascade do |t|
+    t.integer  "payment_method_option_id"
+    t.integer  "payment_method_shop_id"
+    t.string   "value"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "payment_method_option_shops", ["payment_method_option_id"], name: "index_payment_method_option_shops_on_payment_method_option_id", using: :btree
+  add_index "payment_method_option_shops", ["payment_method_shop_id"], name: "index_payment_method_option_shops_on_payment_method_shop_id", using: :btree
+
+  create_table "payment_method_options", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "option_type"
+    t.string   "default_value",     default: ""
+    t.integer  "payment_method_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "payment_method_options", ["payment_method_id"], name: "index_payment_method_options_on_payment_method_id", using: :btree
+
+  create_table "payment_method_shops", force: :cascade do |t|
+    t.integer  "payment_method_id"
+    t.integer  "shop_id"
+    t.boolean  "active",            default: true
+    t.string   "key"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "payment_method_shops", ["payment_method_id"], name: "index_payment_method_shops_on_payment_method_id", using: :btree
+  add_index "payment_method_shops", ["shop_id"], name: "index_payment_method_shops_on_shop_id", using: :btree
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string   "type"
+    t.string   "name"
+    t.string   "mobile_submethods"
+    t.string   "desktop_submethods"
+    t.boolean  "key_required"
+    t.text     "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "payment_method_id"
+    t.integer  "order_id"
+    t.integer  "state",              default: 0
+    t.decimal  "amount",             default: 0.0
+    t.string   "transaction_number"
+    t.string   "submethod"
+    t.text     "extra_data"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
+  add_index "payments", ["payment_method_id"], name: "index_payments_on_payment_method_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
     t.string   "name"
@@ -278,11 +360,18 @@ ActiveRecord::Schema.define(version: 20151001092139) do
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
+  add_foreign_key "addresses", "orders"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "customers"
+  add_foreign_key "payment_method_option_shops", "payment_method_options"
+  add_foreign_key "payment_method_option_shops", "payment_method_shops"
+  add_foreign_key "payment_method_options", "payment_methods"
+  add_foreign_key "payment_method_shops", "payment_methods"
+  add_foreign_key "payment_method_shops", "shops"
+  add_foreign_key "payments", "orders"
   add_foreign_key "product_images", "products"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
