@@ -104,3 +104,12 @@ ko:
         assets: "Assets"
         translations: "Translations"
         reset: "Reset Default Content"
+      orders:
+        title: "Orders"
+        bill_to_name: "Bill To Name"
+        ship_to_name: "Ship To Name"
+        order_at: "Ordered At"
+        order_id: "Order ID"
+        total: "Total"
+        order_status: "Order Status"
+        payment_status: "Payment Status"

@@ -1,6 +1,9 @@
-class Merchant::OrdersController < ApplicationController
+class Merchant::OrdersController < Merchant::BaseController
   def index
-    @orders = Order.paginate Settings.paging.order
+    @orders = Order.page params[:page]
+  end
+  
+  def new
   end
 
   def show

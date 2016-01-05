@@ -2,7 +2,7 @@ var BillingForm = React.createClass({
   getInitialState: function() {
     var paymentMethod = (this.props.order.payment) ?
       this.props.order.payment.payment_method :
-      this.props.payment_methods[0]
+      this.props.payment_methods[0];
 
     return {
       billingAddress: this.props.order.billing_address,
@@ -52,7 +52,7 @@ var BillingForm = React.createClass({
         var checked = false;
 
         if ((this.props.order.payment && this.props.order.payment.submethod == method) || index == 0) {
-          checked = true
+          checked = true;
         }
 
         return (
@@ -224,12 +224,12 @@ var BillingForm = React.createClass({
   switchBilling: function() {
     var checkbox = $(this.refs.useShippingAddress.getDOMNode());
     if (checkbox.is(":checked"))
-      this.setState({useShippingAddress: true})
+      this.setState({useShippingAddress: true});
     else
-      this.setState({useShippingAddress: false})
+      this.setState({useShippingAddress: false});
   },
   changePaymentMethod: function(index) {
-    this.setState({paymentMethod: this.props.payment_methods[index]})
+    this.setState({paymentMethod: this.props.payment_methods[index]});
   },
   streetClick: function() {
     if (this.props.lang == "ko") {

@@ -40,13 +40,22 @@ I18n.translations = {
     "checkout": {
       "buttons": {
         "next": "Next",
-        "place_order": "Place Order"
+        "place_order": "Place Order",
+        "save": "Save",
+        "cancel": "Cancel"
       },
       "texts": {
+        "shipping_info": "Shipping Information",
         "new_customer": "New Customer",
         "returning_customer": "Returning Customer?",
         "checkout_as_guest": "Checkout As Guest",
-        "or": "or"
+        "or": "or",
+        "thank_you": "Thank You",
+        "order_info": "Your order number is %{order_number}",
+        "payment_info": "Please complete your purchase by making a deposit to the below bank account within 24 hours.
+Your order will be confirmed immediately after the payment has been made",
+        "delivery_info": "Delivery time is within %{delivery_range} business days",
+        "support": "Email us at %{email} if you have any questions"
       },
       "steps": {
         "billing": "Billing and Review Order",

@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   has_one :payment, dependent: :nullify
   has_one :payment_method, through: :payment
 
-  enum status: [:incomplete, :pending, :processing, :processed, :shipping, :shipped, :returned, :cancelled]
+  enum status: [:incompleted, :pending, :processing, :processed, :shipping, :shipped, :returned, :cancelled]
 
   before_create :generate_token
   before_save :summarize
@@ -17,6 +17,8 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :payment, reject_if: :all_blank
 
   default_scope {order created_at: :desc}
+
+  paginates_per Settings.paging.order
 
   attr_accessor :current_step
 

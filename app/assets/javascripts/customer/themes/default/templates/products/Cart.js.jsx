@@ -19,7 +19,7 @@ var Cart = React.createClass({
           </div>
 
           <div className="col-xs-3">
-            <p className="price">{item.unit_price}</p>
+            <p className="price">{I18n.toCurrency(item.unit_price, {precision: 0, unit: this.props.globalVars.currency})}</p>
           </div>
 
           <div className="col-xs-3">

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       get :en, to: "theme_editors#en"
       get :ko, to: "theme_editors#ko"
       get :checkout, to: "pages#checkout"
-      get :thank_you, to: "pages#thank_you"
+      get :success, to: "pages#success"
 
       resources :categories, only: [:index, :show]
       resources :products, only: :show
@@ -53,6 +53,7 @@ Rails.application.routes.draw do
         delete :index, on: :collection
       end
 
+      resources :orders
       resources :shops, only: [:edit, :update]
       resources :theme_editors, only: [:edit, :update]
       resources :payment_method_shops, only: [:index, :update]

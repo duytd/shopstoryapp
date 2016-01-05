@@ -1,2 +1,5 @@
-<h1>Merchant::Orders#index</h1>
-<p>Find me in app/views/merchant/orders/index.html.erb</p>
+<div class="row orders">
+  <div class="col-md-12">
+    <%= react_component "OrderBox", {orders: @orders}, {prerender: true} %>
+  </div>
+</div>

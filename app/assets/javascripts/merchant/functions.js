@@ -1,3 +1,7 @@
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 if (typeof Dropzone != "undefined") {
   Dropzone.prototype._getParamName = function(n) {
     if (typeof this.options.paramName === "function") {

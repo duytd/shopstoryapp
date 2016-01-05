@@ -15,7 +15,7 @@ var Summary = React.createClass({
           </div>
 
           <div className="col-xs-3">
-            <p className="price">{item.unit_price}</p>
+            <p className="price">{I18n.toCurrency(item.unit_price, {precision: 0, unit: this.props.currency})}</p>
           </div>
 
           <div className="col-xs-3">
@@ -23,14 +23,14 @@ var Summary = React.createClass({
           </div>
         </div>
       )
-    })
+    }.bind(this))
 
     return (
       <div className="summary">
         <h2>{I18n.t("checkout.summary.title")}</h2>
         <p>
           <label>{I18n.t("checkout.summary.subtotal")} :</label>
-          {subtotal}{this.props.currency}
+          {I18n.toCurrency(subtotal, {precision: 0, unit: this.props.currency})}
         </p>
         <p>
           <label>{I18n.t("checkout.summary.shipping")} :</label>

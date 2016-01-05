@@ -32,7 +32,7 @@ var Product = React.createClass({
             <h2>{this.props.product.name}</h2>
             <p>{this.props.product.sku}</p>
             <p>
-              <strong>{I18n.toNumber(this.props.product.price, {precision: 2})} {this.props.globalVars.currency}</strong>
+              <strong>{I18n.toCurrency(this.props.product.price, {precision: 0, unit: this.props.globalVars.currency})}</strong>
             </p>
             <p>
               {inStock}
