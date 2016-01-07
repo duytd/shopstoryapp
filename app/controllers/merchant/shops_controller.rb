@@ -14,7 +14,6 @@ class Merchant::ShopsController < Merchant::BaseController
       countries: @countries,
       currencies: @currencies,
       url: merchant_shop_path(@shop),
-      redirect_url: merchant_root_path,
       config: {
         default_currency: Settings.shop.default_currency,
         default_timezone: Settings.shop.default_timezone,
@@ -25,9 +24,9 @@ class Merchant::ShopsController < Merchant::BaseController
 
   def update
     if @shop.update shop_params
-      render json: {data: @shop, status: :success}
+      render json: @shop, status: :ok
     else
-      render json: {data: @shop.errors, status: :unprocessed_entity}
+      render json: @shop.errors, status: :unprocessable_entity
     end
   end
 

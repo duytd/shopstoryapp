@@ -66,14 +66,12 @@ var LoginForm = React.createClass({
       method: "post",
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          Turbolinks.visit(data.redirect_url);
-        }
-        else {
-          this.setState({
-            error: data.error
-          });
-        }
+        Turbolinks.visit(data.redirect_url);
+      },
+      error: function(xhr) {
+        this.setState({
+          error: xhr.responseJSON.error
+        });
       }.bind(this)
     });
   }

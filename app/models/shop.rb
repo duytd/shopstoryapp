@@ -21,7 +21,7 @@ class Shop < ActiveRecord::Base
   validates :subdomain, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/},
     uniqueness: true
 
-  before_validation :load_defaults
+  before_validation :load_defaults, on: :create
   after_create :initialize_theme_editor
   after_create :load_payment_methods
 

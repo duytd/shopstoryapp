@@ -51,21 +51,19 @@ var Register = React.createClass({
 
     this.handleSubmit(formData, this.props.url);
   },
-  handleSubmit: function(formData, action, method) {
+  handleSubmit: function(formData, action) {
     $.ajax({
       data: formData,
       url: action,
       method: "post",
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          Turbolinks.visit(data.redirect_url);
-        }
-        else {
-          this.setState({
-            errors: data.errors
-          });
-        }
+        Turbolinks.visit(data.redirect_url);
+      },
+      error: function(xhr) {
+        this.setState({
+          errors: xhr.responseJSON.errors
+        });
       }.bind(this)
     });
   }

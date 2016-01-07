@@ -64,7 +64,7 @@ var Product = React.createClass({
   },
   updateCart: function(cartData) {
     var globalVars = this.state.globalVars;
-
+    
     globalVars.cart = cartData;
     this.setState({globalVars: globalVars});
   },
@@ -81,15 +81,13 @@ var Product = React.createClass({
       method: "post",
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          var cartData = data.data;
-
-          this.updateCart(cartData);
-        }
-        else {
-          this.setCartErrors(data.errors);
-        }
-
+        var cartData = data;
+ 
+        this.updateCart(cartData);
+        this.openCart();
+      }.bind(this),
+      error: function(xhr) {
+        this.setCartErrors(xhr.responseJSON);
         this.openCart();
       }.bind(this)
     });

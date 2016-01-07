@@ -16,13 +16,13 @@ class Customer::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       if resource.active_for_authentication?
         sign_in resource_name, resource
-        return render json: {status: :success, redirect_url: after_sign_up_path_for(resource)}
+        return render json: {redirect_url: after_sign_up_path_for(resource)}, status: :ok
       else
         expire_session_data_after_sign_in!
-        return render json: {status: :success, redirect_url: after_inactive_sign_up_path_for(resource)}
+        return render json: {redirect_url: after_inactive_sign_up_path_for(resource)}, status: :ok
       end
     else
-      return render json: {status: :unprocess_entity, errors: resource.errors.full_messages}
+      return render json: {errors: resource.errors.full_messages}, status: :unprocessable_entity 
     end
   end
 end

@@ -3,7 +3,7 @@ class Customer::SessionsController < Devise::SessionsController
 
   def new
     @props = {
-      globalVars: @globalVars,
+      globalVars: @globalVars
     }
     super
   end
@@ -13,11 +13,11 @@ class Customer::SessionsController < Devise::SessionsController
     sign_in :customer, resource
     redirect_url = params[:redirect_url] || after_sign_in_path_for(resource)
 
-    render json: {status: :success, redirect_url: redirect_url}
+    render json: {redirect_url: redirect_url}, status: :ok
   end
 
   def login_failed
-    return render json: {status: :unprocess_entity,
-      error: t("devise.failure.invalid", authentication_keys: :email)}
+    return render json: {error: t("devise.failure.invalid", authentication_keys: :email)}, 
+      status: :unauthorized
   end
 end

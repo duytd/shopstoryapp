@@ -9,23 +9,23 @@ class Customer::OrderProductsController < Customer::BaseController
     end
 
     if order_product.save
-      render json: {data: current_order.order_products, status: :success}
+      render json: current_order.order_products, status: :ok
     else
-      render json: {errors: order_product.errors.full_messages, status: :unprocessed_entity}
+      render json: order_product.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def update
     if @order_product.update order_product_params
-      render json: {data: current_order.order_products, status: :success}
+      render json: current_order.order_products, status: :ok
     else
-      render json: {errors: @order_product.errors.full_messages, status: :unprocessed_entity}
+      render json: @order_product.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def destroy
     @order_product.destroy
-    render json: {data: current_order.order_products, status: :success}
+    render json: current_order.order_products, status: :ok
   end
 
   private

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ShopstoryTicket::Engine => "/ticket"
 
   constraints Constraints::RootDomainConstraint do
     root "pages#home"
@@ -53,7 +54,9 @@ Rails.application.routes.draw do
         delete :index, on: :collection
       end
 
-      resources :orders
+      resources :orders do
+        delete :index, on: :collection
+      end
       resources :shops, only: [:edit, :update]
       resources :theme_editors, only: [:edit, :update]
       resources :payment_method_shops, only: [:index, :update]

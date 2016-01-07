@@ -15,10 +15,8 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def new
     @props = {
-      data: @product,
       categories: @categories,
       url: merchant_products_path,
-      redirect_url: merchant_products_path,
       method: :post
     }
   end
@@ -26,9 +24,9 @@ class Merchant::ProductsController < Merchant::BaseController
   def create
     @product = Product.new product_params
     if @product.save
-      render json: {data: @product, url: merchant_product_path(@product), status: :success}
+      render json: @product, status: :ok
     else
-      render json: {data: @product.errors, status: :unprocessed_entity}
+      render json: @product.errors, status: :unprocessable_entity
     end
   end
 
@@ -43,35 +41,35 @@ class Merchant::ProductsController < Merchant::BaseController
       product_images: @product.product_images,
       url: merchant_product_path(@product),
       method: :put,
-      redirect_url: merchant_products_path
     }
   end
 
   def update
     if @product.update product_params
-      render json: {data: @product, url: merchant_product_path(@product), status: :success}
+      render json: @product, status: :ok
     else
-      render json: {data: @product.errors, status: :unprocessed_entity}
+      render json: @product.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @product.destroy
-    render json: {status: :success}
+    render json: nil, status: :ok
   end
 
   private
   def list_all
     products = Product.latest
+    
     @props = {
-      data: products.to_json,
+      products: products,
       url: new_merchant_product_path
     }
   end
 
   def delete_all
     Product.where(id: params[:product_ids]).destroy_all
-    render json: {status: :success}
+    render json: nil, status: :ok
   end
 
   def load_categories

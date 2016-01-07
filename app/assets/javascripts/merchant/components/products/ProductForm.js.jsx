@@ -70,7 +70,7 @@ var ProductForm = React.createClass({
 
     return (
       <form ref="form" id="product-form" className="product-form" action={this.props.url}
-        accept-charset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}
+        acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}
         encType="multipart/form-data" >
         <div className="col-md-9">
           <div className="block">
@@ -204,13 +204,15 @@ var ProductForm = React.createClass({
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.categories_title")}</h4>
             {this.props.categories.map(function(category){
-              return  <label className="styled-cb" key={category.id}>
-                        <input type="hidden" name="product[category_ids][]" value="" />
-                        <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
-                          defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
-                        <i className="fa"></i>
-                        {(category.name == "") ? category.name_en : category.name}
-                      </label>;
+              return (
+                <label className="styled-cb" key={category.id}>
+                  <input type="hidden" name="product[category_ids][]" value="" />
+                  <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
+                    defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
+                  <i className="fa"></i>
+                  {(category.name == "") ? category.name_en : category.name}
+                </label>
+              );
             }.bind(this))}
           </div>
         </div>
@@ -285,29 +287,28 @@ var ProductForm = React.createClass({
       url: action,
       method: method,
       dataType: "json",
-      success: function(data) {
-        if (data.status == "success") {
-          var productId = data.data.id;
-          var url = data.url;
+      success: function(product) {
+        var productId = product.id;
+        var url = Routes.merchant_product_path(productId);
 
-          this.postImages(productId, url);
-          Turbolinks.visit(this.props.redirect_url);
-        }
-        else {
-          var ko_count = 0;
-          var en_count = 0;
+        this.postImages(productId, url);
+        Turbolinks.visit(Routes.merchant_products_path());
+      }.bind(this),
+      error: function(xhr) {
+        var ko_count = 0;
+        var en_count = 0;
+        var errors = xhr.responseJSON;
 
-          ko_count += (data.data.name_ko) ? data.data.name_ko.length : 0;
-          ko_count += (data.data.description_ko) ? data.data.description_ko.length : 0;
-          en_count += (data.data.name_en) ? data.data.name_en.length : 0;
-          en_count += (data.data.description_en) ? data.data.description_en.length : 0;
+        ko_count += (errors.name_ko) ? errors.name_ko.length : 0;
+        ko_count += (errors.description_ko) ? errors.description_ko.length : 0;
+        en_count += (errors.name_en) ? errors.name_en.length : 0;
+        en_count += (errors.description_en) ? errors.description_en.length : 0;
 
-          this.setState({
-            errors: data.data,
-            ko_count: ko_count,
-            en_count: en_count
-          });
-        }
+        this.setState({
+          errors: errors,
+          ko_count: ko_count,
+          en_count: en_count
+        });
       }.bind(this)
     });
   },

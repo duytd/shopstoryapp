@@ -11,9 +11,9 @@ class Merchant::ThemeEditorsController < Merchant::BaseController
 
   def update
     if @theme_editor.update theme_editor_params
-      render json: {data: @theme_editor, status: :success}
+      render json: @theme_editor, status: :ok
     else
-      render json: {data: @theme_editor.errors, status: :unprocessed_entity}
+      render json: @theme_editor.errors, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +26,6 @@ class Merchant::ThemeEditorsController < Merchant::BaseController
       file: file,
       url: merchant_theme_editor_path(@theme_editor),
       reset_url: edit_merchant_theme_editor_path(@theme_editor, reset: true),
-      redirect_url: merchant_root_path,
       method: :put
     }
   end

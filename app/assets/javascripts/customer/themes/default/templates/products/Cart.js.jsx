@@ -86,12 +86,10 @@ var Cart = React.createClass({
       method: "delete",
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          var cartData = data.data;
+        var cartData = data;
 
-          this.props.updateCart(cartData);
-          this.emptyCartErrors();
-        }
+        this.props.updateCart(cartData);
+        this.emptyCartErrors();
       }.bind(this)
     });
   },
@@ -121,15 +119,13 @@ var Cart = React.createClass({
       method: "put",
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          var cartData = data.data;
+        var cartData = data;
 
-          this.props.updateCart(cartData);
-          this.emptyCartErrors();
-        }
-        else {
-          this.setCartErrors(data.errors);
-        }
+        this.props.updateCart(cartData);
+        this.emptyCartErrors();
+      }.bind(this),
+      error: function(xhr) {
+        this.setCartErrors(xhr.responseJSON);
       }.bind(this)
     });
   },

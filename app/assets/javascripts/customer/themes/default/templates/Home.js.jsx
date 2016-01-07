@@ -3,6 +3,7 @@ var Home = React.createClass({
     return (
       <Layout globalVars={this.props.globalVars}>
         <div className="home">
+          <ProductList products={this.props.products} currency={this.props.globalVars.currency} />
         </div>
       </Layout>
     );

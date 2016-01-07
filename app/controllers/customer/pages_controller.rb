@@ -4,6 +4,7 @@ class Customer::PagesController < Customer::BaseController
   before_action :authenticate_order!, only: :success
 
   def home
+    @products = Product.latest
   end
 
   def checkout

@@ -9,7 +9,7 @@ var CategoryForm = React.createClass({
   render: function () {
     return (
       <form ref="form" className="category-form" action={this.props.url}
-        accept-charset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
+        acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
         <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
 
         <div className="tab-content">
@@ -39,8 +39,10 @@ var CategoryForm = React.createClass({
           </div>
         </div>
 
-        <div class="col-md-12">
-          <SubmitButtons redirect_url={this.props.redirect_url} />
+        <div className="row">
+          <div className="col-md-12">
+            <SubmitButtons redirect_url={this.props.redirect_url} />
+          </div>
         </div>
       </form>
     )
@@ -58,19 +60,18 @@ var CategoryForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          Turbolinks.visit(this.props.redirect_url);
-        }
-        else {
-          var name_ko_count = (data.data.name_ko) ? data.data.name_ko.length : 0;
-          var name_en_count = (data.data.name_en) ? data.data.name_en.length : 0;
+        Turbolinks.visit(Routes.merchant_categories_path());
+      },
+      error: function(xhr) {
+        var errors = xhr.responseJSON;
+        var name_ko_count = (errors.name_ko) ? errors.name_ko.length : 0;
+        var name_en_count = (errors.name_en) ? errors.name_en.length : 0;
 
-          this.setState({
-            errors: data.data, 
-            name_ko_count: name_ko_count,
-            name_en_count: name_en_count
-          });
-        }
+        this.setState({
+          errors: errors, 
+          name_ko_count: name_ko_count,
+          name_en_count: name_en_count
+        });
       }.bind(this)
     });
   },

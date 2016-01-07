@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
     @shop_name = params[:shop_name]
+
     if @shop_name && @shop_name.empty?
       flash[:danger] = t "registrations.blank_shop_name"
       render "pages/home"

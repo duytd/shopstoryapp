@@ -57,7 +57,7 @@ var Order = React.createClass({
     }
 
     return (
-      <tr className="order">
+      <div>
         <td>
           {"#" + this.props.order.id}
         </td>
@@ -83,7 +83,7 @@ var Order = React.createClass({
         <td>
           {I18n.toCurrency(this.props.order.total, {precision: 0, unit: ""})}
         </td>
-      </tr>
+      </div>
     );
   }
 });

@@ -185,18 +185,16 @@ var ShopForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          Turbolinks.visit(this.props.redirect_url);
+        Turbolinks.visit(Routes.merchant_root_path());
 
-          this.setState({
-            errors: [],
-          })
-        }
-        else {
-          this.setState({
-            errors: data.data, 
-          });
-        }
+        this.setState({
+          errors: [],
+        })
+      }.bind(this),
+      error: function(xhr) {
+        this.setState({
+          errors: xhr.responseJSON, 
+        });
       }.bind(this)
     });
   },

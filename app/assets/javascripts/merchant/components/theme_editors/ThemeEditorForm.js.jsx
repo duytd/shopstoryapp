@@ -133,14 +133,12 @@ var ThemeEditorForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        if (data.status == "success") {
-          Turbolinks.visit(window.location.href);
-        }
-        else {
-          this.setState({
-            errors: data.data, 
-          });
-        }
+        Turbolinks.visit(window.location.href);
+      },
+      error: function(xhr) {
+        this.setState({
+          errors: xhr.responseJSON 
+        });
       }.bind(this)
     });
   },

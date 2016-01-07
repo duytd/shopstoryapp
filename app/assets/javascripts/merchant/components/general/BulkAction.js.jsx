@@ -5,8 +5,7 @@ var BulkAction = React.createClass({
         <button type="button" className="btn btn-default disabled">
           {this.props.checkCount + " " + I18n.t("merchant.admin.forms.selected")}
         </button>
-        <button type="button" className="btn btn-default" data-confirm={I18n.t("merchant.admin.forms.confirm")}
-        onClick={this.props.deleteAllHandler}>
+        <button type="button" className="btn btn-default" onClick={this.props.deleteAllHandler}>
           {I18n.t("merchant.admin.buttons.delete_selected")}
         </button>
       </div>
