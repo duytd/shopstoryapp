@@ -54,6 +54,14 @@ label.label {
   .block-body {
     background: $white;
   }
+  &.transparent {
+    background: transparent;
+    box-shadow: none;
+    .block-body {
+      margin-top: 10px;
+      background: transparent;
+    }
+  }
 }
 
 h1, h2, h3, h4 {

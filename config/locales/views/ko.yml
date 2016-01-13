@@ -66,6 +66,9 @@ ko:
         save: "Save"
         cancel: "Cancel"
         delete: "Delete"
+        view: "View"
+        install: "Install"
+        installed: "Installed"
         delete_selected: "Delete selected"
       forms:
         ko_lang: "Korean"
@@ -113,3 +116,5 @@ ko:
         total: "Total"
         order_status: "Order Status"
         payment_status: "Payment Status"
+      extensions:
+        title: "Extensions"

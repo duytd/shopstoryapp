@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106060308) do
+ActiveRecord::Schema.define(version: 20160107095053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 20160106060308) do
     t.boolean  "active",        default: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "extensions", force: :cascade do |t|
+    t.decimal  "price",       default: 0.0
+    t.string   "name"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "menus", force: :cascade do |t|
@@ -252,6 +261,16 @@ ActiveRecord::Schema.define(version: 20160106060308) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "shop_extensions", force: :cascade do |t|
+    t.integer  "shop_id"
+    t.integer  "extension_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "shop_extensions", ["extension_id"], name: "index_shop_extensions_on_extension_id", using: :btree
+  add_index "shop_extensions", ["shop_id"], name: "index_shop_extensions_on_shop_id", using: :btree
+
   create_table "shop_translations", force: :cascade do |t|
     t.integer  "shop_id",    null: false
     t.string   "locale",     null: false
@@ -310,19 +329,30 @@ ActiveRecord::Schema.define(version: 20160106060308) do
 
   add_index "shopstory_ticket_sellers", ["shop_id"], name: "index_shopstory_ticket_sellers_on_shop_id", using: :btree
 
+  create_table "shopstory_ticket_settings", force: :cascade do |t|
+    t.integer  "shop_id"
+    t.string   "client_id"
+    t.string   "api_key"
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "shopstory_ticket_settings", ["shop_id"], name: "index_shopstory_ticket_settings_on_shop_id", using: :btree
+
   create_table "shopstory_ticket_tickets", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
-    t.decimal  "price"
+    t.decimal  "price",                     default: 0.0
     t.integer  "shopstory_ticket_event_id"
-    t.integer  "quantity"
-    t.integer  "min_quantity"
-    t.integer  "max_quantity"
+    t.integer  "quantity",                  default: 10
+    t.integer  "min_quantity",              default: 1
+    t.integer  "max_quantity",              default: 10
     t.text     "description"
     t.string   "color"
     t.string   "image"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "shopstory_ticket_tickets", ["shopstory_ticket_event_id"], name: "index_shopstory_ticket_tickets_on_shopstory_ticket_event_id", using: :btree
@@ -412,11 +442,14 @@ ActiveRecord::Schema.define(version: 20160106060308) do
   add_foreign_key "product_images", "products"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
+  add_foreign_key "shop_extensions", "extensions"
+  add_foreign_key "shop_extensions", "shops"
   add_foreign_key "shops", "plans"
   add_foreign_key "shops", "themes"
   add_foreign_key "shops", "users"
   add_foreign_key "shopstory_ticket_events", "shopstory_ticket_sellers"
   add_foreign_key "shopstory_ticket_sellers", "shops"
+  add_foreign_key "shopstory_ticket_settings", "shops"
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"
   add_foreign_key "theme_editors", "shops"
   add_foreign_key "theme_editors", "themes"

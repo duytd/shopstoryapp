@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  mount ShopstoryTicket::Engine => "/ticket"
-
   constraints Constraints::RootDomainConstraint do
     root "pages#home"
     get :showcase, to: "pages#showcase"
@@ -20,6 +18,8 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::SubdomainConstraint do
+    mount ShopstoryTicket::Engine => "/ticket"
+    
     devise_for :customers, path: "", path_names: {sign_in: "login",
       sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
       unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "customer/registrations",
@@ -60,6 +60,9 @@ Rails.application.routes.draw do
       resources :shops, only: [:edit, :update]
       resources :theme_editors, only: [:edit, :update]
       resources :payment_method_shops, only: [:index, :update]
+      resources :extensions, only: [:index, :show] do
+        resource :shop_extension, only: :create
+      end
     end
   end
 end

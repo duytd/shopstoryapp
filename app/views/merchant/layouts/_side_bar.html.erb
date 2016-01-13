@@ -72,6 +72,13 @@
       </li>
     <% end %>
 
+    <%= link_to merchant_extensions_path do %>
+      <li class="item">
+        <i class="fa fa-puzzle-piece"></i>
+        <span class="item-label"><%= t "merchant.admin.menu.extensions" %></span>
+      </li>
+    <% end %>
+ 
     <li class="item">
       <%= link_to "#" do %>
         <i class="fa fa-gear"></i>
@@ -104,5 +111,8 @@
         <% end %>
       </ul>
     </li>
+    <% current_shop.extensions.each do |extension| %>
+      <%= render "layouts/#{extension.name}/menu" if extension.name %>
+    <% end %>
   </ul>
 </nav>

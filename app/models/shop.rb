@@ -11,6 +11,8 @@ class Shop < ActiveRecord::Base
   has_many :theme_editors, dependent: :destroy
   has_many :payment_method_shops
   has_many :payment_methods, through: :payment_method_shops
+  has_many :shop_extensions, dependent: :destroy
+  has_many :extensions, through: :shop_extensions
 
   validates :name, presence: true
   validates :merchant, presence: true
