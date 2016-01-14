@@ -12,6 +12,6 @@ class Merchant::ExtensionsController < Merchant::BaseController
 
   private
   def load_installed_ids
-    @installed_ids = current_shop.extension_ids 
+    @installed_ids = current_shop.extension_ids
   end
 end

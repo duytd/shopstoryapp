@@ -8,4 +8,5 @@
 //= require react
 //= require react_ujs
 //= require i18n
+//= require shopstory_ticket/frontend
 //= require_tree ./templates
