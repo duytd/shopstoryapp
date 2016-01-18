@@ -9,8 +9,8 @@ module Customer::BaseHelper
   end
 
   def current_order
-    if cart_token = cookies[:cart]
-      @current_order ||= Order.find_by_token(cart_token) || initialize_order
+    if order_token = cookies[:po]
+      @current_order ||= ProductOrder.find_by_token(order_token) || initialize_order
     else
       @current_order ||= initialize_order
     end
@@ -23,10 +23,10 @@ module Customer::BaseHelper
     if customer_signed_in?
       current_customer.orders.where(ip_address: ip_address, status: 0).first_or_create
     else
-      order = Order.create ip_address: ip_address
+      order = ProductOrder.create ip_address: ip_address
     end
 
-    cookies[:cart] = {value: order.token, http_only: true,
+    cookies[:po] = {value: order.token, http_only: true,
                                 expires: 3.days.from_now}
     order
   end

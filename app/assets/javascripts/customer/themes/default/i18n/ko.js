@@ -1,5 +1,6 @@
-var I18n = I18n || {};
-I18n.translations = {
+I18n.translations = I18n.translations || {};
+
+$.extend(true, I18n.translations, {
   "ko": {
     "languages": {
       "korean": "KO",
@@ -105,4 +106,4 @@ Your order will be confirmed immediately after the payment has been made",
       "remove": "Remove"
     }
   }
-}
+})

@@ -32,10 +32,12 @@ gem "kaminari"
 gem "js-routes"
 gem "inicis-standard-rails", git: "https://github.com/duytd/inicis-standard-rails.git", branch: "develop"
 gem "shopstory_ticket", git: "git@bitbucket.org:duytd/shopstory_ticket.git", branch: "develop"
+#gem "inicis-standard-rails", path: "~/workspace/inicis-standard-rails"
 #gem "shopstory_ticket", path: "~/workspace/shopstory_ticket"
 gem "puma"
 gem "rubyzip"
 gem "browser"
+gem "rqrcode"
 
 group :development, :test do
   gem "byebug"

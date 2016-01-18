@@ -1,9 +1,9 @@
 class OrderProduct < ActiveRecord::Base
-  belongs_to :order, touch: true
+  belongs_to :product_order, class_name: "ProductOrder", foreign_key: "order_id", touch: true
   belongs_to :product
 
   validates :order_id, uniqueness: {scope: :product_id}, on: :create
-  validates :order, presence: true
+  validates :product_order, presence: true
   validates :product, presence: true
 
   validate :quantity_must_be_less_than_product_quantity_and_greater_than_zero

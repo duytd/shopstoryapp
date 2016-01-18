@@ -16,8 +16,7 @@ Apartment.configure do |config|
   #
   config.excluded_models = %w{ User Shop Admin Merchant Theme ThemeEditor Plan
     PaymentMethod PaymentMethodOption PaymentMethodShop PaymentMethodOptionShop
-    Extension ShopExtension ShopstoryTicket::Ticket ShopstoryTicket::Event ShopstoryTicket::Seller
-    ShopstoryTicket::Setting ShopstoryTicket::Booking ShopstoryTicket::TicketBooking }
+    Extension ShopExtension }
 
   # In order to migrate all of your Tenants you need to provide a list of Tenant names to Apartment.
   # You can make this dynamic by providing a Proc object to be called on migrations.

@@ -61,15 +61,17 @@ var ShippingForm = React.createClass({
     var shippingInfo = (
       <div className="row">
         <div className="col-sm-12">
-          <p>{this.props.order.shipping_address.first_name}{this.props.order.shipping_address.last_name}</p>
-          <p>{this.props.order.shipping_address.email}</p>
-          <p>{this.props.order.shipping_address.phone_number}</p>
-          <p>{this.props.order.shipping_address.fax}</p>
-          <p>{this.props.order.shipping_address.city}</p>
-          <p>{this.props.order.shipping_address.state}</p>
-          <p>{this.props.order.shipping_address.zip_code}</p>
-          <p>{this.props.order.shipping_address.address1}
-            <i>{(this.props.order.shipping_address.address2 != "") ? "("+this.props.order.shipping_address.address2+")" : ""}</i>
+          <p>
+            {(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : ""}
+            {(this.props.order.shipping_address) ? this.props.order.shipping_address.last_name : ""}</p>
+          <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.email : ""}</p>
+          <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.phone_number : ""}</p>
+          <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.fax : ""}</p>
+          <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.city : ""}</p>
+          <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.state : ""}</p>
+          <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.zip_code : ""}</p>
+          <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.address1 : ""}
+            <i>{(this.props.order.shipping_address && this.props.order.shipping_address.address2 != "") ? "("+this.props.order.shipping_address.address2+")" : ""}</i>
           </p>
         </div>
       </div>
@@ -207,6 +209,7 @@ var ShippingForm = React.createClass({
       success: function(order) {
         this.setState({errors: []});
         this.props.updateOrder(order);
+        this.disableEditing();
       }.bind(this),
       error: function(xhr) {
         this.setState({errors: xhr.responseJSON});

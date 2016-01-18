@@ -2,6 +2,8 @@ class Customer::OrdersController < Customer::BaseController
   authorize_resource
   include Merchant::ShopsHelper
 
+  before_action :validate_order!
+
   def new
     @props = {
       order: current_order,
@@ -33,6 +35,13 @@ class Customer::OrdersController < Customer::BaseController
   end
 
   private
+  def validate_order!
+    if current_order.order_products.count == 0
+      flash[:danger] = t "customer.flash.cart_empty"
+      redirect_to customer_root_path
+    end
+  end
+  
   def order_params
     permitted_address_attributes =  [:id, :email, :first_name, :last_name, :company, :address1,
       :address2, :city, :state, :country, :zip_code, :phone_number, :fax, :order_id]

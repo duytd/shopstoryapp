@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :product_order, class_name: "ProductOrder", foreign_key: "order_id"
 
   validates :email, presence: true, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
   validates :first_name, presence: true
@@ -9,5 +9,5 @@ class Address < ActiveRecord::Base
   validates :country, presence: true
   validates :phone_number, presence: true, numericality: {only_integer: true}
   validates :zip_code, presence: true
-  validates :order, presence: true
+  validates :product_order, presence: true
 end

@@ -13,19 +13,17 @@ class Customer::PagesController < Customer::BaseController
   def success
     transaction_info = nil
 
-    if current_order.payment.extra_data
-      extra_data = JSON.parse current_order.payment.extra_data
+    if @order.payment.extra_data
+      extra_data = JSON.parse @order.payment.extra_data
       vbank = Inicis::Standard::Rails::Paymethod::Vbank.new data: extra_data
       transaction_info = vbank.transaction_info
     end
 
     @order_info = {
-      order_number: current_order.id,
+      order_number: @order.id,
       transaction_info: transaction_info,
       support_email: current_shop.email
     }
-
-    cookies.delete :cart
 
     @props = {
       globalVars: @globalVars,
@@ -35,7 +33,19 @@ class Customer::PagesController < Customer::BaseController
 
   private
   def authenticate_order!
-    unless current_order.payment
+    case session[:order_type]
+    when "ticket"
+      order_token = cookies[:to]
+      cookies.delete :to
+    else
+      order_token = cookies[:po]
+      cookies.delete :po
+    end
+
+    @order = Order.find_by_token order_token
+    @order.reset_confirmation_token if @order.is_a?(ShopstoryTicket::Booking)
+
+    unless @order && @order.payment
       redirect_to customer_root_path
     end
   end

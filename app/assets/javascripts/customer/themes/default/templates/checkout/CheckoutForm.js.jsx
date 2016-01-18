@@ -52,13 +52,16 @@ var CheckoutForm = React.createClass({
               currency={this.props.globalVars.currency}
             />
 
-            <ShippingForm
-              editing={true}
-              order={this.state.order}
-              updateOrder={this.updateOrder}
-              lang={this.props.globalVars.lang}
-              countries={this.props.countries}
-              default_country={this.props.default_country} />
+            {(this.state.order.shipping_address) ?
+              <ShippingForm
+                editing={true}
+                order={this.state.order}
+                updateOrder={this.updateOrder}
+                lang={this.props.globalVars.lang}
+                countries={this.props.countries}
+                default_country={this.props.default_country} />
+              : ""
+            }
           </div>
         </div>
       </Layout>

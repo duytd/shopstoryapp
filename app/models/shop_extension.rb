@@ -10,6 +10,6 @@ class ShopExtension < ActiveRecord::Base
 
   private
   def initialize_setting
-    ("#{extension.name}".camelize + "::Setting").constantize.create shop_id: shop.id
+    ("#{extension.name}".camelize + "::Setting").constantize.first_or_create
   end
 end

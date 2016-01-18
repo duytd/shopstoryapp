@@ -3,7 +3,7 @@ class CreateShopstoryTicketTicketBookings < ActiveRecord::Migration
   def change
     create_table :shopstory_ticket_ticket_bookings do |t|
       t.references :shopstory_ticket_ticket, index: {name: "ticket_id"}, foreign_key: true
-      t.references :shopstory_ticket_booking, index: {name: "booking_id"}, foreign_key: true
+      t.references :order, foreign_key: true
       t.integer :quantity
       t.decimal :unit_price
 

@@ -1,6 +1,7 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
+      t.string :type
       t.references :customer, index: true, foreign_key: true
       t.decimal :subtotal, default: 0
       t.decimal :shipping, default: 0

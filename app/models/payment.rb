@@ -1,5 +1,5 @@
 class Payment < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :order, touch: true
 
   belongs_to :payment_method
 

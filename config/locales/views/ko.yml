@@ -21,6 +21,10 @@ ko:
       title: "Showcase"
     preview:
       title: "Preview"
+  customer: 
+    flash:
+      cart_empty: "You cart must not be empty before checking out"
+
   merchant:
     registrations:
       title: "Create your shop now !"

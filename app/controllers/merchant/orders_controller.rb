@@ -28,11 +28,11 @@ class Merchant::OrdersController < Merchant::BaseController
 
   private
   def list_all
-    @orders = Order.page params[:page]
+    @orders = ProductOrder.page params[:page]
   end
 
   def delete_all
-    Order.where(id: params[:order_ids]).destroy_all
+    ProductOrder.where(id: params[:order_ids]).destroy_all
     render json: nil, status: :ok
   end
 end

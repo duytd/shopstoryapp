@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114091907) do
+ActiveRecord::Schema.define(version: 20160117174825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,20 +131,26 @@ ActiveRecord::Schema.define(version: 20160114091907) do
   add_index "order_products", ["product_id"], name: "index_order_products_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
+    t.string   "type"
     t.integer  "customer_id"
-    t.decimal  "subtotal",      default: 0.0
-    t.decimal  "shipping",      default: 0.0
-    t.decimal  "tax",           default: 0.0
-    t.integer  "product_count", default: 0
-    t.decimal  "total",         default: 0.0
-    t.integer  "status",        default: 0
+    t.decimal  "subtotal",                   default: 0.0
+    t.decimal  "shipping",                   default: 0.0
+    t.decimal  "tax",                        default: 0.0
+    t.integer  "product_count",              default: 0
+    t.decimal  "total",                      default: 0.0
+    t.integer  "status",                     default: 0
     t.string   "token"
     t.string   "ip_address"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "shopstory_ticket_seller_id"
+    t.string   "confirmation_token"
+    t.string   "ticket_code"
+    t.datetime "ticket_sent_at"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+  add_index "orders", ["shopstory_ticket_seller_id"], name: "index_orders_on_shopstory_ticket_seller_id", using: :btree
 
   create_table "payment_method_option_shops", force: :cascade do |t|
     t.integer  "payment_method_option_id"
@@ -309,19 +315,19 @@ ActiveRecord::Schema.define(version: 20160114091907) do
   add_index "shops", ["theme_id"], name: "index_shops_on_theme_id", using: :btree
   add_index "shops", ["user_id"], name: "index_shops_on_user_id", using: :btree
 
-  create_table "shopstory_ticket_bookings", force: :cascade do |t|
-    t.decimal  "subtotal"
-    t.integer  "shopstory_ticket_seller_id"
-    t.decimal  "total"
-    t.integer  "status",                     default: 0
-    t.string   "name"
+  create_table "shopstory_ticket_customer_contacts", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
     t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "address"
+    t.text     "note"
+    t.integer  "order_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "shopstory_ticket_bookings", ["shopstory_ticket_seller_id"], name: "index_shopstory_ticket_bookings_on_shopstory_ticket_seller_id", using: :btree
+  add_index "shopstory_ticket_customer_contacts", ["order_id"], name: "index_shopstory_ticket_customer_contacts_on_order_id", using: :btree
 
   create_table "shopstory_ticket_events", force: :cascade do |t|
     t.integer  "source"
@@ -335,16 +341,14 @@ ActiveRecord::Schema.define(version: 20160114091907) do
 
   create_table "shopstory_ticket_sellers", force: :cascade do |t|
     t.string   "email"
-    t.integer  "shop_id"
     t.string   "access_token"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "shopstory_ticket_sellers", ["shop_id"], name: "index_shopstory_ticket_sellers_on_shop_id", using: :btree
+  add_index "shopstory_ticket_sellers", ["email"], name: "index_shopstory_ticket_sellers_on_email", using: :btree
 
   create_table "shopstory_ticket_settings", force: :cascade do |t|
-    t.integer  "shop_id"
     t.string   "client_id"
     t.string   "api_key"
     t.boolean  "active",     default: true
@@ -352,18 +356,17 @@ ActiveRecord::Schema.define(version: 20160114091907) do
     t.datetime "updated_at",                null: false
   end
 
-  add_index "shopstory_ticket_settings", ["shop_id"], name: "index_shopstory_ticket_settings_on_shop_id", using: :btree
+  add_index "shopstory_ticket_settings", ["client_id"], name: "index_shopstory_ticket_settings_on_client_id", using: :btree
 
   create_table "shopstory_ticket_ticket_bookings", force: :cascade do |t|
     t.integer  "shopstory_ticket_ticket_id"
-    t.integer  "shopstory_ticket_booking_id"
+    t.integer  "order_id"
     t.integer  "quantity"
     t.decimal  "unit_price"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "shopstory_ticket_ticket_bookings", ["shopstory_ticket_booking_id"], name: "booking_id", using: :btree
   add_index "shopstory_ticket_ticket_bookings", ["shopstory_ticket_ticket_id"], name: "ticket_id", using: :btree
 
   create_table "shopstory_ticket_tickets", force: :cascade do |t|
@@ -374,6 +377,8 @@ ActiveRecord::Schema.define(version: 20160114091907) do
     t.integer  "quantity",                  default: 10
     t.integer  "min_quantity",              default: 1
     t.integer  "max_quantity",              default: 10
+    t.datetime "from_date"
+    t.datetime "to_date"
     t.text     "description"
     t.string   "color"
     t.string   "image"
@@ -473,11 +478,9 @@ ActiveRecord::Schema.define(version: 20160114091907) do
   add_foreign_key "shops", "plans"
   add_foreign_key "shops", "themes"
   add_foreign_key "shops", "users"
-  add_foreign_key "shopstory_ticket_bookings", "shopstory_ticket_sellers"
+  add_foreign_key "shopstory_ticket_customer_contacts", "orders"
   add_foreign_key "shopstory_ticket_events", "shopstory_ticket_sellers"
-  add_foreign_key "shopstory_ticket_sellers", "shops"
-  add_foreign_key "shopstory_ticket_settings", "shops"
-  add_foreign_key "shopstory_ticket_ticket_bookings", "shopstory_ticket_bookings"
+  add_foreign_key "shopstory_ticket_ticket_bookings", "orders"
   add_foreign_key "shopstory_ticket_ticket_bookings", "shopstory_ticket_tickets"
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"
   add_foreign_key "theme_editors", "shops"
