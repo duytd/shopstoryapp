@@ -9,11 +9,12 @@ class CreateShopstoryTicketTickets < ActiveRecord::Migration
       t.integer :quantity, default: 10
       t.integer :min_quantity, default: 1
       t.integer :max_quantity, default: 10
-      t.datetime :from_date 
+      t.datetime :from_date
       t.datetime :to_date
       t.text :description
       t.string :color
       t.string :image
+      t.integer :sold, default: 0
 
       t.timestamps null: false
     end

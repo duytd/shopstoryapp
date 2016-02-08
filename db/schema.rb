@@ -331,6 +331,12 @@ ActiveRecord::Schema.define(version: 20160117174825) do
 
   create_table "shopstory_ticket_events", force: :cascade do |t|
     t.integer  "source"
+    t.string   "poster"
+    t.string   "name"
+    t.string   "url"
+    t.string   "venue"
+    t.string   "date"
+    t.string   "time"
     t.integer  "shopstory_ticket_seller_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -382,6 +388,7 @@ ActiveRecord::Schema.define(version: 20160117174825) do
     t.text     "description"
     t.string   "color"
     t.string   "image"
+    t.integer  "sold",                      default: 0
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end
