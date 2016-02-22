@@ -35,7 +35,6 @@ class Shop < ActiveRecord::Base
     super.as_json(options).merge({street_en: street_en, street_ko: street_ko})
   end
 
-  private
   def load_defaults
     self.theme = Theme.default
     self.plan = Plan.default
@@ -53,7 +52,9 @@ class Shop < ActiveRecord::Base
       payment_method_shop = self.payment_method_shops.create payment_method_id: payment_method.id
 
       payment_method.payment_method_options.each do |option|
-        payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
+        if payment_method_shop.valid?
+          payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
+        end
       end
     end
   end

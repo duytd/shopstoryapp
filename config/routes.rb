@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   constraints Constraints::SubdomainConstraint do
     mount ShopstoryTicket::Engine => "/ticket"
-    
+
     devise_for :customers, path: "", path_names: {sign_in: "login",
       sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
       unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "customer/registrations",
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       end
 
       mount Inicis::Standard::Rails::Engine, at: "/inicis", as: "inicis"
+      mount PaypalShopstory::Engine, at: "/paypal", as: "paypal"
       resources :order_products, only: [:create, :update, :destroy]
     end
 

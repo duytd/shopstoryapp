@@ -63,9 +63,11 @@ ko:
         zip_code: "Zip Code"
         time_zone: "Time Zone"
         currency: "Currency"
+        exchange_rate: "Exchange Rate (USD/KRW)"
         weight_unit: "Weight Unit"
         facebook_url: "Facebook Link"
         instagram_url: "Instagram Link"
         pinterest_url: "Pinterest Link"
       payment_method_shop:
         key: "Key (*.zip)"
+        active: "Enabled"

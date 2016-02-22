@@ -39,6 +39,16 @@ var PaymentMethod = React.createClass({
             <form ref="form" id="paymentMethod" acceptCharset="UTF-8" onSubmit={this.submit}>
               {options}
               {keyUploader}
+              <div className="form-group col-md-12">
+                <label>
+                  {I18n.t("activerecord.attributes.payment_method_shop.active")}
+                </label>
+                <input type="hidden" name="payment_method_shop[active]" value="0" />
+                <label className="styled-cb">
+                  <input type="checkbox" name="payment_method_shop[active]" value="1" defaultChecked={this.props.payment_method_shop.active} />
+                  <i className="fa"></i>
+                </label>
+              </div>
               <div className="form-group col-md-6">
                 <SubmitButtons goBack={false} />
               </div>

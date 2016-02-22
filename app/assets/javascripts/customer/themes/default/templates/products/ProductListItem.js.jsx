@@ -4,7 +4,7 @@ var ProductListItem = React.createClass({
       <div className="col-sm-3 text-center">
         <a href={Routes.customer_product_path(this.props.product.id)}>
           <div className="product-image">
-            <img className="img-responsive" src={this.props.product.images[0].url}/>
+            <img className="img-responsive" src={(this.props.product.images.length > 0) ? this.props.product.images[0].url : ""}/>
           </div>
         </a>
         <a href={Routes.customer_product_path(this.props.product.id)}>

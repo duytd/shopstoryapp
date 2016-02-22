@@ -10,6 +10,8 @@ class PaymentMethodShop < ActiveRecord::Base
 
   validates :payment_method, presence: true
   validates :shop, presence: true
+  validates :payment_method_id, uniqueness: {scope: :shop_id}
+  validate :necessary_fields_must_be_presented, on: :update
 
   after_save :unzip_key
 
@@ -23,16 +25,22 @@ class PaymentMethodShop < ActiveRecord::Base
   end
 
   def load_option option_name
-    payment_method_option_shops.joins(:payment_method_option)
-      .where("payment_method_options.name = ?", option_name).first.value
+    option = payment_method_option_shops.joins(:payment_method_option)
+      .where("payment_method_options.name = ?", option_name)
+
+    if option.size > 0
+      return option.first.value
+    end
+
+    ""
   end
 
   private
   def unzip_key
-    if key.url
+    if key.url && key_changed?
       Zip::File.open(key.url) do |zip_file|
         zip_file.each do |f|
-          f_path=File.join(File.dirname(key.url), f.name)
+          f_path = File.join(File.dirname(key.url), f.name)
           FileUtils.mkdir_p File.dirname(f_path)
           zip_file.extract(f, f_path){true}
         end
@@ -43,5 +51,23 @@ class PaymentMethodShop < ActiveRecord::Base
 
   def remove_zip
     FileUtils.rm key.url
+  end
+
+  def all_valid?
+    payment_method.required_fields.each do |field|
+      if load_option(field).blank?
+        return false
+      end
+    end
+
+    true
+  end
+
+  def necessary_fields_must_be_presented
+    if active_changed? && active?
+      unless all_valid? && key.present?
+        errors.add :base, "All required fields must be filled to activate this payment method"
+      end
+    end
   end
 end

@@ -48,7 +48,10 @@ var BillingForm = React.createClass({
       </div>
     );
 
-    var mobileSubmethods = this.state.paymentMethod.mobile_submethods.split("|").map(function(method, index) {
+    var mobileSubmethods = "";
+
+    if (this.props.mobile && this.state.paymentMethod.mobile_submethods) {
+      mobileSubmethods = this.state.paymentMethod.mobile_submethods.split("|").map(function(method, index) {
         var checked = false;
 
         if ((this.props.order.payment && this.props.order.payment.submethod == method) || index == 0) {
@@ -62,7 +65,8 @@ var BillingForm = React.createClass({
             {method.toUpperCase()}
           </span>
         );
-    }.bind(this))
+      }.bind(this))
+    }
 
     var paymentMethods = (
       <div>
@@ -70,7 +74,7 @@ var BillingForm = React.createClass({
         <div className="form-group row">
           <div className="col-sm-8">
             <select name="order[payment_attributes][payment_method_id]"
-              defaultValue={(this.props.order.payment) ? this.props.order.payment.payment_method.id : this.props.payment_methods[0].id}>
+              defaultValue={this.state.paymentMethod.id}>
               {paymentMethodNodes}
             </select>
           </div>
@@ -78,7 +82,7 @@ var BillingForm = React.createClass({
 
         <div className="form-group row">
           <div className="col-sm-8">
-            {(this.props.mobile) ? mobileSubmethods : ""}
+            {mobileSubmethods}
           </div>
         </div>
       </div>
@@ -202,6 +206,7 @@ var BillingForm = React.createClass({
 
         <hr/>
         {paymentMethods}
+        <div id="inicisPayment"></div>
         <hr/>
 
         <input type="submit" className="btn btn-lg btn-primary pull-right" value={I18n.t("checkout.buttons.place_order")} onClick={this.updateOrder} />
@@ -258,7 +263,26 @@ var BillingForm = React.createClass({
       method: "PUT",
       url: Routes.customer_order_path(this.props.order.id),
       success: function(order) {
-        location.href = Routes.customer_order_payment_path(order.id);
+        if (this.state.paymentMethod.type == "InicisPayment") {
+          if (this.props.mobile) {
+            $.get(Routes.customer_inicis_transaction_pay_path(), function(data) {
+              $('#inicisPayment').html(data);
+            })
+          }
+          else {
+            $.get(Routes.customer_inicis_mobile_transaction_pay_path(), function(data) {
+              $('#inicisPayment').html(data);
+            })
+          }
+        }
+        else if (this.state.paymentMethod.type == "PaypalShopstory::PaymentMethod") {
+          $.get(Routes.customer_paypal_transaction_pay_path(), function(response) {
+            location.href = response.paypal_url
+          })
+        }
+        else {
+          location.href = Routes.customer_order_payment_path(order.id);
+        }
       }.bind(this),
       error: function(xhr) {
         this.setState({errors: xhr.responseJSON});

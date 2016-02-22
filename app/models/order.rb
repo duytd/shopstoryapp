@@ -13,18 +13,63 @@ class Order < ActiveRecord::Base
 
   paginates_per Settings.paging.order
 
-  def change_status status
-    self.update_attributes status: status
+  def pending!
+    update_status "pending"
+  end
+
+  def processing!
+    update_status "processing"
+  end
+
+  def processed!
+    update_status "processed"
+  end
+
+  def shipping!
+    update_status "shipping"
+  end
+
+  def shipped!
+    update_status "shipped"
+  end
+
+  def returned!
+    update_status "returned"
+  end
+
+  def cancelled
+    update_status "cancelled"
+  end
+
+  def in_usd attr, exchange_rate
+    amount = send attr
+    convert_to_usd amount, exchange_rate
+  end
+
+  def convert_to_usd amount, exchange_rate
+    if currency.upcase == "KRW"
+      MoneyConverter.krw_to_usd amount, exchange_rate
+    else
+      amount
+    end
+  end
+
+  def update_currency currency
+    self.update_attributes currency: currency
   end
 
   protected
   def order_processed?
     status_changed? && self.processed?
   end
- 
+
   private
   def generate_token
     self.token = SecureRandom.urlsafe_base64
     generate_token if Order.exists? token: self.token
+  end
+
+  def update_status status
+    self.update_attributes status: status
   end
 end

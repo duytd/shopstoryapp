@@ -21,10 +21,14 @@ module Customer::BaseHelper
 
   def initialize_order
     if customer_signed_in?
-      current_customer.orders.where(ip_address: ip_address, status: 0).first_or_create
+      order = current_customer.orders.where(ip_address: ip_address, status: 0).first_or_create
     else
       order = ProductOrder.create ip_address: ip_address
     end
+
+    currency = current_shop.currency.upcase
+    order.update_currency currency
+    session[:currency] = currency
 
     cookies[:po] = {value: order.token, http_only: true,
                                 expires: 3.days.from_now}

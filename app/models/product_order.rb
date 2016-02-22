@@ -35,7 +35,7 @@ class ProductOrder < Order
   def reload_inventory
     order_products.each do |order_product|
       ordered_product = order_product.product
-      ordered_product.update_attributes quantity: (ordered_product.quantity - order_product.quantity)
+      ordered_product.update_attributes in_stock: (ordered_product.in_stock - order_product.quantity)
     end
   end
 

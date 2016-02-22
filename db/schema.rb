@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117174825) do
+ActiveRecord::Schema.define(version: 20160222064101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160117174825) do
     t.string   "confirmation_token"
     t.string   "ticket_code"
     t.datetime "ticket_sent_at"
+    t.string   "currency"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -208,6 +209,8 @@ ActiveRecord::Schema.define(version: 20160117174825) do
     t.text     "extra_data"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "paypal_token"
+    t.string   "payer_id"
   end
 
   add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
@@ -307,8 +310,9 @@ ActiveRecord::Schema.define(version: 20160117174825) do
     t.string   "facebook_url"
     t.string   "instagram_url"
     t.string   "pinterest_url"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.decimal  "exchange_rate", default: 1000.0
   end
 
   add_index "shops", ["plan_id"], name: "index_shops_on_plan_id", using: :btree

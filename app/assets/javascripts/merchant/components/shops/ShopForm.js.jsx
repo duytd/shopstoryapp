@@ -81,19 +81,19 @@ var ShopForm = React.createClass({
                     {(this.state.koreanMode == true) ? I18n.t("merchant.admin.shops.zipcode_hint") : ""}
                   </span>
                 </label>
-                <input type="text" ref="zip_code" readOnly={this.state.koreanMode == true} className="form-control" 
+                <input type="text" ref="zip_code" readOnly={this.state.koreanMode == true} className="form-control"
                   name="shop[zip_code]" defaultValue={this.props.shop.zip_code} />
               </div>
               <div className={(this.state.koreanMode) ? "form-group col-md-12" : "hide"}>
                 <label className="label">{I18n.t("activerecord.attributes.shop.street_ko")}</label>
-                <input type="text" ref="street_ko" className="form-control" name="shop[street_ko]" 
+                <input type="text" ref="street_ko" className="form-control" name="shop[street_ko]"
                   onClick={this.streetClick} defaultValue={this.props.shop.street_ko} />
               </div>
               <div className="form-group col-md-12">
                 <label className="label">
                   {(this.state.koreanMode) ? I18n.t("activerecord.attributes.shop.street_en") : I18n.t("activerecord.attributes.shop.street")}
                 </label>
-                <input type="text" ref="street_en" className="form-control" name="shop[street_en]" 
+                <input type="text" ref="street_en" className="form-control" name="shop[street_en]"
                   onClick={this.streetClick} defaultValue={this.props.shop.street_en} />
               </div>
             </div>
@@ -122,6 +122,7 @@ var ShopForm = React.createClass({
                   </select>
                 </div>
               </div>
+
               <div className="form-group col-md-6">
                 <label className="label">{I18n.t("activerecord.attributes.shop.weight_unit")}</label>
                 <div className="select">
@@ -136,6 +137,13 @@ var ShopForm = React.createClass({
                   </select>
                 </div>
               </div>
+
+              <div className="form-group col-md-6">
+                <label className="label">{I18n.t("activerecord.attributes.shop.exchange_rate")}</label>
+                <input type="text" className="form-control" name="shop[exchange_rate]"
+                  defaultValue={this.props.shop.exchange_rate} />
+              </div>
+
             </div>
           </div>
         </div>
@@ -146,17 +154,17 @@ var ShopForm = React.createClass({
             <div className="col-md-12 block">
               <div className="form-group col-md-12">
                 <label className="label">{I18n.t("activerecord.attributes.shop.facebook_url")}</label>
-                <input type="text" className="form-control" name="shop[facebook_url]" 
+                <input type="text" className="form-control" name="shop[facebook_url]"
                   defaultValue={this.props.shop.facebook_url} />
               </div>
               <div className="form-group col-md-12">
                 <label className="label">{I18n.t("activerecord.attributes.shop.instagram_url")}</label>
-                <input type="text" className="form-control" name="shop[instagram_url]" 
+                <input type="text" className="form-control" name="shop[instagram_url]"
                   defaultValue={this.props.shop.instagram_url} />
               </div>
               <div className="form-group col-md-12">
                 <label className="label">{I18n.t("activerecord.attributes.shop.pinterest_url")}</label>
-                <input type="text" className="form-control" name="shop[pinterest_url]" 
+                <input type="text" className="form-control" name="shop[pinterest_url]"
                   defaultValue={this.props.shop.pinterest_url} />
               </div>
             </div>
@@ -193,7 +201,7 @@ var ShopForm = React.createClass({
       }.bind(this),
       error: function(xhr) {
         this.setState({
-          errors: xhr.responseJSON, 
+          errors: xhr.responseJSON,
         });
       }.bind(this)
     });

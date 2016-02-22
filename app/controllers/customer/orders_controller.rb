@@ -26,6 +26,8 @@ class Customer::OrdersController < Customer::BaseController
 
         current_order.next_step
         session[:order_step] = current_order.current_step
+      else
+        session[:order_type] = "product"
       end
 
       render json: current_order, status: :ok
@@ -41,7 +43,7 @@ class Customer::OrdersController < Customer::BaseController
       redirect_to customer_root_path
     end
   end
-  
+
   def order_params
     permitted_address_attributes =  [:id, :email, :first_name, :last_name, :company, :address1,
       :address2, :city, :state, :country, :zip_code, :phone_number, :fax, :order_id]
