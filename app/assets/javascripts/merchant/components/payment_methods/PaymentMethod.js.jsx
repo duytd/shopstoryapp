@@ -5,12 +5,12 @@ var PaymentMethod = React.createClass({
     }
   },
   render: function() {
-    var options = this.state.payment_method_shop.payment_method.payment_method_options.map(function(option, index){
+    var options = this.state.payment_method_shop.payment_method_option_shops.map(function(option, index){
       var value = this.getDefaultValue(option.id);
 
       return (
         <div className="form-group col-md-6">
-          <label>{option.title}</label>
+          <label>{option.payment_method_option.title}</label>
           <input type="hidden" name={"payment_method_shop[payment_method_option_shops_attributes][" + index + "][id]"} value={option.id} />
           <input type="text" className="form-control" name={"payment_method_shop[payment_method_option_shops_attributes][" + index + "][value]"} defaultValue={value} />
         </div>
