@@ -1,6 +1,6 @@
 GIT
   remote: git@bitbucket.org:duytd/paypal_shopstory.git
-  revision: dfaecd3669158cc72d985bef053e886838cbff27
+  revision: e4ba411d2e0834a76d09b9db2c30db289f6dd71e
   specs:
     paypal_shopstory (0.0.1)
       paypal-sdk-merchant
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: 537871a8038218105b13aaa74d6d805f1b3cff15
+  revision: ea4c274dc0eee9262a3e48adf0d9581a3a95fa7d
   branch: develop
   specs:
     shopstory_ticket (0.0.1)

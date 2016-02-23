@@ -11,6 +11,8 @@ class Order < ActiveRecord::Base
 
   default_scope {order created_at: :desc}
 
+  after_initialize :set_default_values
+
   paginates_per Settings.paging.order
 
   def pending!
@@ -61,6 +63,10 @@ class Order < ActiveRecord::Base
   protected
   def order_processed?
     status_changed? && self.processed?
+  end
+
+  def set_default_values
+    self.currency ||= Settings.shop.default_currency
   end
 
   private

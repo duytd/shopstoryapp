@@ -12,7 +12,7 @@ var PaymentMethod = React.createClass({
         <div className="form-group col-md-6">
           <label>{option.payment_method_option.title}</label>
           <input type="hidden" name={"payment_method_shop[payment_method_option_shops_attributes][" + index + "][id]"} value={option.id} />
-          <input type="text" className="form-control" name={"payment_method_shop[payment_method_option_shops_attributes][" + index + "][value]"} defaultValue={value} />
+          <input type="text" className="form-control" name={"payment_method_shop[payment_method_option_shops_attributes][" + index + "][value]"} defaultValue={option.value} />
         </div>
       )
     }.bind(this));
@@ -57,16 +57,6 @@ var PaymentMethod = React.createClass({
         </div>
       </div>
     )
-  },
-  getDefaultValue: function(option_id) {
-    var options = this.props.payment_method_shop.payment_method_option_shops;
-
-    for(var i = 0; i < options.length; i++) {
-      if(options[i].payment_method_option_id == option_id) {
-        return options[i].value;
-      }
-    }
-    return "";
   },
   submit: function(e) {
     e.preventDefault();
