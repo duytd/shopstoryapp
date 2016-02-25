@@ -3,7 +3,6 @@ class CreateShopstoryTicketTickets < ActiveRecord::Migration
   def change
     create_table :shopstory_ticket_tickets do |t|
       t.string :name
-      t.string :code
       t.decimal :price, default: 0
       t.references :shopstory_ticket_event, index: true, foreign_key: true
       t.integer :quantity, default: 10

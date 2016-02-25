@@ -18,7 +18,7 @@ class ProductOrder < Order
   end
 
   def next_step
-    self.current_step = steps[steps.index(current_step)+1]
+    @current_step = steps[steps.index(current_step)+1]
   end
 
   def last_step?
@@ -45,6 +45,6 @@ class ProductOrder < Order
   end
 
   def steps
-    %w[shipping billing processing_payment]
+    %w( shipping billing )
   end
 end

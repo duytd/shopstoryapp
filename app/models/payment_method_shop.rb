@@ -12,6 +12,9 @@ class PaymentMethodShop < ActiveRecord::Base
   validates :shop, presence: true
   validates :payment_method_id, uniqueness: {scope: :shop_id}
   validate :necessary_fields_must_be_presented, on: :update
+  #validates :key, presence: true, if: :active_and_key_required?
+
+  scope :active, -> {where active: true}
 
   after_save :unzip_key
 
@@ -53,20 +56,16 @@ class PaymentMethodShop < ActiveRecord::Base
     FileUtils.rm key.url
   end
 
-  def all_valid?
-    payment_method.required_fields.each do |field|
-      if load_option(field).blank?
-        return false
-      end
-    end
-
-    true
+  def active_and_key_required?
+    active_changed? && active? && payment_method.key_required
   end
 
   def necessary_fields_must_be_presented
     if active_changed? && active?
-      unless all_valid? && key.present?
-        errors.add :base, "All required fields must be filled to activate this payment method"
+      payment_method.required_fields.each do |field|
+        if load_option(field).blank?
+          errors.add :base, "#{field} cannot be blank"
+        end
       end
     end
   end

@@ -6,6 +6,7 @@ class Payment < ActiveRecord::Base
   enum state: [:pending, :paid, :refunded]
 
   validates :order, presence: true
+  validates :payment_method, presence: true
 
   def as_json options={}
     super.as_json(options).merge({payment_method: payment_method})

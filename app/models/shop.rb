@@ -23,7 +23,8 @@ class Shop < ActiveRecord::Base
   validates :subdomain, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/},
     uniqueness: true
 
-  before_validation :load_defaults, on: :create
+  before_validation :set_default_values, on: :create
+  before_save :generate_credentials
   after_create :initialize_theme_editor
   after_create :load_payment_methods
 
@@ -35,12 +36,17 @@ class Shop < ActiveRecord::Base
     super.as_json(options).merge({street_en: street_en, street_ko: street_ko})
   end
 
-  def load_defaults
+  def set_default_values
     self.theme = Theme.default
     self.plan = Plan.default
     self.currency = Settings.shop.default_currency
     self.time_zone = Settings.shop.default_timezone
     self.country = Settings.shop.default_country
+  end
+
+  def generate_credentials
+    generate_client_id
+    generate_api_key
   end
 
   def initialize_theme_editor
@@ -56,6 +62,21 @@ class Shop < ActiveRecord::Base
           payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
         end
       end
+    end
+  end
+
+  private
+  def generate_client_id
+    self.client_id = loop do
+      random_id = SecureRandom.uuid
+      break random_id unless self.class.exists?(client_id: random_id)
+    end
+  end
+
+  def generate_api_key
+    self.api_key = loop do
+      random_key = SecureRandom.urlsafe_base64
+      break random_key unless self.class.exists?(api_key: random_key)
     end
   end
 end

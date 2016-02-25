@@ -19,9 +19,14 @@ module Customer::BaseHelper
     @current_order
   end
 
+  def clear_order
+    [:order_step, :order_type].each{ |k| session.delete k }
+    [:to, :po].each{ |k| cookies.delete k }
+  end
+
   def initialize_order
     if customer_signed_in?
-      order = current_customer.orders.where(ip_address: ip_address, status: 0).first_or_create
+      order = current_customer.product_orders.where(ip_address: ip_address, status: 0).first_or_create
     else
       order = ProductOrder.create ip_address: ip_address
     end

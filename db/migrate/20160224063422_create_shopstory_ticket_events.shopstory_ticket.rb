@@ -9,7 +9,7 @@ class CreateShopstoryTicketEvents < ActiveRecord::Migration
       t.string :venue
       t.string :date
       t.string :time
-      t.references :shopstory_ticket_seller, index: true, foreign_key: true
+      t.references :seller, references: :customers, index: true
 
       t.timestamps null: false
     end

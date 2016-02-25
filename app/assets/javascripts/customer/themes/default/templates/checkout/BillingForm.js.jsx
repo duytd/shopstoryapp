@@ -1,23 +1,25 @@
 var BillingForm = React.createClass({
   getInitialState: function() {
-    var paymentMethod = (this.props.order.payment) ?
-      this.props.order.payment.payment_method :
-      this.props.payment_methods[0];
-
-    return {
+   return {
+      order: this.props.order,
       billingAddress: this.props.order.billing_address,
       errors: {},
-      useShippingAddress: true,
-      paymentMethod: paymentMethod
+      useShippingAddress: true
     }
   },
   render: function() {
+    var paymentMethod = (this.state.order.payment && this.state.order.payment.payment_method != null) ?
+      this.state.order.payment.payment_method :
+      this.props.payment_method_shops[0].payment_method;
+ 
     var countryNodes = this.props.countries.map(function(country, index) {
       return <option key={"country" + index} value={country[0]}>{country[1]}</option>
     });
 
-    var paymentMethodNodes = this.props.payment_methods.map(function(method, index) {
-      return <option key={"method" + index} value={method.id} onClick={this.changePaymentMethod.bind(this, index)}>{method.name}</option>
+    var paymentMethodNodes = this.props.payment_method_shops.map(function(method_shop, index) {
+      var method = method_shop.payment_method;
+
+      return <option key={"method" + index} value={method.id}>{method.name}</option>
     }.bind(this))
 
     var englishName = (
@@ -50,8 +52,8 @@ var BillingForm = React.createClass({
 
     var mobileSubmethods = "";
 
-    if (this.props.mobile && this.state.paymentMethod.mobile_submethods) {
-      mobileSubmethods = this.state.paymentMethod.mobile_submethods.split("|").map(function(method, index) {
+    if (this.props.mobile && paymentMethod.mobile_submethods) {
+      mobileSubmethods = paymentMethod.mobile_submethods.split("|").map(function(method, index) {
         var checked = false;
 
         if ((this.props.order.payment && this.props.order.payment.submethod == method) || index == 0) {
@@ -70,11 +72,11 @@ var BillingForm = React.createClass({
 
     var paymentMethods = (
       <div>
-        {(this.props.order.payment) ? <input type="hidden" name="order[payment_attributes][id]" value={this.props.order.payment.id} /> : ""}
+        {(this.state.order.payment) ? <input type="hidden" name="order[payment_attributes][id]" value={this.state.order.payment.id} /> : ""}
         <div className="form-group row">
           <div className="col-sm-8">
             <select name="order[payment_attributes][payment_method_id]"
-              defaultValue={this.state.paymentMethod.id}>
+              defaultValue={paymentMethod.id}>
               {paymentMethodNodes}
             </select>
           </div>
@@ -234,7 +236,7 @@ var BillingForm = React.createClass({
       this.setState({useShippingAddress: false});
   },
   changePaymentMethod: function(index) {
-    this.setState({paymentMethod: this.props.payment_methods[index]});
+    this.setState({paymentMethod: this.props.payment_method_shops[index].payment_method});
   },
   streetClick: function() {
     if (this.props.lang == "ko") {
@@ -263,26 +265,28 @@ var BillingForm = React.createClass({
       method: "PUT",
       url: Routes.customer_order_path(this.props.order.id),
       success: function(order) {
-        if (this.state.paymentMethod.type == "InicisPayment") {
-          if (this.props.mobile) {
-            $.get(Routes.customer_inicis_transaction_pay_path(), function(data) {
-              $('#inicisPayment').html(data);
+        this.setState({order: order}, function() {
+          if (this.state.order.payment.payment_method.type == "InicisPayment") {
+            if (this.props.mobile) {
+              $.get(Routes.customer_inicis_transaction_pay_path(), function(data) {
+                $('#inicisPayment').html(data);
+              })
+            }
+            else {
+              $.get(Routes.customer_inicis_mobile_transaction_pay_path(), function(data) {
+                $('#inicisPayment').html(data);
+              })
+            }
+          }
+          else if (this.state.order.payment.payment_method.type == "PaypalShopstory::PaymentMethod") {
+            $.get(Routes.customer_paypal_transaction_pay_path(), function(response) {
+              location.href = response.paypal_url
             })
           }
           else {
-            $.get(Routes.customer_inicis_mobile_transaction_pay_path(), function(data) {
-              $('#inicisPayment').html(data);
-            })
+            location.href = Routes.customer_order_payment_path(order.id);
           }
-        }
-        else if (this.state.paymentMethod.type == "PaypalShopstory::PaymentMethod") {
-          $.get(Routes.customer_paypal_transaction_pay_path(), function(response) {
-            location.href = response.paypal_url
-          })
-        }
-        else {
-          location.href = Routes.customer_order_payment_path(order.id);
-        }
+        })
       }.bind(this),
       error: function(xhr) {
         this.setState({errors: xhr.responseJSON});

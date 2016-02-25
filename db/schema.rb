@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222064101) do
+ActiveRecord::Schema.define(version: 20160224063429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160222064101) do
     t.string   "city"
     t.string   "country"
     t.string   "zip_code"
+    t.string   "access_token"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -133,25 +134,25 @@ ActiveRecord::Schema.define(version: 20160222064101) do
   create_table "orders", force: :cascade do |t|
     t.string   "type"
     t.integer  "customer_id"
-    t.decimal  "subtotal",                   default: 0.0
-    t.decimal  "shipping",                   default: 0.0
-    t.decimal  "tax",                        default: 0.0
-    t.integer  "product_count",              default: 0
-    t.decimal  "total",                      default: 0.0
-    t.integer  "status",                     default: 0
+    t.decimal  "subtotal",           default: 0.0
+    t.decimal  "shipping",           default: 0.0
+    t.decimal  "tax",                default: 0.0
+    t.integer  "product_count",      default: 0
+    t.decimal  "total",              default: 0.0
+    t.integer  "status",             default: 0
     t.string   "token"
     t.string   "ip_address"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "shopstory_ticket_seller_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "currency"
+    t.integer  "seller_id"
     t.string   "confirmation_token"
     t.string   "ticket_code"
     t.datetime "ticket_sent_at"
-    t.string   "currency"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
-  add_index "orders", ["shopstory_ticket_seller_id"], name: "index_orders_on_shopstory_ticket_seller_id", using: :btree
+  add_index "orders", ["seller_id"], name: "index_orders_on_seller_id", using: :btree
 
   create_table "payment_method_option_shops", force: :cascade do |t|
     t.integer  "payment_method_option_id"
@@ -179,10 +180,10 @@ ActiveRecord::Schema.define(version: 20160222064101) do
   create_table "payment_method_shops", force: :cascade do |t|
     t.integer  "payment_method_id"
     t.integer  "shop_id"
-    t.boolean  "active",            default: true
+    t.boolean  "active",            default: false
     t.string   "key"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_index "payment_method_shops", ["payment_method_id"], name: "index_payment_method_shops_on_payment_method_id", using: :btree
@@ -294,6 +295,7 @@ ActiveRecord::Schema.define(version: 20160222064101) do
   create_table "shops", force: :cascade do |t|
     t.string   "name"
     t.string   "subdomain"
+    t.string   "domain"
     t.string   "legal_name"
     t.string   "email"
     t.string   "phone"
@@ -310,6 +312,8 @@ ActiveRecord::Schema.define(version: 20160222064101) do
     t.string   "facebook_url"
     t.string   "instagram_url"
     t.string   "pinterest_url"
+    t.string   "client_id"
+    t.string   "api_key"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.decimal  "exchange_rate", default: 1000.0
@@ -341,12 +345,12 @@ ActiveRecord::Schema.define(version: 20160222064101) do
     t.string   "venue"
     t.string   "date"
     t.string   "time"
-    t.integer  "shopstory_ticket_seller_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "shopstory_ticket_events", ["shopstory_ticket_seller_id"], name: "index_shopstory_ticket_events_on_shopstory_ticket_seller_id", using: :btree
+  add_index "shopstory_ticket_events", ["seller_id"], name: "index_shopstory_ticket_events_on_seller_id", using: :btree
   add_index "shopstory_ticket_events", ["source"], name: "index_shopstory_ticket_events_on_source", using: :btree
 
   create_table "shopstory_ticket_sellers", force: :cascade do |t|
@@ -381,7 +385,6 @@ ActiveRecord::Schema.define(version: 20160222064101) do
 
   create_table "shopstory_ticket_tickets", force: :cascade do |t|
     t.string   "name"
-    t.string   "code"
     t.decimal  "price",                     default: 0.0
     t.integer  "shopstory_ticket_event_id"
     t.integer  "quantity",                  default: 10
@@ -490,7 +493,6 @@ ActiveRecord::Schema.define(version: 20160222064101) do
   add_foreign_key "shops", "themes"
   add_foreign_key "shops", "users"
   add_foreign_key "shopstory_ticket_customer_contacts", "orders"
-  add_foreign_key "shopstory_ticket_events", "shopstory_ticket_sellers"
   add_foreign_key "shopstory_ticket_ticket_bookings", "orders"
   add_foreign_key "shopstory_ticket_ticket_bookings", "shopstory_ticket_tickets"
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"

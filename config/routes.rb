@@ -47,6 +47,8 @@ Rails.application.routes.draw do
 
     namespace :merchant, path: "admin" do
       root "pages#dashboard"
+      get :credentials, to: "pages#credentials"
+
       resources :categories, except: :show do
         delete :index, on: :collection
       end

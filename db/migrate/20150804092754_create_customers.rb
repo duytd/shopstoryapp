@@ -9,6 +9,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :city
       t.string :country
       t.string :zip_code
+      t.string :access_token
     end
   end
 end

@@ -3,6 +3,7 @@ class CreateShops < ActiveRecord::Migration
     create_table :shops do |t|
       t.string :name
       t.string :subdomain
+      t.string :domain
       t.string :legal_name
       t.string :email
       t.string :phone
@@ -19,6 +20,8 @@ class CreateShops < ActiveRecord::Migration
       t.string :facebook_url
       t.string :instagram_url
       t.string :pinterest_url
+      t.string :client_id
+      t.string :api_key
 
       t.timestamps null: false
     end

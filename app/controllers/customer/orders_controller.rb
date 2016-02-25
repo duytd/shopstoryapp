@@ -10,7 +10,7 @@ class Customer::OrdersController < Customer::BaseController
       globalVars: @globalVars,
       countries: all_countries,
       default_country: Settings.shop.default_country,
-      payment_methods: current_shop.payment_methods
+      payment_method_shops: current_shop.payment_method_shops.active
     }
   end
 
@@ -19,14 +19,10 @@ class Customer::OrdersController < Customer::BaseController
 
     if current_order.update order_params
       unless current_order.last_step?
-        if current_order.current_step == "billing"
-          current_order.change_status "pending"
-          current_order.payment.update_attributes amount: order.total
-        end
-
-        current_order.next_step
-        session[:order_step] = current_order.current_step
+        session[:order_step] = current_order.next_step
       else
+        current_order.pending!
+        current_order.payment.update_attributes amount: current_order.total
         session[:order_type] = "product"
       end
 

@@ -1,27 +1,22 @@
-GIT
-  remote: git@bitbucket.org:duytd/paypal_shopstory.git
-  revision: e4ba411d2e0834a76d09b9db2c30db289f6dd71e
+PATH
+  remote: ~/workspace/inicis-standard-rails
+  specs:
+    inicis-standard-rails (0.1.0)
+      browser
+      thrift
+
+PATH
+  remote: ~/workspace/paypal_shopstory
   specs:
     paypal_shopstory (0.0.1)
       paypal-sdk-merchant
       rails (~> 4.2.3)
 
-GIT
-  remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: ea4c274dc0eee9262a3e48adf0d9581a3a95fa7d
-  branch: develop
+PATH
+  remote: ~/workspace/shopstory_ticket
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
-
-GIT
-  remote: https://github.com/duytd/inicis-standard-rails.git
-  revision: 65060a8c593899d1731746ef72e3bb2b6b37ed91
-  branch: develop
-  specs:
-    inicis-standard-rails (0.1.0)
-      browser
-      thrift
 
 GEM
   remote: https://rubygems.org/

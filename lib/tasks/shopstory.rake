@@ -4,6 +4,6 @@ namespace :shopstory do
     Rake::Task["plan:generate_plans"].invoke
     Rake::Task["shopstory_ticket:install"].invoke
     Rake::Task["inicis:install"].invoke
-    Rake::Task["paypal:install"].invoke
+    Rake::Task["paypal_shopstory:install"].invoke
   end
 end

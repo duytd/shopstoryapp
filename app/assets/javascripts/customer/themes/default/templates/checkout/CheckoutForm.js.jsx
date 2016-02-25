@@ -24,7 +24,7 @@ var CheckoutForm = React.createClass({
         updateOrder={this.updateOrder}
         lang={this.props.globalVars.lang}
         countries={this.props.countries}
-        payment_methods={this.props.payment_methods}
+        payment_method_shops={this.props.payment_method_shops}
         default_country={this.props.default_country} /> :
       <ShippingForm
         editing={false}

@@ -6,8 +6,6 @@ var PaymentMethod = React.createClass({
   },
   render: function() {
     var options = this.state.payment_method_shop.payment_method_option_shops.map(function(option, index){
-      var value = this.getDefaultValue(option.id);
-
       return (
         <div className="form-group col-md-6">
           <label>{option.payment_method_option.title}</label>

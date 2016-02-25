@@ -8,7 +8,7 @@ class CreateShopstoryTicketSettings < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
+    
     add_index :shopstory_ticket_settings, :client_id
   end
 end
