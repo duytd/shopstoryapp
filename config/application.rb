@@ -10,7 +10,6 @@ module ShopStory
     config.action_controller.include_all_helpers = false
 
     config.generators do |g|
-      g.stylesheets = false
       g.javascripts = false
       g.helper      = false
 

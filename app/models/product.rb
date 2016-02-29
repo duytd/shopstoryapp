@@ -24,6 +24,7 @@ class Product < ActiveRecord::Base
     reject_if: proc {|a| a[:image].blank?}
 
   scope :visible, ->{where visibility: true}
+  scope :available, ->{where "in_stock > ?", 0}
 
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, images: product_images})

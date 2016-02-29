@@ -33,7 +33,7 @@ class Merchant::ShopsController < Merchant::BaseController
   private
   def shop_params
     permitted = Shop.globalize_attribute_names + [:name, :email, :legal_name, :phone,
-      :city, :country, :zip_code, :time_zone, :metric_system, :weight_unit,
+      :city, :country, :zip_code, :time_zone, :metric_system, :weight_unit, :domain,
       :currency, :facebook_url, :instagram_url, :pinterest_url]
     params.require(:shop).permit *permitted
   end

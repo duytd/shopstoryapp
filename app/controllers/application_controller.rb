@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     when "Merchant"
       merchant_root_url subdomain: resource.shop.subdomain
     when "Customer"
-      customer_root_url subdomain: Apartment::Tenant.current
+      customer_url
     else
       root_url
     end
@@ -36,6 +36,14 @@ class ApplicationController < ActionController::Base
        authenticate_or_request_with_http_basic do |username, password|
          username == Settings.tester.name && password == Settings.tester.password
        end
+    end
+  end
+
+  def customer_url
+    if request.domain == Settings.app.domain
+      customer_root_url subdomain: Apartment::Tenant.current
+    else
+      customer_root_url
     end
   end
 end

@@ -45,6 +45,20 @@ var ShopForm = React.createClass({
                   }) : ""}
                 </div>
               </div>
+
+              <div className="form-group col-md-6">
+                <label className="label">{I18n.t("activerecord.attributes.shop.domain")}</label>
+                <div className="input-group">
+                  <span className="input-group-addon" id="basic-addon1">http://</span>
+                  <input type="text" className="form-control" placeholder="yourdomain.com" name="shop[domain]" defaultValue={this.props.shop.domain} />
+                </div>
+                <div className="form-errors">
+                  {(this.state.errors.domain) ? this.state.errors.domain.map(function(object){
+                    return object;
+                  }) : ""}
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

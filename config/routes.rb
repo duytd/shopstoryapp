@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  constraints Constraints::AdminDomainConstraint do
+    namespace :admin, path: "" do
+      root "pages#dashboard"
+    end
+  end
+
   constraints Constraints::RootDomainConstraint do
     root "pages#home"
     get :showcase, to: "pages#showcase"
@@ -11,19 +17,19 @@ Rails.application.routes.draw do
       unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "registrations"}
   end
 
-  constraints Constraints::AdminDomainConstraint do
-    namespace :admin, path: "" do
-      root "pages#dashboard"
-    end
-  end
-
-  constraints Constraints::SubdomainConstraint do
+  constraints Constraints::CustomerDomainConstraint do
     mount ShopstoryTicket::Engine => "/ticket"
 
     devise_for :customers, path: "", path_names: {sign_in: "login",
       sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
       unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "customer/registrations",
       sessions: "customer/sessions"}
+
+    namespace :api, defaults: {format: 'json'} do
+      namespace :v1 do
+        resources :products
+      end
+    end
 
     namespace :customer, path: "" do
       root "pages#home"

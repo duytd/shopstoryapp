@@ -6,8 +6,8 @@ class Merchant::BaseController < ApplicationController
 
   private
   def authenticate_merchant!
-    unless merchant_signed_in? && current_shop.subdomain == Apartment::Tenant.current
-      render text: "Access Denied"
+    unless merchant_signed_in? && merchant_authenticated?
+      redirect_to new_merchant_session_url domain: Settings.app.domain
     end
   end
 end

@@ -96,6 +96,10 @@ $input-bg-color: #e9ebed;
   }
 }
 
+.input-group-addon {
+  border: none;
+}
+
 .form-control {
   border: none;
   box-shadow: none !important;
@@ -108,7 +112,7 @@ $input-bg-color: #e9ebed;
 
 .field_with_errors {
   .form-control {
-    border-color: $red-dark !important; 
+    border-color: $red-dark !important;
   }
 }
 

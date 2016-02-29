@@ -11,6 +11,10 @@ module Merchant::BaseHelper
     session[:theme_editor_id] || current_shop.theme_editors.with_theme(current_shop.theme_id).id
   end
 
+  def merchant_authenticated?
+    current_shop.domain == request.host || current_shop.subdomain == Apartment::Tenant.current
+  end
+
   def current_subdomain
     session[:subdomain] || current_shop.subdomain
   end
