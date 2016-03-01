@@ -1,0 +1,74 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "cannot be blank"
+              invalid: "must be a valid address (E.g: example@shopstoryapp.com)"
+              taken: "is already taken"
+            password:
+              too_short: "must be at least 8 characters"
+              blank: "cannot be blank"
+            subdomain:
+              blank: "cannot be empty"
+              invalid: "must contain only characters or numbers (E.g: example)"
+
+      format: "%{attribute} %{message}"
+      messages:
+        invalid: "is not valid"
+        blank: "can't be blank"
+        too_short:
+          one: "is too short (minimum is 1 character)"
+          other: "is too short (minimum is %{count} characters)"
+        taken: "is already taken"
+        out_of_order: "not enough in stock please lower quaunity."
+
+    attributes:
+      merchant:
+        email: "Email"
+        password: "Password"
+        subdomain: "Shop name"
+      customer:
+        email: "Email"
+      category:
+        name: "Name"
+        name_ko: "Name"
+        name_en: "Name"
+      product:
+        name: "Name"
+        name_en: "Name"
+        name_ko: "Name"
+        description_en: "Description"
+        description_ko: "Description"
+        price: "Price"
+        sku: "SKU (Stock Keeping Unit)"
+        sale_off: "Sale Off"
+        in_stock: "In Stock"
+      variation:
+        color: "Color"
+        size: "Size"
+        in_stock: "In Stock"
+      shop:
+        name: "Name"
+        legal_name: "Business Name"
+        street: "Street Address"
+        street_en: "Street Address (English)"
+        street_ko: "Street Address (Korean)"
+        city: "City"
+        country: "Country"
+        email: "Shop Email"
+        phone: "Phone Number"
+        zip_code: "PostCode"
+        time_zone: "Time Zone"
+        currency: "Currency"
+        exchange_rate: "Exchange Rate (USD/KRW)"
+        weight_unit: "Weight Unit"
+        facebook_url: "Facebook Link"
+        instagram_url: "Instagram Link"
+        pinterest_url: "Pinterest Link"
+        naver_url: "Naver blog"
+      payment_method_shop:
+        key: "Key (*.zip)"
+        active: "Enabled"
