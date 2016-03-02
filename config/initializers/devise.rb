@@ -1,3 +1,5 @@
+require File.expand_path("lib/omniauth/strategies/doindie", Rails.root)
+
 Devise.setup do |config|
   config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
   require "devise/orm/active_record"
@@ -16,4 +18,6 @@ Devise.setup do |config|
 
   config.http_authenticatable_on_xhr = false
   config.navigational_formats = ["*/*", :html, :json]
+  config.omniauth :doindie, ENV["DOINDIE_OAUTH_ID"], ENV["DOINDIE_OAUTH_SECRET"]
+  config.omniauth_path_prefix = "/auth"
 end

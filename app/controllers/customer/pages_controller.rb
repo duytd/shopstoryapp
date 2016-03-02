@@ -21,7 +21,8 @@ class Customer::PagesController < Customer::BaseController
         transaction_info = vbank.transaction_info
       end
     elsif payment_method.is_a? PaypalShopstory::PaymentMethod
-      transaction_info = PaypalShopstory::Paypal.new data: {transaction_number: @order.payment.transaction_number}
+      paypal = PaypalShopstory::Paypal.new data: {transaction_number: @order.payment.transaction_number}
+      transaction_info = paypal.transaction_detail
     end
 
     @props = {

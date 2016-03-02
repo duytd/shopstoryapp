@@ -38,6 +38,7 @@ gem "puma"
 gem "rubyzip"
 gem "browser"
 gem "rqrcode"
+gem "omniauth-oauth2", "~> 1.3.1"
 
 group :development, :test do
   gem "byebug"

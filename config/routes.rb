@@ -23,11 +23,12 @@ Rails.application.routes.draw do
     devise_for :customers, path: "", path_names: {sign_in: "login",
       sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
       unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "customer/registrations",
-      sessions: "customer/sessions"}
+      sessions: "customer/sessions", omniauth_callbacks: "customer/customers/omniauth_callbacks"}
 
     namespace :api, defaults: {format: 'json'} do
       namespace :v1 do
-        resources :products
+        resources :products, only: [:index]
+        devise_for :customers, path: "", path_names: {sign_in: "login", sign_out: "logout"}, skip: [:registrations, :password], controllers: {sessions: "api/v1/sessions"}
       end
     end
 

@@ -6,9 +6,6 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  def login_client
-  end
-
   def default_url_options options = {}
     {locale: I18n.locale}.merge options
   end
@@ -32,10 +29,8 @@ class ApplicationController < ActionController::Base
 
   protected
   def authenticate
-    if Rails.env.staging?
-       authenticate_or_request_with_http_basic do |username, password|
-         username == Settings.tester.name && password == Settings.tester.password
-       end
+    if params[:session_id].present?
+      session[:session_id] = params[:session_id]
     end
   end
 
