@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: 0954fcd2f4e4a22f6a7ed81310847605cca54775
+  revision: 54f09c05683700ea72814eb3cb9428bf0d6cd2f8
   branch: develop
   specs:
     shopstory_ticket (0.0.1)
