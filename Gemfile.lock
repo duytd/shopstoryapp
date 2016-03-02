@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/duytd/inicis-standard-rails.git
-  revision: 506e5f15a22c133dde72e9e7ca58ad27a4324747
+  revision: 848aeb315160bd163b313e5ace63839c6306e63c
   branch: develop
   specs:
     inicis-standard-rails (0.1.0)
@@ -82,7 +82,7 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     bower-rails (0.10.0)
-    browser (1.0.1)
+    browser (2.0.2)
     builder (3.2.2)
     byebug (6.0.2)
     cancancan (1.12.0)

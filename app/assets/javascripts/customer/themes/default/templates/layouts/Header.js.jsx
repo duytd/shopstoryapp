@@ -7,7 +7,7 @@ var Header = React.createClass({
   render: function() {
     var logInRegisterLink = (
       <span>
-        <a href="/login">{I18n.t("buttons.login")}</a>
+        <a href="/auth/doindie">{I18n.t("buttons.login")}</a>
         <a href="/register/signup">{I18n.t("buttons.register")}</a>
       </span>
     );
