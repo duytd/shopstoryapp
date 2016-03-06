@@ -12,6 +12,8 @@ class Customer::OrdersController < Customer::BaseController
       default_country: Settings.shop.default_country,
       payment_method_shops: current_shop.payment_method_shops.active
     }
+
+    session[:customer_return_to] = new_customer_order_path
   end
 
   def update

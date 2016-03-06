@@ -65,7 +65,7 @@ var Cart = React.createClass({
     );
   },
   checkout: function() {
-    var url = (this.props.globalVars.current_customer) ? Routes.new_customer_order_path() : Routes.customer_checkout_path();
+    var url = (this.props.globalVars.current_customer) ? Routes.new_customer_order_path({locale: I18n.locale}) : Routes.customer_checkout_path({locale: I18n.locale});
 
     Turbolinks.visit(url);
    },

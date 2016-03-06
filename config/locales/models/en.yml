@@ -36,6 +36,10 @@ en:
         name: "Name"
         name_ko: "Name"
         name_en: "Name"
+      custom_page:
+        title: "Title"
+        title_ko: "Title"
+        name_en: "Title"
       product:
         name: "Name"
         name_en: "Name"

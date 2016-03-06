@@ -20,12 +20,9 @@ class Payment < ActiveRecord::Base
     change_state "refunded"
   end
 
-  def save_transaction_number transaction_number
-    self.update_attributes transaction_number: transaction_number
-  end
-
-  def save_extra_data extra_data
-    self.update_attributes extra_data: extra_data
+  def save_transaction options={}
+    self.update_attributes({transaction_number: options[:transaction_number],
+      extra_data: options[:extra_data], submethod: options[:submethod]}.reject{|k, v| v.blank?})
   end
 
   private

@@ -22,6 +22,10 @@ var List = React.createClass({
           itemChildren = <Order order={item} />;
           deleteUrl = Routes.merchant_order_path(item.id);
           break;
+        case "custom_page":
+          itemChildren = <CustomPage custom_page={item} />;
+          deleteUrl = Routes.merchant_custom_page_path(item.slug);
+          break;
         default:
           itemChildren = null;
           deleteUrl = null;
@@ -29,7 +33,7 @@ var List = React.createClass({
       }
 
       return (
-        <Item item={item} key={"item_" + item.id} deleteUrl={deleteUrl} handleSelect={this.handleSelect} 
+        <Item item={item} key={"item_" + item.id} deleteUrl={deleteUrl} handleSelect={this.handleSelect}
           handleDeleteItem={this.deleteItem} check={item.checked}>
           {itemChildren}
         </Item>
@@ -37,13 +41,13 @@ var List = React.createClass({
     }.bind(this));
 
     return (
-      <div className="item-list"> 
+      <div className="item-list">
         <BulkAction checkCount={this.state.checkCount} deleteAllHandler={this.handleDeleteAll} />
         <table className="table item-list">
           <thead>
             <tr>
               <th>
-                <SelectAllCb isSelectAll={this.state.isSelectAll} selectAllHandler={this.handleSelectAll} 
+                <SelectAllCb isSelectAll={this.state.isSelectAll} selectAllHandler={this.handleSelectAll}
                   isDisabled={this.state.items.length == 0} />
               </th>
               {this.props.headers}
@@ -82,20 +86,22 @@ var List = React.createClass({
     });
 
     switch(this.props.type) {
-        case "category":
-          data = {category_ids: item_ids};
-          break;
-        case "product":
-          data = {product_ids: item_ids};
-          break;
-        case "order":
-          data = {order_ids: item_ids};
-          break;
-        default:
-          data = {};
-          break;
-      }
-
+      case "category":
+        data = {category_ids: item_ids};
+        break;
+      case "product":
+        data = {product_ids: item_ids};
+        break;
+      case "order":
+        data = {order_ids: item_ids};
+        break;
+      case "custom_page":
+        data = {custom_page_ids: item_ids};
+        break;
+      default:
+        data = {};
+        break;
+    }
 
     $.ajax({
       url: this.props.deleteAllUrl,

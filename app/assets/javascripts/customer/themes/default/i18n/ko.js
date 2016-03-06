@@ -3,107 +3,105 @@ I18n.translations = I18n.translations || {};
 $.extend(true, I18n.translations, {
   "ko": {
     "languages": {
-      "korean": "KO",
+      "korean": "한국어",
       "english": "EN"
     },
     "buttons": {
-      "login": "Log in",
-      "register": "Create account",
-      "logout": "Log out"
+      "login": "로그인",
+      "register": "가입하기",
+      "logout": "로그아웃"
     },
     "customers": {
       "login": {
-        "title": "Login",
+        "title": "로그인",
         "fields": {
-          "email": "Email",
-          "password": "Password"
+          "email": "이메일",
+          "password": "비밀번호"
         },
         "texts": {
-          "remember": "Remember me",
-          "new_customer": "New Customer? "
+          "remember": "로그인 유지",
+          "new_customer": "계정이 없으세요? "
         }
       },
       "register": {
-        "title": "Register",
+        "title": "가입하기",
         "texts": {
-          "return_customer": "Returning Customer? "
+          "return_customer": "계정이 이미 있으세요? "
         }
       }
     },
     "categories": {
-      "products": "products"
+      "products": "상품"
     },
     "products": {
-      "in_stock": "In Stock",
-      "out_of_order": "Out of order",
-      "add_to_cart": "Add To Cart"
+      "in_stock": "재고 있음",
+      "out_of_order": "재고 없음",
+      "add_to_cart": "장바구니에 추가"
     },
     "checkout": {
       "buttons": {
-        "next": "Next",
-        "place_order": "Place Order",
-        "save": "Save",
-        "cancel": "Cancel"
+        "next": "다음",
+        "place_order": "주문하기",
+        "save": "저장",
+        "cancel": "취소"
       },
       "texts": {
-        "shipping_info": "Shipping Information",
-        "new_customer": "New Customer",
-        "returning_customer": "Returning Customer?",
-        "checkout_as_guest": "Checkout As Guest",
-        "or": "or",
-        "thank_you": "Thank You",
-        "order_info": "Your order number is %{order_number}",
-        "payment_info": "Please complete your purchase by making a deposit to the below bank account within 24 hours.
-Your order will be confirmed immediately after the payment has been made",
-        "delivery_info": "Delivery time is within %{delivery_range} business days",
-        "support": "Email us at %{email} if you have any questions"
+        "shipping_info": "배송 정보",
+        "new_customer": "새 계정 만들기?",
+        "returning_customer": "계정이 이미 있으세요?",
+        "checkout_as_guest": "손님으로 주문하기",
+        "or": "혹은",
+        "thank_you": "감사합니다",
+        "order_info": "고객님의 주문번호는 %{order_number}입니다",
+        "delivery_info": "배송 소요기간은 약 %{delivery_range}일 입니다.(영업일기준)",
+        "support": "문의사항은 %{email} 로 보내주세요"
       },
       "steps": {
-        "billing": "Billing and Review Order",
-        "shipping": "Shipping"
+        "billing": "청구 정보 및 주문 확인",
+        "shipping": "배송"
       },
       "summary": {
-        "title": "Order Summary",
-        "subtotal": "Subtotal",
-        "shipping": "Shipping",
-        "not_yet_calculated": "Not yet calculated"
+        "title": "주문 정보",
+        "subtotal": "상품 합계",
+        "shipping": "배송료",
+        "not_yet_calculated": "아직 계산되지 않았습니다."
       },
       "shipping": {
-        "name": "Name",
+        "name": "이름",
         "first_name": "First name",
         "last_name": "Last name",
-        "email": "Email",
-        "address1": "Address",
-        "address2": "Alternative Address",
-        "city": "City",
-        "country": "Country",
-        "state": "State/Province",
-        "zip_code": "Zip/Postal Code",
-        "phone_number": "Phone Number",
-        "fax": "Fax"
+        "email": "이메일",
+        "address1": "주소",
+        "address2": "상세주소",
+        "city": "시/군",
+        "country": "국가",
+        "state": "도",
+        "zip_code": "우편번호",
+        "phone_number": "전화번호",
+        "fax": "팩스"
       },
       "billing": {
-        "name": "Name",
+        "name": "이름",
         "first_name": "First name",
         "last_name": "Last name",
-        "email": "Email",
-        "address1": "Address",
-        "address2": "Alternative Address",
-        "city": "City",
-        "country": "Country",
-        "state": "State/Province",
-        "zip_code": "Zip/Postal Code",
-        "phone_number": "Phone Number",
-        "fax": "Fax",
-        "user_shipping_address": "Use Shipping Address"
+        "email": "이메일",
+        "address1": "주소",
+        "address2": "상세주소",
+        "city": "시/군",
+        "country": "국가",
+        "state": "도",
+        "zip_code": "우편번호",
+        "phone_number": "전화번호",
+        "fax": "팩스",
+        "user_shipping_address": "청구지와 배송지가 같습니다."
       }
     },
     "cart": {
-      "empty": "It appears that your cart is currently empty!",
-      "subtotal": "Subtotal",
-      "buy_now": "Buy now",
-      "continue_shopping": "Continue shopping",
-      "remove": "Remove"
+      "empty": "장바구니가 비어있습니다!",
+      "subtotal": "상품 합계",
+      "buy_now": "지금 구매",
+      "continue_shopping": "쇼핑 계속하기",
+      "remove": "삭제"
     }
   }
 })

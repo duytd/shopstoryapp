@@ -14,7 +14,7 @@ $(document).on("page:change", function() {
   $sideBar.on("click", ".item", function(){
     if (!$sideBar.hasClass("collapsed")) {
       $(this).find(".subitems").slideToggle("slow", "swing", function() {
-        $sideBar.perfectScrollbar("update"); 
+        $sideBar.perfectScrollbar("update");
       });
     }
   });
@@ -22,7 +22,7 @@ $(document).on("page:change", function() {
   NProgress.configure({ showSpinner: false });
 
   $(".summernote").summernote({
-    height: 100,
+    height: 200,
     toolbar: [
       ['action',['undo','redo']],
       ['style', ['style','bold', 'italic','strikethrough','underline', 'clear']],

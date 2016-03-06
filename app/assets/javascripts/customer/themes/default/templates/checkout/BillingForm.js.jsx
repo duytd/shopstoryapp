@@ -1,26 +1,21 @@
 var BillingForm = React.createClass({
   getInitialState: function() {
-   return {
+    var paymentMethod = (this.props.order.payment && this.props.order.payment.payment_method != null) ?
+      this.props.order.payment.payment_method :
+      this.props.payment_method_shops[0].payment_method;
+
+    return {
       order: this.props.order,
       billingAddress: this.props.order.billing_address,
       errors: {},
-      useShippingAddress: true
+      useShippingAddress: true,
+      paymentMethod: paymentMethod
     }
   },
   render: function() {
-    var paymentMethod = (this.state.order.payment && this.state.order.payment.payment_method != null) ?
-      this.state.order.payment.payment_method :
-      this.props.payment_method_shops[0].payment_method;
- 
     var countryNodes = this.props.countries.map(function(country, index) {
       return <option key={"country" + index} value={country[0]}>{country[1]}</option>
     });
-
-    var paymentMethodNodes = this.props.payment_method_shops.map(function(method_shop, index) {
-      var method = method_shop.payment_method;
-
-      return <option key={"method" + index} value={method.id}>{method.name}</option>
-    }.bind(this))
 
     var englishName = (
       <div className="form-group row">
@@ -50,45 +45,46 @@ var BillingForm = React.createClass({
       </div>
     );
 
-    var mobileSubmethods = "";
+    var paymentMethods = "";
 
-    if (this.props.mobile && paymentMethod.mobile_submethods) {
-      mobileSubmethods = paymentMethod.mobile_submethods.split("|").map(function(method, index) {
-        var checked = false;
+    paymentMethods = this.props.payment_method_shops.map(function(method_shop, index) {
+      var method = method_shop.payment_method;
+      var mobileSubmethods = "";
 
-        if ((this.props.order.payment && this.props.order.payment.submethod == method) || index == 0) {
-          checked = true;
+      if (this.props.mobile) {
+        if (method.mobile_submethods) {
+          mobileSubmethods = method.mobile_submethods.split("|").map(function(submethod, index) {
+            var checked = false;
+
+            if ((this.props.order.payment && this.props.order.payment.submethod == submethod) || index == 0) {
+              checked = true;
+            }
+
+            return (
+              <li>
+                <input type="radio" name="order[payment_attributes][submethod]" value={submethod}
+                  defaultChecked={checked} />
+                {submethod.toUpperCase()}
+              </li>
+            );
+          }.bind(this))
         }
+        else {
+          mobileSubmethods = <input type="hidden" name="order[payment_attributes][submethod]" value="" />
+        }
+      }
 
-        return (
+      return (
+        <div>
           <span>
-            <input type="radio" name="order[payment_attributes][submethod]" value={method}
-              defaultChecked={checked} />
-            {method.toUpperCase()}
+            <input type="radio" name="order[payment_attributes][payment_method_id]" value={method.id}
+              defaultChecked={method.id == this.state.paymentMethod.id} onChange={this.switchPaymentMethod.bind(this, method)} />
+            {method.name}
           </span>
-        );
-      }.bind(this))
-    }
-
-    var paymentMethods = (
-      <div>
-        {(this.state.order.payment) ? <input type="hidden" name="order[payment_attributes][id]" value={this.state.order.payment.id} /> : ""}
-        <div className="form-group row">
-          <div className="col-sm-8">
-            <select name="order[payment_attributes][payment_method_id]"
-              defaultValue={paymentMethod.id}>
-              {paymentMethodNodes}
-            </select>
-          </div>
+          {(method.id == this.state.paymentMethod.id) ? <ul>{mobileSubmethods}</ul> : null}
         </div>
-
-        <div className="form-group row">
-          <div className="col-sm-8">
-            {mobileSubmethods}
-          </div>
-        </div>
-      </div>
-    )
+      )
+    }.bind(this))
 
     var billingForm = (
       <form ref="form" id="billingForm">
@@ -121,7 +117,7 @@ var BillingForm = React.createClass({
         </div>
         <div className="form-group row">
           <div className="col-sm-4">
-            <label>{I18n.t("checkout.billing.city")}</label>
+            <label className="required">{I18n.t("checkout.billing.city")}</label>
             <Errors errors={this.state.errors["billing_address.city"] || []} />
             <input name="order[billing_address_attributes][city]" type="text"
               defaultValue={(this.state.billingAddress) ? this.state.billingAddress.city : ""} className="form-control" />
@@ -207,6 +203,7 @@ var BillingForm = React.createClass({
         </p>
 
         <hr/>
+        {(this.state.order.payment) ? <input type="hidden" name="order[payment_attributes][id]" value={this.state.order.payment.id} /> : ""}
         {paymentMethods}
         <div id="inicisPayment"></div>
         <hr/>
@@ -235,8 +232,8 @@ var BillingForm = React.createClass({
     else
       this.setState({useShippingAddress: false});
   },
-  changePaymentMethod: function(index) {
-    this.setState({paymentMethod: this.props.payment_method_shops[index].payment_method});
+  switchPaymentMethod: function(method) {
+    this.setState({paymentMethod: method});
   },
   streetClick: function() {
     if (this.props.lang == "ko") {
@@ -263,17 +260,17 @@ var BillingForm = React.createClass({
     $.ajax({
       data: formData,
       method: "PUT",
-      url: Routes.customer_order_path(this.props.order.id),
+      url: Routes.customer_order_path(this.props.order.id, {locale: I18n.locale}),
       success: function(order) {
         this.setState({order: order}, function() {
           if (this.state.order.payment.payment_method.type == "InicisPayment") {
             if (this.props.mobile) {
-              $.get(Routes.customer_inicis_transaction_pay_path(), function(data) {
+              $.get(Routes.customer_inicis_transaction_pay_path({locale: I18n.locale}), function(data) {
                 $('#inicisPayment').html(data);
               })
             }
             else {
-              $.get(Routes.customer_inicis_mobile_transaction_pay_path(), function(data) {
+              $.get(Routes.customer_inicis_mobile_transaction_pay_path({locale: I18n.locale}), function(data) {
                 $('#inicisPayment').html(data);
               })
             }
@@ -284,7 +281,7 @@ var BillingForm = React.createClass({
             })
           }
           else {
-            location.href = Routes.customer_order_payment_path(order.id);
+            location.href = Routes.customer_order_payment_path(order.id, {locale: I18n.locale});
           }
         })
       }.bind(this),

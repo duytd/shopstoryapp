@@ -2,7 +2,8 @@ var ShippingForm = React.createClass({
   getInitialState: function() {
     return {
       isEditing: false,
-      errors: {}
+      errors: {},
+      country: "KR"
     }
   },
   render: function() {
@@ -80,7 +81,7 @@ var ShippingForm = React.createClass({
     var shippingForm = (
       <form ref="form" id="shippingForm">
         <input name="order[shipping_address_attributes][order_id]" value={this.props.order.id} type="hidden" />
-        {(this.props.lang == "ko" ? koreaName : englishName)}
+        {(this.state.country == "KR" ? koreaName : englishName)}
         <div className="form-group row">
           <div className={containerKlass}>
             <label className={labelKlass + " required"}>{I18n.t("checkout.shipping.email")}</label>
@@ -108,7 +109,7 @@ var ShippingForm = React.createClass({
         </div>
         <div className="form-group row">
           <div className={halfContainerKlass}>
-            <label className={labelKlass}>{I18n.t("checkout.shipping.city")}</label>
+            <label className={labelKlass  + " required"}>{I18n.t("checkout.shipping.city")}</label>
             <Errors errors={this.state.errors["shipping_address.city"] || []} />
             <input name="order[shipping_address_attributes][city]" type="text"
               defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.city : ""} className={inputKlass} />
@@ -120,21 +121,26 @@ var ShippingForm = React.createClass({
               defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.zip_code : ""} className={inputKlass} />
           </div>
         </div>
-        <div className="form-group row">
-          <div className={containerKlass}>
-            <label className={labelKlass + " required"}>{I18n.t("checkout.shipping.state")}</label>
-            <Errors errors={this.state.errors["shipping_address.state"] || []} />
-            <input name="order[shipping_address_attributes][state]" type="text"
-              defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.state : ""} className={inputKlass} />
+
+        {(this.state.country != "KR") ?
+          <div className="form-group row">
+            <div className={containerKlass}>
+              <label className={labelKlass + " required"}>{I18n.t("checkout.shipping.state")}</label>
+              <Errors errors={this.state.errors["shipping_address.state"] || []} />
+              <input name="order[shipping_address_attributes][state]" type="text"
+                defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.state : ""} className={inputKlass} />
+            </div>
           </div>
-        </div>
+        : null}
+
         <div className="form-group row">
           <div className={containerKlass}>
             <label className={labelKlass + " required"}>{I18n.t("checkout.shipping.country")}</label>
             <Errors errors={this.state.errors["shipping_address.country"] || []} />
             <div className="select">
               <select className={inputKlass} name="order[shipping_address_attributes][country]"
-                defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.country : this.props.default_country}>
+                defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.country : this.props.default_country}
+                onChange={this.updateCountry}>
                 {countryNodes}
               </select>
             </div>
@@ -148,14 +154,18 @@ var ShippingForm = React.createClass({
               defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.phone_number : ""} className={inputKlass} />
           </div>
         </div>
-        <div className="form-group row">
-          <div className={containerKlass}>
-            <label className={labelKlass}>{I18n.t("checkout.shipping.fax")}</label>
-            <Errors errors={this.state.errors["shipping_address.fax"] || []} />
-            <input name="order[shipping_address_attributes][fax]" type="text"
-              defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.fax : ""} className={inputKlass} />
+
+        {(this.state.country != "KR") ?
+          <div className="form-group row">
+            <div className={containerKlass}>
+              <label className={labelKlass}>{I18n.t("checkout.shipping.fax")}</label>
+              <Errors errors={this.state.errors["shipping_address.fax"] || []} />
+              <input name="order[shipping_address_attributes][fax]" type="text"
+                defaultValue={(this.props.order.shipping_address) ? this.props.order.shipping_address.fax : ""} className={inputKlass} />
+            </div>
           </div>
-        </div>
+        : null}
+
         <div className="form-group row">
           <div className={containerKlass}>
             <input type="submit" className={"btn " + btnKlass + " btn-primary pull-right"} value={btnName} onClick={this.updateOrder} />
@@ -184,6 +194,9 @@ var ShippingForm = React.createClass({
       }.bind(this))
     }
   },
+  updateCountry: function(e) {
+    this.setState({country: e.target.value})
+  },
   enableEditing: function() {
     this.setState({isEditing: true});
   },
@@ -205,7 +218,7 @@ var ShippingForm = React.createClass({
     $.ajax({
       data: formData,
       method: "PUT",
-      url: Routes.customer_order_path(this.props.order.id),
+      url: Routes.customer_order_path(this.props.order.id, {locale: I18n.locale}),
       success: function(order) {
         this.setState({errors: []});
         this.props.updateOrder(order);

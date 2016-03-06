@@ -6,8 +6,9 @@ class Ability
     if user.is_a? Admin
       can :manage, :all
     elsif user.is_a?(Merchant) && current_tenant?(user)
-      can [:read, :create, :update, :destroy], Category
-      can [:read, :create, :update, :destroy], Product
+      can :manage, Category
+      can :manage, CustomPage
+      can :manage, Product
       can [:read, :create, :update], Shop
       can [:read, :update], ThemeEditor
       can [:read, :update], PaymentMethodShop

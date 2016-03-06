@@ -18,7 +18,7 @@ var Success = React.createClass({
 
       transactionInfo = (
         <div className="col-md-6 col-md-offset-3">
-          <p>{I18n.t("checkout.texts.payment_info")}</p>
+          {this.props.method && this.props.method == "vbank" ? <p>I18n.t("inicis.methods.vbank.note")</p> : null}
           {transactionInfoNodes}
         </div>
       )
@@ -33,7 +33,6 @@ var Success = React.createClass({
             {transactionInfo}
           </div>
           <br/>
-          <p className="small"><i>{I18n.t("checkout.texts.delivery_info")}</i></p>
           <p className="small"><i>{I18n.t("checkout.texts.support", {email: this.props.order_info.support_email})}</i></p>
         </div>
       </Layout>

@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :page do
+  factory :custom_page do
     title "MyString"
 content "MyText"
-shop nil
+slug "MyString"
   end
 
 end

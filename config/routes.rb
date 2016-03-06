@@ -60,6 +60,10 @@ Rails.application.routes.draw do
         delete :index, on: :collection
       end
 
+      resources :custom_pages,except: :show do
+        delete :index, on: :collection
+      end
+
       resources :products, except: :show do
         delete :index, on: :collection
       end

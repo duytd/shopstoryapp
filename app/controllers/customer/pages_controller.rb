@@ -15,19 +15,23 @@ class Customer::PagesController < Customer::BaseController
     payment_method = @order.payment_method
 
     if payment_method.is_a? InicisPayment
-      if @order.payment.extra_data
+      if @order.payment.submethod == "vbank"
+        method = "vbank"
         extra_data = JSON.parse @order.payment.extra_data
         vbank = Inicis::Standard::Rails::Paymethod::Vbank.new data: extra_data
         transaction_info = vbank.transaction_info
       end
     elsif payment_method.is_a? PaypalShopstory::PaymentMethod
-      paypal = PaypalShopstory::Paypal.new data: {transaction_number: @order.payment.transaction_number}
-      transaction_info = paypal.transaction_detail
+      if @order.payment.extra_data
+        paypal = PaypalShopstory::Paypal.new data: @order.payment.extra_data
+        transaction_info = paypal.transaction_info
+      end
     end
 
     @props = {
       globalVars: @globalVars,
       order_info: {
+        method: method,
         order_number: @order.id,
         transaction_info: transaction_info,
         support_email: current_shop.email
