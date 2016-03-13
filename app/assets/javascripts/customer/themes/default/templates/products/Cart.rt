@@ -1,0 +1,45 @@
+<div id="#cart" class="{this.props.isCartOpened ? 'cart-container open' : 'cart-container'}">
+  <div class="col-xs-12">
+    <div class="row text-right">
+      <a href="#" onClick={this.props.closeCart}>
+        <i class="fa fa-2x fa-times-circle-o"></i>
+      </a>
+    </div>
+    <Errors rt-if="this.props.cartErrors && this.props.cartErrors.length > 0" errors={this.props.cartErrors} />
+    <Errors rt-if="this.state.cartErrors && this.state.cartErrors.length > 0" errors={this.state.cartErrors} />
+
+    {(this.props.globalVars.cart.length == 0) ? I18n.t("cart.empty") : null}
+
+    <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.cart">
+      <div class="col-xs-3">
+        <img src="{(item.product.images.length > 0) ? item.product.images[0].image.thumb.url : null}" class="img-responsive image" />
+      </div>
+
+      <div class="col-xs-3">
+        <strong>{item.product.name.toUpperCase()}</strong>
+      </div>
+
+      <div class="col-xs-3">
+        <p class="price">{I18n.toCurrency(item.unit_price, {precision: 0, unit: this.props.globalVars.currency})}</p>
+      </div>
+
+      <div class="col-xs-3">
+        <i class="fa fa-minus" data-item={item.id} data-quantity={item.quantity}
+          onClick={this.substractItemQuantity}></i>
+        <span class="quantity">{item.quantity}</span>
+        <i class="fa fa-plus" data-item={item.id} data-quantity={item.quantity}
+          onClick={this.addItemQuantity}></i>
+        <p class="small">
+          <a href="#" data-item={item.id} onClick={this.removeItem}>{I18n.t("cart.remove")}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 text-center cart-buttons">
+    <button rt-if="this.props.globalVars.cart.length > 0" class="btn btn-primary" onClick={this.checkout}>{I18n.t("cart.buy_now")}</button>
+    <button class="btn btn-default" onClick={this.props.closeCart}>
+      {I18n.t("cart.continue_shopping")}
+    </button>
+  </div>
+</div>
