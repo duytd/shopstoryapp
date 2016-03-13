@@ -3,14 +3,17 @@ module Api
     class BaseController < ApplicationController
       include Api::V1::BaseHelper
       protect_from_forgery with: :null_session
+      skip_before_filter  :verify_authenticity_token
 
-      before_action :authenticate_client!
+      before_action :authenticate!
 
       protected
-      def authenticate_client!
-        unless current_shop.client_id == params[:client_id] &&
-          current_shop.api_key == request.headers["HTTP_API_KEY"]
-          render json: {message: "access_denied"}, status: :unauthorized
+      def authenticate!
+        api_key = request.headers["X-Api-Key"]
+
+        unless current_shop.api_key == api_key
+          head status: :unauthorized
+          return false
         end
       end
     end

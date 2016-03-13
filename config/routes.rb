@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::CustomerDomainConstraint do
-    mount ShopstoryTicket::Engine => "/ticket"
+    mount ShopstoryTicket::Engine, at: "/ticket"
 
     devise_for :customers, path: "", path_names: {sign_in: "login",
       sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",

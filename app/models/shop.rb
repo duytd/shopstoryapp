@@ -24,7 +24,7 @@ class Shop < ActiveRecord::Base
     uniqueness: true
 
   before_validation :set_default_values, on: :create
-  before_save :generate_credentials
+  before_save :generate_api_key
   after_create :initialize_theme_editor
   after_create :load_payment_methods
 
@@ -44,11 +44,6 @@ class Shop < ActiveRecord::Base
     self.country = Settings.shop.default_country
   end
 
-  def generate_credentials
-    generate_client_id
-    generate_api_key
-  end
-
   def initialize_theme_editor
     self.theme.import_theme_editor self
   end
@@ -66,13 +61,6 @@ class Shop < ActiveRecord::Base
   end
 
   private
-  def generate_client_id
-    self.client_id = loop do
-      random_id = SecureRandom.uuid
-      break random_id unless self.class.exists?(client_id: random_id)
-    end
-  end
-
   def generate_api_key
     self.api_key = loop do
       random_key = SecureRandom.urlsafe_base64

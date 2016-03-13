@@ -20,7 +20,6 @@ class CreateShops < ActiveRecord::Migration
       t.string :facebook_url
       t.string :instagram_url
       t.string :pinterest_url
-      t.string :client_id
       t.string :api_key
 
       t.timestamps null: false
