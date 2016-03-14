@@ -32,7 +32,7 @@ module ShopStory
 
     config.react.server_renderer = React::ServerRendering::SprocketsRenderer
     config.react.server_renderer_options = {
-      files: ["react.js", "merchant/components.js"],
+      files: ["react-server.js", "merchant/components.js"],
       replay_console: true,
     }
 

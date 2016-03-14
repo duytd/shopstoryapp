@@ -8,10 +8,7 @@
     <%= stylesheet_link_tag customer_styles_path, media: "all", "data-turbolinks-track": true %>
 
     <%= javascript_include_tag "customer/application", media: "all", "data-turbolinks-track": true %>
-
-    <% if I18n.locale == :ko %>
-      <%= javascript_include_tag "http://dmaps.daum.net/map_js_init/postcode.v2.js", "data-turbolinks-track": true %>
-    <% end %>
+    <%= javascript_include_tag "http://dmaps.daum.net/map_js_init/postcode.v2.js", "data-turbolinks-track": true %>
 
     <%= javascript_include_tag customer_scripts_path, "data-turbolinks-track": true %>
     <% if I18n.locale == :ko %>

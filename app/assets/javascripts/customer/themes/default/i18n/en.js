@@ -28,6 +28,17 @@ $.extend(true, I18n.translations, {
         "texts": {
           "return_customer": "Returning Customer? "
         }
+      },
+      "account": {
+        "title": "Your account"
+      }
+      "fields": {
+        "order": "Order",
+        "booking": "Booking",
+        "date": "Date",
+        "payment_status": "Payment Status",
+        "status": "Status",
+        "total": "Total"
       }
     },
     "categories": {

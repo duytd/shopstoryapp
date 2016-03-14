@@ -1,0 +1,30 @@
+<div class="summary">
+  <h2>{I18n.t("checkout.summary.title")}</h2>
+  <p>
+    <label>{I18n.t("checkout.summary.subtotal")} :</label>
+    {I18n.toCurrency(this.props.order.subtotal, {precision: 0, unit: this.props.currency})}
+  </p>
+  <p>
+    <label>{I18n.t("checkout.summary.shipping")} :</label>
+    <i>{(this.props.step == "shipping") ? I18n.t("checkout.summary.not_yet_calculated") : this.props.order.shipping}</i>
+  </p>
+  <div class="cart-items">
+    <div rt-repeat="item in this.props.cart" key="item_{itemIndex}" class="row item">
+      <div class="col-xs-3">
+        <img src="{(item.product.images.length > 0) ? item.product.images[0].image.thumb.url : null}" class="img-responsive image" />
+      </div>
+
+      <div class="col-xs-3">
+        <strong>{item.product.name.toUpperCase()}</strong>
+      </div>
+
+      <div class="col-xs-3">
+        <p class="price">{I18n.toCurrency(item.unit_price, {precision: 0, unit: this.props.currency})}</p>
+      </div>
+
+      <div class="col-xs-3">
+        <span class="quantity">{item.quantity}</span>
+      </div>
+    </div>
+  </div>
+</div>

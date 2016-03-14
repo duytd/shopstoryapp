@@ -18,6 +18,8 @@ class Ability
     elsif user.is_a? Customer
       can :read, Category
       can :read, Product
+      can :read, Order
+      can [:read], Customer
       can [:read, :create, :update, :destroy], OrderProduct
       can [:read, :create, :update], Order
     else

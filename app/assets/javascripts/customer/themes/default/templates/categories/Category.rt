@@ -1,0 +1,9 @@
+<Layout globalVars={this.props.globalVars}>
+  <div class="category">
+    <div class="row">
+      <div class="col-md-12">
+        <ProductItem rt-repeat="product in this.props.products" key={productIndex} product={product} currency={this.props.globalVars.currency} />
+      </div>
+    </div>
+  </div>
+</Layout>

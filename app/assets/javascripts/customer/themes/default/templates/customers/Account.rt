@@ -1,0 +1,25 @@
+<div class="account">
+  <h1>{I18n.t("customers.account.title")}</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{I18n.t("customers.account.fields.order")}</th>
+        <th>{I18n.t("customers.account.fields.date")}</th>
+        <th>{I18n.t("customers.account.fields.status")}</th>
+        <th>{I18n.t("customers.account.fields.payment_status")}</th>
+        <th>{I18n.t("customers.account.fields.total")}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr rt-repeat="order in this.props.orders" key="order_{orderIndex}">
+        <td>{order.id}</td>
+        <td>{order.created_at}</td>
+        <td>{order.status}</td>
+        <td>{order.payment.state}</td>
+        <td>{order.total}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

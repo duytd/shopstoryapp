@@ -1,0 +1,119 @@
+<form ref="form" id="shippingForm">
+  <input name="order[shipping_address_attributes][order_id]" value={this.props.order.id} type="hidden" />
+
+  <div rt-if="this.state.country != 'KR'" class="form-group row">
+    <div class={this.props.halfContainerKlass}>
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.first_name")}</label>
+      <Errors errors={this.state.errors["shipping_address.first_name"]} />
+      <input name="order[shipping_address_attributes][first_name]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : null}" class={this.props.inputKlass} />
+    </div>
+    <div class={this.props.halfContainerKlass}>
+      <label>{I18n.t("checkout.shipping.last_name")}</label>
+      <Errors errors={this.state.errors["shipping_address.last_name"]} />
+      <input name="order[shipping_address_attributes][last_name]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.last_name : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div rt-if="this.state.country == 'KR'" class="form-group row">
+    <div class={this.props.containerKlass}>
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.name")}</label>
+      <Errors errors={this.state.errors["shipping_address.first_name"]} />
+      <input name="order[shipping_address_attributes][first_name]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-8">
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.email")}</label>
+      <Errors errors={this.state.errors["shipping_address.email"]} />
+      <input name="order[shipping_address_attributes][email]" type="email"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.email : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-8">
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.address1")}</label>
+      <Errors errors={this.state.errors["shipping_address.address1"]} />
+      <input ref="address" name="order[shipping_address_attributes][address1]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.address1 : null}"
+        onClick={this.streetClick} class={this.props.inputKlass} />
+    </div>
+  </div>
+
+ <div class="form-group row">
+    <div class="col-sm-8">
+      <label class={this.props.labelKlass}>{I18n.t("checkout.shipping.address2")}</label>
+      <Errors errors={this.state.errors["shipping_address.address2"]} />
+      <input name="order[shipping_address_attributes][address2]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.address2 : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-4">
+      <label class="{this.props.labelKlass} required"}>{I18n.t("checkout.shipping.city")}</label>
+      <Errors errors={this.state.errors["shipping_address.city"]} />
+      <input name="order[shipping_address_attributes][city]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.city : null}" class={this.props.inputKlass} />
+    </div>
+
+    <div class="col-sm-4">
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.zip_code")}</label>
+      <Errors errors={this.state.errors["shipping_address.zip_code"]} />
+      <input ref="zipcode" name="order[shipping_address_attributes][zip_code]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.zip_code : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div rt-if="this.props.country != 'KR'" class="form-group row">
+    <div class="col-sm-8">
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.state")}</label>
+      <Errors errors={this.state.errors["shipping_address.state"]} />
+      <input name="order[shipping_address_attributes][state]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.state : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-8">
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.country")}</label>
+      <Errors errors={this.state.errors["shipping_address.country"]} />
+      <div class="select">
+        <select class={this.props.inputKlass} name="order[shipping_address_attributes][country]"
+          defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.country : this.props.default_country}"
+          onChange={this.updateCountry}>
+          <option rt-repeat="country in this.props.countries" key="country_{countryIndex}" value={country[0]}>{country[1]}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-8">
+      <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.phone_number")}</label>
+      <Errors errors={this.state.errors["shipping_address.phone_number"]} />
+      <input name="order[shipping_address_attributes][phone_number]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.phone_number : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div rt-if="this.props.country != 'KR'" class="form-group row">
+    <div class="col-sm-8">
+      <label class={this.props.labelKlass}>{I18n.t("checkout.shipping.fax")}</label>
+      <Errors errors={this.state.errors["shipping_address.fax"]} />
+      <input name="order[shipping_address_attributes][fax]" type="text"
+        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.fax : null}" class={this.props.inputKlass} />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class={this.props.containerKlass}>
+      <input type="submit" class="btn {this.props.btnKlass} btn-primary pull-right" value={this.props.btnName} onClick={this.updateOrder} />
+      <input rf-if="this.props.disableEditing" type="button" class="btn {this.props.btnKlass} btn-default pull-right" value={I18n.t("checkout.buttons.cancel")} onClick={this.props.disableEditing} />
+    </div>
+  </div>
+</form>
