@@ -24,7 +24,6 @@ class Customer::OrdersController < Customer::BaseController
         session[:order_step] = current_order.next_step
       else
         current_order.pending!
-        current_order.payment.update_attributes amount: current_order.total
         session[:order_type] = "product"
       end
 

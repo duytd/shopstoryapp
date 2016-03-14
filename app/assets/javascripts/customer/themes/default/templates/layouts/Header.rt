@@ -2,11 +2,12 @@
   <div class="container-fluid top">
     <div class="pull-left">
       <span rt-if="this.props.globalVars.current_customer == null">
-        <a href="/auth/doindie">{I18n.t("buttons.login")}</a>
-        <a href="/register/signup">{I18n.t("buttons.register")}</a>
+        <a href="{Routes.customer_omniauth_authorize_path({provider: 'doindie', locale: I18n.locale})}">{I18n.t("buttons.login")}</a>
+        <a href="{Routes.new_customer_registration_path({locale: I18n.locale})}">{I18n.t("buttons.register")}</a>
       </span>
 
-      <a rt-if="this.props.globalVars.current_customer" href="/logout">{I18n.t("buttons.logout")}</a>
+      <a rt-if="this.props.globalVars.current_customer" href="{Routes.destroy_customer_session_path({locale: I18n.locale})}">{I18n.t("buttons.logout")}</a>
+      <a rt-if="this.props.globalVars.current_customer" href="{Routes.customer_account_path({locale: I18n.locale})}">{I18n.t("buttons.my_account")}</a>
     </div>
 
     <div class="pull-right languages">

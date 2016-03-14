@@ -40,7 +40,7 @@ Rails.application.routes.draw do
       get :ko, to: "theme_editors#ko"
       get :checkout, to: "pages#checkout"
       get :success, to: "pages#success"
-      get :account, to: "customers#show"
+      get :account, to: "customers#show", path: "my-account"
 
       resources :categories, only: [:index, :show]
       resources :products, only: :show

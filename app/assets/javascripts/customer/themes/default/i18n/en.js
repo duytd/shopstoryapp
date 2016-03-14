@@ -9,7 +9,8 @@ $.extend(true, I18n.translations, {
     "buttons": {
       "login": "Log in",
       "register": "Create account",
-      "logout": "Log out"
+      "logout": "Log out",
+      "my_account": "My account"
     },
     "customers": {
       "login": {
@@ -30,15 +31,18 @@ $.extend(true, I18n.translations, {
         }
       },
       "account": {
-        "title": "Your account"
-      }
-      "fields": {
-        "order": "Order",
-        "booking": "Booking",
-        "date": "Date",
-        "payment_status": "Payment Status",
-        "status": "Status",
-        "total": "Total"
+        "title": "Your account",
+        "orders": "Orders",
+        "bookings": "Ticket Bookings",
+        "fields": {
+          "order": "Order",
+          "booking": "Booking",
+          "date": "Date",
+          "payment_status": "Payment Status",
+          "ticket_sent_at": "Ticket Sent At",
+          "status": "Status",
+          "total": "Total"
+        }
       }
     },
     "categories": {

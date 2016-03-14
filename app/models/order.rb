@@ -23,6 +23,10 @@ class Order < ActiveRecord::Base
     update_status "processing"
   end
 
+  def processed
+    where status: :processed
+  end
+
   def processed!
     update_status "processed"
   end

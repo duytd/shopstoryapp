@@ -28,6 +28,7 @@ BillingRT = require('./themes/default/templates/checkout/Billing.rt');
 CheckoutRT = require('./themes/default/templates/checkout/Checkout.rt');
 CheckoutFormRT = require('./themes/default/templates/checkout/CheckoutForm.rt');
 SummaryRT = require('./themes/default/templates/checkout/Summary.rt');
+SuccessRT = require('./themes/default/templates/checkout/Success.rt');
 
 CartMixin = require('./mixins/CartMixin.js');
 
@@ -54,3 +55,4 @@ Billing = require('./components/checkout/Billing.js');
 Summary = require('./components/checkout/Summary.js');
 CheckoutForm = require('./components/checkout/CheckoutForm.js');
 Checkout = require('./components/checkout/Checkout.js');
+Success = require('./components/checkout/Success.js');

@@ -1,25 +1,53 @@
-<div class="account">
-  <h1>{I18n.t("customers.account.title")}</h1>
+<Layout globalVars={this.state.globalVars} updateCart={this.updateCart}
+  <div class="account">
+    <h1>{I18n.t("customers.account.title")}</h1>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>{I18n.t("customers.account.fields.order")}</th>
-        <th>{I18n.t("customers.account.fields.date")}</th>
-        <th>{I18n.t("customers.account.fields.status")}</th>
-        <th>{I18n.t("customers.account.fields.payment_status")}</th>
-        <th>{I18n.t("customers.account.fields.total")}</th>
-      </tr>
-    </thead>
+    <h3>{I18n.t("customers.account.orders")}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{I18n.t("customers.account.fields.order")}</th>
+          <th>{I18n.t("customers.account.fields.date")}</th>
+          <th>{I18n.t("customers.account.fields.status")}</th>
+          <th>{I18n.t("customers.account.fields.payment_status")}</th>
+          <th>{I18n.t("customers.account.fields.total")}</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr rt-repeat="order in this.props.orders" key="order_{orderIndex}">
-        <td>{order.id}</td>
-        <td>{order.created_at}</td>
-        <td>{order.status}</td>
-        <td>{order.payment.state}</td>
-        <td>{order.total}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+      <tbody>
+        <tr rt-repeat="order in this.props.orders" key="order_{orderIndex}">
+          <td>{order.id}</td>
+          <td>{order.created_at}</td>
+          <td>{order.status.toUpperCase()}</td>
+          <td>{order.payment.state.toUpperCase()}</td>
+          <td>{order.total}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>{I18n.t("customers.account.bookings")}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{I18n.t("customers.account.fields.booking")}</th>
+          <th>{I18n.t("customers.account.fields.date")}</th>
+          <th>{I18n.t("customers.account.fields.ticket_sent_at")}</th>
+          <th>{I18n.t("customers.account.fields.status")}</th>
+          <th>{I18n.t("customers.account.fields.payment_status")}</th>
+          <th>{I18n.t("customers.account.fields.total")}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr rt-repeat="booking in this.props.bookings" key="booking_{bookingIndex}">
+          <td>{booking.id}</td>
+          <td>{booking.created_at}</td>
+          <td>{booking.ticket_sent_at}</td>
+          <td>{booking.status.toUpperCase()}</td>
+          <td>{booking.payment.state.toUpperCase()}</td>
+          <td>{booking.total}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</Layout>
