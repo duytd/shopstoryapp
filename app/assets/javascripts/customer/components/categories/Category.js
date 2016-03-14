@@ -1,4 +1,5 @@
 var Category = React.createClass({
+  mixins: [CartMixin],
   render: CategoryRT
 })
 

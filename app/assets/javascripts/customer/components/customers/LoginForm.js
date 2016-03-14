@@ -7,7 +7,7 @@ var LoginForm = React.createClass({
   render: LoginFormRT,
   submit: function(e) {
     e.preventDefault();
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     this.handleSubmit(formData);
   },
@@ -37,3 +37,5 @@ var LoginForm = React.createClass({
     });
   }
 });
+
+module.exports = LoginForm;

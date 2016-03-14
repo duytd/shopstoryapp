@@ -21,7 +21,7 @@ var Billing = React.createClass({
       this.setState({useShippingAddress: false});
   },
   switchPaymentMethod: function(method) {
-    this.setState({paymentMethod: method});
+    this.setState({currentPaymentMethod: method});
   },
   updateOrder: function(order) {
     this.setState({order: order}, function() {

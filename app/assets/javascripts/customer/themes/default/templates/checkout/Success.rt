@@ -1,4 +1,4 @@
-<Layout globalVars={this.props.globalVars}>
+<Layout globalVars="{this.props.globalVars}">
   <div class="row text-center">
     <h1>{I18n.t("checkout.texts.thank_you")}</h1>
     <p>{I18n.t("checkout.texts.order_info", {order_number: this.props.order_info.order_number})}</p>

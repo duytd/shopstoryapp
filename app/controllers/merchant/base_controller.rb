@@ -7,7 +7,7 @@ class Merchant::BaseController < ApplicationController
   private
   def authenticate_merchant!
     unless merchant_signed_in? && merchant_authenticated?
-      redirect_to new_merchant_session_url domain: Settings.app.domain
+      redirect_to new_merchant_session_url domain: Settings.app.domain, subdomain: nil
     end
   end
 end

@@ -1,5 +1,5 @@
 var Layout = React.createClass({
-  render: LayoutRT,
-});
+  render: LayoutRT
+})
 
 module.exports = Layout;

@@ -4,7 +4,8 @@ module Merchant::BaseHelper
   end
 
   def current_shop
-    @current_shop ||= current_merchant.shop
+    subdomain = Apartment::Tenant.current
+    @current_shop ||= Shop.find_by_subdomain subdomain
   end
 
   def current_theme_editor

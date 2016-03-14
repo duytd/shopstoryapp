@@ -1,7 +1,7 @@
 var Product = React.createClass({
+  mixins: [CartMixin],
   getInitialState: function() {
     return {
-      globalVars: this.props.globalVars,
       cartErrors: [],
       isCartOpened: false
     };
@@ -19,15 +19,9 @@ var Product = React.createClass({
   emptyCartErrors: function(errors) {
     this.setState({cartErrors: []});
   },
-  updateCart: function(cartData) {
-    var globalVars = this.state.globalVars;
-
-    globalVars.cart = cartData;
-    this.setState({globalVars: globalVars});
-  },
   addToCart: function(e) {
     e.preventDefault();
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     this.handleAddToCart(formData, this.props.cart_url);
   },

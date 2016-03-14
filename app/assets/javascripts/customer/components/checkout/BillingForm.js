@@ -28,12 +28,15 @@ var BillingForm = React.createClass({
   },
   updateOrder: function(e) {
     e.preventDefault();
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     $.ajax({
       data: formData,
       method: "PUT",
       url: Routes.customer_order_path(this.props.order.id, {locale: I18n.locale}),
+      beforeSend: function() {
+        $(this.refs.loading.getDOMNode()).removeClass('hide');
+      }.bind(this),
       success: function(order) {
         this.props.updateOrder(order);
       }.bind(this),

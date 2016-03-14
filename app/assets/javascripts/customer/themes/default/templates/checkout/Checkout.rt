@@ -1,21 +1,21 @@
-<Layout globalVars={this.props.globalVars}>
+<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
   <div class="row checkout">
     <div class="col-sm-6">
       <h2>{I18n.t("checkout.texts.returning_customer")}</h2>
       <h3>{I18n.t("buttons.login")}</h3>
-      <LoginForm redirect_url={Routes.new_customer_order_path()} />
+      <LoginForm redirect_url="{Routes.new_customer_order_path()}" />
     </div>
 
     <div class="col-sm-6 text-center">
       <h2>{I18n.t("checkout.texts.new_customer")}</h2>
 
-      <a class="btn btn-lg btn-default" href={Routes.new_customer_registration_path()}>
+      <a class="btn btn-lg btn-default" href="{Routes.new_customer_registration_path()}">
         {I18n.t("buttons.register")}
       </a>
 
       <h3>{I18n.t("checkout.texts.or")}</h3>
 
-      <a class="btn btn-lg btn-primary" href={Routes.new_customer_order_path()}>
+      <a class="btn btn-lg btn-primary" href="{Routes.new_customer_order_path()}">
         {I18n.t("checkout.texts.checkout_as_guest")}
       </a>
     </div>

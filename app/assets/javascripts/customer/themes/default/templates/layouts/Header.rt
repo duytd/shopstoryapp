@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse" id="shopstory-navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="cart">
-            <a href="#" onClick={this.openCart}>
+            <a href="#" onClick="{this.openCart}">
               <i class="fa fa-shopping-cart"></i>
               {"(" + this.state.itemCount + ")"}
             </a>
@@ -41,13 +41,13 @@
   </nav>
 
   <Cart
-    globalVars = {this.props.globalVars}
+    globalVars = "{this.props.globalVars}"
     isCartOpened = "{(this.props.isCartOpened) ? this.props.isCartOpened : this.state.isCartOpened}"
-    openCart = {this.openCart}
-    closeCart = {this.closeCart}
-    updateCart = {this.props.updateCart}
-    cartErrors = {this.props.cartErrors}
-    setCartErrors = {this.props.setCartErrors}
-    emptyCartErrors = {this.props.emptyCartErrors}
+    openCart = "{this.openCart}"
+    closeCart = "{this.closeCart}"
+    updateCart = "{this.props.updateCart}"
+    cartErrors = "{this.props.cartErrors}"
+    setCartErrors = "{this.props.setCartErrors}"
+    emptyCartErrors = "{this.props.emptyCartErrors}"
   />
 </header>

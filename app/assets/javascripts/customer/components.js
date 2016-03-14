@@ -29,6 +29,8 @@ CheckoutRT = require('./themes/default/templates/checkout/Checkout.rt');
 CheckoutFormRT = require('./themes/default/templates/checkout/CheckoutForm.rt');
 SummaryRT = require('./themes/default/templates/checkout/Summary.rt');
 
+CartMixin = require('./mixins/CartMixin.js');
+
 Errors = require('./components/snippets/Errors.js');
 ProductSlider = require('./components/snippets/ProductSlider.js');
 Cart = require('./components/products/Cart.js');

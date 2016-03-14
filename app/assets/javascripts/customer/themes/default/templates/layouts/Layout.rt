@@ -1,12 +1,12 @@
 <div class="main-wrapper">
   <Header
-    globalVars = {this.props.globalVars}
-    closeCart = {this.props.closeCart}
-    updateCart = {this.props.updateCart}
-    isCartOpened = {this.props.isCartOpened}
-    cartErrors = {this.props.cartErrors}
-    setCartErrors = {this.props.setCartErrors}
-    emptyCartErrors = {this.props.emptyCartErrors}
+    globalVars="{this.props.globalVars}"
+    closeCart="{this.props.closeCart}"
+    updateCart="{this.props.updateCart}"
+    isCartOpened="{this.props.isCartOpened}"
+    cartErrors="{this.props.cartErrors}"
+    setCartErrors="{this.props.setCartErrors}"
+    emptyCartErrors="{this.props.emptyCartErrors}"
   />
   <div class="container">
     {this.props.children}

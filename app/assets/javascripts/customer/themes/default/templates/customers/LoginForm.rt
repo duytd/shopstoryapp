@@ -1,4 +1,4 @@
-<form ref="form" method="post" acceptCharset="UTF-8" action={this.url} onSubmit={this.submit}>
+<form ref="form" method="post" acceptCharset="UTF-8" action="{Routes.customer_session_path()}" onSubmit="{this.submit}">
   <div class="form-group">
     <ul rt-if="this.state.error != ''" class="alert alert-danger"><li>{this.state.error}</li></ul>
   </div>
@@ -23,7 +23,7 @@
       <i class="fa"></i>
       {I18n.t("customers.login.texts.remember")}
     </label>
-    <input type="submit" class="btn btn-lg btn-primary pull-right" value={I18n.t("buttons.login")} />
+    <input type="submit" class="btn btn-lg btn-primary pull-right" value="{I18n.t('buttons.login')}" />
     <p class="small">
       {I18n.t("customers.login.texts.new_customer")}
       <a href="/register/signup">{I18n.t("buttons.register")}</a>

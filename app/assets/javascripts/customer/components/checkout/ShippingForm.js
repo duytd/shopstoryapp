@@ -7,7 +7,7 @@ var ShippingForm = React.createClass({
   },
   render: ShippingFormRT,
   streetClick: function() {
-    if (this.props.lang == "ko") {
+    if (this.state.country == "KR") {
       openDaumPostcode(function(data) {
         var address = data.address,
           zipcode = data.zonecode;
@@ -23,13 +23,13 @@ var ShippingForm = React.createClass({
     address = typeof address !== "undefined" ? address : "";
     zipcode = typeof zipcode !== "undefined" ? zipcode : "";
 
-    this.refs.address.getDOMNode().value = address;
-    this.refs.zipcode.getDOMNode().value = zipcode;
+    this.refs.address.value = address;
+    this.refs.zipcode.value = zipcode;
   },
   updateOrder: function(e) {
     e.preventDefault();
 
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     $.ajax({
       data: formData,
@@ -38,7 +38,7 @@ var ShippingForm = React.createClass({
       success: function(order) {
         this.setState({errors: []});
         this.props.updateOrder(order);
-        this.disableEditing();
+        this.props.disableEditing();
       }.bind(this),
       error: function(xhr) {
         this.setState({errors: xhr.responseJSON});

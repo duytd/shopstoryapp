@@ -2,14 +2,14 @@
   <h2>{I18n.t("checkout.summary.title")}</h2>
   <p>
     <label>{I18n.t("checkout.summary.subtotal")} :</label>
-    {I18n.toCurrency(this.props.order.subtotal, {precision: 0, unit: this.props.currency})}
+    {I18n.toCurrency(this.state.subtotal, {precision: 0, unit: this.props.currency})}
   </p>
   <p>
     <label>{I18n.t("checkout.summary.shipping")} :</label>
     <i>{(this.props.step == "shipping") ? I18n.t("checkout.summary.not_yet_calculated") : this.props.order.shipping}</i>
   </p>
   <div class="cart-items">
-    <div rt-repeat="item in this.props.cart" key="item_{itemIndex}" class="row item">
+    <div rt-repeat="item in this.props.globalVars.cart" key="item_{itemIndex}" class="row item">
       <div class="col-xs-3">
         <img src="{(item.product.images.length > 0) ? item.product.images[0].image.thumb.url : null}" class="img-responsive image" />
       </div>

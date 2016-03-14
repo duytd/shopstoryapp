@@ -1,36 +1,36 @@
 <div class="row">
   <div class="col-sm-12">
-    <h3 rt-if="this.props.editing">{I18n.t("checkout.texts.shipping_info")}<i class="fa fa-edit pull-right" onClick={this.enableEditing}></i></h3>
+    <h3 rt-if="this.props.editing">{I18n.t("checkout.texts.shipping_info")}<i class="fa fa-edit pull-right" onClick="{this.enableEditing}"></i></h3>
 
     <ShippingForm
-      rt-if = "!this.props.editing"
-      containerKlass = "col-sm-8"
-      halfContainerKlass = "col-sm-4"
-      btnKlass = "btn-lg"
-      btnName = {I18n.t("checkout.buttons.next")}
-      inputKlass = "form-control"
-      order = {this.props.order}
-      countries = {this.props.countries}
-      default_country = {this.props.default_country}
-      updateOrder = {this.props.updateOrder}
+      rt-if="!this.props.editing"
+      containerKlass="col-sm-8"
+      halfContainerKlass="col-sm-4"
+      btnKlass="btn-lg"
+      btnName={I18n.t("checkout.buttons.next")}
+      inputKlass="form-control"
+      order="{this.props.order}"
+      countries="{this.props.countries}"
+      default_country="{this.props.default_country}"
+      updateOrder="{this.props.updateOrder}"
     />
 
     <ShippingForm
-      rt-if = "this.props.editing && this.props.isEditing"
-      containerKlass = "col-sm-12"
-      halfContainerKlass = "col-sm-6"
-      btnKlass = "btn-sm"
-      btnName = {I18n.t("checkout.buttons.save")}
+      rt-if="this.props.editing && this.state.isEditing"
+      containerKlass="col-sm-12"
+      halfContainerKlass="col-sm-6"
+      btnKlass="btn-sm"
+      btnName="{I18n.t('checkout.buttons.save')}"
       inputKlass = "form-control input-sm input-dashed"
       cancelBtn =  ""
-      order = {this.props.order}
-      countries = {this.props.countries}
-      default_country = {this.props.default_country}
-      updateOrder = {this.props.updateOrder}
-      disableEditing = {this.disableEditing}
+      order="{this.props.order}"
+      countries="{this.props.countries}"
+      default_country="{this.props.default_country}"
+      updateOrder="{this.props.updateOrder}"
+      disableEditing="{this.disableEditing}"
     />
 
-    <div rt-if="this.props.editing && this.state.isEditing" class="row">
+    <div rt-if="this.props.editing && !this.state.isEditing" class="row">
       <div class="col-sm-12">
         <p>
           {(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : null}

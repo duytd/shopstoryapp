@@ -1,4 +1,5 @@
 var Register = React.createClass({
+  mixins: [CartMixin],
   getInitialState: function() {
     return {
       errors: []
@@ -7,14 +8,14 @@ var Register = React.createClass({
   render: RegisterRT,
   submit: function(e) {
     e.preventDefault();
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
-    this.handleSubmit(formData, this.props.url);
+    this.handleSubmit(formData);
   },
-  handleSubmit: function(formData, action) {
+  handleSubmit: function(formData) {
     $.ajax({
       data: formData,
-      url: action,
+      url: Routes.customer_registration_path(),
       method: "post",
       dataType: "json",
       success: function(data) {

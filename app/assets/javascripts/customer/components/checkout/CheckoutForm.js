@@ -1,4 +1,5 @@
 var CheckoutForm = React.createClass({
+  mixins: [CartMixin],
   getInitialState: function() {
     return {
       order: this.props.order

@@ -1,4 +1,4 @@
-<Layout globalVars={this.props.globalVars}>
+<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
   <div class="row checkout-form">
     <div class="col-sm-8">
       <ul class="steps">
@@ -10,36 +10,36 @@
 
       <Billing
         rt-if="this.state.order.shipping_address"
-        mobile={this.props.globalVars.mobile}
-        order={this.state.order}
-        payment_method_shops={this.props.payment_method_shops}
-        countries={this.props.countries}
-        default_country={this.props.default_country} />
+        mobile="{this.props.globalVars.mobile}"
+        order="{this.state.order}"
+        payment_method_shops="{this.props.payment_method_shops}"
+        countries="{this.props.countries}"
+        default_country="{this.props.default_country}" />
 
       <Shipping
         rt-if="this.state.order.shipping_address == null"
-        editing={false}
-        order={this.state.order}
-        updateOrder={this.updateOrder}
-        countries={this.props.countries}
-        default_country={this.props.default_country} />
+        editing="{false}"
+        order="{this.state.order}"
+        updateOrder="{this.updateOrder}"
+        countries="{this.props.countries}"
+        default_country="{this.props.default_country}" />
     </div>
 
     <div class="col-sm-4">
       <Summary
-        step={this.state.order.current_step}
-        order={this.state.order}
-        cart={this.props.globalVars.cart}
-        currency={this.props.globalVars.currency}
+        step="{this.state.order.current_step}"
+        order="{this.state.order}"
+        globalVars="{this.state.globalVars}"
+        currency="{this.props.globalVars.currency}"
       />
 
       <Shipping
         rt-if="this.state.order.shipping_address"
-        editing={true}
-        order={this.state.order}
-        updateOrder={this.updateOrder}
-        countries={this.props.countries}
-        default_country={this.props.default_country} />
+        editing="{true}"
+        order="{this.state.order}"
+        updateOrder="{this.updateOrder}"
+        countries="{this.props.countries}"
+        default_country="{this.props.default_country}" />
     </div>
   </div>
 </Layout>
