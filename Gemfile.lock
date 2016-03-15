@@ -7,6 +7,14 @@ GIT
       rails (~> 4.2.3)
 
 GIT
+  remote: git@bitbucket.org:duytd/shopstory_ticket.git
+  revision: e4c5b0d9785e0dc11aed88c77ffef17c2f2810db
+  branch: develop
+  specs:
+    shopstory_ticket (0.0.1)
+      rails (~> 4.2.3)
+
+GIT
   remote: https://github.com/duytd/inicis-standard-rails.git
   revision: db10f7a546190f82d74c1a1c3a9fabe9ac1d90d3
   branch: develop
@@ -15,12 +23,6 @@ GIT
       browser
       iconv
       thrift
-
-PATH
-  remote: ~/workspace/shopstory_ticket
-  specs:
-    shopstory_ticket (0.0.1)
-      rails (~> 4.2.3)
 
 GEM
   remote: https://rubygems.org/

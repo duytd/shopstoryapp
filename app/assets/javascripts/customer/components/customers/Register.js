@@ -29,3 +29,5 @@ var Register = React.createClass({
     });
   }
 });
+
+module.exports = Register;

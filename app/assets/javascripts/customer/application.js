@@ -7,6 +7,5 @@
 //= require merchant/functions
 //= require react
 //= require react_ujs
-//= require customer/components
 //= require i18n
 //= require shopstory_ticket/frontend

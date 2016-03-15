@@ -33,7 +33,7 @@ set :keep_releases, 3
 
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml config/application.yml}
-set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads public/system keys qrcodes}
+set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads public/system keys qrcodes node_modules}
 
 namespace :puma do
   desc "Create Directories for Puma Pids and Socket"
@@ -78,6 +78,17 @@ namespace :deploy do
     end
   end
 
+  desc "Install npm packages"
+  task :npm_install
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "npm:install"
+        end
+      end
+    end
+  end
+
   desc "Restart application"
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -86,6 +97,7 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
+  after  :finishing,    :npm_install
   after  :finishing,    :compile_assets
   after  :finishing,    :symlinks
   after  :finishing,    :cleanup
