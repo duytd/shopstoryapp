@@ -43,6 +43,18 @@ $.extend(true, I18n.translations, {
           "status": "Status",
           "total": "Total"
         }
+      },
+      "order": {
+        "customer_contact": "Customer Contact",
+        "your_ticket": "Your ticket",
+        "your_order": "Your order",
+        "total": "Total",
+        "ticket_sent_at": "Ticket Sent At",
+        "booking_detail": "Booking Detail",
+        "shipping_address": "Shipping Address",
+        "billing_address": "Billing Address",
+        "payment": "Payment",
+        "order_detail": "Order Detail"
       }
     },
     "categories": {

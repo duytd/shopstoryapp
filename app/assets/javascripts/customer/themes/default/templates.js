@@ -1,0 +1,26 @@
+ErrorsRT = require('./templates/snippets/Errors.rt');
+ProductSliderRT = require('./templates/snippets/ProductSlider.rt');
+LayoutRT = require('./templates/layouts/Layout.rt');
+HeaderRT = require('./templates/layouts/Header.rt');
+FooterRT = require('./templates/layouts/Footer.rt');
+CartRT = require('./templates/products/Cart.rt');
+
+ProductItemRT = require('./templates/products/ProductItem.rt');
+ProductListRT = require('./templates/products/ProductList.rt');
+HomeRT = require('./templates/Home.rt');
+ProductRT = require('./templates/products/Product.rt');
+CategoryRT = require('./templates/categories/Category.rt');
+AccountRT = require('./templates/customers/Account.rt');
+LoginRT = require('./templates/customers/Login.rt');
+LoginFormRT = require('./templates/customers/LoginForm.rt');
+RegisterRT = require('./templates/customers/Register.rt');
+ShippingFormRT = require('./templates/checkout/ShippingForm.rt');
+ShippingRT = require('./templates/checkout/Shipping.rt');
+PaymentMethodRT = require('./templates/checkout/PaymentMethod.rt');
+BillingFormRT = require('./templates/checkout/BillingForm.rt');
+BillingRT = require('./templates/checkout/Billing.rt');
+CheckoutRT = require('./templates/checkout/Checkout.rt');
+CheckoutFormRT = require('./templates/checkout/CheckoutForm.rt');
+SummaryRT = require('./templates/checkout/Summary.rt');
+SuccessRT = require('./templates/checkout/Success.rt');
+OrderRT = require('./templates/orders/Order.rt');

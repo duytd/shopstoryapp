@@ -11,6 +11,8 @@ class Order < ActiveRecord::Base
 
   default_scope {order created_at: :desc}
 
+  scope :having_payment, ->{where.not(status: [Order.statuses[:incompleted], Order.statuses[:pending], Order.statuses[:cancelled]])}
+
   after_initialize :set_default_values
 
   paginates_per Settings.paging.order
@@ -21,10 +23,6 @@ class Order < ActiveRecord::Base
 
   def processing!
     update_status "processing"
-  end
-
-  def processed
-    where status: :processed
   end
 
   def processed!
@@ -62,6 +60,10 @@ class Order < ActiveRecord::Base
 
   def update_currency currency
     self.update_attributes currency: currency
+  end
+
+  def as_json options={}
+    super.as_json(options).merge({type: type.underscore})
   end
 
   protected

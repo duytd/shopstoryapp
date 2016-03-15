@@ -27,6 +27,6 @@ class Product < ActiveRecord::Base
   scope :available, ->{where "in_stock > ?", 0}
 
   def as_json options={}
-    super.as_json(options).merge({name_en: name_en, images: product_images})
+    super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
   end
 end

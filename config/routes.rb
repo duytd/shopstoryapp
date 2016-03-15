@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
       resources :categories, only: [:index, :show]
       resources :products, only: :show
-      resources :orders, only: [:new, :create, :update] do
+      resources :orders, only: [:show, :new, :create, :update] do
         resource :payment, only: :show
       end
 

@@ -1,8 +1,21 @@
+require "rqrcode"
+
 class Customer::OrdersController < Customer::BaseController
   authorize_resource
   include Merchant::ShopsHelper
 
-  before_action :validate_order!
+  before_action :validate_order!, only: [:new, :update]
+
+  def show
+    @order = Order.find params[:id]
+    qrcode = RQRCode::QRCode.new(@order.ticket_code).as_html if @order.ticket_code
+
+    @props = {
+      globalVars: @globalVars,
+      order: @order,
+      qrcode: qrcode
+    }
+  end
 
   def new
     @props = {
