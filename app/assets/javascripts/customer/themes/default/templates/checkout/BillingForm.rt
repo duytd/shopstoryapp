@@ -111,7 +111,7 @@
 
     <input rt-if="this.props.order.payment" type="hidden" name="order[payment_attributes][id]" value="{this.props.order.payment.id}" />
 
-    <OrderPaymentMethod
+    <PaymentMethod
       rt-repeat="methodShop in this.props.payment_method_shops"
       mobile="{this.props.mobile}"
       key="method_shop_{methodShopIndex}"
@@ -162,7 +162,7 @@
 
     <input rt-if="this.props.order.payment" type="hidden" name="order[payment_attributes][id]" value="{this.props.order.payment.id}" />
 
-    <OrderPaymentMethod
+    <PaymentMethod
       rt-repeat="methodShop in this.props.payment_method_shops"
       mobile="{this.props.mobile}"
       key="method_shop_{methodShopIndex}"

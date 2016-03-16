@@ -79,7 +79,7 @@ namespace :deploy do
   end
 
   desc "Install npm packages"
-  task :npm_install
+  task :npm_install do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
@@ -96,8 +96,8 @@ namespace :deploy do
     end
   end
 
+  before "deploy:assets:precompile",    :npm_install
   before :starting,     :check_revision
-  after  :finishing,    :npm_install
   after  :finishing,    :compile_assets
   after  :finishing,    :symlinks
   after  :finishing,    :cleanup

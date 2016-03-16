@@ -129,6 +129,12 @@ $.extend(true, I18n.translations, {
       "buy_now": "Buy now",
       "continue_shopping": "Continue shopping",
       "remove": "Remove"
+    },
+    "pagination": {
+      "first": "First",
+      "last": "Last",
+      "previous": "Previous",
+      "next": "Next"
     }
   }
 })

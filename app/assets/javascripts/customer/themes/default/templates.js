@@ -5,8 +5,10 @@ var injectTapEventPlugin =  require('react-tap-event-plugin');
 injectTapEventPlugin();
 
 CartMixin = require('customer/mixins/CartMixin.js');
+PaginationMixin = require('customer/mixins/PaginationMixin.js');
 
 ErrorsRT = require('./templates/snippets/Errors.rt');
+PaginationRT = require('./templates/snippets/Pagination.rt');
 ProductSliderRT = require('./templates/snippets/ProductSlider.rt');
 LayoutRT = require('./templates/layouts/Layout.rt');
 HeaderRT = require('./templates/layouts/Header.rt');
@@ -33,6 +35,7 @@ SuccessRT = require('./templates/checkout/Success.rt');
 OrderRT = require('./templates/orders/Order.rt');
 
 Errors = require('customer/components/snippets/Errors.js');
+Pagination = require('customer/components/snippets/Pagination.js');
 ProductSlider = require('customer/components/snippets/ProductSlider.js');
 Cart = require('customer/components/products/Cart.js');
 Layout = require('customer/components/layouts/Layout.js');
@@ -49,7 +52,7 @@ Login = require('customer/components/customers/Login.js');
 Register = require('customer/components/customers/Register.js');
 ShippingForm = require('customer/components/checkout/ShippingForm.js');
 Shipping = require('customer/components/checkout/Shipping.js');
-OrderPaymentMethod = require('customer/components/checkout/PaymentMethod.js');
+PaymentMethod = require('customer/components/checkout/PaymentMethod.js');
 BillingForm = require('customer/components/checkout/BillingForm.js');
 Billing = require('customer/components/checkout/Billing.js');
 Summary = require('customer/components/checkout/Summary.js');

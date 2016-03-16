@@ -35,7 +35,7 @@ var BillingForm = React.createClass({
       method: "PUT",
       url: Routes.customer_order_path(this.props.order.id, {locale: I18n.locale}),
       beforeSend: function() {
-        $(this.refs.loading.getDOMNode()).removeClass('hide');
+        $(this.refs.loading).removeClass('hide');
       }.bind(this),
       success: function(order) {
         this.props.updateOrder(order);

@@ -129,6 +129,12 @@ $.extend(true, I18n.translations, {
       "buy_now": "지금 구매",
       "continue_shopping": "쇼핑 계속하기",
       "remove": "삭제"
+    },
+    "pagination": {
+      "first": "처음",
+      "last": "마지막",
+      "previous": "이전",
+      "next": "다음"
     }
   }
 })

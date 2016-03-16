@@ -1,5 +1,6 @@
 <Layout globalVars={this.props.globalVars}>
   <div class="home">
     <ProductList products={this.props.products} currency={this.props.globalVars.currency} />
+    <LatestEvents />
   </div>
 </Layout>
