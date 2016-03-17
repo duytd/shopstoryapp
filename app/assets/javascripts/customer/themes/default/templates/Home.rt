@@ -1,6 +1,8 @@
 <Layout globalVars={this.props.globalVars}>
   <div class="home">
+    <h2>{I18n.t("products.featured_products")}</h2>
     <ProductList products={this.props.products} currency={this.props.globalVars.currency} />
+    <hr/>
     <LatestEvents />
   </div>
 </Layout>

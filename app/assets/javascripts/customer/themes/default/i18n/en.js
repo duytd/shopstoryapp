@@ -61,6 +61,7 @@ $.extend(true, I18n.translations, {
       "products": "products"
     },
     "products": {
+      "featured_products": "Featured Products",
       "in_stock": "In Stock",
       "out_of_order": "Out of order",
       "add_to_cart": "Add To Cart"

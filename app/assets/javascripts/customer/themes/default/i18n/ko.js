@@ -61,6 +61,7 @@ $.extend(true, I18n.translations, {
       "products": "상품"
     },
     "products": {
+      "featured_products": "주요 제품",
       "in_stock": "재고 있음",
       "out_of_order": "재고 없음",
       "add_to_cart": "장바구니에 추가"
