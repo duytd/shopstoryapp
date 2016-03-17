@@ -1,4 +1,4 @@
-<div class="pagination">
+<div class="pagination" rt-if="this.props.totalPage > 1">
   <a rt-if="this.props.page > 1" onClick="{this.updatePage.bind(this, 1)}">{I18n.t("pagination.first")}</a>
   <a rt-if="this.state.prev != null" onClick="{this.updatePage.bind(this, this.state.prev)}">{I18n.t("pagination.previous")}</a>
   <span rt-if="this.state.prevPages[0] > 1">...</span>
