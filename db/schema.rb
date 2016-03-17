@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303061848) do
+ActiveRecord::Schema.define(version: 20160317061716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -465,13 +465,34 @@ ActiveRecord::Schema.define(version: 20160303061848) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "variations", force: :cascade do |t|
+  create_table "variation_options", force: :cascade do |t|
+    t.string   "name"
+    t.string   "value"
     t.integer  "product_id"
-    t.string   "color"
-    t.string   "size"
-    t.integer  "in_stock",   default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "variation_options", ["product_id"], name: "index_variation_options_on_product_id", using: :btree
+
+  create_table "variation_variation_options", force: :cascade do |t|
+    t.integer  "variation_id"
+    t.integer  "variation_option_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "variation_variation_options", ["variation_id"], name: "index_variation_variation_options_on_variation_id", using: :btree
+  add_index "variation_variation_options", ["variation_option_id"], name: "index_variation_variation_options_on_variation_option_id", using: :btree
+
+  create_table "variations", force: :cascade do |t|
+    t.integer  "in_stock"
+    t.string   "image"
+    t.decimal  "price"
+    t.string   "sku"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
@@ -502,5 +523,8 @@ ActiveRecord::Schema.define(version: 20160303061848) do
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"
   add_foreign_key "theme_editors", "shops"
   add_foreign_key "theme_editors", "themes"
+  add_foreign_key "variation_options", "products"
+  add_foreign_key "variation_variation_options", "variation_options"
+  add_foreign_key "variation_variation_options", "variations"
   add_foreign_key "variations", "products"
 end

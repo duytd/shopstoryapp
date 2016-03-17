@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :variation do
-    product nil
-color "MyString"
-size "MyString"
-in_stock 1
+    in_stock 1
+image "MyString"
+price "9.99"
+sku "MyString"
+product nil
   end
 
 end
