@@ -3,7 +3,7 @@ section.content {
   .title {
     font-size: 22px;
     margin-top: 10px;
-    a { 
+    a {
       margin-left: 5px;
     }
   }
@@ -34,6 +34,11 @@ section.content {
       }
     }
     .navbar-right {
+      &.pull-right {
+        a {
+          display: inline-block;
+        }
+      }
       .open a {
         background: transparent;
       }
