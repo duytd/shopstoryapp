@@ -54,6 +54,9 @@ en:
         color: "Color"
         size: "Size"
         in_stock: "In Stock"
+      variation_option:
+        name: "Name"
+        value: "Value"
       shop:
         name: "Name"
         legal_name: "Business Name"

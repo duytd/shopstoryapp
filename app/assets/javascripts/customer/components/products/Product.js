@@ -2,6 +2,7 @@ var Product = React.createClass({
   mixins: [CartMixin],
   getInitialState: function() {
     return {
+      variation: this.props.product.variations[0],
       cartErrors: [],
       isCartOpened: false
     };

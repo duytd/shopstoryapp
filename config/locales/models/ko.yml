@@ -50,6 +50,9 @@ ko:
         color: "색상"
         size: "사이즈"
         in_stock: "재고 있음"
+      variation_option:
+        name: "Name"
+        value: "Value"
       shop:
         name: "샵 이름"
         legal_name: "상호명"

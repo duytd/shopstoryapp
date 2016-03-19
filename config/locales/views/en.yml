@@ -21,7 +21,7 @@ en:
       title: "Showcase"
     preview:
       title: "Preview"
-  customer: 
+  customer:
     flash:
       cart_empty: "You cart must not be empty before checking out"
 
@@ -34,7 +34,7 @@ en:
       new_password: "New password"
       password_confirmation: "Password confirmation"
       submit: "Create your shop"
-    login: 
+    login:
       title: "Login to your shop"
       submit: "Login"
       forgot: "Forgot?"
@@ -91,7 +91,7 @@ en:
         title: "All Categories"
         add_category: "Add Category"
         edit_category: "Edit Category"
-      products: 
+      products:
         title: "All Products"
         add_product: "Add Product"
         edit_product: "Edit Product"
@@ -122,3 +122,6 @@ en:
         payment_status: "Payment Status"
       extensions:
         title: "Extensions"
+      variations:
+        custom_name: "Custom Name"
+        custom_name_placeholder: "Enter custom name for the option"

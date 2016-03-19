@@ -16,6 +16,7 @@ class Merchant::ProductsController < Merchant::BaseController
   def new
     @props = {
       categories: @categories,
+      default_option_names: VariationOption.default_names,
       url: merchant_products_path,
       method: :post
     }
@@ -24,7 +25,15 @@ class Merchant::ProductsController < Merchant::BaseController
   def create
     @product = Product.new product_params
     if @product.save
-      render json: @product, status: :ok
+      @props = {
+        product: @product,
+        en_product: load_translation(@product.translations, :en),
+        ko_product: load_translation(@product.translations, :ko),
+        variation_options: @product.variation_options,
+        variations: @product.variations.not_master,
+      }
+
+      render json: @props, status: :ok
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -37,16 +46,27 @@ class Merchant::ProductsController < Merchant::BaseController
       ko_product: load_translation(@product.translations, :ko),
       categories: @categories,
       category_ids: @product.category_ids,
-      variations: @product.variations,
+      variation_options: @product.variation_options,
+      variations: @product.variations.not_master,
+      default_option_names: VariationOption.default_names,
       product_images: @product.product_images,
       url: merchant_product_path(@product),
-      method: :put,
+      method: :put
     }
   end
 
   def update
     if @product.update product_params
-      render json: @product, status: :ok
+
+      @props = {
+        product: @product,
+        en_product: load_translation(@product.translations, :en),
+        ko_product: load_translation(@product.translations, :ko),
+        variation_options: @product.variation_options,
+        variations: @product.variations.not_master
+      }
+
+      render json: @props, status: :ok
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -60,7 +80,7 @@ class Merchant::ProductsController < Merchant::BaseController
   private
   def list_all
     products = Product.latest
-    
+
     @props = {
       products: products,
       url: new_merchant_product_path
@@ -79,7 +99,8 @@ class Merchant::ProductsController < Merchant::BaseController
   def product_params
     permitted = Product.globalize_attribute_names + [:price, :sale_off, :visibility,
       :vendor, :sku, :in_stock, category_ids: [], product_images: [],
-      variations_attributes: [:id, :color, :size, :in_stock, :_destroy],
+      variations_attributes: [:id, :sku, :price, :in_stock, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
+      variation_options_attributes: [:id, :name, :_destroy, variation_option_values_attributes: [:id, :name, :_destroy]],
       product_images_attributes: [:id, :image, :_destroy]]
     params.require(:product).permit *permitted
   end

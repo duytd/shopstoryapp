@@ -1,29 +1,41 @@
 var ProductForm = React.createClass({
   getInitialState: function () {
+    var variationOptions = (this.props.variation_options) ? this.props.variation_options : [];
     var variations = (this.props.variations) ? this.props.variations : [];
-    var product_images = (this.props.product_images) ? this.props.product_images : [];
+    var productImages = (this.props.product_images) ? this.props.product_images : [];
+
+    variationOptions.forEach(function(variationOption, index) {
+      variationOption["isDeleted"] = false;
+      variationOption["isNew"] = false;
+    })
 
     variations.forEach(function(variation, index) {
-      variation["position"] = index;
       variation["isDeleted"] = false;
       variation["isNew"] = false;
     })
 
     return {
       errors: {},
-      ko_count: 0,
-      en_count: 0,
-      variation_count: variations.length,
+      koCount: 0,
+      enCount: 0,
+      product: this.props.product,
+      enProduct: this.props.en_product,
+      koProduct: this.props.ko_product,
       variations: variations,
-      product_images: product_images
+      trigger: null,
+      method: this.props.method,
+      variationCount: variations.length,
+      variationOptions: variationOptions,
+      variationOptionCount: variationOptions.length,
+      productImages: productImages
     };
   },
   componentDidMount: function() {
     if ($("#product_dropzone").length) {
       var $form = $("#product_dropzone").closest("form");
       var url = $form.attr("action");
-      var auth_token = $('meta[name="csrf-token"]').attr("content");
-      var headers = {"X-CSRF-Token": auth_token};
+      var authToken = $('meta[name="csrf-token"]').attr("content");
+      var headers = {"X-CSRF-Token": authToken};
       var template = '<div class="dz-preview dz-file-preview"><div className="dz-details">' +
                      '<img data-dz-thumbnail width="200" height="auto" /></div>' +
                      '<i class="fa fa-trash" data-dz-remove></i>' +
@@ -36,7 +48,7 @@ var ProductForm = React.createClass({
         url: url,
         method: "put",
         headers: headers,
-        paramName1: "product[product_images_attributes]",
+        paramName1: "product[productImages_attributes]",
         paramName2: "[image]",
         uploadMultiple: true,
         autoProcessQueue: false,
@@ -46,16 +58,16 @@ var ProductForm = React.createClass({
 
       productDropzone.on("removedfile", function(file) {
         if (file.id) {
-          var data = "product[id]=" + this.props.product.id +
-            "&product[product_images_attributes][0][id]=" + file.id +
-            "&product[product_images_attributes][0][_destroy]=" + true;
+          var data = "product[id]=" + this.state.product.id +
+            "&product[productImages_attributes][0][id]=" + file.id +
+            "&product[productImages_attributes][0][_destroy]=" + true;
 
           this.handleDeleteImage(data);
         }
       }.bind(this));
     }
 
-    this.state.product_images.forEach(function (value) {
+    this.state.productImages.forEach(function (value) {
       var mockFile = {id: value.id, name: value.name};
 
       productDropzone.options.addedfile.call(productDropzone, mockFile);
@@ -63,18 +75,52 @@ var ProductForm = React.createClass({
     });
   },
   render: function () {
-    var variationNodes = this.state.variations.map(function (variation) {
-      return <Variation key={variation.position} validateInt={this.validateInt} variation={variation}
-        deleteVariation={this.deleteVariation} />
+    console.log(this.state.variationOptions)
+    var variationCount = this.state.variationCount;
+
+    if (this.state.trigger == "new_option") {
+      this.state.variationOptions.push({isNew: true})
+    }
+
+    if (this.state.trigger == "new_variation") {
+      this.state.variations.push({isNew: true, price: this.state.product.price})
+      variationCount ++;
+    }
+
+    var variationNodes = this.state.variations.map(function(variation, index) {
+      return (
+        <Variation
+          key={"variation_" + Math.random()}
+          index={index}
+          variation={variation}
+          validateInt={this.validateInt}
+          variationCount={variationCount}
+          variationOptions={this.state.variationOptions}
+          addVariation={this.addVariation}
+          deleteVariation={this.deleteVariation} />
+      )
+    }.bind(this));
+
+    var variationOptionNodes = this.state.variationOptions.map(function(variationOption, index) {
+      return (
+        <VariationOption
+          key={"variation_option_" + Math.random()}
+          index={index}
+          variationOption={variationOption}
+          deleteVariationOption={this.deleteVariationOption}
+          submit={this.submit}
+          trigger={this.state.trigger}
+          defaultNames={this.props.default_option_names} />
+      )
     }.bind(this));
 
     return (
       <form ref="form" id="product-form" className="product-form" action={this.props.url}
-        acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}
+        acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}
         encType="multipart/form-data" >
         <div className="col-md-9">
           <div className="block">
-            <LocaleNavTab ko_errors_count={this.state.ko_count} en_errors_count={this.state.en_count} />
+            <LocaleNavTab ko_errors_count={this.state.koCount} en_errors_count={this.state.enCount} />
 
             <div className="tab-content">
               <div id="ko" className="tab-pane fade in active">
@@ -86,12 +132,12 @@ var ProductForm = React.createClass({
                     }) : ""}
                   </div>
                   <input ref="name_ko" type="text" name="product[name_ko]"
-                    className="form-control" defaultValue={(this.props.ko_product) ? this.props.ko_product.name : ""} />
+                    className="form-control" defaultValue={(this.state.koProduct) ? this.props.ko_product.name : ""} />
                 </div>
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
                   <textarea ref="description_ko" name="product[description_ko]"
-                    className="form-control summernote" defaultValue={(this.props.ko_product) ? this.props.ko_product.description : ""}>
+                    className="form-control summernote" defaultValue={(this.state.koProduct) ? this.props.ko_product.description : ""}>
                   </textarea>
                 </div>
               </div>
@@ -104,17 +150,17 @@ var ProductForm = React.createClass({
                     }) : ""}
                   </div>
                   <input ref="name_en" type="text" name="product[name_en]"
-                    className="form-control" defaultValue={(this.props.en_product) ? this.props.en_product.name : ""} />
+                    className="form-control" defaultValue={(this.state.enProduct) ? this.state.enProduct.name : ""} />
                 </div>
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.product.description_en")}</label>
                   <div className="form-errors">
                     {(this.state.errors.description_en) ? this.state.errors.description_en.map(function(object){
                       return object;
-                    }) : ""}
+                    }) : null}
                   </div>
                   <textarea ref="description_en" name="product[description_en]"
-                    className="form-control summernote" defaultValue={(this.props.en_product) ? this.props.en_product.description : ""}>
+                    className="form-control summernote" defaultValue={(this.state.enProduct) ? this.state.enProduct.description : ""}>
                   </textarea>
                 </div>
               </div>
@@ -129,43 +175,43 @@ var ProductForm = React.createClass({
                 <div className="form-errors">
                   {(this.state.errors.price) ? this.state.errors.price.map(function(object){
                     return object;
-                  }) : ""}
+                  }) : null}
                 </div>
                 <input type="text" onBlur={this.validateNumber} className="form-control" name="product[price]"
-                  defaultValue={(this.props.product) ? this.props.product.price : "0.00"} />
+                  defaultValue={(this.props.product) ? this.state.product.price : "0.00"} />
               </div>
 
               <div className="form-group col-md-6">
                 <label className="label">{I18n.t("activerecord.attributes.product.sale_off")} (%)</label>
                 <input type="text" onBlur={this.validateNumber} className="form-control" name="product[sale_off]"
-                  defaultValue={(this.props.product) ? this.props.product.sale_off : "0.00"} />
+                  defaultValue={(this.props.product) ? this.state.product.sale_off : "0.00"} />
               </div>
             </div>
           </div>
 
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
-            <div className={(this.state.variation_count > 0) ? "hide" : "form-group"}>
+            <div className={(variationCount > 0) ? "hide" : "form-group"}>
               <label className="label">{I18n.t("activerecord.attributes.product.in_stock")}</label>
               <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
-                name="product[in_stock]" defaultValue={(this.props.product) ? this.props.product.in_stock : "0"} />
+                name="product[in_stock]" defaultValue={(this.props.product) ? this.state.product.in_stock : "0"} />
             </div>
-            <button className="btn btn-sm btn-primary" onClick={this.addVariation}>
-              {I18n.t("merchant.admin.buttons.add_variation")}
+            <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
+              {I18n.t("merchant.admin.buttons.add_option_type")}
             </button>
-            <table className={(this.state.variation_count > 0) ? "table" : "hide"}>
-              <thead>
-                <tr>
-                  <th>{I18n.t("activerecord.attributes.variation.color")}</th>
-                  <th>{I18n.t("activerecord.attributes.variation.size")}</th>
-                  <th>{I18n.t("activerecord.attributes.variation.in_stock")}</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {variationNodes}
-              </tbody>
-            </table>
+            <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
+              <div className="col-xs-5">
+                <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
+              </div>
+              <div className="col-xs-5">
+                <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
+              </div>
+              <div className="col-xs-2">
+              </div>
+            </div>
+            {variationOptionNodes}
+            <hr/>
+            {variationNodes}
           </div>
 
           <div className="block">
@@ -185,7 +231,7 @@ var ProductForm = React.createClass({
               <label className="styled-cb">
                 <input type="hidden" name="product[visibility]" value="0" />
                 <input ref="checkbox" type="checkbox" name="product[visibility]" value="1"
-                  defaultChecked={(this.props.product) ? this.props.product.visibility : true} />
+                  defaultChecked={(this.props.product) ? this.state.product.visibility : true} />
                 <i className="fa"></i>
                 {I18n.t("merchant.admin.forms.online")}
               </label>
@@ -197,7 +243,7 @@ var ProductForm = React.createClass({
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.product.sku")}</label>
               <input type="text" className="form-control" name="product[sku]"
-                defaultValue={(this.props.product) ? this.props.product.sku : ""}/>
+                defaultValue={(this.props.product) ? this.state.product.sku : ""}/>
             </div>
           </div>
 
@@ -243,71 +289,105 @@ var ProductForm = React.createClass({
       e.target.value = parseFloat(number).toFixed(2);
     }
   },
-  addVariation: function(e) {
+  addVariationOption: function(e) {
     e.preventDefault();
-    var variations = this.state.variations;
-    var variation_count = this.state.variation_count + 1;
 
-    variations.push({position: variations.length, isNew: true});
-    this.setState({variations: variations, variation_count: variation_count});
+    this.submit(null, "new_option");
+  },
+  deleteVariationOption: function(variationOption) {
+    var variationOptions = this.state.variationOptions;
+    var index = variationOptions.indexOf(variationOption);
+    var variationOptionCount = this.state.variationOptionCount - 1;
+
+    if (variationOption.isNew) {
+      variationOptions.splice(index, 1);
+    }
+    else {
+      variationOptions[index].isDeleted = true;
+    }
+
+    this.setState({variationOptionCount: variationOptionCount}, this.submit);
+  },
+  addVariation: function() {
+    this.submit(null, "new_variation");
   },
   deleteVariation: function(variation) {
     var variations = this.state.variations;
     var index = variations.indexOf(variation);
-    var variation_count = this.state.variation_count - 1;
+    var variationCount = this.state.variationCount - 1;
 
     if (variation.isNew) {
       variations.splice(index, 1);
     }
     else {
-      variations[index]["isDeleted"] = true;
+      variations[index].isDeleted = true;
     }
 
-    this.setState({variations: variations, variation_count: variation_count});
+    this.setState({variations: variations, variationCount: variationCount}, this.submit);
   },
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var description_en = $(this.refs.description_en.getDOMNode()).summernote("code");
-    var description_ko = $(this.refs.description_ko.getDOMNode()).summernote("code");
+  submit: function(e, trigger) {
+    if (typeof e !== "undefined" && e != null) {
+      e.preventDefault();
+    }
+
+    var description_en = $(this.refs.description_en).summernote("code");
+    var description_ko = $(this.refs.description_ko).summernote("code");
 
     this.refs.description_en.value = description_en;
     this.refs.description_ko.value = description_ko;
 
-    if (this.state.variation_count > 0) {
-      this.refs.in_stock.getDOMNode().value = "0";
+    if (this.state.variationCount > 0) {
+      this.refs.in_stock.value = "0";
     }
 
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
-    this.handleProductSubmit(formData, this.props.url, this.props.method);
+    this.handleProductSubmit(formData, trigger);
   },
-  handleProductSubmit: function(formData, action, method) {
+  handleProductSubmit: function(formData, trigger = null) {
+    var method = this.state.product ? "put" : "post";
+    var url = this.state.product ? Routes.merchant_product_path(this.state.product.id) : Routes.merchant_products_path();
+
     $.ajax({
       data: formData,
-      url: action,
+      url: url,
       method: method,
       dataType: "json",
-      success: function(product) {
-        var productId = product.id;
-        var url = Routes.merchant_product_path(productId);
+      success: function(response) {
+        var productId = response.product.id;
+        this.postImages(productId, Routes.merchant_product_path(productId));
 
-        this.postImages(productId, url);
-        Turbolinks.visit(Routes.merchant_products_path());
+        this.setState({
+          errors: [],
+          koCount: 0,
+          enCount: 0,
+          product: response.product,
+          en_product: response.en_product,
+          ko_product: response.ko_product,
+          product: response.product,
+          variations: response.variations,
+          variationOptions: response.variation_options,
+          variationCount: response.variations.length,
+          variationOptionCount: response.variation_options.length,
+          trigger: trigger,
+          method: "put"
+        });
       }.bind(this),
       error: function(xhr) {
-        var ko_count = 0;
-        var en_count = 0;
+        var koCount = 0;
+        var enCount = 0;
         var errors = xhr.responseJSON;
 
-        ko_count += (errors.name_ko) ? errors.name_ko.length : 0;
-        ko_count += (errors.description_ko) ? errors.description_ko.length : 0;
-        en_count += (errors.name_en) ? errors.name_en.length : 0;
-        en_count += (errors.description_en) ? errors.description_en.length : 0;
+        koCount += (errors.name_ko) ? errors.name_ko.length : 0;
+        koCount += (errors.description_ko) ? errors.description_ko.length : 0;
+        enCount += (errors.name_en) ? errors.name_en.length : 0;
+        enCount += (errors.description_en) ? errors.description_en.length : 0;
 
         this.setState({
           errors: errors,
-          ko_count: ko_count,
-          en_count: en_count
+          koCount: koCount,
+          enCount: enCount,
+          trigger: null,
         });
       }.bind(this)
     });
@@ -328,6 +408,6 @@ var ProductForm = React.createClass({
       url: url,
       method: "put",
       dataType: "json"
-    });
+    })
   }
-});
+})
