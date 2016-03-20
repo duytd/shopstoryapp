@@ -32,31 +32,39 @@ class Product < ActiveRecord::Base
 
   after_create :create_master
   after_update :update_master, if: :price_changed?
-  after_save :create_variations
+
+  def price=(price)
+    price = price.to_s.gsub ",", ""
+    self[:price] = price
+  end
 
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
   end
 
-  private
-  def update_master
-    master.update_attributes price: price
-  end
-
   def create_variations
     options = variation_options.includes :variation_option_values
 
-    if options.size > 0 && variations.not_master.count == 0
-      option_value_array = options.map{|option| option.variation_option_values}
-      option_value_array.first.product(*option_value_array[1..-1]).each do |a|
-        variation = variations.build price: price
+    begin
+      if options.size > 0 && variations.not_master.count == 0
+        option_value_array = options.map{|option| option.variation_option_values}
+        option_value_array.first.product(*option_value_array[1..-1]).each do |a|
+          variation = variations.build price: price
 
-        a.each do |value|
-          variation.variation_variation_option_values.build variation_option_value_id: value.id
+          a.each do |value|
+            variation.variation_variation_option_values.build variation_option_value_id: value.id
+          end
+
+          variation.save!
         end
-
-        variation.save!
       end
+    rescue Exception
+      return false
     end
+  end
+
+  private
+  def update_master
+    master.update_attributes price: price
   end
 end

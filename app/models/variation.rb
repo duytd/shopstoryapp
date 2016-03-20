@@ -1,7 +1,9 @@
 class Variation < ActiveRecord::Base
-  belongs_to :product, inverse_of: :variations
+  mount_uploader :image, ProductImageUploader
 
+  belongs_to :product, inverse_of: :variations
   has_many :variation_variation_option_values, dependent: :destroy, inverse_of: :variation
+
   accepts_nested_attributes_for :variation_variation_option_values, allow_destroy: true, reject_if: proc {|a| a[:variation_option_value_id].blank?}
 
   validates :product, presence: true
@@ -9,25 +11,24 @@ class Variation < ActiveRecord::Base
 
   before_validation :initialize_master_price, if: :master?
 
+  default_scope { order created_at: :asc }
   scope :not_master, -> {where master: false}
 
-  def in_stock
-    self[:in_stock] || product.in_stock
+  def price=(price)
+    price = price.to_s.gsub ",", ""
+    self[:price] = price
   end
 
-  def image
-    self[:image] || product.product_images.featured.try(:image)
+  def as_json options={}
+    super.as_json(options).merge({variation_option_values: variation_variation_option_values, has_image: has_image?})
   end
 
-  def sku
-    self[:sku] || product.sku
-  end
-
+  private
   def initialize_master_price
     self.price = product.price
   end
 
-  def as_json options={}
-    super.as_json(options).merge({variation_option_values: variation_variation_option_values})
+  def has_image?
+    image.present?
   end
 end

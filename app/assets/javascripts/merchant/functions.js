@@ -8,6 +8,10 @@ String.prototype.trimToLength = function(m) {
     : this;
 }
 
+String.prototype.toKoreanFormat = function() {
+  return I18n.toNumber(this.toString(), {delimiter: ",", precision: 0});
+}
+
 if (typeof Dropzone != "undefined") {
   Dropzone.prototype._getParamName = function(n) {
     if (typeof this.options.paramName === "function") {

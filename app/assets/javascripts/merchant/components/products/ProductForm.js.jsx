@@ -22,7 +22,6 @@ var ProductForm = React.createClass({
       enProduct: this.props.en_product,
       koProduct: this.props.ko_product,
       variations: variations,
-      trigger: null,
       method: this.props.method,
       variationCount: variations.length,
       variationOptions: variationOptions,
@@ -48,7 +47,7 @@ var ProductForm = React.createClass({
         url: url,
         method: "put",
         headers: headers,
-        paramName1: "product[productImages_attributes]",
+        paramName1: "product[product_images_attributes]",
         paramName2: "[image]",
         uploadMultiple: true,
         autoProcessQueue: false,
@@ -59,8 +58,8 @@ var ProductForm = React.createClass({
       productDropzone.on("removedfile", function(file) {
         if (file.id) {
           var data = "product[id]=" + this.state.product.id +
-            "&product[productImages_attributes][0][id]=" + file.id +
-            "&product[productImages_attributes][0][_destroy]=" + true;
+            "&product[product_images_attributes][0][id]=" + file.id +
+            "&product[product_images_attributes][0][_destroy]=" + true;
 
           this.handleDeleteImage(data);
         }
@@ -75,17 +74,8 @@ var ProductForm = React.createClass({
     });
   },
   render: function () {
-    console.log(this.state.variationOptions)
     var variationCount = this.state.variationCount;
-
-    if (this.state.trigger == "new_option") {
-      this.state.variationOptions.push({isNew: true})
-    }
-
-    if (this.state.trigger == "new_variation") {
-      this.state.variations.push({isNew: true, price: this.state.product.price})
-      variationCount ++;
-    }
+    var url = this.state.product ? Routes.merchant_product_path(this.state.product.id) : Routes.merchant_products_path();
 
     var variationNodes = this.state.variations.map(function(variation, index) {
       return (
@@ -93,7 +83,9 @@ var ProductForm = React.createClass({
           key={"variation_" + Math.random()}
           index={index}
           variation={variation}
+          submit={this.submit}
           validateInt={this.validateInt}
+          validateNumber={this.validateNumber}
           variationCount={variationCount}
           variationOptions={this.state.variationOptions}
           addVariation={this.addVariation}
@@ -109,13 +101,12 @@ var ProductForm = React.createClass({
           variationOption={variationOption}
           deleteVariationOption={this.deleteVariationOption}
           submit={this.submit}
-          trigger={this.state.trigger}
           defaultNames={this.props.default_option_names} />
       )
     }.bind(this));
 
     return (
-      <form ref="form" id="product-form" className="product-form" action={this.props.url}
+      <form ref="form" id="product-form" className="product-form" action={url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}
         encType="multipart/form-data" >
         <div className="col-md-9">
@@ -178,7 +169,7 @@ var ProductForm = React.createClass({
                   }) : null}
                 </div>
                 <input type="text" onBlur={this.validateNumber} className="form-control" name="product[price]"
-                  defaultValue={(this.props.product) ? this.state.product.price : "0.00"} />
+                  defaultValue={(this.props.product) ? this.state.product.price.toString().toKoreanFormat() : 0} />
               </div>
 
               <div className="form-group col-md-6">
@@ -197,7 +188,7 @@ var ProductForm = React.createClass({
                 name="product[in_stock]" defaultValue={(this.props.product) ? this.state.product.in_stock : "0"} />
             </div>
             <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
-              {I18n.t("merchant.admin.buttons.add_option_type")}
+              {I18n.t("merchant.admin.products.buttons.add_option_type")}
             </button>
             <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
               <div className="col-xs-5">
@@ -210,6 +201,12 @@ var ProductForm = React.createClass({
               </div>
             </div>
             {variationOptionNodes}
+            {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
+              <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
+                {I18n.t("merchant.admin.products.buttons.populate_variation")}
+              </button> :
+              null
+            }
             <hr/>
             {variationNodes}
           </div>
@@ -273,7 +270,7 @@ var ProductForm = React.createClass({
     var integer = e.target.value.trim();
 
     if (!integer || isNaN(integer)) {
-      e.target.value = "0";
+      e.target.value = 0;
     }
     else {
       e.target.value = parseInt(integer);
@@ -282,17 +279,32 @@ var ProductForm = React.createClass({
   validateNumber: function(e) {
     var number = e.target.value.trim();
 
-    if (!number || isNaN(number)) {
-      e.target.value = "0.00";
+    if (!number || isNaN(number.toString().replace(/[,.]/g, ""))) {
+      e.target.value = 0;
     }
     else {
-      e.target.value = parseFloat(number).toFixed(2);
+      e.target.value = parseFloat(number).toString().toKoreanFormat();
     }
   },
   addVariationOption: function(e) {
     e.preventDefault();
 
-    this.submit(null, "new_option");
+    this.submit(null, {name: "new_option"});
+  },
+  populateVariation: function(e) {
+    e.preventDefault();
+    var url = Routes.merchant_product_variations_path(this.state.product.id);
+
+    $.ajax({
+      url: url,
+      method: "post",
+      success: function(variations) {
+        this.setState({variations: variations, variationCount: variations.length});
+      }.bind(this),
+      error: function(xhr) {
+        console.log(xhr.responseText);
+      }
+    })
   },
   deleteVariationOption: function(variationOption) {
     var variationOptions = this.state.variationOptions;
@@ -309,7 +321,7 @@ var ProductForm = React.createClass({
     this.setState({variationOptionCount: variationOptionCount}, this.submit);
   },
   addVariation: function() {
-    this.submit(null, "new_variation");
+    this.submit(null, {name: "new_variation"});
   },
   deleteVariation: function(variation) {
     var variations = this.state.variations;
@@ -340,22 +352,43 @@ var ProductForm = React.createClass({
       this.refs.in_stock.value = "0";
     }
 
-    var formData = $(this.refs.form).serialize();
+    var form = $(this.refs.form);
 
-    this.handleProductSubmit(formData, trigger);
+    this.handleProductSubmit(form, trigger);
   },
-  handleProductSubmit: function(formData, trigger = null) {
+  handleProductSubmit: function(form, trigger = null) {
     var method = this.state.product ? "put" : "post";
     var url = this.state.product ? Routes.merchant_product_path(this.state.product.id) : Routes.merchant_products_path();
 
     $.ajax({
-      data: formData,
+      data: new FormData(form[0]),
       url: url,
       method: method,
       dataType: "json",
+      contentType: false,
+      processData: false,
       success: function(response) {
         var productId = response.product.id;
         this.postImages(productId, Routes.merchant_product_path(productId));
+
+        if (trigger != null) {
+          switch(trigger.name) {
+            case "new_option":
+              response.variation_options.push({isNew: true});
+              break;
+            case "new_variation":
+              response.variations.push({isNew: true, price: this.state.product.price})
+              break;
+            case "new_option_value":
+              response.variation_options.forEach(function(option) {
+                if (option.id == trigger.id) {
+                  option.option_values.push({isNew: true});
+                }
+              })
+            default:
+              break;
+          }
+        }
 
         this.setState({
           errors: [],
@@ -369,7 +402,6 @@ var ProductForm = React.createClass({
           variationOptions: response.variation_options,
           variationCount: response.variations.length,
           variationOptionCount: response.variation_options.length,
-          trigger: trigger,
           method: "put"
         });
       }.bind(this),
@@ -387,7 +419,6 @@ var ProductForm = React.createClass({
           errors: errors,
           koCount: koCount,
           enCount: enCount,
-          trigger: null,
         });
       }.bind(this)
     });

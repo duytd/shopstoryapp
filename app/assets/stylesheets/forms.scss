@@ -176,3 +176,25 @@ $input-bg-color: #e9ebed;
     cursor: pointer;
   }
 }
+
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  display: inline;
+  margin-right: 10px;
+  button {
+    margin-right: 0;
+  }
+  input.upload {
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: -5px;
+    width: 100%;
+    filter: alpha(opacity=0);
+  }
+}

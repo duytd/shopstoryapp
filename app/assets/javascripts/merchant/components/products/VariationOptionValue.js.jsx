@@ -14,7 +14,7 @@ var VariationOptionValue = React.createClass({
             defaultValue={this.props.optionValue.name} />
         </div>
 
-        <div className="col-xs-3">
+        <div className="col-xs-5">
           {(this.props.optionValueCount == this.props.index + 1) ?
               <button className="btn btn-default" onClick={this.addOptionValue}>
                 <i className="fa fa-plus"></i>

@@ -17,8 +17,6 @@ class Merchant::ProductsController < Merchant::BaseController
     @props = {
       categories: @categories,
       default_option_names: VariationOption.default_names,
-      url: merchant_products_path,
-      method: :post
     }
   end
 
@@ -50,8 +48,6 @@ class Merchant::ProductsController < Merchant::BaseController
       variations: @product.variations.not_master,
       default_option_names: VariationOption.default_names,
       product_images: @product.product_images,
-      url: merchant_product_path(@product),
-      method: :put
     }
   end
 
@@ -99,7 +95,7 @@ class Merchant::ProductsController < Merchant::BaseController
   def product_params
     permitted = Product.globalize_attribute_names + [:price, :sale_off, :visibility,
       :vendor, :sku, :in_stock, category_ids: [], product_images: [],
-      variations_attributes: [:id, :sku, :price, :in_stock, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
+      variations_attributes: [:id, :sku, :price, :image, :in_stock, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
       variation_options_attributes: [:id, :name, :_destroy, variation_option_values_attributes: [:id, :name, :_destroy]],
       product_images_attributes: [:id, :image, :_destroy]]
     params.require(:product).permit *permitted

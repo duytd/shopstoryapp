@@ -4,7 +4,7 @@ var Order = React.createClass({
       billingAddress = this.props.order.billing_address,
       payment = this.props.order.payment,
       paymentStatus = "";
-      
+
     if (payment) {
       switch(payment.state) {
         case "pending":
@@ -19,10 +19,10 @@ var Order = React.createClass({
         default:
           break;
       }
-      
+
       paymentStatus = (
         <div className={"label " + paymentStatusKlass}>
-          {payment ? this.props.order.payment.state.capitalize() : ""} 
+          {payment ? this.props.order.payment.state.capitalize() : ""}
         </div>
       )
     }
@@ -65,12 +65,12 @@ var Order = React.createClass({
           {I18n.l("time.formats.short", this.props.order.created_at)}
         </td>
         <td>
-          {billingAddress ? (billingAddress.first_name || "") + " " + 
+          {billingAddress ? (billingAddress.first_name || "") + " " +
             (billingAddress.last_name || "") : ""}
         </td>
         <td>
-          {shippingAddress ? (shippingAddress.first_name || "") + " " + 
-            (shippingAddress.last_name || "") : ""} 
+          {shippingAddress ? (shippingAddress.first_name || "") + " " +
+            (shippingAddress.last_name || "") : ""}
         </td>
         <td>
           {paymentStatus}

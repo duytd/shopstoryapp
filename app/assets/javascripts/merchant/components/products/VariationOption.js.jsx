@@ -1,14 +1,16 @@
 var VariationOption = React.createClass({
   getInitialState: function() {
     var activeSelector = this.props.variationOption.isNew ? true : false;
-    var optionValues = this.props.variationOption.option_values ? this.props.variationOption.option_values : [];
+    var optionValues = this.props.variationOption.option_values ? this.props.variationOption.option_values.slice() : [];
 
     optionValues.forEach(function(value, index) {
-      value["isDeleted"] = false;
-      value["isNew"] = false;
+      if (!value.isNew) {
+        value["isDeleted"] = false;
+        value["isNew"] = false;
+      }
     })
 
-    if (optionValues.length == 0 || this.props.trigger == "new_option_value") {
+    if (optionValues.length == 0) {
       optionValues.push({isNew: true})
     }
 
@@ -44,24 +46,22 @@ var VariationOption = React.createClass({
         <input type="hidden" name={"product[variation_options_attributes][" + this.props.index + "][_destroy]"}
           value={this.props.variationOption.isDeleted} />
         <div className="col-xs-5">
-
-        {(this.state.activeSelector) ? (
-            <div className="select" onChange={this.checkActiveSelector}>
-              <select className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
-                {nameNodes}
-                <option value="custom">{I18n.t("merchant.admin.variations.custom_name")}</option>
-              </select>
-            </div>
-          )
-        : (
-            <input ref="custom_name" type="text" className="form-control input-sm"
-              name={"product[variation_options_attributes][" + this.props.index + "][name]"}
-              onBlur={this.props.submit}
-              placeholder={I18n.t("merchant.admin.variations.custom_name_placeholder")}
-              defaultValue={this.props.variationOption.name} onChange={this.checkInputName} onBlur={this.props.submit} />
-          )
-        }
-
+          {(this.state.activeSelector) ? (
+              <div className="select" onChange={this.checkActiveSelector}>
+                <select className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
+                  {nameNodes}
+                  <option value="custom">{I18n.t("merchant.admin.variations.custom_name")}</option>
+                </select>
+              </div>
+            )
+          : (
+              <input ref="custom_name" type="text" className="form-control input-sm"
+                name={"product[variation_options_attributes][" + this.props.index + "][name]"}
+                onBlur={this.props.submit}
+                placeholder={I18n.t("merchant.admin.variations.custom_name_placeholder")}
+                defaultValue={this.props.variationOption.name} onChange={this.checkInputName} onBlur={this.props.submit} />
+            )
+          }
         </div>
         <div className="col-xs-5">
           {optionValueNodes}
@@ -79,7 +79,7 @@ var VariationOption = React.createClass({
     this.props.deleteVariationOption(this.props.variationOption);
   },
   addOptionValue: function() {
-    this.props.submit(null, "new_option_value");
+    this.props.submit(null, {name: "new_option_value", id: this.props.variationOption.id});
   },
   deleteOptionValue: function(optionValue) {
     var optionValues = this.state.optionValues;

@@ -25,24 +25,6 @@ ko:
       cart_empty: "카트가 비어있습니다."
 
   merchant:
-    registrations:
-      title: "샵 이름을 입력하세요 !"
-      shop_name: "샵 이름"
-      email: "Email"
-      password: "비밀번호"
-      new_password: "새로운 비밀번호"
-      password_confirmation: "새로운 비밀번호 다시 입력"
-      submit: "샵 생성하기"
-    login:
-      title: "샵 로그인"
-      submit: "로그인"
-      forgot: "비밀번호를 잊으셨나요?"
-      remember_me: "기억하기"
-    passwords:
-      title: "비밀번호를 잊으셨나요?"
-      subtitle: "걱정마세요. 이메일주소를 입력하고 재설정할 수 있습니다."
-      submit: "비밀번호 설정 가이드"
-      change_password: "비밀번호 변경하기"
     admin:
       menu:
         dashboard: "대시보드"
@@ -90,12 +72,6 @@ ko:
         title: "모든 카테고리"
         add_category: "카테고리 추가"
         edit_category: "카테고리 수정"
-      products:
-        title: "모든 상품"
-        add_product: "상품 추가"
-        edit_product: "상품 수정"
-        color_placeholder: "예: 빨강, 파랑, 흰색 등등.."
-        size_placeholder: "예: S, M, L, 등등.."
       shops:
         general_settings: "설정 / 일반"
         basic_information: "기본 정보"
