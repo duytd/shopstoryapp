@@ -1,0 +1,18 @@
+ko:
+  merchant:
+    admin:
+      products:
+        title: "모든 상품"
+        add_product: "상품 추가"
+        edit_product: "상품 수정"
+        color_placeholder: "예: 빨강, 파랑, 흰색 등등.."
+        size_placeholder: "예: S, M, L, 등등.."
+        buttons:
+          add_option_type: "Add Option Type"
+          populate_variation: "Populate Variation"
+      variations:
+        custom_name: "Custom Name"
+        custom_name_placeholder: "Enter custom name for the option"
+        price_placeholder: "Price"
+        sku_placeholder: "SKU"
+        in_stock_placeholder: "In Stock"

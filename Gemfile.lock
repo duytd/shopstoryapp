@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: f425ed092b452c58f72c64da511a8a52548e2e28
+  revision: 77713b7362af19ee10b9295b3174141673259bff
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)

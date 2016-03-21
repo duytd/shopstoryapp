@@ -7,7 +7,6 @@ class CreatePayments < ActiveRecord::Migration
       t.decimal :amount, default: 0
       t.string :transaction_number
       t.string :paid_at
-      t.string :
       t.string :submethod
       t.text :extra_data
 
