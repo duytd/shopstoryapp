@@ -32,11 +32,12 @@ class Merchant::ShopsController < Merchant::BaseController
 
   private
   def shop_params
-    permitted = Shop.globalize_attribute_names + [:name, :email, :legal_name, :phone,
-      :city, :country, :zip_code, :time_zone, :metric_system, :weight_unit, :domain,
-      :currency, :facebook_url, :instagram_url, :pinterest_url]
+    permitted = Shop.globalize_attribute_names + [:name, :email, :legal_name, :phone, :city, :country, :zip_code, :time_zone, :metric_system,
+      :weight_unit, :domain, :currency, :facebook_url, :instagram_url, :pinterest_url, :ceo, :business_number, :service_phone, :online_retail_number,
+      :privacy_manager, :privacy_email]
     params.require(:shop).permit *permitted
   end
+
 
   def load_timezones
     @time_zones = all_timezones

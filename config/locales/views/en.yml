@@ -76,6 +76,7 @@ en:
       shops:
         general_settings: "Settings / General"
         basic_information: "Basic Information"
+        business_information: "Business Information"
         contact: "Contact"
         format: "Standards / Formats"
         social: "Social Accounts"

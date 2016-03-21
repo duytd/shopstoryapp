@@ -76,6 +76,13 @@ en:
         instagram_url: "Instagram Link"
         pinterest_url: "Pinterest Link"
         naver_url: "Naver blog"
+        domain: "Domain"
+        business_number: "Business Number"
+        ceo: "Company CEO"
+        service_phone: "Service Phone Number"
+        online_retail_number: "Online Retail Number"
+        privacy_manager: "Privacy Manager"
+        privacy_email: "Privacy Email"
       payment_method_shop:
         key: "Key (*.zip)"
         active: "Enabled"

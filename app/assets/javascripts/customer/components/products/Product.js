@@ -12,7 +12,7 @@ var Product = React.createClass({
       variation: variation,
       cartErrors: [],
       isCartOpened: false
-    };
+    }
   },
   render: ProductRT,
   openCart: function() {

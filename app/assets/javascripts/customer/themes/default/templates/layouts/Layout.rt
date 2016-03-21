@@ -11,5 +11,5 @@
   <div class="container">
     {this.props.children}
   </div>
-  <Footer />
+  <Footer businessInfo="{this.props.globalVars.business_information}" />
 </div>

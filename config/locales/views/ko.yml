@@ -75,6 +75,7 @@ ko:
       shops:
         general_settings: "설정 / 일반"
         basic_information: "기본 정보"
+        business_number: "비즈니스 정보"
         contact: "연락처"
         format: "표준 / 포맷"
         social: "소셜 네크워크"

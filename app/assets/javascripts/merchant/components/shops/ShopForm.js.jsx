@@ -64,14 +64,46 @@ var ShopForm = React.createClass({
         </div>
 
         <div className="col-md-12">
-          <h4 className="form-title">{I18n.t("merchant.admin.shops.contact")}</h4>
+          <h4 className="form-title">{I18n.t("merchant.admin.shops.business_information")}</h4>
           <div className="row">
             <div className="col-md-12 block">
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-4">
                 <label className="label">{I18n.t("activerecord.attributes.shop.legal_name")}</label>
                 <input type="text" className="form-control" name="shop[legal_name]" defaultValue={this.props.shop.legal_name} />
               </div>
+              <div className="form-group col-md-4">
+                <label className="label">{I18n.t("activerecord.attributes.shop.business_number")}</label>
+                <input type="text" className="form-control" name="shop[business_number]" defaultValue={this.props.shop.business_number} />
+              </div>
+              <div className="form-group col-md-4">
+                <label className="label">{I18n.t("activerecord.attributes.shop.ceo")}</label>
+                <input type="text" className="form-control" name="shop[ceo]" defaultValue={this.props.shop.ceo} />
+              </div>
               <div className="form-group col-md-6">
+                <label className="label">{I18n.t("activerecord.attributes.shop.service_phone")}</label>
+                <input type="text" className="form-control" name="shop[service_phone]" defaultValue={this.props.shop.service_phone} />
+              </div>
+              <div className="form-group col-md-6">
+                <label className="label">{I18n.t("activerecord.attributes.shop.online_retail_number")}</label>
+                <input type="text" className="form-control" name="shop[online_retail_number]" defaultValue={this.props.shop.online_retail_number} />
+              </div>
+              <div className="form-group col-md-6">
+                <label className="label">{I18n.t("activerecord.attributes.shop.privacy_manager")}</label>
+                <input type="text" className="form-control" name="shop[privacy_manager]" defaultValue={this.props.shop.privacy_manager} />
+              </div>
+              <div className="form-group col-md-6">
+                <label className="label">{I18n.t("activerecord.attributes.shop.privacy_email")}</label>
+                <input type="text" className="form-control" name="shop[privacy_email]" defaultValue={this.props.shop.privacy_email} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-12">
+          <h4 className="form-title">{I18n.t("merchant.admin.shops.contact")}</h4>
+          <div className="row">
+            <div className="col-md-12 block">
+              <div className="form-group col-md-4">
                 <label className="label">{I18n.t("activerecord.attributes.shop.phone")}</label>
                 <input type="text" className="form-control" name="shop[phone]" defaultValue={this.props.shop.phone} />
               </div>
@@ -84,18 +116,21 @@ var ShopForm = React.createClass({
                   </select>
                 </div>
               </div>
+
+              {(!this.state.koreanMode) ?
               <div className="form-group col-md-4">
                 <label className="label">{I18n.t("activerecord.attributes.shop.city")}</label>
                 <input type="text" className="form-control" name="shop[city]" defaultValue={this.props.shop.city} />
-              </div>
+              </div> : null}
+
               <div className="form-group col-md-4">
                 <label className="label">
                   {I18n.t("activerecord.attributes.shop.zip_code")}
                   <span className="hint">
-                    {(this.state.koreanMode == true) ? I18n.t("merchant.admin.shops.zipcode_hint") : ""}
+                    {(this.state.koreanMode) ? I18n.t("merchant.admin.shops.zipcode_hint") : ""}
                   </span>
                 </label>
-                <input type="text" ref="zip_code" readOnly={this.state.koreanMode == true} className="form-control"
+                <input type="text" ref="zip_code" readOnly={this.state.koreanMode} className="form-control"
                   name="shop[zip_code]" defaultValue={this.props.shop.zip_code} />
               </div>
               <div className={(this.state.koreanMode) ? "form-group col-md-12" : "hide"}>
@@ -221,7 +256,7 @@ var ShopForm = React.createClass({
     });
   },
   streetClick: function() {
-    if (this.state.koreanMode == true) {
+    if (this.state.koreanMode) {
       openDaumPostcode(this.handleStreetClick);
     }
   },
