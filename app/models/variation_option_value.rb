@@ -5,4 +5,6 @@ class VariationOptionValue < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :variation_variation_option_values, dependent: :destroy
+
+  scope :relating_to_variations, ->{includes(:variation_variation_option_values).where.not(variation_variation_option_values: {id: nil})}
 end

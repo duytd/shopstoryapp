@@ -31,7 +31,11 @@ class Product < ActiveRecord::Base
   scope :available, ->{where "in_stock > ?", 0}
 
   after_create :create_master
-  after_update :update_master, if: :price_changed?
+  after_update :update_master
+
+  def name
+    name_ko || name_en
+  end
 
   def price=(price)
     price = price.to_s.gsub ",", ""
@@ -65,6 +69,6 @@ class Product < ActiveRecord::Base
 
   private
   def update_master
-    master.update_attributes price: price
+    master.save!
   end
 end

@@ -16,7 +16,7 @@
       </div>
 
       <div class="col-xs-3">
-        <strong>{item.product.name.toUpperCase()}</strong>
+        <strong>{item.variation.name.toUpperCase()}</strong>
       </div>
 
       <div class="col-xs-3">

@@ -5,13 +5,17 @@ var ProductForm = React.createClass({
     var productImages = (this.props.product_images) ? this.props.product_images : [];
 
     variationOptions.forEach(function(variationOption, index) {
-      variationOption["isDeleted"] = false;
-      variationOption["isNew"] = false;
+      if (!variationOption.isNew) {
+        variationOption["isDeleted"] = false;
+        variationOption["isNew"] = false;
+      }
     })
 
     variations.forEach(function(variation, index) {
-      variation["isDeleted"] = false;
-      variation["isNew"] = false;
+      if (!variation.isNew) {
+        variation["isDeleted"] = false;
+        variation["isNew"] = false;
+      }
     })
 
     return {

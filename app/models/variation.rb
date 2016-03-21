@@ -9,7 +9,7 @@ class Variation < ActiveRecord::Base
   validates :product, presence: true
   validates :price, presence: true
 
-  before_validation :initialize_master_price, if: :master?
+  before_validation :initialize_master, if: :master?
 
   default_scope { order created_at: :asc }
   scope :not_master, -> {where master: false}
@@ -19,13 +19,23 @@ class Variation < ActiveRecord::Base
     self[:price] = price
   end
 
+  def name
+    if master?
+      product.name
+    else
+      "#{product.name} (#{variation_variation_option_values.map{|v| v.variation_option_value.name}.join(',')})"
+    end
+  end
+
   def as_json options={}
-    super.as_json(options).merge({variation_option_values: variation_variation_option_values, has_image: has_image?})
+    super.as_json(options).merge({name: name, variation_option_values: variation_variation_option_values, has_image: has_image?})
   end
 
   private
-  def initialize_master_price
+  def initialize_master
     self.price = product.price
+    self.sku = product.sku
+    self.in_stock = product.in_stock
   end
 
   def has_image?

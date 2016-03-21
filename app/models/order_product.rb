@@ -13,7 +13,7 @@ class OrderProduct < ActiveRecord::Base
   default_scope {order created_at: :asc}
 
   def as_json options={}
-    super.as_json(options).merge({product: product})
+    super.as_json(options).merge({variation: variation})
   end
 
   private

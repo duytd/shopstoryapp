@@ -14,12 +14,12 @@
 
     <div className="col-md-6 col-sm-6">
       <h2>{this.props.product.name}</h2>
-      <p>{this.props.product.sku}</p>
+      <p>{this.state.variation.sku}</p>
       <p>
-        <strong>{I18n.toCurrency(this.props.product.price, {precision: 0, unit: this.props.globalVars.currency})}</strong>
+        <strong>{I18n.toCurrency(this.state.variation.price, {precision: 0, unit: this.props.globalVars.currency})}</strong>
       </p>
       <p>
-        {(this.props.product.in_stock > 0) ? I18n.t("products.in_stock") + ": "+ this.props.product.in_stock : I18n.t("products.out_of_order").toUpperCase()}
+        {(this.state.variation.in_stock > 0) ? I18n.t("products.in_stock") + ": "+ this.state.variation.in_stock : I18n.t("products.out_of_order").toUpperCase()}
       </p>
       <form ref="form" action="{this.props.cart_url}" method="post">
         <input type="hidden" name="order_product[variation_id]" value="{this.state.variation.id}" />

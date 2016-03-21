@@ -1,8 +1,15 @@
 var Product = React.createClass({
   mixins: [CartMixin],
   getInitialState: function() {
+    if (this.props.variations.length == 0) {
+      variation = this.props.master
+    }
+    else {
+      variation = this.props.variations[0];
+    }
+
     return {
-      variation: this.props.product.variations[0],
+      variation: variation,
       cartErrors: [],
       isCartOpened: false
     };
@@ -43,6 +50,9 @@ var Product = React.createClass({
         this.openCart();
       }.bind(this)
     });
+  },
+  updateVariation: function(variation) {
+    this.setState({variation: variation});
   }
 });
 
