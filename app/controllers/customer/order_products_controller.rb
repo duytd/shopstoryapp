@@ -2,7 +2,7 @@ class Customer::OrderProductsController < Customer::BaseController
   load_and_authorize_resource
 
   def create
-    if order_product = current_order.order_products.find_by(product_id: params[:order_product][:product_id])
+    if order_product = current_order.order_products.find_by(variation_id: params[:order_product][:variation_id])
       order_product.quantity = order_product.quantity + params[:order_product][:quantity].to_i
     else
       order_product = current_order.order_products.new order_product_params
@@ -30,6 +30,6 @@ class Customer::OrderProductsController < Customer::BaseController
 
   private
   def order_product_params
-    params.require(:order_product).permit :product_id, :quantity
+    params.require(:order_product).permit :variation_id, :quantity
   end
 end

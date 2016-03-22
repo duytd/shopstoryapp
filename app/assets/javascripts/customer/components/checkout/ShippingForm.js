@@ -38,7 +38,9 @@ var ShippingForm = React.createClass({
       success: function(order) {
         this.setState({errors: []});
         this.props.updateOrder(order);
-        this.props.disableEditing();
+
+        if (this.props.disableEditing)
+          this.props.disableEditing();
       }.bind(this),
       error: function(xhr) {
         this.setState({errors: xhr.responseJSON});

@@ -61,6 +61,7 @@ $.extend(true, I18n.translations, {
       "products": "상품"
     },
     "products": {
+      "featured_products": "주요 제품",
       "in_stock": "재고 있음",
       "out_of_order": "재고 없음",
       "add_to_cart": "장바구니에 추가"
@@ -80,6 +81,8 @@ $.extend(true, I18n.translations, {
         "or": "혹은",
         "thank_you": "감사합니다",
         "order_info": "고객님의 주문번호는 %{order_number}입니다",
+        "payment_info": "24시간내에 아래 은행 계좌로 입금해주세요.
+입금이 완료되는대로 주문이 완료됩니다.",
         "delivery_info": "배송 소요기간은 약 %{delivery_range}일 입니다.(영업일기준)",
         "support": "문의사항은 %{email} 로 보내주세요"
       },

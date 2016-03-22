@@ -1,0 +1,20 @@
+en:
+  merchant:
+    registrations:
+      title: "Create your shop now !"
+      shop_name: "Shop name"
+      email: "Email"
+      password: "Password"
+      new_password: "New password"
+      password_confirmation: "Password confirmation"
+      submit: "Create your shop"
+    login:
+      title: "Login to your shop"
+      submit: "Login"
+      forgot: "Forgot?"
+      remember_me: "Remember me"
+    passwords:
+      title: "Forgot your password?"
+      subtitle: "Don't worry. Enter your email address to reset it"
+      submit: "Get password instructions"
+      change_password: "Change password"

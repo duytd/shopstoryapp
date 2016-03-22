@@ -61,6 +61,7 @@ $.extend(true, I18n.translations, {
       "products": "products"
     },
     "products": {
+      "featured_products": "Featured Products",
       "in_stock": "In Stock",
       "out_of_order": "Out of order",
       "add_to_cart": "Add To Cart"
@@ -80,6 +81,8 @@ $.extend(true, I18n.translations, {
         "or": "or",
         "thank_you": "Thank You",
         "order_info": "Your order number is %{order_number}",
+        "payment_info": "Please complete your purchase by making a deposit to the below bank account within 24 hours.
+Your order will be confirmed immediately after the payment has been made",
         "delivery_info": "Delivery time is within %{delivery_range} business days",
         "support": "Email us at %{email} if you have any questions"
       },

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303061848) do
+ActiveRecord::Schema.define(version: 20160321075738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,26 @@ ActiveRecord::Schema.define(version: 20160303061848) do
 
   add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
   add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
+
+  create_table "custom_page_translations", force: :cascade do |t|
+    t.integer  "custom_page_id", null: false
+    t.string   "locale",         null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "title"
+    t.text     "content"
+  end
+
+  add_index "custom_page_translations", ["custom_page_id"], name: "index_custom_page_translations_on_custom_page_id", using: :btree
+  add_index "custom_page_translations", ["locale"], name: "index_custom_page_translations_on_locale", using: :btree
+
+  create_table "custom_pages", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -125,15 +145,15 @@ ActiveRecord::Schema.define(version: 20160303061848) do
 
   create_table "order_products", force: :cascade do |t|
     t.integer  "order_id"
-    t.integer  "product_id"
+    t.integer  "variation_id"
     t.decimal  "unit_price"
     t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "order_products", ["order_id"], name: "index_order_products_on_order_id", using: :btree
-  add_index "order_products", ["product_id"], name: "index_order_products_on_product_id", using: :btree
+  add_index "order_products", ["variation_id"], name: "index_order_products_on_variation_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "type"
@@ -210,6 +230,7 @@ ActiveRecord::Schema.define(version: 20160303061848) do
     t.integer  "state",              default: 0
     t.decimal  "amount",             default: 0.0
     t.string   "transaction_number"
+    t.string   "paid_at"
     t.string   "submethod"
     t.text     "extra_data"
     t.datetime "created_at",                       null: false
@@ -234,8 +255,9 @@ ActiveRecord::Schema.define(version: 20160303061848) do
   create_table "product_images", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "featured",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "product_images", ["product_id"], name: "index_product_images_on_product_id", using: :btree
@@ -316,11 +338,16 @@ ActiveRecord::Schema.define(version: 20160303061848) do
     t.string   "facebook_url"
     t.string   "instagram_url"
     t.string   "pinterest_url"
-    t.string   "client_id"
     t.string   "api_key"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.decimal  "exchange_rate", default: 1000.0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.decimal  "exchange_rate",        default: 1000.0
+    t.string   "ceo"
+    t.string   "business_number"
+    t.string   "service_phone"
+    t.string   "online_retail_number"
+    t.string   "privacy_manager"
+    t.string   "privacy_email"
   end
 
   add_index "shops", ["plan_id"], name: "index_shops_on_plan_id", using: :btree
@@ -356,15 +383,6 @@ ActiveRecord::Schema.define(version: 20160303061848) do
 
   add_index "shopstory_ticket_events", ["seller_id"], name: "index_shopstory_ticket_events_on_seller_id", using: :btree
   add_index "shopstory_ticket_events", ["source"], name: "index_shopstory_ticket_events_on_source", using: :btree
-
-  create_table "shopstory_ticket_sellers", force: :cascade do |t|
-    t.string   "email"
-    t.string   "access_token"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "shopstory_ticket_sellers", ["email"], name: "index_shopstory_ticket_sellers_on_email", using: :btree
 
   create_table "shopstory_ticket_settings", force: :cascade do |t|
     t.string   "client_id"
@@ -465,13 +483,43 @@ ActiveRecord::Schema.define(version: 20160303061848) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "variations", force: :cascade do |t|
+  create_table "variation_option_values", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "variation_option_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "variation_option_values", ["variation_option_id"], name: "index_variation_option_values_on_variation_option_id", using: :btree
+
+  create_table "variation_options", force: :cascade do |t|
+    t.string   "name"
     t.integer  "product_id"
-    t.string   "color"
-    t.string   "size"
-    t.integer  "in_stock",   default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "variation_options", ["product_id"], name: "index_variation_options_on_product_id", using: :btree
+
+  create_table "variation_variation_option_values", force: :cascade do |t|
+    t.integer  "variation_id"
+    t.integer  "variation_option_value_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "variation_variation_option_values", ["variation_id"], name: "index_variation_variation_option_values_on_variation_id", using: :btree
+  add_index "variation_variation_option_values", ["variation_option_value_id"], name: "option_value_id", using: :btree
+
+  create_table "variations", force: :cascade do |t|
+    t.integer  "in_stock"
+    t.string   "image"
+    t.decimal  "price"
+    t.string   "sku"
+    t.boolean  "master",     default: false
+    t.integer  "product_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
@@ -480,7 +528,7 @@ ActiveRecord::Schema.define(version: 20160303061848) do
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "order_products", "orders"
-  add_foreign_key "order_products", "products"
+  add_foreign_key "order_products", "variations"
   add_foreign_key "orders", "customers"
   add_foreign_key "payment_method_option_shops", "payment_method_options"
   add_foreign_key "payment_method_option_shops", "payment_method_shops"
@@ -502,5 +550,9 @@ ActiveRecord::Schema.define(version: 20160303061848) do
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"
   add_foreign_key "theme_editors", "shops"
   add_foreign_key "theme_editors", "themes"
+  add_foreign_key "variation_option_values", "variation_options"
+  add_foreign_key "variation_options", "products"
+  add_foreign_key "variation_variation_option_values", "variation_option_values"
+  add_foreign_key "variation_variation_option_values", "variations"
   add_foreign_key "variations", "products"
 end
