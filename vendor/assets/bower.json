@@ -1,11 +1,11 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "font-awesome": "latest",
-    "perfect-scrollbar": "latest",
-    "summernote": "latest",
-    "dropzone": "latest",
-    "ace-builds": "latest",
-    "elevatezoom": "latest"
+    "font-awesome": "4.5.0",
+    "perfect-scrollbar": "0.6.8",
+    "summernote": "0.7.0",
+    "dropzone": "4.2.0",
+    "ace-builds": "1.2.2",
+    "elevatezoom": "2.2.3"
   }
 }

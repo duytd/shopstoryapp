@@ -59,7 +59,10 @@ var VariationSelector = React.createClass({
 
     return defaultValue;
   },
-  refineOptions: function(options, optionId, targetValue, useDefaultValue=false) {
+  refineOptions: function(options, optionId, targetValue, useDefaultValue) {
+    if (typeof useDefaultValue === "undefined")
+       useDefaultValue = false;
+
     options.forEach(function(option) {
       if (option.id == optionId) {
         option.option_values.forEach(function(value) {
