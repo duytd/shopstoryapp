@@ -3,6 +3,7 @@ class Variation < ActiveRecord::Base
 
   belongs_to :product, inverse_of: :variations
   has_many :variation_variation_option_values, dependent: :destroy, inverse_of: :variation
+  has_many :variation_option_values, through: :variation_variation_option_values
 
   accepts_nested_attributes_for :variation_variation_option_values, allow_destroy: true, reject_if: proc {|a| a[:variation_option_value_id].blank?}
 
@@ -28,7 +29,7 @@ class Variation < ActiveRecord::Base
   end
 
   def as_json options={}
-    super.as_json(options).merge({name: name, variation_option_values: variation_variation_option_values, has_image: has_image?})
+    super.as_json(options).merge({name: name, variation_option_values: variation_variation_option_values, has_image: has_image?, values: variation_option_values.map{|v| v.id}})
   end
 
   private

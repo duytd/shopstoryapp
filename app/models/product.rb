@@ -32,6 +32,7 @@ class Product < ActiveRecord::Base
 
   after_create :create_master
   after_update :update_master
+  before_save :update_inventory
 
   def name
     name_ko || name_en
@@ -68,7 +69,13 @@ class Product < ActiveRecord::Base
   end
 
   private
+  def update_inventory
+    unless variations.not_master.count == 0
+      self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}
+    end
+  end
+
   def update_master
-    master.save!
+    master.save! if master
   end
 end

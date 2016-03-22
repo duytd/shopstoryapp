@@ -8,7 +8,6 @@ class Customer::ProductsController < Customer::BaseController
       variations: @product.variations.not_master,
       master: @product.master,
       options: @product.variation_options.relating_to_variations,
-      option_values: @product.variation_options.relating_to_variations,
       cart_url: customer_order_products_path
     }
   end
