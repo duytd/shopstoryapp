@@ -1,9 +1,7 @@
 <div className="variation-selector">
-  <p rt-repeat="option in this.state.options" key="option_{optionIndex}">
-    <select onChange="{this.updateVariation.bind(this, option.id)}" defaultValue="{option.default}" ref="option_{option.id}">
-      <option rt-repeat="value in option.option_values" key="option_value_{valueIndex}" value="{value.id}">
-        {value.name}
-      </option>
-    </select>
-  </p>
+  <ul rt-repeat="option in this.state.options" key="option_{optionIndex}" ref="option_{option.id}">
+    <li rt-repeat="value in option.option_values" key="option_value_{valueIndex}">
+      <button className="btn btn-default" onClick="{this.updateVariation.bind(this, option.id, value.id)}" class="{value.selected ? 'selected' : null}" data-id="{value.id}" disabled="{value.disabled}">{value.name}</button>
+    </li>
+  </ul>
 </div>

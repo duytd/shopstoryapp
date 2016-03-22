@@ -9,7 +9,8 @@
 
   <div className="product col-md-12">
     <div className="col-md-6 col-sm-6 image-slider">
-      <ProductSlider images="{this.props.product.images}" />
+      <ProductSlider rt-if="this.props.variations.length > 0" images="{[this.state.variation]}" />
+      <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" />
     </div>
 
     <div className="col-md-6 col-sm-6">
@@ -23,6 +24,7 @@
       </p>
 
       <VariationSelector
+        rt-if="this.props.variations.length > 0"
         options="{this.props.options}"
         updateVariation="{this.updateVariation}"
         variation="{this.state.variation}"

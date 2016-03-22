@@ -1,7 +1,6 @@
 var ProductSlider = React.createClass({
   getInitialState: function() {
     return {
-      images: this.props.images,
       activeIndex: 0
     }
   },

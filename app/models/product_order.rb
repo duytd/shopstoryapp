@@ -6,7 +6,7 @@ class ProductOrder < Order
   has_one :billing_address, foreign_key: "order_id", dependent: :destroy
 
   before_save :summarize
-  before_save :reload_inventory, if: :order_processed?
+  before_save :update_inventory, if: :order_processed?
 
   accepts_nested_attributes_for :shipping_address, reject_if: :all_blank
   accepts_nested_attributes_for :billing_address, reject_if: :all_blank
@@ -32,10 +32,10 @@ class ProductOrder < Order
   end
 
   private
-  def reload_inventory
+  def update_inventory
     order_products.each do |order_product|
-      ordered_product = order_product.product
-      ordered_product.update_attributes in_stock: (ordered_product.in_stock - order_product.quantity)
+      variation = order_product.variation
+      variation.update_attributes in_stock: (variation.in_stock - order_product.quantity)
     end
   end
 
