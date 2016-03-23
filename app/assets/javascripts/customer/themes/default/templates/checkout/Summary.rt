@@ -11,7 +11,8 @@
   <div class="cart-items">
     <div rt-repeat="item in this.props.globalVars.cart" key="item_{itemIndex}" class="row item">
       <div class="col-xs-3">
-        <img src="{(item.variation.image) ? item.variation.image.url : null}" class="img-responsive image" />
+        <img rt-if="item.variation.master" src="{item.variation.master_image.image.url}" class="img-responsive image" />
+        <img rt-if="!item.variation.master" src="{item.variation.image.url}" class="img-responsive image" />
       </div>
 
       <div class="col-xs-3">

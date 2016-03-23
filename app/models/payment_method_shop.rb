@@ -12,7 +12,7 @@ class PaymentMethodShop < ActiveRecord::Base
   validates :shop, presence: true
   validates :payment_method_id, uniqueness: {scope: :shop_id}
   validate :necessary_fields_must_be_presented, on: :update
-  #validates :key, presence: true, if: :active_and_key_required?
+  validates_presence_of :key, if: :active_and_key_required?
 
   scope :active, -> {where active: true}
 
@@ -41,19 +41,21 @@ class PaymentMethodShop < ActiveRecord::Base
   private
   def unzip_key
     if key.url && key_changed?
+      current_zips = Dir.glob "#{File.dirname(key.url)}/*.zip"
+      current_zips.each do |zip_file|
+        FileUtils.rm(zip_file) unless zip_file == key.url
+      end
+
+      FileUtils.mkdir_p "#{File.dirname(key.url)}/log"
+      FileUtils.mkdir_p "#{File.dirname(key.url)}/key"
+
       Zip::File.open(key.url) do |zip_file|
         zip_file.each do |f|
-          f_path = File.join(File.dirname(key.url), f.name)
-          FileUtils.mkdir_p File.dirname(f_path)
+          f_path = File.join("#{File.dirname(key.url)}/key", f.name)
           zip_file.extract(f, f_path){true}
         end
       end
-      remove_zip
     end
-  end
-
-  def remove_zip
-    FileUtils.rm key.url
   end
 
   def active_and_key_required?

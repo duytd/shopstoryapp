@@ -1,6 +1,9 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require nprogress
+//= require nprogress-turbolinks
+//= require nprogress-ajax
 //= require bootstrap-sprockets
 //= require elevatezoom/jquery.elevatezoom
 //= require js-routes
@@ -9,3 +12,5 @@
 //= require react_ujs
 //= require i18n
 //= require shopstory_ticket/frontend
+
+NProgress.configure({ showSpinner: false });

@@ -13,8 +13,8 @@
 
   <div class="nav navbar-nav navbar-right pull-right">
     <li>
-      <a href="?locale=ko"><%= t "menu.korean" %></a>
-      <a href="?locale=en"><%= t "menu.english" %></a>
+      <a data-no-turbolink="true" href="?locale=ko"><%= t "menu.korean" %></a>
+      <a data-no-turbolink="true" href="?locale=en"><%= t "menu.english" %></a>
     </li>
     <li>
       <%= link_to t("merchant.admin.menu.view_shop"), customer_root_url(subdomain: current_subdomain),

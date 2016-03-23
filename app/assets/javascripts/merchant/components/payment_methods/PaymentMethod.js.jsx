@@ -1,6 +1,7 @@
 var PaymentMethod = React.createClass({
   getInitialState: function() {
     return {
+      errors: [],
       payment_method_shop: this.props.payment_method_shop
     }
   },
@@ -35,29 +36,41 @@ var PaymentMethod = React.createClass({
           <h3 className="title">{this.props.payment_method_shop.payment_method.name}</h3>
           <div className="col-md-12 block">
             <form ref="form" id="paymentMethod" acceptCharset="UTF-8" onSubmit={this.submit}>
+              <div className="form-group col-md-12">
+                {(this.state.errors.length > 0) ? <Errors errors={this.state.errors} /> : null}
+              </div>
               {options}
               {keyUploader}
-              <div className="form-group col-md-12">
-                <label>
-                  {I18n.t("activerecord.attributes.payment_method_shop.active")}
-                </label>
-                <input type="hidden" name="payment_method_shop[active]" value="0" />
-                <label className="styled-cb">
-                  <input type="checkbox" name="payment_method_shop[active]" value="1" defaultChecked={this.props.payment_method_shop.active} />
-                  <i className="fa"></i>
-                </label>
-              </div>
-              <div className="form-group col-md-6">
-                <SubmitButtons goBack={false} />
-              </div>
+
+              <input ref="active" type="hidden" name="payment_method_shop[active]" value={this.state.payment_method_shop.active} />
+              {(this.state.payment_method_shop.active) ?
+                <div className="form-group col-md-6">
+                  <button className="btn btn-danger" onClick={this.disactive}>{I18n.t("merchant.admin.buttons.disactivate")}</button>
+                </div> :
+                <div className="form-group col-md-6">
+                  <SubmitButtons goBack={false} />
+                  <button className="btn btn-primary" onClick={this.active}>{I18n.t("merchant.admin.buttons.activate")}</button>
+                </div>
+              }
             </form>
           </div>
         </div>
       </div>
     )
   },
-  submit: function(e) {
+  disactive: function(e) {
     e.preventDefault();
+    this.refs.active.value = false;
+    this.submit();
+  },
+  active: function(e) {
+    e.preventDefault();
+    this.refs.active.value = true;
+    this.submit();
+  },
+  submit: function(e) {
+    if (typeof e !== "undefined")
+      e.preventDefault();
 
     var form = $(this.refs.form.getDOMNode());
 
@@ -69,7 +82,10 @@ var PaymentMethod = React.createClass({
       processData: false,
       dataType: "json",
       success: function(response) {
-        this.setState({payment_method_shop: response});
+        this.setState({payment_method_shop: response, errors: []});
+      }.bind(this),
+      error: function(xhr) {
+        this.setState({errors: xhr.responseJSON});
       }.bind(this)
     });
   }

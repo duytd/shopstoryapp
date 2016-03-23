@@ -55,6 +55,8 @@ ko:
         install: "설치"
         installed: "설치 완료"
         delete_selected: "선택 사항 삭제"
+        activate: "Activate"
+        disactivate: "Disactivate"
       forms:
         ko_lang: "한글"
         en_lang: "영어"

@@ -28,8 +28,18 @@ class Variation < ActiveRecord::Base
     end
   end
 
+  def master_image
+    product.product_images.featured
+  end
+
   def as_json options={}
-    super.as_json(options).merge({name: name, variation_option_values: variation_variation_option_values, has_image: has_image?, values: variation_option_values.map{|v| v.id}})
+    super.as_json(options).merge({
+      name: name,
+      variation_option_values: variation_variation_option_values,
+      master_image: master_image,
+      has_image: has_image?,
+      values: variation_option_values.map{|v| v.id}
+    })
   end
 
   private

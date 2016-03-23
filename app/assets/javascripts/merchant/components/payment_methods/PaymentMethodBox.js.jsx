@@ -4,6 +4,6 @@ var PaymentMethodBox = React.createClass({
       <div className="payment-methods">
         <PaymentMethodList payment_method_shops={this.props.payment_method_shops} />
       </div>
-    );
+    )
   }
-});
+})
