@@ -8,6 +8,8 @@ class Payment < ActiveRecord::Base
   validates :order, presence: true
   validates :payment_method, presence: true
 
+  before_save :ensure_submethod
+
   def as_json options={}
     super.as_json(options).merge({payment_method: payment_method})
   end
@@ -28,5 +30,9 @@ class Payment < ActiveRecord::Base
   private
   def change_state state
     self.update_attributes state: state
+  end
+
+  def ensure_submethod
+    self.submethod = submethod.downcase
   end
 end

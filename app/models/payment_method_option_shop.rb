@@ -4,7 +4,7 @@ class PaymentMethodOptionShop < ActiveRecord::Base
 
   validates :payment_method_option, presence: true
   validates :payment_method_shop, presence: true
-  validates_uniqueness_of :payment_method_option_id, scope: :payment_method_shop
+  validates_uniqueness_of :payment_method_option_id, scope: :payment_method_shop_id
 
   before_create :default_value
 

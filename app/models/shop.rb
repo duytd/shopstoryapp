@@ -50,12 +50,10 @@ class Shop < ActiveRecord::Base
 
   def load_payment_methods
     PaymentMethod.all.each do |payment_method|
-      payment_method_shop = self.payment_method_shops.create payment_method_id: payment_method.id
+      payment_method_shop = self.payment_method_shops.find_or_create_by payment_method_id: payment_method.id
 
       payment_method.payment_method_options.each do |option|
-        if payment_method_shop.valid?
-          payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
-        end
+        payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
       end
     end
   end

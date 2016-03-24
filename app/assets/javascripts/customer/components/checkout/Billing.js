@@ -27,6 +27,7 @@ var Billing = React.createClass({
     this.setState({order: order}, function() {
       if (this.state.order.payment.payment_method.type == "InicisPayment") {
         if (this.props.mobile) {
+          alert(1)
           $.get(Routes.customer_inicis_transaction_pay_path({locale: I18n.locale}), function(data) {
             $('#inicisPayment').html(data);
           })

@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/duytd/inicis-standard-rails.git
-  revision: cc4fa8959940368f21c3863da49477158fe3587a
+  revision: c581fa5dd10e7d93b777e106cefc75e875f5c568
   branch: develop
   specs:
     inicis-standard-rails (0.1.0)

@@ -5,6 +5,7 @@ class PaymentMethodShop < ActiveRecord::Base
 
   belongs_to :payment_method
   belongs_to :shop
+  validates_uniqueness_of :payment_method_id, scope: :shop_id
   has_many :payment_method_option_shops
   has_many :payment_method_options, through: :payment_method_option_shops
 
