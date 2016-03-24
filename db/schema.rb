@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321075738) do
+ActiveRecord::Schema.define(version: 20160324035340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 20160321075738) do
     t.string   "fax"
     t.integer  "order_id"
     t.string   "type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "alternative_phone"
+    t.text     "delivery_message"
   end
 
   add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
@@ -348,9 +350,14 @@ ActiveRecord::Schema.define(version: 20160321075738) do
     t.string   "online_retail_number"
     t.string   "privacy_manager"
     t.string   "privacy_email"
+    t.string   "logo"
+    t.integer  "term_id"
+    t.integer  "privacy_id"
   end
 
   add_index "shops", ["plan_id"], name: "index_shops_on_plan_id", using: :btree
+  add_index "shops", ["privacy_id"], name: "index_shops_on_privacy_id", using: :btree
+  add_index "shops", ["term_id"], name: "index_shops_on_term_id", using: :btree
   add_index "shops", ["theme_id"], name: "index_shops_on_theme_id", using: :btree
   add_index "shops", ["user_id"], name: "index_shops_on_user_id", using: :btree
 

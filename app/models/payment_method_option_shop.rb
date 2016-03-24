@@ -11,6 +11,8 @@ class PaymentMethodOptionShop < ActiveRecord::Base
   scope :filter_by_parent, ->(payment_method_shop, payment_method_option){where(payment_method_shop_id: payment_method_shop.id,
     payment_method_option_id: payment_method_option.id)}
 
+  default_scope {order created_at: :asc}
+
   def as_json options={}
     super.as_json(options).merge({
       payment_method_option: payment_method_option

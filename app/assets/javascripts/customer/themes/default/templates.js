@@ -7,6 +7,7 @@ injectTapEventPlugin();
 CartMixin = require('customer/mixins/CartMixin.js');
 PaginationMixin = require('customer/mixins/PaginationMixin.js');
 
+PhoneFieldRT = require('./templates/snippets/PhoneField.rt');
 ErrorsRT = require('./templates/snippets/Errors.rt');
 PaginationRT = require('./templates/snippets/Pagination.rt');
 ProductSliderRT = require('./templates/snippets/ProductSlider.rt');
@@ -35,6 +36,7 @@ SummaryRT = require('./templates/checkout/Summary.rt');
 SuccessRT = require('./templates/checkout/Success.rt');
 OrderRT = require('./templates/orders/Order.rt');
 
+PhoneField = require('customer/components/snippets/PhoneField.js');
 Errors = require('customer/components/snippets/Errors.js');
 Pagination = require('customer/components/snippets/Pagination.js');
 ProductSlider = require('customer/components/snippets/ProductSlider.js');

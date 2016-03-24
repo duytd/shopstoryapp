@@ -29,7 +29,6 @@ class Product < ActiveRecord::Base
 
   scope :visible, ->{where visibility: true}
   scope :available, ->{where "in_stock > ?", 0}
-  scope :latest, ->{order created_at: :desc}
 
   after_create :create_master
   after_update :update_master

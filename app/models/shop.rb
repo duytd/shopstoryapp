@@ -24,7 +24,7 @@ class Shop < ActiveRecord::Base
     uniqueness: true
 
   before_validation :set_default_values, on: :create
-  before_save :generate_api_key
+  before_create :generate_api_key
   after_create :initialize_theme_editor
   after_create :load_payment_methods
 

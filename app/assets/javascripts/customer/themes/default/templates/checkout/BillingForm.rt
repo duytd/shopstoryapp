@@ -55,7 +55,7 @@
     </div>
 
     <div class="form-group row">
-      <div class="col-sm-4">
+      <div rt-if="this.state.country != 'KR'" class="col-sm-4">
         <label class="required">{I18n.t("checkout.billing.city")}</label>
         <Errors errors="{this.state.errors['billing_address.city']}" />
         <input name="order[billing_address_attributes][city]" type="text"
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div rt-if="this.state.country != 'KR'" class="form-group row">
       <div class="col-sm-8">
         <label class="required">{I18n.t("checkout.billing.state")}</label>
         <Errors errors="{this.state.errors['billing_address.state']}" />
@@ -95,12 +95,19 @@
       <div class="col-sm-8">
         <label class="required">{I18n.t("checkout.billing.phone_number")}</label>
         <Errors errors="{this.state.errors['billing_address.phone_number']}" />
-        <input name="order[billing_address_attributes][phone_number]" type="text"
-          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.phone_number : null}" class="form-control" />
+        <PhoneField name="order[billing_address_attributes][phone_number]" fields="{[3, 4, 4]}" klass="form-control" value="{(this.props.order.billing_address) ? this.props.order.billing_address.phone_number : null}" />
       </div>
     </div>
 
     <div class="form-group row">
+      <div class="col-sm-8">
+        <label class="required">{I18n.t("checkout.billing.alternative_phone")}</label>
+        <Errors errors="{this.state.errors['billing_address.alternative_phone']}" />
+      <PhoneField name="order[billing_address_attributes][alternative_phone]" fields="{[3, 4, 4]}" klass="form-control" value="{(this.props.order.billing_address) ? this.props.order.billing_address.alternative_phone : null}" />
+      </div>
+    </div>
+
+    <div rt-if="this.state.country != 'KR'" class="form-group row">
       <div class="col-sm-8">
         <label>{I18n.t("checkout.billing.fax")}</label>
         <Errors errors="{this.state.errors['billing_address.fax']}" />
@@ -139,6 +146,7 @@
     <input name="order[billing_address_attributes][last_name]" value="{this.props.order.shipping_address.last_name}" type="hidden" />
     <input name="order[billing_address_attributes][email]" value="{this.props.order.shipping_address.email}" type="hidden" />
     <input name="order[billing_address_attributes][phone_number]" value="{this.props.order.shipping_address.phone_number}" type="hidden" />
+    <input name="order[billing_address_attributes][alternative_phone]" value="{this.props.order.shipping_address.alternative_phone}" type="hidden" />
     <input name="order[billing_address_attributes][country]" value="{this.props.order.shipping_address.country}" type="hidden" />
     <input name="order[billing_address_attributes][city]" value="{this.props.order.shipping_address.city}" type="hidden" />
     <input name="order[billing_address_attributes][state]" value="{this.props.order.shipping_address.state}" type="hidden" />
@@ -149,13 +157,15 @@
 
     <p>{this.props.order.shipping_address.first_name}{this.props.order.shipping_address.last_name}</p>
     <p>{this.props.order.shipping_address.email}</p>
-    <p>{this.props.order.shipping_address.phone_number}</p>
+    <p>{this.props.order.shipping_address.phone_number}
+      <i>{(this.props.order.shipping_address.alternative_phone) ? "("+this.props.order.shipping_address.alternative_phone+")" : ""}</i>
+    </p>
     <p>{this.props.order.shipping_address.fax}</p>
     <p>{this.props.order.shipping_address.city}</p>
     <p>{this.props.order.shipping_address.state}</p>
     <p>{this.props.order.shipping_address.zip_code}</p>
     <p>{this.props.order.shipping_address.address1}
-      <i>{(this.props.order.shipping_address.address2 != "") ? "("+this.props.order.shipping_address.address2+")" : ""}</i>
+      <i>{(this.props.order.shipping_address.address2) ? "("+this.props.order.shipping_address.address2+")" : ""}</i>
     </p>
 
     <hr/>

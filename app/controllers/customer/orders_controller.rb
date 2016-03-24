@@ -56,7 +56,7 @@ class Customer::OrdersController < Customer::BaseController
 
   def order_params
     permitted_address_attributes =  [:id, :email, :first_name, :last_name, :company, :address1,
-      :address2, :city, :state, :country, :zip_code, :phone_number, :fax, :order_id]
+      :address2, :city, :state, :country, :zip_code, :phone_number, :alternative_phone, :delivery_message, :fax, :order_id]
 
     permitted_payment_attributes = [:id, :payment_method_id, :submethod, :order_id]
 

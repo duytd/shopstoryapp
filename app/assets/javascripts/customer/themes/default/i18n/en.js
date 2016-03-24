@@ -108,7 +108,9 @@ Your order will be confirmed immediately after the payment has been made",
         "state": "State/Province",
         "zip_code": "Zip/Postal Code",
         "phone_number": "Phone Number",
-        "fax": "Fax"
+        "alternative_phone": "Alternative Number",
+        "fax": "Fax",
+        "delivery_message": "Delivery Message"
       },
       "billing": {
         "name": "Name",
@@ -122,6 +124,7 @@ Your order will be confirmed immediately after the payment has been made",
         "state": "State/Province",
         "zip_code": "Zip/Postal Code",
         "phone_number": "Phone Number",
+        "alternative_phone": "Alternative Number",
         "fax": "Fax",
         "user_shipping_address": "Use Shipping Address"
       }

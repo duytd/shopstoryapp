@@ -108,7 +108,9 @@ $.extend(true, I18n.translations, {
         "state": "도",
         "zip_code": "우편번호",
         "phone_number": "전화번호",
-        "fax": "팩스"
+        "alternative_phone": "Alternative Number",
+        "fax": "팩스",
+        "delivery_message": "Delivery Message"
       },
       "billing": {
         "name": "이름",
@@ -122,6 +124,7 @@ $.extend(true, I18n.translations, {
         "state": "도",
         "zip_code": "우편번호",
         "phone_number": "전화번호",
+        "alternative_phone": "Alternative Number",
         "fax": "팩스",
         "user_shipping_address": "청구지와 배송지가 같습니다."
       }

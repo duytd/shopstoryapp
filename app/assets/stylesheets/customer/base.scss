@@ -101,3 +101,12 @@ label.required:after {
     border: 2px solid #c23a2c;
   }
 }
+
+.phone-field {
+  div {
+    padding-left: 0;
+  }
+  input {
+    margin-right: 5px;
+  }
+}

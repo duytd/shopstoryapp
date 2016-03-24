@@ -42,7 +42,7 @@
         <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.state : null}</p>
         <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.zip_code : null}</p>
         <p>{(this.props.order.shipping_address) ? this.props.order.shipping_address.address1 : null}
-          <i>{(this.props.order.shipping_address && this.props.order.shipping_address.address2 != null) ? "("+this.props.order.shipping_address.address2+")" : null}</i>
+          <i>{(this.props.order.shipping_address && this.props.order.shipping_address.address2) ? "("+this.props.order.shipping_address.address2+")" : null}</i>
         </p>
       </div>
     </div>
