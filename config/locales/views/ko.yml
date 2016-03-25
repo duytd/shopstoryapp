@@ -1,5 +1,6 @@
 ko:
-  get_started: "시작하기"
+  buttons:
+    get_started: "시작하기"
   menu:
     features: "기능"
     pricing: "가격"
@@ -43,7 +44,7 @@ ko:
         user_settings: "계정"
         search: "찾기"
         view_shop: "내 샵 보기"
-        theme: "테마"
+        theme: "Design"
         theme_editor: "수정"
       buttons:
         add: "추가"

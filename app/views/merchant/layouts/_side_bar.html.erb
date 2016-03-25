@@ -14,63 +14,79 @@
         <span class="item-label"><%= t "merchant.admin.menu.dashboard" %></span>
       </li>
     <% end %>
+
     <%= link_to merchant_orders_path do %>
       <li class="item">
         <i class="fa fa-shopping-cart"></i>
         <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
       </li>
     <% end %>
+
     <%= link_to "#" do %>
       <li class="item">
         <i class="fa fa-users"></i>
         <span class="item-label"><%= t "merchant.admin.menu.customers" %></span>
       </li>
     <% end %>
-    <%= link_to merchant_products_path do %>
+
+   <%= link_to merchant_products_path do %>
       <li class="item">
 
         <i class="fa fa-tags"></i>
         <span class="item-label"><%= t "merchant.admin.menu.products" %></span>
       </li>
     <% end %>
+
     <%= link_to merchant_categories_path do %>
       <li class="item">
         <i class="fa fa-cubes"></i>
         <span class="item-label"><%= t "merchant.admin.menu.categories" %></span>
       </li>
     <% end %>
+
     <%= link_to "#" do %>
       <li class="item">
         <i class="fa fa-bar-chart"></i>
         <span class="item-label"><%= t "merchant.admin.menu.reports" %></span>
       </li>
     <% end %>
+
     <%= link_to merchant_custom_pages_path do %>
       <li class="item">
         <i class="fa fa-file-text"></i>
         <span class="item-label"><%= t "merchant.admin.menu.pages" %></span>
       </li>
     <% end %>
+
     <%= link_to "#" do %>
       <li class="item">
         <i class="fa fa-sitemap"></i>
         <span class="item-label"><%= t "merchant.admin.menu.navigation" %></span>
       </li>
     <% end %>
+
     <li class="item">
       <%= link_to "#" do %>
         <i class="fa fa-th-large"></i>
         <span class="item-label"><%= t "merchant.admin.menu.theme" %></span>
       <% end %>
+
       <ul class="subitems">
         <%= link_to edit_merchant_theme_editor_path(current_theme_editor) do %>
+          <li>
+            <i class="fa fa-globe"></i>
+            <%= t "merchant.admin.menu.general" %>
+          </li>
+        <% end %>
+
+        <%= link_to edit_merchant_design_general_path do %>
           <li>
             <i class="fa fa-code"></i>
             <%= t "merchant.admin.menu.theme_editor" %>
           </li>
+        <% end %>
       </ul>
-      </li>
-    <% end %>
+    </li>
 
     <%= link_to merchant_extensions_path do %>
       <li class="item">

@@ -6,6 +6,10 @@ class Customer < ActiveRecord::Base
   include ShopstoryTicket::Seller
   has_many :product_orders
 
+  attr_accessor :terms, :privacy
+
+  validates_acceptance_of :terms, :privacy
+
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

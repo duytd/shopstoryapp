@@ -70,6 +70,10 @@ Rails.application.routes.draw do
         resources :variations, only: :create
       end
 
+      namespace :design do
+        resource :general, only: [:edit, :update]
+      end
+
       resources :orders do
         delete :index, on: :collection
       end

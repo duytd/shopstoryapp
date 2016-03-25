@@ -33,6 +33,6 @@ class Payment < ActiveRecord::Base
   end
 
   def ensure_submethod
-    self.submethod = submethod.downcase
+    self.submethod = submethod.try :downcase
   end
 end

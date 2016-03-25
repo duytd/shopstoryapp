@@ -38,7 +38,6 @@ class Merchant::ShopsController < Merchant::BaseController
     params.require(:shop).permit *permitted
   end
 
-
   def load_timezones
     @time_zones = all_timezones
   end

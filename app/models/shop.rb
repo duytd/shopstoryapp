@@ -33,7 +33,7 @@ class Shop < ActiveRecord::Base
   scope :current,->subdomain {find_by subdomain: subdomain}
 
   def as_json options={}
-    super.as_json(options).merge({street_en: street_en, street_ko: street_ko})
+    super(options).merge({street_en: street_en, street_ko: street_ko})
   end
 
   def set_default_values

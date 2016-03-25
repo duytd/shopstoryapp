@@ -11,6 +11,6 @@ class CustomPage < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true, on: :update
 
   def as_json options={}
-    super.as_json(options).merge({title_en: title_en})
+    super(options).merge({title_en: title_en, title_ko: title_ko})
   end
 end

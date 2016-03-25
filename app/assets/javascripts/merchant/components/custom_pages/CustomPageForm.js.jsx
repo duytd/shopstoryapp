@@ -2,7 +2,7 @@ var CustomPageForm = React.createClass({
   getInitialState: function () {
     return {
       errors: {},
-      errors_ko_count: 0,
+      errors_en_count: 0,
       errors_ko_count: 0
     };
   },
@@ -11,7 +11,7 @@ var CustomPageForm = React.createClass({
       <form ref="form" className="custom-page-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
 
-        <LocaleNavTab errors_ko_count={this.state.errors_ko_count} errors_count_en={this.state.errors_count_en} />
+        <LocaleNavTab ko_errors_count={this.state.errors_ko_count} en_errors_count={this.state.errors_en_count} />
 
         <div className="tab-content">
           <div id="ko" className="tab-pane fade in active">
@@ -109,8 +109,8 @@ var CustomPageForm = React.createClass({
 
         this.setState({
           errors: errors,
-          errors_count_en: title_en_count + content_en_count,
-          errors_ko_count: title_en_count + content_ko_count
+          errors_en_count: title_en_count + content_en_count,
+          errors_ko_count: title_ko_count + content_ko_count
         });
       }.bind(this)
     });
