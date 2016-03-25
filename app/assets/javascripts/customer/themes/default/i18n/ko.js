@@ -10,7 +10,9 @@ $.extend(true, I18n.translations, {
       "login": "로그인",
       "register": "가입하기",
       "logout": "로그아웃",
-      "my_account": "마이 페이지"
+      "my_account": "마이 페이지",
+      "accept": "Accept",
+      "decline": "Decline"
     },
     "customers": {
       "login": {

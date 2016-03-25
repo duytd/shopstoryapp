@@ -10,7 +10,9 @@ $.extend(true, I18n.translations, {
       "login": "Log in",
       "register": "Create account",
       "logout": "Log out",
-      "my_account": "My account"
+      "my_account": "My account",
+      "accept": "Accept",
+      "decline": "Decline"
     },
     "customers": {
       "login": {

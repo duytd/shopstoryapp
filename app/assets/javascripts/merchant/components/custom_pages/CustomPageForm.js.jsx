@@ -6,6 +6,13 @@ var CustomPageForm = React.createClass({
       errors_ko_count: 0
     };
   },
+  componentDidMount: function() {
+    var content_en = this.refs.content_en;
+    var content_ko = this.refs.content_ko;
+
+    $(content_en).summernote("code", content_en.value);
+    $(content_ko).summernote("code", content_ko.value);
+  },
   render: function () {
     return (
       <form ref="form" className="custom-page-form" action={this.props.url}
@@ -33,7 +40,7 @@ var CustomPageForm = React.createClass({
                   return object;
                 }) : ""}
               </div>
-              <textarea name="custom_page[content_ko]"
+              <textarea name="custom_page[content_ko]" ref="content_ko"
                 className="form-control summernote" defaultValue={(this.props.custom_page_ko) ? this.props.custom_page_ko.content : ""}>
               </textarea>
             </div>
@@ -57,7 +64,7 @@ var CustomPageForm = React.createClass({
                   return object;
                 }) : ""}
               </div>
-              <textarea name="custom_page[content_en]"
+              <textarea name="custom_page[content_en]" ref="content_en"
                 className="form-control summernote" defaultValue={(this.props.custom_page_en) ? this.props.custom_page_en.content : ""}>
               </textarea>
             </div>

@@ -38,8 +38,8 @@ en:
         name_en: "Name"
       custom_page:
         title: "Title"
-        title_ko: "Title"
-        name_en: "Title"
+        content: "Content"
+        slug: "Friendly Slug"
       product:
         name: "Name"
         name_en: "Name"
@@ -83,6 +83,9 @@ en:
         online_retail_number: "Online Retail Number"
         privacy_manager: "Privacy Manager"
         privacy_email: "Privacy Email"
+        logo: "Logo"
+        term_id: "Terms and Conditions Page"
+        privacy_id: "Privacy Page"
       payment_method_shop:
         key: "Key (*.zip)"
         active: "Enabled"

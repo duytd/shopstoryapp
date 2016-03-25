@@ -5,7 +5,9 @@ class Customer::RegistrationsController < Devise::RegistrationsController
 
   def new
     @props = {
-      globalVars: @globalVars
+      globalVars: @globalVars,
+      term: current_shop.term,
+      privacy: current_shop.privacy
     }
     super
   end
@@ -23,13 +25,13 @@ class Customer::RegistrationsController < Devise::RegistrationsController
         return render json: {redirect_url: after_inactive_sign_up_path_for(resource)}, status: :ok
       end
     else
-      return render json: {errors: resource.errors.full_messages}, status: :unprocessable_entity
+      return render json: {errors: resource.errors.full_messages.uniq}, status: :unprocessable_entity
     end
   end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit :full_name, :email, :password, :password_confirmation, :terms, :privacy
+      u.permit :full_name, :email, :password, :password_confirmation, :term, :privacy
     end
   end
 end

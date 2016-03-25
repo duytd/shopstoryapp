@@ -6,9 +6,9 @@ class Customer < ActiveRecord::Base
   include ShopstoryTicket::Seller
   has_many :product_orders
 
-  attr_accessor :terms, :privacy
+  attr_accessor :term, :privacy
 
-  validates_acceptance_of :terms, :privacy
+  validates_acceptance_of :term, :privacy, allow_nil: false
 
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

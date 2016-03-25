@@ -2,6 +2,8 @@ class Shop < ActiveRecord::Base
   translates :street
   globalize_accessors locales: [:en, :ko], attributes: [:street]
 
+  mount_uploader :logo, LogoUploader
+
   belongs_to :theme
   belongs_to :plan
   belongs_to :merchant, foreign_key: "user_id"
@@ -13,6 +15,8 @@ class Shop < ActiveRecord::Base
   has_many :payment_methods, through: :payment_method_shops
   has_many :shop_extensions, dependent: :destroy
   has_many :extensions, through: :shop_extensions
+  belongs_to :term, class_name: "CustomPage", foreign_key: "term_id"
+  belongs_to :privacy, class_name: "CustomPage", foreign_key: "privacy_id"
 
   validates :name, presence: true
   validates :merchant, presence: true

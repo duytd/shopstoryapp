@@ -36,6 +36,10 @@ ko:
         name: "카테고리명"
         name_ko: "카테고리명"
         name_en: "Name"
+      custom_page:
+        title: "Title"
+        content: "Content"
+        slug: "Friendly Slug"
       product:
         name: "제품명"
         name_en: "Name"
@@ -78,6 +82,9 @@ ko:
         online_retail_number: "통신판매업신고"
         privacy_manager: "개인정보관리책임자"
         privacy_email: "개인정보관리책임자 연락처"
+        logo: "Logo"
+        term_id: "Terms and Conditions Page"
+        privacy_id: "Privacy Page"
       payment_method_shop:
         key: "Key (*.zip)"
         active: "사용"

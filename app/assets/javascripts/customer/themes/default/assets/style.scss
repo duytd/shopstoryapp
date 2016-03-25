@@ -110,6 +110,11 @@ label {
   }
 }
 
+.term, .privacy {
+  max-height: 200px;
+  overflow: auto;
+}
+
 /* Category */
 .product-item {
   text-align: center;

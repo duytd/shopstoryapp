@@ -22,6 +22,18 @@
       </div>
 
       <div class="form-group">
+        <div class="term" dangerouslySetInnerHTML="{{__html:this.props.term.content}}"></div>
+        <input type="radio" name="customer[term]" value="0" checked /> {I18n.t("buttons.decline")}
+        <input type="radio" name="customer[term]" value="1" /> {I18n.t("buttons.accept")}
+      </div>
+
+      <div class="form-group">
+        <div class="privacy" dangerouslySetInnerHTML="{{__html:this.props.privacy.content}}"></div>
+        <input type="radio" name="customer[privacy]" value="0" checked /> {I18n.t("buttons.decline")}
+        <input type="radio" name="customer[privacy]" value="1" /> {I18n.t("buttons.accept")}
+      </div>
+
+      <div class="form-group">
         <p class="small pull-left">
           {I18n.t("customers.register.texts.return_customer")}
           <a href="/login">{I18n.t("buttons.login")}</a>

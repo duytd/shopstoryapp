@@ -101,3 +101,5 @@ ko:
         payment_status: "결제 상태"
       extensions:
         title: "부가 기능"
+      custom_pages:
+        title: "Custom Pages"

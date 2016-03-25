@@ -7,7 +7,7 @@ class Merchant::Design::GeneralsController < Merchant::BaseController
   end
 
   def update
-    if current_shop.update general_params
+    if current_shop.update shop_params
       render json: current_shop.as_json({only: [:logo, :term_id, :privacy_id]})
     else
       render json: current_shop.errors, status: :unprocessable_entity
@@ -15,7 +15,7 @@ class Merchant::Design::GeneralsController < Merchant::BaseController
   end
 
   private
-  def general_params
-    params.require(:general).permit :logo, :term_id, :privacy_id
+  def shop_params
+    params.require(:shop).permit :logo, :term_id, :privacy_id
   end
 end

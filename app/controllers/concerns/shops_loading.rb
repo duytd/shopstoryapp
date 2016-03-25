@@ -16,6 +16,7 @@ module ShopsLoading
     @globalVars = {
       lang: I18n.locale,
       shop_name: current_shop.name,
+      logo: current_shop.logo.thumb.url,
       business_information: {
         legal_name: current_shop.legal_name,
         address: current_shop.street_ko,

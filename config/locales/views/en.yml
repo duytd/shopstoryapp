@@ -101,3 +101,5 @@ en:
         payment_status: "Payment Status"
       extensions:
         title: "Extensions"
+      custom_pages:
+        title: "Custom Pages"
