@@ -70,6 +70,10 @@ Rails.application.routes.draw do
         resources :variations, only: :create
       end
 
+      resources :shipping_rates, except: :show do
+        delete :index, on: :collection
+      end
+
       namespace :design do
         resource :general, only: [:edit, :update]
       end

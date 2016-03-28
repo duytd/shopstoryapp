@@ -57,7 +57,8 @@ var Order = React.createClass({
     }
 
     return (
-      <div>
+      <Item item={this.props.order} deleteUrl={this.props.deleteUrl} handleSelect={this.props.handleSelect}
+          handleDeleteItem={this.props.handleDeleteItem} check={this.props.order.checked}>
         <td>
           {"#" + this.props.order.id}
         </td>
@@ -83,7 +84,7 @@ var Order = React.createClass({
         <td>
           {I18n.toCurrency(this.props.order.total, {precision: 0, unit: ""})}
         </td>
-      </div>
+      </Item>
     );
   }
 });

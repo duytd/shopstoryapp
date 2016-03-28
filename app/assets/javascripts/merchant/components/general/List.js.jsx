@@ -11,33 +11,61 @@ var List = React.createClass({
     var itemNodes = this.state.items.map(function(item) {
       switch(this.props.type) {
         case "category":
-          itemChildren = <Category category={item} />;
-          deleteUrl = Routes.merchant_category_path(item.id);
+          itemChildren = (
+            <Category
+              category={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_category_path(item.id)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
           break;
         case "product":
-          itemChildren = <Product product={item} />;
-          deleteUrl = Routes.merchant_product_path(item.id);
+          itemChildren = (
+            <Product
+              product={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_product_path(item.id)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
           break;
         case "order":
-          itemChildren = <Order order={item} />;
-          deleteUrl = Routes.merchant_order_path(item.id);
+          itemChildren = (
+            <Order
+              order={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_order_path(item.id)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
           break;
         case "custom_page":
-          itemChildren = <CustomPage custom_page={item} />;
-          deleteUrl = Routes.merchant_custom_page_path(item.slug);
+          itemChildren = (
+            <CustomPage
+              custom_page={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_custom_page_path(item.slug)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
+          break;
+        case "shipping_rate":
+          itemChildren = (
+            <ShippingRate
+              shipping_rate={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_shipping_rate_path(item.id)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
           break;
         default:
           itemChildren = null;
-          deleteUrl = null;
           break;
       }
 
-      return (
-        <Item item={item} key={"item_" + item.id} deleteUrl={deleteUrl} handleSelect={this.handleSelect}
-          handleDeleteItem={this.deleteItem} check={item.checked}>
-          {itemChildren}
-        </Item>
-      )
+      return itemChildren;
     }.bind(this));
 
     return (
@@ -50,7 +78,7 @@ var List = React.createClass({
                 <SelectAllCb isSelectAll={this.state.isSelectAll} selectAllHandler={this.handleSelectAll}
                   isDisabled={this.state.items.length == 0} />
               </th>
-              {this.props.headers}
+              {this.props.headers.map(function(h, index){ return <th key={"h_" + index}>{h}</th>})}
               <th></th>
             </tr>
           </thead>
@@ -66,7 +94,12 @@ var List = React.createClass({
     var index = items.indexOf(item);
 
     items.splice(index, 1);
-    this.replaceState({items: items});
+
+    if (item.checked == true) {
+      this.state.checkCount --;
+    }
+
+    this.replaceState({items: items, checkCount: this.state.checkCount});
   },
   deleteAllItem: function(item_ids) {
     var items = this.state.items;
@@ -74,7 +107,7 @@ var List = React.createClass({
     items = items.filter(function(item) {
       return (item_ids.indexOf(item.id) == -1)
     });
-    this.replaceState({items: items, checkCount: items.length, isSelectAll: false});
+    this.replaceState({items: items, checkCount: 0, isSelectAll: false});
   },
   handleDeleteAll: function(e) {
     e.preventDefault();
@@ -97,6 +130,9 @@ var List = React.createClass({
         break;
       case "custom_page":
         data = {custom_page_ids: item_ids};
+        break;
+      case "shipping_rate":
+        data = {shipping_rate_ids: item_ids};
         break;
       default:
         data = {};

@@ -1,0 +1,8 @@
+<div class="row shipping-rates">
+  <div class="col-md-12">
+    <h3 class="title"><%= t "merchant.admin.shipping_rates.edit_shipping_rate" %></h3>
+    <div class="row">
+      <%= react_component "ShippingRateForm", @props, {prerender: false} %>
+    </div>
+  </div>
+</div>

@@ -46,6 +46,8 @@ ko:
         view_shop: "내 샵 보기"
         theme: "Design"
         theme_editor: "수정"
+        shipping: "Shipping"
+        shipping_rates: "Shipping Rates"
       buttons:
         add: "추가"
         add_variation: "옵션 추가"
@@ -103,3 +105,9 @@ ko:
         title: "부가 기능"
       custom_pages:
         title: "Custom Pages"
+      shipping_rates:
+        title: "Shipping Rates"
+        types:
+          free: "Free Shipping"
+          free_by_price: "Free Shipping For Order Over X KRW"
+          flat_rate: "Flat Rate"

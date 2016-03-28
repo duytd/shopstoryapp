@@ -43,6 +43,22 @@
       </li>
     <% end %>
 
+    <li class="item">
+      <%= link_to "" do %>
+        <i class="fa fa-truck"></i>
+        <span class="item-label"><%= t "merchant.admin.menu.shipping" %></span>
+      <% end %>
+
+      <ul class="subitems">
+        <%= link_to merchant_shipping_rates_path do %>
+          <li>
+            <i class="fa fa-won"></i>
+            <%= t "merchant.admin.menu.shipping_rates" %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+
     <%= link_to "#" do %>
       <li class="item">
         <i class="fa fa-bar-chart"></i>

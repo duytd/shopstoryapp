@@ -21,7 +21,7 @@ var CategoryForm = React.createClass({
                   return object;
                 }) : ""}
               </div>
-              <input ref="name_ko" type="text" name="category[name_ko]" 
+              <input ref="name_ko" type="text" name="category[name_ko]"
                 className="form-control" defaultValue={(this.props.ko_category) ? this.props.ko_category.name : ""} />
             </div>
           </div>
@@ -33,7 +33,7 @@ var CategoryForm = React.createClass({
                   return object;
                 }) : ""}
               </div>
-              <input ref="name_en" type="text" name="category[name_en]" 
+              <input ref="name_en" type="text" name="category[name_en]"
                 className="form-control" defaultValue={(this.props.en_category) ? this.props.en_category.name : ""} />
             </div>
           </div>
@@ -49,7 +49,7 @@ var CategoryForm = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     this.handleCategorySubmit(formData, this.props.url, this.props.method);
   },
@@ -68,7 +68,7 @@ var CategoryForm = React.createClass({
         var name_en_count = (errors.name_en) ? errors.name_en.length : 0;
 
         this.setState({
-          errors: errors, 
+          errors: errors,
           name_ko_count: name_ko_count,
           name_en_count: name_en_count
         });

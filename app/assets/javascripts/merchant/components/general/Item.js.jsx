@@ -4,7 +4,7 @@ var Item = React.createClass({
       <tr className="item">
         <td>
           <label className="styled-cb">
-            <input ref="checkbox" type="checkbox" value={this.props.item.id} 
+            <input ref="checkbox" type="checkbox" value={this.props.item.id}
               checked={this.props.check} onChange={this.handleSelect} />
             <i className="fa"></i>
           </label>

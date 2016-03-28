@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324035340) do
+ActiveRecord::Schema.define(version: 20160328080020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,6 +264,18 @@ ActiveRecord::Schema.define(version: 20160324035340) do
 
   add_index "product_images", ["product_id"], name: "index_product_images_on_product_id", using: :btree
 
+  create_table "product_shipping_rates", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "shipping_rate_id"
+    t.decimal  "min_price"
+    t.decimal  "rate"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "product_shipping_rates", ["product_id"], name: "index_product_shipping_rates_on_product_id", using: :btree
+  add_index "product_shipping_rates", ["shipping_rate_id"], name: "index_product_shipping_rates_on_shipping_rate_id", using: :btree
+
   create_table "product_tags", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "tag_id"
@@ -295,6 +307,27 @@ ActiveRecord::Schema.define(version: 20160324035340) do
     t.string   "vendor"
     t.string   "sku"
     t.integer  "in_stock",    default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "shipping_rate_translations", force: :cascade do |t|
+    t.integer  "shipping_rate_id", null: false
+    t.string   "locale",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "name"
+  end
+
+  add_index "shipping_rate_translations", ["locale"], name: "index_shipping_rate_translations_on_locale", using: :btree
+  add_index "shipping_rate_translations", ["shipping_rate_id"], name: "index_shipping_rate_translations_on_shipping_rate_id", using: :btree
+
+  create_table "shipping_rates", force: :cascade do |t|
+    t.string   "type"
+    t.string   "name"
+    t.decimal  "rate",       default: 0.0
+    t.decimal  "min_price"
+    t.boolean  "active",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
@@ -544,6 +577,8 @@ ActiveRecord::Schema.define(version: 20160324035340) do
   add_foreign_key "payment_method_shops", "shops"
   add_foreign_key "payments", "orders"
   add_foreign_key "product_images", "products"
+  add_foreign_key "product_shipping_rates", "products"
+  add_foreign_key "product_shipping_rates", "shipping_rates"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
   add_foreign_key "shop_extensions", "extensions"

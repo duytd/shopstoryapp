@@ -46,6 +46,8 @@ en:
         view_shop: "View your shop"
         theme: "Design"
         theme_editor: "Editor"
+        shipping: "Shipping"
+        shipping_rates: "Shipping Rates"
       buttons:
         add: "Add"
         add_variation: "Add variation"
@@ -103,3 +105,9 @@ en:
         title: "Extensions"
       custom_pages:
         title: "Custom Pages"
+      shipping_rates:
+        title: "Shipping Rates"
+        types:
+          free: "Free Shipping"
+          free_by_price: "Free Shipping For Order Over X KRW"
+          flat_rate: "Flat Rate"

@@ -15,6 +15,7 @@ class Ability
       can :manage, Order
       can :read, Extension
       can :create, ShopExtension
+      can :manage, ShippingRate
     elsif user.is_a? Customer
       can :read, Category
       can :read, Product

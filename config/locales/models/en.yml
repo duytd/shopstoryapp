@@ -89,3 +89,8 @@ en:
       payment_method_shop:
         key: "Key (*.zip)"
         active: "Enabled"
+      shipping_rate:
+        type: "Type"
+        name: "Name"
+        rate: "Rate"
+        min_price: "Minimum Order Amount"

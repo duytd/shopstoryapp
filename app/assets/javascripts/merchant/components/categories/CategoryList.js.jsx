@@ -1,8 +1,8 @@
 var CategoryList = React.createClass({
   render: function() {
-    var headers = (
-      <th>{I18n.t("activerecord.attributes.category.name")}</th>
-    );
+    var headers = [
+      I18n.t("activerecord.attributes.category.name")
+    ];
 
     return (
       <List
@@ -11,6 +11,6 @@ var CategoryList = React.createClass({
         headers={headers}
         deleteAllUrl={Routes.merchant_categories_path()}
       />
-    ) 
+    )
   }
 });
