@@ -201,21 +201,15 @@ var ShopForm = React.createClass({
           <h4 className="form-title">{I18n.t("merchant.admin.shops.social")}</h4>
           <div className="row">
             <div className="col-md-12 block">
-              <div className="form-group col-md-12">
-                <label className="label">{I18n.t("activerecord.attributes.shop.facebook_url")}</label>
-                <input type="text" className="form-control" name="shop[facebook_url]"
-                  defaultValue={this.props.shop.facebook_url} />
-              </div>
-              <div className="form-group col-md-12">
-                <label className="label">{I18n.t("activerecord.attributes.shop.instagram_url")}</label>
-                <input type="text" className="form-control" name="shop[instagram_url]"
-                  defaultValue={this.props.shop.instagram_url} />
-              </div>
-              <div className="form-group col-md-12">
-                <label className="label">{I18n.t("activerecord.attributes.shop.pinterest_url")}</label>
-                <input type="text" className="form-control" name="shop[pinterest_url]"
-                  defaultValue={this.props.shop.pinterest_url} />
-              </div>
+              {["facebook_url", "instagram_url", "pinterest_url", "naver", "daum", "kakao", "yellow"].map(function(account, index) {
+                return (
+                  <div className="form-group col-sm-6" key={"social" + index}>
+                    <label className="label">{I18n.t("activerecord.attributes.shop." + account)}</label>
+                    <input type="text" className="form-control" name={"shop[" + account +"]"}
+                      defaultValue={this.props.shop[account]} />
+                  </div>
+                )
+              }.bind(this))}
             </div>
           </div>
         </div>

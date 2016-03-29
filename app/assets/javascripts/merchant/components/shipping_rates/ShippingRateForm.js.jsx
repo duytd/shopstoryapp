@@ -4,13 +4,13 @@ var ShippingRateForm = React.createClass({
 
     if (this.props.shipping_rate) {
       switch(this.props.shipping_rate.type) {
-        case "Shipping::FlatRate":
+        case "shipping/flat_rate":
           type = "flat_rate";
           break;
-        case "Shipping::FreeShipping":
+        case "shipping/free_shipping":
           type = "free";
           break;
-        case "Shipping::FreeShippingByPrice":
+        case "shipping/free_shipping_by_price":
           type = "free_by_price";
           break;
       }
@@ -70,7 +70,7 @@ var ShippingRateForm = React.createClass({
                     }) : ""}
                   </div>
                   <input ref="name_en" type="text" name="shipping_rate[name_en]"
-                    className="form-control" defaultValue={(this.props.en_shipping_rate) ? this.props.en_shipping_rate.name : ""} />
+                    className="form-control" defaultValue={(this.props.en_shipping_rate) ? this.props.en_shipping_rate.name : null} />
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@ var ShippingRateForm = React.createClass({
             <div className="form-group row">
               <div className="col-sm-6">
                 <label className="label">{I18n.t("activerecord.attributes.shipping_rate.min_price")}</label>
-                <input type="text" name="shipping_rate[min_price]" className="form-control" />
+                <input type="text" name="shipping_rate[min_price]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.min_price : null} className="form-control" />
               </div>
             </div>
           </div> : null}
@@ -91,7 +91,7 @@ var ShippingRateForm = React.createClass({
             <div className="form-group row">
               <div className="col-sm-6">
                 <label className="label">{I18n.t("activerecord.attributes.shipping_rate.rate")}</label>
-                <input type="text" name="shipping_rate[rate]" className="form-control" />
+                <input type="text" name="shipping_rate[rate]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.rate : null} className="form-control" />
               </div>
             </div>
           </div> : null}

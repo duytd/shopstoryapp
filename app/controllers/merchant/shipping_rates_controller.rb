@@ -39,9 +39,10 @@ class Merchant::ShippingRatesController < Merchant::BaseController
 
   def edit
     @props = {
+      shipping_rate: @shipping_rate,
       en_shipping_rate: load_translation(@shipping_rate.translations, :en),
       ko_shipping_rate: load_translation(@shipping_rate.translations, :ko),
-      url: merchant_shipping_rates_path(@shipping_rate),
+      url: merchant_shipping_rate_path(@shipping_rate),
       method: :put
     }
   end

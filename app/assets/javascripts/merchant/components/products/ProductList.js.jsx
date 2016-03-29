@@ -1,7 +1,12 @@
 var ProductList = React.createClass({
   render: function() {
     var headers = [
-      I18n.t("activerecord.attributes.product.name")
+      I18n.t("activerecord.attributes.product.id"),
+      "",
+      I18n.t("activerecord.attributes.product.name"),
+      I18n.t("activerecord.attributes.product.price"),
+      I18n.t("activerecord.attributes.product.in_stock"),
+      I18n.t("activerecord.attributes.product.visibility")
     ];
 
     return (

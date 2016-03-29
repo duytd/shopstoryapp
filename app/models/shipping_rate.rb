@@ -9,7 +9,11 @@ class ShippingRate < ActiveRecord::Base
   validates :name, translation_presence: true
 
   def as_json options={}
-    super(options).merge({name_ko: name_ko, name_en: name_en})
+    super(options).merge({
+      type: type.underscore,
+      name_ko: name_ko,
+      name_en: name_en,
+    })
   end
 
   def self.types
