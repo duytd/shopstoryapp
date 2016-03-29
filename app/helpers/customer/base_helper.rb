@@ -9,8 +9,8 @@ module Customer::BaseHelper
   end
 
   def current_order
-    if order_token = cookies[:po]
-      @current_order ||= ProductOrder.find_by_token(order_token) || initialize_order
+    if cookies[:po]
+      @current_order ||= ProductOrder.find_by_token(cookies[:po]) || initialize_order
     else
       @current_order ||= initialize_order
     end
@@ -26,9 +26,9 @@ module Customer::BaseHelper
 
   def initialize_order
     if customer_signed_in?
-      order = current_customer.product_orders.where(ip_address: ip_address, status: 0).first_or_create
+      order = current_customer.product_orders.where(ip_address: ip_address, status: Order.statuses[:incompleted]).first_or_create
     else
-      order = ProductOrder.create ip_address: ip_address
+      order = ProductOrder.find_or_create ip_address: ip_address, status: Order.statuses[:incompleted]
     end
 
     currency = current_shop.currency.upcase

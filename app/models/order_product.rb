@@ -9,6 +9,9 @@ class OrderProduct < ActiveRecord::Base
   validate :quantity_must_be_less_than_variation_quantity_and_greater_than_zero
 
   before_create :initialize_unit_price
+  after_save do
+    product_order.save!
+  end
 
   default_scope {order created_at: :asc}
 

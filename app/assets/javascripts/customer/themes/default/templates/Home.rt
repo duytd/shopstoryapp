@@ -1,4 +1,4 @@
-<Layout globalVars={this.props.globalVars}>
+<Layout globalVars={this.props.globalVars} updateCart={this.updateCart}>
   <div class="home">
     <h2>{I18n.t("products.featured_products")}</h2>
     <ProductList products={this.props.products} currency={this.props.globalVars.currency} />
