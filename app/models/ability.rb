@@ -16,17 +16,18 @@ class Ability
       can :read, Extension
       can :create, ShopExtension
       can :manage, ShippingRate
+      can :manage, Customer
     elsif user.is_a? Customer
       can :read, Category
       can :read, Product
       can :read, Order
       can [:read], Customer
-      can [:read, :create, :update, :destroy], OrderProduct
+      can :manage, OrderProduct
       can [:read, :create, :update], Order
     else
       can :read, Category
       can :read, Product
-      can [:read, :create, :update, :destroy], OrderProduct
+      can :manage, OrderProduct
       can [:read, :create, :update], Order
     end
   end

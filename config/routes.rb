@@ -74,6 +74,10 @@ Rails.application.routes.draw do
         delete :index, on: :collection
       end
 
+      resources :customers, except: :show do
+        delete :index, on: :collection
+      end
+
       namespace :design do
         resource :general, only: [:edit, :update]
       end

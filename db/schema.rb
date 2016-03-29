@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329024256) do
+ActiveRecord::Schema.define(version: 20160329062548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -301,14 +301,16 @@ ActiveRecord::Schema.define(version: 20160329024256) do
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.decimal  "price",       default: 0.0
-    t.decimal  "sale_off",    default: 0.0
-    t.boolean  "visibility",  default: true
+    t.decimal  "price",                    default: 0.0
+    t.decimal  "sale_off",                 default: 0.0
+    t.boolean  "visibility",               default: true
     t.string   "vendor"
     t.string   "sku"
-    t.integer  "in_stock",    default: 0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "in_stock",                 default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.decimal  "flat_shipping_rate"
+    t.boolean  "pay_shipping_on_delivery", default: false
   end
 
   create_table "shipping_rate_translations", force: :cascade do |t|

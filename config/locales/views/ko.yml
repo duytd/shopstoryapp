@@ -67,6 +67,7 @@ ko:
         confirm: "계속하시겠습니까?"
         pricing_title: "가격"
         visibility_title: "노출"
+        shipping_title: "Shipping"
         inventory_title: "재고"
         categories_title: "카테고리"
         images_title: "이미지"
@@ -107,7 +108,17 @@ ko:
         title: "Custom Pages"
       shipping_rates:
         title: "Shipping Rates"
-        types:
-          free: "Free Shipping"
-          free_by_price: "Free Shipping For Order Over X KRW"
+        choose_shipping_type: "Choose shipping rate type"
+        general_types:
+          free_shipping: "Free Shipping"
           flat_rate: "Flat Rate"
+        type_labels:
+          free: "Free Shipping For All Orders"
+          free_by_price: "Free Shipping For Orders Over X KRW"
+          flat_rate_per_order: "Flat Rate Per Order"
+          flat_rate_per_product: "Flat Rate Per Product"
+        types:
+          free: "Free Shipping For All Orders"
+          free_by_price: "Only For Orders Over X KRW"
+          flat_rate_per_order: "Per Order"
+          flat_rate_per_product: "Per Product"

@@ -1,11 +1,14 @@
 var ShippingRateForm = React.createClass({
   getInitialState: function () {
-    var type = (this.props.types) ? this.props.types[0] : null;
+    var type = (this.props.types) ? "free" : null;
 
     if (this.props.shipping_rate) {
       switch(this.props.shipping_rate.type) {
-        case "shipping/flat_rate":
-          type = "flat_rate";
+        case "shipping/flat_rate_per_order":
+          type = "flat_rate_per_order";
+          break;
+        case "shipping/flat_rate_per_product":
+          type = "flat_rate_by_product";
           break;
         case "shipping/free_shipping":
           type = "free";
@@ -17,6 +20,7 @@ var ShippingRateForm = React.createClass({
     }
 
     return {
+      generalType: "free_shipping",
       type: type,
       errors: {},
       name_ko_count: 0,
@@ -33,17 +37,54 @@ var ShippingRateForm = React.createClass({
           <div className="block">
             <div className="form-group row">
               <div className="col-sm-6">
-                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.type")}</label>
+                <label className="label">{I18n.t("merchant.admin.shipping_rates.choose_shipping_type")}</label>
                 <div className="select">
-                  <select name="type" className="form-control" onChange={this.switchType}>
-                    {this.props.types.map(function(type, index) {
-                      return <option value={type} key={"type_" + index}>{I18n.t("merchant.admin.shipping_rates.types."+type)}</option>
+                  <div className="form-errors">
+                    { (this.state.errors.type) ? this.state.errors.type.map(function(object){
+                      return object;
+                    }) : ""}
+                  </div>
+                  <select className="form-control" onChange={this.switchGeneralType}>
+                    {["free_shipping", "flat_rate"].map(function(type, index) {
+                      return <option value={type} key={"general_type_" + index}>{I18n.t("merchant.admin.shipping_rates.general_types." + type)}</option>
                     })}
                   </select>
                 </div>
               </div>
             </div>
+
+            <div className="form-group row">
+                {(this.state.generalType == "free_shipping") ?
+                  <div className="col-sm-6">
+                    <p>
+                      <input type="radio" name="type" defaultChecked value="free" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.free")}
+                    </p>
+                    <p>
+                      <input type="radio" name="type" value="free_by_price" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.free_by_price")}
+                    </p>
+                  </div> : null}
+
+                {(this.state.generalType == "flat_rate") ?
+                  <div className="col-sm-6">
+                    <p>
+                      <input type="radio" name="type" defaultChecked value="flat_rate_per_order" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.flat_rate_per_order")}
+                    </p>
+                    <p>
+                      <input type="radio" name="type" value="flat_rate_per_product" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.flat_rate_per_product")}
+                    </p>
+                  </div> : null}
+            </div>
           </div> : null}
+
+          {(this.props.shipping_rate) ?
+            <div className="block">
+              <div className="form-group row">
+                <div className="col-sm-6">
+                  <label className="label">{I18n.t("activerecord.attributes.shipping_rate.type")}</label>
+                  <p>{I18n.t("merchant.admin.shipping_rates.type_labels." + this.state.type)}</p>
+                </div>
+              </div>
+            </div> : null}
 
           <div className="block">
             <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
@@ -86,7 +127,7 @@ var ShippingRateForm = React.createClass({
             </div>
           </div> : null}
 
-        {(this.state.type == "flat_rate") ?
+        {(this.state.type == "flat_rate_per_product" || this.state.type == "flat_rate_per_order") ?
           <div className="block">
             <div className="form-group row">
               <div className="col-sm-6">
@@ -135,5 +176,17 @@ var ShippingRateForm = React.createClass({
   },
   switchType: function(e) {
     this.setState({type: e.target.value});
+  },
+  switchGeneralType: function(e) {
+    var type = null;
+
+    if (e.target.value == "free_shipping") {
+      type = "free"
+    }
+    else {
+      type = "flat_rate_per_order"
+    }
+
+    this.setState({generalType: e.target.value, type: type});
   }
 });

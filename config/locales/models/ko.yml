@@ -52,6 +52,8 @@ ko:
         sku: "SKU (재고관리번호)"
         sale_off: "Sale Off"
         in_stock: "재고 있음"
+        flat_shipping_rate: "Flat Rate"
+        pay_shipping_on_delivery: "Pay Shipping Fee On Delivery"
       variation:
         color: "색상"
         size: "사이즈"

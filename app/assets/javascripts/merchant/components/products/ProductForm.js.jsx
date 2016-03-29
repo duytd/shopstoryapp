@@ -262,6 +262,25 @@ var ProductForm = React.createClass({
               );
             }.bind(this))}
           </div>
+
+          <div className="block">
+            <h4>{I18n.t("merchant.admin.forms.shipping_title")}</h4>
+            <div className="form-group">
+              <label className="label">{I18n.t("activerecord.attributes.product.flat_shipping_rate")}</label>
+              <input type="text" className="form-control" name="product[flat_shipping_rate]"
+                defaultValue={(this.props.product) ? this.state.product.flat_shipping_rate : ""}/>
+            </div>
+
+            <div className="form-group">
+              <label className="styled-cb">
+                <input type="hidden" name="product[pay_shipping_on_delivery]" value="0" />
+                <input ref="checkbox" type="checkbox" name="product[pay_shipping_on_delivery]" value="1"
+                  defaultChecked={(this.props.product) ? this.state.product.pay_shipping_on_delivery : false} />
+                <i className="fa"></i>
+                {I18n.t("activerecord.attributes.product.pay_shipping_on_delivery")}
+              </label>
+            </div>
+          </div>
         </div>
 
         <div className="col-md-9 text-right">

@@ -6,7 +6,7 @@
   </p>
   <p>
     <label>{I18n.t("checkout.summary.shipping")} :</label>
-    <i>{(this.props.step == "shipping") ? I18n.t("checkout.summary.not_yet_calculated") : this.props.order.shipping}</i>
+    <i>{(this.props.step == "shipping") ? I18n.t("checkout.summary.not_yet_calculated") : I18n.toCurrency(this.props.order.shipping, {precision: 0, unit: this.props.currency})}</i>
   </p>
   <div class="cart-items">
     <div rt-repeat="item in this.props.globalVars.cart" key="item_{itemIndex}" class="row item">

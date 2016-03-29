@@ -4,10 +4,14 @@ var Product = React.createClass({
       <Item item={this.props.product} deleteUrl={this.props.deleteUrl} handleSelect={this.props.handleSelect}
         handleDeleteItem={this.props.handleDeleteItem} check={this.props.product.checked}>
         <td>
-          {this.props.product.id}
+          <a href={Routes.edit_merchant_product_path(this.props.product.id)}>
+            {"#" + this.props.product.id}
+          </a>
         </td>
         <td>
-          <img width="25" height="25" className="img-responsive" src={(this.props.product.images.length > 0) ? this.props.product.images[0].image.thumb.url : null} />
+          <a href={Routes.edit_merchant_product_path(this.props.product.id)}>
+            <img width="25" height="25" className="img-responsive" src={(this.props.product.images.length > 0) ? this.props.product.images[0].image.thumb.url : null} />
+          </a>
         </td>
         <td className="name">
           <a href={Routes.edit_merchant_product_path(this.props.product.id)}>

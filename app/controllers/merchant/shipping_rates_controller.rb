@@ -24,8 +24,10 @@ class Merchant::ShippingRatesController < Merchant::BaseController
                                               Shipping::FreeShipping.new shipping_rate_params
                                             when "free_by_price"
                                               Shipping::FreeShippingByPrice.new shipping_rate_params
-                                            when "flat_rate"
-                                              Shipping::FlatRate.new shipping_rate_params
+                                            when "flat_rate_per_order"
+                                              Shipping::FlatRatePerOrder.new shipping_rate_params
+                                            when "flat_rate_per_product"
+                                              Shipping::FlatRatePerProduct.new shipping_rate_params
                                             else
                                               render json: nil, status: :bad_request
                                             end

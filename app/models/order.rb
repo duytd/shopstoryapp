@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
 
   default_scope {order created_at: :desc}
 
+  scope :successful, ->{where(status: [Order.statuses[:processed], Order.statuses[:shipping], Order.statuses[:shipped]])}
   scope :having_payment, ->{where.not(status: [Order.statuses[:incompleted], Order.statuses[:pending], Order.statuses[:cancelled]])}
 
   after_initialize :set_default_values

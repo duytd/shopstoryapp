@@ -68,6 +68,7 @@ en:
         pricing_title: "Pricing"
         visibility_title: "Visibility"
         inventory_title: "Inventory"
+        shipping_title: "Shipping"
         categories_title: "Categories"
         images_title: "Images"
         variations_title: "Variations"
@@ -107,7 +108,17 @@ en:
         title: "Custom Pages"
       shipping_rates:
         title: "Shipping Rates"
-        types:
-          free: "Free Shipping"
-          free_by_price: "Free Shipping For Order Over X KRW"
+        choose_shipping_type: "Choose shipping rate type"
+        general_types:
+          free_shipping: "Free Shipping"
           flat_rate: "Flat Rate"
+        type_labels:
+          free: "Free Shipping For All Orders"
+          free_by_price: "Free Shipping For Orders Over X KRW"
+          flat_rate_per_order: "Flat Rate Per Order"
+          flat_rate_per_product: "Flat Rate Per Product"
+        types:
+          free: "Free Shipping For All Orders"
+          free_by_price: "Only For Orders Over X KRW"
+          flat_rate_per_order: "Per Order"
+          flat_rate_per_product: "Per Product"
