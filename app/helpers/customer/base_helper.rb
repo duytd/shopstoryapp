@@ -28,7 +28,7 @@ module Customer::BaseHelper
     if customer_signed_in?
       order = current_customer.product_orders.where(ip_address: ip_address, status: Order.statuses[:incompleted]).first_or_create
     else
-      order = ProductOrder.find_or_create ip_address: ip_address, status: Order.statuses[:incompleted]
+      order = ProductOrder.find_or_create_by ip_address: ip_address, status: Order.statuses[:incompleted]
     end
 
     currency = current_shop.currency.upcase
