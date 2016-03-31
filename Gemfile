@@ -41,6 +41,8 @@ gem "omniauth-oauth2", "~> 1.3.1"
 gem "friendly_id", "~> 5.1.0"
 gem "browserify-rails"
 gem "rqrcode"
+gem "acts_as_tree"
+
 
 group :development, :test do
   gem "byebug"

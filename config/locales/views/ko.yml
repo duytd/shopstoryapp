@@ -54,6 +54,7 @@ ko:
         save: "저장"
         cancel: "취소"
         delete: "삭제"
+        edit: "Edit"
         view: "보기"
         install: "설치"
         installed: "설치 완료"
@@ -106,6 +107,8 @@ ko:
         title: "부가 기능"
       custom_pages:
         title: "Custom Pages"
+      menus:
+        title: "Menu/Navigation"
       shipping_rates:
         title: "Shipping Rates"
         choose_shipping_type: "Choose shipping rate type"

@@ -43,7 +43,8 @@ Rails.application.routes.draw do
       get :account, to: "customers#show", path: "my-account"
 
       resources :categories, only: [:index, :show]
-      resources :products, only: :show
+      resources :products, only: [:index, :show]
+      resources :pages, only: [:show]
       resources :orders, only: [:show, :new, :create, :update] do
         resource :payment, only: :show
       end
@@ -77,6 +78,8 @@ Rails.application.routes.draw do
       resources :customers, except: :show do
         delete :index, on: :collection
       end
+
+      resources :menus, except: :show
 
       namespace :design do
         resource :general, only: [:edit, :update]

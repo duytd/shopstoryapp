@@ -1,3 +1,30 @@
-// Place all the styles related to the merchant/menus controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.menu-list {
+  .menu {
+    .btn {
+      border-radius: 3px;
+    }
+    .title {
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      font-size: 18px;
+    }
+    .draggable-list {
+      display: block;
+    }
+    .draggable-item, .placeholder {
+      display: block;
+      background: #eee;
+      height: 30px;
+    }
+    .placeholder {
+      border: 1px dashed #aaa;
+    }
+    .menu-item {
+      .title {
+        border: none;
+        padding: 5px;
+        font-size: 13px;
+      }
+    }
+  }
+}

@@ -1,18 +1,16 @@
-class Merchant::MenusController < ApplicationController
+class Merchant::MenusController < Merchant::BaseController
   include TranslationsHelper
   load_and_authorize_resource
 
   def index
-   if request.delete?
-      delete_all
-    else
-      list_all
-    end
+    @props = {
+      menus: Menu.all,
+    }
   end
 
   def new
     @props = {
-      types: Menu.types,
+      types: MenuItem.types,
       url: merchant_menus_path,
       method: :post
     }
@@ -50,19 +48,8 @@ class Merchant::MenusController < ApplicationController
   end
 
   private
-  def list_all
-    @props = {
-      menus: Menu.all,
-    }
-  end
-
-  def delete_all
-    Menu.where(id: params[:menu_ids]).destroy_all
-    render json: nil, status: :ok
-  end
-
   def menu_params
-    menu_items_permitted = MenuItem.globalize_attribute_names + [:parent_id, :position, :type, :value]
+    menu_items_permitted = MenuItem.globalize_attribute_names + [:id, :parent_id, :position, :type, :value]
     params.require(:menu).permit :name, :position, :active, menu_items_attributes: menu_items_permitted
   end
 end
