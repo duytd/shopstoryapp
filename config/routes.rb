@@ -79,7 +79,9 @@ Rails.application.routes.draw do
         delete :index, on: :collection
       end
 
-      resources :menus, except: :show
+      resources :menus, except: :show do
+        resources :menu_items, only: [:create, :update, :destroy]
+      end
 
       namespace :design do
         resource :general, only: [:edit, :update]

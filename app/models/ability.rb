@@ -18,6 +18,7 @@ class Ability
       can :manage, ShippingRate
       can :manage, Customer
       can :manage, Menu
+      can :manage, MenuItem
     elsif user.is_a? Customer
       can :read, Category
       can :read, Product
@@ -25,13 +26,11 @@ class Ability
       can [:read], Customer
       can :manage, OrderProduct
       can [:read, :create, :update], Order
-      can :read, Menu
     else
       can :read, Category
       can :read, Product
       can :manage, OrderProduct
       can [:read, :create, :update], Order
-      can :read, Menu
     end
   end
 

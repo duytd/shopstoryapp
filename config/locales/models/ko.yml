@@ -101,3 +101,10 @@ ko:
         name: "Name"
         rate: "Rate"
         min_price: "Minimum Order Amount"
+      menu:
+        name: "Name"
+        position: "Position"
+      menu_item:
+        name: "Name"
+        type: "Type"
+        value: "Value"

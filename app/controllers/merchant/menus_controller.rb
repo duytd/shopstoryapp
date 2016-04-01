@@ -1,5 +1,4 @@
 class Merchant::MenusController < Merchant::BaseController
-  include TranslationsHelper
   load_and_authorize_resource
 
   def index
@@ -10,7 +9,8 @@ class Merchant::MenusController < Merchant::BaseController
 
   def new
     @props = {
-      types: MenuItem.types,
+      positions: Menu.positions.keys.to_a,
+      menu_item_types: MenuItem.types,
       url: merchant_menus_path,
       method: :post
     }
@@ -29,6 +29,8 @@ class Merchant::MenusController < Merchant::BaseController
   def edit
     @props = {
       menu: @menu,
+      positions: Menu.positions.keys.to_a,
+      menu_item_types: MenuItem.types,
       url: merchant_menu_path(@menu),
       method: :put
     }

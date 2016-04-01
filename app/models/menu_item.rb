@@ -14,10 +14,10 @@ class MenuItem < ActiveRecord::Base
   default_scope {order position: :asc}
 
   def self.types
-    %w{ home category page product url }
+    %w{ home category category_all product_all page product url }
   end
 
   def as_json options={}
-    super(options).merge({name_en: name_en, name_ko: name_ko, children: children})
+    super(options).merge({name_en: name_en, name_ko: name_ko, children: children, type: type.underscore})
   end
 end

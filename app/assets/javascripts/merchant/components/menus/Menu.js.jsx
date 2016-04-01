@@ -1,10 +1,7 @@
 var Menu = React.createClass({
+  mixins: [DragMixin],
   getInitialState: function() {
-    var placeholder = document.createElement("div");
-    placeholder.className = "placeholder";
-
     return {
-      placeholder: placeholder,
       items: this.props.menu.menu_items
     }
   },
@@ -39,7 +36,7 @@ var Menu = React.createClass({
               {I18n.t("merchant.admin.buttons.edit")}
             </a>
           </p>
-          <form ref="form">
+          <form ref="draggable">
             <div className="draggable-list" onDragOver={this.dragOver}>
               {menuItems}
             </div>
@@ -48,61 +45,9 @@ var Menu = React.createClass({
       </div>
     )
   },
-  dragStart: function(e) {
-    this.dragged = e.currentTarget;
-
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("text/html", e.currentTarget);
-  },
-  dragEnd: function(e) {
-    e.preventDefault();
-
-    this.dragged.style.display = "block";
-
-    if (this.dragged.parentNode.querySelectorAll(".placeholder").length == 0) return;
-
-    this.dragged.parentNode.removeChild(this.state.placeholder);
-
-    var data = this.state.items;
-    var from = Number(this.dragged.dataset.index);
-    var to = Number(this.over.dataset.index);
-
-    if (this.nodePlacement == "before") {
-      to--;
-    }
-
-    if(this.nodePlacement == "after") {
-      to++;
-    }
-
-    data.splice(to, 0, data.splice(from, 1)[0]);
-
-    this.setState({items: data}, this.submit);
-  },
-  dragOver: function(e) {
-    e.preventDefault();
-
-    this.dragged.style.display = "none";
-
-    if (e.target.className != "draggable-item") return;
-    this.over = e.target;
-
-    var from = Number(this.dragged.dataset.index);
-    var to = Number(this.over.dataset.index);
-    var parent = e.target.parentNode;
-
-    if (from < to) {
-      this.nodePlacement = "after";
-      parent.insertBefore(this.state.placeholder, e.target.nextElementSibling);
-    }
-    else if (from > to) {
-      this.nodePlacement = "before";
-      parent.insertBefore(this.state.placeholder, e.target);
-    }
-  },
-  submit: function(position) {
+  submitDraggable: function() {
     var id = this.props.menu.id;
-    data = $(this.refs.form).serialize();
+    data = $(this.refs.draggable).serialize();
 
     $.ajax({
       url: Routes.merchant_menu_path(id),
@@ -114,7 +59,6 @@ var Menu = React.createClass({
     e.preventDefault();
 
     var id = this.props.menu.id;
-    data = $(this.refs.form).serialize();
 
     $.ajax({
       url: Routes.merchant_menu_path(id),

@@ -7,7 +7,7 @@ var MenuList = React.createClass({
   render: function() {
     var menus = this.state.menus.map(function(menu, index) {
       return <Menu menu={menu} key={"menu_" + index} deleteMenu={this.deleteMenu} />
-    })
+    }.bind(this))
 
     return (
       <div className="menu-list row">

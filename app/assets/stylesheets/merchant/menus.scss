@@ -8,17 +8,6 @@
       border-bottom: 1px solid #eee;
       font-size: 18px;
     }
-    .draggable-list {
-      display: block;
-    }
-    .draggable-item, .placeholder {
-      display: block;
-      background: #eee;
-      height: 30px;
-    }
-    .placeholder {
-      border: 1px dashed #aaa;
-    }
     .menu-item {
       .title {
         border: none;
@@ -26,5 +15,34 @@
         font-size: 13px;
       }
     }
+  }
+}
+
+.menu-form {
+  h4 {
+    font-weight: 400;
+  }
+}
+
+.draggable-list {
+  display: block;
+  .fa {
+    font-size: 18px;
+    margin-left: 5px;
+  }
+  .draggable-item, .placeholder {
+    display: block;
+    background: #eee;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  .placeholder {
+    border: 1px dashed #aaa;
+  }
+  .draggable-title {
+    border: none;
+    padding: 5px;
+    font-size: 13px;
   }
 }

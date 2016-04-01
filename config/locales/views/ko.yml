@@ -109,6 +109,8 @@ ko:
         title: "Custom Pages"
       menus:
         title: "Menu/Navigation"
+        menu_description: "Menu Description"
+        menu_items: "Menu Items"
       shipping_rates:
         title: "Shipping Rates"
         choose_shipping_type: "Choose shipping rate type"
