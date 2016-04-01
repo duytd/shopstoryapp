@@ -10,11 +10,13 @@ var MenuItem = React.createClass({
       return (
         <div
           className={"draggable-item " + this.state.draggableKlass}
-          data-index={index}
-          key={"menu_item_" + this.props.menu_item.id + "_child" + index}
-          draggable="true"
-          onDragEnd={this.dragEnd}
-          onDragStart={this.dragStart}>
+          key={"menu_item_" + this.props.menu_item.id + "_child" + index} data-index={index}>
+          <div className="dragger"
+            draggable="true"
+            onDragOver={this.dragOver}
+            onDragEnd={this.dragEnd}
+            onDragStart={this.dragStart}>
+          </div>
           <input type="hidden" name={"menu[menu_items_attributes][" + child.id + "][id]"} value={child.id} />
           <input type="hidden" name={"menu[menu_items_attributes][" + child.id + "][position]"} value={index} />
           <MenuItem
@@ -48,7 +50,7 @@ var MenuItem = React.createClass({
               </a>
             </span> : null}
         </p>
-          <div className="draggable-list" onDragOver={this.dragOver}>
+          <div className="draggable-list">
             {children}
           </div>
       </div>

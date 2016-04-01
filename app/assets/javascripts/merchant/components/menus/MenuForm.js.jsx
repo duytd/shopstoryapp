@@ -17,13 +17,13 @@ var MenuForm = React.createClass({
   render: function () {
     var menuItems = this.state.items.map(function(item, index) {
       return (
-        <div
-          className={"draggable-item " + this.state.draggableKlass}
-          data-index={index}
-          key={"menu_item" + index}
-          onDragEnd={this.dragEnd}
-          draggable="true"
-          onDragStart={this.dragStart}>
+        <div className={"draggable-item " + this.state.draggableKlass} data-index={index} key={"menu_item" + index}>
+          <div className="dragger"
+            draggable="true"
+            onDragOver={this.dragOver}
+            onDragEnd={this.dragEnd}
+            onDragStart={this.dragStart}>
+          </div>
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][id]"} value={item.id} />
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][position]"} value={index} />
           <MenuItem

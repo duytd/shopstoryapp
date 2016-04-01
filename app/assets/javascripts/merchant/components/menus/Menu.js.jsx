@@ -9,13 +9,13 @@ var Menu = React.createClass({
   render: function() {
     var menuItems = this.state.items.map(function(item, index) {
       return (
-        <div
-          className={"draggable-item " + this.state.draggableKlass}
-          data-index={index}
-          key={"menu_item" + index}
-          draggable="true"
-          onDragEnd={this.dragEnd}
-          onDragStart={this.dragStart}>
+        <div className={"draggable-item " + this.state.draggableKlass} key={"menu_item" + index} data-index={index}>
+          <div className="dragger"
+            draggable="true"
+            onDragOver={this.dragOver}
+            onDragEnd={this.dragEnd}
+            onDragStart={this.dragStart}>
+          </div>
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][id]"} value={item.id} />
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][position]"} value={index} />
           <MenuItem
@@ -39,7 +39,7 @@ var Menu = React.createClass({
             </a>
           </p>
           <form ref="draggable">
-            <div className="draggable-list" onDragOver={this.dragOver}>
+            <div className="draggable-list">
               {menuItems}
             </div>
           </form>

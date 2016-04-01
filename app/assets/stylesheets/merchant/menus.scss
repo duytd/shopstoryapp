@@ -26,11 +26,15 @@
 
 .draggable-list {
   display: block;
+  a {
+    position: relative;
+  }
   .fa {
     font-size: 18px;
     margin-left: 5px;
   }
   .draggable-item {
+    position: relative;
     display: block;
     min-height: 50px;
     padding: 1px;
@@ -72,4 +76,11 @@
       background: #f4f5f6;
     }
   }
+}
+
+.dragger {
+  background: transparent;
+  height: 50px;
+  position: absolute;
+  width: 100%;
 }
