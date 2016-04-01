@@ -66,9 +66,10 @@ Rails.application.routes.draw do
         delete :index, on: :collection
       end
 
-      resources :products, except: :show do
+      resources :products do
         delete :index, on: :collection
         resources :variations, only: :create
+        get :search, on: :collection
       end
 
       resources :shipping_rates, except: :show do

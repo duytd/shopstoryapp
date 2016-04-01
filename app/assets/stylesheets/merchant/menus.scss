@@ -46,3 +46,19 @@
     font-size: 13px;
   }
 }
+
+.autocomplete-data {
+  box-shadow: 1px 1px 13px #eee;
+  list-style-type: none;
+  padding: 0;
+  background: #f8f9f9;
+  margin-top: -3px;
+  border-radius: 0px 0px 3px 3px;
+  li {
+    padding: 10px;
+    &:hover {
+      cursor: pointer;
+      background: #f4f5f6;
+    }
+  }
+}

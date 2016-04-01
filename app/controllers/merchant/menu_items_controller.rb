@@ -1,3 +1,6 @@
+require_dependency "menu/category"
+require_dependency "menu/product"
+
 class Merchant::MenuItemsController < Merchant::BaseController
   load_and_authorize_resource
   before_action :load_menu, only: :create

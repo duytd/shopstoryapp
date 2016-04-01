@@ -91,6 +91,8 @@ var MenuForm = React.createClass({
                 <div className="col-sm-6">
                   <div className="row">
                     <MenuItemForm
+                      categories={this.props.categories}
+                      pages={this.props.pages}
                       menu={this.state.menu}
                       menu_item={this.state.menu_item}
                       key={Math.random()}

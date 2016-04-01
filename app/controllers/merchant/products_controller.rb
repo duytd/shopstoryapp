@@ -13,6 +13,10 @@ class Merchant::ProductsController < Merchant::BaseController
     end
   end
 
+  def show
+    render json: @product, status: :ok
+  end
+
   def new
     @props = {
       categories: @categories,
@@ -71,6 +75,11 @@ class Merchant::ProductsController < Merchant::BaseController
   def destroy
     @product.destroy
     render json: nil, status: :ok
+  end
+
+  def search
+    @search = Product.search_by_name params[:q]
+    render json: @search, status: :ok
   end
 
   private

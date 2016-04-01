@@ -14,6 +14,6 @@ class Category < ActiveRecord::Base
   end
 
   def as_json options={}
-    super.as_json(options).merge({name_en: name_en})
+    super.as_json(options).merge({name_en: name_en, name_ko: name_ko})
   end
 end

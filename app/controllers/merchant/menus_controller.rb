@@ -11,6 +11,8 @@ class Merchant::MenusController < Merchant::BaseController
     @props = {
       positions: Menu.positions.keys.to_a,
       menu_item_types: MenuItem.types,
+      categories: Category.allmap{|c| [c.name_en, c.name_ko, c.id]},
+      pages: CustomPage.all.map{|p| [p.title_en, p.title_ko, p.slug]},
       url: merchant_menus_path,
       method: :post
     }
@@ -30,6 +32,8 @@ class Merchant::MenusController < Merchant::BaseController
     @props = {
       menu: @menu,
       positions: Menu.positions.keys.to_a,
+      categories: Category.all.map{|c| [c.name_en, c.name_ko, c.id]},
+      pages: CustomPage.all.map{|p| [p.title_en, p.title_ko, p.slug]},
       menu_item_types: MenuItem.types,
       url: merchant_menu_path(@menu),
       method: :put

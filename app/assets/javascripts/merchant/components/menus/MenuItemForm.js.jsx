@@ -36,12 +36,7 @@ var MenuItemForm = React.createClass({
     };
   },
   render: function () {
-    if (this.props.menu_item) {
-      var type = null;
-      switch(type) {
-
-      }
-    }
+    var defaultCategory = (this.props.categories.length > 0) ? this.props.categories[0][3] : null;
 
     return (
       <form ref="form" className="menu-item-form" action={this.props.url}
@@ -79,13 +74,14 @@ var MenuItemForm = React.createClass({
 
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.menu_item.type")}</label>
+              {(!this.props.menu_item) ?
               <div className="select" onChange={this.switchType}>
                 <select name="type" className="form-control" defaultValue={this.state.type}>
                   {this.props.types.map(function(type, index) {
                     return <option value={type} key={"item_type_" + index}>{type}</option>
                   })}
                 </select>
-              </div>
+              </div> : <p>{this.state.type}</p>}
             </div>
 
             {(this.state.type == "category" || this.state.type == "product" || this.state.type == "url" || this.state.type == "page") ?
@@ -96,8 +92,34 @@ var MenuItemForm = React.createClass({
                     return object;
                   }) : ""}
                 </div>
-                <input type="text" name="menu_item[value]"
-                  className="form-control" defaultValue={(this.props.menu_item) ? this.props.menu_item.value : null} />
+
+                {(this.state.type == "category") ?
+                  <div className="select">
+                    <select className="form-control" name="menu_item[value]" defaultValue={(this.props.menu_item) ? this.props.menu_item.value : defaultCategory}>
+                      {this.props.categories.map(function(category, index) {
+                        return <option value={category[2]} key={"category_" + index}>{category[0]}</option>
+                      })}
+                    </select>
+                  </div> : null}
+
+                {(this.state.type == "product") ?
+                  <AutoComplete
+                    name="menu_item[value]"
+                    url={Routes.search_merchant_products_path()}
+                    chosenSource={(this.state.type == "product" && this.props.menu_item) ? Routes.merchant_product_path(this.props.menu_item.value) : null} /> : null}
+
+                {(this.state.type == "page") ?
+                  <div className="select">
+                    <select className="form-control" name="menu_item[value]" defaultValue={(this.props.menu_item) ? this.props.menu_item.value : defaultCategory}>
+                      {this.props.pages.map(function(page, index) {
+                        return <option value={page[2]} key={"page_" + index}>{page[0]}</option>
+                      })}
+                    </select>
+                  </div> : null}
+
+                {(this.state.type == "url") ?
+                  <input type="text" name="menu_item[value]"
+                    className="form-control" defaultValue={(this.props.menu_item) ? this.props.menu_item.value : null} /> : null}
               </div> : null}
           </div>
 

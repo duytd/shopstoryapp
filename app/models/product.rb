@@ -47,6 +47,10 @@ class Product < ActiveRecord::Base
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
   end
 
+  def self.search_by_name query
+    with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
+  end
+
   def create_variations
     options = variation_options.includes :variation_option_values
 
