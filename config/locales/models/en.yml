@@ -113,3 +113,4 @@ en:
         name: "Name"
         type: "Type"
         value: "Value"
+        parent_id: "Parent menu"

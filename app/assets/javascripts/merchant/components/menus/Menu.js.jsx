@@ -2,22 +2,24 @@ var Menu = React.createClass({
   mixins: [DragMixin],
   getInitialState: function() {
     return {
-      items: this.props.menu.menu_items
+      items: this.props.menu.menu_items,
+      draggableKlass: "parent"
     }
   },
   render: function() {
     var menuItems = this.state.items.map(function(item, index) {
       return (
         <div
-          className="draggable-item"
+          className={"draggable-item " + this.state.draggableKlass}
           data-index={index}
           key={"menu_item" + index}
           draggable="true"
           onDragEnd={this.dragEnd}
           onDragStart={this.dragStart}>
-          <input type="hidden" name={"menu[menu_items_attributes][" + index + "][id]"} value={item.id} />
-          <input ref={"item_position_" + item.id} type="hidden" name={"menu[menu_items_attributes][" + index + "][position]"} value={index} />
+          <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][id]"} value={item.id} />
+          <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][position]"} value={index} />
           <MenuItem
+            swapItem={this.swapItem}
             menu_item={item} />
         </div>
       )
@@ -44,6 +46,23 @@ var Menu = React.createClass({
         </div>
       </div>
     )
+  },
+  swapItem: function(from, to, parent) {
+    var items = this.state.items;
+
+    if (parent) {
+      items = items.map(function(parentItem) {
+        if (parentItem.id == parent.id) {
+          parentItem.children.splice(to, 0, parentItem.children.splice(from, 1)[0]);
+        }
+        return parentItem;
+      })
+    }
+    else {
+      items.splice(to, 0, items.splice(from, 1)[0]);
+    }
+
+    this.setState({items: items}, this.submitDraggable);
   },
   submitDraggable: function() {
     var id = this.props.menu.id;

@@ -5,7 +5,9 @@ var MenuForm = React.createClass({
 
     return {
       menu: this.props.menu,
+      draggableKlass: "parent",
       menu_item: null,
+      parent: null,
       items: items,
       errors: {},
       name_ko_count: 0,
@@ -16,19 +18,22 @@ var MenuForm = React.createClass({
     var menuItems = this.state.items.map(function(item, index) {
       return (
         <div
-          className="draggable-item"
+          className={"draggable-item " + this.state.draggableKlass}
           data-index={index}
           key={"menu_item" + index}
-          draggable="true"
           onDragEnd={this.dragEnd}
+          draggable="true"
           onDragStart={this.dragStart}>
-          <input type="hidden" name={"menu[menu_items_attributes][" + index + "][id]"} value={item.id} />
-          <input ref={"item_position_" + item.id} type="hidden" name={"menu[menu_items_attributes][" + index + "][position]"} value={index} />
+          <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][id]"} value={item.id} />
+          <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][position]"} value={index} />
           <MenuItem
             menu_id={this.state.menu.id}
-            action={true}
+            showIcon={true}
+            setParent={this.setParent}
             setMenuItem={this.setMenuItem}
             deleteMenuItem={this.deleteMenuItem}
+            swapItem={this.swapItem}
+            submitDraggable={this.submitDraggable}
             menu_item={item} />
         </div>
       )
@@ -95,6 +100,7 @@ var MenuForm = React.createClass({
                       pages={this.props.pages}
                       menu={this.state.menu}
                       menu_item={this.state.menu_item}
+                      parent={this.state.parent}
                       key={Math.random()}
                       types={this.props.menu_item_types}
                       updateMenuItem={this.updateMenuItem}
@@ -116,6 +122,23 @@ var MenuForm = React.createClass({
           </div> : null}
       </div>
     )
+  },
+  swapItem: function(from, to, parent) {
+    var items = this.state.items;
+
+    if (parent) {
+      items = items.map(function(parentItem) {
+        if (parentItem.id == parent.id) {
+          parentItem.children.splice(to, 0, parentItem.children.splice(from, 1)[0]);
+        }
+        return parentItem;
+      })
+    }
+    else {
+      items.splice(to, 0, items.splice(from, 1)[0]);
+    }
+
+    this.setState({items: items}, this.submitDraggable);
   },
   submitDraggable: function() {
     var id = this.state.menu.id;
@@ -158,25 +181,83 @@ var MenuForm = React.createClass({
   },
   addMenuItem: function(item) {
     var items = this.state.items;
-    items.push(item);
 
-    this.setState({items: items, menu_item: null});
+    if (item.parent_id) {
+      items = items.map(function(parentItem) {
+        if (parentItem.id == item.parent_id) {
+          parentItem.children.push(item);
+        }
+        return parentItem;
+      })
+    }
+    else {
+      items.push(item);
+    }
+
+    this.setState({items: items, menu_item: null, parent: null});
   },
   deleteMenuItem: function(item) {
     var items = this.state.items;
-    var index = items.indexOf(item);
 
-    items.splice(index, 1);
+    if (item.parent_id) {
+      var i = 0;
+
+      items = items.map(function(parentItem) {
+        if (parentItem.id == item.parent_id) {
+          parentItem.children.forEach(function(childItem, index){
+            if (childItem == item.id) {
+              i = index;
+            }
+          })
+
+          parentItem.children.splice(i, 1);
+        }
+        return parentItem;
+      })
+    }
+    else {
+      var index = items.indexOf(item);
+      items.splice(index, 1);
+    }
+
     this.setState({items: items});
   },
   updateMenuItem: function(oldItem, newItem) {
     var items = this.state.items;
-    var index = items.indexOf(oldItem);
-    items[index] = newItem;
 
-    this.setState({items: items, menu_item: null});
+    if (oldItem.parent_id) {
+      var i = 0;
+
+      items = items.map(function(parentItem) {
+        if (parentItem.id == oldItem.parent_id) {
+          parentItem.children.forEach(function(childItem, index){
+            if (childItem == oldItem.id) {
+              i = index;
+            }
+          })
+
+          parentItem.children[i] = newItem;
+        }
+        return parentItem;
+      })
+
+    }
+    else {
+      var index = items.indexOf(oldItem);
+      items[index] = newItem;
+    }
+
+    this.setState({items: items, menu_item: null, parent: null});
   },
-  setMenuItem: function(item) {
-    this.setState({menu_item: item})
+  setMenuItem: function(item, parent) {
+    if (parent) {
+      this.setState({menu_item: item, parent: parent});
+    }
+    else {
+      this.setState({menu_item: item})
+    }
+  },
+  setParent: function(item) {
+    this.setState({parent: item})
   }
-});
+})

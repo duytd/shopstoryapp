@@ -30,20 +30,31 @@
     font-size: 18px;
     margin-left: 5px;
   }
-  .draggable-item, .placeholder {
+  .draggable-item {
     display: block;
-    background: #eee;
-    height: 50px;
-    padding: 10px;
+    min-height: 50px;
+    padding: 1px;
     margin-bottom: 5px;
+    .draggable-list {
+      width: 90%;
+      margin-left: 10%;
+    }
   }
   .placeholder {
+    background: #eee;
+    height: 50px;
+    display: block;
     border: 1px dashed #aaa;
+    margin-bottom: 5px;
   }
   .draggable-title {
+    display: block;
+    padding: 10px;
+    height: 50px;
     border: none;
-    padding: 5px;
     font-size: 13px;
+    background: #eee;
+    margin: 0;
   }
 }
 

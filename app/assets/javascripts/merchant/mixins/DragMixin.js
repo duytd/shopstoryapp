@@ -23,20 +23,17 @@ var DragMixin = {
 
     this.dragged.parentNode.removeChild(this.state.placeholder);
 
-    var data = this.state.items;
     var from = Number(this.dragged.dataset.index);
     var to = Number(this.over.dataset.index);
 
-    data.splice(to, 0, data.splice(from, 1)[0]);
-
-    this.setState({items: data}, this.submitDraggable);
+    this.swapItem(from, to, this.props.menu_item);
   },
   dragOver: function(e) {
     e.preventDefault();
 
     this.dragged.style.display = "none";
 
-    if (e.target.className != "draggable-item") return;
+    if (this.dragged.className != e.target.className) return;
     this.over = e.target;
 
     var from = Number(this.dragged.dataset.index);

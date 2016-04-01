@@ -72,6 +72,13 @@ var MenuItemForm = React.createClass({
               </div>
             </div>
 
+            {(this.props.parent) ?
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.menu_item.parent_id")}</label>
+                <input type="hidden" name="menu_item[parent_id]" value={this.props.parent.id} />
+                <p>{this.props.parent.name}</p>
+              </div> : null}
+
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.menu_item.type")}</label>
               {(!this.props.menu_item) ?
