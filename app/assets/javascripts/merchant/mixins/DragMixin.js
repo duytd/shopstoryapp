@@ -11,8 +11,10 @@ var DragMixin = {
   dragStart: function(e) {
     this.dragged = e.currentTarget.parentNode;
 
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("text/html", e.currentTarget.parentNode);
+    if (typeof e.dataTransfer !== "undefined") {
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/html", e.currentTarget.parentNode);
+    }
   },
   dragEnd: function(e) {
     e.preventDefault();
@@ -37,6 +39,29 @@ var DragMixin = {
 
     if (this.dragged.className != e.target.parentNode.className) return;
     this.over = e.target.parentNode;
+
+    var from = Number(this.dragged.dataset.index);
+    var to = Number(this.over.dataset.index);
+    var parent = this.over.parentNode;
+
+    if (from < to) {
+      this.nodePlacement = "after";
+      parent.insertBefore(this.state.placeholder, this.over.nextElementSibling);
+    }
+    else if (from > to) {
+      this.nodePlacement = "before";
+      parent.insertBefore(this.state.placeholder, this.over);
+    }
+  },
+  touchMove: function(e) {
+    e.preventDefault();
+
+    if( typeof this.dragged === "undefined" || this.dragged == null) return;
+    this.dragged.style.display = "none";
+    var location = e.touches.item(0);
+    this.over = document.elementFromPoint(location.clientX, location.clientY);
+
+    if (this.dragged.className != this.over.className) return;
 
     var from = Number(this.dragged.dataset.index);
     var to = Number(this.over.dataset.index);

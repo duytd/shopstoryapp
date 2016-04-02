@@ -14,7 +14,11 @@ var Menu = React.createClass({
             draggable="true"
             onDragOver={this.dragOver}
             onDragEnd={this.dragEnd}
-            onDragStart={this.dragStart}>
+            onDragStart={this.dragStart}
+            onTouchMove={this.touchMove}
+            onTouchEnter={this.touchEnter}
+            onTouchEnd={this.dragEnd}
+            onTouchStart={this.dragStart}>
           </div>
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][id]"} value={item.id} />
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][position]"} value={index} />
