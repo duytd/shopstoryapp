@@ -32,6 +32,8 @@ ko:
         subdomain: "샵 이름"
       customer:
         email: "Email"
+        total_spent: "Total Spent"
+        total_orders: "Number Of Order"
       category:
         name: "카테고리명"
         name_ko: "카테고리명"

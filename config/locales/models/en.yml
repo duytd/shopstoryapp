@@ -37,6 +37,8 @@ en:
         subdomain: "Shop name"
       customer:
         email: "Email"
+        total_spent: "Total Spent"
+        total_orders: "Number Of Order"
       category:
         name: "Name"
         name_ko: "Name"

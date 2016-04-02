@@ -19,4 +19,12 @@ class Customer < ActiveRecord::Base
       user.first_name = auth.info.name
     end
   end
+
+  def total_orders
+    product_orders.successful.count
+  end
+
+  def total_spent
+    product_orders.successful.inject(0){|sum, item| sum + item.total}
+  end
 end

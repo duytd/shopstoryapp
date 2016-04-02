@@ -50,6 +50,16 @@ var List = React.createClass({
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
           break;
+        case "customer":
+          itemChildren = (
+            <Customer
+              customer={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_customer_path(item.id)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
+          break;
         case "shipping_rate":
           itemChildren = (
             <ShippingRate
@@ -71,21 +81,23 @@ var List = React.createClass({
     return (
       <div className="item-list">
         <BulkAction checkCount={this.state.checkCount} deleteAllHandler={this.handleDeleteAll} />
-        <table className="table item-list">
-          <thead>
-            <tr>
-              <th>
-                <SelectAllCb isSelectAll={this.state.isSelectAll} selectAllHandler={this.handleSelectAll}
-                  isDisabled={this.state.items.length == 0} />
-              </th>
-              {this.props.headers.map(function(h, index){ return <th key={"h_" + index}>{h}</th>})}
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {itemNodes}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table item-list">
+            <thead>
+              <tr>
+                <th>
+                  <SelectAllCb isSelectAll={this.state.isSelectAll} selectAllHandler={this.handleSelectAll}
+                    isDisabled={this.state.items.length == 0} />
+                </th>
+                {this.props.headers.map(function(h, index){ return <th key={"h_" + index}>{h}</th>})}
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {itemNodes}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   },
@@ -130,6 +142,9 @@ var List = React.createClass({
         break;
       case "custom_page":
         data = {custom_page_ids: item_ids};
+        break;
+      case "customer":
+        data = {customer_ids: item_ids};
         break;
       case "shipping_rate":
         data = {shipping_rate_ids: item_ids};

@@ -2,6 +2,7 @@ class Variation < ActiveRecord::Base
   mount_uploader :image, ProductImageUploader
 
   belongs_to :product, inverse_of: :variations
+  has_many :order_products, dependent: :nullify
   has_many :variation_variation_option_values, dependent: :destroy, inverse_of: :variation
   has_many :variation_option_values, through: :variation_variation_option_values
 

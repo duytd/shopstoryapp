@@ -50,12 +50,10 @@ class Merchant::CustomersController < Merchant::BaseController
 
   private
   def list_all
-    @customers = Customer.all.includes :orders
+    @customers = Customer.all.includes :product_orders
 
     @props = {
-      customers: @customers,
-      orders: @customers.orders.successful,
-      total_spent: @customer.orders.successful.inject(0){|sum, item| sum + item.total}
+      customers: @customers.as_json({methods: [:total_orders, :total_spent]})
     }
   end
 

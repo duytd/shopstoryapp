@@ -107,6 +107,8 @@ en:
         title: "Extensions"
       custom_pages:
         title: "Custom Pages"
+      customers:
+        title: "Customers"
       menus:
         title: "Menu/Navigation"
         menu_description: "Menu Description"
