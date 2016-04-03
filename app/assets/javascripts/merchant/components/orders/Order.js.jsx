@@ -60,7 +60,9 @@ var Order = React.createClass({
       <Item item={this.props.order} deleteUrl={this.props.deleteUrl} handleSelect={this.props.handleSelect}
           handleDeleteItem={this.props.handleDeleteItem} check={this.props.order.checked}>
         <td>
-          {"#" + this.props.order.id}
+          <a href={Routes.edit_merchant_order_path(this.props.order)}>
+            {"#" + this.props.order.id}
+          </a>
         </td>
         <td>
           {I18n.l("time.formats.short", this.props.order.created_at)}

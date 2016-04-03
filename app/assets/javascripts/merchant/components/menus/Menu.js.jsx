@@ -16,7 +16,6 @@ var Menu = React.createClass({
             onDragEnd={this.dragEnd}
             onDragStart={this.dragStart}
             onTouchMove={this.touchMove}
-            onTouchEnter={this.touchEnter}
             onTouchEnd={this.dragEnd}
             onTouchStart={this.dragStart}>
           </div>

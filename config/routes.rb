@@ -88,7 +88,7 @@ Rails.application.routes.draw do
         resource :general, only: [:edit, :update]
       end
 
-      resources :orders do
+      resources :orders, except: :show do
         delete :index, on: :collection
       end
       resources :shops, only: [:edit, :update]

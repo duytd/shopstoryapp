@@ -8,17 +8,38 @@ class Merchant::OrdersController < Merchant::BaseController
       list_all
     end
    end
-  
+
   def new
+    @props = {
+      url: merchant_orders_path,
+      method: :post
+    }
   end
 
-  def show
+  def create
+    @order = ProductOrder.new order_params
+
+    if @order.save
+      render json: @order, status: :ok
+    else
+      render json: @order.errors, status: :unprocessable_entity
+    end
   end
 
   def edit
+    @props = {
+      order: @order,
+      url: merchant_order_path(@order),
+      method: :put
+    }
   end
 
   def update
+    if @order.update order_params
+      render json: @order, status: :ok
+    else
+      render json: @order.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

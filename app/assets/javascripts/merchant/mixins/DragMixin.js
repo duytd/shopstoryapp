@@ -59,9 +59,10 @@ var DragMixin = {
     if( typeof this.dragged === "undefined" || this.dragged == null) return;
     this.dragged.style.display = "none";
     var location = e.touches.item(0);
+
+    if (this.dragged.className != document.elementFromPoint(location.clientX, location.clientY).className) return;
     this.over = document.elementFromPoint(location.clientX, location.clientY);
 
-    if (this.dragged.className != this.over.className) return;
 
     var from = Number(this.dragged.dataset.index);
     var to = Number(this.over.dataset.index);

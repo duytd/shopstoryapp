@@ -73,6 +73,15 @@ ko:
       variation_option:
         name: "Name"
         value: "Value"
+      order:
+        status: "Status"
+        payment: "Payment"
+        subtotal: "Subtotal"
+        total: "Total"
+        shipping: "Shipping"
+        tax: "Tax"
+        shipping_address: "Shipping Address"
+        billing_address: "Billing Address"
       shop:
         name: "샵 이름"
         legal_name: "상호명"
