@@ -38,7 +38,17 @@ en:
       customer:
         email: "Email"
         total_spent: "Total Spent"
-        total_orders: "Number Of Order"
+        total_orders: "Number Of Orders"
+        name: "Name"
+        first_name: "First Name"
+        last_name: "Last Name"
+        address: "Address"
+        city: "City"
+        country: "Country"
+        zip_code: "Zip Code"
+        phone: "Phone"
+        last_sign_in_at: "Last Sign In At"
+        last_order: "Last Order"
       category:
         name: "Name"
         name_ko: "Name"

@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :trackable,
          :omniauthable, omniauth_providers: [:doindie]
 
   include ShopstoryTicket::Seller
@@ -8,7 +8,9 @@ class Customer < ActiveRecord::Base
 
   attr_accessor :term, :privacy
 
-  validates_acceptance_of :term, :privacy, allow_nil: false
+  validates_acceptance_of :term, :privacy, allow_nil: false, on: :create
+
+  enum gender: [:male, :female]
 
   default_scope {where seller: false}
 

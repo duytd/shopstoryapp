@@ -109,6 +109,7 @@ en:
         title: "Custom Pages"
       customers:
         title: "Customers"
+        customer_orders: "Customer Orders"
       menus:
         title: "Menu/Navigation"
         menu_description: "Menu Description"

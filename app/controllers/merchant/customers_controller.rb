@@ -1,5 +1,6 @@
 class Merchant::CustomersController < Merchant::BaseController
   load_and_authorize_resource
+  include Merchant::ShopsHelper
 
   def index
    if request.delete?
@@ -12,7 +13,10 @@ class Merchant::CustomersController < Merchant::BaseController
   def new
     @props = {
       url: merchant_customers_path,
-      method: :post
+      method: :post,
+      genders: Customer.genders.keys.to_a,
+      countries: all_countries,
+      default_country: Settings.shop.default_country,
     }
   end
 
@@ -28,10 +32,13 @@ class Merchant::CustomersController < Merchant::BaseController
 
   def edit
     @props = {
-      customer: @customer,
-      order: @customer.orders,
+      customer: @customer.as_json({methods: [:total_orders, :total_spent, :last_sign_in_at]}),
+      orders: @customer.product_orders.successful,
       url: merchant_customer_path(@customer),
-      method: :put
+      method: :put,
+      genders: Customer.genders.keys.to_a,
+      countries: all_countries,
+      default_country: Settings.shop.default_country
     }
   end
 
