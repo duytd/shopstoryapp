@@ -96,20 +96,18 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.string   "country"
     t.string   "zip_code"
     t.string   "access_token"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
-    t.boolean  "seller",                 default: false
-    t.string   "seller_token"
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
@@ -124,15 +122,6 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.boolean  "active",        default: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-  end
-
-  create_table "extensions", force: :cascade do |t|
-    t.decimal  "price",       default: 0.0
-    t.string   "name"
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
   end
 
   create_table "menu_item_translations", force: :cascade do |t|
@@ -192,11 +181,11 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.string   "ip_address"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.string   "currency"
     t.integer  "seller_id"
     t.string   "confirmation_token"
     t.string   "ticket_code"
     t.datetime "ticket_sent_at"
+    t.string   "currency"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -286,18 +275,6 @@ ActiveRecord::Schema.define(version: 20160330084631) do
 
   add_index "product_images", ["product_id"], name: "index_product_images_on_product_id", using: :btree
 
-  create_table "product_shipping_rates", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "shipping_rate_id"
-    t.decimal  "min_price"
-    t.decimal  "rate"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "product_shipping_rates", ["product_id"], name: "index_product_shipping_rates_on_product_id", using: :btree
-  add_index "product_shipping_rates", ["shipping_rate_id"], name: "index_product_shipping_rates_on_shipping_rate_id", using: :btree
-
   create_table "product_tags", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "tag_id"
@@ -355,16 +332,6 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
-
-  create_table "shop_extensions", force: :cascade do |t|
-    t.integer  "shop_id"
-    t.integer  "extension_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "shop_extensions", ["extension_id"], name: "index_shop_extensions_on_extension_id", using: :btree
-  add_index "shop_extensions", ["shop_id"], name: "index_shop_extensions_on_shop_id", using: :btree
 
   create_table "shop_translations", force: :cascade do |t|
     t.integer  "shop_id",    null: false
@@ -439,6 +406,7 @@ ActiveRecord::Schema.define(version: 20160330084631) do
   create_table "shopstory_ticket_events", force: :cascade do |t|
     t.integer  "source"
     t.string   "poster"
+    t.string   "image"
     t.string   "name"
     t.string   "url"
     t.string   "venue"
@@ -452,15 +420,15 @@ ActiveRecord::Schema.define(version: 20160330084631) do
   add_index "shopstory_ticket_events", ["seller_id"], name: "index_shopstory_ticket_events_on_seller_id", using: :btree
   add_index "shopstory_ticket_events", ["source"], name: "index_shopstory_ticket_events_on_source", using: :btree
 
-  create_table "shopstory_ticket_settings", force: :cascade do |t|
-    t.string   "client_id"
-    t.string   "api_key"
-    t.boolean  "active",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+  create_table "shopstory_ticket_sellers", force: :cascade do |t|
+    t.string   "email"
+    t.string   "access_token"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "shopstory_ticket_settings", ["client_id"], name: "index_shopstory_ticket_settings_on_client_id", using: :btree
+  add_index "shopstory_ticket_sellers", ["access_token"], name: "index_shopstory_ticket_sellers_on_access_token", using: :btree
+  add_index "shopstory_ticket_sellers", ["email"], name: "index_shopstory_ticket_sellers_on_email", using: :btree
 
   create_table "shopstory_ticket_ticket_bookings", force: :cascade do |t|
     t.integer  "shopstory_ticket_ticket_id"
@@ -484,7 +452,6 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.datetime "to_date"
     t.text     "description"
     t.string   "color"
-    t.string   "image"
     t.integer  "sold",                      default: 0
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
@@ -580,7 +547,7 @@ ActiveRecord::Schema.define(version: 20160330084631) do
   add_index "variation_variation_option_values", ["variation_option_value_id"], name: "option_value_id", using: :btree
 
   create_table "variations", force: :cascade do |t|
-    t.integer  "in_stock"
+    t.integer  "in_stock",   default: 1
     t.string   "image"
     t.decimal  "price"
     t.string   "sku"
@@ -606,12 +573,8 @@ ActiveRecord::Schema.define(version: 20160330084631) do
   add_foreign_key "payment_method_shops", "shops"
   add_foreign_key "payments", "orders"
   add_foreign_key "product_images", "products"
-  add_foreign_key "product_shipping_rates", "products"
-  add_foreign_key "product_shipping_rates", "shipping_rates"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
-  add_foreign_key "shop_extensions", "extensions"
-  add_foreign_key "shop_extensions", "shops"
   add_foreign_key "shops", "plans"
   add_foreign_key "shops", "themes"
   add_foreign_key "shops", "users"

@@ -94,9 +94,6 @@ Rails.application.routes.draw do
       resources :shops, only: [:edit, :update]
       resources :theme_editors, only: [:edit, :update]
       resources :payment_method_shops, only: [:index, :update], path: "payment"
-      resources :extensions, only: [:index, :show] do
-        resource :shop_extension, only: :create
-      end
     end
   end
 end

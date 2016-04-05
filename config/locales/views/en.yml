@@ -116,6 +116,10 @@ en:
         menu_items: "Menu Items"
       menu_items:
         no_item: "You have not added any item to this menu yet"
+      developers:
+        credentials:
+          title: "Credentials"
+          api_key: "API Key"
       shipping_rates:
         title: "Shipping Rates"
         choose_shipping_type: "Choose shipping rate type"

@@ -28,6 +28,10 @@ $.extend(true, I18n.translations, {
       },
       "register": {
         "title": "가입하기",
+        "fields": {
+          "term": "Terms and conditions",
+          "privacy": "Privacy"
+        },
         "texts": {
           "return_customer": "계정이 이미 있으세요? "
         }

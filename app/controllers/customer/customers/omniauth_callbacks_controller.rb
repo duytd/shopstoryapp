@@ -7,6 +7,7 @@ class Customer::Customers::OmniauthCallbacksController < Devise::OmniauthCallbac
       set_flash_message(:notice, :success, kind: "Doindie") if is_navigational_format?
     else
       session["devise.doindie_data"] = request.env["omniauth.auth"]
+      flash[:alert] = @customer.errors.full_messages.join ", "
       redirect_to new_customer_registration_path
     end
   end

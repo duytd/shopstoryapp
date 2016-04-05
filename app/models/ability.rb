@@ -13,8 +13,6 @@ class Ability
       can [:read, :update], ThemeEditor
       can [:read, :update], PaymentMethodShop
       can :manage, Order
-      can :read, Extension
-      can :create, ShopExtension
       can :manage, ShippingRate
       can :manage, Customer
       can :manage, Menu

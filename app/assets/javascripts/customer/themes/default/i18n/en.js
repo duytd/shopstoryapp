@@ -28,6 +28,10 @@ $.extend(true, I18n.translations, {
       },
       "register": {
         "title": "Register",
+        "fields": {
+          "term": "Terms and conditions",
+          "privacy": "Privacy"
+        },
         "texts": {
           "return_customer": "Returning Customer? "
         }

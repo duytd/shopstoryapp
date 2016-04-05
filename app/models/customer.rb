@@ -3,8 +3,9 @@ class Customer < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :omniauthable, omniauth_providers: [:doindie]
 
-  include ShopstoryTicket::Seller
   has_many :product_orders
+  has_many :bookings, class_name: "ShopstoryTicket::Booking",
+    dependent: :destroy, inverse_of: :customer
 
   attr_accessor :term, :privacy
 
@@ -12,15 +13,13 @@ class Customer < ActiveRecord::Base
 
   enum gender: [:male, :female]
 
-  default_scope {where seller: false}
-
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.name
-      user.term = true
-      user.privacy = true
+      user.term = "1"
+      user.privacy = "1"
     end
   end
 

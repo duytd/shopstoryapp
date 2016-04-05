@@ -1,4 +1,3 @@
-# This migration comes from shopstory_ticket (originally 20160106024943)
 class CreateShopstoryTicketTickets < ActiveRecord::Migration
   def change
     create_table :shopstory_ticket_tickets do |t|
@@ -12,7 +11,6 @@ class CreateShopstoryTicketTickets < ActiveRecord::Migration
       t.datetime :to_date
       t.text :description
       t.string :color
-      t.string :image
       t.integer :sold, default: 0
 
       t.timestamps null: false

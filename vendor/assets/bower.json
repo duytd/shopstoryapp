@@ -6,6 +6,8 @@
     "summernote": "0.7.0",
     "dropzone": "4.2.0",
     "ace-builds": "1.2.2",
-    "elevatezoom": "2.2.3"
+    "elevatezoom": "2.2.3",
+    "spectrum": "latest",
+    "bootstrap-datepicker": "latest"
   }
 }

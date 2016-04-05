@@ -455,7 +455,7 @@ var ProductForm = React.createClass({
     productDropzone.processQueue();
   },
   handleDeleteImage: function(data) {
-    var url = this.props.url;
+    var url = Routes.merchant_product_path(this.state.product.id);
 
     $.ajax({
       data: data,

@@ -2,12 +2,15 @@ class Theme < ActiveRecord::Base
   has_many :shops
   has_many :theme_editors, dependent: :nullify
 
-  scope :default, ->{find_by(default: true)}
   scope :current, ->subdomain {joins(:shops)
     .where("shops.subdomain = ?", subdomain).first}
 
   validates :name, presence: true, uniqueness: true
   validates :directory, uniqueness: true
+
+  def self.default
+    find_by default: true
+  end
 
   def import_theme_editor shop
     editor = load_default_theme_editor

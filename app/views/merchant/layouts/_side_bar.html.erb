@@ -44,7 +44,7 @@
     <% end %>
 
     <li class="item">
-      <%= link_to "" do %>
+      <%= link_to "javascript:void(0)" do %>
         <i class="fa fa-truck"></i>
         <span class="item-label"><%= t "merchant.admin.menu.shipping" %></span>
       <% end %>
@@ -103,13 +103,6 @@
       </ul>
     </li>
 
-    <%= link_to merchant_extensions_path do %>
-      <li class="item">
-        <i class="fa fa-puzzle-piece"></i>
-        <span class="item-label"><%= t "merchant.admin.menu.extensions" %></span>
-      </li>
-    <% end %>
-
     <li class="item">
       <%= link_to "#" do %>
         <i class="fa fa-gear"></i>
@@ -126,12 +119,6 @@
           <li>
             <i class="fa fa-money"></i>
             <%= t "merchant.admin.menu.payment_settings" %>
-          </li>
-        <% end %>
-        <%= link_to "#" do %>
-          <li>
-            <i class="fa fa-truck"></i>
-            <%= t "merchant.admin.menu.delivery_settings" %>
           </li>
         <% end %>
         <%= link_to "#" do %>
@@ -158,8 +145,6 @@
       </ul>
     </li>
 
-    <% current_shop.extensions.each do |extension| %>
-      <%= render "layouts/#{extension.name}/menu" if extension.name %>
-    <% end %>
+    <%= render "layouts/shopstory_ticket/menu" %>
   </ul>
 </nav>

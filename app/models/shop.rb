@@ -13,8 +13,6 @@ class Shop < ActiveRecord::Base
   has_many :theme_editors, dependent: :destroy
   has_many :payment_method_shops
   has_many :payment_methods, through: :payment_method_shops
-  has_many :shop_extensions, dependent: :destroy
-  has_many :extensions, through: :shop_extensions
   belongs_to :term, class_name: "CustomPage", foreign_key: "term_id"
   belongs_to :privacy, class_name: "CustomPage", foreign_key: "privacy_id"
 
@@ -31,7 +29,6 @@ class Shop < ActiveRecord::Base
   before_create :generate_api_key
   after_create :initialize_theme_editor
   after_create :load_payment_methods
-  after_create :load_menus
 
   enum weight_unit: [:kg, :g]
 
@@ -61,26 +58,6 @@ class Shop < ActiveRecord::Base
         payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
       end
     end
-  end
-
-  def load_menus
-    main_menu = Menu.create position: Menu.positions[:main], name: "Main Menu"
-    footer_menu = Menu.create position: Menu.positions[:footer], name: "Footer Menu"
-
-    main_menu.menu_items.create([
-      {
-        type: "Menu::Home",
-        name_en: "Home",
-        name_ko: "집",
-        position: 0
-      },
-      {
-        type: "Menu::CategoryAll",
-        name_en: "Catalog",
-        name_ko: "목록",
-        position: 1
-      }
-    ])
   end
 
   private

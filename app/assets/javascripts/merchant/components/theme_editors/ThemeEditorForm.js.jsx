@@ -66,7 +66,7 @@ var ThemeEditorForm = React.createClass({
           <li className={(this.props.file == file.key) ? "active" : ""} key={index}>
             <a href={"?file="+file.key}>{file.file}</a>
           </li>
-        ); 
+        );
       }
     }.bind(this));
 
@@ -112,9 +112,9 @@ var ThemeEditorForm = React.createClass({
   },
   submit: function(e) {
     e.preventDefault();
-    this.refs.code.getDOMNode().value = this.state.editor.getValue();
+    this.refs.code.value = this.state.editor.getValue();
 
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     this.handleSubmit(formData, this.props.url, this.props.method);
   },
@@ -137,7 +137,7 @@ var ThemeEditorForm = React.createClass({
       },
       error: function(xhr) {
         this.setState({
-          errors: xhr.responseJSON 
+          errors: xhr.responseJSON
         });
       }.bind(this)
     });

@@ -1,4 +1,3 @@
-# This migration comes from shopstory_ticket (originally 20160111042417)
 class CreateShopstoryTicketTicketBookings < ActiveRecord::Migration
   def change
     create_table :shopstory_ticket_ticket_bookings do |t|

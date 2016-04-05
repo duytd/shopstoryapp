@@ -18,4 +18,6 @@
 //= require react_ujs
 //= require merchant/components
 //= require perfect-scrollbar/js/perfect-scrollbar.jquery
+//= require spectrum/spectrum
+//= require bootstrap-datepicker/dist/js/bootstrap-datepicker
 //= require merchant/base

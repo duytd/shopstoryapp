@@ -43,7 +43,6 @@ gem "browserify-rails"
 gem "rqrcode"
 gem "acts_as_tree"
 
-
 group :development, :test do
   gem "byebug"
   gem "web-console", "~> 2.0"

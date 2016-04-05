@@ -3,5 +3,7 @@ class Plan < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  scope :default, ->{find_by(default: true)}
+  def self.default
+    find_by default: true
+  end
 end

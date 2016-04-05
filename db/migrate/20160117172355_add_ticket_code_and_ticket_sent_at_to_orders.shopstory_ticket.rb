@@ -1,4 +1,3 @@
-# This migration comes from shopstory_ticket (originally 20160117172355)
 class AddTicketCodeAndTicketSentAtToOrders < ActiveRecord::Migration
   def change
     add_column :orders, :ticket_code, :string
