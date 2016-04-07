@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: 0f66eaea341a29c545d346a4c91dccc718f589b1
+  revision: 9f755967dbabd65bece19e9c162c598aeebded53
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
@@ -106,6 +106,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-sidekiq (0.5.4)
+      capistrano
+      sidekiq (>= 3.4)
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
@@ -154,6 +157,8 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    domain_name (0.5.20160310)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -178,6 +183,8 @@ GEM
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
     hashie (3.4.3)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     i18n-js (2.1.2)
       i18n
@@ -223,6 +230,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
+    netrc (0.11.0)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     nprogress-rails (0.1.6.7)
@@ -287,8 +295,13 @@ GEM
       execjs
       rails (>= 3.2)
       tilt
+    redis (3.2.2)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rqrcode (0.9.0)
       chunky_png (~> 1.0)
     rspec-collection_matchers (1.1.2)
@@ -330,6 +343,10 @@ GEM
       activesupport (>= 3)
     shoulda-matchers (3.0.0)
       activesupport (>= 4.0.0)
+    sidekiq (4.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
     spring (1.4.0)
@@ -344,6 +361,8 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    stripe (1.39.0)
+      rest-client (~> 1.4)
     thor (0.19.1)
     thread_safe (0.3.5)
     thrift (0.9.3.0)
@@ -355,6 +374,9 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     unicode_utils (1.4.0)
     warden (1.2.3)
       rack (>= 1.0)
@@ -386,6 +408,7 @@ DEPENDENCIES
   capistrano-linked-files
   capistrano-rails
   capistrano-rvm
+  capistrano-sidekiq
   capistrano3-puma
   capybara
   carrierwave
@@ -427,7 +450,9 @@ DEPENDENCIES
   shopstory_ticket!
   shoulda-callback-matchers (~> 1.1.1)
   shoulda-matchers
+  sidekiq
   spring
+  stripe
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

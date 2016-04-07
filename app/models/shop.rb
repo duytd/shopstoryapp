@@ -5,7 +5,6 @@ class Shop < ActiveRecord::Base
   mount_uploader :logo, LogoUploader
 
   belongs_to :theme
-  belongs_to :plan
   belongs_to :merchant, foreign_key: "user_id"
   has_many :discounts, dependent: :destroy
   has_many :pages, dependent: :destroy
@@ -18,7 +17,6 @@ class Shop < ActiveRecord::Base
 
   validates :name, presence: true
   validates :merchant, presence: true
-  validates :plan, presence: true
   validates :theme, presence: true
   validates :email, presence: true, on: :update
   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, allow_blank: true
@@ -40,7 +38,6 @@ class Shop < ActiveRecord::Base
 
   def set_default_values
     self.theme = Theme.default
-    self.plan = Plan.default
     self.currency = Settings.shop.default_currency
     self.time_zone = Settings.shop.default_timezone
     self.country = Settings.shop.default_country

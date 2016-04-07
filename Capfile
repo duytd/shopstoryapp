@@ -8,6 +8,8 @@ require "capistrano/rvm"
 require "capistrano/puma"
 require "capistrano/puma/nginx"
 require "capistrano/linked_files"
+require "capistrano/sidekiq"
+require "capistrano/sidekiq/monit"
 
 # Loads custom tasks from `lib/capistrano/tasks" if you have any defined.
 Dir.glob("lib/capistrano/tasks/*.cap").each { |r| import r }

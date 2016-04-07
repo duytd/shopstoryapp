@@ -1,0 +1,8 @@
+ko:
+  admin:
+    login:
+      title: "Admin Login"
+    logout: "Log out"
+    buttons:
+      delete: "Delete"
+      edit: "Edit"

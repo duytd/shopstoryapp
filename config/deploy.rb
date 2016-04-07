@@ -9,7 +9,7 @@ set :puma_workers,   1
 set :puma_worker_timeout, 60
 
 # Don"t change these unless you know what you"re doing
-set :pty,             true
+set :pty,             false
 set :use_sudo,        false
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"

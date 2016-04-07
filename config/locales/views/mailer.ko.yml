@@ -1,0 +1,7 @@
+ko:
+  mailer:
+    subscription:
+      payment_succeeded:
+        title: "Thanks for your payment"
+      payment_failed:
+        title: "Notice: Payment Failed"

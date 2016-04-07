@@ -1,5 +1,11 @@
 <div class="form login col-md-6 col-md-offset-3">
-  <h1 class="text-center"><%= t("merchant.login.title") %></h1>
+  <% if resource.class.name == "Merchant" %>
+    <h1 class="text-center"><%= t("merchant.login.title") %></h1>
+  <% end %>
+
+  <% if resource.class.name == "Admin" %>
+    <h1 class="text-center"><%= t("admin.login.title") %></h1>
+  <% end %>
 
   <%= form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
     <div class="form-group">

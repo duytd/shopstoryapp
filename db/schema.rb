@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330084631) do
+ActiveRecord::Schema.define(version: 20160407072747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -257,12 +257,14 @@ ActiveRecord::Schema.define(version: 20160330084631) do
 
   create_table "plans", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.decimal  "price"
-    t.decimal  "transaction_fee"
-    t.boolean  "default",         default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "stripe_id"
+    t.float    "price"
+    t.string   "interval"
+    t.text     "features"
+    t.boolean  "highlight",  default: false
+    t.integer  "position"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -359,7 +361,6 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.string   "time_zone"
     t.integer  "weight_unit"
     t.string   "currency"
-    t.integer  "plan_id"
     t.integer  "user_id"
     t.string   "facebook_url"
     t.string   "instagram_url"
@@ -383,7 +384,6 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.string   "yellow"
   end
 
-  add_index "shops", ["plan_id"], name: "index_shops_on_plan_id", using: :btree
   add_index "shops", ["privacy_id"], name: "index_shops_on_privacy_id", using: :btree
   add_index "shops", ["term_id"], name: "index_shops_on_term_id", using: :btree
   add_index "shops", ["theme_id"], name: "index_shops_on_theme_id", using: :btree
@@ -459,6 +459,20 @@ ActiveRecord::Schema.define(version: 20160330084631) do
 
   add_index "shopstory_ticket_tickets", ["shopstory_ticket_event_id"], name: "index_shopstory_ticket_tickets_on_shopstory_ticket_event_id", using: :btree
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "stripe_id"
+    t.integer  "plan_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "user_id"
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
   create_table "tags", force: :cascade do |t|
     t.string   "label"
     t.datetime "created_at", null: false
@@ -513,6 +527,7 @@ ActiveRecord::Schema.define(version: 20160330084631) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "stripe_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
@@ -575,13 +590,14 @@ ActiveRecord::Schema.define(version: 20160330084631) do
   add_foreign_key "product_images", "products"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
-  add_foreign_key "shops", "plans"
   add_foreign_key "shops", "themes"
   add_foreign_key "shops", "users"
   add_foreign_key "shopstory_ticket_customer_contacts", "orders"
   add_foreign_key "shopstory_ticket_ticket_bookings", "orders"
   add_foreign_key "shopstory_ticket_ticket_bookings", "shopstory_ticket_tickets"
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"
+  add_foreign_key "subscriptions", "plans"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "theme_editors", "shops"
   add_foreign_key "theme_editors", "themes"
   add_foreign_key "variation_option_values", "variation_options"

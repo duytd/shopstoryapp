@@ -61,6 +61,8 @@ ko:
         delete_selected: "선택 사항 삭제"
         activate: "Activate"
         disactivate: "Disactivate"
+        choose: "Choose"
+        current_plan: "Current Plan"
       forms:
         ko_lang: "한글"
         en_lang: "영어"
@@ -120,6 +122,16 @@ ko:
         credentials:
           title: "Credentials"
           api_key: "API Key"
+      pages:
+        account:
+          email: "Email"
+          member_since: "Member Since"
+          plan: "Current Plan"
+          free_trial: "Free Trial"
+          day_left:
+            zero: "Trial Expired"
+            one: "1 day left"
+            other: "{{count}} days left"
       shipping_rates:
         title: "Shipping Rates"
         choose_shipping_type: "Choose shipping rate type"

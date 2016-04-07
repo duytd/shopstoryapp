@@ -1,14 +1,12 @@
 FactoryGirl.define do
   factory :plan do
-    name "Plan Name"
-    default false
-    description "Plan Description"
-    price 9.99
-    transaction_fee 0.99
+    name "MyString"
+stripe_id "MyString"
+price 1.5
+interval "MyString"
+features "MyText"
+highlight false
+position 1
   end
 
-  factory :default_plan, parent: :plan do
-    name "Trial"
-    default true
-  end
 end

@@ -1,11 +1,12 @@
 class Ability
   include CanCan::Ability
+  include Merchant::SubscriptionsHelper
 
   def initialize user
     user ||= User.new
     if user.is_a? Admin
       can :manage, :all
-    elsif user.is_a?(Merchant) && current_tenant?(user)
+    elsif user.is_a?(Merchant) && current_tenant?(user) && (user.has_subscription? || !trial_expired_for?(user))
       can :manage, Category
       can :manage, CustomPage
       can :manage, Product
@@ -17,6 +18,8 @@ class Ability
       can :manage, Customer
       can :manage, Menu
       can :manage, MenuItem
+    elsif user.is_a?(Merchant)
+      can :manage, Subscription
     elsif user.is_a? Customer
       can :read, Category
       can :read, Product

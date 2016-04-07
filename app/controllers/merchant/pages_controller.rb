@@ -9,4 +9,14 @@ class Merchant::PagesController < Merchant::BaseController
       }
     }
   end
+
+  def account
+    @props = {
+      user: current_merchant,
+      subscription: current_merchant.subscription,
+      remaining_trial: remaining_days(current_merchant),
+      plans: Plan.all,
+      stripe_key: Rails.configuration.stripe[:publishable_key]
+    }
+  end
 end

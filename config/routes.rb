@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   constraints Constraints::AdminDomainConstraint do
     namespace :admin, path: "" do
       root "pages#dashboard"
+      resources :plans, except: :show
     end
+
+    devise_for :admins, path: "", path_names: {sign_in: "login", sign_out: "logout"}
   end
 
   constraints Constraints::RootDomainConstraint do
@@ -54,9 +57,12 @@ Rails.application.routes.draw do
       resources :order_products, only: [:create, :update, :destroy]
     end
 
+    post :stripe_webhook, to: "stripe#webhook"
+
     namespace :merchant, path: "admin" do
       root "pages#dashboard"
       get :credentials, to: "pages#credentials"
+      get :account, to: "pages#account"
 
       resources :categories, except: :show do
         delete :index, on: :collection
@@ -91,6 +97,7 @@ Rails.application.routes.draw do
       resources :orders, except: :show do
         delete :index, on: :collection
       end
+      resources :subscriptions, only: [:index, :create, :update, :destroy]
       resources :shops, only: [:edit, :update]
       resources :theme_editors, only: [:edit, :update]
       resources :payment_method_shops, only: [:index, :update], path: "payment"

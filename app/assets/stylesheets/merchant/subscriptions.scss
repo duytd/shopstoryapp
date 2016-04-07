@@ -1,0 +1,49 @@
+.subscriptions {
+  .plan {
+    text-align: center;
+    .heading {
+      .name {
+        background: #2ecc71;
+        color: #fff;
+        font-size: 30px;
+        padding: 20px;
+        margin: -10px -10px 0;
+        font-weight: 700;
+      }
+      .price {
+        background: #fafafa;
+        margin: 0px -10px 10px;
+        color: #34495e;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 10px;
+      }
+    }
+    ul {
+      padding: 0;
+      li {
+        color: #7f8c8d;
+        list-style-type: none;
+        padding: 10px;
+        font-size: 16px;
+      }
+    }
+    .stripe-button-el {
+      @extend .btn;
+      @extend .btn-lg;
+      @extend .btn-success;
+      &:hover, &:active, &:focus, &:visited {
+        span {
+          background: none;
+          box-shadow: none;
+        }
+      }
+      span {
+        background: none;
+        box-shadow: none;
+        text-shadow: none;
+        font-size: 16px;
+      }
+    }
+  }
+}

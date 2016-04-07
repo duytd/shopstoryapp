@@ -15,7 +15,6 @@ class CreateShops < ActiveRecord::Migration
       t.string :time_zone
       t.integer :weight_unit
       t.string :currency
-      t.references :plan, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.string :facebook_url
       t.string :instagram_url

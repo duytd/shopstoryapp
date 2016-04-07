@@ -1,16 +1,23 @@
 class Merchant < User
   attr_accessor :shop_name, :subdomain
 
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
+
   before_validation :generate_subdomain, on: :create, if: Proc.new {|a| a.email.present?}
   after_create :create_merchant_shop, :create_tenant
 
   has_one :shop, foreign_key: "user_id"
   has_one :theme, through: :shop
+  has_one :subscription, foreign_key: :user_id
+
+  def has_subscription?
+    subscription.present?
+  end
 
   private
   def create_merchant_shop
     self.shop_name = if shop_name.empty? then Settings.shop.default_name else shop_name end
-    self.create_shop name: shop_name, subdomain: subdomain
+    self.create_shop name: shop_name, subdomain: subdomain, email: email
   end
 
   def create_tenant
