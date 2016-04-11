@@ -45,7 +45,7 @@ ko:
         search: "찾기"
         view_shop: "내 샵 보기"
         theme: "Design"
-        theme_editor: "수정"
+        asset: "수정"
         shipping: "Shipping"
         shipping_rates: "Shipping Rates"
       buttons:
@@ -63,6 +63,11 @@ ko:
         disactivate: "Disactivate"
         choose: "Choose"
         current_plan: "Current Plan"
+      pagination:
+        next: "Next"
+        first: "First"
+        last: "Last"
+        previous: "Previous"
       forms:
         ko_lang: "한글"
         en_lang: "영어"
@@ -77,6 +82,12 @@ ko:
         variations_title: "옵션"
         online: "온라인"
         dropzone_instruction: "파일을 드래그앤드롭 하거나 클릭하여 업로드하세요"
+      messages:
+        no_product: "You have not created any product. Create one to start selling now"
+        no_category: "You have not created any category. Create now"
+        no_menu: "You have not created any menu/navigation. Create now"
+        no_custom_page: "You have not created any page. Create now"
+        no_shipping_rate: "You have not created any shipping rate. Create now"
       categories:
         title: "모든 카테고리"
         add_category: "카테고리 추가"
@@ -91,7 +102,7 @@ ko:
         gram: "그램 (g)"
         kilogram: "킬로그램 (kg)"
         zipcode_hint: " (도로명 주소를 입력하여 우편번호를 찾으세요.)"
-      theme_editors:
+      assets:
         title: "테마 수정"
         assets: "에셋"
         translations: "번역"

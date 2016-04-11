@@ -1,6 +1,6 @@
 class Theme < ActiveRecord::Base
   has_many :shops
-  has_many :theme_editors, dependent: :nullify
+  has_many :assets, dependent: :nullify
 
   scope :current, ->subdomain {joins(:shops)
     .where("shops.subdomain = ?", subdomain).first}
@@ -12,21 +12,21 @@ class Theme < ActiveRecord::Base
     find_by default: true
   end
 
-  def import_theme_editor shop
-    editor = load_default_theme_editor
+  def import_asset shop
+    asset = load_default_asset
 
-    ThemeEditor.create theme_id: id, shop_id: shop.id,
-      stylesheet: editor.stylesheet, javascript: editor.javascript,
-      en_locale: editor.en_locale, ko_locale: editor.ko_locale
+    Asset.create theme_id: id, shop_id: shop.id,
+      stylesheet: asset.stylesheet, javascript: asset.javascript,
+      en_locale: asset.en_locale, ko_locale: asset.ko_locale
   end
 
-  def load_default_theme_editor
+  def load_default_asset
     javascript = load_default_file "javascript"
     stylesheet = load_default_file "stylesheet"
     en_locale = load_default_file "en_locale"
     ko_locale = load_default_file "ko_locale"
 
-    ThemeEditor.new javascript: javascript, stylesheet: stylesheet,
+    Asset.new javascript: javascript, stylesheet: stylesheet,
       en_locale: en_locale, ko_locale: ko_locale
   end
 

@@ -49,11 +49,7 @@ var MenuItemForm = React.createClass({
               <div id="ko" className="tab-pane fade in active">
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.menu_item.name")}</label>
-                  <div className="form-errors">
-                    { (this.state.errors.name_ko) ? this.state.errors.name_ko.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
+                  <FormErrors errors={this.state.errors.name_ko} />
                   <input ref="name_ko" type="text" name="menu_item[name_ko]"
                     className="form-control" defaultValue={(this.props.menu_item) ? this.props.menu_item.name_ko : ""} />
                 </div>
@@ -61,11 +57,7 @@ var MenuItemForm = React.createClass({
               <div id="en" className="tab-pane fade">
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.menu_item.name")}</label>
-                  <div className="form-errors">
-                    {(this.state.errors.name_en) ? this.state.errors.name_en.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
+                  <FormErrors errors={this.state.errors.name_en} />
                   <input ref="name_en" type="text" name="menu_item[name_en]"
                     className="form-control" defaultValue={(this.props.menu_item) ? this.props.menu_item.name_en : null} />
                 </div>
@@ -94,11 +86,7 @@ var MenuItemForm = React.createClass({
             {(this.state.type == "category" || this.state.type == "product" || this.state.type == "url" || this.state.type == "page") ?
               <div className="form-group">
                 <label className="label">{I18n.t("activerecord.attributes.menu_item.value")}</label>
-                <div className="form-errors">
-                  {(this.state.errors.value) ? this.state.errors.value.map(function(object){
-                    return object;
-                  }) : ""}
-                </div>
+                <FormErrors errors={this.state.errors.value} />
 
                 {(this.state.type == "category") ?
                   <div className="select">
@@ -179,4 +167,4 @@ var MenuItemForm = React.createClass({
   switchType: function(e) {
     this.setState({type: e.target.value});
   }
-});
+})

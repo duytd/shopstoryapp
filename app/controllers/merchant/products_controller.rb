@@ -21,6 +21,7 @@ class Merchant::ProductsController < Merchant::BaseController
     @props = {
       categories: @categories,
       default_option_names: VariationOption.default_names,
+      redirect_url: merchant_products_path
     }
   end
 
@@ -52,6 +53,7 @@ class Merchant::ProductsController < Merchant::BaseController
       variations: @product.variations.not_master,
       default_option_names: VariationOption.default_names,
       product_images: @product.product_images,
+      redirect_url: merchant_products_path
     }
   end
 

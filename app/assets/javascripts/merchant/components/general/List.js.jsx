@@ -184,4 +184,4 @@ var List = React.createClass({
     items[index].checked = checked;
     this.replaceState({items: items, checkCount: checkCount, isSelectAll: isSelectAll});
   }
-});
+})

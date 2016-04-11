@@ -36,4 +36,4 @@ var Item = React.createClass({
 
     this.props.handleSelect(this.props.item, checked);
   }
-});
+})

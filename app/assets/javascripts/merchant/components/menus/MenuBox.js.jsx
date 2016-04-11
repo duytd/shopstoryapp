@@ -5,6 +5,17 @@ var MenuBox = React.createClass({
         menus={this.props.menus} />
     )
 
+    if (this.props.menus.length == 0) {
+      menuList = (
+        <div className="text-center">
+          <p>{I18n.t("merchant.admin.messages.no_menu")}</p>
+          <a href={this.props.url} className="btn btn-lg btn-primary">
+            {I18n.t("merchant.admin.buttons.add")}
+          </a>
+        </div>
+      )
+    }
+
     return (
       <div className="menu-box">
         <div className="block">

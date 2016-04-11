@@ -6,6 +6,13 @@ class VariationVariationOptionValue < ActiveRecord::Base
   validates :variation_option_value, presence: true
   validates :variation_id, uniqueness: {scope: :variation_option_value_id}
 
+  after_commit :delete_variation, on: :destroy
+
+  def delete_variation
+    variation.variation_option_values.delete_all
+    variation.delete
+  end
+
   def as_json options={}
     super.as_json(options).merge({option_value: variation_option_value})
   end

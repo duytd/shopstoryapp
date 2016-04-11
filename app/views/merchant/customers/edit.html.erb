@@ -1,6 +1,4 @@
-<div class="row customer">
-  <div class="col-md-12">
-    <h3 class="title"><%= t "merchant.admin.customers.edit_customer" %></h3>
-    <%= react_component "CustomerForm", @props, {prerender: false} %>
-  </div>
+<div class="customer">
+  <h3 class="title"><%= t "merchant.admin.customers.edit_customer" %></h3>
+  <%= react_component "CustomerForm", @props %>
 </div>

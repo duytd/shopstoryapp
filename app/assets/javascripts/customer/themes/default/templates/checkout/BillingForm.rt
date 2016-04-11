@@ -173,6 +173,7 @@
     <input rt-if="this.props.order.payment" type="hidden" name="order[payment_attributes][id]" value="{this.props.order.payment.id}" />
 
     <PaymentMethod
+      rt-if="this.props.hasPaymentMethod"
       rt-repeat="methodShop in this.props.payment_method_shops"
       mobile="{this.props.mobile}"
       key="method_shop_{methodShopIndex}"
@@ -182,14 +183,12 @@
       switchPaymentMethod="{this.props.switchPaymentMethod}"
     />
     <div id="inicisPayment"></div>
-    <hr/>
 
-    <button type="submit" class="btn btn-lg btn-primary pull-right" onClick="{this.updateOrder}">
+    <button rt-if="this.props.hasPaymentMethod" type="submit" class="btn btn-lg btn-primary pull-right" onClick="{this.updateOrder}">
       {I18n.t('checkout.buttons.place_order')}
       <i ref="loading" className="fa fa-spinner fa-pulse hide"></i>
     </button>
     <div class="clearfix"></div>
-    <hr/>
   </form>
 
 </div>

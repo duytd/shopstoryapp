@@ -1,4 +1,4 @@
-class ThemeEditor < ActiveRecord::Base
+class Asset < ActiveRecord::Base
   belongs_to :shop
   belongs_to :theme
 

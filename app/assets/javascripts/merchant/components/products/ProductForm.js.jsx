@@ -103,14 +103,16 @@ var ProductForm = React.createClass({
           key={"variation_option_" + Math.random()}
           index={index}
           variationOption={variationOption}
+          variationOptionCount={this.state.variationOptionCount}
           deleteVariationOption={this.deleteVariationOption}
+          addVariationOption={this.addVariationOption}
           submit={this.submit}
           defaultNames={this.props.default_option_names} />
       )
     }.bind(this));
 
     return (
-      <form ref="form" id="product-form" className="product-form" action={url}
+      <form ref="form" id="product-form" className="row product-form" action={url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}
         encType="multipart/form-data" >
         <div className="col-md-9">
@@ -185,37 +187,6 @@ var ProductForm = React.createClass({
           </div>
 
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
-            <div className={(variationCount > 0) ? "hide" : "form-group"}>
-              <label className="label">{I18n.t("activerecord.attributes.product.in_stock")}</label>
-              <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
-                name="product[in_stock]" defaultValue={(this.props.product) ? this.state.product.in_stock : "0"} />
-            </div>
-            <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
-              {I18n.t("merchant.admin.products.buttons.add_option_type")}
-            </button>
-            <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
-              <div className="col-xs-5">
-                <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
-              </div>
-              <div className="col-xs-5">
-                <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
-              </div>
-              <div className="col-xs-2">
-              </div>
-            </div>
-            {variationOptionNodes}
-            {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
-              <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
-                {I18n.t("merchant.admin.products.buttons.populate_variation")}
-              </button> :
-              null
-            }
-            <hr/>
-            {variationNodes}
-          </div>
-
-          <div className="block">
             <h4>{I18n.t("merchant.admin.forms.images_title")}</h4>
             <div className="form-group dropzone" id="product_dropzone">
               <div className="dz-message">
@@ -223,6 +194,37 @@ var ProductForm = React.createClass({
               </div>
             </div>
           </div>
+
+          {(this.state.product) ?
+          <div className="block">
+            <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
+            <div className={(variationCount > 0) ? "hide" : "form-group"}>
+              <label className="label">{I18n.t("activerecord.attributes.product.in_stock")}</label>
+              <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
+                name="product[in_stock]" defaultValue={(this.props.product) ? this.state.product.in_stock : "0"} />
+            </div>
+            {(this.state.variationOptionCount == 0) ?
+            <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
+              {I18n.t("merchant.admin.products.buttons.add_option_type")}
+            </button> : null}
+            <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
+              <div className="col-xs-5">
+                <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
+              </div>
+              <div className="col-xs-2">
+              </div>
+              <div className="col-xs-5">
+                <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
+              </div>
+            </div>
+            {variationOptionNodes}
+            {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
+            <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
+              {I18n.t("merchant.admin.products.buttons.populate_variation")}
+            </button> : null}
+            <hr/>
+            {variationNodes}
+          </div> : null}
         </div>
 
         <div className="col-md-3">
@@ -284,7 +286,7 @@ var ProductForm = React.createClass({
         </div>
 
         <div className="col-md-9 text-right">
-          <SubmitButtons redirect_url={this.props.redirect_url} />
+          <SubmitButtons redirect_url={this.props.redirect_url} fixed={true} />
         </div>
       </form>
     )

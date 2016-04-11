@@ -81,6 +81,6 @@ var Cart = React.createClass({
       this.setState({cartErrors: []})
     }
   }
-});
+})
 
 module.exports = Cart;

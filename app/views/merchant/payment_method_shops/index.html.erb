@@ -1,5 +1,3 @@
-<div class="row payment-methods">
-  <div class="col-md-12">
-    <%= react_component "PaymentMethodBox", {payment_method_shops: @payment_method_shops}, {prerender: true} %>
-  </div>
+<div class="payment-methods">
+    <%= react_component "PaymentMethodBox", @props %>
 </div>

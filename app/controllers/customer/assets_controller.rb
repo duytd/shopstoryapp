@@ -1,8 +1,8 @@
 require "minifier"
 
-class Customer::ThemeEditorsController < Customer::BaseController
+class Customer::AssetsController < Customer::BaseController
   protect_from_forgery only: []
-  before_action :load_theme_editor
+  before_action :load_asset
 
   def styles
     load_stylesheet
@@ -21,27 +21,27 @@ class Customer::ThemeEditorsController < Customer::BaseController
   end
 
   private
-  def load_theme_editor
-    @theme_editor = @current_shop.theme_editors.with_theme @current_shop.theme_id
+  def load_asset
+    @asset = @current_shop.assets.with_theme @current_shop.theme_id
   end
 
   def load_en_locale
-    en_locale = Minifier.minify_js @theme_editor.en_locale
+    en_locale = Minifier.minify_js @asset.en_locale
     render js: en_locale
   end
 
   def load_ko_locale
-    ko_locale = Minifier.minify_js @theme_editor.ko_locale
+    ko_locale = Minifier.minify_js @asset.ko_locale
     render js: ko_locale
   end
 
   def load_stylesheet
-    stylesheet = Minifier.minify_css @theme_editor.stylesheet
+    stylesheet = Minifier.minify_css @asset.stylesheet
     render text: stylesheet, content_type: "text/css"
   end
 
   def load_javascript
-    javascript = Minifier.minify_js @theme_editor.javascript
+    javascript = Minifier.minify_js @asset.javascript
     render js: javascript
   end
 end

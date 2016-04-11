@@ -122,9 +122,6 @@ var VariationSelector = React.createClass({
     }.bind(this))
 
     return options;
-  },
-  updateOptions: function(options) {
-
   }
 })
 

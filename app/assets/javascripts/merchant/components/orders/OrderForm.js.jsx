@@ -1,4 +1,23 @@
 var OrderForm = React.createClass({
+  renderPaymentInfo: function() {
+    var paymentInfo = "";
+
+    if (this.props.order.payment_method) {
+      paymentInfo += this.props.order.payment.payment_method.name + " - ";
+    }
+
+    if (this.props.order.payment.submethod) {
+      paymentInfo += this.props.order.payment.submethod + " - ";
+    }
+
+    if (this.props.order.transaction_number) {
+      paymentInfo += this.props.order.payment.transaction_number + " - ";
+    }
+
+    paymentInfo += this.props.order.payment.state.toUpperCase();
+
+    return paymentInfo;
+  },
   render: function() {
     return (
       <div className="row">
@@ -8,9 +27,11 @@ var OrderForm = React.createClass({
             <p>{I18n.t("activerecord.attributes.order.status")}: {this.props.order.status.toUpperCase()}</p>
 
             {(this.props.order.payment) ?
-              <p>{I18n.t("activerecord.attributes.order.payment")}: {this.props.order.payment.payment_method.name} - {this.props.order.payment.transaction_number} - {this.props.order.payment.state.toUpperCase()}</p>
-            : null}
+            <p>
+              {I18n.t("activerecord.attributes.order.payment")}: {this.renderPaymentInfo()}
+            </p> : null}
 
+            {(this.props.order.order_products && this.props.order.order_products.length > 0) ?
             <div className="table-responsive">
               <table className="table">
                 <tbody>
@@ -50,7 +71,7 @@ var OrderForm = React.createClass({
                   </tr>
                 </tfoot>
               </table>
-            </div>
+            </div> : null}
           </div>
         </div>
 

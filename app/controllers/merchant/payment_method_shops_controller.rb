@@ -3,6 +3,9 @@ class Merchant::PaymentMethodShopsController < Merchant::BaseController
 
   def index
     @payment_method_shops = current_shop.payment_method_shops
+    @props = {
+      payment_method_shops: @payment_method_shops
+    }
   end
 
   def update

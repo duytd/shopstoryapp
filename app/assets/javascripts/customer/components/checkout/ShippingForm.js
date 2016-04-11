@@ -13,11 +13,11 @@ var ShippingForm = React.createClass({
           zipcode = data.zonecode;
 
         this.setAddress(address, zipcode);
-      }.bind(this))
+      }.bind(this));
     }
   },
   updateCountry: function(e) {
-    this.setState({country: e.target.value})
+    this.setState({country: e.target.value});
   },
   setAddress: function(address, zipcode) {
     address = typeof address !== "undefined" ? address : "";

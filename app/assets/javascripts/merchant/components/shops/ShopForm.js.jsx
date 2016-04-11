@@ -20,6 +20,16 @@ var ShopForm = React.createClass({
       return <option key={index} value={timeZone[0]}>{timeZone[1]}</option>
     }.bind(this));
 
+    var socialAccountNodes = ["facebook_url", "instagram_url", "pinterest_url", "naver", "daum", "kakao", "yellow"].map(function(account, index) {
+      return (
+        <div className="form-group col-sm-6" key={"social" + index}>
+          <label className="label">{I18n.t("activerecord.attributes.shop." + account)}</label>
+          <input type="text" className="form-control" name={"shop[" + account +"]"}
+            defaultValue={this.props.shop[account]} />
+        </div>
+      )
+    }.bind(this))
+
     return (
       <form ref="form" id="shop-form" className="shop-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
@@ -30,20 +40,12 @@ var ShopForm = React.createClass({
               <div className="form-group col-md-6">
                 <label className="label">{I18n.t("activerecord.attributes.shop.name")}</label>
                 <input type="text" className="form-control" name="shop[name]" defaultValue={this.props.shop.name} />
-                <div className="form-errors">
-                  {(this.state.errors.name) ? this.state.errors.name.map(function(object){
-                    return object;
-                  }) : ""}
-                </div>
+                <FormErrors errors={this.state.errors.name} />
               </div>
               <div className="form-group col-md-6">
                 <label className="label">{I18n.t("activerecord.attributes.shop.email")}</label>
                 <input type="text" className="form-control" name="shop[email]" defaultValue={this.props.shop.email} />
-                <div className="form-errors">
-                  {(this.state.errors.email) ? this.state.errors.email.map(function(object){
-                    return object;
-                  }) : ""}
-                </div>
+                <FormErrors errors={this.state.errors.email} />
               </div>
 
               <div className="form-group col-md-6">
@@ -52,11 +54,7 @@ var ShopForm = React.createClass({
                   <span className="input-group-addon" id="basic-addon1">http://</span>
                   <input type="text" className="form-control" placeholder="yourdomain.com" name="shop[domain]" defaultValue={this.props.shop.domain} />
                 </div>
-                <div className="form-errors">
-                  {(this.state.errors.domain) ? this.state.errors.domain.map(function(object){
-                    return object;
-                  }) : ""}
-                </div>
+                <FormErrors errors={this.state.errors.domain} />
               </div>
 
             </div>
@@ -201,15 +199,7 @@ var ShopForm = React.createClass({
           <h4 className="form-title">{I18n.t("merchant.admin.shops.social")}</h4>
           <div className="row">
             <div className="col-md-12 block">
-              {["facebook_url", "instagram_url", "pinterest_url", "naver", "daum", "kakao", "yellow"].map(function(account, index) {
-                return (
-                  <div className="form-group col-sm-6" key={"social" + index}>
-                    <label className="label">{I18n.t("activerecord.attributes.shop." + account)}</label>
-                    <input type="text" className="form-control" name={"shop[" + account +"]"}
-                      defaultValue={this.props.shop[account]} />
-                  </div>
-                )
-              }.bind(this))}
+              {socialAccountNodes}
             </div>
           </div>
         </div>
@@ -222,10 +212,10 @@ var ShopForm = React.createClass({
   submit: function(e) {
     e.preventDefault();
     if (!this.state.koreanMode) {
-      this.refs.street_ko.getDOMNode().value = this.refs.street_en.getDOMNode().value;
+      this.refs.street_ko.value = this.refs.street_en.value;
     }
 
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     this.handleShopSubmit(formData, this.props.url, this.props.method);
   },
@@ -258,7 +248,7 @@ var ShopForm = React.createClass({
     this.setAddress(data.address, data.addressEnglish, data.zonecode);
   },
   countryChange: function() {
-    var country = this.refs.country.getDOMNode().value;
+    var country = this.refs.country.value;
 
     this.setAddress();
 
@@ -274,8 +264,8 @@ var ShopForm = React.createClass({
     englishAddress = typeof englishAddress !== "undefined" ? englishAddress : "";
     zipcode = typeof zipcode !== "undefined" ? zipcode : "";
 
-    this.refs.street_ko.getDOMNode().value = address;
-    this.refs.street_en.getDOMNode().value = englishAddress;
-    this.refs.zip_code.getDOMNode().value = zipcode;
+    this.refs.street_ko.value = address;
+    this.refs.street_en.value = englishAddress;
+    this.refs.zip_code.value = zipcode;
   }
 });

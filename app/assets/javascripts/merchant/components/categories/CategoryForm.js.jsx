@@ -16,11 +16,7 @@ var CategoryForm = React.createClass({
           <div id="ko" className="tab-pane fade in active">
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
-              <div className="form-errors">
-                { (this.state.errors.name_ko) ? this.state.errors.name_ko.map(function(object){
-                  return object;
-                }) : ""}
-              </div>
+              <FormErrors errors={this.state.errors.name_ko} />
               <input ref="name_ko" type="text" name="category[name_ko]"
                 className="form-control" defaultValue={(this.props.ko_category) ? this.props.ko_category.name : ""} />
             </div>
@@ -28,11 +24,7 @@ var CategoryForm = React.createClass({
           <div id="en" className="tab-pane fade">
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
-              <div className="form-errors">
-                {(this.state.errors.name_en) ? this.state.errors.name_en.map(function(object){
-                  return object;
-                }) : ""}
-              </div>
+              <FormErrors errors={this.state.errors.name_en} />
               <input ref="name_en" type="text" name="category[name_en]"
                 className="form-control" defaultValue={(this.props.en_category) ? this.props.en_category.name : ""} />
             </div>
@@ -74,5 +66,5 @@ var CategoryForm = React.createClass({
         });
       }.bind(this)
     });
-  },
-});
+  }
+})

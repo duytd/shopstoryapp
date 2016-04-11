@@ -6,6 +6,17 @@ design.GeneralForm = React.createClass({
       general: this.props.general,
     }
   },
+  renderPages: function(type) {
+    return (
+      this.props.pages.map(function(page, index) {
+        return (
+          <option key={"page_" + type + "_" + index} value={page.id}>
+            {page.title_ko ? page.title_ko : page.title_en}
+          </option>
+        )
+      })
+    )
+  },
   render: function() {
     return (
       <form ref="form" className="design-general-form" action={this.props.url}
@@ -21,9 +32,7 @@ design.GeneralForm = React.createClass({
           <label className="label">{I18n.t("activerecord.attributes.shop.term_id")}</label>
           <div className="select">
             <select name="shop[term_id]" className="form-control" defaultValue={this.state.general.term_id}>
-              {this.props.pages.map(function(page, index) {
-                return <option key={"term_page_"+ index} value={page.id}>{page.title_ko ? page.title_ko : page.title_en}</option>
-              })}
+              {this.renderPages("term")}
             </select>
           </div>
         </div>
@@ -32,9 +41,7 @@ design.GeneralForm = React.createClass({
           <label className="label">{I18n.t("activerecord.attributes.shop.privacy_id")}</label>
           <div className="select">
             <select name="shop[privacy_id]" className="form-control" defaultValue={this.state.general.privacy_id}>
-              {this.props.pages.map(function(page, index) {
-                return <option key={"privacy_page_"+ index} value={page.id}>{page.title_ko ? page.title_ko : page.title_en}</option>
-              })}
+              {this.renderPages("privacy")}
             </select>
           </div>
         </div>

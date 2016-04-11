@@ -1,8 +1,4 @@
-<div class="row menus">
-  <div class="col-md-12">
-    <h3 class="title"><%= t "merchant.admin.menus.edit_menu" %></h3>
-    <div class="row">
-      <%= react_component "MenuForm", @props, {prerender: false} %>
-    </div>
-  </div>
+<div class="menus">
+  <h3 class="title"><%= t "merchant.admin.menus.edit_menu" %></h3>
+  <%= react_component "MenuForm", @props %>
 </div>

@@ -9,7 +9,7 @@ class Shop < ActiveRecord::Base
   has_many :discounts, dependent: :destroy
   has_many :pages, dependent: :destroy
   has_many :menus, dependent: :destroy
-  has_many :theme_editors, dependent: :destroy
+  has_many :assets, dependent: :destroy
   has_many :payment_method_shops
   has_many :payment_methods, through: :payment_method_shops
   belongs_to :term, class_name: "CustomPage", foreign_key: "term_id"
@@ -25,7 +25,7 @@ class Shop < ActiveRecord::Base
 
   before_validation :set_default_values, on: :create
   before_create :generate_api_key
-  after_create :initialize_theme_editor
+  after_create :set_assets
   after_create :load_payment_methods
 
   enum weight_unit: [:kg, :g]
@@ -43,8 +43,8 @@ class Shop < ActiveRecord::Base
     self.country = Settings.shop.default_country
   end
 
-  def initialize_theme_editor
-    self.theme.import_theme_editor self
+  def set_assets
+    self.theme.import_asset self
   end
 
   def load_payment_methods

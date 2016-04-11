@@ -45,11 +45,7 @@ var CustomerForm = React.createClass({
                 <div className="row">
                   <div className="form-group col-sm-6">
                     <label className="label">{I18n.t("activerecord.attributes.customer.email")}</label>
-                    <div className="form-errors">
-                      { (this.state.errors.email) ? this.state.errors.email.map(function(object){
-                        return object;
-                      }) : ""}
-                    </div>
+                    <FormErrors errors={this.state.errors.email} />
                     <input type="text" name="customer[email]"
                       className="form-control" defaultValue={this.props.customer.email} />
                   </div>

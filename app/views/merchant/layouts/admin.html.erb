@@ -9,10 +9,10 @@
     <%= javascript_include_tag "http://dmaps.daum.net/map_js_init/postcode.v2.js", "data-turbolinks-track": true %>
     <%= csrf_meta_tags %>
 
-    <script type="text/javascript">
+    <%= javascript_tag do %>
       I18n.defaultLocale = "<%= I18n.default_locale %>";
       I18n.locale = "<%= I18n.locale %>";
-    </script>
+    <% end %>
   </head>
   <body>
     <aside class="left-panel">

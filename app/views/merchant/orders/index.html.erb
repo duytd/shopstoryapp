@@ -1,5 +1,3 @@
-<div class="row orders">
-  <div class="col-md-12">
-    <%= react_component "OrderBox", {orders: @orders}, {prerender: false} %>
-  </div>
+<div class="orders">
+  <%= react_component "OrderBox", @props %>
 </div>

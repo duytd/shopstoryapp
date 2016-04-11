@@ -5,6 +5,9 @@ class PaymentMethod < ActiveRecord::Base
   has_many :payments, dependent: :nullify
 
   def as_json options={}
-    super.as_json(options).merge({payment_method_options: payment_method_options, type: type})
+    super.as_json(options).merge({
+      payment_method_options: payment_method_options,
+      type: type.underscore
+    })
   end
 end

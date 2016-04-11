@@ -18,25 +18,25 @@ var AutoComplete = React.createClass({
     return (
       <div className="autocomplete">
         {(this.state.chosen) ?
-          <div className="chosen-autocomplete">
-            <input type="hidden" value={this.state.chosen.id} name={this.props.name} />
-            <p>
-              {this.state.chosen.name}
-              <span className="pull-right">
-                <a onClick={this.removeChosen}><i className="fa fa-times-circle-o"></i></a>
-              </span>
-            </p>
-          </div> : null}
+        <div className="chosen-autocomplete">
+          <input type="hidden" value={this.state.chosen.id} name={this.props.name} />
+          <p>
+            {this.state.chosen.name}
+            <span className="pull-right">
+              <a onClick={this.removeChosen}><i className="fa fa-times-circle-o"></i></a>
+            </span>
+          </p>
+        </div> : null}
 
         {(!this.state.chosen) ?
-            <div className="autocomplete-input">
-            <input className="form-control" type="text" onChange={this.getData} />
-            <ul className="autocomplete-data">
-              {this.state.data.map(function(element, index) {
-                return <li onClick={this.setChosen.bind(this, element)}>{element.name_en}</li>
-              }.bind(this))}
-            </ul>
-          </div> : null}
+        <div className="autocomplete-input">
+          <input className="form-control" type="text" onChange={this.getData} />
+          <ul className="autocomplete-data">
+            {this.state.data.map(function(element, index) {
+              return <li onClick={this.setChosen.bind(this, element)}>{element.name_en}</li>
+            }.bind(this))}
+          </ul>
+        </div> : null}
       </div>
     )
   },

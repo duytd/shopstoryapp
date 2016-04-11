@@ -86,4 +86,4 @@ var CustomerOrder = React.createClass({
       </tr>
     );
   }
-});
+})

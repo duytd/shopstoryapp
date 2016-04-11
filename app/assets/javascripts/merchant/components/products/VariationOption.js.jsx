@@ -57,19 +57,22 @@ var VariationOption = React.createClass({
           : (
               <input ref="custom_name" type="text" className="form-control input-sm"
                 name={"product[variation_options_attributes][" + this.props.index + "][name]"}
-                onBlur={this.props.submit}
                 placeholder={I18n.t("merchant.admin.variations.custom_name_placeholder")}
-                defaultValue={this.props.variationOption.name} onChange={this.checkInputName} onBlur={this.props.submit} />
+                defaultValue={this.props.variationOption.name} onChange={this.checkInputName} />
             )
           }
         </div>
-        <div className="col-xs-5">
-          {optionValueNodes}
-        </div>
         <div className="col-xs-2">
+          {(this.props.variationOptionCount == this.props.index + 1) ?
+          <button className="btn btn-default" onClick={this.props.addVariationOption}>
+            <i className="fa fa-plus"></i>
+          </button> : null}
           <button className="btn btn-default" onClick={this.deleteVariationOption}>
             <i className="fa fa-trash"></i>
           </button>
+        </div>
+        <div className="col-xs-5">
+          {optionValueNodes}
         </div>
       </div>
     )

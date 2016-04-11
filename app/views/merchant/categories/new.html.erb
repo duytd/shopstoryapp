@@ -1,8 +1,6 @@
-<div class="row categories">
-  <div class="col-md-12">
-    <h3 class="title"><%= t "merchant.admin.categories.add_category" %></h3>
-    <div class="block">
-      <%= react_component "CategoryForm", @props, {prerender: true} %>
-    </div>
+<div class="categories">
+  <h3 class="title"><%= t "merchant.admin.categories.add_category" %></h3>
+  <div class="block">
+    <%= react_component "CategoryForm", @props %>
   </div>
 </div>

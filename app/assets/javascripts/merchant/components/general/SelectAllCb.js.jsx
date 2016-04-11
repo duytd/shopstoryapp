@@ -13,4 +13,4 @@ var SelectAllCb = React.createClass({
 
     this.props.selectAllHandler(checked);
   }
-});
+})

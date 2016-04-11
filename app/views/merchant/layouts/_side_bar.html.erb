@@ -7,7 +7,7 @@
 
 <nav class="navigation">
   <ul>
-    <%= link_to "#" do %>
+    <%= link_to merchant_root_path do %>
       <li class="item">
         <i class="fa fa-home"></i>
         <span class="item-label"><%= t "merchant.admin.menu.dashboard" %></span>
@@ -81,7 +81,7 @@
     <% end %>
 
     <li class="item">
-      <%= link_to "#" do %>
+      <%= link_to "javascript:void(0)" do %>
         <i class="fa fa-th-large"></i>
         <span class="item-label"><%= t "merchant.admin.menu.theme" %></span>
       <% end %>
@@ -94,7 +94,7 @@
           </li>
         <% end %>
 
-        <%= link_to edit_merchant_theme_editor_path(current_theme_editor) do %>
+        <%= link_to edit_merchant_asset_path(current_asset) do %>
           <li>
             <i class="fa fa-code"></i>
             <%= t "merchant.admin.menu.theme_editor" %>
@@ -104,7 +104,7 @@
     </li>
 
     <li class="item">
-      <%= link_to "#" do %>
+      <%= link_to "javascript:void(0)" do %>
         <i class="fa fa-gear"></i>
         <span class="item-label"><%= t "merchant.admin.menu.settings" %></span>
       <% end %>
@@ -131,7 +131,7 @@
     </li>
 
     <li class="item">
-      <%= link_to "#" do %>
+      <%= link_to "javascript:void(0)" do %>
         <i class="fa fa-code"></i>
         <span class="item-label"><%= t "merchant.admin.menu.developers" %></span>
       <% end %>

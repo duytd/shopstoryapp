@@ -24,22 +24,14 @@ var CustomPageForm = React.createClass({
           <div id="ko" className="tab-pane fade in active">
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
-              <div className="form-errors">
-                { (this.state.errors.title_ko) ? this.state.errors.title_ko.map(function(object){
-                  return object;
-                }) : ""}
-              </div>
+              <FormErrors errors={this.state.errors.title_ko} />
               <input ref="title_ko" type="text" name="custom_page[title_ko]"
                 className="form-control" defaultValue={(this.props.custom_page_ko) ? this.props.custom_page_ko.title : ""} />
             </div>
 
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
-              <div className="form-errors">
-                { (this.state.errors.content_ko) ? this.state.errors.content_ko.map(function(object){
-                  return object;
-                }) : ""}
-              </div>
+              <FormErrors errors={this.state.errors.content_ko} />
               <textarea name="custom_page[content_ko]" ref="content_ko"
                 className="form-control summernote" defaultValue={(this.props.custom_page_ko) ? this.props.custom_page_ko.content : ""}>
               </textarea>
@@ -48,22 +40,14 @@ var CustomPageForm = React.createClass({
           <div id="en" className="tab-pane fade">
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
-              <div className="form-errors">
-                {(this.state.errors.title_en) ? this.state.errors.title_en.map(function(object){
-                  return object;
-                }) : ""}
-              </div>
+              <FormErrors errors={this.state.errors.title_en} />
               <input ref="title_en" type="text" name="custom_page[title_en]"
                 className="form-control" defaultValue={(this.props.custom_page_en) ? this.props.custom_page_en.title : ""} />
             </div>
 
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
-              <div className="form-errors">
-                { (this.state.errors.content_en) ? this.state.errors.content_en.map(function(object){
-                  return object;
-                }) : ""}
-              </div>
+              <FormErrors errors={this.state.errors.content_en} />
               <textarea name="custom_page[content_en]" ref="content_en"
                 className="form-control summernote" defaultValue={(this.props.custom_page_en) ? this.props.custom_page_en.content : ""}>
               </textarea>
@@ -74,19 +58,16 @@ var CustomPageForm = React.createClass({
         {(this.props.slug) ?
           <div className="form-group">
             <label className="label">{I18n.t("activerecord.attributes.custom_page.slug")}</label>
-            <div className="form-errors">
-              { (this.state.errors.slug) ? this.state.errors.slug.map(function(object){
-                return object;
-              }) : ""}
-            </div>
+
+            <FormErrors errors={this.state.errors.slug} />
             <input type="text" name="custom_page[slug]"
               className="form-control" defaultValue={this.props.slug} />
           </div>
-        : ""}
+        : null}
 
         <div className="row">
           <div className="col-md-12">
-            <SubmitButtons redirect_url={Routes.merchant_custom_pages_path()} />
+            <SubmitButtons redirect_url={Routes.merchant_custom_pages_path()} fixed={true} />
           </div>
         </div>
       </form>
@@ -94,7 +75,7 @@ var CustomPageForm = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var formData = $(this.refs.form.getDOMNode()).serialize();
+    var formData = $(this.refs.form).serialize();
 
     this.handleCustomPageSubmit(formData, this.props.url, this.props.method);
   },
@@ -122,4 +103,4 @@ var CustomPageForm = React.createClass({
       }.bind(this)
     });
   },
-});
+})

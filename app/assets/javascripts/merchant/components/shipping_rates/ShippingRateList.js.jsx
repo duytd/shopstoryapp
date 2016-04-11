@@ -12,4 +12,4 @@ var ShippingRateList = React.createClass({
         deleteAllUrl={Routes.merchant_shipping_rates_path()} />
     )
   }
-});
+})

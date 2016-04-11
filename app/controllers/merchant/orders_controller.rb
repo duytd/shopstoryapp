@@ -50,6 +50,10 @@ class Merchant::OrdersController < Merchant::BaseController
   private
   def list_all
     @orders = ProductOrder.page params[:page]
+
+    @props = {
+      orders: @orders
+    }
   end
 
   def delete_all

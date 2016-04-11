@@ -14,4 +14,4 @@ var CustomerList = React.createClass({
         deleteAllUrl={Routes.merchant_customers_path()} />
     )
   }
-});
+})

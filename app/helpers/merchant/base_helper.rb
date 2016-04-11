@@ -8,8 +8,8 @@ module Merchant::BaseHelper
     @current_shop ||= Shop.find_by_subdomain subdomain
   end
 
-  def current_theme_editor
-    session[:theme_editor_id] || current_shop.theme_editors.with_theme(current_shop.theme_id).id
+  def current_asset
+    session[:asset_id] || current_shop.assets.with_theme(current_shop.theme_id).id
   end
 
   def merchant_authenticated?
@@ -18,5 +18,9 @@ module Merchant::BaseHelper
 
   def current_subdomain
     session[:subdomain] || current_shop.subdomain
+  end
+
+  def paginating object, props
+    props.merge({page: object.current_page, total_page: object.num_pages})
   end
 end

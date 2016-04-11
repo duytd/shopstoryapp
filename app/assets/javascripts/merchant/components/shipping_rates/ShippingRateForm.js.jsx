@@ -32,115 +32,101 @@ var ShippingRateForm = React.createClass({
       <form ref="form" className="shipping-rate-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
 
-        <div className="col-sm-12">
-          {(!this.props.shipping_rate && this.props.types) ?
-          <div className="block">
-            <div className="form-group row">
-              <div className="col-sm-6">
-                <label className="label">{I18n.t("merchant.admin.shipping_rates.choose_shipping_type")}</label>
-                <div className="select">
-                  <div className="form-errors">
-                    { (this.state.errors.type) ? this.state.errors.type.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
-                  <select className="form-control" onChange={this.switchGeneralType}>
-                    {["free_shipping", "flat_rate"].map(function(type, index) {
-                      return <option value={type} key={"general_type_" + index}>{I18n.t("merchant.admin.shipping_rates.general_types." + type)}</option>
-                    })}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="form-group row">
-                {(this.state.generalType == "free_shipping") ?
-                  <div className="col-sm-6">
-                    <p>
-                      <input type="radio" name="type" defaultChecked value="free" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.free")}
-                    </p>
-                    <p>
-                      <input type="radio" name="type" value="free_by_price" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.free_by_price")}
-                    </p>
-                  </div> : null}
-
-                {(this.state.generalType == "flat_rate") ?
-                  <div className="col-sm-6">
-                    <p>
-                      <input type="radio" name="type" defaultChecked value="flat_rate_per_order" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.flat_rate_per_order")}
-                    </p>
-                    <p>
-                      <input type="radio" name="type" value="flat_rate_per_product" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.flat_rate_per_product")}
-                    </p>
-                  </div> : null}
-            </div>
-          </div> : null}
-
-          {(this.props.shipping_rate) ?
-            <div className="block">
-              <div className="form-group row">
-                <div className="col-sm-6">
-                  <label className="label">{I18n.t("activerecord.attributes.shipping_rate.type")}</label>
-                  <p>{I18n.t("merchant.admin.shipping_rates.type_labels." + this.state.type)}</p>
-                </div>
-              </div>
-            </div> : null}
-
-          <div className="block">
-            <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
-
-            <div className="tab-content">
-              <div id="ko" className="tab-pane fade in active">
-                <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
-                  <div className="form-errors">
-                    { (this.state.errors.name_ko) ? this.state.errors.name_ko.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
-                  <input ref="name_ko" type="text" name="shipping_rate[name_ko]"
-                    className="form-control" defaultValue={(this.props.ko_shipping_rate) ? this.props.ko_shipping_rate.name : ""} />
-                </div>
-              </div>
-              <div id="en" className="tab-pane fade">
-                <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
-                  <div className="form-errors">
-                    {(this.state.errors.name_en) ? this.state.errors.name_en.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
-                  <input ref="name_en" type="text" name="shipping_rate[name_en]"
-                    className="form-control" defaultValue={(this.props.en_shipping_rate) ? this.props.en_shipping_rate.name : null} />
-                </div>
+        {(!this.props.shipping_rate && this.props.types) ?
+        <div className="block">
+          <div className="form-group row">
+            <div className="col-sm-6">
+              <label className="label">{I18n.t("merchant.admin.shipping_rates.choose_shipping_type")}</label>
+              <div className="select">
+                <FormErrors errors={this.state.errors.type} />
+                <select className="form-control" onChange={this.switchGeneralType}>
+                  {["free_shipping", "flat_rate"].map(function(type, index) {
+                    return <option value={type} key={"general_type_" + index}>{I18n.t("merchant.admin.shipping_rates.general_types." + type)}</option>
+                  })}
+                </select>
               </div>
             </div>
           </div>
 
-          {(this.state.type == "free_by_price") ?
+          <div className="form-group row">
+              {(this.state.generalType == "free_shipping") ?
+                <div className="col-sm-6">
+                  <p>
+                    <input type="radio" name="type" defaultChecked value="free" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.free")}
+                  </p>
+                  <p>
+                    <input type="radio" name="type" value="free_by_price" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.free_by_price")}
+                  </p>
+                </div> : null}
+
+              {(this.state.generalType == "flat_rate") ?
+                <div className="col-sm-6">
+                  <p>
+                    <input type="radio" name="type" defaultChecked value="flat_rate_per_order" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.flat_rate_per_order")}
+                  </p>
+                  <p>
+                    <input type="radio" name="type" value="flat_rate_per_product" onChange={this.switchType} /> {I18n.t("merchant.admin.shipping_rates.types.flat_rate_per_product")}
+                  </p>
+                </div> : null}
+          </div>
+        </div> : null}
+
+        {(this.props.shipping_rate) ?
           <div className="block">
             <div className="form-group row">
               <div className="col-sm-6">
-                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.min_price")}</label>
-                <input type="text" name="shipping_rate[min_price]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.min_price : null} className="form-control" />
+                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.type")}</label>
+                <p>{I18n.t("merchant.admin.shipping_rates.type_labels." + this.state.type)}</p>
               </div>
             </div>
           </div> : null}
 
-        {(this.state.type == "flat_rate_per_product" || this.state.type == "flat_rate_per_order") ?
-          <div className="block">
-            <div className="form-group row">
-              <div className="col-sm-6">
-                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.rate")}</label>
-                <input type="text" name="shipping_rate[rate]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.rate : null} className="form-control" />
+        <div className="block">
+          <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
+
+          <div className="tab-content">
+            <div id="ko" className="tab-pane fade in active">
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
+                <FormErrors errors={this.state.errors.name_ko} />
+                <input ref="name_ko" type="text" name="shipping_rate[name_ko]"
+                  className="form-control" defaultValue={(this.props.ko_shipping_rate) ? this.props.ko_shipping_rate.name : ""} />
               </div>
             </div>
-          </div> : null}
-
-          <div className="row">
-            <div className="col-md-12">
-              <SubmitButtons redirect_url={Routes.merchant_shipping_rates_path()} />
+            <div id="en" className="tab-pane fade">
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
+                <FormErrors errors={this.state.errors.name_en} />
+                <input ref="name_en" type="text" name="shipping_rate[name_en]"
+                  className="form-control" defaultValue={(this.props.en_shipping_rate) ? this.props.en_shipping_rate.name : null} />
+              </div>
             </div>
+          </div>
+        </div>
+
+        {(this.state.type == "free_by_price") ?
+        <div className="block">
+          <div className="form-group row">
+            <div className="col-sm-6">
+              <label className="label">{I18n.t("activerecord.attributes.shipping_rate.min_price")}</label>
+              <input type="text" name="shipping_rate[min_price]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.min_price : null} className="form-control" />
+            </div>
+          </div>
+        </div> : null}
+
+      {(this.state.type == "flat_rate_per_product" || this.state.type == "flat_rate_per_order") ?
+        <div className="block">
+          <div className="form-group row">
+            <div className="col-sm-6">
+              <label className="label">{I18n.t("activerecord.attributes.shipping_rate.rate")}</label>
+              <input type="text" name="shipping_rate[rate]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.rate : null} className="form-control" />
+            </div>
+          </div>
+        </div> : null}
+
+        <div className="row">
+          <div className="col-md-12">
+            <SubmitButtons redirect_url={Routes.merchant_shipping_rates_path()} />
           </div>
         </div>
       </form>

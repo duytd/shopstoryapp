@@ -13,4 +13,4 @@ var OrderBox = React.createClass({
         title={I18n.t("merchant.admin.orders.title")} />
     );
   }
-});
+})

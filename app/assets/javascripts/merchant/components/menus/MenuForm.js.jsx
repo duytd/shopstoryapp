@@ -43,7 +43,7 @@ var MenuForm = React.createClass({
     }.bind(this))
 
     return (
-      <div className="menu-form">
+      <div className="menu-form row">
         <form ref="form" action={this.props.url}
           acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}>
           <div className="col-sm-2">
@@ -54,11 +54,7 @@ var MenuForm = React.createClass({
               <div className="form-group row">
                 <div className="col-sm-12">
                   <label className="label">{I18n.t("activerecord.attributes.menu.position")}</label>
-                  <div className="form-errors">
-                    {(this.state.errors.position) ? this.state.errors.position.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
+                  <FormErrors errors={this.state.errors.position} />
                   <div className="select">
                     <select className="form-control" name="menu[position]"
                       defaultValue={(this.state.menu) ? this.state.menu.position : this.props.positions[0]}>
@@ -73,11 +69,7 @@ var MenuForm = React.createClass({
               <div className="form-group row">
                 <div className="col-sm-12">
                   <label className="label">{I18n.t("activerecord.attributes.menu.name")}</label>
-                  <div className="form-errors">
-                    {(this.state.errors.name) ? this.state.errors.name.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
+                  <FormErrors errors={this.state.errors.name} />
                   <input type="text" name="menu[name]" defaultValue={(this.state.menu) ? this.state.menu.name : null} className="form-control" />
                 </div>
               </div>

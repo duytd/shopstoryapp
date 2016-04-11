@@ -17,4 +17,4 @@ var ProductList = React.createClass({
         deleteAllUrl={Routes.merchant_products_path()} />
     )
   }
-});
+})

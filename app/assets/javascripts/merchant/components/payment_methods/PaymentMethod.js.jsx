@@ -72,7 +72,7 @@ var PaymentMethod = React.createClass({
     if (typeof e !== "undefined")
       e.preventDefault();
 
-    var form = $(this.refs.form.getDOMNode());
+    var form = $(this.refs.form);
 
     $.ajax({
       url: Routes.merchant_payment_method_shop_path(this.state.payment_method_shop.id),

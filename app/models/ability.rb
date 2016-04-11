@@ -11,7 +11,7 @@ class Ability
       can :manage, CustomPage
       can :manage, Product
       can [:read, :create, :update], Shop
-      can [:read, :update], ThemeEditor
+      can [:read, :update], Asset
       can [:read, :update], PaymentMethodShop
       can :manage, Order
       can :manage, ShippingRate

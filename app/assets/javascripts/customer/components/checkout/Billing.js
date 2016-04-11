@@ -1,10 +1,23 @@
 var Billing = React.createClass({
   getInitialState: function() {
-    var currentPaymentMethod = (this.props.order.payment && this.props.order.payment.payment_method) ?
-      this.props.order.payment.payment_method :
-      this.props.payment_method_shops[0].payment_method;
+    var currentPaymentMethod = null,
+      hasPaymentMethod = true;
+
+    if (this.props.payment_method_shops.length == 0) {
+      hasPaymentMethod = false;
+    }
+
+    if (hasPaymentMethod) {
+      if (this.props.order.payment && this.props.order.payment.payment_method) {
+        currentPaymentMethod = this.props.order.payment.payment_method;
+      }
+      else {
+        currentPaymentMethod = this.props.payment_method_shops[0].payment_method;
+      }
+    }
 
     return {
+      hasPaymentMethod: hasPaymentMethod,
       errors: {},
       useShippingAddress: true,
       currentPaymentMethod: currentPaymentMethod
@@ -14,10 +27,12 @@ var Billing = React.createClass({
   switchBilling: function() {
     var checkbox = $(this.refs.useShippingAddress);
 
-    if (checkbox.is(":checked"))
+    if (checkbox.is(":checked")) {
       this.setState({useShippingAddress: true});
-    else
+    }
+    else {
       this.setState({useShippingAddress: false});
+    }
   },
   switchPaymentMethod: function(method) {
     this.setState({currentPaymentMethod: method});
@@ -25,7 +40,7 @@ var Billing = React.createClass({
   updateOrder: function(order) {
     this.props.updateOrder(order);
 
-    if (order.payment.payment_method.type == "InicisPayment") {
+    if (order.payment.payment_method.type == "inicis_payment") {
       if (this.props.mobile) {
         $.get(Routes.customer_inicis_transaction_pay_path({locale: I18n.locale}), function(data) {
           $('#inicisPayment').html(data);
@@ -37,9 +52,9 @@ var Billing = React.createClass({
         })
       }
     }
-    else if (order.payment.payment_method.type == "PaypalShopstory::PaymentMethod") {
+    else if (order.payment.payment_method.type == "paypal_shopstory/payment_method") {
       $.get(Routes.customer_paypal_transaction_pay_path(), function(response) {
-        location.href = response.paypal_url
+        location.href = response.paypal_url;
       })
     }
     else {

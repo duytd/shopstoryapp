@@ -2,6 +2,7 @@ $menu-item-color: #cccccc;
 
 aside.left-panel {
   left: 100%;
+  z-index: 999;
   .merchant-logo {
     color: $white !important;
     background: $sea-light;
@@ -76,7 +77,7 @@ aside.left-panel {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   aside.left-panel {
     left: 0;
     &.collapsed {
@@ -121,4 +122,3 @@ aside.left-panel {
     }
   }
 }
-

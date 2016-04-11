@@ -45,7 +45,7 @@ en:
         search: "Search"
         view_shop: "View your shop"
         theme: "Design"
-        theme_editor: "Editor"
+        asset: "Editor"
         shipping: "Shipping"
         shipping_rates: "Shipping Rates"
       buttons:
@@ -64,6 +64,11 @@ en:
         choose: "Choose"
         current_plan: "Current Plan"
         upgrade: "Upgrade"
+      pagination:
+        next: "Next"
+        first: "First"
+        last: "Last"
+        previous: "Previous"
       forms:
         ko_lang: "Korean"
         en_lang: "English"
@@ -78,6 +83,12 @@ en:
         variations_title: "Variations"
         online: "Online"
         dropzone_instruction: "Drop files or click here to upload"
+      messages:
+        no_product: "You have not created any product. Create one to start selling now"
+        no_category: "You have not created any category. Create now"
+        no_menu: "You have not created any menu/navigation. Create now"
+        no_custom_page: "You have not created any page. Create now"
+        no_shipping_rate: "You have not created any shipping rate. Create now"
       categories:
         title: "All Categories"
         add_category: "Add Category"
@@ -92,11 +103,11 @@ en:
         gram: "Gram (g)"
         kilogram: "Kilogram (kg)"
         zipcode_hint: " (Enter street address to get zipcode automatically)"
-      theme_editors:
+      assets:
         title: "Edit themes"
         assets: "Assets"
         translations: "Translations"
-        reset: "Reset Default Content"
+        reset: "Reset"
       orders:
         title: "Orders"
         bill_to_name: "Bill To Name"

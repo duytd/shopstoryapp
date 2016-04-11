@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
   include Orderable
+  paginates_per 1
 
   has_many :category_products, dependent: :destroy
   has_many :products, through: :category_products

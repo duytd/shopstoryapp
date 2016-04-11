@@ -28,6 +28,6 @@ var Register = React.createClass({
       }.bind(this)
     });
   }
-});
+})
 
 module.exports = Register;

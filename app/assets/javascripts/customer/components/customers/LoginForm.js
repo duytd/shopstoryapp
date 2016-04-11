@@ -36,6 +36,6 @@ var LoginForm = React.createClass({
       }.bind(this)
     });
   }
-});
+})
 
 module.exports = LoginForm;

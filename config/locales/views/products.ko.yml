@@ -9,6 +9,7 @@ ko:
         size_placeholder: "예: S, M, L, 등등.."
         buttons:
           add_option_type: "Add Option Type"
+          delete_option_type: "Delete Option"
           populate_variation: "Populate Variation"
       variations:
         custom_name: "Custom Name"

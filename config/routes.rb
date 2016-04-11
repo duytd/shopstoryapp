@@ -37,10 +37,10 @@ Rails.application.routes.draw do
 
     namespace :customer, path: "" do
       root "pages#home"
-      get :styles, to: "theme_editors#styles"
-      get :scripts, to: "theme_editors#scripts"
-      get :en, to: "theme_editors#en"
-      get :ko, to: "theme_editors#ko"
+      get :styles, to: "assets#styles"
+      get :scripts, to: "assets#scripts"
+      get :en, to: "assets#en"
+      get :ko, to: "assets#ko"
       get :checkout, to: "pages#checkout"
       get :success, to: "pages#success"
       get :account, to: "customers#show", path: "my-account"
@@ -99,7 +99,7 @@ Rails.application.routes.draw do
       end
       resources :subscriptions, only: [:index, :create, :update, :destroy]
       resources :shops, only: [:edit, :update]
-      resources :theme_editors, only: [:edit, :update]
+      resources :assets, only: [:edit, :update]
       resources :payment_method_shops, only: [:index, :update], path: "payment"
     end
   end

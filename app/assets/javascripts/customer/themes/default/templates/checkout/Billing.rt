@@ -6,6 +6,7 @@
   </label>
 
   <BillingForm
+    hasPaymentMethod="{this.state.hasPaymentMethod}"
     useShippingAddress="{this.state.useShippingAddress}"
     mobile="{this.props.mobile}"
     order="{this.props.order}"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407072747) do
+ActiveRecord::Schema.define(version: 20160410084431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,20 @@ ActiveRecord::Schema.define(version: 20160407072747) do
   end
 
   add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
+
+  create_table "assets", force: :cascade do |t|
+    t.text     "stylesheet"
+    t.text     "javascript"
+    t.text     "en_locale"
+    t.text     "ko_locale"
+    t.integer  "shop_id"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "assets", ["shop_id"], name: "index_assets_on_shop_id", using: :btree
+  add_index "assets", ["theme_id"], name: "index_assets_on_theme_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -479,20 +493,6 @@ ActiveRecord::Schema.define(version: 20160407072747) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "theme_editors", force: :cascade do |t|
-    t.text     "stylesheet"
-    t.text     "javascript"
-    t.text     "en_locale"
-    t.text     "ko_locale"
-    t.integer  "shop_id"
-    t.integer  "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "theme_editors", ["shop_id"], name: "index_theme_editors_on_shop_id", using: :btree
-  add_index "theme_editors", ["theme_id"], name: "index_theme_editors_on_theme_id", using: :btree
-
   create_table "themes", force: :cascade do |t|
     t.string   "name"
     t.string   "directory"
@@ -575,6 +575,8 @@ ActiveRecord::Schema.define(version: 20160407072747) do
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
   add_foreign_key "addresses", "orders"
+  add_foreign_key "assets", "shops"
+  add_foreign_key "assets", "themes"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "menu_items", "menus"
@@ -598,8 +600,6 @@ ActiveRecord::Schema.define(version: 20160407072747) do
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"
   add_foreign_key "subscriptions", "plans"
   add_foreign_key "subscriptions", "users"
-  add_foreign_key "theme_editors", "shops"
-  add_foreign_key "theme_editors", "themes"
   add_foreign_key "variation_option_values", "variation_options"
   add_foreign_key "variation_options", "products"
   add_foreign_key "variation_variation_option_values", "variation_option_values"

@@ -12,7 +12,7 @@
 
     <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.cart">
       <div class="col-xs-3">
-        <img rt-if="item.variation.master && item.variation.master_image.length > 0" src="{item.variation.master_image.image.url}" class="img-responsive image" />
+        <img rt-if="item.variation.master && item.variation.master_image" src="{item.variation.master_image.image.url}" class="img-responsive image" />
         <img rt-if="!item.variation.master" src="{item.variation.image.url}" class="img-responsive image" />
       </div>
 

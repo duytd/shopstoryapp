@@ -1,8 +1,4 @@
-<div class="row products">
-  <div class="col-md-12">
-    <h3 class="title"><%= t "merchant.admin.products.add_product" %></h3>
-    <div class="row">
-      <%= react_component "ProductForm", @props, {prerender: true} %>
-    </div>
-  </div>
+<div class="products">
+  <h3 class="title"><%= t "merchant.admin.products.add_product" %></h3>
+  <%= react_component "ProductForm", @props %>
 </div>

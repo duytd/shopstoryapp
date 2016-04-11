@@ -23,6 +23,11 @@ GIT
       iconv
       thrift
 
+PATH
+  remote: ~/workspace/rt-transform-ruby
+  specs:
+    rt-transform-ruby (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -443,6 +448,7 @@ DEPENDENCIES
   rqrcode
   rspec-collection_matchers
   rspec-rails (~> 3.0)
+  rt-transform-ruby!
   rubyzip
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

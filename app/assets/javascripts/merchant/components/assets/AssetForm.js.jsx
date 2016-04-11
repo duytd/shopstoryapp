@@ -1,4 +1,4 @@
-var ThemeEditorForm = React.createClass({
+var AssetForm = React.createClass({
   getInitialState: function () {
     return {
       errors: {},
@@ -76,14 +76,14 @@ var ThemeEditorForm = React.createClass({
           <div className="block">
             <h4>
               <span><i className="fa fa-folder-o"></i></span>
-              {I18n.t("merchant.admin.theme_editors.assets")}
+              {I18n.t("merchant.admin.assets.assets")}
             </h4>
             <ul>
               {assetNodes}
             </ul>
             <h4>
               <span><i className="fa fa-folder-o"></i></span>
-              {I18n.t("merchant.admin.theme_editors.translations")}
+              {I18n.t("merchant.admin.assets.translations")}
             </h4>
             <ul>
               {translationNodes}
@@ -92,18 +92,17 @@ var ThemeEditorForm = React.createClass({
         </div>
 
         <div className="col-md-9 col-md-pull-3">
-          <form ref="form" id="theme-editor-form" action={this.props.url}
+          <form ref="form" id="asset-form" action={this.props.url}
             acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
             <div className="form-group">
               <div id="editor" ref="editor" className="code-editor">
               </div>
-              <input ref="code" type="hidden" name={"theme_editor["+this.props.file+"]"} />
-            </div>
-            <div className="pull-left">
-              <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.theme_editors.reset")}</button>
+              <input ref="code" type="hidden" name={"asset["+this.props.file+"]"} />
             </div>
             <div className="text-right">
-              <SubmitButtons redirect_url={this.props.redirect_url} />
+              <SubmitButtons redirect_url={this.props.redirect_url} fixed={true}>
+                <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.assets.reset")}</button>
+              </SubmitButtons>
             </div>
           </form>
         </div>
@@ -141,5 +140,5 @@ var ThemeEditorForm = React.createClass({
         });
       }.bind(this)
     });
-  },
-});
+  }
+})

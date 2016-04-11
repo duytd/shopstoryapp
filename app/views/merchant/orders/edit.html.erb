@@ -1,6 +1,4 @@
-<div class="row order">
-  <div class="col-md-12">
-    <h3 class="title"><%= t "merchant.admin.orders.edit_order" %></h3>
-    <%= react_component "OrderForm", @props, {prerender: false} %>
-  </div>
+<div class="order">
+  <h3 class="title"><%= t "merchant.admin.orders.edit_order" %></h3>
+  <%= react_component "OrderForm", @props %>
 </div>

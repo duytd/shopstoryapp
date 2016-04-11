@@ -32,4 +32,17 @@ $(document).on("page:change", function() {
       ['fullscreen',['codeview', 'fullscreen']],
     ]
   });
+
+  $(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() >= $(document).height() - 34) {
+      if (!$(".form-submit.fixed").hasClass("scrolled")) {
+        $(".form-submit.fixed").addClass("scrolled");
+      }
+    }
+    else {
+      if ($(".form-submit.fixed").hasClass("scrolled")) {
+        $(".form-submit.fixed").removeClass("scrolled");
+      }
+    }
+  })
 });

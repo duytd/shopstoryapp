@@ -4,9 +4,7 @@
     height: 500px;
     border-radius: 5px;
     color: $gray-dark;
-    .ace_scrollbar {
-      display: none;
-    }
+    z-index: 0;
     .ace_scroller {
       right: 0 !important;
     }

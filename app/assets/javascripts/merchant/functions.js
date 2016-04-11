@@ -12,6 +12,17 @@ String.prototype.toKoreanFormat = function() {
   return I18n.toNumber(this.toString(), {delimiter: ",", precision: 0});
 }
 
+String.prototype.addParams = function(key, value) {
+  var regex = new RegExp("([?&])" + key + "=[^&#]*", "i");
+  if (regex.test(this)) {
+    return this.replace(regex, "$1" + key + "=" + value);
+  } else {
+    var matchData = this.match(/^([^#]*)(#.*)?$/);
+    var separator = /\?/.test(this) ? "&" : "?";
+    return matchData[0] + separator + key + "=" + value;
+  }
+}
+
 if (typeof Dropzone != "undefined") {
   Dropzone.prototype._getParamName = function(n) {
     if (typeof this.options.paramName === "function") {

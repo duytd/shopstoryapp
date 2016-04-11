@@ -30,10 +30,10 @@ var Header = React.createClass({
 
     this.props.globalVars.cart.forEach(function(item) {
       itemCount += item.quantity;
-    });
+    })
 
     this.setState({itemCount: itemCount});
   }
-});
+})
 
 module.exports = Header;

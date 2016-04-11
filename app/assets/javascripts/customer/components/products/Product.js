@@ -2,7 +2,7 @@ var Product = React.createClass({
   mixins: [CartMixin],
   getInitialState: function() {
     if (this.props.variations.length == 0) {
-      variation = this.props.master
+      variation = this.props.master;
     }
     else {
       variation = this.props.variations[0];
@@ -54,6 +54,6 @@ var Product = React.createClass({
   updateVariation: function(variation) {
     this.setState({variation: variation});
   }
-});
+})
 
 module.exports = Product;

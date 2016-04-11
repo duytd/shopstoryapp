@@ -50,12 +50,17 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   private
   def list_all
-    @categories = Category.all
-    
-    @props = {
+    @categories = Category.page params[:page]
+
+    @props = paginating @categories, {
       categories: @categories,
       url: new_merchant_category_path
     }
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @props, status: :ok}
+    end
   end
 
   def delete_all
