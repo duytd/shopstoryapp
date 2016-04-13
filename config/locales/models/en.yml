@@ -66,11 +66,12 @@ en:
         description_en: "Description"
         description_ko: "Description"
         price: "Price"
-        sku: "SKU (Stock Keeping Unit)"
+        sku: "SKU"
         sale_off: "Sale Off"
         in_stock: "In Stock"
         flat_shipping_rate: "Flat Rate"
         pay_shipping_on_delivery: "Pay Shipping Fee On Delivery"
+        vendor: "Vendor"
       variation:
         color: "Color"
         size: "Size"

@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12">
     <h3 rt-if="this.props.editing">{I18n.t("checkout.texts.shipping_info")}<i class="fa fa-edit pull-right" onClick="{this.enableEditing}"></i></h3>
 
     <ShippingForm
       rt-if="!this.props.editing"
-      containerKlass="col-sm-8"
-      halfContainerKlass="col-sm-4"
+      containerKlass="col-md-8"
+      halfContainerKlass="col-md-4"
       btnKlass="btn-lg"
       btnName={I18n.t("checkout.buttons.next")}
       inputKlass="form-control"
@@ -17,8 +17,8 @@
 
     <ShippingForm
       rt-if="this.props.editing && this.state.isEditing"
-      containerKlass="col-sm-12"
-      halfContainerKlass="col-sm-6"
+      containerKlass="col-md-12"
+      halfContainerKlass="col-md-6"
       btnKlass="btn-sm"
       btnName="{I18n.t('checkout.buttons.save')}"
       inputKlass = "form-control input-sm input-dashed"
@@ -31,7 +31,7 @@
     />
 
     <div rt-if="this.props.editing && !this.state.isEditing" class="row">
-      <div class="col-sm-12">
+      <div class="col-md-12">
         <p>
           {(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : null}
           {(this.props.order.shipping_address) ? this.props.order.shipping_address.last_name : null}</p>

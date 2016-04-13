@@ -14,6 +14,12 @@ GIT
       rails (~> 4.2.3)
 
 GIT
+  remote: git@github.com:duytd/rt-transform-ruby.git
+  revision: e44e994308c03dfaa10de34cf0882f013b0cc525
+  specs:
+    rt-transform-ruby (0.1.0)
+
+GIT
   remote: https://github.com/duytd/inicis-standard-rails.git
   revision: 2a898feab8a398c3b180b21ec32e52641df2396f
   branch: develop
@@ -22,11 +28,6 @@ GIT
       browser
       iconv
       thrift
-
-PATH
-  remote: ~/workspace/rt-transform-ruby
-  specs:
-    rt-transform-ruby (0.1.0)
 
 GEM
   remote: https://rubygems.org/

@@ -8,12 +8,6 @@ var Pagination = React.createClass({
     }
   },
   render: PaginationRT,
-  updatePage: function(page) {
-    $.get(this.props.url, {page: page}, function(data) {
-      window.history.pushState(null, null, this.props.url + "?page=" + page);
-      this.props.updatePage(data, page);
-    }.bind(this), 'json')
-  },
   componentDidMount: function() {
     this.loadPages(this.props.page);
   },

@@ -29,6 +29,7 @@
       </div>
 
       <div class="collapse navbar-collapse" id="shopstory-navbar-collapse">
+        <Menu menu="{this.props.globalVars.menu.main_menu}" rt-if="this.props.globalVars.menu.main_menu" />
         <ul class="nav navbar-nav navbar-right">
           <li class="cart">
             <a href="#" onClick="{this.openCart}">
@@ -41,7 +42,7 @@
     </div>
   </nav>
 
-  <Cart
+  <CartPopup
     globalVars = "{this.props.globalVars}"
     isCartOpened = "{(this.props.isCartOpened) ? this.props.isCartOpened : this.state.isCartOpened}"
     openCart = "{this.openCart}"

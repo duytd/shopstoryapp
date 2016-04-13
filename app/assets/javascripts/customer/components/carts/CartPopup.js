@@ -1,15 +1,13 @@
-var Cart = React.createClass({
+var CartPopup = React.createClass({
   getInitialState: function() {
     return {
       cartErrors: [],
     }
   },
-  render: CartRT,
+  render: CartPopupRT,
   checkout: function() {
-    var url = (this.props.globalVars.current_customer) ? Routes.new_customer_order_path({locale: I18n.locale}) : Routes.customer_checkout_path({locale: I18n.locale});
-
-    Turbolinks.visit(url);
-   },
+    Turbolinks.visit(Routes.customer_cart_path());
+  },
   removeItem: function(e) {
     e.preventDefault();
     var itemId = parseInt(e.target.getAttribute("data-item"));
@@ -66,7 +64,7 @@ var Cart = React.createClass({
     });
   },
   setCartErrors: function(errors) {
-    if (this.props.cartErrors) {
+    if (typeof this.props.cartErrors !== "undefined") {
       this.props.setCartErrors(errors);
     }
     else {
@@ -74,7 +72,7 @@ var Cart = React.createClass({
     }
   },
   emptyCartErrors: function() {
-    if (this.props.cartErrors) {
+    if (typeof this.props.cartErrors !== "undefined") {
       this.props.emptyCartErrors();
     }
     else {
@@ -83,4 +81,4 @@ var Cart = React.createClass({
   }
 })
 
-module.exports = Cart;
+module.exports = CartPopup;

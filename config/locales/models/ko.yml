@@ -61,11 +61,12 @@ ko:
         description_en: "Description"
         description_ko: "제품 설명"
         price: "가격"
-        sku: "SKU (재고관리번호)"
+        sku: "SKU"
         sale_off: "Sale Off"
         in_stock: "재고 있음"
         flat_shipping_rate: "Flat Rate"
         pay_shipping_on_delivery: "Pay Shipping Fee On Delivery"
+        vendor: "Vendor"
       variation:
         color: "색상"
         size: "사이즈"

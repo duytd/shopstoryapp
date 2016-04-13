@@ -31,7 +31,10 @@ module ShopsLoading
       current_customer: current_customer,
       currency: current_shop.currency,
       cart: current_order.order_products,
-      mobile: browser.device.mobile?
+      mobile: browser.device.mobile?,
+      menu: {
+        main_menu: Menu.main_menu
+      }
     }
   end
 end

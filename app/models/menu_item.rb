@@ -1,4 +1,6 @@
 class MenuItem < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+
   belongs_to :menu
 
   translates :name
@@ -18,6 +20,12 @@ class MenuItem < ActiveRecord::Base
   end
 
   def as_json options={}
-    super(options).merge({name_en: name_en, name_ko: name_ko, children: children, type: type.underscore})
+    super(options).merge({
+      name_en: name_en,
+      name_ko: name_ko,
+      children: children,
+      type: type.underscore,
+      url: url
+    })
   end
 end

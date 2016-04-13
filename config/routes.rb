@@ -43,11 +43,15 @@ Rails.application.routes.draw do
       get :ko, to: "assets#ko"
       get :checkout, to: "pages#checkout"
       get :success, to: "pages#success"
+      get :cart, to: "pages#cart"
       get :account, to: "customers#show", path: "my-account"
 
-      resources :categories, only: [:index, :show]
+      resources :categories, only: [:index, :show] do
+        get :filter, on: :member
+      end
+
       resources :products, only: [:index, :show]
-      resources :pages, only: [:show]
+      resources :custom_pages, only: [:show]
       resources :orders, only: [:show, :new, :create, :update] do
         resource :payment, only: :show
       end

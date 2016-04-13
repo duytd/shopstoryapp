@@ -29,6 +29,28 @@ class Product < ActiveRecord::Base
 
   scope :visible, ->{where visibility: true}
   scope :available, ->{where "in_stock > ?", 0}
+  scope :filtered_by_price, ->price_range{
+    if price_range.present?
+      start_price = price_range[0].to_f
+      end_price = price_range[1].to_f
+
+      if end_price > start_price
+        joins(:variations).where("variations.price >= ? AND variations.price <= ?", start_price, end_price).uniq
+      end
+    end
+  }
+  scope :filtered_by_vendor, ->vendor_list{where(vendor: vendor_list) if vendor_list.present? && vendor_list.size > 0}
+  scope :sorted_by, ->attribute, direction{
+    if ["name", "price"].include?(attribute) && ["asc", "desc"].include?(direction)
+      if attribute == "name"
+        includes(:translations)
+          .with_locales(I18n.available_locales)
+          .order("product_translations.name #{direction}")
+      else
+        order "price #{direction}"
+      end
+    end
+   }
 
   after_create :create_master
   after_update :update_master
@@ -45,10 +67,6 @@ class Product < ActiveRecord::Base
 
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
-  end
-
-  def self.search_by_name query
-    with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
   end
 
   def create_variations
@@ -70,6 +88,10 @@ class Product < ActiveRecord::Base
     rescue Exception
       return false
     end
+  end
+
+  def self.search_by_name query
+    with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
   end
 
   private

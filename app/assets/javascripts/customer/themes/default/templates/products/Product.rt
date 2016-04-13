@@ -9,12 +9,14 @@
 
   <div className="product col-md-12">
     <div className="col-md-6 col-sm-6 image-slider">
-      <ProductSlider rt-if="this.props.variations.length > 0" images="{[this.state.variation]}" />
+      <ProductSlider rt-if="this.props.variations.length > 0 &&  this.state.variation.has_image" images="{[this.state.variation]}" />
+      <ProductSlider rt-if="this.props.variations.length > 0 &&  !this.state.variation.has_image" images="{[this.state.variation.master_image]}" />
       <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" />
     </div>
 
     <div className="col-md-6 col-sm-6">
-      <h2>{this.state.variation.name}</h2>
+      <h3 rt-if="this.props.product.vendor">{this.props.product.vendor}</h3>
+      <h2>{translate(this.state.variation, "name")}</h2>
       <p>{this.state.variation.sku}</p>
       <p>
         <strong>{I18n.toCurrency(this.state.variation.price, {precision: 0, unit: this.props.globalVars.currency})}</strong>

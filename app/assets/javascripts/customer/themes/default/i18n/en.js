@@ -136,6 +136,7 @@ Your order will be confirmed immediately after the payment has been made",
       }
     },
     "cart": {
+      "title": "Your cart (%{item_count})",
       "empty": "It appears that your cart is currently empty!",
       "subtotal": "Subtotal",
       "buy_now": "Buy now",
@@ -146,7 +147,20 @@ Your order will be confirmed immediately after the payment has been made",
       "first": "First",
       "last": "Last",
       "previous": "Previous",
-      "next": "Next"
+      "next": "Next",
+      "showing": "Showing %{size} of %{total} products"
+    },
+    "filter": {
+      "all": "All",
+      "vendor_filter": "Vendor Filter",
+      "price_filter": "Price Filter"
+    },
+    "sorter": {
+      "title": "Sort Product By",
+      "name_asc": "Name (Z-A)",
+      "name_desc": "Name (A-Z)",
+      "price_asc": "Price (Low-High)",
+      "price_desc": "Price (High-Low)"
     }
   }
 })

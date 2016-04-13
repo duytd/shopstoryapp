@@ -21,6 +21,10 @@ module Merchant::BaseHelper
   end
 
   def paginating object, props
-    props.merge({page: object.current_page, total_page: object.num_pages})
+    props.merge({
+      page: object.current_page,
+      total_page: object.num_pages,
+      total: object.total_count
+    })
   end
 end

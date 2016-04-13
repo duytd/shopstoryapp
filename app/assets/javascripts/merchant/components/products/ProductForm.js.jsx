@@ -195,7 +195,7 @@ var ProductForm = React.createClass({
             </div>
           </div>
 
-          {(this.state.product) ?
+
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
             <div className={(variationCount > 0) ? "hide" : "form-group"}>
@@ -203,28 +203,32 @@ var ProductForm = React.createClass({
               <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
                 name="product[in_stock]" defaultValue={(this.props.product) ? this.state.product.in_stock : "0"} />
             </div>
-            {(this.state.variationOptionCount == 0) ?
-            <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
-              {I18n.t("merchant.admin.products.buttons.add_option_type")}
-            </button> : null}
-            <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
-              <div className="col-xs-5">
-                <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
+
+            {(this.state.product) ?
+            <div className="variation-wrapper">
+              {(this.state.variationOptionCount == 0) ?
+              <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
+                {I18n.t("merchant.admin.products.buttons.add_option_type")}
+              </button> : null}
+              <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
+                <div className="col-xs-5">
+                  <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
+                </div>
+                <div className="col-xs-2">
+                </div>
+                <div className="col-xs-5">
+                  <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
+                </div>
               </div>
-              <div className="col-xs-2">
-              </div>
-              <div className="col-xs-5">
-                <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
-              </div>
-            </div>
-            {variationOptionNodes}
-            {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
-            <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
-              {I18n.t("merchant.admin.products.buttons.populate_variation")}
-            </button> : null}
-            <hr/>
-            {variationNodes}
-          </div> : null}
+              {variationOptionNodes}
+              {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
+              <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
+                {I18n.t("merchant.admin.products.buttons.populate_variation")}
+              </button> : null}
+              <hr/>
+              {variationNodes}
+            </div> : null}
+          </div>
         </div>
 
         <div className="col-md-3">
@@ -248,21 +252,30 @@ var ProductForm = React.createClass({
               <input type="text" className="form-control" name="product[sku]"
                 defaultValue={(this.props.product) ? this.state.product.sku : ""}/>
             </div>
+            <div className="form-group">
+              <label className="label">{I18n.t("activerecord.attributes.product.vendor")}</label>
+              <input type="text" className="form-control" name="product[vendor]"
+                defaultValue={(this.props.product) ? this.state.product.vendor : ""}/>
+            </div>
           </div>
 
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.categories_title")}</h4>
-            {this.props.categories.map(function(category){
-              return (
-                <label className="styled-cb" key={category.id}>
-                  <input type="hidden" name="product[category_ids][]" value="" />
-                  <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
-                    defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
-                  <i className="fa"></i>
-                  {(category.name == "") ? category.name_en : category.name}
-                </label>
-              );
-            }.bind(this))}
+            <div className="row">
+              {this.props.categories.map(function(category){
+                return (
+                  <div className="col-xs-6" key={"category_" + category.id}>
+                    <label className="styled-cb" >
+                      <input type="hidden" name="product[category_ids][]" value="" />
+                      <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
+                        defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
+                      <i className="fa"></i>
+                      {(category.name == "") ? category.name_en : category.name}
+                    </label>
+                  </div>
+                );
+              }.bind(this))}
+            </div>
           </div>
 
           <div className="block">

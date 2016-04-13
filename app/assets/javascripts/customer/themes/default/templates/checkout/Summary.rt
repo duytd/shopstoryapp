@@ -11,12 +11,16 @@
   <div class="cart-items">
     <div rt-repeat="item in this.props.globalVars.cart" key="item_{itemIndex}" class="row item">
       <div class="col-xs-3">
-        <img rt-if="item.variation.master" src="{(item.variation.master_image) ? item.variation.master_image.image.url : null}" class="img-responsive image" />
-        <img rt-if="!item.variation.master" src="{item.variation.image.url}" class="img-responsive image" />
+        <a href="{Routes.customer_product_path(item.variation.product_id)}">
+          <img rt-if="(item.variation.master && item.variation.master_image) || (!item.variation.master && !item.variation.has_image)" src="{item.variation.master_image.image.url}" class="img-responsive image" />
+          <img rt-if="!item.variation.master && item.variation.has_image" src="{item.variation.image.url}" class="img-responsive image" />
+        </a>
       </div>
 
       <div class="col-xs-3">
-        <strong>{item.variation.name.toUpperCase()}</strong>
+        <a href="{Routes.customer_product_path(item.variation.product_id)}">
+          <strong>{translate(item.variation, "name")}</strong>
+        </a>
       </div>
 
       <div class="col-xs-3">

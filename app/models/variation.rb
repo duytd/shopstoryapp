@@ -21,11 +21,19 @@ class Variation < ActiveRecord::Base
     self[:price] = price
   end
 
-  def name
+  def name_en
     if master?
-      product.name
+      product.name_en
     else
-      "#{product.name} (#{variation_variation_option_values.map{|v| v.variation_option_value.name}.join(',')})"
+      "#{product.name_en} (#{variation_variation_option_values.map{|v| v.variation_option_value.name}.join(',')})"
+    end
+  end
+
+  def name_ko
+    if master?
+      product.name_ko
+    else
+      "#{product.name_ko} (#{variation_variation_option_values.map{|v| v.variation_option_value.name}.join(',')})"
     end
   end
 
@@ -35,7 +43,8 @@ class Variation < ActiveRecord::Base
 
   def as_json options={}
     super.as_json(options).merge({
-      name: name,
+      name_ko: name_ko,
+      name_en: name_en,
       variation_option_values: variation_variation_option_values,
       master_image: master_image,
       has_image: has_image?,

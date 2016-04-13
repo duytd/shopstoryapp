@@ -39,6 +39,12 @@ class Customer::PagesController < Customer::BaseController
     }
   end
 
+  def cart
+    @props = {
+      globalVars: @globalVars
+    }
+  end
+
   private
   def authenticate_order!
     @order = Order.find params[:oid]

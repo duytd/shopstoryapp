@@ -1,0 +1,15 @@
+<ul class="nav navbar-nav">
+  <li rt-repeat="item in this.props.menu.menu_items" key="menu_item_{itemIndex}">
+    <a href="{item.url.addParams('locale', I18n.locale)}" rt-if="item.children.length == 0">
+      {translate(item, "name")}
+    </a>
+
+    <ul  className="dropdown-menu" rt-if="item.children.length > 0">
+      <li rt-repeat="child in item.children" key="child_menu_{childIndex}">
+        <a href="{child.url.addParams('locale', I18n.locale)}">
+          {translate(child, "name")}
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>

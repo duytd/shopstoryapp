@@ -1,6 +1,6 @@
 class CustomPage < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title, use: [:slugged, :finders]
 
   translates :title, :content
 

@@ -1,4 +1,12 @@
 module Customer::BaseHelper
+  def paginating object, props
+    props.merge({
+      page: object.current_page,
+      total_page: object.num_pages,
+      total: object.total_count
+    })
+  end
+
   def current_shop
     subdomain = Apartment::Tenant.current
     @current_shop ||= Shop.find_by_subdomain subdomain

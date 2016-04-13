@@ -3,13 +3,13 @@
     <input name="order[billing_address_attributes][order_id]" value="{this.props.order.id}" type="hidden" />
 
     <div rt-if="this.state.country != 'KR'" class="form-group row">
-      <div class="col-sm-4">
+      <div class="col-md-4">
         <label class="required">{I18n.t("checkout.billing.first_name")}</label>
         <Errors errors="{this.state.errors['billing_address.first_name']}" />
         <input name="order[billing_address_attributes][first_name]" type="text"
           defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.first_name : null}" class="form-control" />
       </div>
-      <div class="col-sm-4">
+      <div class="col-md-4">
         <label>{I18n.t("checkout.billing.last_name")}</label>
         <Errors errors="{this.state.errors['billing_address.last_name']}" />
         <input name="order[billing_address_attributes][last_name]" type="text"
@@ -18,7 +18,7 @@
     </div>
 
     <div rt-if="this.state.country == 'KR'" class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label class="required">{I18n.t("checkout.billing.name")}</label>
         <Errors errors="{this.state.errors['billing_address.first_name']}" />
         <input name="order[billing_address_attributes][first_name]" type="text"
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label class="required">{I18n.t("checkout.billing.email")}</label>
         <Errors errors="{this.state.errors['billing_address.email']}" />
         <input name="order[billing_address_attributes][email]" type="email"
@@ -36,7 +36,7 @@
     </div>
 
     <div class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label class="required">{I18n.t("checkout.billing.address1")}</label>
         <Errors errors="{this.state.errors['billing_address.address1']}" />
         <input ref="address" name="order[billing_address_attributes][address1]" type="text"
@@ -46,7 +46,7 @@
     </div>
 
     <div class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label>{I18n.t("checkout.billing.address2")}</label>
         <Errors errors="{this.state.errors['billing_address.address2']}" />
         <input name="order[billing_address_attributes][address2]" type="text"
@@ -55,13 +55,13 @@
     </div>
 
     <div class="form-group row">
-      <div rt-if="this.state.country != 'KR'" class="col-sm-4">
+      <div rt-if="this.state.country != 'KR'" class="col-md-4">
         <label class="required">{I18n.t("checkout.billing.city")}</label>
         <Errors errors="{this.state.errors['billing_address.city']}" />
         <input name="order[billing_address_attributes][city]" type="text"
           defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.city : null}" class="form-control" />
       </div>
-      <div class="col-sm-4">
+      <div class="col-md-4">
         <label class="required">{I18n.t("checkout.billing.zip_code")}</label>
         <Errors errors="{this.state.errors['billing_address.zip_code']}" />
         <input ref="zipcode" name="order[billing_address_attributes][zip_code]" type="text"
@@ -70,7 +70,7 @@
     </div>
 
     <div rt-if="this.state.country != 'KR'" class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label class="required">{I18n.t("checkout.billing.state")}</label>
         <Errors errors="{this.state.errors['billing_address.state']}" />
         <input name="order[billing_address_attributes][state]" type="text"
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label class="required">{I18n.t("checkout.billing.country")}</label>
         <Errors errors="{this.state.errors['billing_address.country']}" />
         <div class="select">
@@ -92,7 +92,7 @@
     </div>
 
     <div class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label class="required">{I18n.t("checkout.billing.phone_number")}</label>
         <Errors errors="{this.state.errors['billing_address.phone_number']}" />
         <PhoneField name="order[billing_address_attributes][phone_number]" fields="{[3, 4, 4]}" klass="form-control" value="{(this.props.order.billing_address) ? this.props.order.billing_address.phone_number : null}" />
@@ -100,7 +100,7 @@
     </div>
 
     <div class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label class="required">{I18n.t("checkout.billing.alternative_phone")}</label>
         <Errors errors="{this.state.errors['billing_address.alternative_phone']}" />
       <PhoneField name="order[billing_address_attributes][alternative_phone]" fields="{[3, 4, 4]}" klass="form-control" value="{(this.props.order.billing_address) ? this.props.order.billing_address.alternative_phone : null}" />
@@ -108,7 +108,7 @@
     </div>
 
     <div rt-if="this.state.country != 'KR'" class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <label>{I18n.t("checkout.billing.fax")}</label>
         <Errors errors="{this.state.errors['billing_address.fax']}" />
         <input name="order[billing_address_attributes][fax]" type="text"
@@ -131,7 +131,7 @@
     <div id="inicisPayment"></div>
 
     <div class="form-group row">
-      <div class="col-sm-8">
+      <div class="col-md-8">
         <button type="submit" class="btn btn-lg btn-primary pull-right" onClick="{this.updateOrder}">
           {I18n.t('checkout.buttons.place_order')}
           <i ref="loading" className="fa fa-spinner fa-pulse hide"></i>

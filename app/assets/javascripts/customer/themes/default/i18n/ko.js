@@ -136,6 +136,7 @@ $.extend(true, I18n.translations, {
       }
     },
     "cart": {
+      "title": "Your cart (%{item_count})",
       "empty": "장바구니가 비어있습니다!",
       "subtotal": "상품 합계",
       "buy_now": "지금 구매",
@@ -146,7 +147,20 @@ $.extend(true, I18n.translations, {
       "first": "처음",
       "last": "마지막",
       "previous": "이전",
-      "next": "다음"
+      "next": "다음",
+      "showing": "Showing %{size} of %{total} products"
+    },
+    "filter": {
+      "all": "All",
+      "vendor_filter": "Vendor Filter",
+      "price_filter": "Price Filter"
+    },
+    "sorter": {
+      "title": "Sort Product By",
+      "name_asc": "Name (Z-A)",
+      "name_desc": "Name (A-Z)",
+      "price_asc": "Price (Low-High)",
+      "price_desc": "Price (High-Low)"
     }
   }
 })

@@ -23,6 +23,15 @@ String.prototype.addParams = function(key, value) {
   }
 }
 
+function translate(object, attribute) {
+  if (I18n.locale == "ko") {
+    return object[attribute + "_ko"]
+  }
+  else {
+    return object[attribute + "_en"]
+  }
+}
+
 if (typeof Dropzone != "undefined") {
   Dropzone.prototype._getParamName = function(n) {
     if (typeof this.options.paramName === "function") {

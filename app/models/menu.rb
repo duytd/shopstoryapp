@@ -10,4 +10,8 @@ class Menu < ActiveRecord::Base
   def as_json options={}
     super(options).merge({menu_items: menu_items.is_parent})
   end
+
+  def self.main_menu
+    find_by position: Menu.positions[:main]
+  end
 end

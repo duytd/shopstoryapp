@@ -20,11 +20,17 @@ var Product = React.createClass({
         </td>
         <td className="name">
           <a href={Routes.edit_merchant_product_path(this.props.product.id)}>
-            {(this.props.product.name_ko == "") ? this.props.product.name_en : this.props.product.name_ko}
+            {translate(this.props.product, "name")}
           </a>
         </td>
         <td>
           {this.props.product.price.toKoreanFormat()}
+        </td>
+        <td>
+          {this.props.product.sku}
+        </td>
+        <td>
+          {this.props.product.vendor}
         </td>
         <td>
           {this.props.product.in_stock}

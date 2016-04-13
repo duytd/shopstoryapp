@@ -21,14 +21,14 @@ class Ability
     elsif user.is_a?(Merchant)
       can :manage, Subscription
     elsif user.is_a? Customer
-      can :read, Category
+      can [:read, :filter], Category
       can :read, Product
       can :read, Order
       can [:read], Customer
       can :manage, OrderProduct
       can [:read, :create, :update], Order
     else
-      can :read, Category
+      can [:read, :filter], Category
       can :read, Product
       can :manage, OrderProduct
       can [:read, :create, :update], Order
