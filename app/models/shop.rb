@@ -24,6 +24,7 @@ class Shop < ActiveRecord::Base
     uniqueness: true
 
   before_validation :set_default_values, on: :create
+  before_validation :strip_white_space
   before_create :generate_api_key
   after_create :set_assets
   after_create :load_payment_methods
@@ -63,5 +64,9 @@ class Shop < ActiveRecord::Base
       random_key = SecureRandom.urlsafe_base64
       break random_key unless self.class.exists?(api_key: random_key)
     end
+  end
+
+  def strip_white_space
+    self.domain = domain.strip unless domain.nil?
   end
 end

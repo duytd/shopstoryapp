@@ -8,16 +8,10 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: 9f755967dbabd65bece19e9c162c598aeebded53
+  revision: a71ce97cff6003a09ec280f320a7d11de666251a
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
-
-GIT
-  remote: git@github.com:duytd/rt-transform-ruby.git
-  revision: e44e994308c03dfaa10de34cf0882f013b0cc525
-  specs:
-    rt-transform-ruby (0.1.0)
 
 GIT
   remote: https://github.com/duytd/inicis-standard-rails.git
@@ -28,6 +22,12 @@ GIT
       browser
       iconv
       thrift
+
+GIT
+  remote: https://github.com/duytd/rt-transform-ruby.git
+  revision: e44e994308c03dfaa10de34cf0882f013b0cc525
+  specs:
+    rt-transform-ruby (0.1.0)
 
 GEM
   remote: https://rubygems.org/

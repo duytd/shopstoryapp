@@ -13,11 +13,15 @@ module Merchant::BaseHelper
   end
 
   def merchant_authenticated?
-    current_shop.domain == request.host || current_shop.subdomain == Apartment::Tenant.current
+    current_shop.subdomain == Apartment::Tenant.current
   end
 
-  def current_subdomain
-    session[:subdomain] || current_shop.subdomain
+  def shop_url
+    if current_shop.domain.present?
+      full_http_url current_shop.domain
+    else
+      customer_root_url subdomain: current_shop.subdomain
+    end
   end
 
   def paginating object, props
@@ -26,5 +30,13 @@ module Merchant::BaseHelper
       total_page: object.num_pages,
       total: object.total_count
     })
+  end
+
+  private
+  def full_http_url url
+    unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
+      return "http://#{url}"
+    end
+    url
   end
 end

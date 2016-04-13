@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     when "Admin"
       admin_root_url
     when "Merchant"
-      merchant_root_url subdomain: resource.shop.subdomain
+      merchant_url resource.shop.subdomain
     when "Customer"
       customer_url
     else
@@ -40,5 +40,9 @@ class ApplicationController < ActionController::Base
     else
       customer_root_url
     end
+  end
+
+  def merchant_url subdomain
+    merchant_root_url subdomain: subdomain
   end
 end

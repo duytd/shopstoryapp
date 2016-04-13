@@ -25,6 +25,6 @@ class OrderProduct < ActiveRecord::Base
   end
 
   def initialize_unit_price
-    self.unit_price = variation.price
+    self.unit_price = variation.final_price
   end
 end

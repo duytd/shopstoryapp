@@ -21,6 +21,10 @@ class Variation < ActiveRecord::Base
     self[:price] = price
   end
 
+  def final_price
+    price - (price * product.sale_off / 100)
+  end
+
   def name_en
     if master?
       product.name_en
