@@ -6,6 +6,7 @@ class Customer::CategoriesController < Customer::BaseController
 
   def show
     @products = @category.products.visible.page params[:page]
+    render_meta_tags @category, {title: @category.name}
     render_props
   end
 

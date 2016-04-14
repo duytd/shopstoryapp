@@ -136,3 +136,7 @@ en:
         type: "Type"
         value: "Value"
         parent_id: "Parent menu"
+      seo_tag:
+        title: "Title"
+        meta_description: "Meta Description"
+        meta_keywords: "Meta Keywords"

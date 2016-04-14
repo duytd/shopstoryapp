@@ -28,6 +28,7 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   def edit
     @props = {
+      seo_tag: @category.seo_tag,
       en_category: load_translation(@category.translations, :en),
       ko_category: load_translation(@category.translations, :ko),
       url: merchant_category_path(@category),
@@ -69,6 +70,6 @@ class Merchant::CategoriesController < Merchant::BaseController
   end
 
   def category_params
-    params.require(:category).permit *Category.globalize_attribute_names
+    params.require(:category).permit *Category.globalize_attribute_names + [seo_tag_attributes: SeoTag.globalize_attribute_names + [:id]]
   end
 end

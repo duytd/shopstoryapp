@@ -44,6 +44,7 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def edit
     @props = {
+      seo_tag: @product.seo_tag,
       product: @product,
       en_product: load_translation(@product.translations, :en),
       ko_product: load_translation(@product.translations, :ko),
@@ -108,7 +109,8 @@ class Merchant::ProductsController < Merchant::BaseController
       :vendor, :sku, :in_stock, category_ids: [], product_images: [],
       variations_attributes: [:id, :sku, :price, :image, :in_stock, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
       variation_options_attributes: [:id, :name, :_destroy, variation_option_values_attributes: [:id, :name, :_destroy]],
-      product_images_attributes: [:id, :image, :_destroy]]
+      product_images_attributes: [:id, :image, :_destroy],
+      seo_tag_attributes: SeoTag.globalize_attribute_names + [:id]]
     params.require(:product).permit *permitted
   end
 end

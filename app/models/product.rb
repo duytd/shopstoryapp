@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
   has_many :tags, through: :product_tags
   has_many :product_images, dependent: :destroy
   has_one :master, ->{where master: true}, class_name: "Variation"
+  has_one :seo_tag, as: :seoable, dependent: :destroy
 
   validates :name, translation_presence: true, translation_uniqueness: true
   validates :price, presence: true, numericality: {minimum: 0, allow_blank: true}
@@ -22,10 +23,9 @@ class Product < ActiveRecord::Base
   end
 
   accepts_nested_attributes_for :variations, allow_destroy: true
-  accepts_nested_attributes_for :variation_options, allow_destroy: true,
-    reject_if: proc {|a| a[:name].blank?}
-  accepts_nested_attributes_for :product_images, allow_destroy: true,
-    reject_if: proc {|a| a[:image].blank?}
+  accepts_nested_attributes_for :variation_options, allow_destroy: true, reject_if: proc {|a| a[:name].blank?}
+  accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: proc {|a| a[:image].blank?}
+  accepts_nested_attributes_for :seo_tag, allow_destroy: false, reject_if: :all_blank
 
   scope :visible, ->{where visibility: true}
   scope :available, ->{where "in_stock > ?", 0}

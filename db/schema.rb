@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410084431) do
+ActiveRecord::Schema.define(version: 20160414032606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -326,6 +326,29 @@ ActiveRecord::Schema.define(version: 20160410084431) do
     t.datetime "updated_at",                               null: false
     t.decimal  "flat_shipping_rate"
     t.boolean  "pay_shipping_on_delivery", default: false
+  end
+
+  create_table "seo_tag_translations", force: :cascade do |t|
+    t.integer  "seo_tag_id",       null: false
+    t.string   "locale",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "title"
+    t.text     "meta_description"
+    t.string   "meta_keywords"
+  end
+
+  add_index "seo_tag_translations", ["locale"], name: "index_seo_tag_translations_on_locale", using: :btree
+  add_index "seo_tag_translations", ["seo_tag_id"], name: "index_seo_tag_translations_on_seo_tag_id", using: :btree
+
+  create_table "seo_tags", force: :cascade do |t|
+    t.string   "title"
+    t.text     "meta_description"
+    t.string   "meta_keywords"
+    t.integer  "seoable_id"
+    t.string   "seoable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "shipping_rate_translations", force: :cascade do |t|

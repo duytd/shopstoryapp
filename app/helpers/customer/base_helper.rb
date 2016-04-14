@@ -7,6 +7,26 @@ module Customer::BaseHelper
     })
   end
 
+  def render_meta_tags object, default_options
+    unless object.seo_tag.nil?
+      set_meta_tags title: object.seo_tag.title,
+        description: object.seo_tag.meta_description,
+        keywords: object.seo_tag.meta_keywords
+    else
+      set_meta_tags title: default_options[:title],
+        description: html_to_text(default_options[:meta_description]),
+        keywords: default_options[:meta_keywords]
+    end
+  end
+
+  def html_to_text html
+    unless html.present?
+      return nil
+    end
+
+    strip_html_tags(html).truncate(255).gsub("\r", " ").gsub("\n", " ")
+  end
+
   def current_shop
     subdomain = Apartment::Tenant.current
     @current_shop ||= Shop.find_by_subdomain subdomain
@@ -48,7 +68,13 @@ module Customer::BaseHelper
     order
   end
 
+
+  private
   def ip_address
     request.remote_ip
+  end
+
+  def strip_html_tags string
+    ActionView::Base.full_sanitizer.sanitize string
   end
 end

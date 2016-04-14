@@ -296,6 +296,8 @@ var ProductForm = React.createClass({
               </label>
             </div>
           </div>
+
+          <SeoTag modelName="product" seo_tag={this.props.seo_tag} errors={this.state.errors} />
         </div>
 
         <div className="col-md-9 text-right">
