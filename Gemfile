@@ -44,6 +44,7 @@ gem "browserify-rails"
 gem "acts_as_tree"
 gem "stripe"
 gem "sidekiq"
+gem "meta-tags"
 
 group :development, :test do
   gem "byebug"

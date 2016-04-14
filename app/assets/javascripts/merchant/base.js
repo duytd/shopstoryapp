@@ -33,6 +33,10 @@ $(document).on("page:change", function() {
     ]
   });
 
+  $(".summernote").each( function() {
+    $(this).summernote("code", $(this).val());
+  });
+
   $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() >= $(document).height() - 34) {
       if (!$(".form-submit.fixed").hasClass("scrolled")) {

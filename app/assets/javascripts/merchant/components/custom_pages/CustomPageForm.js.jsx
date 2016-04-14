@@ -6,13 +6,6 @@ var CustomPageForm = React.createClass({
       errors_ko_count: 0
     };
   },
-  componentDidMount: function() {
-    var content_en = this.refs.content_en;
-    var content_ko = this.refs.content_ko;
-
-    $(content_en).summernote("code", content_en.value);
-    $(content_ko).summernote("code", content_ko.value);
-  },
   render: function () {
     return (
       <form ref="form" className="custom-page-form" action={this.props.url}

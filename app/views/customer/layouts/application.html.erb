@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= full_title yield :title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= display_meta_tags site: current_shop.name %>
 
     <%= stylesheet_link_tag "customer/application", media: "all", "data-turbolinks-track": true %>
     <%= stylesheet_link_tag customer_styles_path, media: "all", "data-turbolinks-track": true %>

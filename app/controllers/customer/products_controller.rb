@@ -10,5 +10,7 @@ class Customer::ProductsController < Customer::BaseController
       options: @product.variation_options.relating_to_variations,
       cart_url: customer_order_products_path
     }
+
+    render_meta_tags @product, {title: @product.name, meta_description: @product.description}
   end
 end
