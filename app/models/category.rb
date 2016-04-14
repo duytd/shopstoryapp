@@ -3,18 +3,20 @@ class Category < ActiveRecord::Base
   has_many :category_products, dependent: :destroy
   has_many :products, through: :category_products
   has_many :variations, through: :products
+  has_one :seo_tag, as: :seoable, dependent: :destroy
 
   translates :name
   globalize_accessors locales: [:en, :ko], attributes: [:name]
 
   validates :name, translation_presence: true, translation_uniqueness: true
+  accepts_nested_attributes_for :seo_tag, allow_destroy: false, reject_if: :all_blank
 
   I18n.available_locales.each do |locale|
     validates "name_#{locale}", length: {minimum: 2}, allow_blank: true
   end
 
   def as_json options={}
-    super.as_json(options).merge({name_en: name_en, name_ko: name_ko})
+    super.as_json(options).merge({name_en: name_en, name_ko: name_ko, seo_tag: seo_tag})
   end
 
   def price_filter

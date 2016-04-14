@@ -29,6 +29,7 @@ class Merchant::CustomPagesController < Merchant::BaseController
   def edit
     @props = {
       slug: @custom_page.slug,
+      seo_tag: @custom_page.seo_tag,
       custom_page_en: load_translation(@custom_page.translations, :en),
       custom_page_ko: load_translation(@custom_page.translations, :ko),
       url: merchant_custom_page_path(@custom_page),
@@ -64,6 +65,6 @@ class Merchant::CustomPagesController < Merchant::BaseController
   end
 
   def custom_page_params
-    params.require(:custom_page).permit :slug, *CustomPage.globalize_attribute_names
+    params.require(:custom_page).permit *CustomPage.globalize_attribute_names + [:slug, seo_tag_attributes: SeoTag.globalize_attribute_names + [:id]]
   end
 end

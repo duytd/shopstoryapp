@@ -10,26 +10,31 @@ var CategoryForm = React.createClass({
     return (
       <form ref="form" className="category-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
-        <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
 
-        <div className="tab-content">
-          <div id="ko" className="tab-pane fade in active">
-            <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
-              <FormErrors errors={this.state.errors.name_ko} />
-              <input ref="name_ko" type="text" name="category[name_ko]"
-                className="form-control" defaultValue={(this.props.ko_category) ? this.props.ko_category.name : ""} />
+        <div className="block">
+          <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
+
+          <div className="tab-content">
+            <div id="ko" className="tab-pane fade in active">
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
+                <FormErrors errors={this.state.errors.name_ko} />
+                <input ref="name_ko" type="text" name="category[name_ko]"
+                  className="form-control" defaultValue={(this.props.ko_category) ? this.props.ko_category.name : ""} />
+              </div>
             </div>
-          </div>
-          <div id="en" className="tab-pane fade">
-            <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
-              <FormErrors errors={this.state.errors.name_en} />
-              <input ref="name_en" type="text" name="category[name_en]"
-                className="form-control" defaultValue={(this.props.en_category) ? this.props.en_category.name : ""} />
+            <div id="en" className="tab-pane fade">
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
+                <FormErrors errors={this.state.errors.name_en} />
+                <input ref="name_en" type="text" name="category[name_en]"
+                  className="form-control" defaultValue={(this.props.en_category) ? this.props.en_category.name : ""} />
+              </div>
             </div>
           </div>
         </div>
+
+        <SeoTag modelName="category" seo_tag={this.props.seo_tag} errors={this.state.errors} />
 
         <div className="row">
           <div className="col-md-12">

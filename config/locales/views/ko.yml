@@ -116,6 +116,8 @@ ko:
         total: "총계"
         order_status: "주문 상태"
         payment_status: "결제 상태"
+      seo_tags:
+        title: "SEO (Search Engine Optimization)"
       extensions:
         title: "부가 기능"
       custom_pages:

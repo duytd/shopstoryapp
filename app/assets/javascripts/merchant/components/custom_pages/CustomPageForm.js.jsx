@@ -18,52 +18,56 @@ var CustomPageForm = React.createClass({
       <form ref="form" className="custom-page-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
 
-        <LocaleNavTab ko_errors_count={this.state.errors_ko_count} en_errors_count={this.state.errors_en_count} />
+        <div className="block">
+          <LocaleNavTab ko_errors_count={this.state.errors_ko_count} en_errors_count={this.state.errors_en_count} />
 
-        <div className="tab-content">
-          <div id="ko" className="tab-pane fade in active">
-            <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
-              <FormErrors errors={this.state.errors.title_ko} />
-              <input ref="title_ko" type="text" name="custom_page[title_ko]"
-                className="form-control" defaultValue={(this.props.custom_page_ko) ? this.props.custom_page_ko.title : ""} />
+          <div className="tab-content">
+            <div id="ko" className="tab-pane fade in active">
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
+                <FormErrors errors={this.state.errors.title_ko} />
+                <input ref="title_ko" type="text" name="custom_page[title_ko]"
+                  className="form-control" defaultValue={(this.props.custom_page_ko) ? this.props.custom_page_ko.title : ""} />
+              </div>
+
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
+                <FormErrors errors={this.state.errors.content_ko} />
+                <textarea name="custom_page[content_ko]" ref="content_ko"
+                  className="form-control summernote" defaultValue={(this.props.custom_page_ko) ? this.props.custom_page_ko.content : ""}>
+                </textarea>
+              </div>
             </div>
+            <div id="en" className="tab-pane fade">
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
+                <FormErrors errors={this.state.errors.title_en} />
+                <input ref="title_en" type="text" name="custom_page[title_en]"
+                  className="form-control" defaultValue={(this.props.custom_page_en) ? this.props.custom_page_en.title : ""} />
+              </div>
 
-            <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
-              <FormErrors errors={this.state.errors.content_ko} />
-              <textarea name="custom_page[content_ko]" ref="content_ko"
-                className="form-control summernote" defaultValue={(this.props.custom_page_ko) ? this.props.custom_page_ko.content : ""}>
-              </textarea>
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
+                <FormErrors errors={this.state.errors.content_en} />
+                <textarea name="custom_page[content_en]" ref="content_en"
+                  className="form-control summernote" defaultValue={(this.props.custom_page_en) ? this.props.custom_page_en.content : ""}>
+                </textarea>
+              </div>
             </div>
           </div>
-          <div id="en" className="tab-pane fade">
-            <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
-              <FormErrors errors={this.state.errors.title_en} />
-              <input ref="title_en" type="text" name="custom_page[title_en]"
-                className="form-control" defaultValue={(this.props.custom_page_en) ? this.props.custom_page_en.title : ""} />
-            </div>
 
+          {(this.props.slug) ?
             <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
-              <FormErrors errors={this.state.errors.content_en} />
-              <textarea name="custom_page[content_en]" ref="content_en"
-                className="form-control summernote" defaultValue={(this.props.custom_page_en) ? this.props.custom_page_en.content : ""}>
-              </textarea>
+              <label className="label">{I18n.t("activerecord.attributes.custom_page.slug")}</label>
+
+              <FormErrors errors={this.state.errors.slug} />
+              <input type="text" name="custom_page[slug]"
+                className="form-control" defaultValue={this.props.slug} />
             </div>
-          </div>
+          : null}
         </div>
 
-        {(this.props.slug) ?
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.custom_page.slug")}</label>
-
-            <FormErrors errors={this.state.errors.slug} />
-            <input type="text" name="custom_page[slug]"
-              className="form-control" defaultValue={this.props.slug} />
-          </div>
-        : null}
+        <SeoTag modelName="custom_page" seo_tag={this.props.seo_tag} errors={this.state.errors} />
 
         <div className="row">
           <div className="col-md-12">
