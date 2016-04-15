@@ -1,8 +1,10 @@
 class Asset < ActiveRecord::Base
-  belongs_to :shop
   belongs_to :theme
 
-  validates :shop_id, uniqueness: {scope: :theme_id}
+  validates :theme_id, presence: true
+  validates :name, presence: true, uniqueness: {scope: :theme_id}
 
-  scope :with_theme, ->theme_id{find_by theme_id: theme_id}
+  def as_json options={}
+    super(options).merge({type: type.underscore})
+  end
 end

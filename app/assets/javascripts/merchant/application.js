@@ -9,9 +9,11 @@
 //= require summernote/dist/summernote
 //= require dropzone/dist/dropzone
 //= require ace-builds/src/ace
-//= require ace-builds/src/theme-tomorrow
+//= require ace-builds/src/theme-solarized_light
 //= require ace-builds/src/mode-javascript
 //= require ace-builds/src/mode-css
+//= require ace-builds/src/mode-html
+//= require ace-builds/src/mode-json
 //= require merchant/functions
 //= require js-routes
 //= require react
@@ -21,3 +23,5 @@
 //= require spectrum/spectrum
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker
 //= require merchant/base
+
+NProgress.configure({ showSpinner: false });

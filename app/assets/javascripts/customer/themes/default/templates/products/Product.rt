@@ -7,14 +7,14 @@
   setCartErrors="{this.setCartErrors}"
   emptyCartErrors="{this.emptyCartErrors}">
 
-  <div className="product col-md-12">
-    <div className="col-md-6 col-sm-6 image-slider">
+  <div class="product col-md-12">
+    <div class="col-md-6 col-sm-6 image-slider">
       <ProductSlider rt-if="this.props.variations.length > 0 &&  this.state.variation.has_image" images="{[this.state.variation]}" />
       <ProductSlider rt-if="this.props.variations.length > 0 &&  !this.state.variation.has_image" images="{[this.state.variation.master_image]}" />
       <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" />
     </div>
 
-    <div className="col-md-6 col-sm-6">
+    <div class="col-md-6 col-sm-6">
       <h3 rt-if="this.props.product.vendor">{this.props.product.vendor}</h3>
       <h2>{translate(this.state.variation, "name")}</h2>
       <p>{this.state.variation.sku}</p>
@@ -35,7 +35,7 @@
       <form ref="form" action="{this.props.cart_url}" method="post">
         <input type="hidden" name="order_product[variation_id]" value="{this.state.variation.id}" />
         <input type="hidden" name="order_product[quantity]" value="1" />
-        <button className="btn btn-primary" onClick="{this.addToCart}">
+        <button class="btn btn-primary" onClick="{this.addToCart}">
           {I18n.t("products.add_to_cart")}
         </button>
       </form>

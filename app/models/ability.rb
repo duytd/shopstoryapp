@@ -18,6 +18,7 @@ class Ability
       can :manage, Customer
       can :manage, Menu
       can :manage, MenuItem
+      can [:read, :update], Template
     elsif user.is_a?(Merchant)
       can :manage, Subscription
     elsif user.is_a? Customer

@@ -104,9 +104,12 @@ ko:
         zipcode_hint: " (도로명 주소를 입력하여 우편번호를 찾으세요.)"
       assets:
         title: "테마 수정"
-        assets: "에셋"
+        javascripts: "Javascripts"
+        stylesheets: "Stylesheets"
         translations: "번역"
         reset: "디폴트로 되돌리기"
+      templates:
+        title: "Templates"
       orders:
         title: "주문"
         bill_to_name: "보내는 분 이름"

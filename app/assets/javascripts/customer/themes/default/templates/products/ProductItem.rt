@@ -1,7 +1,7 @@
-<div className="col-sm-3 text-center product-item">
+<div class="col-sm-3 text-center product-item">
   <a href={Routes.customer_product_path(this.props.product.id)}>
-    <div className="product-image">
-      <img className="img-responsive" src="{(this.props.product.images.length > 0) ? this.props.product.images[0].url : null}" />
+    <div class="product-image">
+      <img class="img-responsive" src="{(this.props.product.images.length > 0) ? this.props.product.images[0].url : null}" />
     </div>
   </a>
   <a href={Routes.customer_product_path(this.props.product.id)}>

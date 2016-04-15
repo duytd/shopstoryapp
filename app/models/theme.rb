@@ -1,5 +1,8 @@
+require "rt"
+
 class Theme < ActiveRecord::Base
   has_many :shops
+  has_many :theme_bundles, dependent: :nullify
   has_many :assets, dependent: :nullify
 
   scope :current, ->subdomain {joins(:shops)
@@ -13,46 +16,77 @@ class Theme < ActiveRecord::Base
   end
 
   def import_asset shop
-    asset = load_default_asset
-
-    Asset.create theme_id: id, shop_id: shop.id,
-      stylesheet: asset.stylesheet, javascript: asset.javascript,
-      en_locale: asset.en_locale, ko_locale: asset.ko_locale
+    bundle = ThemeBundle.where(theme_id: id, shop_id: shop.id).first_or_initialize
+    bundle.javascript = bundle_javascripts
+    bundle.stylesheet = bundle_stylesheets
+    bundle.locale = bundle_locales
+    bundle.template = bundle_templates
+    bundle.save!
   end
 
-  def load_default_asset
-    javascript = load_default_file "javascript"
-    stylesheet = load_default_file "stylesheet"
-    en_locale = load_default_file "en_locale"
-    ko_locale = load_default_file "ko_locale"
-
-    Asset.new javascript: javascript, stylesheet: stylesheet,
-      en_locale: en_locale, ko_locale: ko_locale
-  end
-
-  def load_default_file file
-    path = map_file_path file
-    read_file path
-  end
-
-  private
   def read_file path
     root_dir = "#{Rails.root}/app/assets/javascripts/customer/themes"
     File.read "#{root_dir}/#{directory}/#{path}"
   end
 
-  def map_file_path file
-    case file
-    when "stylesheet"
-      "assets/style.scss"
-    when "javascript"
-      "assets/shop.js"
-    when "en_locale"
-      "i18n/en.js"
-    when "ko_locale"
-      "i18n/ko.js"
-    else
-      nil
+  private
+  def bundle_locales
+    locales = []
+    locales_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/locales"
+
+    Dir.glob("#{locales_dir}/*.json") do |file|
+      file_content = File.read file
+      file_name = File.basename file
+      Asset::Locale.create content: file_content, name: file_name, theme_id: id
+      locales << file_content
     end
+
+    "var I18n = I18n || {}; I18n.translations = {#{locales.join(",")}}"
+  end
+
+  def bundle_stylesheets
+    content = ""
+    stylesheets_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/assets/stylesheets"
+
+    Dir.glob("#{stylesheets_dir}/*.scss") do |file|
+      file_content = File.read file
+      file_name = File.basename file
+      Asset::Stylesheet.create content: file_content, name: file_name, theme_id: id
+
+      content << file_content
+    end
+
+    content
+  end
+
+  def bundle_javascripts
+    content = ""
+    javascripts_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/assets/javascripts"
+
+    Dir.glob("#{javascripts_dir}/*.js") do |file|
+      file_content = File.read file
+      file_name = File.basename file
+      Asset::Javascript.create content: file_content, name: file_name, theme_id: id
+
+      content << file_content
+    end
+
+    content
+  end
+
+  def bundle_templates
+    content = ""
+    templates_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/templates"
+
+    Dir.glob("#{templates_dir}/**/*.rt") do |file|
+      file_content = File.read file
+      file_name = File.basename file, ".*"
+      file_directory = File.basename File.dirname(file)
+
+      Template.create content: file_content, name: file_name, directory: file_directory, theme_id: id
+      content << Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
+    end
+
+    content
   end
 end

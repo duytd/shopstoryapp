@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414032606) do
+ActiveRecord::Schema.define(version: 20160415030838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,18 +40,15 @@ ActiveRecord::Schema.define(version: 20160414032606) do
   add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
 
   create_table "assets", force: :cascade do |t|
-    t.text     "stylesheet"
-    t.text     "javascript"
-    t.text     "en_locale"
-    t.text     "ko_locale"
-    t.integer  "shop_id"
+    t.string   "type"
+    t.string   "name"
+    t.string   "image"
+    t.text     "content"
+    t.string   "directory"
     t.integer  "theme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "assets", ["shop_id"], name: "index_assets_on_shop_id", using: :btree
-  add_index "assets", ["theme_id"], name: "index_assets_on_theme_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -496,6 +493,17 @@ ActiveRecord::Schema.define(version: 20160414032606) do
 
   add_index "shopstory_ticket_tickets", ["shopstory_ticket_event_id"], name: "index_shopstory_ticket_tickets_on_shopstory_ticket_event_id", using: :btree
 
+  create_table "stylesheets", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.string   "directory"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stylesheets", ["theme_id"], name: "index_stylesheets_on_theme_id", using: :btree
+
   create_table "subscriptions", force: :cascade do |t|
     t.string   "stripe_id"
     t.integer  "plan_id"
@@ -515,6 +523,31 @@ ActiveRecord::Schema.define(version: 20160414032606) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "templates", force: :cascade do |t|
+    t.string   "directory"
+    t.string   "name"
+    t.text     "content"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "templates", ["theme_id"], name: "index_templates_on_theme_id", using: :btree
+
+  create_table "theme_bundles", force: :cascade do |t|
+    t.text     "stylesheet"
+    t.text     "javascript"
+    t.integer  "shop_id"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "locale"
+    t.text     "template"
+  end
+
+  add_index "theme_bundles", ["shop_id"], name: "index_theme_bundles_on_shop_id", using: :btree
+  add_index "theme_bundles", ["theme_id"], name: "index_theme_bundles_on_theme_id", using: :btree
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
@@ -598,8 +631,6 @@ ActiveRecord::Schema.define(version: 20160414032606) do
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
   add_foreign_key "addresses", "orders"
-  add_foreign_key "assets", "shops"
-  add_foreign_key "assets", "themes"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "menu_items", "menus"
@@ -623,6 +654,8 @@ ActiveRecord::Schema.define(version: 20160414032606) do
   add_foreign_key "shopstory_ticket_tickets", "shopstory_ticket_events"
   add_foreign_key "subscriptions", "plans"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "theme_bundles", "shops"
+  add_foreign_key "theme_bundles", "themes"
   add_foreign_key "variation_option_values", "variation_options"
   add_foreign_key "variation_options", "products"
   add_foreign_key "variation_variation_option_values", "variation_option_values"

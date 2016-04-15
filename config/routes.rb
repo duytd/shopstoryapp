@@ -36,10 +36,10 @@ Rails.application.routes.draw do
 
   namespace :customer, path: "" do
     root "pages#home"
-    get :styles, to: "assets#styles"
-    get :scripts, to: "assets#scripts"
-    get :en, to: "assets#en"
-    get :ko, to: "assets#ko"
+    get :styles, to: "theme_bundles#styles"
+    get :scripts, to: "theme_bundles#scripts"
+    get :templates, to: "theme_bundles#templates"
+    get :locale, to: "theme_bundles#locale"
     get :checkout, to: "pages#checkout"
     get :success, to: "pages#success"
     get :cart, to: "pages#cart"
@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     root "pages#dashboard"
     get :credentials, to: "pages#credentials"
     get :account, to: "pages#account"
+    get :editor, to: "pages#editor"
 
     resources :categories, except: :show do
       delete :index, on: :collection
@@ -103,6 +104,7 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index, :create, :update, :destroy]
     resources :shops, only: [:edit, :update]
     resources :assets, only: [:edit, :update]
+    resources :templates, only: [:edit, :update]
     resources :payment_method_shops, only: [:index, :update], path: "payment"
   end
 end

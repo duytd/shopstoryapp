@@ -28,7 +28,7 @@ module ShopStory
 
     config.autoload_paths << Rails.root.join("lib")
 
-    config.browserify_rails.commandline_options = ["--transform react-templatify"]
+    #config.browserify_rails.commandline_options = ["--transform react-templatify"]
 
     config.react.server_renderer = React::ServerRendering::SprocketsRenderer
     config.react.server_renderer_options = {
