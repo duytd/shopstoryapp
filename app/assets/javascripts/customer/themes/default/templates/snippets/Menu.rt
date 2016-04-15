@@ -4,7 +4,7 @@
       {translate(item, "name")}
     </a>
 
-    <ul  className="dropdown-menu" rt-if="item.children.length > 0">
+    <ul  class="dropdown-menu" rt-if="item.children.length > 0">
       <li rt-repeat="child in item.children" key="child_menu_{childIndex}">
         <a href="{child.url.addParams('locale', I18n.locale)}">
           {translate(child, "name")}

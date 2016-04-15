@@ -105,9 +105,12 @@ en:
         zipcode_hint: " (Enter street address to get zipcode automatically)"
       assets:
         title: "Edit themes"
-        assets: "Assets"
+        javascripts: "Javascripts"
+        stylesheets: "Stylesheets"
         translations: "Translations"
         reset: "Reset"
+      templates:
+        title: "Templates"
       orders:
         title: "Orders"
         bill_to_name: "Bill To Name"

@@ -134,7 +134,7 @@
       <div class="col-md-8">
         <button type="submit" class="btn btn-lg btn-primary pull-right" onClick="{this.updateOrder}">
           {I18n.t('checkout.buttons.place_order')}
-          <i ref="loading" className="fa fa-spinner fa-pulse hide"></i>
+          <i ref="loading" class="fa fa-spinner fa-pulse hide"></i>
         </button>
       </div>
     </div>
@@ -186,7 +186,7 @@
 
     <button rt-if="this.props.hasPaymentMethod" type="submit" class="btn btn-lg btn-primary pull-right" onClick="{this.updateOrder}">
       {I18n.t('checkout.buttons.place_order')}
-      <i ref="loading" className="fa fa-spinner fa-pulse hide"></i>
+      <i ref="loading" class="fa fa-spinner fa-pulse hide"></i>
     </button>
     <div class="clearfix"></div>
   </form>

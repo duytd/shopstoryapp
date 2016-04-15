@@ -8,10 +8,6 @@ module Merchant::BaseHelper
     @current_shop ||= Shop.find_by_subdomain subdomain
   end
 
-  def current_asset
-    session[:asset_id] || current_shop.assets.with_theme(current_shop.theme_id).id
-  end
-
   def merchant_authenticated?
     current_shop.subdomain == Apartment::Tenant.current
   end

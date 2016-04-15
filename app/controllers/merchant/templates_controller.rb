@@ -1,4 +1,4 @@
-class Merchant::AssetsController < Merchant::BaseController
+class Merchant::TemplatesController < Merchant::BaseController
   load_and_authorize_resource
   before_action :load_theme_bundle, only: :update
 
@@ -11,31 +11,31 @@ class Merchant::AssetsController < Merchant::BaseController
   end
 
   def update
-    if @asset.update asset_params
-      @asset.class.bundle @theme_bundle if @asset.content_changed?
-      render json: @asset, status: :ok
+    if @template.update template_params
+      Template.bundle @theme_bundle if @template.content_changed?
+      render json: @template, status: :ok
     else
-      render json: @asset.errors, status: :unprocessable_entity
+      render json: @template.errors, status: :unprocessable_entity
     end
   end
 
   private
   def normal_edit
     @props = {
-      data: @asset,
-      url: merchant_asset_path(@asset),
-      reset_url: edit_merchant_asset_path(@asset, reset: true),
+      data: @template,
+      url: merchant_template_path(@template),
+      reset_url: edit_merchant_asset_path(@template, reset: true)
     }
 
     render json: @props, status: :ok
   end
 
   def reset
-    content = @asset.theme.read_file @asset.path
+    content = @template.theme.read_file @template.path
     render json: {data: content, status: :ok}
   end
 
-  def asset_params
+  def template_params
     params.require(:asset).permit :content
   end
 

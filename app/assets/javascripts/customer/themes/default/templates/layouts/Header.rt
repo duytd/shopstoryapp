@@ -2,7 +2,7 @@
   <div class="container-fluid top">
     <div class="pull-left">
       <span rt-if="this.props.globalVars.current_customer == null">
-        <a href="{Routes.customer_omniauth_authorize_path({provider: 'doindie', locale: I18n.locale})}">{I18n.t("buttons.login")}</a>
+        <a href="{Routes.new_customer_session_path({locale: I18n.locale})}">{I18n.t("buttons.login")}</a>
         <a href="{Routes.new_customer_registration_path({locale: I18n.locale})}">{I18n.t("buttons.register")}</a>
       </span>
 

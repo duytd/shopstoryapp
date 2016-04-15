@@ -20,6 +20,15 @@ namespace :theme do
     end
   end
 
+  desc "load default theme for existing ShopStory"
+  task load_default_theme: :environment do
+    default_theme = Theme.default
+    Shop.all.each do |shop|
+      Apartment::Tenant.switch shop.subdomain
+      default_theme.import_asset shop
+    end
+  end
+
   private
   def theme_dirs
     Dir.entries($root_dir).reject{|dir_name| dir_name =~ /^\.{1,2}$/}

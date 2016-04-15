@@ -2,6 +2,5 @@
   <div class="home">
     <h2>{I18n.t("products.featured_products")}</h2>
     <ProductList products={this.props.products} currency={this.props.globalVars.currency} />
-    <LatestEvents />
   </div>
 </Layout>
