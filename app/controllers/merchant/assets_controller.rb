@@ -11,8 +11,10 @@ class Merchant::AssetsController < Merchant::BaseController
   end
 
   def update
+    old_content = @asset.content
+
     if @asset.update asset_params
-      @asset.class.bundle @theme_bundle if @asset.content_changed?
+      @asset.class.bundle @theme_bundle if old_content != @asset.content
       render json: @asset, status: :ok
     else
       render json: @asset.errors, status: :unprocessable_entity

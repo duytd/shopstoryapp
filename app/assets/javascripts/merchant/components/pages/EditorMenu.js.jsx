@@ -27,8 +27,8 @@ var EditorMenu = React.createClass({
           {(key != "templates") ?
           <a><span><i className="fa fa-folder"></i></span>{key}</a> : null}
           <ul>
-            {value.map(function(template) {
-              return <li><a onClick={this.updateTemplate.bind(this, template.id)}>{template.name}</a></li>
+            {value.map(function(template, index) {
+              return <li key={"template" + index}><a onClick={this.updateTemplate.bind(this, template.id)}>{template.name}</a></li>
             }.bind(this))}
           </ul>
         </li>

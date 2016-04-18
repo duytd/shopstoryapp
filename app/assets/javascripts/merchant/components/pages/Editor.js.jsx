@@ -11,11 +11,16 @@ var Editor = React.createClass({
     var CssMode = ace.require("ace/mode/css").Mode;
 
     editor.$blockScrolling = Infinity;
-    editor.setOptions({fontSize: "14px", fontFamily: "Inconsolata"});
-    editor.setValue(this.props.file.content, -1);
+    editor.setOptions({
+      fontSize: "14px",
+      fontFamily: "Inconsolata",
+      tabSize: 2,
+      useSoftTabs: true
+    });
     editor.setTheme("ace/theme/solarized_light");
     editor.getSession().setUseWorker(false);
     editor.getSession().setMode(new CssMode());
+    editor.setValue(this.props.file.content, -1);
 
     $(".ace_scroller").perfectScrollbar();
 
