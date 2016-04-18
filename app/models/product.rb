@@ -1,3 +1,5 @@
+require_dependency "menu/product"
+
 class Product < ActiveRecord::Base
   include Orderable
   extend FriendlyId
@@ -68,6 +70,9 @@ class Product < ActiveRecord::Base
     order_products.joins(:product_order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
   end
 
+  def import
+  end
+
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
   end
@@ -97,11 +102,25 @@ class Product < ActiveRecord::Base
     with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
   end
 
+  def self.to_csv options={}
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   private
   def update_inventory
     unless variations.not_master.count == 0
       self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}
     end
+  end
+
+  def destroy_menu_item
+    menu_items = Menu::Product.where value: id
+    menu_items.destroy_all unless menu_items.empty?
   end
 
   def update_master

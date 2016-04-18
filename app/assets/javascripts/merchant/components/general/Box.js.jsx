@@ -10,7 +10,13 @@ var Box = React.createClass({
           <a className="btn btn-sm btn-primary pull-right" href={this.props.url}>
             {I18n.t("merchant.admin.buttons.add")}
           </a> : null}
+
+          {(this.props.handleExportAll) ?
+          <a className="btn btn-sm btn-success pull-right" onClick={this.props.handleExportAll}>
+            {I18n.t("merchant.admin.buttons.export")}
+          </a> : null}
         </div>
+
         <div className="block-body">
           {this.props.list}
           {this.props.pagination ? this.props.pagination : null}

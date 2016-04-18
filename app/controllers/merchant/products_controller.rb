@@ -86,6 +86,16 @@ class Merchant::ProductsController < Merchant::BaseController
     render json: @search, status: :ok
   end
 
+  def export
+    if params[:all]
+      @products = Product.latest
+    else
+      @products = Product.where id: params[:product_ids]
+    end
+
+    send_data @products.to_csv
+  end
+
   private
   def list_all
     products = Product.latest.page params[:page]
@@ -94,6 +104,7 @@ class Merchant::ProductsController < Merchant::BaseController
       products: products,
       new_url: new_merchant_product_path,
       url: merchant_products_path
+      export_url: export_merchant_products_path
     }
   end
 

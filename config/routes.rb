@@ -80,6 +80,7 @@ Rails.application.routes.draw do
       delete :index, on: :collection
       resources :variations, only: :create
       get :search, on: :collection
+      post :export, on: :collection
     end
 
     resources :shipping_rates, except: :show do

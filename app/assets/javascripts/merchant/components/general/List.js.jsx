@@ -80,7 +80,11 @@ var List = React.createClass({
 
     return (
       <div className="item-list">
-        <BulkAction checkCount={this.state.checkCount} deleteAllHandler={this.handleDeleteAll} />
+        <BulkAction
+          checkCount={this.state.checkCount}
+          exportable={this.props.exportable}
+          exportHandler={this.handleExport}
+          deleteAllHandler={this.handleDeleteAll} />
         <div className="table-responsive">
           <table className="table item-list">
             <thead>
@@ -142,14 +146,27 @@ var List = React.createClass({
       this.replaceState({items: items, checkCount: 0, isSelectAll: false});
     }
   },
+  handleExport: function(e) {
+    e.preventDefault();
+
+    var item_ids = [];
+    this.state.items.forEach(function(item) {
+      if (item.checked == true) {
+        item_ids.push(item.id);
+      }
+    })
+
+    this.props.handleExport(item_ids);
+  },
   handleDeleteAll: function(e) {
     e.preventDefault();
 
-    var item_ids = this.state.items.map(function(item) {
+    var item_ids = [];
+    this.state.items.forEach(function(item) {
       if (item.checked == true) {
-        return item.id;
+        item_ids.push(item.id);
       }
-    });
+    })
 
     switch(this.props.type) {
       case "category":
