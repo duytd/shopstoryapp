@@ -13,6 +13,8 @@ class Customer < ActiveRecord::Base
 
   enum gender: [:male, :female]
 
+  liquid_methods :first_name, :last_name
+
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

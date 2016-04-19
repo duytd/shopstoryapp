@@ -45,6 +45,9 @@ gem "acts_as_tree"
 gem "stripe"
 gem "sidekiq"
 gem "meta-tags"
+gem "liquid-rails"
+gem "RedCloth"
+gem "faker"
 
 group :development, :test do
   gem "byebug"

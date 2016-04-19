@@ -6,7 +6,7 @@ class Template < ActiveRecord::Base
   validates :theme, presence: true
   validates :name, presence: true, uniqueness: {scope: :theme_id}
 
-  def physical_path
+  def path
     if root_directory?
       "templates/#{@template.name}.rt"
     else

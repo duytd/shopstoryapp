@@ -139,3 +139,12 @@ section.content {
     background: none;
   }
 }
+
+.modal-content {
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.2);
+  iframe {
+    border: medium none;
+    min-height: 400px;
+    width: 100%;
+  }
+}

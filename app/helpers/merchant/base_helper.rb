@@ -28,6 +28,10 @@ module Merchant::BaseHelper
     })
   end
 
+  def liquidize content, arguments
+    RedCloth.new(Liquid::Template.parse(content).render(arguments)).to_html
+  end
+
   private
   def full_http_url url
     unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]

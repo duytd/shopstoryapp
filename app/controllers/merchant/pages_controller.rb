@@ -24,10 +24,10 @@ class Merchant::PagesController < Merchant::BaseController
   end
 
   def editor
-    @file = Asset::Stylesheet.first
+    @asset = Asset::Stylesheet.first
 
     @props = {
-      file: @file,
+      data: @asset,
       url: merchant_asset_path(@file),
       reset_url: edit_merchant_asset_path(@file, reset: true),
       javascripts: @javascripts,
