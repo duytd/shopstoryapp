@@ -77,6 +77,7 @@ ko:
         current_plan: "Current Plan"
         bulk_actions: "Bulk Actions"
         export: "Export"
+        import: "Import"
       pagination:
         next: "다음"
         first: "처음"

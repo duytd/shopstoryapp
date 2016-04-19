@@ -70,7 +70,19 @@ class Product < ActiveRecord::Base
     order_products.joins(:product_order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
   end
 
-  def import
+  def self.import file
+    spreadsheet = open_spreadsheet file
+
+    unless spreadsheet.nil?
+      header = spreadsheet.row 1
+
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        product = find_by_id(row["id"]) || new
+        product.attributes = row.to_hash.slice *Product.attribute_names
+        product.save!
+      end
+    end
   end
 
   def as_json options={}
@@ -112,6 +124,17 @@ class Product < ActiveRecord::Base
   end
 
   private
+  def self.open_spreadsheet file
+    case File.extname(file.original_filename)
+    when ".csv"
+      Roo::CSV.new file.path
+    when ".xlsx"
+      Roo::Excelx.new file.path
+    else
+      nil
+    end
+  end
+
   def update_inventory
     unless variations.not_master.count == 0
       self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}

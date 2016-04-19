@@ -86,6 +86,11 @@ class Merchant::ProductsController < Merchant::BaseController
     render json: @search, status: :ok
   end
 
+  def import
+    Product.import params[:file]
+    render nothing: true, status: :ok
+  end
+
   def export
     if params[:all]
       @products = Product.latest
@@ -105,6 +110,7 @@ class Merchant::ProductsController < Merchant::BaseController
       new_url: new_merchant_product_path,
       url: merchant_products_path
       export_url: export_merchant_products_path
+      import_url: import_merchant_products_path
     }
   end
 

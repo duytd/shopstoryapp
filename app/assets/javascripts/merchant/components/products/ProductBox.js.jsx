@@ -34,8 +34,24 @@ var ProductBox = React.createClass({
         url={this.props.new_url}
         pagination={pagination}
         handleExportAll={this.handleExportAll}
+        handleImport={this.handleImport}
         title={I18n.t("merchant.admin.products.title")} />
     );
+  },
+  handleImport: function(form) {
+    var url = this.props.import_url;
+
+    $.ajax({
+      url: url,
+      data: new FormData(form[0]),
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      method: "POST",
+      success: function(data) {
+        Turbolinks.visit(Routes.merchant_products_path());
+      }
+    })
   },
   handleExportAll: function() {
     var url = this.props.export_url;

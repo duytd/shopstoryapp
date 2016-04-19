@@ -74,6 +74,7 @@ en:
         download_invoice: "Download Invoice"
         bulk_actions: "Bulk Actions"
         export: "Export"
+        import: "Import"
       pagination:
         next: "Next"
         first: "First"
