@@ -1,11 +1,10 @@
 class ShippingRate < ActiveRecord::Base
 
-  # These types need to be arranged by priority
   TYPES_CLASSES_MAPPING = {
-    free: Shipping::FreeShipping,
-    free_by_price: Shipping::FreeShippingByPrice,
-    flat_rate_per_order: Shipping::FlatRatePerOrder,
-    flat_rate_per_product: Shipping::FlatRatePerProduct,
+    free: "Shipping::FreeShipping",
+    free_by_price: "Shipping::FreeShippingByPrice",
+    flat_rate_per_order: "Shipping::FlatRatePerOrder",
+    flat_rate_per_product: "Shipping::FlatRatePerProduct"
   }.freeze
 
   translates :name
@@ -24,7 +23,7 @@ class ShippingRate < ActiveRecord::Base
   end
 
   def self.type_class type
-    TYPES_CLASSES_MAPPING.fetch(type.to_sym).new
+    TYPES_CLASSES_MAPPING.fetch(type.to_sym).constantize.new
   end
 
   def self.types

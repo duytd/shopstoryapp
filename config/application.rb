@@ -27,6 +27,7 @@ module ShopStory
     config.assets.precompile << /\.(?:png|gif|jpg|svg|eot|woff|ttf)$/
 
     config.autoload_paths << Rails.root.join("lib")
+    config.browserify_rails.commandline_options = ["--transform [react-templatify --modules none]"]
 
     config.react.server_renderer = React::ServerRendering::SprocketsRenderer
     config.react.server_renderer_options = {

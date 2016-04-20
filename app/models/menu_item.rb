@@ -1,12 +1,12 @@
 class MenuItem < ActiveRecord::Base
   TYPES_CLASSES_MAPPING = {
-    home: Menu::Home,
-    category: Menu::Category,
-    category_all: Menu::CategoryAll,
-    product_all: Menu::ProductAll,
-    page: Menu::Page,
-    product: Menu::Product,
-    url: Menu::Url
+    home: "Menu::Home",
+    category: "Menu::Category",
+    category_all: "Menu::CategoryAll",
+    product_all: "Menu::ProductAll",
+    page: "Menu::Page",
+    product: "Menu::Product",
+    url: "Menu::Url"
   }.freeze
 
   include Rails.application.routes.url_helpers
@@ -32,7 +32,7 @@ class MenuItem < ActiveRecord::Base
   end
 
   def self.type_class type
-    TYPES_CLASSES_MAPPING.fetch(type.to_sym).new
+    TYPES_CLASSES_MAPPING.fetch(type.to_sym).constantize.new
   end
 
   def as_json options={}
