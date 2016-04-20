@@ -9,46 +9,49 @@ var Pagination = React.createClass({
   },
   render: function() {
     return (
-      <div className="pagination">
-        {(this.props.page > 1) ?
-        <a href={this.props.url.addParams("page", 1)}>
-          {I18n.t("merchant.admin.pagination.first")}
-        </a> : null}
+      <div>
+      {(this.props.totalPage > 1) ?
+        <div className="pagination">
+          {(this.props.page > 1) ?
+          <a href={this.props.url.addParams("page", 1)}>
+            {I18n.t("merchant.admin.pagination.first")}
+          </a> : null}
 
-        {(this.state.prev != null) ?
-        <a href={this.props.url.addParams("page", this.state.prev)}>
-          {I18n.t("merchant.admin.pagination.previous")}
-        </a> : null}
+          {(this.state.prev != null) ?
+          <a href={this.props.url.addParams("page", this.state.prev)}>
+            {I18n.t("merchant.admin.pagination.previous")}
+          </a> : null}
 
-        {(this.state.prevPages[0] > 1) ?
-        <span>...</span> : null}
+          {(this.state.prevPages[0] > 1) ?
+          <span>...</span> : null}
 
-        {this.state.prevPages.map(function(page, index) {
-          <a key={"prev_" + index} href={this.props.url.addParams("page", page)}>
-            {page}
-          </a>
-         }.bind(this))}
+          {this.state.prevPages.map(function(page, index) {
+            <a key={"prev_" + index} href={this.props.url.addParams("page", page)}>
+              {page}
+            </a>
+           }.bind(this))}
 
-        <span className="current">{this.props.page}</span>
+          <span className="current">{this.props.page}</span>
 
-        {this.state.nextPages.map(function(page, index) {
-          <a key={"next_" + index} href={this.props.url.addParams("page", page)}>
-            {page}
-          </a>
-        }.bind(this))}
+          {this.state.nextPages.map(function(page, index) {
+            <a key={"next_" + index} href={this.props.url.addParams("page", page)}>
+              {page}
+            </a>
+          }.bind(this))}
 
-        {(this.state.nextPages[this.state.nextPages.length - 1] < this.props.totalPage) ?
-        <span rt-if="">...</span> : null}
+          {(this.state.nextPages[this.state.nextPages.length - 1] < this.props.totalPage) ?
+          <span rt-if="">...</span> : null}
 
-        {(this.state.next != null) ?
-        <a href={this.props.url.addParams("page", this.state.next)}>
-          {I18n.t("merchant.admin.pagination.next")}
-        </a> : null}
+          {(this.state.next != null) ?
+          <a href={this.props.url.addParams("page", this.state.next)}>
+            {I18n.t("merchant.admin.pagination.next")}
+          </a> : null}
 
-        {(this.props.page < this.props.totalPage) ?
-        <a href={this.props.url.addParams("page", this.props.totalPage)}>
-          {I18n.t("merchant.admin.pagination.last")}
-        </a> : null}
+          {(this.props.page < this.props.totalPage) ?
+          <a href={this.props.url.addParams("page", this.props.totalPage)}>
+            {I18n.t("merchant.admin.pagination.last")}
+          </a> : null}
+        </div> : null}
       </div>
     )
   },

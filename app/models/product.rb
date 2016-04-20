@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
   include Orderable
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
 
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
@@ -55,10 +57,6 @@ class Product < ActiveRecord::Base
   after_create :create_master
   after_update :update_master
   before_save :update_inventory
-
-  def name
-    name_ko || name_en
-  end
 
   def price=(price)
     price = price.to_s.gsub ",", ""

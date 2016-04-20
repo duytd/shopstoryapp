@@ -48,6 +48,7 @@ ko:
         name: "카테고리명"
         name_ko: "카테고리명"
         name_en: "Name"
+        slug: "Friendly Slug"
       custom_page:
         title: "Title"
         content: "Content"
@@ -67,6 +68,7 @@ ko:
         flat_shipping_rate: "Flat Rate"
         pay_shipping_on_delivery: "Pay Shipping Fee On Delivery"
         vendor: "Vendor"
+        slug: "Friendly Slug"
       variation:
         color: "색상"
         size: "사이즈"

@@ -9,7 +9,10 @@ var CustomPageList = React.createClass({
         type="custom_page"
         items={this.props.custom_pages}
         headers={headers}
-        deleteAllUrl={Routes.merchant_custom_pages_path()} />
+        page={this.props.page}
+        totalPage={this.props.totalPage}
+        redirectUrl={this.props.url}
+        deleteAllUrl={this.props.url} />
     )
   }
 });

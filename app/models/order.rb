@@ -11,6 +11,8 @@ class Order < ActiveRecord::Base
 
   default_scope {order created_at: :desc}
 
+  before_save :set_locale
+
   scope :successful, ->{where(status: [Order.statuses[:processed], Order.statuses[:shipping], Order.statuses[:shipped]])}
   scope :having_payment, ->{where.not(status: [Order.statuses[:incompleted], Order.statuses[:pending], Order.statuses[:cancelled]])}
 
@@ -77,6 +79,10 @@ class Order < ActiveRecord::Base
   end
 
   private
+  def set_locale
+    self.locale = I18n.locale
+  end
+
   def generate_token
     self.token = SecureRandom.urlsafe_base64
     generate_token if Order.exists? token: self.token

@@ -51,8 +51,9 @@ class Merchant::OrdersController < Merchant::BaseController
   def list_all
     @orders = ProductOrder.page params[:page]
 
-    @props = {
-      orders: @orders
+    @props = paginating @orders, {
+      orders: @orders,
+      url: merchant_orders_path
     }
   end
 

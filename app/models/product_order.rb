@@ -35,7 +35,13 @@ class ProductOrder < Order
   def update_inventory
     order_products.each do |order_product|
       variation = order_product.variation
-      variation.update_attributes in_stock: (variation.in_stock - order_product.quantity)
+      remaining_quantity = variation.in_stock - order_product.quantity
+
+      if variation.master?
+          variation.product.update_attributes in_stock: remaining_quantity
+      else
+        variation.update_attributes in_stock: remaining_quantity
+      end
     end
   end
 

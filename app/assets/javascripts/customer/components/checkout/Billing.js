@@ -55,6 +55,8 @@ var Billing = React.createClass({
     else if (order.payment.payment_method.type == "paypal_shopstory/payment_method") {
       $.get(Routes.customer_paypal_transaction_pay_path(), function(response) {
         location.href = response.paypal_url;
+      }).fail(function(xhr) {
+        alert(xhr.statusText);
       })
     }
     else {

@@ -44,6 +44,7 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def edit
     @props = {
+      slug: @product.slug,
       seo_tag: @product.seo_tag,
       product: @product,
       en_product: load_translation(@product.translations, :en),
@@ -87,11 +88,12 @@ class Merchant::ProductsController < Merchant::BaseController
 
   private
   def list_all
-    products = Product.latest
+    products = Product.latest.page params[:page]
 
-    @props = {
+    @props = paginating products, {
       products: products,
-      url: new_merchant_product_path
+      new_url: new_merchant_product_path,
+      url: merchant_products_path
     }
   end
 

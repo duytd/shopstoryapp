@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419032632) do
+ActiveRecord::Schema.define(version: 20160420051550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160419032632) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   create_table "category_products", force: :cascade do |t|
@@ -119,6 +120,7 @@ ActiveRecord::Schema.define(version: 20160419032632) do
     t.inet     "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
+    t.string   "locale"
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
@@ -204,6 +206,7 @@ ActiveRecord::Schema.define(version: 20160419032632) do
     t.string   "ticket_code"
     t.datetime "ticket_sent_at"
     t.string   "currency"
+    t.string   "locale"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -330,6 +333,7 @@ ActiveRecord::Schema.define(version: 20160419032632) do
     t.datetime "updated_at",                               null: false
     t.decimal  "flat_shipping_rate"
     t.boolean  "pay_shipping_on_delivery", default: false
+    t.string   "slug"
   end
 
   create_table "seo_tag_translations", force: :cascade do |t|
@@ -591,6 +595,7 @@ ActiveRecord::Schema.define(version: 20160419032632) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "stripe_id"
+    t.string   "locale"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

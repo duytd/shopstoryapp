@@ -9,7 +9,10 @@ var CategoryList = React.createClass({
         type="category"
         items={this.props.categories}
         headers={headers}
-        deleteAllUrl={Routes.merchant_categories_path()} />
+        page={this.props.page}
+        totalPage={this.props.totalPage}
+        redirectUrl={this.props.url}
+        deleteAllUrl={this.props.url} />
     )
   }
 });

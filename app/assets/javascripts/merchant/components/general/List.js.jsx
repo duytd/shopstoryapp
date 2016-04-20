@@ -111,7 +111,17 @@ var List = React.createClass({
       this.state.checkCount --;
     }
 
-    this.replaceState({items: items, checkCount: this.state.checkCount});
+    if (typeof this.props.redirectUrl !== "undefined") {
+      if (this.state.items.length == 0 && this.props.page > 1) {
+        Turbolinks.visit(this.props.redirectUrl.addParams("page", this.props.page - 1))
+      }
+      else {
+        Turbolinks.visit(this.props.redirectUrl.addParams("page", this.props.page));
+      }
+    }
+    else {
+      this.replaceState({items: items, checkCount: this.state.checkCount});
+    }
   },
   deleteAllItem: function(item_ids) {
     var items = this.state.items;
@@ -119,7 +129,18 @@ var List = React.createClass({
     items = items.filter(function(item) {
       return (item_ids.indexOf(item.id) == -1)
     });
-    this.replaceState({items: items, checkCount: 0, isSelectAll: false});
+
+    if (typeof this.props.redirectUrl !== "undefined") {
+      if (this.props.totalPage > 1) {
+        Turbolinks.visit(this.props.redirectUrl.addParams("page", this.props.page - 1));
+      }
+      else {
+        Turbolinks.visit(this.props.redirectUrl);
+      }
+    }
+    else {
+      this.replaceState({items: items, checkCount: 0, isSelectAll: false});
+    }
   },
   handleDeleteAll: function(e) {
     e.preventDefault();

@@ -1,18 +1,14 @@
 var CategoryBox = React.createClass({
-  getInitialState: function() {
-    return {
-      categories: this.props.categories,
-      page: this.props.page,
-      totalPage: this.props.total_page
-    }
-  },
   render: function() {
     var categoryList = (
       <CategoryList
-        categories={this.state.categories} />
+        page={this.props.page}
+        totalPage={this.props.total_page}
+        url={this.props.url}
+        categories={this.props.categories} />
     )
 
-    if (this.state.categories.length == 0) {
+    if (this.props.categories.length == 0) {
       categoryList = (
         <div className="text-center">
           <p>{I18n.t("merchant.admin.messages.no_category")}</p>
@@ -23,22 +19,18 @@ var CategoryBox = React.createClass({
       )
     }
 
-    var pagination = null;
-
-    if (this.state.totalPage > 1) {
-      pagination = (
-        <Pagination
-          page={this.state.page}
-          totalPage={this.state.totalPage}
-          url={Routes.merchant_categories_path()} />
-      )
-    }
+    var pagination = (
+      <Pagination
+        page={this.props.page}
+        totalPage={this.props.total_page}
+        url={this.props.url} />
+    )
 
     return (
       <Box
         name="category"
         list={categoryList}
-        url={this.props.url}
+        url={this.props.new_url}
         pagination={pagination}
         title={I18n.t("merchant.admin.categories.title")} />
     );

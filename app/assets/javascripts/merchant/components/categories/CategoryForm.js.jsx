@@ -32,6 +32,16 @@ var CategoryForm = React.createClass({
               </div>
             </div>
           </div>
+
+          {(this.props.slug) ?
+            <div className="form-group">
+              <label className="label">{I18n.t("activerecord.attributes.category.slug")}</label>
+
+              <FormErrors errors={this.state.errors.slug} />
+              <input type="text" name="category[slug]"
+                className="form-control" defaultValue={this.props.slug} />
+            </div>
+          : null}
         </div>
 
         <SeoTag modelName="category" seo_tag={this.props.seo_tag} errors={this.state.errors} />

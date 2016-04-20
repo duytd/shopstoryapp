@@ -15,7 +15,10 @@ var OrderList = React.createClass({
         type="order"
         items={this.props.orders}
         headers={headers}
-        deleteAllUrl={Routes.merchant_orders_path()} />
+        page={this.props.page}
+        totalPage={this.props.totalPage}
+        redirectUrl={this.props.url}
+        deleteAllUrl={this.props.url} />
     )
   }
 });

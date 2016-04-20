@@ -11,7 +11,10 @@ var CustomerList = React.createClass({
         type="customer"
         items={this.props.customers}
         headers={headers}
-        deleteAllUrl={Routes.merchant_customers_path()} />
+        page={this.props.page}
+        totalPage={this.props.totalPage}
+        redirectUrl={this.props.url}
+        deleteAllUrl={this.props.url} />
     )
   }
 })

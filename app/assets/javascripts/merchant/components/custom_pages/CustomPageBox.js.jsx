@@ -2,6 +2,9 @@ var CustomPageBox = React.createClass({
   render: function() {
     var customPageList = (
       <CustomPageList
+        page={this.props.page}
+        totalPage={this.props.total_page}
+        url={this.props.url}
         custom_pages={this.props.custom_pages} />
     )
 
@@ -16,10 +19,18 @@ var CustomPageBox = React.createClass({
       )
     }
 
+    var pagination = (
+      <Pagination
+        page={this.props.page}
+        totalPage={this.props.total_page}
+        url={this.props.url} />
+    )
+
     return (
       <Box
         name="custom-page"
         list={customPageList}
+        pagination={pagination}
         url={Routes.new_merchant_custom_page_path()}
         title={I18n.t("merchant.admin.custom_pages.title")} />
     );

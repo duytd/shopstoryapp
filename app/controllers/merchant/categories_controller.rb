@@ -28,6 +28,7 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   def edit
     @props = {
+      slug: @category.slug,
       seo_tag: @category.seo_tag,
       en_category: load_translation(@category.translations, :en),
       ko_category: load_translation(@category.translations, :ko),
@@ -55,7 +56,8 @@ class Merchant::CategoriesController < Merchant::BaseController
 
     @props = paginating @categories, {
       categories: @categories,
-      url: new_merchant_category_path
+      new_url: new_merchant_category_path,
+      url: merchant_categories_path,
     }
 
     respond_to do |format|

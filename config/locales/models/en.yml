@@ -53,6 +53,7 @@ en:
         name: "Name"
         name_ko: "Name"
         name_en: "Name"
+        slug: "Friendly Slug"
       custom_page:
         title: "Title"
         content: "Content"
@@ -72,6 +73,7 @@ en:
         flat_shipping_rate: "Flat Rate"
         pay_shipping_on_delivery: "Pay Shipping Fee On Delivery"
         vendor: "Vendor"
+        slug: "Friendly Slug"
       variation:
         color: "Color"
         size: "Size"

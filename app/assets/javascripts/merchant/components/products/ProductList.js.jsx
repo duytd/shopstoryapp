@@ -16,7 +16,10 @@ var ProductList = React.createClass({
         type="product"
         items={this.props.products}
         headers={headers}
-        deleteAllUrl={Routes.merchant_products_path()} />
+        page={this.props.page}
+        totalPage={this.props.totalPage}
+        redirectUrl={this.props.url}
+        deleteAllUrl={this.props.url} />
     )
   }
 })

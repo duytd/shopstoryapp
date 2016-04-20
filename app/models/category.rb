@@ -1,5 +1,8 @@
 class Category < ActiveRecord::Base
   include Orderable
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
+
   has_many :category_products, dependent: :destroy
   has_many :products, through: :category_products
   has_many :variations, through: :products

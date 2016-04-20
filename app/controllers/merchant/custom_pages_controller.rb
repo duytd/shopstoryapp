@@ -52,10 +52,11 @@ class Merchant::CustomPagesController < Merchant::BaseController
 
   private
   def list_all
-    @custom_pages = CustomPage.all
+    @custom_pages = CustomPage.all.page params[:page]
 
-    @props = {
+    @props = paginating @custom_pages, {
       custom_pages: @custom_pages,
+      url: merchant_custom_pages_path
     }
   end
 

@@ -162,6 +162,16 @@ var ProductForm = React.createClass({
                 </div>
               </div>
             </div>
+
+            {(this.props.slug) ?
+              <div className="form-group">
+                <label className="label">{I18n.t("activerecord.attributes.product.slug")}</label>
+
+                <FormErrors errors={this.state.errors.slug} />
+                <input type="text" name="product[slug]"
+                  className="form-control" defaultValue={this.props.slug} />
+              </div>
+            : null}
           </div>
 
           <div className="block">

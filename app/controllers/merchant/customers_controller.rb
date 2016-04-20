@@ -57,10 +57,11 @@ class Merchant::CustomersController < Merchant::BaseController
 
   private
   def list_all
-    @customers = Customer.all.includes :product_orders
+    @customers = Customer.all.includes(:product_orders).page params[:page]
 
-    @props = {
-      customers: @customers.as_json({methods: [:total_orders, :total_spent]})
+    @props = paginating @customers, {
+      customers: @customers.as_json({methods: [:total_orders, :total_spent]}),
+      url: merchant_customers_path
     }
   end
 
