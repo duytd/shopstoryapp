@@ -105,6 +105,9 @@ Rails.application.routes.draw do
     resources :shops, only: [:edit, :update]
     resources :assets, only: [:edit, :update]
     resources :templates, only: [:edit, :update]
+    resources :email_templates, only: [:index, :edit, :update] do
+      post :preview, on: :collection
+    end
     resources :payment_method_shops, only: [:index, :update], path: "payment"
   end
 end

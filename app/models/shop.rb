@@ -26,12 +26,15 @@ class Shop < ActiveRecord::Base
   before_validation :set_default_values, on: :create
   before_validation :strip_white_space
   before_create :generate_api_key
-  after_create :import_asset
-  after_create :load_payment_methods
+  after_create :import_assets
+  after_create :import_email_templates
+  after_create :import_payment_methods
 
   enum weight_unit: [:kg, :g]
 
   scope :current,->subdomain {find_by subdomain: subdomain}
+
+  liquid_methods :name
 
   def as_json options={}
     super(options).merge({street_en: street_en, street_ko: street_ko})
@@ -44,17 +47,27 @@ class Shop < ActiveRecord::Base
     self.country = Settings.shop.default_country
   end
 
-  def import_asset
-    self.theme.import_asset self
+  def import_assets
+    self.theme.import_assets self
   end
 
-  def load_payment_methods
+  def import_payment_methods
     PaymentMethod.all.each do |payment_method|
       payment_method_shop = self.payment_method_shops.find_or_create_by payment_method_id: payment_method.id
 
       payment_method.payment_method_options.each do |option|
         payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
       end
+    end
+  end
+
+  def import_email_templates
+    template_dir = "#{Rails.root}/app/views/customer/template_mailer"
+
+    Dir.glob("#{template_dir}/**/*.liquid") do |file|
+      file_name = File.basename file
+      file_content = File.read file
+      EmailTemplate.create name: file_name, content: file_content
     end
   end
 

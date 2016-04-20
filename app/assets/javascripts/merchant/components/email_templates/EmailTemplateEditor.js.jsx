@@ -1,14 +1,16 @@
-var Editor = React.createClass({
+var EmailTemplateEditor = React.createClass({
   getInitialState: function () {
     return {
+      previewData: null,
       url: this.props.url,
       reset_url: this.props.reset_url,
       errors: {},
+      preview: false
     };
   },
   componentDidMount: function() {
     var editor = ace.edit("editor");
-    var CssMode = ace.require("ace/mode/css").Mode;
+    var HtmlMode = ace.require("ace/mode/html").Mode;
 
     editor.$blockScrolling = Infinity;
     editor.setOptions({
@@ -19,7 +21,7 @@ var Editor = React.createClass({
     });
     editor.setTheme("ace/theme/solarized_light");
     editor.getSession().setUseWorker(false);
-    editor.getSession().setMode(new CssMode());
+    editor.getSession().setMode(new HtmlMode());
     editor.setValue(this.props.data.content, -1);
 
     $(".ace_scroller").perfectScrollbar();
@@ -29,14 +31,15 @@ var Editor = React.createClass({
   render: function () {
     return (
       <div className="row theme-editors">
+        <EmailTemplatePreview
+          data={this.state.previewData}
+          preview={this.state.preview}
+          closePreview={this.closePreview} />
         <div className="col-md-3 col-md-push-9 files">
           <div className="block">
-            <EditorMenu
-              stylesheets={this.props.stylesheets}
-              javascripts={this.props.javascripts}
-              templates={this.props.templates}
-              updateFile={this.updateFile}
-              locales={this.props.locales} />
+            <EmailTemplateList
+              email_templates={this.props.email_templates}
+              updateFile={this.updateFile} />
           </div>
         </div>
 
@@ -46,17 +49,36 @@ var Editor = React.createClass({
             <div className="form-group">
               <div id="editor" ref="editor" className="code-editor">
               </div>
-              <input ref="code" type="hidden" name={"asset[content]"} />
+              <input ref="code" type="hidden" name={"email_template[content]"} />
             </div>
             <div className="text-right">
               <SubmitButtons redirect_url={Routes.merchant_root_path} fixed={true}>
-                <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.assets.reset")}</button>
+                <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.buttons.reset")}</button>
+                <button onClick={this.preview} className="btn btn-primary">{I18n.t("merchant.admin.buttons.preview")}</button>
               </SubmitButtons>
             </div>
           </form>
         </div>
       </div>
     );
+  },
+  preview: function(e) {
+    e.preventDefault();
+
+    var url = this.props.preview_url;
+    var data = this.state.editor.getValue();
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: {content: data},
+      success: function(response) {
+        this.setState({previewData: response.data, preview: true});
+      }.bind(this)
+    })
+  },
+  closePreview: function() {
+    this.setState({preview: false});
   },
   submit: function(e) {
     e.preventDefault();
@@ -75,24 +97,7 @@ var Editor = React.createClass({
     }.bind(this))
   },
   updateFile: function(data, url, reset_url, mode) {
-    var JavascriptMode = ace.require("ace/mode/javascript").Mode;
-    var CssMode = ace.require("ace/mode/css").Mode;
-    var HtmlMode = ace.require("ace/mode/html").Mode;
-    var JsonMode = ace.require("ace/mode/json").Mode;
-
     this.state.editor.setValue(data.content, -1);
-
-    switch(mode) {
-      case "html":
-        this.state.editor.getSession().setMode(new HtmlMode());
-      case "css":
-        this.state.editor.getSession().setMode(new CssMode());
-      case "javascript":
-        this.state.editor.getSession().setMode(new JavascriptMode());
-      case "json":
-        this.state.editor.getSession().setMode(new JsonMode());
-    }
-
     this.setState({url: url, reset_url: reset_url})
   },
   handleSubmit: function(formData, action, method) {

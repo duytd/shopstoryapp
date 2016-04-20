@@ -15,7 +15,7 @@ class Theme < ActiveRecord::Base
     find_by default: true
   end
 
-  def import_asset shop
+  def import_assets shop
     bundle = ThemeBundle.where(theme_id: id, shop_id: shop.id).first_or_initialize
     bundle.javascript = bundle_javascripts
     bundle.stylesheet = bundle_stylesheets

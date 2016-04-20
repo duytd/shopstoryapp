@@ -48,6 +48,7 @@ en:
         asset: "Editor"
         shipping: "Shipping"
         shipping_rates: "Shipping Rates"
+        email_templates: "Email Templates"
       buttons:
         add: "Add"
         add_variation: "Add variation"
@@ -64,6 +65,8 @@ en:
         choose: "Choose"
         current_plan: "Current Plan"
         upgrade: "Upgrade"
+        reset: "Reset"
+        preview: "Preview"
       pagination:
         next: "Next"
         first: "First"
@@ -165,3 +168,6 @@ en:
           free_by_price: "Only For Orders Over X KRW"
           flat_rate_per_order: "Per Order"
           flat_rate_per_product: "Per Product"
+      email_templates:
+        title: "Email Templates"
+        preview: "Email Preview"

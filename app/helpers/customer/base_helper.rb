@@ -37,8 +37,8 @@ module Customer::BaseHelper
   end
 
   def current_order
-    if cookies[:po]
-      @current_order ||= ProductOrder.find_by_token(cookies[:po]) || initialize_order
+    unless cookies.signed[:order_token].blank?
+      @current_order ||= ProductOrder.find_by_token(cookies.signed[:order_token]) || initialize_order
     else
       @current_order ||= initialize_order
     end
@@ -49,7 +49,7 @@ module Customer::BaseHelper
 
   def clear_order
     [:order_step, :order_type].each{ |k| session.delete k }
-    [:to, :po].each{ |k| cookies.delete k }
+    [:booking_token, :order_token].each{ |k| cookies.delete k }
   end
 
   def initialize_order
@@ -63,8 +63,7 @@ module Customer::BaseHelper
     order.update_currency currency
     session[:currency] = currency
 
-    cookies[:po] = {value: order.token, http_only: true,
-                                expires: 3.days.from_now}
+    cookies.permanent.signed[:order_token] = order.token
     order
   end
 

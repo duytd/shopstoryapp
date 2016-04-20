@@ -11,8 +11,10 @@ class Merchant::TemplatesController < Merchant::BaseController
   end
 
   def update
+    old_content = @template.content
+
     if @template.update template_params
-      Template.bundle @theme_bundle if @template.content_changed?
+      Template.bundle @theme_bundle if old_content != @template.content
       render json: @template, status: :ok
     else
       render json: @template.errors, status: :unprocessable_entity

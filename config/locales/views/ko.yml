@@ -48,6 +48,7 @@ ko:
         asset: "수정"
         shipping: "Shipping"
         shipping_rates: "Shipping Rates"
+        email_templates: "Email Templates"
       buttons:
         add: "추가"
         add_variation: "옵션 추가"
@@ -63,6 +64,8 @@ ko:
         disactivate: "Disactivate"
         choose: "Choose"
         current_plan: "Current Plan"
+        reset: "Reset"
+        preview: "Preview"
       pagination:
         next: "Next"
         first: "First"
@@ -164,3 +167,6 @@ ko:
           free_by_price: "Only For Orders Over X KRW"
           flat_rate_per_order: "Per Order"
           flat_rate_per_product: "Per Product"
+      email_templates:
+        title: "Email Templates"
+        preview: "Email Preview"
