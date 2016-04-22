@@ -19,23 +19,17 @@ class Merchant::ShippingRatesController < Merchant::BaseController
   end
 
   def create
-    @shipping_rate =  case params[:type]
-                                            when "free"
-                                              Shipping::FreeShipping.new shipping_rate_params
-                                            when "free_by_price"
-                                              Shipping::FreeShippingByPrice.new shipping_rate_params
-                                            when "flat_rate_per_order"
-                                              Shipping::FlatRatePerOrder.new shipping_rate_params
-                                            when "flat_rate_per_product"
-                                              Shipping::FlatRatePerProduct.new shipping_rate_params
-                                            else
-                                              render json: nil, status: :bad_request
-                                            end
+    begin
+      @shipping_rate =  ShippingRate.type_class params[:type]
+      @shipping_rate.attributes = shipping_rate_params
 
-    if @shipping_rate.save
-      render json: @shipping_rate, status: :ok
-    else
-      render json: @shipping_rate.errors, status: :unprocessable_entity
+      if @shipping_rate.save
+        render json: @shipping_rate, status: :ok
+      else
+        render json: @shipping_rate.errors, status: :unprocessable_entity
+      end
+    rescue KeyError
+      render json: nil, status: :bad_request
     end
   end
 

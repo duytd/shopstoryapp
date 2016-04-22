@@ -25,6 +25,12 @@ class ProductOrder < Order
     current_step == steps.last
   end
 
+  def flat_rate_overrode?
+    order_products
+      .joins(variation: :product)
+      .where("products.flat_shipping_rate > 0").present?
+  end
+
   def as_json options={}
     super.as_json(options).merge({current_step: current_step,
       shipping_address: shipping_address, billing_address: billing_address,
@@ -56,60 +62,7 @@ class ProductOrder < Order
   end
 
   def calculate_shipping
-    if ShippingRate.free
-      return free_shipping
-    elsif ShippingRate.free_by_price
-      if subtotal > ShippingRate.free_by_price.min_price
-        return free_shipping
-      end
-    end
-
-    if ShippingRate.flat_rate_per_order && !flat_rate_overrode?
-      return shipping_fee_by_order
-    else
-      return shipping_fee_by_product
-    end
-
-    0
-  end
-
-  def flat_rate_overrode?
-    order_products.includes(:variation).each do |order_product|
-      product = order_product.variation.product
-
-      unless product.flat_shipping_rate && product.flat_shipping_rate > 0
-        return false
-      end
-    end
-
-    true
-  end
-
-  def free_shipping
-    0
-  end
-
-  def shipping_fee_by_order
-    ShippingRate.flat_rate_per_order.rate
-  end
-
-  def shipping_fee_by_product
-    sum  = 0
-    default_rate = ShippingRate.flat_rate_per_product
-
-    order_products.includes(:variation).each do |order_product|
-      product = order_product.variation.product
-
-      unless product.pay_shipping_on_delivery
-        if product.flat_shipping_rate
-          sum =  sum + product.flat_shipping_rate * order_product.quantity
-        else
-          sum =  sum + default_rate * order_product.quantity if default_rate
-        end
-      end
-    end
-
-    sum
+    ShippingRate.calculate_price self
   end
 
   def steps

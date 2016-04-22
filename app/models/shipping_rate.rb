@@ -1,4 +1,13 @@
 class ShippingRate < ActiveRecord::Base
+
+  # These types need to be arranged by priority
+  TYPES_CLASSES_MAPPING = {
+    free: Shipping::FreeShipping,
+    free_by_price: Shipping::FreeShippingByPrice,
+    flat_rate_per_order: Shipping::FlatRatePerOrder,
+    flat_rate_per_product: Shipping::FlatRatePerProduct,
+  }.freeze
+
   translates :name
 
   globalize_accessors locales: [:en, :ko], attributes: [:name]
@@ -14,24 +23,22 @@ class ShippingRate < ActiveRecord::Base
     })
   end
 
-  def self.free
-    find_by type: "Shipping::FreeShipping"
-  end
-
-  def self.free_by_price
-    find_by type: "Shipping::FreeShippingByPrice"
-  end
-
-  def self.flat_rate_per_order
-    find_by type: "Shipping::FlatRatePerOrder"
-  end
-
-  def self.flat_rate_per_product
-    find_by type: "Shipping::FlatRatePerProduct"
+  def self.type_class type
+    TYPES_CLASSES_MAPPING.fetch(type.to_sym).new
   end
 
   def self.types
-    %w{ free free_by_price flat_rate_per_order flat_rate_per_product }
+    TYPES_CLASSES_MAPPING.keys
+  end
+
+  def self.calculate_price order
+    TYPES_CLASSES_MAPPING.values.each do |klass|
+      if klass.exists?
+        return klass.calculate(order)
+      end
+    end
+
+    return 0
   end
 
   def free_shipping_exists?
@@ -43,9 +50,9 @@ class ShippingRate < ActiveRecord::Base
   end
 
   def type_must_be_unique
-    if type == "Shipping::FreeShipping" || type == "Shipping::FreeShippingByPrice"
+    if self.is_a?(Shipping::FreeShipping) || self.is_a?(Shipping::FreeShippingByPrice)
       errors.add(:type, :free_shipping_taken) if free_shipping_exists?
-    elsif type == "Shipping::FlatRatePerOrder" || type == "Shipping::FlatRatePerProduct"
+    elsif self.is_a?(Shipping::FlatRatePerOrder) || self.is_a?(Shipping::FlatRatePerProduct)
       errors.add(:type, :flat_rate_taken) if flat_rate_exists?
     end
   end

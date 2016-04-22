@@ -1,41 +1,20 @@
-require_dependency "menu/category"
-require_dependency "menu/product"
-
 class Merchant::MenuItemsController < Merchant::BaseController
   load_and_authorize_resource
   before_action :load_menu, only: :create
 
   def create
-    @menu_item =  case params[:type]
-                                      when "home"
-                                        Menu::Home.new menu_item_params
-                                      when "category_all"
-                                        Menu::CategoryAll.new menu_item_params
-                                      when "category"
-                                        Menu::Category.new menu_item_params
-                                      when "product"
-                                        Menu::Product.new menu_item_params
-                                      when "product_all"
-                                        Menu::ProductAll.new menu_item_params
-                                      when "page"
-                                        Menu::Page.new menu_item_params
-                                      when "url"
-                                        Menu::Url.new menu_item_params
-                                      end
+    begin
+      @menu_item =  MenuItem.type_class params[:type]
+      @menu_item.attributes = menu_item_params
+      @menu_item.menu = @menu
 
-    if params[:menu_item][:parent_id].present?
-      @parent = MenuItem.find params[:menu_item][:parent_id]
-      @menu_item.position = @parent.children.count
-    else
-      @menu_item.position = @menu.menu_items.is_parent.count
-    end
-
-    @menu_item.menu = @menu
-
-    if @menu_item.save
-      render json: @menu_item, status: :ok
-    else
-      render json: @menu_item.errors, status: :unprocessable_entity
+      if @menu_item.save
+        render json: @menu_item, status: :ok
+      else
+        render json: @menu_item.errors, status: :unprocessable_entity
+      end
+    rescue KeyError
+      render json: nil, status: :bad_request
     end
   end
 
