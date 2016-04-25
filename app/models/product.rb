@@ -70,22 +70,22 @@ class Product < ActiveRecord::Base
   def create_variations
     options = variation_options.includes :variation_option_values
 
-    begin
-      if options.size > 0 && variations.not_master.count == 0
-        option_value_array = options.map{|option| option.variation_option_values}
-        option_value_array.first.product(*option_value_array[1..-1]).each do |a|
-          variation = variations.build price: price
+    if options.size > 0 && variations.not_master.count == 0
+      option_value_array = options.map{|option| option.variation_option_values}
+      option_value_array.first.product(*option_value_array[1..-1]).each do |a|
+        variation = variations.build price: price
 
-          a.each do |value|
-            variation.variation_variation_option_values.build variation_option_value_id: value.id
-          end
+        a.each do |value|
+          variation.variation_variation_option_values.build variation_option_value_id: value.id
+        end
 
-          variation.save!
+        unless variation.save
+          return false
         end
       end
-    rescue Exception
-      return false
     end
+
+    return true
   end
 
   def self.search_by_name query

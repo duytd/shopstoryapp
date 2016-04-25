@@ -2,7 +2,7 @@ var Cart = React.createClass({
   mixins: [CartMixin],
   getInitialState: function() {
     return {
-      cartErrors: [],
+      cartErrors: []
     }
   },
   render: CartRT,

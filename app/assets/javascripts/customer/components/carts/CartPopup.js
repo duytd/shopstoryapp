@@ -1,7 +1,7 @@
 var CartPopup = React.createClass({
   getInitialState: function() {
     return {
-      cartErrors: [],
+      cartErrors: []
     }
   },
   render: CartPopupRT,

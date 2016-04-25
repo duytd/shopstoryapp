@@ -24,3 +24,4 @@ config/environments/*.local.yml
 /keys/
 /qrcodes/
 /node_modules/
+.idea/

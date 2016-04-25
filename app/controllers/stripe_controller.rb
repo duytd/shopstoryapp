@@ -2,7 +2,6 @@ class StripeController < ApplicationController
   protect_from_forgery with: :exception, except: [:webhook]
 
   def webhook
-    begin
       event_json = JSON.parse request.body.read
       event = event_json
 
@@ -16,9 +15,6 @@ class StripeController < ApplicationController
         when "customer.subscription.deleted"
           handle_deleted_subscription
       end
-    rescue Exception => ex
-      render nothing: true, status: 422
-      return
     end
 
     render nothing: true, status: 200
