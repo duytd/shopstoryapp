@@ -1,8 +1,8 @@
 ko:
   admin:
     login:
-      title: "Admin Login"
-    logout: "Log out"
+      title: "관리자 로그인"
+    logout: "로그아웃"
     buttons:
-      delete: "Delete"
-      edit: "Edit"
+      delete: "삭제"
+      edit: "수정"
