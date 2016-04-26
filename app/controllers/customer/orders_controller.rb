@@ -23,7 +23,7 @@ class Customer::OrdersController < Customer::BaseController
       globalVars: @globalVars,
       countries: all_countries,
       default_country: Settings.shop.default_country,
-      payment_method_shops: current_shop.payment_method_shops.active
+      payment_method_shops: current_shop.payment_method_shops.active.map{|e| Customer::PaymentMethodShopPresenter.new(e)}
     }
 
     session[:customer_return_to] = new_customer_order_path
