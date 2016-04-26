@@ -28,8 +28,8 @@ class Merchant::PagesController < Merchant::BaseController
 
     @props = {
       data: @asset,
-      url: merchant_asset_path(@file),
-      reset_url: edit_merchant_asset_path(@file, reset: true),
+      url: merchant_asset_path(@asset),
+      reset_url: edit_merchant_asset_path(@asset, reset: true),
       javascripts: @javascripts,
       stylesheets: @stylesheets,
       locales: @locales,

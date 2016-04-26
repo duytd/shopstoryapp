@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: 91804327f259d342600d017b56ec7296fe0ad18e
+  revision: 9d092690bfaed77f1b3beeee8086d0bdf0204430
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
@@ -141,7 +141,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
-    concurrent-ruby (1.0.0)
+    concurrent-ruby (1.0.1)
     config (1.0.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.0)
@@ -221,14 +221,14 @@ GEM
       rails (>= 3.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    mail (2.6.3)
-      mime-types (>= 1.16, < 3)
+    mail (2.6.4)
+      mime-types (>= 1.16, < 4)
     meta-tags (2.1.0)
       actionpack (>= 3.0.0)
-    mime-types (2.99)
+    mime-types (2.99.1)
     mini_magick (4.3.5)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     monetize (1.1.0)
       money (~> 6.5.0)
     money (6.5.1)
@@ -245,7 +245,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
     netrc (0.11.0)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nprogress-rails (0.1.6.7)
     oauth2 (1.0.0)
@@ -288,7 +288,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
@@ -300,7 +300,7 @@ GEM
       activesupport (= 4.2.3)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.5.0)
+    rake (11.1.2)
     rdoc (4.2.0)
     react-rails (1.6.2)
       babel-transpiler (>= 0.7.0)
@@ -364,10 +364,10 @@ GEM
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
     spring (1.4.0)
-    sprockets (3.5.2)
+    sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.0)
+    sprockets-rails (3.0.4)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)

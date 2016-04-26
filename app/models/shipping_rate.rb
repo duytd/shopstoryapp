@@ -32,8 +32,8 @@ class ShippingRate < ActiveRecord::Base
 
   def self.calculate_price order
     TYPES_CLASSES_MAPPING.values.each do |klass|
-      if klass.exists?
-        return klass.calculate(order)
+      if klass.constantize.exists?
+        return klass.constantize.calculate(order)
       end
     end
 
