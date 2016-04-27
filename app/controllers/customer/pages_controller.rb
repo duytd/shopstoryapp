@@ -26,6 +26,11 @@ class Customer::PagesController < Customer::BaseController
         paypal = PaypalShopstory::Paypal.new data: @order.payment.extra_data
         transaction_info = paypal.transaction_info
       end
+    elsif payment_method.is_a? StripeShopstory::PaymentMethod
+      if @order.payment.extra_data
+        stripe = StripeShopstory::Stripe.new data: @order.payment.extra_data
+        transaction_info = stripe.transaction_info
+      end
     end
 
     @props = {

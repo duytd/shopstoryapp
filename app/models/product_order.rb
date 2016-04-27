@@ -54,7 +54,7 @@ class ProductOrder < Order
   def summarize
     self.subtotal = calculate_subtotal
     self.shipping = calculate_shipping
-    self.total = subtotal + shipping + tax
+    self.total = subtotal + shipping.to_f + tax
   end
 
   def calculate_subtotal

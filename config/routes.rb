@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
     mount Inicis::Standard::Rails::Engine, at: "/inicis", as: "inicis"
     mount PaypalShopstory::Engine, at: "/paypal", as: "paypal"
+    mount StripeShopstory::Engine, at: "/stripe", as: "stripe"
     resources :order_products, only: [:create, :update, :destroy]
   end
 

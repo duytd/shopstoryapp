@@ -1,4 +1,5 @@
 require "rqrcode"
+require "stripe_shopstory"
 
 class Customer::OrdersController < Customer::BaseController
   authorize_resource
@@ -18,12 +19,15 @@ class Customer::OrdersController < Customer::BaseController
   end
 
   def new
+    stripe_interface = StripeShopstory::StripeInterface.new current_shop
+
     @props = {
       order: current_order,
       globalVars: @globalVars,
       countries: all_countries,
       default_country: Settings.shop.default_country,
-      payment_method_shops: current_shop.payment_method_shops.active.map{|e| Customer::PaymentMethodShopPresenter.new(e)}
+      payment_method_shops: current_shop.payment_method_shops.active.map{|e| Customer::PaymentMethodShopPresenter.new(e)},
+      publishable_key: stripe_interface.publishable_key
     }
 
     session[:customer_return_to] = new_customer_order_path

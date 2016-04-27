@@ -1,4 +1,30 @@
 var Billing = React.createClass({
+  componentDidMount: function() {
+    var script = document.createElement("script");
+    var head = document.getElementsByTagName('head')[0];
+    var key = this.props.publishable_key;
+    console.log(key)
+
+    script.src = "https://checkout.stripe.com/checkout.js";
+    head.appendChild(script);
+
+    script.onload = function() {
+      var handler = StripeCheckout.configure({
+        key: key,
+        locale: "auto",
+        token: function(token) {
+          $.post(Routes.customer_stripe_charges_path(), {stripeEmail: token.email, stripeToken: token.id}, function() {
+
+          })
+          .fail(function(xhr) {
+            alert(xhr.responseJSON.error);
+          })
+        }
+      });
+
+      this.setState({handler: handler});
+    }.bind(this)
+  },
   getInitialState: function() {
     var currentPaymentMethod = null,
       hasPaymentMethod = true;
@@ -20,7 +46,8 @@ var Billing = React.createClass({
       hasPaymentMethod: hasPaymentMethod,
       errors: {},
       useShippingAddress: true,
-      currentPaymentMethod: currentPaymentMethod
+      currentPaymentMethod: currentPaymentMethod,
+      handler: null
     }
   },
   render: BillingRT,
@@ -58,6 +85,13 @@ var Billing = React.createClass({
       }).fail(function(xhr) {
         alert(xhr.statusText);
       })
+    }
+    else if (order.payment.payment_method.type == "stripe_shopstory/payment_method") {
+      this.state.handler.open({
+        email: order.billing_address.email,
+        currency: order.currency,
+        amount: order.total
+      });
     }
     else {
       location.href = Routes.customer_order_payment_path(order.id, {locale: I18n.locale});
