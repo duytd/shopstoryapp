@@ -93,6 +93,11 @@ var Billing = React.createClass({
         amount: order.total
       });
     }
+    else if (order.payment.payment_method.type == "kakao_shopstory/payment_method") {
+      $.get(Routes.customer_kakao_transaction_pay_path({locale: I18n.locale}), function(data) {
+        $('#inicisPayment').html(data);
+      })
+    }
     else {
       location.href = Routes.customer_order_payment_path(order.id, {locale: I18n.locale});
     }

@@ -34,6 +34,7 @@ gem "inicis-standard-rails", git: "https://github.com/duytd/inicis-standard-rail
 gem "paypal_shopstory", git: "git@bitbucket.org:duytd/paypal_shopstory.git"
 gem "stripe_shopstory", git: "git@bitbucket.org:shopstory/stripe_shopstory.git"
 gem "shopstory_ticket", git: "git@bitbucket.org:duytd/shopstory_ticket.git"
+gem "kakao_shopstory", git: "git@bitbucket.org:shopstory/kakao_shopstory.git"
 gem "rt-transform-ruby", git: "https://github.com/duytd/rt-transform-ruby.git"
 gem "puma"
 gem "rubyzip"
