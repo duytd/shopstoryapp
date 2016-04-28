@@ -41,6 +41,14 @@ class Variation < ActiveRecord::Base
     end
   end
 
+  def variation_image
+    if master?
+      master_image
+    else
+      image
+    end
+  end
+
   def master_image
     product.product_images.featured
   end
@@ -51,19 +59,21 @@ class Variation < ActiveRecord::Base
       name_en: name_en,
       variation_option_values: variation_variation_option_values,
       master_image: master_image,
+      variation_image: variation_image,
       has_image: has_image?,
       values: variation_option_values.map{|v| v.id}
     })
   end
 
   private
+
+  def has_image?
+    image.present?
+  end
+
   def initialize_master
     self.price = product.price
     self.sku = product.sku
     self.in_stock = product.in_stock
-  end
-
-  def has_image?
-    image.present?
   end
 end

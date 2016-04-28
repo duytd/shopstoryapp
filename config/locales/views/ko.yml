@@ -66,6 +66,7 @@ ko:
         current_plan: "현재 플랜"
         reset: "재설정"
         preview: "미리보기"
+        download_invoice: "Download Invoice"
       pagination:
         next: "다음"
         first: "처음"

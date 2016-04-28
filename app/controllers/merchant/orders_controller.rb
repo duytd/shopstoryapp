@@ -30,8 +30,14 @@ class Merchant::OrdersController < Merchant::BaseController
     @props = {
       order: @order,
       url: merchant_order_path(@order),
-      method: :put
+      method: :put,
+      invoice_url: edit_merchant_order_path(@order, format: :pdf)
     }
+
+    respond_to do |format|
+      format.html
+      format.pdf
+    end
   end
 
   def update

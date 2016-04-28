@@ -24,6 +24,7 @@ var OrderForm = React.createClass({
         <div className="col-sm-8">
           <div className="block">
             <h3>#{this.props.order.id}</h3>
+            <a className="pull-right btn btn-primary" href={this.props.invoice_url}>{I18n.t("merchant.admin.buttons.download_invoice")}</a>
             <p>{I18n.t("activerecord.attributes.order.status")}: {this.props.order.status.toUpperCase()}</p>
 
             {(this.props.order.payment) ?
@@ -39,7 +40,7 @@ var OrderForm = React.createClass({
                     return (
                       <tr key={"order_product_" + index}>
                         <td>
-                          <img src={orderProduct.variation.image.thumb.url} className="img-responsive" />
+                          <img src={orderProduct.variation.variation_image.image.thumb.url} className="img-responsive" width="50" height="50" />
                         </td>
                         <td>
                           {orderProduct.variation.name}

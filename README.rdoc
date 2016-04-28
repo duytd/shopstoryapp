@@ -7,6 +7,12 @@ Things you may want to cover:
 
 * Ruby version
 
+* Install wkhtmltopdf
+```
+sudo add-apt-repository ppa:ecometrica/servers
+sudo apt-get update
+sudo apt-get install wkhtmltopdf
+```
 * System dependencies
 
 * Configuration

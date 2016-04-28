@@ -67,6 +67,7 @@ en:
         upgrade: "Upgrade"
         reset: "Reset"
         preview: "Preview"
+        download_invoice: "Download Invoice"
       pagination:
         next: "Next"
         first: "First"

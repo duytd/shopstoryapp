@@ -50,6 +50,7 @@ gem "meta-tags"
 gem "liquid-rails"
 gem "RedCloth"
 gem "faker"
+gem "wicked_pdf"
 
 group :development, :test do
   gem "byebug"
