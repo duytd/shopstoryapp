@@ -14,6 +14,13 @@ GIT
       rails (~> 4.2.3)
 
 GIT
+  remote: git@bitbucket.org:shopstory/kakao_shopstory.git
+  revision: 470c68a2b22e60d77056f7a08af6ea90418ad266
+  specs:
+    kakao_shopstory (0.0.1)
+      rails (~> 4.2.3)
+
+GIT
   remote: git@bitbucket.org:shopstory/stripe_shopstory.git
   revision: 6ce9bd0aeec65845099eb156a02b0285a67755bd
   specs:
@@ -450,6 +457,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   js-routes
+  kakao_shopstory!
   kaminari
   launchy
   liquid-rails
