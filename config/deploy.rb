@@ -73,6 +73,7 @@ namespace :deploy do
       within release_path do
         with rails_env: fetch(:rails_env) do
           execute :rake, "symlinks:inicis_server"
+          execute :rake, "symlinks:kakao_server"
         end
       end
     end
