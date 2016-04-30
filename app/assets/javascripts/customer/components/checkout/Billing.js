@@ -3,7 +3,6 @@ var Billing = React.createClass({
     var script = document.createElement("script");
     var head = document.getElementsByTagName('head')[0];
     var key = this.props.publishable_key;
-    console.log(key)
 
     script.src = "https://checkout.stripe.com/checkout.js";
     head.appendChild(script);
@@ -13,8 +12,8 @@ var Billing = React.createClass({
         key: key,
         locale: "auto",
         token: function(token) {
-          $.post(Routes.customer_stripe_charges_path(), {stripeEmail: token.email, stripeToken: token.id}, function() {
-
+          $.post(Routes.customer_stripe_charges_path(), {stripeEmail: token.email, stripeToken: token.id}, function(response) {
+            Turbolinks.visit(response.url);
           })
           .fail(function(xhr) {
             alert(xhr.responseJSON.error);
@@ -99,7 +98,7 @@ var Billing = React.createClass({
       })
     }
     else {
-      location.href = Routes.customer_order_payment_path(order.id, {locale: I18n.locale});
+      alert("Invalid payment method");
     }
   }
 })

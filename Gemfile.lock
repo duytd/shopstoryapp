@@ -8,21 +8,21 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: 8973d74951469dadb4a7d70df3114b267bc95dd4
+  revision: 18346a247a3de7ea28d2621706640166b72ee422
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
 
 GIT
   remote: git@bitbucket.org:shopstory/kakao_shopstory.git
-  revision: 2b049fed4db7a20a7a1db51b3a10789c61eb6d08
+  revision: de3f2cf36786fa7640c0fe0d89ccd598ac6edeed
   specs:
     kakao_shopstory (0.0.1)
       rails (~> 4.2.3)
 
 GIT
   remote: git@bitbucket.org:shopstory/stripe_shopstory.git
-  revision: 6ce9bd0aeec65845099eb156a02b0285a67755bd
+  revision: 6df9a2c590551ecd8f3570eb5ad401dd47f4d724
   specs:
     stripe_shopstory (0.0.1)
       rails (~> 4.2.3)

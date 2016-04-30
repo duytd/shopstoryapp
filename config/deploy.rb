@@ -79,6 +79,16 @@ namespace :deploy do
     end
   end
 
+  task :fix_permissions do
+   on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          run "#{try_sudo} chmod 777 -R #{current_path}/kakao/log"
+        end
+      end
+    end
+  end
+
   desc "Install npm packages"
   task :npm_install do
     on roles(:app) do
@@ -101,6 +111,7 @@ namespace :deploy do
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :symlinks
+  after  :finishing,    :fix_permissions
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
