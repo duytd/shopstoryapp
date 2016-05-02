@@ -54,7 +54,6 @@ module Customer::BaseHelper
 
   def initialize_order
     order = find_or_create_incomplete_order
-
     currency = current_shop.currency.upcase
     order.update_currency currency
     session[:currency] = currency
