@@ -83,7 +83,7 @@ namespace :deploy do
    on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          run "#{try_sudo} chmod 777 -R #{current_path}/kakao/log"
+          execute :sudo, "chmod 777 -R #{current_path}/kakao/log"
         end
       end
     end

@@ -51,9 +51,7 @@ Rails.application.routes.draw do
 
     resources :products, only: [:index, :show]
     resources :custom_pages, only: [:show]
-    resources :orders, only: [:show, :new, :create, :update] do
-      resource :payment, only: :show
-    end
+    resources :orders, only: [:show, :new, :create, :update]
 
     mount Inicis::Standard::Rails::Engine, at: "/inicis", as: "inicis"
     mount KakaoShopstory::Engine, at: "/kakao", as: "kakao"
