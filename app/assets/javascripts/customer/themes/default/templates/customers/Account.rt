@@ -19,7 +19,7 @@
           <tbody>
             <tr rt-repeat="order in this.props.orders" key="order_{orderIndex}">
               <td>
-                <a href="{Routes.customer_order_path(order.id, {locale: I18n.locale})}">
+                <a href="{Routes.customer_order_path.localize(order.id)}">
                   #{order.id}
                 </a>
               </td>
@@ -48,7 +48,7 @@
             <tbody>
               <tr rt-repeat="booking in this.props.bookings" key="booking_{bookingIndex}">
                 <td>
-                  <a href="{Routes.customer_order_path(booking.id, {locale: I18n.locale})}">
+                  <a href="{Routes.customer_order_path.localize(booking.id)}">
                     {booking.id}
                   </a>
                 </td>

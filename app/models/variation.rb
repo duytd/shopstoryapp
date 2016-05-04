@@ -61,6 +61,7 @@ class Variation < ActiveRecord::Base
       master_image: master_image,
       variation_image: variation_image,
       has_image: has_image?,
+      product_slug: product.slug,
       values: variation_option_values.map{|v| v.id}
     })
   end

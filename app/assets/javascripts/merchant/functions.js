@@ -23,6 +23,18 @@ String.prototype.addParams = function(key, value) {
   }
 }
 
+Function.prototype.localize = function(param1, param2) {
+  if (typeof param1 == "undefined") {
+    return this.call(this, {"locale": I18n.locale});
+  }
+  else if (typeof param2 == "undefined") {
+    return this.call(this, param1, {"locale": I18n.locale});
+  }
+  else {
+    return this.call(this, param1, param2, {"locale": I18n.locale});
+  }
+}
+
 function translate(object, attribute) {
   if (I18n.locale == "ko") {
     return object[attribute + "_ko"]

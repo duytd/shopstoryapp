@@ -15,7 +15,7 @@ var Register = React.createClass({
   handleSubmit: function(formData) {
     $.ajax({
       data: formData,
-      url: Routes.customer_registration_path(),
+      url: Routes.customer_registration_path.localize(),
       method: "post",
       dataType: "json",
       success: function(data) {

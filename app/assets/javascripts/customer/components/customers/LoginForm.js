@@ -12,7 +12,7 @@ var LoginForm = React.createClass({
     this.handleSubmit(formData);
   },
   handleSubmit: function(formData) {
-    var url = Routes.customer_session_path();
+    var url = Routes.customer_session_path.localize();
 
     if (this.props.redirect_url) {
       if (url.indexOf("?") != -1)

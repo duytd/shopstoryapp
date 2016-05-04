@@ -6,7 +6,7 @@ var CartPopup = React.createClass({
   },
   render: CartPopupRT,
   checkout: function() {
-    Turbolinks.visit(Routes.customer_cart_path());
+    Turbolinks.visit(Routes.customer_cart_path.localize());
   },
   removeItem: function(e) {
     e.preventDefault();

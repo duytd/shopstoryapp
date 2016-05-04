@@ -12,7 +12,7 @@ var Billing = React.createClass({
         key: key,
         locale: "auto",
         token: function(token) {
-          $.post(Routes.customer_stripe_charges_path(), {stripeEmail: token.email, stripeToken: token.id}, function(response) {
+          $.post(Routes.customer_stripe_charges_path.localize(), {stripeEmail: token.email, stripeToken: token.id}, function(response) {
             Turbolinks.visit(response.url);
           })
           .fail(function(xhr) {
@@ -68,18 +68,18 @@ var Billing = React.createClass({
 
     if (order.payment.payment_method.type == "inicis_payment") {
       if (this.props.mobile) {
-        $.get(Routes.customer_inicis_transaction_pay_path({locale: I18n.locale}), function(data) {
+        $.get(Routes.customer_inicis_transaction_pay_path.localize(), function(data) {
           $('#inicisPayment').html(data);
         })
       }
       else {
-        $.get(Routes.customer_inicis_mobile_transaction_pay_path({locale: I18n.locale}), function(data) {
+        $.get(Routes.customer_inicis_mobile_transaction_pay_path.localize(), function(data) {
           $('#inicisPayment').html(data);
         })
       }
     }
     else if (order.payment.payment_method.type == "paypal_shopstory/payment_method") {
-      $.get(Routes.customer_paypal_transaction_pay_path(), function(response) {
+      $.get(Routes.customer_paypal_transaction_pay_path.localize(), function(response) {
         location.href = response.paypal_url;
       }).fail(function(xhr) {
         alert(xhr.statusText);
@@ -93,7 +93,7 @@ var Billing = React.createClass({
       });
     }
     else if (order.payment.payment_method.type == "kakao_shopstory/payment_method") {
-      $.get(Routes.customer_kakao_transaction_pay_path({locale: I18n.locale}), function(data) {
+      $.get(Routes.customer_kakao_transaction_pay_path.localize(), function(data) {
         $('#inicisPayment').html(data);
       })
     }

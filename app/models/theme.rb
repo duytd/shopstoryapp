@@ -15,12 +15,12 @@ class Theme < ActiveRecord::Base
     find_by default: true
   end
 
-  def import_assets shop
+  def import_assets shop, options={}
     bundle = ThemeBundle.where(theme_id: id, shop_id: shop.id).first_or_initialize
-    bundle.javascript = bundle_javascripts
-    bundle.stylesheet = bundle_stylesheets
-    bundle.locale = bundle_locales
-    bundle.template = bundle_templates
+    bundle.javascript = bundle_javascripts unless options[:javascript] == false
+    bundle.stylesheet = bundle_stylesheets unless options[:stylesheet] == false
+    bundle.locale = bundle_locales unless options[:locale] == false
+    bundle.template = bundle_templates unless options[:template] == false
     bundle.save!
   end
 
