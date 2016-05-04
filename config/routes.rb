@@ -101,6 +101,13 @@ Rails.application.routes.draw do
     resources :orders, except: :show do
       delete :index, on: :collection
     end
+
+    resources :reports, only: [] do
+      get :product, on: :collection
+      get :order, on: :collection
+      get :payment, on: :collection
+    end
+
     resources :subscriptions, only: [:index, :create, :update, :destroy]
     resources :shops, only: [:edit, :update]
     resources :assets, only: [:edit, :update]

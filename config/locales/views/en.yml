@@ -35,6 +35,7 @@ en:
         categories: "Categories"
         discounts: "Discounts"
         reports: "Reports"
+        product_report: "Product Report"
         pages: "Pages"
         navigation: "Navigation"
         settings: "Settings"
@@ -172,3 +173,6 @@ en:
       email_templates:
         title: "Email Templates"
         preview: "Email Preview"
+      reports:
+        product:
+          data_title: "Number of Sales"

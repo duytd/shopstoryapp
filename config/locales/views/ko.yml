@@ -35,6 +35,7 @@ ko:
         categories: "카테고리"
         discounts: "할인"
         reports: "리포트"
+        product_report: "Product Report"
         pages: "페이지"
         navigation: "네비게이션"
         settings: "설정"
@@ -171,3 +172,6 @@ ko:
       email_templates:
         title: "이메일 템플렛"
         preview: "이메일 미리보기"
+      reports:
+        product:
+          data_title: "Number of Sales"

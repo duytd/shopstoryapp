@@ -8,6 +8,7 @@
     "ace-builds": "1.2.2",
     "elevatezoom": "2.2.3",
     "spectrum": "latest",
-    "bootstrap-datepicker": "latest"
+    "bootstrap-datepicker": "latest",
+    "Chart.js": "latest"
   }
 }

@@ -69,6 +69,7 @@ ko:
         pay_shipping_on_delivery: "착불 배송"
         vendor: "상점"
         slug: "Friendly Slug"
+        total_sale: "Total Sale"
       variation:
         color: "색상"
         size: "사이즈"
