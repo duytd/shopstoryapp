@@ -38,7 +38,7 @@ module Customer::BaseHelper
 
   def current_order
     unless cookies.signed[:order_token].blank?
-      @current_order ||= ProductOrder.find_by_token(cookies.signed[:order_token])
+      @current_order ||= ProductOrder.find_by_token(cookies.signed[:order_token]) || initialize_order
     else
       @current_order ||= initialize_order
     end
@@ -48,25 +48,16 @@ module Customer::BaseHelper
   end
 
   def clear_order
+    current_order.update_attributes token: nil
     [:order_step, :order_type].each{ |k| session.delete k }
     [:booking_token, :order_token].each{ |k| cookies.delete k }
   end
 
   def initialize_order
-    order = find_or_create_incomplete_order
-    currency = current_shop.currency.upcase
-    order.update_currency currency
-    session[:currency] = currency
-    cookies.permanent.signed[:order_token] = order.token
-
-    return order
-  end
-
-  def find_or_create_incomplete_order
     if customer_signed_in?
-      current_customer.product_orders.where(status: Order.statuses[:incompleted]).first_or_create
+      current_customer.product_orders.where(status: Order.statuses[:incompleted]).first_or_initialize
     else
-      ProductOrder.create status: Order.statuses[:incompleted]
+      ProductOrder.new status: Order.statuses[:incompleted], currency: current_shop.currency.upcase
     end
   end
 

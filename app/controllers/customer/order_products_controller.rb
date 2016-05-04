@@ -2,6 +2,8 @@ class Customer::OrderProductsController < Customer::BaseController
   load_and_authorize_resource
 
   def create
+    save_current_order!
+
     if order_product = current_order.order_products.find_by(variation_id: params[:order_product][:variation_id])
       order_product.quantity = order_product.quantity + params[:order_product][:quantity].to_i
     else
@@ -31,5 +33,12 @@ class Customer::OrderProductsController < Customer::BaseController
   private
   def order_product_params
     params.require(:order_product).permit :variation_id, :quantity
+  end
+
+  def save_current_order!
+    unless current_order.persisted?
+      current_order.save!
+      cookies.permanent.signed[:order_token] = current_order.token
+    end
   end
 end

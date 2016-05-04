@@ -36,7 +36,12 @@ class Merchant::OrdersController < Merchant::BaseController
 
     respond_to do |format|
       format.html
-      format.pdf
+      format.pdf do
+        render pdf: "Invoice_##{@order.id}_#{Date.today}",
+          template: "merchant/orders/edit.pdf.erb",
+          layout: "merchant/layouts/pdf.html.erb",
+          show_as_html: params[:debug].present?
+      end
     end
   end
 
