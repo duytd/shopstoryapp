@@ -1,5 +1,7 @@
 class Customer::OrderProductsController < Customer::BaseController
   load_and_authorize_resource
+  before_action :authenticate_order, only: :create
+  before_action :authenticate_order_product, only: [:update, :destroy]
 
   def create
     save_current_order!
@@ -39,6 +41,18 @@ class Customer::OrderProductsController < Customer::BaseController
     unless current_order.persisted?
       current_order.save!
       cookies.permanent.signed[:order_token] = current_order.token
+    end
+  end
+
+  def authenticate_order
+    unless current_order.incompleted? || current_order.pending?
+      head :unauthorized
+    end
+  end
+
+  def authenticate_order_product
+    unless @order_product.order.incompleted? || @order_product.order.pending?
+      head :unauthorized
     end
   end
 end
