@@ -74,6 +74,7 @@ en:
         pay_shipping_on_delivery: "Pay Shipping Fee On Delivery"
         vendor: "Vendor"
         slug: "Friendly Slug"
+        total_sale: "Total Sale"
       variation:
         color: "Color"
         size: "Size"
@@ -142,3 +143,7 @@ en:
         title: "Title"
         meta_description: "Meta Description"
         meta_keywords: "Meta Keywords"
+      payment_method:
+        id: "ID"
+        name: "Name"
+        total_sale: "Total Sale"

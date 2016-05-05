@@ -5,6 +5,7 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
+//= require Chart.js/dist/Chart.js
 //= require js-routes
 //= require summernote/dist/summernote
 //= require dropzone/dist/dropzone

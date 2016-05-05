@@ -40,7 +40,7 @@ class Merchant::OrdersController < Merchant::BaseController
         render pdf: "Invoice_##{@order.id}_#{Date.today}",
           template: "merchant/orders/edit.pdf.erb",
           layout: "merchant/layouts/pdf.html.erb",
-          show_as_html: params[:debug].present?,
+          show_as_html: params[:debug].present? && Rails.env.development?,
           encoding: "utf8"
       end
     end

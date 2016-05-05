@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
   has_many :variations, inverse_of: :product, dependent: :destroy
+  has_many :order_products, through: :variations
   has_many :variation_options, inverse_of: :product, dependent: :destroy
   has_many :variation_option_values, through: :variation_options
   has_many :product_tags, dependent: :destroy
@@ -61,6 +62,10 @@ class Product < ActiveRecord::Base
   def price=(price)
     price = price.to_s.gsub ",", ""
     self[:price] = price
+  end
+
+  def total_sale
+    order_products.joins(:product_order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
   end
 
   def as_json options={}

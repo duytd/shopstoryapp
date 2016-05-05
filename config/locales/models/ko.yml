@@ -69,6 +69,7 @@ ko:
         pay_shipping_on_delivery: "착불 배송"
         vendor: "상점"
         slug: "Friendly Slug"
+        total_sale: "Total Sale"
       variation:
         color: "색상"
         size: "사이즈"
@@ -137,3 +138,7 @@ ko:
         title: "타이틀"
         meta_description: "메타 설명"
         meta_keywords: "메타 키워드"
+      payment_method:
+        id: "ID"
+        name: "Name"
+        total_sale: "Total Sale"

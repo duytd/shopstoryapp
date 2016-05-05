@@ -33,7 +33,7 @@ class Merchant::CustomersController < Merchant::BaseController
   def edit
     @props = {
       customer: @customer.as_json({methods: [:total_orders, :total_spent, :last_sign_in_at]}),
-      orders: @customer.product_orders.successful,
+      orders: @customer.product_orders.success,
       url: merchant_customer_path(@customer),
       method: :put,
       genders: Customer.genders.keys.to_a,
