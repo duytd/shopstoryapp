@@ -26,10 +26,10 @@ class Customer < ActiveRecord::Base
   end
 
   def total_orders
-    product_orders.successful.count
+    product_orders.success.count
   end
 
   def total_spent
-    product_orders.successful.inject(0){|sum, item| sum + item.total}
+    product_orders.success.inject(0){|sum, item| sum + item.total}
   end
 end

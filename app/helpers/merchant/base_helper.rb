@@ -4,8 +4,7 @@ module Merchant::BaseHelper
   end
 
   def current_shop
-    subdomain = Apartment::Tenant.current
-    @current_shop ||= Shop.find_by_subdomain subdomain
+    @current_shop ||= current_merchant.shop
   end
 
   def merchant_authenticated?

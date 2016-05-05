@@ -8,11 +8,11 @@ $(document).on("page:change", function() {
     $sideBar.toggleClass("collapsed");
     $content.toggleClass("expansed");
     $(".subitems").hide();
-    $sideBar.getNiceScroll().resize();
+    $sideBar.perfectScrollbar("update");
   });
 
   $sideBar.on("click", ".item", function(){
-    if (!$sideBar.hasClass("collapsed")) {
+    if ($(this).find(".item-label").css("display") != "none") {
       $(this).find(".subitems").slideToggle("slow", "swing", function() {
         $sideBar.perfectScrollbar("update");
       });

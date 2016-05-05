@@ -11,12 +11,11 @@ class Order < ActiveRecord::Base
   enum status: [:incompleted, :pending, :processing, :processed, :shipping, :shipped, :returned, :cancelled]
 
   before_create :generate_token
-
+  before_save :set_locale
+  
   accepts_nested_attributes_for :payment, reject_if: :all_blank
 
   default_scope {order created_at: :desc}
-
-  before_save :set_locale
 
   scope :success, ->{where(status: [Order.statuses[:processed], Order.statuses[:shipping], Order.statuses[:shipped]])}
   scope :having_payment, ->{where.not(status: [Order.statuses[:incompleted], Order.statuses[:pending], Order.statuses[:cancelled]])}
