@@ -20,6 +20,20 @@ var ProductList = React.createClass({
         totalPage={this.props.totalPage}
         redirectUrl={this.props.url}
         deleteAllUrl={this.props.url} />
+        exportable={true}
+        handleExport={this.handleExport} />
     )
+  },
+  handleExport: function(productIds) {
+    var url = this.props.export_url;
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: {product_ids: productIds},
+      success: function(data) {
+        this.props.downloadCSV(data);
+      }.bind(this)
+    })
   }
 })

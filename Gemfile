@@ -51,6 +51,7 @@ gem "liquid-rails"
 gem "RedCloth"
 gem "faker"
 gem "wicked_pdf"
+gem "roo"
 
 group :development, :test do
   gem "byebug"

@@ -1,3 +1,5 @@
+require_dependency "menu/category"
+
 class Category < ActiveRecord::Base
   include Orderable
   extend FriendlyId
@@ -7,6 +9,8 @@ class Category < ActiveRecord::Base
   has_many :products, through: :category_products
   has_many :variations, through: :products
   has_one :seo_tag, as: :seoable, dependent: :destroy
+
+  before_destroy :destroy_menu_item
 
   translates :name
   globalize_accessors locales: [:en, :ko], attributes: [:name]
@@ -55,5 +59,11 @@ class Category < ActiveRecord::Base
     end
 
     filter_list
+  end
+
+  private
+  def destroy_menu_item
+    menu_items = Menu::Category.where value: id
+    menu_items.destroy_all unless menu_items.empty?
   end
 end

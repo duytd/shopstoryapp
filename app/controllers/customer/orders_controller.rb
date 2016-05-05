@@ -6,6 +6,7 @@ class Customer::OrdersController < Customer::BaseController
   include Merchant::ShopsHelper
 
   before_action :validate_order!, only: [:new, :update]
+  before_action :authenticate_order, only: :update
 
   def show
     @order = Order.find params[:id]
@@ -67,5 +68,11 @@ class Customer::OrdersController < Customer::BaseController
     params.require(:order).permit shipping_address_attributes: permitted_address_attributes,
       billing_address_attributes: permitted_address_attributes,
       payment_attributes: permitted_payment_attributes
+  end
+
+  def authenticate_order
+    unless current_order.incompleted? || current_order.pending?
+      head :unauthorized
+    end
   end
 end

@@ -63,6 +63,7 @@ en:
         edit: "Edit"
         installed: "Installed"
         delete_selected: "Delete selected"
+        export_selected: "Export Selected"
         activate: "Activate"
         disactivate: "Disactivate"
         choose: "Choose"
@@ -71,6 +72,9 @@ en:
         reset: "Reset"
         preview: "Preview"
         download_invoice: "Download Invoice"
+        bulk_actions: "Bulk Actions"
+        export: "Export"
+        import: "Import"
       pagination:
         next: "Next"
         first: "First"

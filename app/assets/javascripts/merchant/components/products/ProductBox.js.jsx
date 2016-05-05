@@ -5,6 +5,8 @@ var ProductBox = React.createClass({
         page={this.props.page}
         totalPage={this.props.total_page}
         url={this.props.url}
+        downloadCSV={this.downloadCSV}
+        export_url={this.props.export_url}
         products={this.props.products} />
     )
 
@@ -31,7 +33,47 @@ var ProductBox = React.createClass({
         list={productList}
         url={this.props.new_url}
         pagination={pagination}
+        handleExportAll={this.handleExportAll}
+        handleImport={this.handleImport}
         title={I18n.t("merchant.admin.products.title")} />
     );
+  },
+  handleImport: function(form) {
+    var url = this.props.import_url;
+
+    $.ajax({
+      url: url,
+      data: new FormData(form[0]),
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      method: "POST",
+      success: function(data) {
+        Turbolinks.visit(Routes.merchant_products_path());
+      }
+    })
+  },
+  handleExportAll: function() {
+    var url = this.props.export_url;
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: {all: true},
+      success: function(data) {
+        this.downloadCSV(data);
+      }.bind(this)
+    })
+  },
+  downloadCSV: function(data) {
+    var link = document.createElement("a");
+    link.href = "data:text/csv;charset=utf-8," + encodeURI(data);
+    link.style = "visibility:hidden";
+    link.target = "_blank";
+    link.download = (new Date()).getTime() + ".csv";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 })
