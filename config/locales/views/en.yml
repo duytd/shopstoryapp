@@ -36,6 +36,8 @@ en:
         discounts: "Discounts"
         reports: "Reports"
         product_report: "Product Report"
+        payment_report: "Payment Report"
+        order_report: "Order Report"
         pages: "Pages"
         navigation: "Navigation"
         settings: "Settings"
@@ -176,3 +178,11 @@ en:
       reports:
         product:
           data_title: "Number of Sales"
+        order:
+          data_title: "Revenue"
+          time:
+            hourly: "Hourly"
+            daily: "Daily"
+            weekly: "Weekly"
+            monthly: "Monthly"
+            yearly: "Yearly"

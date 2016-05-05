@@ -36,6 +36,8 @@ ko:
         discounts: "할인"
         reports: "리포트"
         product_report: "Product Report"
+        order_report: "Order Report"
+        payment_report: "Payment Report"
         pages: "페이지"
         navigation: "네비게이션"
         settings: "설정"
@@ -175,3 +177,11 @@ ko:
       reports:
         product:
           data_title: "Number of Sales"
+        order:
+          data_title: "Revenue"
+          time:
+            hourly: "Hourly"
+            daily: "Daily"
+            weekly: "Weekly"
+            monthly: "Monthly"
+            yearly: "Yearly"

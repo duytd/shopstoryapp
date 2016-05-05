@@ -138,3 +138,7 @@ ko:
         title: "타이틀"
         meta_description: "메타 설명"
         meta_keywords: "메타 키워드"
+      payment_method:
+        id: "ID"
+        name: "Name"
+        total_sale: "Total Sale"

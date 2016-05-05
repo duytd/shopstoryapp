@@ -143,3 +143,7 @@ en:
         title: "Title"
         meta_description: "Meta Description"
         meta_keywords: "Meta Keywords"
+      payment_method:
+        id: "ID"
+        name: "Name"
+        total_sale: "Total Sale"

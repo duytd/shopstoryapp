@@ -1,6 +1,10 @@
 var BarChart = React.createClass({
   componentDidMount: function() {
+    this.draw();
+  },
+  draw: function() {
     var ctx = $(this.refs.chart);
+    var dataSetLabel = this.props.dataSetLabel;
     var labels = [];
     var data = [];
 
@@ -9,12 +13,12 @@ var BarChart = React.createClass({
       data.push(d.total_sale);
     })
 
-    var myChart = new Chart(ctx, {
+    var barChart = new Chart(ctx, {
     type: "bar",
     data: {
         labels: labels,
         datasets: [{
-            label: I18n.t("merchant.admin.reports.product.data_title"),
+            label: dataSetLabel,
             data: data,
             backgroundColor: "rgba(46, 204, 113, 0.9)",
             borderColor: "rgba(46, 204, 113, 1.0)",
@@ -37,7 +41,7 @@ var BarChart = React.createClass({
   render: function() {
     return (
       <div className="chart-container">
-        <canvas ref="chart" id="barChart" width="400" height="200"></canvas>
+        <canvas ref="chart" id="barChart" width="400" height="150"></canvas>
       </div>
     )
   }
