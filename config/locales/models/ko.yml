@@ -142,3 +142,4 @@ ko:
         id: "ID"
         name: "Name"
         total_sale: "Total Sale"
+        percentage: "Percentage"

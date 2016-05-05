@@ -108,8 +108,8 @@ class Merchant::ProductsController < Merchant::BaseController
     @props = paginating products, {
       products: products,
       new_url: new_merchant_product_path,
-      url: merchant_products_path
-      export_url: export_merchant_products_path
+      url: merchant_products_path,
+      export_url: export_merchant_products_path,
       import_url: import_merchant_products_path
     }
   end

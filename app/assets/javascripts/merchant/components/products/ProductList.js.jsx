@@ -19,7 +19,7 @@ var ProductList = React.createClass({
         page={this.props.page}
         totalPage={this.props.totalPage}
         redirectUrl={this.props.url}
-        deleteAllUrl={this.props.url} />
+        deleteAllUrl={this.props.url}
         exportable={true}
         handleExport={this.handleExport} />
     )

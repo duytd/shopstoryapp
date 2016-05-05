@@ -16,6 +16,12 @@ class Merchant::ReportsController < Merchant::BaseController
     respond_to do |format|
       format.html
       format.json{ render json: @data, status: :ok }
+      format.csv do
+        headers = @data.map{|d| d[:time]}
+        rows = [@data.map{|d| d[:revenue]}]
+        csv = export_to_csv headers, rows
+        send_data csv, filename: "order_report_#{Time.now}.csv"
+      end
     end
   end
 
@@ -27,6 +33,22 @@ class Merchant::ReportsController < Merchant::BaseController
     end
 
     @data.sort_by{ |d| d[:total_sale] }.reverse!
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers = [
+          I18n.t("activerecord.attributes.product.id"),
+          I18n.t("activerecord.attributes.product.sku"),
+          I18n.t("activerecord.attributes.product.name") + "(KO)",
+          I18n.t("activerecord.attributes.product.name") + "(EN)",
+          I18n.t("activerecord.attributes.product.total_sale")
+        ]
+        rows = @data.map{|d| [d[:product].id, d[:product].sku, d[:product].name_ko, d[:product].name_en, d[:total_sale]]}
+        csv = export_to_csv headers, rows
+        send_data csv, filename: "product_report_#{Time.now}.csv"
+      end
+    end
   end
 
   def payment
@@ -38,5 +60,30 @@ class Merchant::ReportsController < Merchant::BaseController
     end
 
     @data.sort_by{ |d| d[:percentage] }.reverse!
+
+    respond_to do |format|
+      format.html
+      format.csv do
+    headers = [
+          I18n.t("activerecord.attributes.payment_method.id"),
+          I18n.t("activerecord.attributes.payment_method.name"),
+          I18n.t("activerecord.attributes.payment_method.total_sale"),
+          I18n.t("activerecord.attributes.payment_method.percentage")
+        ]
+        rows = @data.map{|d| [d[:payment_method].id, d[:payment_method].name, d[:total_sale], d[:percentage]]}
+        csv = export_to_csv headers, rows
+        send_data csv, filename: "payment_report_#{Time.now}.csv"
+      end
+    end
+  end
+
+  private
+  def export_to_csv headers, rows
+    CSV.generate do |csv|
+      csv << headers
+      rows.each do |row|
+        csv << row
+      end
+    end
   end
 end
