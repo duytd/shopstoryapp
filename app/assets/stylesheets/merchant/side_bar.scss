@@ -1,9 +1,9 @@
 $menu-item-color: #cccccc;
 
 aside.left-panel {
-  left: 100%;
+  top: 0;
+  bottom: 0;
   z-index: 999;
-  height: 100%;
   .merchant-logo {
     color: $white !important;
     background: $sea-light;
@@ -84,7 +84,6 @@ aside.left-panel {
     &.collapsed {
       display: block;
       width: 80px;
-      height: 100%;
       overflow: visible !important;
       bottom: 0;
       position: absolute;

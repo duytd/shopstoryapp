@@ -48,9 +48,12 @@ module Customer::BaseHelper
   end
 
   def clear_order
-    current_order.update_attributes token: nil
     [:order_step, :order_type].each{ |k| session.delete k }
-    [:booking_token, :order_token].each{ |k| cookies.delete k }
+    current_order.update_attributes token: nil
+  end
+
+  def empty_cart
+    @globalVars[:cart] = []
   end
 
   def initialize_order

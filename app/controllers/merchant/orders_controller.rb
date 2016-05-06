@@ -1,5 +1,6 @@
 class Merchant::OrdersController < Merchant::BaseController
   load_and_authorize_resource
+  include PaymentHelper
 
   def index
     if request.delete?
@@ -27,9 +28,12 @@ class Merchant::OrdersController < Merchant::BaseController
   end
 
   def edit
+    @transaction_info = get_transaction_info @order
+
     @props = {
       order: @order,
       url: merchant_order_path(@order),
+      transaction_info: @transaction_info,
       method: :put,
       invoice_url: edit_merchant_order_path(@order, format: :pdf)
     }

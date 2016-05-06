@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
 
   before_create :generate_token
   before_save :set_locale
-  
+
   accepts_nested_attributes_for :payment, reject_if: :all_blank
 
   default_scope {order created_at: :desc}
@@ -50,6 +50,10 @@ class Order < ActiveRecord::Base
 
   def cancelled
     update_status "cancelled"
+  end
+
+  def unprocessed?
+    incompleted? || pending?
   end
 
   def in_usd attr, exchange_rate
@@ -125,7 +129,7 @@ class Order < ActiveRecord::Base
   end
 
   def as_json options={}
-    super.as_json(options).merge({type: type.underscore})
+    super.as_json(options).merge({type: type.underscore, unprocessed: unprocessed?})
   end
 
   protected

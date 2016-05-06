@@ -47,6 +47,15 @@
 
         <div class="col-sm-4">
           <div class="block">
+            <h3><%= I18n.t("activerecord.attributes.order.payment") %></h3>
+            <% @transaction_info.each do |info| %>
+              <% if info[:show_admin] != false %>
+                <p><b><%= info[:label] %></b>: <%= info[:value] %></p>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="block">
             <h3><%= I18n.t("activerecord.attributes.order.shipping_address") %></h3>
             <p><%= "#{@order.shipping_address.first_name} #{@order.shipping_address.last_name}" %></p>
             <p><%= @order.shipping_address.email %></p>

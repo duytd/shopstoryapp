@@ -2,7 +2,7 @@ var OrderForm = React.createClass({
   renderPaymentInfo: function() {
     var paymentInfo = "";
 
-    if (this.props.order.payment_method) {
+    if (this.props.order.payment.payment_method) {
       paymentInfo += this.props.order.payment.payment_method.name + " - ";
     }
 
@@ -10,7 +10,7 @@ var OrderForm = React.createClass({
       paymentInfo += this.props.order.payment.submethod + " - ";
     }
 
-    if (this.props.order.transaction_number) {
+    if (this.props.order.payment.transaction_number) {
       paymentInfo += this.props.order.payment.transaction_number + " - ";
     }
 
@@ -24,12 +24,15 @@ var OrderForm = React.createClass({
         <div className="col-sm-8">
           <div className="block">
             <h3>#{this.props.order.id}</h3>
-            <a className="pull-right btn btn-primary" href={this.props.invoice_url}>{I18n.t("merchant.admin.buttons.download_invoice")}</a>
+            {(this.props.order.unprocessed == false) ?
+              <a className="pull-right btn btn-primary" href={this.props.invoice_url}>
+                {I18n.t("merchant.admin.buttons.download_invoice")}
+              </a> : null}
             <p>{I18n.t("activerecord.attributes.order.status")}: {this.props.order.status.toUpperCase()}</p>
 
             {(this.props.order.payment) ?
             <p>
-              {I18n.t("activerecord.attributes.order.payment")}: {this.renderPaymentInfo()}
+              {I18n.t("activerecord.attributes.order.payment")}: {this.props.order.payment.state.toUpperCase()}
             </p> : null}
 
             {(this.props.order.order_products && this.props.order.order_products.length > 0) ?
@@ -74,8 +77,24 @@ var OrderForm = React.createClass({
               </table>
             </div> : null}
           </div>
-        </div>
 
+          {(this.props.order.payment && !this.props.order.unprocessed) ?
+            <div className="block">
+              <h3>{I18n.t("activerecord.attributes.order.payment")}</h3>
+              <p>{this.props.order.payment.payment_method.name}</p>
+              <p>{this.props.order.payment.transaction_number}</p>
+              {this.props.transaction_info.map(function(info){
+                return (
+                  <p>
+                    {(info["show_admin"] != false) ?
+                      <span>
+                        <b>{info["label"]}</b>: {info["value"]}
+                      </span>: null}
+                  </p>
+                )
+              })}
+            </div> : null}
+        </div>
         {(this.props.order.shipping_address && this.props.order.billing_address) ?
         <div className="col-sm-4">
           <div className="block">
