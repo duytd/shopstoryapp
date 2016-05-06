@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: 681a78831d1aa5508de8f0f20f41bc524af8098a
+  revision: 3ad15abe83d836cfb5dbc17de1221bde7eb1119a
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://github.com/duytd/inicis-standard-rails.git
-  revision: c4e5224b85d0c504cbfde3206e9ec09d9532969d
+  revision: 4e0f33e0a2e98e19521415c54d1bb0e0c1abbcb8
   branch: develop
   specs:
     inicis-standard-rails (0.1.0)

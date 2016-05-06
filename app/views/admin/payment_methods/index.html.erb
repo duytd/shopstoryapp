@@ -1,0 +1,29 @@
+<div class="content-box-large">
+  <div class="panel-heading">
+    <h3><%= t "admin.payment_methods.index.title" %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th><%= t :id %></th>
+          <th><%= t :image %></th>
+          <th><%= t :name %></th>
+          <th><%= t :description %></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% @payment_methods.each do |method| %>
+          <tr>
+            <td><%= method.id %></td>
+            <td><%= image_tag method.image.thumb.url, height: 50 %></td>
+            <td><%= method.name %></td>
+            <td><%= method.description %></td>
+            <td><%= link_to t("admin.buttons.edit"), edit_admin_payment_method_path(method), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

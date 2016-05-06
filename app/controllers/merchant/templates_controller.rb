@@ -26,7 +26,7 @@ class Merchant::TemplatesController < Merchant::BaseController
     @props = {
       data: @template,
       url: merchant_template_path(@template),
-      reset_url: edit_merchant_asset_path(@template, reset: true)
+      reset_url: edit_merchant_template_path(@template, reset: true)
     }
 
     render json: @props, status: :ok

@@ -3,6 +3,19 @@ en:
     login:
       title: "Admin Login"
     logout: "Log out"
+    menu:
+      plans: "Plans"
+      payment_methods: "Payment methods"
     buttons:
       delete: "Delete"
       edit: "Edit"
+    plans:
+      index:
+        title: "Plans"
+      edit:
+        title: "Edit plan"
+    payment_methods:
+      index:
+        title: "Payment methods"
+      edit:
+        title: "Edit payment method"

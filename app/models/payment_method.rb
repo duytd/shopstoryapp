@@ -1,4 +1,5 @@
 class PaymentMethod < ActiveRecord::Base
+  mount_uploader :image, PaymentMethodImageUploader
   validates :name, presence: true, uniqueness: true
 
   has_many :payment_method_options, dependent: :destroy

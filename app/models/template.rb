@@ -8,9 +8,9 @@ class Template < ActiveRecord::Base
 
   def path
     if root_directory?
-      "templates/#{@template.name}.rt"
+      "templates/#{name}.rt"
     else
-      "templates/#{@template.directory}/#{@template.name}.rt"
+      "templates/#{directory}/#{name}.rt"
     end
   end
 

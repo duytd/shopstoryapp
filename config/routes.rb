@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :admin, path: "" do
       root "pages#dashboard"
       resources :plans, except: :show
+      resources :payment_methods, only: [:index, :edit, :update]
     end
 
     devise_for :admins, path: "", path_names: {sign_in: "login", sign_out: "logout"}

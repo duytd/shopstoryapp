@@ -4,6 +4,7 @@ class Customer::PaymentMethodPresenter < Presenter
       id: @object.id,
       type: @object.type.underscore,
       name: @object.name,
+      image: @object.image,
       mobile_submethods: @object.mobile_submethods,
       desktop_submethods: @object.desktop_submethods
     }

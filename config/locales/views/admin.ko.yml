@@ -1,8 +1,23 @@
 ko:
   admin:
+ko:
+  admin:
     login:
       title: "관리자 로그인"
     logout: "로그아웃"
     buttons:
       delete: "삭제"
       edit: "수정"
+    menu:
+      plans: "Plans"
+      payment_methods: "Payment methods"
+    plans:
+      index:
+        title: "Plans"
+      edit:
+        title: "Edit plan"
+    payment_methods:
+      index:
+        title: "Payment methods"
+      edit:
+        title: "Edit payment method"
