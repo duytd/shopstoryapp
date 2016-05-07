@@ -35,3 +35,9 @@
     }
   }
 }
+
+.template-node {
+  .subitems:not(.root) {
+    display: none;
+  }
+}

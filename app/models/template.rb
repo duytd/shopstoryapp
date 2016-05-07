@@ -6,6 +6,8 @@ class Template < ActiveRecord::Base
   validates :theme, presence: true
   validates :name, presence: true, uniqueness: {scope: :theme_id}
 
+  before_save :transform, if: :content_changed?
+
   def path
     if root_directory?
       "templates/#{name}.rt"
@@ -14,13 +16,17 @@ class Template < ActiveRecord::Base
     end
   end
 
-  def self.bundle bundle
-    bundle.template = Template.all.map{|x| Rt.transform(x.content, {modules: "none", name: "#{x.name}RT"})}.join(" ")
+  def self.update_bundle bundle
+    bundle.template = Template.all.map{|x| x.transformed_content}.join(" ")
     bundle.save!
   end
 
   private
   def root_directory?
     directory == "templates"
+  end
+
+  def transform
+    self.transformed_content = Rt.transform(self.content, {modules: "none", name: "#{self.name}RT"})
   end
 end

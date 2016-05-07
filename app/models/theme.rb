@@ -82,9 +82,17 @@ class Theme < ActiveRecord::Base
       file_content = File.read file
       file_name = File.basename file, ".*"
       file_directory = File.basename File.dirname(file)
+      transformed_content = Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
 
-      Template.create content: file_content, name: file_name, directory: file_directory, theme_id: id
-      content << Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
+      Template.create(
+        content: file_content,
+        name: file_name,
+        directory: file_directory,
+        theme_id: id,
+        transformed_content: transformed_content
+      )
+
+      content << transformed_content
     end
 
     content

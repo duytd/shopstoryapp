@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506085936) do
+ActiveRecord::Schema.define(version: 20160507021241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -544,8 +544,9 @@ ActiveRecord::Schema.define(version: 20160506085936) do
     t.string   "name"
     t.text     "content"
     t.integer  "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.text     "transformed_content"
   end
 
   add_index "templates", ["theme_id"], name: "index_templates_on_theme_id", using: :btree

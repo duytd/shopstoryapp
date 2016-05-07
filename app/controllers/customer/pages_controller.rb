@@ -31,7 +31,6 @@ class Customer::PagesController < Customer::BaseController
   private
   def authenticate_order!
     @order = current_order
-    @order.reset_confirmation_token if @order.is_a?(ShopstoryTicket::Booking)
 
     unless @order && @order.payment
       redirect_to customer_root_path

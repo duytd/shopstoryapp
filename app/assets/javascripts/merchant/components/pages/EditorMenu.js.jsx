@@ -23,10 +23,10 @@ var EditorMenu = React.createClass({
 
     $.each(this.props.templates, function(key,value){
       var templateGroup = (
-        <li key={"group_template_" + key}>
+        <li key={"group_template_" + key} className="template-node">
           {(key != "templates") ?
-          <a><span><i className="fa fa-folder"></i></span>{key}</a> : null}
-          <ul>
+          <a onClick={this.showSubitems}><span><i className="fa fa-folder"></i></span>{key}</a> : null}
+          <ul className={"subitems " + ((key != "templates") ? "" : "root")}>
             {value.map(function(template, index) {
               return <li key={"template" + index}><a onClick={this.updateTemplate.bind(this, template.id)}>{template.name}</a></li>
             }.bind(this))}
@@ -87,5 +87,8 @@ var EditorMenu = React.createClass({
     $.get(Routes.edit_merchant_template_path(templateId), function(response) {
       this.props.updateFile(response.data, response.url, response.reset_url, "html");
     }.bind(this))
+  },
+  showSubitems: function(e) {
+    $(e.target).parent().parent().find(".subitems").slideToggle();
   }
 })
