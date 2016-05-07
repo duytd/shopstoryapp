@@ -4,11 +4,11 @@ class Merchant < User
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
 
   before_validation :generate_subdomain, on: :create, if: Proc.new {|a| a.email.present?}
-  after_create :create_merchant_shop, :create_tenant
+  after_create :create_tenant, :create_merchant_shop
 
-  has_one :shop, foreign_key: "user_id"
+  has_one :shop, foreign_key: "user_id", dependent: :nullify
   has_one :theme, through: :shop
-  has_one :subscription, foreign_key: :user_id
+  has_one :subscription, foreign_key: :user_id, dependent: :destroy
 
   def has_subscription?
     subscription.present?

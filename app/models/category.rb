@@ -53,7 +53,7 @@ class Category < ActiveRecord::Base
   def vendor_filter
     filter_list = []
     products.each do |p|
-      unless filter_list.include?(p.vendor) || p.vendor.nil?
+      unless filter_list.include?(p.vendor) || p.vendor.blank?
         filter_list << p.vendor
       end
     end

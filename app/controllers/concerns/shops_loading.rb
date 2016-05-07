@@ -8,7 +8,7 @@ module ShopsLoading
   included do
     helper Customer::BaseHelper
     layout "customer/layouts/application"
-    before_action :load_global_variables
+    before_action :load_global_variables, except: [:create, :update, :destroy]
   end
 
   private
@@ -30,7 +30,7 @@ module ShopsLoading
       },
       current_customer: current_customer,
       currency: current_shop.currency,
-      cart: current_order.order_products,
+      cart: current_order.order_products.map{|op| Customer::OrderProductPresenter.new(op)},
       mobile: browser.device.mobile?,
       menu: {
         main_menu: Menu.main_menu

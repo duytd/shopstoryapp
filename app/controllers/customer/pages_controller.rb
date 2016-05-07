@@ -3,7 +3,7 @@ class Customer::PagesController < Customer::BaseController
   include PaymentHelper
 
   def home
-    @products = Product.latest
+    @products = Product.latest.featured.map{|p| Customer::ProductPresenter.new(p)}
   end
 
   def checkout

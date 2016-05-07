@@ -2,6 +2,12 @@ class Customer::CategoriesController < Customer::BaseController
   load_and_authorize_resource
 
   def index
+    @categories = Category.all.map{|c| Customer::CategoryPresenter.new(c, {limit: 3})}
+
+    @props = {
+      globalVars: @globalVars,
+      categories: @categories
+    }
   end
 
   def show

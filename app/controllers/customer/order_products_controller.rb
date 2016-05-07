@@ -13,7 +13,7 @@ class Customer::OrderProductsController < Customer::BaseController
     end
 
     if order_product.save
-      render json: current_order.order_products, status: :ok
+      render json: current_order.order_products.map{|op| Customer::OrderProductPresenter.new(op)}, status: :ok
     else
       render json: order_product.errors.full_messages, status: :unprocessable_entity
     end
@@ -21,7 +21,7 @@ class Customer::OrderProductsController < Customer::BaseController
 
   def update
     if @order_product.update order_product_params
-      render json: current_order.order_products, status: :ok
+      render json: current_order.order_products.map{|op| Customer::OrderProductPresenter.new(op)}, status: :ok
     else
       render json: @order_product.errors.full_messages, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class Customer::OrderProductsController < Customer::BaseController
 
   def destroy
     @order_product.destroy
-    render json: current_order.order_products, status: :ok
+    render json: current_order.order_products.map{|op| Customer::OrderProductPresenter.new(op)}, status: :ok
   end
 
   private
@@ -51,7 +51,7 @@ class Customer::OrderProductsController < Customer::BaseController
   end
 
   def authenticate_order_product
-    unless @order_product.order.unprocessed?
+    unless @order_product.product_order.unprocessed?
       head :unauthorized
     end
   end

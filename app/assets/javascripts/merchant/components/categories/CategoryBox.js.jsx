@@ -12,7 +12,7 @@ var CategoryBox = React.createClass({
       categoryList = (
         <div className="text-center">
           <p>{I18n.t("merchant.admin.messages.no_category")}</p>
-          <a href={this.props.url} className="btn btn-lg btn-primary">
+          <a href={this.props.new_url} className="btn btn-lg btn-primary">
             {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>

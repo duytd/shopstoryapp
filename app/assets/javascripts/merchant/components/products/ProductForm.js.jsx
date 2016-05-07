@@ -253,6 +253,17 @@ var ProductForm = React.createClass({
                 {I18n.t("merchant.admin.forms.online")}
               </label>
             </div>
+
+            <h4>{I18n.t("merchant.admin.forms.featured_title")}</h4>
+            <div className="form-group">
+              <label className="styled-cb">
+                <input type="hidden" name="product[featured]" value="0" />
+                <input ref="checkbox" type="checkbox" name="product[featured]" value="1"
+                  defaultChecked={(this.props.product) ? this.state.product.featured : false} />
+                <i className="fa"></i>
+                {I18n.t("merchant.admin.forms.mark_as_featured")}
+              </label>
+            </div>
           </div>
 
           <div className="block">

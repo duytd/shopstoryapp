@@ -92,7 +92,9 @@ en:
         categories_title: "Categories"
         images_title: "Images"
         variations_title: "Variations"
+        featured_title: "Featured"
         online: "Online"
+        mark_as_featured: "Mark As Featured"
         dropzone_instruction: "Drop files or click here to upload"
       messages:
         no_product: "You have not created any product. Create one to start selling now"

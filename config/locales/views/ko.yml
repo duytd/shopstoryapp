@@ -95,6 +95,8 @@ ko:
         categories_title: "카테고리"
         images_title: "이미지"
         variations_title: "옵션"
+        featured_title: "Featured"
+        mark_as_featured: "Mark As Featured"
         online: "온라인"
         dropzone_instruction: "파일을 드래그앤드롭 하거나 클릭하여 업로드하세요"
       messages:

@@ -6,11 +6,8 @@ class Shop < ActiveRecord::Base
 
   belongs_to :theme
   belongs_to :merchant, foreign_key: "user_id"
-  has_many :discounts, dependent: :destroy
-  has_many :pages, dependent: :destroy
-  has_many :menus, dependent: :destroy
   has_many :theme_bundles, dependent: :destroy
-  has_many :payment_method_shops
+  has_many :payment_method_shops, dependent: :destroy
   has_many :payment_methods, through: :payment_method_shops
   belongs_to :term, class_name: "CustomPage", foreign_key: "term_id"
   belongs_to :privacy, class_name: "CustomPage", foreign_key: "privacy_id"
@@ -29,6 +26,7 @@ class Shop < ActiveRecord::Base
   after_create :import_assets
   after_create :import_email_templates
   after_create :import_payment_methods
+  before_destroy :drop_tenant
 
   enum weight_unit: [:kg, :g]
 
@@ -48,6 +46,7 @@ class Shop < ActiveRecord::Base
   end
 
   def import_assets
+     Apartment::Tenant.switch subdomain
     self.theme.import_assets self
   end
 
@@ -62,6 +61,7 @@ class Shop < ActiveRecord::Base
   end
 
   def import_email_templates
+    Apartment::Tenant.switch subdomain
     template_dir = "#{Rails.root}/app/views/customer/template_mailer"
 
     Dir.glob("#{template_dir}/**/*.liquid") do |file|
@@ -81,5 +81,9 @@ class Shop < ActiveRecord::Base
 
   def strip_white_space
     self.domain = domain.strip unless domain.nil?
+  end
+
+  def drop_tenant
+    Apartment::Tenant.drop subdomain
   end
 end

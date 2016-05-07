@@ -124,7 +124,7 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def product_params
-    permitted = Product.globalize_attribute_names + [:price, :sale_off, :visibility, :flat_shipping_rate, :pay_shipping_on_delivery,
+    permitted = Product.globalize_attribute_names + [:price, :sale_off, :visibility, :flat_shipping_rate, :featured, :pay_shipping_on_delivery,
       :vendor, :sku, :in_stock, category_ids: [], product_images: [],
       variations_attributes: [:id, :sku, :price, :image, :in_stock, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
       variation_options_attributes: [:id, :name, :_destroy, variation_option_values_attributes: [:id, :name, :_destroy]],

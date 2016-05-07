@@ -34,6 +34,7 @@ class Product < ActiveRecord::Base
 
   scope :visible, ->{where visibility: true}
   scope :available, ->{where "in_stock > ?", 0}
+  scope :featured, ->{where featured: true}
   scope :filtered_by_price, ->price_range{
     if price_range.present?
       start_price = price_range[0].to_f
