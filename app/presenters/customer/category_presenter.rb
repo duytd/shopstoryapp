@@ -1,12 +1,12 @@
 class Customer::CategoryPresenter < Presenter
-  def initialize object, options
+  def initialize object, options={}
     super object
     @limit = options[:limit]
   end
 
   def as_json(*)
     products = if @limit.nil?
-      @object.products
+      []
     else
       @object.products.limit @limit
     end

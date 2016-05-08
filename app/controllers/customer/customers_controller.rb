@@ -5,7 +5,6 @@ class Customer::CustomersController < Customer::BaseController
   def show
     @props = {
       globalVars: @globalVars,
-      customer: current_customer,
       orders: current_customer.product_orders.having_payment,
       bookings: current_customer.bookings.having_payment
     }

@@ -4,8 +4,7 @@ class Customer::CustomPagesController < Customer::BaseController
 
     @props = {
       globalVars: @globalVars,
-      customer: current_customer,
-      page: @custom_page
+      page: Customer::CustomPagePresenter.new(@custom_page)
     }
   end
 end

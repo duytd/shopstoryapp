@@ -23,22 +23,23 @@ class Customer::CategoriesController < Customer::BaseController
                                   .filtered_by_vendor(params[:vendor].try(:split, ","))
                                   .filtered_by_price(params[:price])
                                   .sorted_by(params[:sorted_by], params[:sort_direction])
-                                  .page params[:page]
-
+                                  .page(params[:page])
+                                  
+                                  
     respond_to do |format|
       format.html do
         render_props
         render :show
       end
-      format.json {render json: paginating(@products, {data: @products})}
+      format.json {render json: paginating(@products, {data: @products.map{|p| Customer::ProductPresenter.new(p)}})}
     end
   end
 
   def render_props
     @props = paginating @products, {
       globalVars: @globalVars,
-      category: @category,
-      products: @products,
+      category: Customer::CategoryPresenter.new(@category),
+      products: @products.map{|p| Customer::ProductPresenter.new(p)},
       pagination_url: customer_category_path(@category),
       filter: {
         url: filter_customer_category_path(@category),

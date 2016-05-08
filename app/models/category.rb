@@ -38,16 +38,21 @@ class Category < ActiveRecord::Base
     price_list.sort!
     min = price_list.first
     max = price_list.last
-    unit = (max - min)/4.to_i
-    last_tick = min + 4*unit
-    last_tick = max if last_tick < max
 
-    [
-      [min, min + 1*unit],
-      [min + 1*unit, min + 2*unit],
-      [min + 2*unit, min + 3*unit],
-      [min + 3*unit, last_tick]
-    ]
+    if min < max
+      unit = (max - min)/4.to_i
+      last_tick = min + 4*unit
+      last_tick = max if last_tick < max
+
+      [
+        [min, min + 1*unit],
+        [min + 1*unit, min + 2*unit],
+        [min + 2*unit, min + 3*unit],
+        [min + 3*unit, last_tick]
+      ]
+    else
+      []
+    end
   end
 
   def vendor_filter
