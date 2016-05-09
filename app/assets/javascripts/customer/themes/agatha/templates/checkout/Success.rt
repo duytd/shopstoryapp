@@ -1,0 +1,21 @@
+<Layout globalVars="{this.props.globalVars}">
+  <div class="row text-center">
+    <h1>{I18n.t("checkout.texts.thank_you")}</h1>
+    <p>{I18n.t("checkout.texts.order_info", {order_number: this.props.order_info.order_number})}</p>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <p rt-if="this.props.method && this.props.method == 'vbank'">{I18n.t("inicis.methods.vbank.note")}</p>
+        <div rt-if="this.props.order_info.transaction_info" rt-repeat="info in this.props.order_info.transaction_info" key="info_{infoIndex}" class="row">
+          <div class="col-xs-6 text-right">
+            <label>{info.label + ":"}</label>
+          </div>
+          <div class="col-xs-6 text-left">
+            {info.value}
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <p class="small"><i>{I18n.t("checkout.texts.support", {email: this.props.order_info.support_email})}</i></p>
+  </div>
+</Layout>

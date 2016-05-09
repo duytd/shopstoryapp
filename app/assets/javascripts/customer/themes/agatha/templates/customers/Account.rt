@@ -1,0 +1,72 @@
+<Layout globalVars={this.state.globalVars} updateCart={this.updateCart}
+  <div class="account">
+    <h1>{I18n.t("customers.account.title")}</h1>
+
+    <div class="row">
+      <div class="col-sm-9">
+        <h3>{I18n.t("customers.account.orders")}</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{I18n.t("customers.account.fields.order")}</th>
+              <th>{I18n.t("customers.account.fields.date")}</th>
+              <th>{I18n.t("customers.account.fields.status")}</th>
+              <th>{I18n.t("customers.account.fields.payment_status")}</th>
+              <th>{I18n.t("customers.account.fields.total")}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr rt-repeat="order in this.props.orders" key="order_{orderIndex}">
+              <td>
+                <a href="{Routes.customer_order_path.localize(order.id)}">
+                  #{order.id}
+                </a>
+              </td>
+              <td>{order.created_at}</td>
+              <td>{order.status.toUpperCase()}</td>
+              <td>{order.payment.state.toUpperCase()}</td>
+              <td>{I18n.toCurrency(order.total, {precision: 0, unit: order.currency})}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div rt-if="this.props.bookings.length > 0">
+          <h3>{I18n.t("customers.account.bookings")}</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{I18n.t("customers.account.fields.booking")}</th>
+                <th>{I18n.t("customers.account.fields.date")}</th>
+                <th>{I18n.t("customers.account.fields.ticket_sent_at")}</th>
+                <th>{I18n.t("customers.account.fields.status")}</th>
+                <th>{I18n.t("customers.account.fields.payment_status")}</th>
+                <th>{I18n.t("customers.account.fields.total")}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr rt-repeat="booking in this.props.bookings" key="booking_{bookingIndex}">
+                <td>
+                  <a href="{Routes.customer_order_path.localize(booking.id)}">
+                    {booking.id}
+                  </a>
+                </td>
+                <td>{booking.created_at}</td>
+                <td>{booking.ticket_sent_at}</td>
+                <td>{booking.status.toUpperCase()}</td>
+                <td>{booking.payment.state.toUpperCase()}</td>
+                <td>{I18n.toCurrency(booking.total, {precision: 0, unit: booking.currency})}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <h3>{this.props.customer.first_name} {this.props.customer.last_name}</h3>
+        <p>{this.props.customer.email}</p>
+      </div>
+    </div>
+  </div>
+</Layout>

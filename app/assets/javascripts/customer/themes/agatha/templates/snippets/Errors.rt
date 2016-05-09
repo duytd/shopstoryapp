@@ -1,0 +1,3 @@
+<div class="alert-danger small">
+  <p rt-repeat="error in this.props.errors" key="error_{errorIndex}">{error}</p>
+</div>

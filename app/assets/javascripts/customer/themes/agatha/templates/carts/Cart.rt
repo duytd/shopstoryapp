@@ -1,0 +1,48 @@
+<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+  <div class="cart">
+    <h2>{I18n.t("cart.title", {item_count: this.state.globalVars.cart.length})}</h2>
+    <div class="col-xs-12">
+      <Errors rt-if="this.props.cartErrors && this.props.cartErrors.length > 0" errors={this.props.cartErrors} />
+      <Errors rt-if="this.state.cartErrors && this.state.cartErrors.length > 0" errors={this.state.cartErrors} />
+
+      {(this.state.globalVars.cart.length == 0) ? I18n.t("cart.empty") : null}
+
+      <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.cart">
+        <div class="col-xs-3">
+          <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
+            <img rt-if="(item.variation.master && item.variation.master_image) || (!item.variation.master && !item.variation.has_image)" src="{item.variation.master_image.image.url}" class="img-responsive image" />
+            <img rt-if="!item.variation.master && item.variation.has_image" src="{item.variation.image.url}" class="img-responsive image" />
+          </a>
+        </div>
+
+        <div class="col-xs-3 name">
+          <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
+            <strong>{translate(item.variation, "name")}</strong>
+          </a>
+        </div>
+
+        <div class="col-xs-3">
+          <p class="price">{I18n.toCurrency(item.unit_price, {precision: 0, unit: this.state.globalVars.currency})}</p>
+        </div>
+
+        <div class="col-xs-3">
+          <i class="fa fa-minus" data-item={item.id} data-quantity={item.quantity}
+            onClick={this.substractItemQuantity}></i>
+          <span class="quantity">{item.quantity}</span>
+          <i class="fa fa-plus" data-item={item.id} data-quantity={item.quantity}
+            onClick={this.addItemQuantity}></i>
+          <p class="small">
+            <a data-item={item.id} onClick={this.removeItem}>{I18n.t("cart.remove")}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 text-center cart-buttons">
+      <button rt-if="this.props.globalVars.cart.length > 0" class="btn btn-lg btn-primary" onClick={this.checkout}>{I18n.t("cart.buy_now")}</button>
+      <a class="btn btn-lg btn-default" href="{Routes.customer_root_path.localize()}">
+        {I18n.t("cart.continue_shopping")}
+      </a>
+    </div>
+  </div>
+</Layout>
