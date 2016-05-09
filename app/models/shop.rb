@@ -23,9 +23,9 @@ class Shop < ActiveRecord::Base
   before_validation :set_default_values, on: :create
   before_validation :strip_white_space
   before_create :generate_api_key
-  after_create :import_assets
   after_create :import_email_templates
   after_create :import_payment_methods
+  after_save :install_theme, if: :theme_id_changed?
   before_destroy :drop_tenant
 
   enum weight_unit: [:kg, :g]
@@ -45,9 +45,9 @@ class Shop < ActiveRecord::Base
     self.country = Settings.shop.default_country
   end
 
-  def import_assets
+  def install_theme
      Apartment::Tenant.switch subdomain
-    self.theme.import_assets self
+    self.theme.install self
   end
 
   def import_payment_methods

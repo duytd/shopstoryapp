@@ -104,7 +104,7 @@
     <li class="item">
       <%= link_to "javascript:void(0)" do %>
         <i class="fa fa-th-large"></i>
-        <span class="item-label"><%= t "merchant.admin.menu.theme" %></span>
+        <span class="item-label"><%= t "merchant.admin.menu.design" %></span>
       <% end %>
 
       <ul class="subitems">
@@ -115,10 +115,17 @@
           </li>
         <% end %>
 
+        <%= link_to merchant_design_themes_path do %>
+          <li>
+            <i class="fa fa-magic"></i>
+            <%= t "merchant.admin.menu.themes" %>
+          </li>
+        <% end %>
+
         <%= link_to merchant_editor_path do %>
           <li>
             <i class="fa fa-code"></i>
-            <%= t "merchant.admin.menu.theme_editor" %>
+            <%= t "merchant.admin.menu.editor" %>
           </li>
         <% end %>
 

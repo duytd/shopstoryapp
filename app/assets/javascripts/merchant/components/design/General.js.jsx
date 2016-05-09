@@ -1,4 +1,4 @@
-var design = {};
+window.design = window.design || {};
 
 design.GeneralForm = React.createClass({
   getInitialState: function() {

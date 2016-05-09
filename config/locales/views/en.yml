@@ -47,8 +47,9 @@ en:
         user_settings: "Account"
         search: "Search"
         view_shop: "View your shop"
-        theme: "Design"
-        asset: "Editor"
+        design: "Design"
+        themes: "Themes"
+        editor: "Editor"
         shipping: "Shipping"
         shipping_rates: "Shipping Rates"
         email_templates: "Email Templates"
@@ -181,6 +182,9 @@ en:
       email_templates:
         title: "Email Templates"
         preview: "Email Preview"
+      themes:
+        index: "Themes"
+        current: "Current"
       reports:
         product:
           data_title: "Number of Sales"

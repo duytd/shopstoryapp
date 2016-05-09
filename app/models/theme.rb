@@ -1,6 +1,9 @@
 require "rt"
 
 class Theme < ActiveRecord::Base
+  ROOT_DIR = "#{Rails.root}/app/assets/javascripts/customer/themes"
+  mount_uploader :image, ThemeImageUploader
+
   has_many :shops
   has_many :theme_bundles, dependent: :nullify
   has_many :assets, dependent: :nullify
@@ -15,7 +18,7 @@ class Theme < ActiveRecord::Base
     find_by default: true
   end
 
-  def import_assets shop, options={}
+  def install shop, options={}
     bundle = ThemeBundle.where(theme_id: id, shop_id: shop.id).first_or_initialize
     bundle.javascript = bundle_javascripts unless options[:javascript] == false
     bundle.stylesheet = bundle_stylesheets unless options[:stylesheet] == false
@@ -24,9 +27,17 @@ class Theme < ActiveRecord::Base
     bundle.save!
   end
 
+  def self.theme_dirs
+    Dir.entries(ROOT_DIR).reject{|dir_name| dir_name =~ /^\.{1,2}$/}
+  end
+
+  def self.get_theme_information dir
+    settings = File.read "#{ROOT_DIR}/#{dir}/config/settings.json"
+    JSON.parse settings
+  end
+
   def read_file path
-    root_dir = "#{Rails.root}/app/assets/javascripts/customer/themes"
-    File.read "#{root_dir}/#{directory}/#{path}"
+    File.read "#{ROOT_DIR}/#{directory}/#{path}"
   end
 
   private
@@ -37,8 +48,9 @@ class Theme < ActiveRecord::Base
     Dir.glob("#{locales_dir}/*.json") do |file|
       file_content = File.read file
       file_name = File.basename file
-      Asset::Locale.create content: file_content, name: file_name, theme_id: id
-      locales << file_content
+
+      asset = Asset::Locale.first_or_create content: file_content, name: file_name, theme_id: id
+      locales << asset.file_content
     end
 
     "var I18n = I18n || {}; I18n.translations = {#{locales.join(",")}}"
@@ -51,9 +63,9 @@ class Theme < ActiveRecord::Base
     Dir.glob("#{stylesheets_dir}/*.scss") do |file|
       file_content = File.read file
       file_name = File.basename file
-      Asset::Stylesheet.create content: file_content, name: file_name, theme_id: id
 
-      content << file_content
+      asset = Asset::Stylesheet.first_or_create content: file_content, name: file_name, theme_id: id
+      content << asset.file_content
     end
 
     content
@@ -66,9 +78,9 @@ class Theme < ActiveRecord::Base
     Dir.glob("#{javascripts_dir}/*.js") do |file|
       file_content = File.read file
       file_name = File.basename file
-      Asset::Javascript.create content: file_content, name: file_name, theme_id: id
 
-      content << file_content
+      asset = Asset::Javascript.first_or_create content: file_content, name: file_name, theme_id: id
+      content << asset.file_content
     end
 
     content
@@ -84,7 +96,7 @@ class Theme < ActiveRecord::Base
       file_directory = File.basename File.dirname(file)
       transformed_content = Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
 
-      Template.create(
+      template = Template.first_or_create(
         content: file_content,
         name: file_name,
         directory: file_directory,
@@ -92,7 +104,7 @@ class Theme < ActiveRecord::Base
         transformed_content: transformed_content
       )
 
-      content << transformed_content
+      content << template.transformed_content
     end
 
     content

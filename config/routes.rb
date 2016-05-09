@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       root "pages#dashboard"
       resources :plans, except: :show
       resources :payment_methods, only: [:index, :edit, :update]
+      resources :themes, only: [:index, :edit, :update] do
+        post :install, on: :collection
+      end
     end
 
     devise_for :admins, path: "", path_names: {sign_in: "login", sign_out: "logout"}
@@ -103,6 +106,7 @@ Rails.application.routes.draw do
 
     namespace :design do
       resource :general, only: [:edit, :update]
+      resources :themes, only: [:index, :create]
     end
 
     resources :orders, except: :show do

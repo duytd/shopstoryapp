@@ -47,8 +47,9 @@ ko:
         user_settings: "계정"
         search: "찾기"
         view_shop: "내 샵 보기"
-        theme: "Design"
-        asset: "수정"
+        design: "Design"
+        themes: "Themes"
+        editor: "수정"
         shipping: "배송"
         shipping_rates: "배송료"
         email_templates: "이메일 템플렛"
@@ -184,6 +185,9 @@ ko:
       email_templates:
         title: "이메일 템플렛"
         preview: "이메일 미리보기"
+      themes:
+        index: "Themes"
+        current: "Current"
       reports:
         product:
           data_title: "Number of Sales"

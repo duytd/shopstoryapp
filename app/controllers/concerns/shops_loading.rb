@@ -28,7 +28,7 @@ module ShopsLoading
         privacy_manager: current_shop.privacy_manager,
         privacy_email: current_shop.privacy_email
       },
-      current_customer: Customer::CustomerPresenter.new(current_customer),
+      current_customer: current_customer ? Customer::CustomerPresenter.new(current_customer) : nil,
       currency: current_shop.currency,
       cart: current_order.order_products.map{|op| Customer::OrderProductPresenter.new(op)},
       mobile: browser.device.mobile?,
