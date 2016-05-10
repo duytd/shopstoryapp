@@ -1,0 +1,12 @@
+<Layout globalVars="{this.props.globalVars}">
+  <div class="category-listing">
+    <div class="listing" rt-repeat="category in this.props.categories" key="category_{categoryIndex}">
+      <a href="{Routes.customer_category_path.localize(category.slug)}">
+        <h2>{translate(category,"name")}</h2>
+      </a>
+      <div class="row">
+        <ProductItem rt-repeat="product in category.products" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -79,6 +79,7 @@ ko:
         bulk_actions: "Bulk Actions"
         export: "Export"
         import: "Import"
+        current: "Current"
       pagination:
         next: "다음"
         first: "처음"

@@ -8,6 +8,8 @@ class Template < ActiveRecord::Base
 
   before_save :transform, if: :content_changed?
 
+  scope :filter_by_theme, ->theme{where theme_id: theme.id}
+
   def path
     if root_directory?
       "templates/#{name}.rt"

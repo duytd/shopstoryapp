@@ -76,6 +76,7 @@ en:
         bulk_actions: "Bulk Actions"
         export: "Export"
         import: "Import"
+        current: "Current"
       pagination:
         next: "Next"
         first: "First"

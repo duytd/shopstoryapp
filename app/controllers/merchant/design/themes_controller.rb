@@ -8,6 +8,16 @@ class Merchant::Design::ThemesController < Merchant::BaseController
     }
   end
 
+  def show
+    @theme = Theme.find params[:id]
+
+    @props = {
+      theme: @theme,
+      current: @theme.id == current_shop.theme.id,
+      install_url: merchant_design_themes_path
+    }
+  end
+
   def create
     @theme = Theme.find params[:theme_id]
     current_shop.theme = @theme

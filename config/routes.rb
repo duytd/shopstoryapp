@@ -106,7 +106,7 @@ Rails.application.routes.draw do
 
     namespace :design do
       resource :general, only: [:edit, :update]
-      resources :themes, only: [:index, :create]
+      resources :themes, only: [:index, :show, :create]
     end
 
     resources :orders, except: :show do

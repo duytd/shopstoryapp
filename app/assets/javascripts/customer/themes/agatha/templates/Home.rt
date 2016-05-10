@@ -1,7 +1,8 @@
 <Layout globalVars="{this.props.globalVars}" updateCart="{this.updateCart}">
   <div class="home">
-    <h2>{I18n.t("products.featured_products")}</h2>
+    <div class="heading" rt-if="this.props.products.length > 0">
+      <span>{I18n.t("products.featured_products")}</span>
+    </div>
     <ProductList products="{this.props.products}" currency="{this.props.globalVars.currency}" />
-    <LatestEvents />
   </div>
 </Layout>

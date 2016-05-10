@@ -49,8 +49,8 @@ class Theme < ActiveRecord::Base
       file_content = File.read file
       file_name = File.basename file
 
-      asset = Asset::Locale.first_or_create content: file_content, name: file_name, theme_id: id
-      locales << asset.file_content
+      asset = Asset::Locale.where(name: file_name, theme_id: id).first_or_create content: file_content
+      locales << asset.content
     end
 
     "var I18n = I18n || {}; I18n.translations = {#{locales.join(",")}}"
@@ -64,8 +64,8 @@ class Theme < ActiveRecord::Base
       file_content = File.read file
       file_name = File.basename file
 
-      asset = Asset::Stylesheet.first_or_create content: file_content, name: file_name, theme_id: id
-      content << asset.file_content
+      asset = Asset::Stylesheet.where(name: file_name, theme_id: id).first_or_create content: file_content
+      content << asset.content
     end
 
     content
@@ -79,8 +79,8 @@ class Theme < ActiveRecord::Base
       file_content = File.read file
       file_name = File.basename file
 
-      asset = Asset::Javascript.first_or_create content: file_content, name: file_name, theme_id: id
-      content << asset.file_content
+      asset = Asset::Javascript.where(name: file_name, theme_id: id).first_or_create content: file_content
+      content << asset.content
     end
 
     content
@@ -96,11 +96,9 @@ class Theme < ActiveRecord::Base
       file_directory = File.basename File.dirname(file)
       transformed_content = Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
 
-      template = Template.first_or_create(
+      template = Template.where(name: file_name, theme_id: id).first_or_create(
         content: file_content,
-        name: file_name,
         directory: file_directory,
-        theme_id: id,
         transformed_content: transformed_content
       )
 
