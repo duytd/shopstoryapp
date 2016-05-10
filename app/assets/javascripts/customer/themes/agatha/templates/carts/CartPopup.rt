@@ -1,15 +1,8 @@
 <div id="#cart" class="{this.props.isCartOpened ? 'cart-container open' : 'cart-container'}">
-  <div class="col-xs-12 text-center cart-buttons">
-    <div class="row text-right">
-      <a onClick={this.props.closeCart}>
-        <i class="fa fa-2x fa-times-circle-o"></i>
-      </a>
-    </div>
-
-    <button rt-if="this.props.globalVars.cart.length > 0" class="btn btn-primary" onClick={this.checkout}>{I18n.t("cart.buy_now")}</button>
-    <button class="btn btn-default" onClick={this.props.closeCart}>
-      {I18n.t("cart.continue_shopping")}
-    </button>
+  <div class="text-right">
+    <a onClick={this.props.closeCart}>
+      <i class="fa fa-times-circle-o"></i>
+    </a>
   </div>
 
   <div class="col-xs-12">
@@ -21,8 +14,7 @@
     <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.cart">
       <div class="col-xs-3">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
-          <img rt-if="(item.variation.master && item.variation.master_image) || (!item.variation.master && !item.variation.has_image)" src="{item.variation.master_image.image.url}" class="img-responsive image" />
-          <img rt-if="!item.variation.master && item.variation.has_image" src="{item.variation.image.url}" class="img-responsive image" />
+          <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-responsive image" />
         </a>
       </div>
 
@@ -47,5 +39,12 @@
         </p>
       </div>
     </div>
+  </div>
+
+  <div class="col-xs-12 text-center cart-buttons">
+    <button rt-if="this.props.globalVars.cart.length > 0" class="btn btn-primary" onClick={this.checkout}>{I18n.t("cart.buy_now")}</button>
+    <button class="btn btn-default" onClick={this.props.closeCart}>
+      {I18n.t("cart.continue_shopping")}
+    </button>
   </div>
 </div>

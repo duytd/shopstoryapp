@@ -11,7 +11,7 @@
     <div class="col-md-6 col-sm-6 image-slider">
       <ProductSlider rt-if="this.props.variations.length > 0 &&  this.state.variation.has_image" images="{[this.state.variation]}" />
       <ProductSlider rt-if="this.props.variations.length > 0 &&  !this.state.variation.has_image" images="{[this.state.variation.master_image]}" />
-      <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" />
+      <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" zoomType="inner" />
     </div>
 
     <div class="col-md-6 col-sm-6">

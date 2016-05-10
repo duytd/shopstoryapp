@@ -17,8 +17,12 @@ var ProductSlider = React.createClass({
     this.setState({activeIndex: index});
   },
   loadElevateZoom: function() {
+    var zoomType = this.props.zoomType || "lens";
+    var cursor = this.props.cursor || "crosshair";
+
     $(".ps-feature img").elevateZoom({
-      cursor: "crosshair"
+      cursor: cursor,
+      zoomType: zoomType
     });
   }
 })

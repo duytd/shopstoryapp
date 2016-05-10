@@ -1,2 +1,2 @@
 //= require ./locales/all
-//= require ./assets/javascripts/shop
+//= require_tree ./assets/javascripts

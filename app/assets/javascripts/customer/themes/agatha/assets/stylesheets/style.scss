@@ -27,12 +27,13 @@ a {
 
 /* Buttons */
 .btn {
+  border-radius: 0;
   font-weight: 400;
 }
 .btn-primary {
-  background: #3498db;
+  background: #000;
   color: #fff !important;
-  border: 1px solid #3498db;
+  border: 1px solid #000;
 }
 
 /* Alert, Label */
@@ -74,11 +75,19 @@ label {
 
 /* Header */
 .header {
+  z-index: 9999;
+  .container {
+    position: relative;
+  }
   .logo {
-    padding: 20px 0;
+    text-align: center;
+    padding: 10px 0 30px;
+    a {
+      display: inline-block;
+    }
     img {
       display: block;
-      max-height: 70px;
+      max-height: 120px;
       margin: auto;
     }
   }
@@ -156,6 +165,10 @@ label {
   p.small {
     margin-top: 10px;
   }
+  label {
+    text-transform: uppercase;
+    font-weight: 700;
+  }
 }
 
 .term, .privacy {
@@ -198,16 +211,18 @@ label {
 
 .cart-container {
   width: 320px;
-  background: #eee;
-  bottom: 0;
-  display: block;
+  display: none;
   padding: 0px;
-  position: fixed;
-  right: -320px;
-  top: 0;
+  position: absolute;
+  top: 40px;
+  right: 0;
   z-index: 999;
   padding: 5px;
   overflow: auto;
+  background: #fff;
+  border-style: solid;
+  border-width: 0 1px 1px 1px;
+  border-color: #c9c9c9;
   transition-property: all;
 	transition-duration: 0.5s;
   -webkit-transform: translateZ(0);
@@ -216,7 +231,7 @@ label {
     text-align: center;
   }
   &.open {
-    right: 0;
+    display: block;
   }
   .row {
     margin-bottom: 10px;

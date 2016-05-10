@@ -10,8 +10,7 @@
       <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.cart">
         <div class="col-xs-3">
           <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
-            <img rt-if="(item.variation.master && item.variation.master_image) || (!item.variation.master && !item.variation.has_image)" src="{item.variation.master_image.image.url}" class="img-responsive image" />
-            <img rt-if="!item.variation.master && item.variation.has_image" src="{item.variation.image.url}" class="img-responsive image" />
+            <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-responsive image" />
           </a>
         </div>
 
