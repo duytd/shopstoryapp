@@ -12,12 +12,15 @@
       </div>
       <div class="col-md-9">
         <div class="row">
-          <Sorter
-            sorter="{this.state.sorter}"
-            updateSorter="{this.updateSorter}" />
+          <div class="col-sm-12">
+            <Sorter
+              sorter="{this.state.sorter}"
+              updateSorter="{this.updateSorter}" />
+          </div>
         </div>
-
-        <ProductItem rt-repeat="product in this.state.data" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
+        <div class="row">
+          <ProductItem rt-repeat="product in this.state.data" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
+        </ProductItem>
       </div>
     </div>
 

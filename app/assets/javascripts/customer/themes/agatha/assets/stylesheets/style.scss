@@ -137,17 +137,16 @@ label {
     text-transform: uppercase;
   }
   .navbar-toggle {
-    border-color: #eee;
+    border: none;
     &:hover, &:active, &:focus {
       background: transparent;
-      border-color: #f1c40f;
       .icon-bar {
-        background-color: #f1c40f;
+        background-color: #222;
       }
     }
     .icon-bar {
-      background-color: #eee;
-      height: 1px;
+      background-color: #222;
+      height: 2px;
     }
   }
   .cart {
@@ -182,7 +181,7 @@ label {
 /* Category */
 .product-item {
   text-align: center;
-  min-height: 280px;
+  min-height: 360px;
   img {
     display: inline-block;
   }

@@ -113,6 +113,10 @@ Rails.application.routes.draw do
       delete :index, on: :collection
     end
 
+    resources :banners, except: :show do
+      delete :index, on: :collection
+    end
+
     resources :reports, only: [] do
       get :product, on: :collection
       get :order, on: :collection
