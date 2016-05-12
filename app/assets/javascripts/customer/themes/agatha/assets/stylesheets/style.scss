@@ -81,7 +81,8 @@ label {
   }
   .logo {
     text-align: center;
-    padding: 10px 0 30px;
+    padding: 10px 0 20px;
+    border-bottom: 1px solid #c7c7c7;
     a {
       display: inline-block;
     }
@@ -196,6 +197,7 @@ label {
 /* Cart */
 .cart {
   .item {
+    margin-bottom: 10px;
     img {
       max-height: 120px;
     }
@@ -274,7 +276,6 @@ label {
   }
   .ps-feature {
     margin: auto;
-    max-width: 400px;
     overflow: hidden;
     li {
       text-align: center;
@@ -434,4 +435,18 @@ label {
 
 img.payment-method-image {
   margin: 0 0 10px 10px;
+}
+
+.breadcrumb {
+  background: #fff;
+  padding: 10px 0;
+  span {
+    a {
+      text-transform: uppercase;
+    }
+    &:not(:last-child):after {
+      content: ">";
+      margin: 0 5px;
+    }
+  }
 }

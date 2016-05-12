@@ -5,6 +5,7 @@
 //= require nprogress-turbolinks
 //= require nprogress-ajax
 //= require bootstrap-sprockets
+//= require owl.carousel/dist/owl.carousel
 //= require elevatezoom/jquery.elevatezoom
 //= require js-routes
 //= require merchant/functions

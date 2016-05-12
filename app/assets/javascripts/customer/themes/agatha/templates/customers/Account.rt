@@ -1,11 +1,11 @@
-<Layout globalVars={this.state.globalVars} updateCart={this.updateCart}
-  <div class="account">
+<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+  <div class="account container">
     <h1>{I18n.t("customers.account.title")}</h1>
 
     <div class="row">
       <div class="col-sm-9">
         <h3>{I18n.t("customers.account.orders")}</h3>
-        <table class="table">
+        <table class="table" rt-if="this.props.orders.length > 0">
           <thead>
             <tr>
               <th>{I18n.t("customers.account.fields.order")}</th>
@@ -64,8 +64,8 @@
       </div>
 
       <div class="col-sm-3">
-        <h3>{this.props.customer.first_name} {this.props.customer.last_name}</h3>
-        <p>{this.props.customer.email}</p>
+        <h3>{this.props.globalVars.current_customer.first_name} {this.props.globalVars.current_customer.last_name}</h3>
+        <p>{this.props.globalVars.current_customer.email}</p>
       </div>
     </div>
   </div>

@@ -6,13 +6,13 @@
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.first_name")}</label>
       <Errors errors="{this.state.errors['shipping_address.first_name']}" />
       <input name="order[shipping_address_attributes][first_name]" type="text"
-        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : null}" class="{this.props.inputKlass}" />
+        defaultValue="{this.props.order.shipping_address ? this.props.order.shipping_address.first_name : (this.props.order.customer ? this.props.order.customer.first_name : null)}" class="{this.props.inputKlass}" />
     </div>
     <div class={this.props.halfContainerKlass}>
       <label>{I18n.t("checkout.shipping.last_name")}</label>
       <Errors errors="{this.state.errors['shipping_address.last_name']}" />
       <input name="order[shipping_address_attributes][last_name]" type="text"
-        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.last_name : null}" class="{this.props.inputKlass}" />
+        defaultValue="{this.props.order.shipping_address ? this.props.order.shipping_address.last_name : (this.props.order.customer ? this.props.order.customer.last_name : null)}" class="{this.props.inputKlass}" />
     </div>
   </div>
 
@@ -21,7 +21,7 @@
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.name")}</label>
       <Errors errors="{this.state.errors['shipping_address.first_name']}" />
       <input name="order[shipping_address_attributes][first_name]" type="text"
-        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : null}" class="{this.props.inputKlass}" />
+        defaultValue="{this.props.order.shipping_address ? this.props.order.shipping_address.first_name : (this.props.order.customer ? this.props.order.customer.first_name : null)}" class="{this.props.inputKlass}" />
     </div>
   </div>
 
@@ -30,7 +30,7 @@
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.email")}</label>
       <Errors errors="{this.state.errors['shipping_address.email']}" />
       <input name="order[shipping_address_attributes][email]" type="email"
-        defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.email : null}" class="{this.props.inputKlass}" />
+        defaultValue="{this.props.order.shipping_address ? this.props.order.shipping_address.email : (this.props.order.customer ? this.props.order.customer.email : null)}" class="{this.props.inputKlass}" />
     </div>
   </div>
 

@@ -1,0 +1,5 @@
+<div class="breadcrumb">
+  <span rt-repeat="item in this.props.breadcrumbs" key="breadcrumb_{itemIndex}">
+    <a href="{item.url}">{item.label}</a>
+  </span>
+</div>

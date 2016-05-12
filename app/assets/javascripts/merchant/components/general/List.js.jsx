@@ -70,6 +70,16 @@ var List = React.createClass({
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
           break;
+        case "banner":
+          itemChildren = (
+            <Banner
+              banner={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_banner_path(item.id)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
+          break;
         default:
           itemChildren = null;
           break;

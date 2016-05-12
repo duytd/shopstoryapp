@@ -11,6 +11,7 @@ class Customer::VariationPresenter < Presenter
       image: @object.variation_image,
       product_id: @object.product_id,
       product_slug: @object.product.slug,
+      values: @object.variation_option_values.map{|v| v.id}
     }
   end
 end

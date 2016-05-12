@@ -22,6 +22,9 @@ en:
     preview:
       title: "Preview"
   customer:
+    breadcrumbs:
+      home: "Home"
+      categories: "Categories"
     flash:
       cart_empty: "You cart must not be empty before checking out"
 
@@ -77,6 +80,7 @@ en:
         export: "Export"
         import: "Import"
         current: "Current"
+        add_banner_item: "Add Banner Item"
       pagination:
         next: "Next"
         first: "First"

@@ -8,8 +8,6 @@
     setCartErrors="{this.props.setCartErrors}"
     emptyCartErrors="{this.props.emptyCartErrors}"
   />
-  <div class="container">
-    {this.props.children}
-  </div>
+  {this.props.children}
   <Footer businessInfo="{this.props.globalVars.business_information}" />
 </div>

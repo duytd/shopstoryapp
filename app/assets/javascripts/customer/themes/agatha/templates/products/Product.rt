@@ -7,38 +7,40 @@
   setCartErrors="{this.setCartErrors}"
   emptyCartErrors="{this.emptyCartErrors}">
 
-  <div class="product col-md-12">
-    <div class="col-md-6 col-sm-6 image-slider">
-      <ProductSlider rt-if="this.props.variations.length > 0 &&  this.state.variation.has_image" images="{[this.state.variation]}" />
-      <ProductSlider rt-if="this.props.variations.length > 0 &&  !this.state.variation.has_image" images="{[this.state.variation.master_image]}" />
-      <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" zoomType="inner" />
-    </div>
+  <div class="product container">
+    <Breadcrumb breadcrumbs="{this.props.breadcrumbs}" />
+    <div class="row">
+      <div class="col-md-6 col-sm-6 image-slider">
+        <ProductSlider rt-if="this.props.variations.length > 0" images="{[this.state.variation.image]}" />
+        <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" zoomType="inner" />
+      </div>
 
-    <div class="col-md-6 col-sm-6">
-      <h3 rt-if="this.props.product.vendor">{this.props.product.vendor}</h3>
-      <h2>{translate(this.state.variation, "name")}</h2>
-      <p>{this.state.variation.sku}</p>
-      <p>
-        <strong>{I18n.toCurrency(this.state.variation.price, {precision: 0, unit: this.props.globalVars.currency})}</strong>
-      </p>
-      <p>
-        {(this.state.variation.in_stock > 0) ? I18n.t("products.in_stock") + ": "+ this.state.variation.in_stock : I18n.t("products.out_of_order").toUpperCase()}
-      </p>
+      <div class="col-md-6 col-sm-6">
+        <h3 rt-if="this.props.product.vendor">{this.props.product.vendor}</h3>
+        <h2>{translate(this.state.variation, "name")}</h2>
+        <p>{this.state.variation.sku}</p>
+        <p>
+          <strong>{I18n.toCurrency(this.state.variation.price, {precision: 0, unit: this.props.globalVars.currency})}</strong>
+        </p>
+        <p>
+          {(this.state.variation.in_stock > 0) ? I18n.t("products.in_stock") + ": "+ this.state.variation.in_stock : I18n.t("products.out_of_order").toUpperCase()}
+        </p>
 
-      <VariationSelector
-        rt-if="this.props.variations.length > 0"
-        options="{this.props.options}"
-        updateVariation="{this.updateVariation}"
-        variation="{this.state.variation}"
-        variations="{this.props.variations}" />
+        <VariationSelector
+          rt-if="this.props.variations.length > 0"
+          options="{this.props.options}"
+          updateVariation="{this.updateVariation}"
+          variation="{this.state.variation}"
+          variations="{this.props.variations}" />
 
-      <form ref="form" action="{this.props.cart_url}" method="post">
-        <input type="hidden" name="order_product[variation_id]" value="{this.state.variation.id}" />
-        <input type="hidden" name="order_product[quantity]" value="1" />
-        <button class="btn btn-primary" onClick="{this.addToCart}">
-          {I18n.t("products.add_to_cart")}
-        </button>
-      </form>
+        <form ref="form" action="{this.props.cart_url}" method="post">
+          <input type="hidden" name="order_product[variation_id]" value="{this.state.variation.id}" />
+          <input type="hidden" name="order_product[quantity]" value="1" />
+          <button class="btn btn-lg btn-primary" onClick="{this.addToCart}">
+            {I18n.t("products.add_to_cart")}
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </Layout>

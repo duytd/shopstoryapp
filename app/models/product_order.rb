@@ -32,9 +32,13 @@ class ProductOrder < Order
   end
 
   def as_json options={}
-    super.as_json(options).merge({current_step: current_step,
-      shipping_address: shipping_address, billing_address: billing_address,
-      payment: payment, order_products: order_products})
+    super.as_json(options).merge({
+      current_step: current_step,
+      shipping_address: shipping_address,
+      billing_address: billing_address,
+      payment: payment,
+      order_products: order_products
+    })
   end
 
   private

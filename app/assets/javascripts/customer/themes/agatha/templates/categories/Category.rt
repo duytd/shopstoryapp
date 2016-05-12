@@ -1,5 +1,7 @@
 <Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
-  <div class="category">
+  <div class="category container">
+    <Breadcrumb breadcrumbs="{this.props.breadcrumbs}" />
+
     <div class="row">
       <div class="col-md-3">
         <Filter

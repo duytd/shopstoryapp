@@ -80,6 +80,7 @@ ko:
         export: "Export"
         import: "Import"
         current: "Current"
+        add_banner_item: "Add Banner Item"
       pagination:
         next: "다음"
         first: "처음"

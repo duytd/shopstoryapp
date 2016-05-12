@@ -1,23 +1,25 @@
 <Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
-  <div class="row checkout">
-    <div class="col-sm-6">
-      <h2>{I18n.t("checkout.texts.returning_customer")}</h2>
-      <h3>{I18n.t("buttons.login")}</h3>
-      <LoginForm redirect_url="{Routes.new_customer_order_path.localize()}" />
-    </div>
+  <div class="checkout container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>{I18n.t("checkout.texts.returning_customer")}</h2>
+        <h3>{I18n.t("buttons.login")}</h3>
+        <LoginForm redirect_url="{Routes.new_customer_order_path.localize()}" />
+      </div>
 
-    <div class="col-sm-6 text-center">
-      <h2>{I18n.t("checkout.texts.new_customer")}</h2>
+      <div class="col-sm-6 text-center">
+        <h2>{I18n.t("checkout.texts.new_customer")}</h2>
 
-      <a class="btn btn-lg btn-default" href="{Routes.new_customer_registration_path.localize()}">
-        {I18n.t("buttons.register")}
-      </a>
+        <a class="btn btn-lg btn-default" href="{Routes.new_customer_registration_path.localize()}">
+          {I18n.t("buttons.register")}
+        </a>
 
-      <h3>{I18n.t("checkout.texts.or")}</h3>
+        <h3>{I18n.t("checkout.texts.or")}</h3>
 
-      <a class="btn btn-lg btn-primary" href="{Routes.new_customer_order_path.localize()}">
-        {I18n.t("checkout.texts.checkout_as_guest")}
-      </a>
+        <a class="btn btn-lg btn-primary" href="{Routes.new_customer_order_path.localize()}">
+          {I18n.t("checkout.texts.checkout_as_guest")}
+        </a>
+      </div>
     </div>
   </div>
 </Layout>

@@ -1,5 +1,5 @@
 class Banner < ActiveRecord::Base
-  has_many :banner_items, dependent: :destroy
+  has_many :banner_items, inverse_of: :banner, dependent: :destroy
 
   validates :name, presence: true
 
