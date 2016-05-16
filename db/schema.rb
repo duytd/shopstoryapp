@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507075736) do
+ActiveRecord::Schema.define(version: 20160511023013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,24 @@ ActiveRecord::Schema.define(version: 20160507075736) do
     t.text     "content"
     t.string   "directory"
     t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "banner_items", force: :cascade do |t|
+    t.integer  "banner_id"
+    t.string   "text"
+    t.string   "image"
+    t.string   "link"
+    t.boolean  "show_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "banner_items", ["banner_id"], name: "index_banner_items_on_banner_id", using: :btree
+
+  create_table "banners", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -576,6 +594,7 @@ ActiveRecord::Schema.define(version: 20160507075736) do
     t.boolean  "default",     default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "image"
   end
 
   create_table "users", force: :cascade do |t|
@@ -649,6 +668,7 @@ ActiveRecord::Schema.define(version: 20160507075736) do
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
   add_foreign_key "addresses", "orders"
+  add_foreign_key "banner_items", "banners"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "menu_items", "menus"

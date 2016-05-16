@@ -24,7 +24,7 @@ class Merchant::PagesController < Merchant::BaseController
   end
 
   def editor
-    @asset = Asset::Stylesheet.first
+    @asset = Asset::Stylesheet.filter_by_theme(current_shop.theme).first
 
     @props = {
       data: @asset,
@@ -39,12 +39,12 @@ class Merchant::PagesController < Merchant::BaseController
 
   private
   def load_assets
-    @javascripts = Asset::Javascript.all.as_json({only: [:id, :name]})
-    @stylesheets = Asset::Stylesheet.all.as_json({only: [:id, :name]})
-    @locales = Asset::Locale.all.as_json({only: [:id, :name]})
+    @javascripts = Asset::Javascript.filter_by_theme(current_shop.theme).as_json({only: [:id, :name]})
+    @stylesheets = Asset::Stylesheet.filter_by_theme(current_shop.theme).as_json({only: [:id, :name]})
+    @locales = Asset::Locale.filter_by_theme(current_shop.theme).as_json({only: [:id, :name]})
   end
 
   def load_templates
-    @templates = Template.all.as_json({only: [:id, :name, :directory]}).group_by{|t| t["directory"]}
+    @templates = Template.filter_by_theme(current_shop.theme).as_json({only: [:id, :name, :directory]}).group_by{|t| t["directory"]}
   end
 end

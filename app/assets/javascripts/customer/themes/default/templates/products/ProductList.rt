@@ -1,9 +1,0 @@
-<div class="row">
-  <div class="col-sm-12">
-    <ProductItem rt-repeat="product in this.props.products"
-      product={product}
-      key="product_{product.id}"}
-      currency={this.props.currency}
-    />
-  </div>
-</div>

@@ -143,3 +143,10 @@ ko:
         name: "Name"
         total_sale: "Total Sale"
         percentage: "Percentage"
+      banner:
+        name: "Name"
+      banner_item:
+        text: "Text"
+        link: "Link"
+        image: "Image"
+        show_image: "Show Image"

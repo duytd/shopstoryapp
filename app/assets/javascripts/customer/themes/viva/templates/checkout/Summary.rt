@@ -1,0 +1,34 @@
+<div class="summary">
+  <h2>{I18n.t("checkout.summary.title")}</h2>
+  <p>
+    <label>{I18n.t("checkout.summary.subtotal")} :</label>
+    {I18n.toCurrency(this.state.subtotal, {precision: 0, unit: this.props.currency})}
+  </p>
+  <p>
+    <label>{I18n.t("checkout.summary.shipping")} :</label>
+    <i>{(this.props.step == "shipping") ? I18n.t("checkout.summary.not_yet_calculated") : I18n.toCurrency(this.props.order.shipping, {precision: 0, unit: this.props.currency})}</i>
+  </p>
+  <div class="cart-items">
+    <div rt-repeat="item in this.props.globalVars.cart" key="item_{itemIndex}" class="row item">
+      <div class="col-xs-3">
+        <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
+          <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-responsive image" />
+        </a>
+      </div>
+
+      <div class="col-xs-3">
+        <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
+          <strong>{translate(item.variation, "name")}</strong>
+        </a>
+      </div>
+
+      <div class="col-xs-3">
+        <p class="price">{I18n.toCurrency(item.unit_price, {precision: 0, unit: this.props.currency})}</p>
+      </div>
+
+      <div class="col-xs-3">
+        <span class="quantity">{item.quantity}</span>
+      </div>
+    </div>
+  </div>
+</div>

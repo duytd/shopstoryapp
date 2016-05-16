@@ -1,0 +1,40 @@
+<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+  <div class="category container">
+    <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
+
+    <div class="row">
+      <div class="col-md-3">
+        <Filter
+          vendor="{this.state.vendor}"
+          price="{this.state.price}"
+          updateVendor="{this.updateVendor}"
+          updatePrice="{this.updatePrice}"
+          priceFilter="{this.props.filter.price}"
+          vendorFilter="{this.props.filter.vendor}" />
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-sm-12">
+            <Sorter
+              sorter="{this.state.sorter}"
+              updateSorter="{this.updateSorter}" />
+          </div>
+        </div>
+        <div class="row">
+          <ProductItem rt-repeat="product in this.state.data" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
+        </ProductItem>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <Pagination
+          page="{this.state.page}"
+          totalPage="{this.state.totalPage}"
+          url="{this.state.paginationUrl}"
+          total="{this.state.total}"
+          size="{this.state.data.length}"} />
+      </div>
+    </div>
+  </div>
+</Layout>

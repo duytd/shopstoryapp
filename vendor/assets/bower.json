@@ -9,6 +9,7 @@
     "elevatezoom": "2.2.3",
     "spectrum": "latest",
     "bootstrap-datepicker": "latest",
-    "Chart.js": "latest"
+    "Chart.js": "latest",
+    "owl.carousel": "latest"
   }
 }

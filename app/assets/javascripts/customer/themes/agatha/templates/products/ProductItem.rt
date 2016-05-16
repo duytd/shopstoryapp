@@ -1,0 +1,19 @@
+<div class="col-sm-3 text-center product-item">
+  <a href="{Routes.customer_product_path.localize(this.props.product.slug)}">
+    <div class="product-image">
+      <img class="img-responsive" src="{(this.props.product.images.length > 0) ? this.props.product.images[0].image.url : null}" />
+    </div>
+  </a>
+  <a href="{Routes.customer_product_path.localize(this.props.product.slug)}">
+    <h3 class="name">{translate(this.props.product, "name")}</h3>
+  </a>
+  <p rt-if="parseInt(this.props.product.sale_off) == 0">
+    <strong>{I18n.toCurrency(this.props.product.price, {precision: 0, unit: this.props.currency})}</strong>
+  </p>
+
+  <p rt-if="parseInt(this.props.product.sale_off) > 0">
+    <strong>{I18n.toCurrency(this.props.product.price - this.props.product.price * this.props.product.sale_off / 100, {precision: 0, unit: this.props.currency})}</strong>
+    <br/>
+    <s>{I18n.toCurrency(this.props.product.price, {precision: 0, unit: this.props.currency})}</s>
+  </p>
+</div>

@@ -6,8 +6,8 @@ class Customer::RegistrationsController < Devise::RegistrationsController
   def new
     @props = {
       globalVars: @globalVars,
-      term: current_shop.term,
-      privacy: current_shop.privacy
+      term: Customer::CustomPagePresenter.new(current_shop.term),
+      privacy: Customer::CustomPagePresenter.new(current_shop.privacy)
     }
     super
   end

@@ -37,7 +37,6 @@ li {
   -ms-transition: 0.1s ease-in;
   -moz-transition: 0.1s ease-in;
   -webkit-transition: 0.1s ease-in;
-  margin-left: 5px;
 }
 
 label.required:after {
@@ -109,4 +108,9 @@ label.required:after {
   input {
     margin-right: 5px;
   }
+}
+
+#kakaopay_layer {
+  position: fixed !important;
+  top: 150px !important;
 }

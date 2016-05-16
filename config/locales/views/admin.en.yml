@@ -19,3 +19,10 @@ en:
         title: "Payment methods"
       edit:
         title: "Edit payment method"
+    themes:
+      flashes:
+        theme_install_failed: "Failed to install theme %{theme}"
+        theme_installed: "Theme %{theme} has been installed"
+      index:
+        title: "Themes"
+        pending_title: "Pending themes"

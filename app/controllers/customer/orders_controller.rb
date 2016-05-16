@@ -23,7 +23,7 @@ class Customer::OrdersController < Customer::BaseController
     stripe_interface = StripeShopstory::StripeInterface.new current_shop
 
     @props = {
-      order: current_order,
+      order: Customer::OrderPresenter.new(current_order),
       globalVars: @globalVars,
       countries: all_countries,
       default_country: Settings.shop.default_country,
@@ -45,7 +45,7 @@ class Customer::OrdersController < Customer::BaseController
         session[:order_type] = "product"
       end
 
-      render json: current_order, status: :ok
+      render json: Customer::OrderPresenter.new(current_order), status: :ok
     else
       render json: current_order.errors, status: :unprocessable_entity
     end

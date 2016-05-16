@@ -1,0 +1,9 @@
+<div class="owl-carousel owl-theme">
+  <div rt-repeat="item in this.props.bannerItems" key="banner_item_{itemIndex}">
+    <div class="text">
+      <h2 rt-if="item.text">{item.text}</h2>
+      <a rt-if="item.link" href="{item.link}" class="btn btn-lg btn-primary">{I18n.t("buttons.buy_now")}</a>
+    </div>
+    <img rt-if="item.show_image" src="{item.image.image.url}" />
+  </div>
+</div>

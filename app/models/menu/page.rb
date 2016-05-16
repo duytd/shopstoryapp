@@ -2,6 +2,7 @@ class Menu::Page < MenuItem
   validates :value, presence: true
 
   def url
-    customer_custom_page_path value
+    page = CustomPage.find value
+    customer_custom_page_path page
   end
 end

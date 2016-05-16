@@ -1,0 +1,194 @@
+<div>
+  <form ref="form" rt-if="!this.props.useShippingAddress" id="billingForm" onSubmit="{this.updateOrder}">
+    <input name="order[billing_address_attributes][order_id]" value="{this.props.order.id}" type="hidden" />
+
+    <div rt-if="this.state.country != 'KR'" class="form-group row">
+      <div class="col-md-4">
+        <label class="required">{I18n.t("checkout.billing.first_name")}</label>
+        <Errors errors="{this.state.errors['billing_address.first_name']}" />
+        <input name="order[billing_address_attributes][first_name]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.first_name : null}" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <label>{I18n.t("checkout.billing.last_name")}</label>
+        <Errors errors="{this.state.errors['billing_address.last_name']}" />
+        <input name="order[billing_address_attributes][last_name]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.last_name : null}" class="form-control" />
+      </div>
+    </div>
+
+    <div rt-if="this.state.country == 'KR'" class="form-group row">
+      <div class="col-md-8">
+        <label class="required">{I18n.t("checkout.billing.name")}</label>
+        <Errors errors="{this.state.errors['billing_address.first_name']}" />
+        <input name="order[billing_address_attributes][first_name]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.first_name : null}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-8">
+        <label class="required">{I18n.t("checkout.billing.email")}</label>
+        <Errors errors="{this.state.errors['billing_address.email']}" />
+        <input name="order[billing_address_attributes][email]" type="email"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.email : null}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-8">
+        <label class="required">{I18n.t("checkout.billing.address1")}</label>
+        <Errors errors="{this.state.errors['billing_address.address1']}" />
+        <input ref="address" name="order[billing_address_attributes][address1]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.address1 : null}"
+          onClick="{this.streetClick}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-8">
+        <label>{I18n.t("checkout.billing.address2")}</label>
+        <Errors errors="{this.state.errors['billing_address.address2']}" />
+        <input name="order[billing_address_attributes][address2]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.address2 : null}" class="form-control"/>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div rt-if="this.state.country != 'KR'" class="col-md-4">
+        <label class="required">{I18n.t("checkout.billing.city")}</label>
+        <Errors errors="{this.state.errors['billing_address.city']}" />
+        <input name="order[billing_address_attributes][city]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.city : null}" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <label class="required">{I18n.t("checkout.billing.zip_code")}</label>
+        <Errors errors="{this.state.errors['billing_address.zip_code']}" />
+        <input ref="zipcode" name="order[billing_address_attributes][zip_code]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.zip_code : null}" class="form-control" />
+      </div>
+    </div>
+
+    <div rt-if="this.state.country != 'KR'" class="form-group row">
+      <div class="col-md-8">
+        <label class="required">{I18n.t("checkout.billing.state")}</label>
+        <Errors errors="{this.state.errors['billing_address.state']}" />
+        <input name="order[billing_address_attributes][state]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.state : null}" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-8">
+        <label class="required">{I18n.t("checkout.billing.country")}</label>
+        <Errors errors="{this.state.errors['billing_address.country']}" />
+        <div class="select">
+          <select class="form-control" name="order[billing_address_attributes][country]"
+            defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.country : this.props.default_country}"
+            onChange={this.updateCountry}>
+            <option rt-repeat="country in this.props.countries" key="country_{countryIndex}" value="{country[0]}">{country[1]}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-8">
+        <label class="required">{I18n.t("checkout.billing.phone_number")}</label>
+        <Errors errors="{this.state.errors['billing_address.phone_number']}" />
+        <PhoneField name="order[billing_address_attributes][phone_number]" fields="{[3, 4, 4]}" klass="form-control" value="{(this.props.order.billing_address) ? this.props.order.billing_address.phone_number : null}" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-8">
+        <label class="required">{I18n.t("checkout.billing.alternative_phone")}</label>
+        <Errors errors="{this.state.errors['billing_address.alternative_phone']}" />
+      <PhoneField name="order[billing_address_attributes][alternative_phone]" fields="{[3, 4, 4]}" klass="form-control" value="{(this.props.order.billing_address) ? this.props.order.billing_address.alternative_phone : null}" />
+      </div>
+    </div>
+
+    <div rt-if="this.state.country != 'KR'" class="form-group row">
+      <div class="col-md-8">
+        <label>{I18n.t("checkout.billing.fax")}</label>
+        <Errors errors="{this.state.errors['billing_address.fax']}" />
+        <input name="order[billing_address_attributes][fax]" type="text"
+          defaultValue="{(this.props.order.billing_address) ? this.props.order.billing_address.fax : null}" class="form-control" />
+      </div>
+    </div>
+
+    <input rt-if="this.props.order.payment" type="hidden" name="order[payment_attributes][id]" value="{this.props.order.payment.id}" />
+
+    <PaymentMethod
+      rt-repeat="methodShop in this.props.payment_method_shops"
+      mobile="{this.props.mobile}"
+      key="method_shop_{methodShopIndex}"
+      order="{this.props.order}"
+      method="{methodShop.payment_method}"
+      currentPaymentMethod="{this.props.currentPaymentMethod}"
+      switchPaymentMethod="{this.props.switchPaymentMethod}"
+    />
+
+    <div id="inicisPayment"></div>
+
+    <div class="form-group row">
+      <div class="col-md-8">
+        <button type="submit" class="btn btn-lg btn-primary pull-right" onClick="{this.updateOrder}">
+          {I18n.t('checkout.buttons.place_order')}
+          <i ref="loading" class="fa fa-spinner fa-pulse hide"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <form rt-if="this.props.useShippingAddress" ref="form" id="billingForm">
+    <input name="order[billing_address_attributes][order_id]" value="{this.props.order.id}" type="hidden" />
+    <input name="order[billing_address_attributes][first_name]" value="{this.props.order.shipping_address.first_name}" type="hidden" />
+    <input name="order[billing_address_attributes][last_name]" value="{this.props.order.shipping_address.last_name}" type="hidden" />
+    <input name="order[billing_address_attributes][email]" value="{this.props.order.shipping_address.email}" type="hidden" />
+    <input name="order[billing_address_attributes][phone_number]" value="{this.props.order.shipping_address.phone_number}" type="hidden" />
+    <input name="order[billing_address_attributes][alternative_phone]" value="{this.props.order.shipping_address.alternative_phone}" type="hidden" />
+    <input name="order[billing_address_attributes][country]" value="{this.props.order.shipping_address.country}" type="hidden" />
+    <input name="order[billing_address_attributes][city]" value="{this.props.order.shipping_address.city}" type="hidden" />
+    <input name="order[billing_address_attributes][state]" value="{this.props.order.shipping_address.state}" type="hidden" />
+    <input name="order[billing_address_attributes][address1]" value="{this.props.order.shipping_address.address1}" type="hidden" />
+    <input name="order[billing_address_attributes][address2]" value="{this.props.order.shipping_address.address2}" type="hidden" />
+    <input name="order[billing_address_attributes][zip_code]" value="{this.props.order.shipping_address.zip_code}" type="hidden" />
+    <input name="order[billing_address_attributes][fax]" value="{this.props.order.shipping_address.fax}" type="hidden" />
+
+    <p>{this.props.order.shipping_address.first_name}{this.props.order.shipping_address.last_name}</p>
+    <p>{this.props.order.shipping_address.email}</p>
+    <p>{this.props.order.shipping_address.phone_number}
+      <i>{(this.props.order.shipping_address.alternative_phone) ? "("+this.props.order.shipping_address.alternative_phone+")" : ""}</i>
+    </p>
+    <p>{this.props.order.shipping_address.fax}</p>
+    <p>{this.props.order.shipping_address.city}</p>
+    <p>{this.props.order.shipping_address.state}</p>
+    <p>{this.props.order.shipping_address.zip_code}</p>
+    <p>{this.props.order.shipping_address.address1}
+      <i>{(this.props.order.shipping_address.address2) ? "("+this.props.order.shipping_address.address2+")" : ""}</i>
+    </p>
+
+    <hr/>
+
+    <input rt-if="this.props.order.payment" type="hidden" name="order[payment_attributes][id]" value="{this.props.order.payment.id}" />
+
+    <PaymentMethod
+      rt-if="this.props.hasPaymentMethod"
+      rt-repeat="methodShop in this.props.payment_method_shops"
+      mobile="{this.props.mobile}"
+      key="method_shop_{methodShopIndex}"
+      order="{this.props.order}"
+      method="{methodShop.payment_method}"
+      currentPaymentMethod="{this.props.currentPaymentMethod}"
+      switchPaymentMethod="{this.props.switchPaymentMethod}"
+    />
+    <div id="inicisPayment"></div>
+
+    <button rt-if="this.props.hasPaymentMethod" type="submit" class="btn btn-lg btn-primary pull-right" onClick="{this.updateOrder}">
+      {I18n.t('checkout.buttons.place_order')}
+      <i ref="loading" class="fa fa-spinner fa-pulse hide"></i>
+    </button>
+    <div class="clearfix"></div>
+  </form>
+
+</div>

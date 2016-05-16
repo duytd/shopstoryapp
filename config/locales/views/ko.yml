@@ -22,6 +22,9 @@ ko:
     preview:
       title: "미리보기"
   customer:
+    breadcrumbs:
+      home: "Home"
+      categories: "Categories"
     flash:
       cart_empty: "장바구니가 비어있습니다."
 
@@ -47,8 +50,9 @@ ko:
         user_settings: "계정"
         search: "찾기"
         view_shop: "내 샵 보기"
-        theme: "Design"
-        asset: "수정"
+        design: "Design"
+        themes: "Themes"
+        editor: "수정"
         shipping: "배송"
         shipping_rates: "배송료"
         email_templates: "이메일 템플렛"
@@ -78,6 +82,8 @@ ko:
         bulk_actions: "Bulk Actions"
         export: "Export"
         import: "Import"
+        current: "Current"
+        add_banner_item: "Add Banner Item"
       pagination:
         next: "다음"
         first: "처음"
@@ -184,6 +190,9 @@ ko:
       email_templates:
         title: "이메일 템플렛"
         preview: "이메일 미리보기"
+      themes:
+        index: "Themes"
+        current: "Current"
       reports:
         product:
           data_title: "Number of Sales"

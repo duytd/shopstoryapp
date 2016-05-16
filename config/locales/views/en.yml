@@ -22,6 +22,9 @@ en:
     preview:
       title: "Preview"
   customer:
+    breadcrumbs:
+      home: "Home"
+      categories: "Categories"
     flash:
       cart_empty: "You cart must not be empty before checking out"
 
@@ -47,8 +50,9 @@ en:
         user_settings: "Account"
         search: "Search"
         view_shop: "View your shop"
-        theme: "Design"
-        asset: "Editor"
+        design: "Design"
+        themes: "Themes"
+        editor: "Editor"
         shipping: "Shipping"
         shipping_rates: "Shipping Rates"
         email_templates: "Email Templates"
@@ -75,6 +79,8 @@ en:
         bulk_actions: "Bulk Actions"
         export: "Export"
         import: "Import"
+        current: "Current"
+        add_banner_item: "Add Banner Item"
       pagination:
         next: "Next"
         first: "First"
@@ -181,6 +187,9 @@ en:
       email_templates:
         title: "Email Templates"
         preview: "Email Preview"
+      themes:
+        index: "Themes"
+        current: "Current"
       reports:
         product:
           data_title: "Number of Sales"

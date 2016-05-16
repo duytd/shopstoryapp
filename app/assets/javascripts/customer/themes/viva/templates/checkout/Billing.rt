@@ -1,0 +1,20 @@
+<div class="billing-address">
+  <label class="styled-cb">
+    <input ref="useShippingAddress" type="checkbox" defaultChecked="{true}" onChange="{this.switchBilling}" />
+    <i class="fa"></i>
+    {I18n.t("checkout.billing.user_shipping_address")}
+  </label>
+
+  <BillingForm
+    hasPaymentMethod="{this.state.hasPaymentMethod}"
+    useShippingAddress="{this.state.useShippingAddress}"
+    mobile="{this.props.mobile}"
+    order="{this.props.order}"
+    payment_method_shops="{this.props.payment_method_shops}"
+    countries="{this.props.countries}"
+    default_country="{this.props.default_country}"
+    updateOrder="{this.updateOrder}"
+    currentPaymentMethod="{this.state.currentPaymentMethod}"
+    switchPaymentMethod="{this.switchPaymentMethod}"
+  />
+</div>

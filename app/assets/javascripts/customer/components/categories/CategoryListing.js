@@ -1,5 +1,6 @@
 var CategoryListing = React.createClass({
-  render: CategoryListingRT
+  render: CategoryListingRT,
+  mixins: [CartMixin]
 })
 
 module.exports = CategoryListing;

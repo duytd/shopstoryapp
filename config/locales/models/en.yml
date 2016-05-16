@@ -148,3 +148,10 @@ en:
         name: "Name"
         total_sale: "Total Sale"
         percentage: "percentage"
+      banner:
+        name: "Name"
+      banner_item:
+        text: "Text"
+        link: "Link"
+        image: "Image"
+        show_image: "Show Image"

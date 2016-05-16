@@ -4,6 +4,13 @@ class Customer::PagesController < Customer::BaseController
 
   def home
     @products = Product.latest.featured.map{|p| Customer::ProductPresenter.new(p)}
+    @banner = Customer::BannerPresenter.new(Banner.first)
+
+    @props = {
+      globalVars: @globalVars,
+      products: @products,
+      banner: @banner
+    }
   end
 
   def checkout

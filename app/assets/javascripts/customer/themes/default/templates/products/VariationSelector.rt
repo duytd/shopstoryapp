@@ -1,7 +1,0 @@
-<div class="variation-selector">
-  <ul rt-repeat="option in this.state.options" key="option_{optionIndex}" ref="option_{option.id}">
-    <li rt-repeat="value in option.option_values" key="option_value_{valueIndex}">
-      <button class="btn btn-default" onClick="{this.updateVariation.bind(this, option.id, value.id)}" class="{value.selected ? 'selected' : null}" data-id="{value.id}" disabled="{value.disabled}">{value.name}</button>
-    </li>
-  </ul>
-</div>
