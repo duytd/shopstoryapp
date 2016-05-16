@@ -4,7 +4,7 @@
       <option value=",">{I18n.t("sorter.title")}</option>
       <option value="name,asc">{I18n.t("sorter.name_asc")}</option>
       <option value="name,desc">{I18n.t("sorter.name_desc")}</option>
-      <option value="price,asc">{I18n.t("sorter.price_desc")}</option>
+      <option value="price,asc">{I18n.t("sorter.price_asc")}</option>
       <option value="price,desc">{I18n.t("sorter.price_desc")}</option>
     </select>
   </div>

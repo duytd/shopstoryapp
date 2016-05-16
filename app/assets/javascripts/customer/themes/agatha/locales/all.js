@@ -11,7 +11,8 @@ I18n.translations = {
       "logout": "Log out",
       "my_account": "My account",
       "accept": "Accept",
-      "decline": "Decline"
+      "decline": "Decline",
+      "buy_now": "Buy Now"
     },
     "customers": {
       "login": {
@@ -172,7 +173,8 @@ I18n.translations = {
       "logout": "로그아웃",
       "my_account": "마이 페이지",
       "accept": "Accept",
-      "decline": "Decline"
+      "decline": "Decline",
+      "buy_now": "Buy Now"
     },
     "customers": {
       "login": {

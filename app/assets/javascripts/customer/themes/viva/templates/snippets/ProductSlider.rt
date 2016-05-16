@@ -1,7 +1,7 @@
 <div class="ps-container">
   <ul class="ps-feature">
-    <li rt-repeat="image in this.props.images" key={imageIndex} class="{(imageIndex == this.state.activeIndex) ? 'active' : null}" key="image_{imageIndex}">
-      <img src={image.image.url} alt={image.name} class="img-responsive" />
+    <li rt-repeat="image in this.props.images" key="{imageIndex}" class="{(imageIndex == this.state.activeIndex) ? 'active' : null}" key="image_{imageIndex}">
+      <img src="{image.image.url}" alt="{image.name}" class="img-responsive" />
     </li>
   </ul>
 

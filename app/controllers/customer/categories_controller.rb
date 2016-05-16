@@ -1,22 +1,21 @@
 class Customer::CategoriesController < Customer::BaseController
   load_and_authorize_resource
+  
+  add_breadcrumb I18n.t("customer.breadcrumbs.home"), :customer_root_path, {only: [:index, :show]}
+  add_breadcrumb I18n.t("customer.breadcrumbs.categories"), :customer_categories_path, {only: [:index, :show]}
 
   def index
-    add_breadcrumb I18n.t("customer.breadcrumbs.home"), Rails.application.routes.url_helpers.customer_root_path
-    add_breadcrumb I18n.t("customer.breadcrumbs.categories"), customer_categories_path
-
     @categories = Category.all.map{|c| Customer::CategoryPresenter.new(c, {limit: 3})}
 
     @props = {
       globalVars: @globalVars,
       categories: @categories,
-      breadcrumbs: current_breadcrumb
+      breadcrumb: current_breadcrumb
     }
   end
 
   def show
-    add_breadcrumb I18n.t("customer.breadcrumbs.home"), Rails.application.routes.url_helpers.customer_root_path
-    add_breadcrumb I18n.t("customer.breadcrumbs.categories"), customer_categories_path
+    add_breadcrumb @category.name, customer_category_path(@category)
 
     @products = @category.products.visible.page params[:page]
     render_meta_tags @category, {title: @category.name}
@@ -52,7 +51,7 @@ class Customer::CategoriesController < Customer::BaseController
       category: Customer::CategoryPresenter.new(@category),
       products: @products.map{|p| Customer::ProductPresenter.new(p)},
       pagination_url: customer_category_path(@category),
-      breadcrumbs: current_breadcrumb,
+      breadcrumb: current_breadcrumb,
       filter: {
         url: filter_customer_category_path(@category),
         vendor: @category.vendor_filter,

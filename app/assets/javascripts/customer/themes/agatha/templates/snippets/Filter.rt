@@ -5,7 +5,7 @@
       <input type="checkbox" value="{vendor}" onChange="{this.updateVendor}" />
       {vendor}
     </p>
-    <hr/>
+    <hr rt-if="this.props.priceFilter.length > 0" />
   </div>
 
   <div class="price-filter" rt-if="this.props.priceFilter.length > 0">

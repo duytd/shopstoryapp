@@ -45,7 +45,7 @@ class Customer::OrdersController < Customer::BaseController
         session[:order_type] = "product"
       end
 
-      render json: current_order, status: :ok
+      render json: Customer::OrderPresenter.new(current_order), status: :ok
     else
       render json: current_order.errors, status: :unprocessable_entity
     end

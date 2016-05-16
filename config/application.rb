@@ -28,7 +28,7 @@ module ShopStory
     config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts")
     config.assets.precompile << /\.(?:png|gif|jpg|svg|eot|woff|ttf)$/
 
-    config.autoload_paths << Rails.root.join("lib")
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths << Rails.root.join("app", "presenters")
 
     config.react.server_renderer = React::ServerRendering::SprocketsRenderer

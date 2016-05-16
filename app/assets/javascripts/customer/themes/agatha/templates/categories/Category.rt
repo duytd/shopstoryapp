@@ -1,6 +1,6 @@
 <Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
   <div class="category container">
-    <Breadcrumb breadcrumbs="{this.props.breadcrumbs}" />
+    <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
 
     <div class="row">
       <div class="col-md-3">

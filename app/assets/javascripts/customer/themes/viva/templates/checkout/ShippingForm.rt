@@ -8,7 +8,7 @@
       <input name="order[shipping_address_attributes][first_name]" type="text"
         defaultValue="{(this.props.order.shipping_address) ? this.props.order.shipping_address.first_name : null}" class="{this.props.inputKlass}" />
     </div>
-    <div class={this.props.halfContainerKlass}>
+    <div class="{this.props.halfContainerKlass}">
       <label>{I18n.t("checkout.shipping.last_name")}</label>
       <Errors errors="{this.state.errors['shipping_address.last_name']}" />
       <input name="order[shipping_address_attributes][last_name]" type="text"
@@ -17,7 +17,7 @@
   </div>
 
   <div rt-if="this.state.country == 'KR'" class="form-group row">
-    <div class={this.props.containerKlass}>
+    <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.name")}</label>
       <Errors errors="{this.state.errors['shipping_address.first_name']}" />
       <input name="order[shipping_address_attributes][first_name]" type="text"

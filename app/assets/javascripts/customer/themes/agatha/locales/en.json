@@ -9,7 +9,8 @@
     "logout": "Log out",
     "my_account": "My account",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "buy_now": "Buy Now"
   },
   "customers": {
     "login": {

@@ -36,6 +36,45 @@ a {
   border: 1px solid #3498db;
 }
 
+/* Select dropdown */
+.select {
+  position: relative;
+  display: block;
+  min-width: 300px;
+  border: 1px solid #eee;
+  &:after {
+    content:'\f0d7';
+    font-family: 'FontAwesome';
+    font-size: 18px;
+    padding: 0 0 2px;
+    pointer-events: none;
+    position: absolute;
+    right: 8px;
+    top: 4px;
+  }
+  &:before {
+    content: '';
+    right: 6px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    pointer-events: none;
+    display: block;
+  }
+  select {
+    height: 30px;
+    width: 100%;
+    display: inline-block;
+    border: none;
+    background: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+}
+
 /* Alert, Label */
 .alert {
   margin-bottom: 0;
@@ -130,7 +169,7 @@ label {
 /* Category */
 .product-item {
   text-align: center;
-  min-height: 280px;
+  min-height: 360px;
   img {
     display: inline-block;
   }
@@ -142,9 +181,29 @@ label {
   }
 }
 
+.sorter {
+  margin-bottom: 15px;
+}
+
+/* Product, variation */
+.variation-selector {
+  .selected {
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+  }
+  li:not(:first-child) {
+    margin-left: 10px;
+  }
+}
+
 /* Cart */
 .cart {
+  .btn {
+    margin: 0 10px;
+  }
   .item {
+    margin-bottom: 10px;
     img {
       max-height: 120px;
     }
@@ -264,6 +323,9 @@ label {
   .billing-address p {
     margin-bottom: 5px;
   }
+  img.payment-method-image {
+    margin: 0 0 10px 10px;
+  }
   form {
     p {
       margin: 0;
@@ -312,14 +374,6 @@ label {
   }
 }
 
-.variation-selector {
-  .selected {
-    background: #2c3e50;
-    color: #fff;
-    border: none;
-  }
-}
-
 /* Pagination */
 .pagination {
   text-align: center;
@@ -337,44 +391,18 @@ label {
   }
 }
 
-.select {
-  position: relative;
-  display: block;
-  min-width: 300px;
-  border: 1px solid #eee;
-  &:after {
-    content:'\f0d7';
-    font-family: 'FontAwesome';
-    font-size: 18px;
-    padding: 0 0 2px;
-    pointer-events: none;
-    position: absolute;
-    right: 8px;
-    top: 4px;
-  }
-  &:before {
-    content: '';
-    right: 6px;
-    top: 0px;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    pointer-events: none;
-    display: block;
-  }
-  select {
-    height: 30px;
-    width: 100%;
-    display: inline-block;
-    border: none;
-    background: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
+/* Breadcrumb */
+.breadcrumb {
+  padding: 10px 10px;
+  span {
+    &:not(:last-child):after {
+      content: ">";
+      margin: 0 5px;
+    }
   }
 }
 
-img.payment-method-image {
-  margin: 0 0 10px 10px;
+/* Banner */
+.owl-item {
+  max-height: 400px;
 }

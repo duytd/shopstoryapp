@@ -8,7 +8,7 @@
   emptyCartErrors="{this.emptyCartErrors}">
 
   <div class="product container">
-    <Breadcrumb breadcrumbs="{this.props.breadcrumbs}" />
+    <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
     <div class="row">
       <div class="col-md-6 col-sm-6 image-slider">
         <ProductSlider rt-if="this.props.variations.length > 0" images="{[this.state.variation.image]}" />

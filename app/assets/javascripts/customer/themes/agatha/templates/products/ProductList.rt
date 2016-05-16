@@ -1,7 +1,7 @@
 <div class="row">
   <ProductItem rt-repeat="product in this.props.products"
-    product={product}
+    product="{product}"
     key="product_{product.id}"}
-    currency={this.props.currency}
+    currency="{this.props.currency}"
   />
 </div>

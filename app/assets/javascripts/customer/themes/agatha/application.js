@@ -1,2 +1,3 @@
 //= require ./locales/all
-//= require_tree ./assets/javascripts
+//= require ./assets/javascripts/jquery.sticky.js
+//= require ./assets/javascripts/shop.js

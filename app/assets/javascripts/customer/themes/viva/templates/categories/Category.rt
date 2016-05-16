@@ -1,5 +1,7 @@
 <Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
   <div class="category">
+    <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
+
     <div class="row">
       <div class="col-md-3">
         <Filter
@@ -12,10 +14,12 @@
       </div>
       <div class="col-md-9">
         <div class="row">
-          <Sorter
-            sorter="{this.state.sorter}"
-            updateSorter="{this.updateSorter}" />
-        </div>
+          <div class="col-xs-12">
+            <Sorter
+              sorter="{this.state.sorter}"
+              updateSorter="{this.updateSorter}" />
+          </div>
+        <div>
 
         <ProductItem rt-repeat="product in this.state.data" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
       </div>

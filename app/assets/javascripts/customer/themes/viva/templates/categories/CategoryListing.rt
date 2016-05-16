@@ -1,5 +1,6 @@
 <Layout globalVars="{this.props.globalVars}">
   <div class="category-listing">
+    <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
     <div class="listing" rt-repeat="category in this.props.categories" key="category_{categoryIndex}">
       <a href="{Routes.customer_category_path.localize(category.slug)}">
         <h2>{translate(category,"name")}</h2>

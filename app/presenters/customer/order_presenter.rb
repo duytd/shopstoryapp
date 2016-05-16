@@ -7,7 +7,6 @@ class Customer::OrderPresenter < Presenter
 
     {
       id: @object.id,
-      cutomer: customer,
       subtotal: @object.subtotal,
       shipping: @object.shipping,
       tax: @object.tax,

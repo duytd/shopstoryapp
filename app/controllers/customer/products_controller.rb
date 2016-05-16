@@ -15,7 +15,7 @@ class Customer::ProductsController < Customer::BaseController
       master: Customer::VariationPresenter.new(@product.master),
       options: @product.variation_options.relating_to_variations.map{|v| Customer::OptionPresenter.new(v)},
       cart_url: customer_order_products_path,
-      breadcrumbs: current_breadcrumb
+      breadcrumb: current_breadcrumb
     }
 
     render_meta_tags @product, {title: @product.name, meta_description: @product.description}

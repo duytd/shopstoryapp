@@ -5,7 +5,7 @@
       <input type="checkbox" value="{vendor}" onChange="{this.updateVendor}" />
       {vendor}
     </p>
-    <hr/>
+    <hr rt-if="this.props.priceFilter.length > 0" />
   </div>
 
   <div class="price-filter" rt-if="this.props.priceFilter.length > 0">
@@ -16,7 +16,7 @@
     </p>
     <p rt-repeat="price in this.props.priceFilter" key="price_filter_{priceIndex}">
       <input type="radio" value="{price.join('|')}" name="price_filter" onChange="{this.updatePrice}" />
-      {price[0]} - {price[1]}
+      {price[0].toKoreanFormat()} - {price[1].toKoreanFormat()}
     </p>
   </div>
 </div>

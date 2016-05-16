@@ -22,6 +22,9 @@ ko:
     preview:
       title: "미리보기"
   customer:
+    breadcrumbs:
+      home: "Home"
+      categories: "Categories"
     flash:
       cart_empty: "장바구니가 비어있습니다."
 
