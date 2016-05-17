@@ -28,6 +28,7 @@ ProductList = require('customer/components/products/ProductList.js');
 Home = require('customer/components/Home.js');
 VariationSelector = require('customer/components/products/VariationSelector.js');
 Product = require('customer/components/products/Product.js');
+Search = require('customer/components/products/Search.js');
 Category = require('customer/components/categories/Category.js');
 CategoryListing = require('customer/components/categories/CategoryListing.js');
 Account = require('customer/components/customers/Account.js');

@@ -159,6 +159,14 @@ I18n.translations = {
       "name_desc": "Name (A-Z)",
       "price_asc": "Price (Low-High)",
       "price_desc": "Price (High-Low)"
+    },
+    "search": {
+      "results": {
+        "zero": "No result found",
+        "one": "1 result found",
+        "other": "%{count} results found"
+      },
+      "placeholder": "Search"
     }
   },
   "ko": {
@@ -320,6 +328,14 @@ I18n.translations = {
       "name_desc": "Name (A-Z)",
       "price_asc": "Price (Low-High)",
       "price_desc": "Price (High-Low)"
+    },
+    "search": {
+      "results": {
+        "zero": "No result found",
+        "one": "1 result found",
+        "other": "%{count} results found"
+      },
+      "placeholder": "Search"
     }
   }
 }

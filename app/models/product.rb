@@ -14,13 +14,33 @@ class Product < ActiveRecord::Base
   include Elasticsearch::Model::Globalize::MultipleFields
 
   index_name "#{Rails.env}-#{Apartment::Tenant.current}-products"
-
-  mapping do
-    indexes :id, type: "integer"
-    indexes :name_ko, analyzer: "cjk"
-    indexes :name_en, analyzer: "snowball"
-    indexes :description_ko, analyzer: "cjk"
-    indexes :description_en, analyzer: "snowball"
+  settings analysis: {
+    filter: {
+      ngram_filter: {
+        type: "nGram",
+        min_gram: 1,
+        max_gram: 15
+      }
+    },
+    analyzer: {
+      index_ngram_analyzer: {
+        tokenizer: "standard",
+        filter: ["standard", "lowercase", "stop", "ngram_filter"],
+        type: "custom"
+      },
+      search_ngram_analyzer: {
+        tokenizer: "standard",
+        filter: ["standard", "lowercase", "stop"],
+        type: "custom"
+      }
+    }
+  } do
+    mapping do
+      indexes :name_ko, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
+      indexes :name_en, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
+      indexes :description_ko, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
+      indexes :description_en, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
+    end
   end
 
   has_many :category_products, dependent: :destroy
@@ -111,47 +131,64 @@ class Product < ActiveRecord::Base
     return true
   end
 
-  class << self
-    def import file
-      spreadsheet = open_spreadsheet file
+  def as_indexed_json options={}
+    self.as_json(
+      include: {
+        highlight: try(:highlight),
+        images: product_images
+      }
+    )
+  end
 
-      unless spreadsheet.nil?
-        header = spreadsheet.row 1
+  def self.import file
+    spreadsheet = open_spreadsheet file
 
-        (2..spreadsheet.last_row).each do |i|
-          row = Hash[[header, spreadsheet.row(i)].transpose]
-          product = find_by_id(row["id"]) || new
-          product.attributes = row.to_hash.slice *Product.attribute_names
-          product.save!
-        end
+    unless spreadsheet.nil?
+      header = spreadsheet.row 1
+
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        product = find_by_id(row["id"]) || new
+        product.attributes = row.to_hash.slice *Product.attribute_names
+        product.save!
       end
     end
+  end
 
-    def search_by_name query
-      with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
-    end
+  def self.search_by_name query
+    with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
+  end
 
-    def to_csv options={}
-      CSV.generate(options) do |csv|
-        csv << column_names
-        all.each do |product|
-          csv << product.attributes.values_at(*column_names)
-        end
+  def self.to_csv options={}
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
       end
     end
+  end
 
-    def self.search(query)
-      __elasticsearch__.search(
-        {
-          query: {
-            multi_match: {
-              query: query,
-              fields: ["name_ko^10", "name_en^10", "description_ko", "description_en"]
-            }
+  def self.search query
+    __elasticsearch__.search(
+      {
+        query: {
+          multi_match: {
+            query: "*#{query}*",
+            fields: ["name_ko^10", "name_en^10", "description_ko", "description_en"]
+          }
+        },
+        highlight: {
+          pre_tags: ["<em class='highlight'>"],
+          post_tags: ["</em>"],
+          fields: {
+            name_ko: {},
+            name_en: {},
+            description_ko: {},
+            description_en: {}
           }
         }
-      )
-    end
+      }
+    )
   end
 
   private

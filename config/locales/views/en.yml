@@ -25,6 +25,7 @@ en:
     breadcrumbs:
       home: "Home"
       categories: "Categories"
+      search: "Search For %{q}"
     flash:
       cart_empty: "You cart must not be empty before checking out"
 
