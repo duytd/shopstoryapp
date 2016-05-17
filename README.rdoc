@@ -15,6 +15,13 @@ sudo dpkg -i wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
 sudo apt-get -f install (if need)
 sudo apt-get install fonts-nanum
 ```
+
+* Install elasticsearch
+```
+wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.2/elasticsearch-2.3.2.deb
+sudo dpkg -i elasticsearch-2.3.2.deb
+```
+
 * System dependencies
 
 * Configuration

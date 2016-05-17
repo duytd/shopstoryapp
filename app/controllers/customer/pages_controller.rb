@@ -4,7 +4,8 @@ class Customer::PagesController < Customer::BaseController
 
   def home
     @products = Product.latest.featured.map{|p| Customer::ProductPresenter.new(p)}
-    @banner = Customer::BannerPresenter.new(Banner.first)
+
+    @banner = Banner.first ? Customer::BannerPresenter.new(Banner.first) : nil
 
     @props = {
       globalVars: @globalVars,

@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     get :success, to: "pages#success"
     get :cart, to: "pages#cart"
     get :account, to: "customers#show", path: "my-account"
+    get :search, to: "search#search"
 
     resources :categories, only: [:index, :show] do
       get :filter, on: :member

@@ -2,11 +2,26 @@ require_dependency "menu/product"
 
 class Product < ActiveRecord::Base
   include Orderable
+
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  include Elasticsearch::Model::Globalize::MultipleFields
+
+  index_name "#{Rails.env}-#{Apartment::Tenant.current}-products"
+
+  mapping do
+    indexes :id, type: "integer"
+    indexes :name_ko, analyzer: "cjk"
+    indexes :name_en, analyzer: "snowball"
+    indexes :description_ko, analyzer: "cjk"
+    indexes :description_en, analyzer: "snowball"
+  end
 
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
@@ -71,21 +86,6 @@ class Product < ActiveRecord::Base
     order_products.joins(:product_order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
   end
 
-  def self.import file
-    spreadsheet = open_spreadsheet file
-
-    unless spreadsheet.nil?
-      header = spreadsheet.row 1
-
-      (2..spreadsheet.last_row).each do |i|
-        row = Hash[[header, spreadsheet.row(i)].transpose]
-        product = find_by_id(row["id"]) || new
-        product.attributes = row.to_hash.slice *Product.attribute_names
-        product.save!
-      end
-    end
-  end
-
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
   end
@@ -111,16 +111,46 @@ class Product < ActiveRecord::Base
     return true
   end
 
-  def self.search_by_name query
-    with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
-  end
+  class << self
+    def import file
+      spreadsheet = open_spreadsheet file
 
-  def self.to_csv options={}
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |product|
-        csv << product.attributes.values_at(*column_names)
+      unless spreadsheet.nil?
+        header = spreadsheet.row 1
+
+        (2..spreadsheet.last_row).each do |i|
+          row = Hash[[header, spreadsheet.row(i)].transpose]
+          product = find_by_id(row["id"]) || new
+          product.attributes = row.to_hash.slice *Product.attribute_names
+          product.save!
+        end
       end
+    end
+
+    def search_by_name query
+      with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
+    end
+
+    def to_csv options={}
+      CSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |product|
+          csv << product.attributes.values_at(*column_names)
+        end
+      end
+    end
+
+    def self.search(query)
+      __elasticsearch__.search(
+        {
+          query: {
+            multi_match: {
+              query: query,
+              fields: ["name_ko^10", "name_en^10", "description_ko", "description_en"]
+            }
+          }
+        }
+      )
     end
   end
 
@@ -151,3 +181,9 @@ class Product < ActiveRecord::Base
     master.save! if master
   end
 end
+
+Product.__elasticsearch__.client.indices.delete index: Product.index_name rescue nil
+Product.__elasticsearch__.client.indices.create \
+  index: Product.index_name,
+  body: { settings: Product.settings.to_hash, mappings: Product.mappings.to_hash }
+Product.__elasticsearch__.import

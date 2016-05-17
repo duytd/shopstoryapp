@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: f92eba76828d91d39444151f57ec7b59fcbe8d9c
+  revision: 5bea8a633f49f65178605a48a40f254c0bed07b4
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
@@ -180,6 +180,23 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (1.0.12)
+      elasticsearch-api (= 1.0.12)
+      elasticsearch-transport (= 1.0.12)
+    elasticsearch-api (1.0.12)
+      multi_json
+    elasticsearch-model (0.1.7)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-model-globalize (0.0.3)
+      activerecord
+      elasticsearch-model
+      globalize
+    elasticsearch-rails (0.1.7)
+    elasticsearch-transport (1.0.12)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -450,6 +467,9 @@ DEPENDENCIES
   country_select
   database_cleaner
   devise
+  elasticsearch-model
+  elasticsearch-model-globalize
+  elasticsearch-rails
   factory_girl_rails
   faker
   figaro

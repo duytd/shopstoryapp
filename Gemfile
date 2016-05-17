@@ -52,6 +52,9 @@ gem "RedCloth"
 gem "faker"
 gem "wicked_pdf"
 gem "roo"
+gem "elasticsearch-model"
+gem "elasticsearch-rails"
+gem "elasticsearch-model-globalize"
 
 group :development, :test do
   gem "byebug"
