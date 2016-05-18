@@ -13,33 +13,30 @@ class Product < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
   include Elasticsearch::Model::Globalize::MultipleFields
 
-  index_name "#{Rails.env}-#{Apartment::Tenant.current}-products"
-  settings analysis: {
-    filter: {
-      ngram_filter: {
-        type: "nGram",
-        min_gram: 1,
-        max_gram: 15
-      }
-    },
-    analyzer: {
-      index_ngram_analyzer: {
-        tokenizer: "standard",
-        filter: ["standard", "lowercase", "stop", "ngram_filter"],
-        type: "custom"
+  settings index: {
+    number_of_shards: 1,
+    analysis: {
+      filter: {
+        ngram_filter: {
+          type: "nGram",
+          min_gram: 1,
+          max_gram: 15
+        }
       },
-      search_ngram_analyzer: {
-        tokenizer: "standard",
-        filter: ["standard", "lowercase", "stop"],
-        type: "custom"
+      analyzer: {
+        ngram_analyzer: {
+          tokenizer: "standard",
+          filter: ["standard", "lowercase", "ngram_filter"],
+          type: "custom"
+        }
       }
     }
   } do
-    mapping do
-      indexes :name_ko, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
-      indexes :name_en, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
-      indexes :description_ko, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
-      indexes :description_en, search_analyzer: "search_ngram_analyzer", index_analyzer: "index_ngram_analyzer"
+    mappings do
+      indexes :name_ko, analyzer: "ngram_analyzer"
+      indexes :name_en, analyzer: "ngram_analyzer"
+      indexes :description_ko, analyzer: "ngram_analyzer"
+      indexes :description_en, analyzer: "ngram_analyzer"
     end
   end
 
@@ -131,15 +128,6 @@ class Product < ActiveRecord::Base
     return true
   end
 
-  def as_indexed_json options={}
-    self.as_json(
-      include: {
-        highlight: try(:highlight),
-        images: product_images
-      }
-    )
-  end
-
   def self.import file
     spreadsheet = open_spreadsheet file
 
@@ -169,6 +157,8 @@ class Product < ActiveRecord::Base
   end
 
   def self.search query
+    index_name "#{Rails.env}-#{Apartment::Tenant.current}-products"
+
     __elasticsearch__.search(
       {
         query: {
@@ -181,10 +171,7 @@ class Product < ActiveRecord::Base
           pre_tags: ["<em class='highlight'>"],
           post_tags: ["</em>"],
           fields: {
-            name_ko: {},
-            name_en: {},
-            description_ko: {},
-            description_en: {}
+            "*": {},
           }
         }
       }
@@ -218,9 +205,3 @@ class Product < ActiveRecord::Base
     master.save! if master
   end
 end
-
-Product.__elasticsearch__.client.indices.delete index: Product.index_name rescue nil
-Product.__elasticsearch__.client.indices.create \
-  index: Product.index_name,
-  body: { settings: Product.settings.to_hash, mappings: Product.mappings.to_hash }
-Product.__elasticsearch__.import

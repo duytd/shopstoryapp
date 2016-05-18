@@ -11,7 +11,7 @@ class Menu < ActiveRecord::Base
     super(options).merge({menu_items: menu_items.is_parent})
   end
 
-  def self.main_menu
-    find_by position: Menu.positions[:main]
+  def self.with_position position
+    find_by position: Menu.positions[position]
   end
 end
