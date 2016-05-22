@@ -66,7 +66,7 @@ label.label {
 
 h1, h2, h3, h4 {
   font-weight: 700;
-  color: $sea;
+  color: $base-dark;
 }
 
 a {
@@ -74,11 +74,12 @@ a {
   color: $gray-light;
   &:hover, &:focus {
     text-decoration: none;
+    color: $base-main;
   }
 }
 
 aside.left-panel {
-  background: $sea;
+  background: $base-dark;
   position: fixed;
   left: 0;
   top: 0;

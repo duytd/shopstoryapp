@@ -1,4 +1,4 @@
-$menu-item-color: #cccccc;
+$menu-item-color: #a5a5a4;
 
 aside.left-panel {
   top: 0;
@@ -7,7 +7,7 @@ aside.left-panel {
   left: -230px;
   .merchant-logo {
     color: $white !important;
-    background: $sea-light;
+    background: $base-dark;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -15,7 +15,13 @@ aside.left-panel {
     text-transform: uppercase;
     .logo {
       float: left;
-      height: 20px;
+      height: 25px;
+      &:not(.icon) {
+        display: block;
+      }
+      &.icon {
+        display: none;
+      }
     }
     .name {
       width: 150px;
@@ -34,11 +40,10 @@ aside.left-panel {
     }
     .item {
       padding: 15px 25px;
-      &:hover {
-        transition: all 0.2s ease 0s;
-        border-left: 3px solid $green;
-        background: $sea-light;
+      &:hover, &:hover a {
+        background: $base-main;
         cursor: pointer;
+        color: $white;
       }
       .subitems {
         display: none;
@@ -52,8 +57,8 @@ aside.left-panel {
     }
     a {
       color: $menu-item-color;
+      font-weight: 700;
       text-decoration: none;
-      transition: all 0.4s ease 0s;
       &:hover {
         color: $white;
       }
@@ -76,6 +81,14 @@ aside.left-panel {
   }
   &.collapsed {
     left: 0;
+    .logo {
+      &:not(.icon) {
+        display: none;
+      }
+      &.icon {
+        display: block;
+      }
+    }
   }
 }
 
@@ -97,6 +110,7 @@ aside.left-panel {
       .item {
         padding: 25px;
         position: relative;
+        text-align: center;
         i {
           margin-top: -10px;
         }
@@ -108,7 +122,7 @@ aside.left-panel {
         }
       }
       .subitems {
-        background-color: darken($sea, 5%);
+        background-color: $base-main;
         box-shadow: none;
         left: 100%;
         min-width: 150px;

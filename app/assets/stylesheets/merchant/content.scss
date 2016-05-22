@@ -24,6 +24,10 @@ section.content {
     }
     .search-form {
       padding-top: 5px;
+      min-width:300px;
+      .form-control {
+        width: 100%;
+      }
       input[name='q'] {
         padding-left: 10px;
         &:before {
@@ -53,7 +57,7 @@ section.content {
       }
       img {
         display: block;
-        background: lighten($sea-light, 60%);
+        background: lighten($base-dark, 60%);
         border-radius: 50%;
         width: 35px;
         height: 35px;

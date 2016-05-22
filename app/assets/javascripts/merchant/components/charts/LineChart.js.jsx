@@ -23,6 +23,7 @@ var LineChart = React.createClass({
         datasets: [{
             label: dataSetLabel,
             data: data,
+            backgroundColor: "transparent",
             borderColor: "rgba(46, 204, 113, 1.0)",
             borderWidth: 2,
             pointBackgroundColor: "rgba(46, 204, 113, 0.9)",

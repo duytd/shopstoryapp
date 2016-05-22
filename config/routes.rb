@@ -76,6 +76,7 @@ Rails.application.routes.draw do
     get :credentials, to: "pages#credentials"
     get :account, to: "pages#account"
     get :editor, to: "pages#editor"
+    get :search, to: "search#search"
 
     resources :categories, except: :show do
       delete :index, on: :collection

@@ -50,10 +50,10 @@ $input-bg-color: #e9ebed;
         position: absolute;
         right: 10px;
         top: 12px;
-        color: $sea;
+        color: $base-dark;
         font-weight: bold;
         &:hover {
-          color: lighten($sea, 20%);
+          color: lighten($base-dark, 20%);
         }
       }
     }

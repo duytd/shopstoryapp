@@ -1,4 +1,6 @@
 class Customer < ActiveRecord::Base
+  include Searchable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :omniauthable, omniauth_providers: [:doindie]
@@ -15,6 +17,13 @@ class Customer < ActiveRecord::Base
 
   liquid_methods :first_name, :last_name
 
+  mapping do
+    indexes :email, analyzer: "ngram_analyzer"
+    indexes :first_name, analyzer: "ngram_analyzer"
+    indexes :last_name, analyzer: "ngram_analyzer"
+    indexes :phone_number, analyzer: "ngram_analyzer"
+  end
+
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -23,6 +32,10 @@ class Customer < ActiveRecord::Base
       user.term = "1"
       user.privacy = "1"
     end
+  end
+
+  def self.search_fields
+    %w{ email^10 first_name^10 last_name phone_number }
   end
 
   def total_orders

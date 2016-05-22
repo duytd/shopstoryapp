@@ -6,11 +6,7 @@
     <span class="icon-bar"></span>
   </button>
 
-  <%= form_tag "#", class: "form-inline search-form navbar-left hidden-xs" do %>
-    <%= text_field_tag :q, nil, placeholder: t("merchant.admin.menu.search"),
-      class: "form-control" %>
-  <% end %>
-
+  <%= react_component "Search" %>
   <div class="nav navbar-nav navbar-right pull-right">
     <li>
       <a data-no-turbolink="true" href="?locale=ko"><%= t "menu.korean" %></a>
@@ -23,7 +19,7 @@
       <a href="#" class="dropdown-toggle avatar"
         data-toggle="dropdown" role="button" aria-haspopup="true"
         aria-expanded="false">
-        <%= image_tag "#", alt: "", size: "35x35" %>
+        <%= image_tag current_shop.logo.thumb.url, alt: current_shop.name %>
       </a>
       <ul class="dropdown-menu">
         <li>

@@ -2,6 +2,7 @@ require_dependency "menu/category"
 
 class Category < ActiveRecord::Base
   include Orderable
+  include Searchable
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
@@ -14,6 +15,13 @@ class Category < ActiveRecord::Base
 
   translates :name
   globalize_accessors locales: [:en, :ko], attributes: [:name]
+
+  include Elasticsearch::Model::Globalize::MultipleFields
+
+  mapping do
+    indexes :name_ko, analyzer: "ngram_analyzer"
+    indexes :name_en, analyzer: "ngram_analyzer"
+  end
 
   validates :name, translation_presence: true, translation_uniqueness: true
   accepts_nested_attributes_for :seo_tag, allow_destroy: false, reject_if: :all_blank
@@ -64,6 +72,10 @@ class Category < ActiveRecord::Base
     end
 
     filter_list
+  end
+
+  def self.search_fields
+    %w{ name_ko name_en }
   end
 
   private

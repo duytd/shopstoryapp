@@ -37,6 +37,7 @@ en:
         subdomain: "Shop name"
       customer:
         email: "Email"
+        phone_number: "Phone Number"
         total_spent: "Total Spent"
         total_orders: "Number Of Orders"
         name: "Name"

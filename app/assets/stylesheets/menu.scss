@@ -2,11 +2,16 @@
   padding: 7px;
   margin-bottom: 0;
   border-radius: 0;
-  font-weight: bold;
+  font-weight: 300;
   a {
     &:not(.btn) {
       background: none !important;
       padding: 15px 10px;
+    }
+    &.btn {
+      &:hover, &:focus {
+        background: darken($base-main, 5%) !important;
+      }
     }
   }
   .dropdown-menu {
@@ -18,7 +23,11 @@
       color: $gray;
     }
   }
-  .navbar-brand {
-    padding: 15px 0;
+  a.navbar-brand {
+    padding: 10px;
+    img {
+      height: 100%;
+      width: auto;
+    }
   }
 }

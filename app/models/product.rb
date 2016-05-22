@@ -2,6 +2,7 @@ require_dependency "menu/product"
 
 class Product < ActiveRecord::Base
   include Orderable
+  include Searchable
 
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
@@ -9,35 +10,11 @@ class Product < ActiveRecord::Base
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
 
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
   include Elasticsearch::Model::Globalize::MultipleFields
 
-  settings index: {
-    number_of_shards: 1,
-    analysis: {
-      filter: {
-        ngram_filter: {
-          type: "nGram",
-          min_gram: 1,
-          max_gram: 15
-        }
-      },
-      analyzer: {
-        ngram_analyzer: {
-          tokenizer: "standard",
-          filter: ["standard", "lowercase", "ngram_filter"],
-          type: "custom"
-        }
-      }
-    }
-  } do
-    mappings do
-      indexes :name_ko, analyzer: "ngram_analyzer"
-      indexes :name_en, analyzer: "ngram_analyzer"
-      indexes :description_ko, analyzer: "ngram_analyzer"
-      indexes :description_en, analyzer: "ngram_analyzer"
-    end
+  mapping do
+    indexes :name_ko, analyzer: "ngram_analyzer"
+    indexes :name_en, analyzer: "ngram_analyzer"
   end
 
   has_many :category_products, dependent: :destroy
@@ -156,26 +133,8 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def self.search query
-    index_name "#{Rails.env}-#{Apartment::Tenant.current}-products"
-
-    __elasticsearch__.search(
-      {
-        query: {
-          multi_match: {
-            query: "*#{query}*",
-            fields: ["name_ko^10", "name_en^10", "description_ko", "description_en"]
-          }
-        },
-        highlight: {
-          pre_tags: ["<em class='highlight'>"],
-          post_tags: ["</em>"],
-          fields: {
-            "*": {},
-          }
-        }
-      }
-    )
+  def self.search_fields
+    %w{ name_ko^10 name_en^10 description_ko description_en }
   end
 
   private

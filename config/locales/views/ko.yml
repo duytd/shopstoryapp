@@ -205,3 +205,9 @@ ko:
             weekly: "Weekly"
             monthly: "Monthly"
             yearly: "Yearly"
+      search:
+        products: "Products"
+        categories: "Categories"
+        custom_pages: "Pages"
+        customers: "Customers"
+        no_result: "No result"

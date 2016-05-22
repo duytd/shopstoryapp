@@ -1,5 +1,5 @@
 class Merchant::CustomPagesController < Merchant::BaseController
-  load_and_authorize_resource find_by: :slug
+  load_and_authorize_resource
   include TranslationsHelper
 
   def index

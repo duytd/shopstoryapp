@@ -7,7 +7,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to t("application.brand"), root_path, class: "navbar-brand" %>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag asset_url("logo.png"), placeholder: t("application.brand") %>
+      <% end %>
     </div>
 
     <div class="navbar-collapse collapse navbar-right" id="navbarCollapse">
@@ -42,15 +44,15 @@
         </li>
         <% if merchant_signed_in? %>
           <li>
-            <%= link_to t("buttons.go_to_store"), merchant_root_url(subdomain: current_merchant.shop.subdomain), 
-              class: "btn btn-success" %>
+            <%= link_to t("buttons.go_to_store"), merchant_root_url(subdomain: current_merchant.shop.subdomain),
+              class: "btn btn-danger" %>
           </li>
         <% else %>
           <li>
             <%= link_to t("menu.login"), new_merchant_session_path %>
           </li>
           <li>
-            <%= link_to t("buttons.get_started"), new_merchant_registration_path, class: "btn btn-success" %>
+            <%= link_to t("buttons.get_started"), new_merchant_registration_path, class: "btn btn-danger" %>
           </li>
         <% end %>
       </ul>
