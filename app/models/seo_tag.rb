@@ -8,6 +8,8 @@ class SeoTag < ActiveRecord::Base
   validates :meta_description, translation_length: {maximum: 160}
   validates :meta_keywords, translation_length: {maximum: 255}
 
+  default_scope {includes :translations}
+
   def as_json options={}
     super(options).merge({
       title_ko: title_ko,

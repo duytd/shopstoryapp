@@ -1,5 +1,3 @@
-require_dependency "menu/product"
-
 class Product < ActiveRecord::Base
   include Orderable
   include Searchable
@@ -9,6 +7,7 @@ class Product < ActiveRecord::Base
 
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
+  default_scope { includes :translations }
 
   include Elasticsearch::Model::Globalize::MultipleFields
 
@@ -70,6 +69,8 @@ class Product < ActiveRecord::Base
   after_create :create_master
   after_update :update_master
   before_save :update_inventory
+  after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") }
+  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") }
 
   def price=(price)
     price = price.to_s.gsub ",", ""

@@ -1,31 +1,30 @@
 class MenuItem < ActiveRecord::Base
   TYPES_CLASSES_MAPPING = {
-    home: "Menu::Home",
-    category: "Menu::Category",
-    category_all: "Menu::CategoryAll",
-    product_all: "Menu::ProductAll",
-    page: "Menu::Page",
-    product: "Menu::Product",
-    url: "Menu::Url"
+    home: "Menu::HomeMenu",
+    category: "Menu::CategoryMenu",
+    category_index: "Menu::CategoryIndexMenu",
+    product_index: "Menu::ProductIndexMenu",
+    custom_page: "Menu::CustomPageMenu",
+    product: "Menu::ProductMenu",
+    url: "Menu::UrlMenu"
   }.freeze
 
   include Rails.application.routes.url_helpers
 
-  belongs_to :menu
+  acts_as_tree order: "name"
 
   translates :name
-
   globalize_accessors locales: [:en, :ko], attributes: [:name]
 
-  acts_as_tree order: "name"
+  belongs_to :menu
 
   validates :menu, presence: true
   validates :name, translation_presence: true
 
-  scope :is_parent, ->{where parent_id: nil}
-  default_scope {order position: :asc}
-
   after_create :calculate_position
+
+  scope :is_parent, ->{where parent_id: nil}
+  default_scope {includes(:translations).order position: :asc}
 
   def self.types
     TYPES_CLASSES_MAPPING.keys
@@ -33,16 +32,6 @@ class MenuItem < ActiveRecord::Base
 
   def self.type_class type
     TYPES_CLASSES_MAPPING.fetch(type.to_sym).constantize.new
-  end
-
-  def as_json options={}
-    super(options).merge({
-      name_en: name_en,
-      name_ko: name_ko,
-      children: children,
-      type: type.underscore,
-      url: url
-    })
   end
 
   private

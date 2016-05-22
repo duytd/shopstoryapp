@@ -1,6 +1,6 @@
 class Merchant::CustomPagesController < Merchant::BaseController
+  before_action :load_custom_page, only: :edit
   load_and_authorize_resource
-  include TranslationsHelper
 
   def index
     if request.delete?
@@ -13,6 +13,7 @@ class Merchant::CustomPagesController < Merchant::BaseController
   def new
     @props = {
       url: merchant_custom_pages_path,
+      redirect_url: merchant_custom_pages_path,
       method: :post
     }
   end
@@ -20,7 +21,7 @@ class Merchant::CustomPagesController < Merchant::BaseController
   def create
     @custom_page = CustomPage.new custom_page_params
     if @custom_page.save
-      render json: @custom_page, status: :ok
+      render json: Merchant::CustomPagePresenter.new(@custom_page), status: :ok
     else
       render json: @custom_page.errors, status: :unprocessable_entity
     end
@@ -28,18 +29,17 @@ class Merchant::CustomPagesController < Merchant::BaseController
 
   def edit
     @props = {
-      slug: @custom_page.slug,
-      seo_tag: @custom_page.seo_tag,
-      custom_page_en: load_translation(@custom_page.translations, :en),
-      custom_page_ko: load_translation(@custom_page.translations, :ko),
+      seo_tag: @custom_page.seo_tag ? Merchant::SeoTagPresenter.new(@custom_page.seo_tag) : nil,
+      custom_page: Merchant::CustomPagePresenter.new(@custom_page),
       url: merchant_custom_page_path(@custom_page),
+      redirect_url: merchant_custom_pages_path,
       method: :put
     }
   end
 
   def update
     if @custom_page.update custom_page_params
-      render json: @custom_page, status: :ok
+      render json: Merchant::CustomPagePresenter.new(@custom_page), status: :ok
     else
       render json: @custom_page.errors, status: :unprocessable_entity
     end
@@ -51,11 +51,15 @@ class Merchant::CustomPagesController < Merchant::BaseController
   end
 
   private
+  def load_custom_page
+    @custom_page = CustomPage.includes(:seo_tag).find params[:id]
+  end
+
   def list_all
     @custom_pages = CustomPage.all.page params[:page]
 
     @props = paginating @custom_pages, {
-      custom_pages: @custom_pages,
+      custom_pages: @custom_pages.map{|p| Merchant::CustomPagePresenter.new(p)},
       url: merchant_custom_pages_path
     }
   end

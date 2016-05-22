@@ -90,7 +90,7 @@ var ShippingRateForm = React.createClass({
                 <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
                 <FormErrors errors={this.state.errors.name_ko} />
                 <input ref="name_ko" type="text" name="shipping_rate[name_ko]"
-                  className="form-control" defaultValue={(this.props.ko_shipping_rate) ? this.props.ko_shipping_rate.name : ""} />
+                  className="form-control" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.name_ko : ""} />
               </div>
             </div>
             <div id="en" className="tab-pane fade">
@@ -98,7 +98,7 @@ var ShippingRateForm = React.createClass({
                 <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
                 <FormErrors errors={this.state.errors.name_en} />
                 <input ref="name_en" type="text" name="shipping_rate[name_en]"
-                  className="form-control" defaultValue={(this.props.en_shipping_rate) ? this.props.en_shipping_rate.name : null} />
+                  className="form-control" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.name_en : ""} />
               </div>
             </div>
           </div>

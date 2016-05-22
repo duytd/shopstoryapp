@@ -1,5 +1,16 @@
 class Customer < ActiveRecord::Base
+  attr_accessor :term, :privacy
+  enum gender: [:male, :female]
+
+  liquid_methods :first_name, :last_name
+
   include Searchable
+  mapping do
+    indexes :email, analyzer: "ngram_analyzer"
+    indexes :first_name, analyzer: "ngram_analyzer"
+    indexes :last_name, analyzer: "ngram_analyzer"
+    indexes :phone_number, analyzer: "ngram_analyzer"
+  end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
@@ -9,20 +20,10 @@ class Customer < ActiveRecord::Base
   has_many :bookings, class_name: "ShopstoryTicket::Booking",
     dependent: :destroy, inverse_of: :customer
 
-  attr_accessor :term, :privacy
-
   validates_acceptance_of :term, :privacy, allow_nil: false, on: :create
 
-  enum gender: [:male, :female]
-
-  liquid_methods :first_name, :last_name
-
-  mapping do
-    indexes :email, analyzer: "ngram_analyzer"
-    indexes :first_name, analyzer: "ngram_analyzer"
-    indexes :last_name, analyzer: "ngram_analyzer"
-    indexes :phone_number, analyzer: "ngram_analyzer"
-  end
+  after_save { IndexerWorker.perform_async(:index, self.id, "Customer", "Customer::CustomerPresenter") }
+  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Customer", "Customer::CustomerPresenter") }
 
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

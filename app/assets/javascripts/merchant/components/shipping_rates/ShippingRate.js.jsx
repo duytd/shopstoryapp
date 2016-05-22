@@ -10,7 +10,7 @@ var ShippingRate = React.createClass({
 
         <td className="name">
           <a href={Routes.edit_merchant_shipping_rate_path(this.props.shipping_rate.id)}>
-            {(this.props.shipping_rate.name_ko == "") ? this.props.shipping_rate.name_en : this.props.shipping_rate.name_ko}
+            {translate(this.props.shipping_rate, "name")}
           </a>
         </td>
       </Item>

@@ -1,6 +1,7 @@
 class Merchant::MenuItemsController < Merchant::BaseController
-  load_and_authorize_resource
+  before_action :load_menu_item, only: :update
   before_action :load_menu, only: :create
+  load_and_authorize_resource
 
   def create
     begin
@@ -9,7 +10,7 @@ class Merchant::MenuItemsController < Merchant::BaseController
       @menu_item.menu = @menu
 
       if @menu_item.save
-        render json: @menu_item, status: :ok
+        render json: Merchant::MenuItemPresenter.new(@menu_item), status: :ok
       else
         render json: @menu_item.errors, status: :unprocessable_entity
       end
@@ -20,9 +21,9 @@ class Merchant::MenuItemsController < Merchant::BaseController
 
   def update
     if @menu_item.update menu_item_params
-      render json: @menu_item, status: :ok
+      render json: Merchant::MenuItemPresenter.new(@menu_item), status: :ok
     else
-      render json: @menu_item.errors, status: :unprocessable_entity
+      render json: Merchant::MenuItemPresenter.new(@menu_item).errors, status: :unprocessable_entity
     end
   end
 
@@ -34,6 +35,10 @@ class Merchant::MenuItemsController < Merchant::BaseController
   private
   def load_menu
     @menu = Menu.find params[:menu_id]
+  end
+
+  def load_menu_item
+    @menu_item = MenuItem.includes(:children).find params[:id]
   end
 
   def menu_item_params

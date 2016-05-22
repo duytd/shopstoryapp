@@ -253,6 +253,6 @@ var MenuForm = React.createClass({
     }
   },
   setParent: function(item) {
-    this.setState({parent: item})
+    this.setState({parent: item, menu_item: null})
   }
 })

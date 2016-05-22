@@ -155,6 +155,14 @@ en:
         menu_items: "Menu Items"
       menu_items:
         no_item: "You have not added any item to this menu yet"
+        types:
+          product: "Product"
+          product_index: "All Products"
+          category: "Category"
+          category_index: "All Categories"
+          url: "Custom URL"
+          custom_page: "Page"
+          home: "Home Page"
       developers:
         credentials:
           title: "Credentials"
@@ -208,3 +216,5 @@ en:
         custom_pages: "Pages"
         customers: "Customers"
         no_result: "No result"
+      banners:
+        title: "Banners"

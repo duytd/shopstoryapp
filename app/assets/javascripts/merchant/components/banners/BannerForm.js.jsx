@@ -32,7 +32,7 @@ var BannerForm = React.createClass({
         </div>
         <div className="form-group">
           <label className="styled-cb">
-            <input type="hidden" name="banner[show_image]" value="0" />
+            <input type="hidden" name={"banner[banner_items_attributes][" + index + "][show_image]"} value="0" />
             <input ref="checkbox" type="checkbox" name={"banner[banner_items_attributes][" + index + "][show_image]"} value="1"
               defaultChecked={(typeof item.show_image !== "undefined") ? item.show_image : true} />
             <i className="fa"></i>

@@ -158,6 +158,14 @@ ko:
         menu_items: "메뉴 아이템"
       menu_items:
         no_item: "이 메뉴에 등록된 아이템이 없습니다."
+        types:
+          product: "Product"
+          product_index: "All Products"
+          category: "Category"
+          category_index: "All Categories"
+          url: "Custom URL"
+          custom_page: "Page"
+          home: "Home Page"
       developers:
         credentials:
           title: "Credentials"
@@ -211,3 +219,5 @@ ko:
         custom_pages: "Pages"
         customers: "Customers"
         no_result: "No result"
+      banners:
+        title: "Banners"

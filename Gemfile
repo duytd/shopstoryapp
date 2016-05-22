@@ -55,6 +55,7 @@ gem "roo"
 gem "elasticsearch-model"
 gem "elasticsearch-rails"
 gem "elasticsearch-model-globalize"
+gem "apartment-sidekiq"
 
 group :development, :test do
   gem "byebug"
@@ -72,6 +73,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "bullet"
   gem "capistrano",         require: false
   gem "capistrano-rvm",     require: false
   gem "capistrano-rails",   require: false

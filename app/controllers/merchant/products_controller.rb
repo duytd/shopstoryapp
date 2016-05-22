@@ -1,6 +1,7 @@
 class Merchant::ProductsController < Merchant::BaseController
   include TranslationsHelper
 
+  before_filter :load_product, only: :edit
   load_and_authorize_resource
 
   before_action :load_categories, only: [:new, :edit]
@@ -102,8 +103,12 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   private
+  def load_product
+    @product = Product.includes(:product_images).find params[:id]
+  end
+
   def list_all
-    products = Product.latest.page params[:page]
+    products = Product.latest.includes(:product_images).page params[:page]
 
     @props = paginating products, {
       products: products,
@@ -124,7 +129,7 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def product_params
-    permitted = Product.globalize_attribute_names + [:price, :sale_off, :visibility, :flat_shipping_rate, :featured, :pay_shipping_on_delivery,
+    permitted = Product.globalize_attribute_names + [:price, :slug, :sale_off, :visibility, :flat_shipping_rate, :featured, :pay_shipping_on_delivery,
       :vendor, :sku, :in_stock, category_ids: [], product_images: [],
       variations_attributes: [:id, :sku, :price, :image, :in_stock, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
       variation_options_attributes: [:id, :name, :_destroy, variation_option_values_attributes: [:id, :name, :_destroy]],

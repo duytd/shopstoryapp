@@ -1,4 +1,5 @@
 class Merchant::OrdersController < Merchant::BaseController
+  before_action :load_order, only: :edit
   load_and_authorize_resource
   include PaymentHelper
 
@@ -64,8 +65,12 @@ class Merchant::OrdersController < Merchant::BaseController
   end
 
   private
+  def load_order
+    @order = Order.includes(:payment, :shipping_address, :billing_address, :order_products).find params[:id]
+  end
+
   def list_all
-    @orders = ProductOrder.page params[:page]
+    @orders = ProductOrder.includes({payment: {payment_method: :payment_method_options}}, :shipping_address, :billing_address, order_products: :variation).page params[:page]
 
     @props = paginating @orders, {
       orders: @orders,

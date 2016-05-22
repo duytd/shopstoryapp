@@ -1,34 +1,36 @@
-require_dependency "menu/category"
-
 class Category < ActiveRecord::Base
   include Orderable
-  include Searchable
+
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
-
-  has_many :category_products, dependent: :destroy
-  has_many :products, through: :category_products
-  has_many :variations, through: :products
-  has_one :seo_tag, as: :seoable, dependent: :destroy
-
-  before_destroy :destroy_menu_item
 
   translates :name
   globalize_accessors locales: [:en, :ko], attributes: [:name]
 
+  include Searchable
   include Elasticsearch::Model::Globalize::MultipleFields
-
   mapping do
     indexes :name_ko, analyzer: "ngram_analyzer"
     indexes :name_en, analyzer: "ngram_analyzer"
   end
 
-  validates :name, translation_presence: true, translation_uniqueness: true
+  has_many :category_products, dependent: :destroy
+  has_many :products, through: :category_products
+  has_many :variations, through: :products
+  has_one :seo_tag, as: :seoable, dependent: :destroy
   accepts_nested_attributes_for :seo_tag, allow_destroy: false, reject_if: :all_blank
 
+  validates :name, translation_presence: true, translation_uniqueness: true
   I18n.available_locales.each do |locale|
     validates "name_#{locale}", length: {minimum: 2}, allow_blank: true
   end
+
+  before_destroy :destroy_menu_item
+
+after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer::CategoryPresenter") }
+  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Category", "Customer::CategoryPresenter") }
+
+  default_scope {includes(:translations).order created_at: :asc}
 
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, seo_tag: seo_tag})
@@ -80,7 +82,7 @@ class Category < ActiveRecord::Base
 
   private
   def destroy_menu_item
-    menu_items = Menu::Category.where value: id
+    menu_items = Menu::CategoryMenu.where value: id
     menu_items.destroy_all unless menu_items.empty?
   end
 end

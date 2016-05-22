@@ -90,6 +90,9 @@ GEM
     apartment (1.0.2)
       activerecord (>= 3.1.2, < 5.0)
       rack (>= 1.3.6)
+    apartment-sidekiq (1.0.0)
+      apartment (~> 1.0)
+      sidekiq (>= 2.11)
     arel (6.0.3)
     autoprefixer-rails (6.0.3)
       execjs
@@ -110,6 +113,9 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sprockets (> 3.0.2)
     builder (3.2.2)
+    bullet (5.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (6.0.2)
     cancancan (1.12.0)
     capistrano (3.4.0)
@@ -426,6 +432,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     unicode_utils (1.4.0)
+    uniform_notifier (1.10.0)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.2.1)
@@ -447,10 +454,12 @@ DEPENDENCIES
   actionpack-action_caching
   acts_as_tree
   apartment
+  apartment-sidekiq
   bootstrap-sass (~> 3.3.5)
   bower-rails (~> 0.10.0)
   browser
   browserify-rails
+  bullet
   byebug
   cancancan (~> 1.10)
   capistrano

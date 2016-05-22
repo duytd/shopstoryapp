@@ -1,4 +1,4 @@
-class Menu::Product < MenuItem
+class Menu::ProductMenu < MenuItem
   validates :value, presence: true
 
   def url

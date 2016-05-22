@@ -1,4 +1,5 @@
 class Merchant::CustomersController < Merchant::BaseController
+  before_action :load_customer, only: [:edit, :update]
   load_and_authorize_resource
   include Merchant::ShopsHelper
 
@@ -24,7 +25,7 @@ class Merchant::CustomersController < Merchant::BaseController
     @customer = Customer.new customer_params
 
     if @customer.save
-      render json: @customer, status: :ok
+      render json: Merchant::CustomerPresenter.new(@customer), status: :ok
     else
       render json: @customer.errors, status: :unprocessable_entity
     end
@@ -32,7 +33,7 @@ class Merchant::CustomersController < Merchant::BaseController
 
   def edit
     @props = {
-      customer: @customer.as_json({methods: [:total_orders, :total_spent, :last_sign_in_at]}),
+      customer: Merchant::CustomerPresenter.new(@customer),
       orders: @customer.product_orders.success,
       url: merchant_customer_path(@customer),
       method: :put,
@@ -44,7 +45,7 @@ class Merchant::CustomersController < Merchant::BaseController
 
   def update
     if @customer.update customer_params
-      render json: @customer, status: :ok
+      render json: Merchant::CustomerPresenter.new(@customer), status: :ok
     else
       render json: @customer.errors, status: :unprocessable_entity
     end
@@ -55,12 +56,26 @@ class Merchant::CustomersController < Merchant::BaseController
     render json: nil, status: :ok
   end
 
+  def export
+    if params[:all]
+      @customers = Customer.order email: :asc
+    else
+      @customers = Customer.where(id: params[:customer_ids]).order email: :asc
+    end
+
+    send_data @customers.to_csv
+  end
+
   private
+  def load_customer
+    @customer = Customer.includes(:product_orders).find params[:id]
+  end
+
   def list_all
-    @customers = Customer.all.includes(:product_orders).page params[:page]
+    @customers = Customer.includes(:product_orders).page params[:page]
 
     @props = paginating @customers, {
-      customers: @customers.as_json({methods: [:total_orders, :total_spent]}),
+      customers: @customers.map{|c| Merchant::CustomerPresenter.new(c)},
       url: merchant_customers_path
     }
   end

@@ -1,4 +1,4 @@
-class Menu::Url < MenuItem
+class Menu::UrlMenu < MenuItem
   validates :value, presence: true
   validates :value, format: { with: URI.regexp }, if: proc { |a| a.value.present? }
 

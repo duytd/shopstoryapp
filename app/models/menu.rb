@@ -7,10 +7,6 @@ class Menu < ActiveRecord::Base
   validates :position, presence: true, uniqueness: true
   validates :name, presence: true
 
-  def as_json options={}
-    super(options).merge({menu_items: menu_items.is_parent})
-  end
-
   def self.with_position position
     find_by position: Menu.positions[position]
   end

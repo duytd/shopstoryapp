@@ -30,7 +30,7 @@ module ShopsLoading
       },
       current_customer: current_customer ? Customer::CustomerPresenter.new(current_customer) : nil,
       currency: current_shop.currency,
-      cart: current_order.order_products.map{|op| Customer::OrderProductPresenter.new(op)},
+      cart: current_order.order_products.includes(:variation).map{|op| Customer::OrderProductPresenter.new(op)},
       mobile: browser.device.mobile?,
       menu: {
         main_menu: Menu.with_position(:main),
