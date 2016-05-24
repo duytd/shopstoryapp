@@ -24,6 +24,11 @@ var OrderForm = React.createClass({
         <div className="col-sm-8">
           <div className="block">
             <h3>#{this.props.order.id}</h3>
+            {(this.props.order.shipment) ?
+              <a className="pull-right btn btn-primary">
+                {I18n.t("merchant.admin.buttons.shipment")}
+              </a> : null}
+
             {(this.props.order.unprocessed == false) ?
               <a className="pull-right btn btn-primary" href={this.props.invoice_url}>
                 {I18n.t("merchant.admin.buttons.download_invoice")}
@@ -43,7 +48,7 @@ var OrderForm = React.createClass({
                     return (
                       <tr key={"order_product_" + index}>
                         <td>
-                          <a href={Routes.edit_merchant_product_path(orderProduct.variation.product_slug)}>
+                          <a href={Routes.edit_merchant_product_path.localize(orderProduct.variation.product_slug)}>
                             <img src={orderProduct.variation.image.image.thumb.url} className="img-responsive" width="50" height="50" />
                           </a>
                         </td>

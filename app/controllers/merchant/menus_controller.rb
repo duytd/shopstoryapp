@@ -6,7 +6,8 @@ class Merchant::MenusController < Merchant::BaseController
     @menus = Menu.includes(menu_items: :children).order(created_at: :asc).map{|m| Merchant::MenuPresenter.new(m)}
 
     @props = {
-      menus: @menus
+      menus: @menus,
+      new_url: new_merchant_menu_path
     }
   end
 

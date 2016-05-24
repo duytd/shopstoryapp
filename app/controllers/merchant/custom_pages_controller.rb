@@ -60,6 +60,7 @@ class Merchant::CustomPagesController < Merchant::BaseController
 
     @props = paginating @custom_pages, {
       custom_pages: @custom_pages.map{|p| Merchant::CustomPagePresenter.new(p)},
+      new_url: new_merchant_custom_page_path,
       url: merchant_custom_pages_path
     }
   end

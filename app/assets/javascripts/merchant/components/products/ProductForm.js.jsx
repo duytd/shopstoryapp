@@ -95,7 +95,7 @@ var ProductForm = React.createClass({
     });
   },
   render: function () {
-    var url = this.state.product ? Routes.merchant_product_path(this.state.product.id) : Routes.merchant_products_path();
+    var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
     var variationNodes = this.state.variations.map(function(variation, index) {
       return (
@@ -464,7 +464,7 @@ var ProductForm = React.createClass({
   populateVariation: function(e) {
     e.preventDefault();
     this.submit(e, function() {
-      var url = Routes.merchant_product_variations_path(this.state.product.id);
+      var url = Routes.merchant_product_variations_path.localize(this.state.product.id);
 
       $.ajax({
         url: url,
@@ -499,7 +499,7 @@ var ProductForm = React.createClass({
   },
   handleProductSubmit: function(form, callback) {
     var method = this.state.product ? "put" : "post";
-    var url = this.state.product ? Routes.merchant_product_path(this.state.product.id) : Routes.merchant_products_path();
+    var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
     $.ajax({
       data: new FormData(form[0]),
@@ -510,7 +510,7 @@ var ProductForm = React.createClass({
       processData: false,
       success: function(response) {
         var productId = response.product.id;
-        this.postImages(productId, Routes.merchant_product_path(productId));
+        this.postImages(productId, Routes.merchant_product_path.localize(productId));
 
         if (this.state.product && !$.isFunction(callback)) {
           Turbolinks.visit(this.props.redirect_url);
@@ -565,7 +565,7 @@ var ProductForm = React.createClass({
     productDropzone.processQueue();
   },
   handleDeleteImage: function(data) {
-    var url = Routes.merchant_product_path(this.state.product.id);
+    var url = Routes.merchant_product_path.localize(this.state.product.id);
 
     $.ajax({
       data: data,
@@ -575,7 +575,7 @@ var ProductForm = React.createClass({
     })
   },
   handleFeatureImage: function(data) {
-    var url = Routes.merchant_product_path(this.state.product.id);
+    var url = Routes.merchant_product_path.localize(this.state.product.id);
 
     $.ajax({
       data: data,

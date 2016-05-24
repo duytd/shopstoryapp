@@ -66,21 +66,21 @@ var Variation = React.createClass({
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][sku]"}
                 placeholder={I18n.t("merchant.admin.variations.sku_placeholder")}
-                defaultValue={this.props.variation ? this.props.variation.sku : ""} />
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.sku : ""} />
             </div>
 
             <div className="col-xs-2">
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][price]"}
                 placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
-                defaultValue={this.props.variation ? this.props.variation.price.toString().toKoreanFormat() : ""} onBlur={this.props.validateNumber} />
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.price.toString().toKoreanFormat() : ""} onBlur={this.props.validateNumber} />
             </div>
 
             <div className="col-xs-2">
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][in_stock]"}
                 placeholder={I18n.t("merchant.admin.variations.in_stock_placeholder")}
-                defaultValue={this.props.variation ? this.props.variation.in_stock : ""} onBlur={this.validateInt} />
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.in_stock : ""} onBlur={this.validateInt} />
             </div>
 
             <div className="col-xs-3">
@@ -91,12 +91,12 @@ var Variation = React.createClass({
                     name={"product[variations_attributes][" + this.props.index + "][image]"} />
                 </div> :
                 <div className="file-upload">
-                  <button className="btn btn-default">
-                    {(this.props.variation.previewImage) ?
-                      <img src={this.props.variation.previewImage} width="30" height="30" />
-                      : <i className="fa fa-photo"></i>}
-                  </button>
-                  <input type="file" ref="imageFile" className="upload" onChange={this.previewAvatar.bind(this, this)}
+
+                {(this.props.variation.previewImage) ?
+                  <img src={this.props.variation.previewImage} width="30" height="30" />
+                  : <button className="btn btn-default"><i className="fa fa-photo"></i></button>}
+
+                  <input type="file" ref="imageFile" className="upload" onChange={this.uploadImage.bind(this, this)}
                     name={"product[variations_attributes][" + this.props.index + "][image]"} />
                 </div>
               }

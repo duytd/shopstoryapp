@@ -92,7 +92,7 @@ var PaymentMethod = React.createClass({
     var form = $(this.refs.form);
 
     $.ajax({
-      url: Routes.merchant_payment_method_shop_path(this.state.payment_method_shop.id),
+      url: Routes.merchant_payment_method_shop_path.localize(this.state.payment_method_shop.id),
       method: "PUT",
       data: new FormData(form[0]),
       contentType: false,

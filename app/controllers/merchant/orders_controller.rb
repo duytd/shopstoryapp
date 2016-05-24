@@ -30,11 +30,13 @@ class Merchant::OrdersController < Merchant::BaseController
 
   def edit
     @transaction_info = get_transaction_info @order
+    @shipping_methods = ShippingMethod.all
 
     @props = {
       order: Merchant::OrderPresenter.new(@order),
       url: merchant_order_path(@order),
       transaction_info: @transaction_info,
+      shipping_methods: @shipping_methods,
       method: :put,
       invoice_url: edit_merchant_order_path(@order, format: :pdf)
     }

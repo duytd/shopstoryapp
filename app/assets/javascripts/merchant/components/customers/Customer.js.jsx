@@ -9,7 +9,7 @@ var Customer = React.createClass({
         check={this.props.customer.checked}>
 
         <td className="name">
-          <a href={Routes.edit_merchant_customer_path(this.props.customer.id)}>
+          <a href={Routes.edit_merchant_customer_path.localize(this.props.customer.id)}>
             {this.props.customer.email}
           </a>
         </td>

@@ -11,4 +11,15 @@ namespace :fix do
       MenuItem.where(type: "Menu::Page").update_all type: "Menu::CustomPageMenu"
     end
   end
+
+  task update_subscription_time: :environment do
+    Subscription.all.each do |subscription|
+      customer = subscription.merchant
+      stripe_customer = Stripe::Customer.retrieve customer.stripe_id
+      stripe_subscription = stripe_customer.subscriptions.retrieve subscription.stripe_id
+      subscription.start_at = Time.at stripe_subscription["current_period_start"]
+      subscription.end_at = Time.at stripe_subscription["current_period_end"]
+      subscription.save!
+    end
+  end
 end

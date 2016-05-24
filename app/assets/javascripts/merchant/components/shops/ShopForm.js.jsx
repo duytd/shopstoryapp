@@ -226,7 +226,7 @@ var ShopForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_root_path());
+        Turbolinks.visit(Routes.merchant_root_path.localize());
 
         this.setState({
           errors: [],

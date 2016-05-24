@@ -45,7 +45,7 @@ var Search = React.createClass({
     var query = $(this.refs.query).val();
     var hasInput = (query != "") ? true : false;
 
-    $.get(Routes.merchant_search_path({q: query}), function(response) {
+    $.get(Routes.merchant_search_path({q: query, locale: I18n.locale}), function(response) {
       this.setState({hasInput: hasInput, products: response.products, categories: response.categories, customers: response.customers, pages: response.custom_pages}, function() {
         this.setVisible();
       }.bind(this))

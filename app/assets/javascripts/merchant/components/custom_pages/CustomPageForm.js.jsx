@@ -64,7 +64,7 @@ var CustomPageForm = React.createClass({
 
         <div className="row">
           <div className="col-md-12">
-            <SubmitButtons redirect_url={Routes.merchant_custom_pages_path()} fixed={true} />
+            <SubmitButtons redirect_url={Routes.merchant_custom_pages_path.localize()} fixed={true} />
           </div>
         </div>
       </form>
@@ -83,7 +83,7 @@ var CustomPageForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_custom_pages_path());
+        Turbolinks.visit(Routes.merchant_custom_pages_path.localize());
       },
       error: function(xhr) {
         var errors = xhr.responseJSON,

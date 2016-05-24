@@ -19,7 +19,6 @@ var CustomerBox = React.createClass({
       <Box name="custom-page"
         list={customPageList}
         pagination={pagination}
-        url={Routes.new_merchant_customer_path()}
         title={I18n.t("merchant.admin.customers.title")} />
     );
   }

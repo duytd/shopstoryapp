@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   has_one :payment, dependent: :nullify
   has_one :payment_method, through: :payment
+  has_one :shipment, dependent: :destroy
+  has_one :shipping_method, through: :shipment
 
   enum status: [:incompleted, :pending, :processing, :processed, :shipping, :shipped, :returned, :cancelled]
 

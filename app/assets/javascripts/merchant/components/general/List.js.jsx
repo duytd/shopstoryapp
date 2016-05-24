@@ -15,7 +15,7 @@ var List = React.createClass({
             <Category
               category={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_category_path(item.id)}
+              deleteUrl={Routes.merchant_category_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
@@ -25,7 +25,7 @@ var List = React.createClass({
             <Product
               product={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_product_path(item.id)}
+              deleteUrl={Routes.merchant_product_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
@@ -35,7 +35,7 @@ var List = React.createClass({
             <Order
               order={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_order_path(item.id)}
+              deleteUrl={Routes.merchant_order_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
@@ -45,7 +45,7 @@ var List = React.createClass({
             <CustomPage
               custom_page={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_custom_page_path(item.slug)}
+              deleteUrl={Routes.merchant_custom_page_path.localize(item.slug)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
@@ -55,7 +55,7 @@ var List = React.createClass({
             <Customer
               customer={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_customer_path(item.id)}
+              deleteUrl={Routes.merchant_customer_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
@@ -65,7 +65,7 @@ var List = React.createClass({
             <ShippingRate
               shipping_rate={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_shipping_rate_path(item.id)}
+              deleteUrl={Routes.merchant_shipping_rate_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
@@ -75,7 +75,7 @@ var List = React.createClass({
             <Banner
               banner={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_banner_path(item.id)}
+              deleteUrl={Routes.merchant_banner_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );

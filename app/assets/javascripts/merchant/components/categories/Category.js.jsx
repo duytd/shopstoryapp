@@ -9,7 +9,7 @@ var Category = React.createClass({
         check={this.props.category.checked}>
 
         <td className="name">
-          <a href={Routes.edit_merchant_category_path(this.props.category.slug)}>
+          <a href={Routes.edit_merchant_category_path.localize(this.props.category.slug)}>
             {translate(this.props.category, "name")}
           </a>
         </td>

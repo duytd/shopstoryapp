@@ -105,7 +105,7 @@ var BannerForm = React.createClass({
       processData: false,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_banners_path());
+        Turbolinks.visit(Routes.merchant_banners_path.localize());
       },
       error: function(xhr) {
         var errors = xhr.responseJSON;

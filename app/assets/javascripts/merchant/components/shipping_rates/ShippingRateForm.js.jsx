@@ -126,7 +126,7 @@ var ShippingRateForm = React.createClass({
 
         <div className="row">
           <div className="col-md-12">
-            <SubmitButtons redirect_url={Routes.merchant_shipping_rates_path()} />
+            <SubmitButtons redirect_url={Routes.merchant_shipping_rates_path.localize()} />
           </div>
         </div>
       </form>
@@ -145,7 +145,7 @@ var ShippingRateForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_shipping_rates_path());
+        Turbolinks.visit(Routes.merchant_shipping_rates_path.localize());
       },
       error: function(xhr) {
         var errors = xhr.responseJSON;

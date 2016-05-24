@@ -49,7 +49,7 @@ var ProductBox = React.createClass({
       processData: false,
       method: "POST",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_products_path());
+        Turbolinks.visit(Routes.merchant_products_path.localize());
       }
     })
   },

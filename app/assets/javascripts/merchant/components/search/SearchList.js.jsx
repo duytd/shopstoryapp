@@ -81,13 +81,13 @@ var SearchList = React.createClass({
     return (
       <div className="media" key={"product_" + product.id}>
         <div className="media-left">
-          <a href={Routes.edit_merchant_product_path(product.id)}>
+          <a href={Routes.edit_merchant_product_path.localize(product.id)}>
             <img className="media-object" height="80" src={product.images.length > 0 ? product.images[0].image.thumb.url : null} />
           </a>
         </div>
         <div className="media-body">
           <h4 className="media-heading">
-            <a href={Routes.edit_merchant_product_path(product.id)}>
+            <a href={Routes.edit_merchant_product_path.localize(product.id)}>
               {translate(product, "name")}
             </a>
           </h4>
@@ -102,7 +102,7 @@ var SearchList = React.createClass({
     return (
       <div className="category" key={"category_" + category.id}>
         <h4>
-          <a href={Routes.edit_merchant_category_path(category.id)}>
+          <a href={Routes.edit_merchant_category_path.localize(category.id)}>
             {translate(category, "name")}
           </a>
         </h4>
@@ -113,7 +113,7 @@ var SearchList = React.createClass({
     return (
       <div className="page" key={"page_" + page.id}>
         <h4>
-          <a href={Routes.edit_merchant_custom_page_path(page.id)}>
+          <a href={Routes.edit_merchant_custom_page_path.localize(page.id)}>
             {translate(page, "title")}
           </a>
         </h4>
@@ -125,11 +125,11 @@ var SearchList = React.createClass({
     return (
       <div className="customer" key={"customer_" + customer.id}>
         <h4>
-          <a href={Routes.edit_merchant_customer_path(customer.id)}>
+          <a href={Routes.edit_merchant_customer_path.localize(customer.id)}>
             {customer.first_name} {customer.last_name}
           </a>
         </h4>
-        <p><label>{I18n.t("activerecord.attributes.customer.email")}:</label> <a href={Routes.edit_merchant_customer_path(customer.id)}>{customer.email}</a></p>
+        <p><label>{I18n.t("activerecord.attributes.customer.email")}:</label> <a href={Routes.edit_merchant_customer_path.localize(customer.id)}>{customer.email}</a></p>
         <p><label>{I18n.t("activerecord.attributes.customer.phone_number")}:</label> {customer.phone_number}</p>
       </div>
     )

@@ -67,7 +67,7 @@ var CategoryForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_categories_path());
+        Turbolinks.visit(Routes.merchant_categories_path.localize());
       },
       error: function(xhr) {
         var errors = xhr.responseJSON;

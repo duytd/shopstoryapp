@@ -100,8 +100,8 @@ var MenuItemForm = React.createClass({
                 {(this.state.type == "product") ?
                   <AutoComplete
                     name="menu_item[value]"
-                    url={Routes.search_merchant_products_path()}
-                    chosenSource={(this.state.type == "product" && this.props.menu_item) ? Routes.merchant_product_path(this.props.menu_item.value) : null} /> : null}
+                    url={Routes.search_merchant_products_path.localize()}
+                    chosenSource={(this.state.type == "product" && this.props.menu_item) ? Routes.merchant_product_path.localize(this.props.menu_item.value) : null} /> : null}
 
                 {(this.state.type == "custom_page") ?
                   <div className="select">
@@ -130,11 +130,11 @@ var MenuItemForm = React.createClass({
     var formData = $(this.refs.form).serialize();
 
     if (this.props.menu_item) {
-      url = Routes.merchant_menu_menu_item_path(this.props.menu.id, this.props.menu_item.id);
+      url = Routes.merchant_menu_menu_item_path.localize(this.props.menu.id, this.props.menu_item.id);
       method = "PUT"
      }
     else {
-      url = Routes.merchant_menu_menu_items_path(this.props.menu.id);
+      url = Routes.merchant_menu_menu_items_path.localize(this.props.menu.id);
       method = "POST"
     }
 

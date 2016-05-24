@@ -6,7 +6,7 @@ design.ThemeList = React.createClass({
       <div className="col-sm-3 theme" key={key}>
         <div className="block">
           <div className="overlay"></div>
-          <a className="btn btn-lg btn-primary" href={Routes.merchant_design_theme_path(theme.id)}>{I18n.t("merchant.admin.buttons.view")}</a>
+          <a className="btn btn-lg btn-primary" href={Routes.merchant_design_theme_path.localize(theme.id)}>{I18n.t("merchant.admin.buttons.view")}</a>
           <img className="img-responsive" src={theme.image.thumb.url} />
           {(isCurrent) ? <span className="label label-lg label-success pull-right">{I18n.t("merchant.admin.themes.current")}</span> : null}
           <h3>

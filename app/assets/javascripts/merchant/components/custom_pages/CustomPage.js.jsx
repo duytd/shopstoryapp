@@ -9,7 +9,7 @@ var CustomPage = React.createClass({
         check={this.props.custom_page.checked}>
 
         <td className="name">
-          <a href={Routes.edit_merchant_custom_page_path(this.props.custom_page.slug)}>
+          <a href={Routes.edit_merchant_custom_page_path.localize(this.props.custom_page.slug)}>
             {translate(this.props.custom_page, "title")}
           </a>
         </td>

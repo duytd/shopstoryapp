@@ -71,7 +71,7 @@ var EditorMenu = React.createClass({
     )
   },
   updateAsset: function(assetId) {
-    $.get(Routes.edit_merchant_asset_path(assetId), function(response) {
+    $.get(Routes.edit_merchant_asset_path.localize(assetId), function(response) {
       var mode = "javascript";
 
       if (response.data.type == "asset/stylesheet")
@@ -84,7 +84,7 @@ var EditorMenu = React.createClass({
     }.bind(this))
   },
   updateTemplate: function(templateId) {
-    $.get(Routes.edit_merchant_template_path(templateId), function(response) {
+    $.get(Routes.edit_merchant_template_path.localize(templateId), function(response) {
       this.props.updateFile(response.data, response.url, response.reset_url, "html");
     }.bind(this))
   },
