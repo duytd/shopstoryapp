@@ -15,7 +15,7 @@ var Product = React.createClass({
         </td>
         <td>
           <a href={Routes.edit_merchant_product_path(this.props.product.slug)}>
-            <img width="25" height="25" className="img-responsive" src={(this.props.product.images.length > 0) ? this.props.product.images[0].image.thumb.url : null} />
+            <img width="25" height="25" className="img-responsive" src={this.props.product.feature_image ? this.props.product.feature_image.image.thumb.url : null} />
           </a>
         </td>
         <td className="name">

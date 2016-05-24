@@ -5,6 +5,18 @@ var PaymentMethod = React.createClass({
       payment_method_shop: this.props.payment_method_shop
     }
   },
+  componentDidMount: function() {
+    $(this.refs.activator).bootstrapSwitch({
+      onSwitchChange: function(event, state) {
+        if (state) {
+          this.active();
+        }
+        else {
+          this.disactive();
+        }
+      }.bind(this)
+    });
+  },
   render: function() {
     var options = this.state.payment_method_shop.payment_method_option_shops.map(function(option, index){
       return (
@@ -31,40 +43,45 @@ var PaymentMethod = React.createClass({
     }
 
     return (
-      <div className="col-md-12">
-        <div className="row">
+      <div className="row">
+        <div className="col-sm-2">
           <h3 className="title">{this.props.payment_method_shop.payment_method.name}</h3>
-          <div className="col-md-12 block">
+          <div classNam="form-group">
+            <img width="100" src={this.props.payment_method_shop.payment_method.image.thumb.url} />
+          </div>
+          <input ref="activator" type="checkbox" name="payment_method_shop[active]" defaultChecked={this.state.payment_method_shop.active} onChange={this.activate} />
+        </div>
+        <div className="col-sm-10">
+          <div className="block">
             <form ref="form" id="paymentMethod" acceptCharset="UTF-8" onSubmit={this.submit}>
-              <div className="form-group col-md-12">
-                {(this.state.errors.length > 0) ? <Errors errors={this.state.errors} /> : null}
-              </div>
-              {options}
-              {keyUploader}
-
-              <input ref="active" type="hidden" name="payment_method_shop[active]" value={this.state.payment_method_shop.active} />
-              {(this.state.payment_method_shop.active) ?
-                <div className="form-group col-md-6">
-                  <button className="btn btn-danger" onClick={this.disactive}>{I18n.t("merchant.admin.buttons.disactivate")}</button>
-                </div> :
-                <div className="form-group col-md-6">
-                  <SubmitButtons goBack={false} />
-                  <button className="btn btn-primary" onClick={this.active}>{I18n.t("merchant.admin.buttons.activate")}</button>
+              <input type="hidden" ref="active" name="payment_method_shop[active]" value={this.state.payment_method_shop.active} />
+              <div className="row">
+                <div className="form-group col-md-12">
+                  {(this.state.errors.length > 0) ? <Errors errors={this.state.errors} /> : null}
                 </div>
-              }
+              </div>
+              <div className="row">
+                {options}
+              </div>
+              <div className="row">
+                {keyUploader}
+              </div>
+              <div className="row">
+                <div className="form-group col-md-12">
+                  <SubmitButtons goBack={false} />
+                </div>
+              </div>
             </form>
           </div>
         </div>
       </div>
     )
   },
-  disactive: function(e) {
-    e.preventDefault();
+  disactive: function() {
     this.refs.active.value = false;
     this.submit();
   },
-  active: function(e) {
-    e.preventDefault();
+  active: function() {
     this.refs.active.value = true;
     this.submit();
   },
@@ -85,7 +102,10 @@ var PaymentMethod = React.createClass({
         this.setState({payment_method_shop: response, errors: []});
       }.bind(this),
       error: function(xhr) {
-        this.setState({errors: xhr.responseJSON});
+        this.setState({errors: xhr.responseJSON}, function() {
+          var state = this.state.payment_method_shop.active;
+          $(this.refs.activator).bootstrapSwitch("state", state, true);
+        }.bind(this));
       }.bind(this)
     });
   }

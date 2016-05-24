@@ -214,3 +214,14 @@ $input-bg-color: #ededec;
 .form-upload {
   display: inline-block
 }
+
+.bootstrap-switch-primary {
+  background: $base-light !important;
+  font-weight: bold;
+}
+
+.bootstrap-switch-default {
+  background: $gray-light !important;
+  color: $white !important;
+  font-weight: bold;
+}

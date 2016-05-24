@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   constraints Constraints::AdminDomainConstraint do
     namespace :admin, path: "" do
       root "pages#dashboard"
+      resources :shipping_methods, except: :show
       resources :plans, except: :show
       resources :payment_methods, only: [:index, :edit, :update]
       resources :themes, only: [:index, :edit, :update] do

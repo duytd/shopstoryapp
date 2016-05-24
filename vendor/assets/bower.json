@@ -11,6 +11,6 @@
     "bootstrap-datepicker": "latest",
     "Chart.js": "latest",
     "owl.carousel": "latest",
-    "ScrollToFixed": "latest"
+    "bootstrap-switch": "latest"
   }
 }

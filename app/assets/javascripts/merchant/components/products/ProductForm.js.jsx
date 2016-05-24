@@ -63,10 +63,10 @@ var ProductForm = React.createClass({
         }.bind(this));
 
         $element.addClass("added");
-        $element.data("id", file.id);
-        $element.attr("id", "preview_image_" + file.id);
 
         if (typeof file.id !== "undefined") {
+          $element.data("id", file.id);
+          $element.attr("id", "preview_image_" + file.id);
           $element.removeClass("hide");
           $element.parent().find(".dz-details").empty();
         }

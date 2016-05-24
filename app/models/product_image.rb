@@ -9,11 +9,15 @@ class ProductImage < ActiveRecord::Base
   default_scope {order created_at: :asc}
 
   def self.featured
-    where(featured: true).first || first
+    where(featured: true).first || first || default_image
   end
 
   def as_json options={}
     super.as_json(options).merge({name: image.filename, url: image.thumb.url})
+  end
+
+  def default_image
+    ActionController::Base.helpers.asset_path "fallback/product/" + [version_name, "default.png"].compact.join('_')
   end
 
   def deactivate_relatives

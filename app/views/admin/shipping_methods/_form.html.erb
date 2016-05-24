@@ -1,0 +1,39 @@
+<%= form_for [:admin, @shipping_method] do |f| %>
+  <%= render "admin/shared/form_errors", object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name_en %>
+    <%= f.text_field :name_en, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name_ko %>
+    <%= f.text_field :name_ko, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description_en %>
+    <%= f.text_area :description_en, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description_ko %>
+    <%= f.text_area :description_ko, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tracking_url %>
+    <%= f.text_field :tracking_url, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :active %>
+    <%= f.check_box :active, {}, true, false %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.submit :save, class: "btn btn-primary" %>
+  </div>
+
+<% end %>

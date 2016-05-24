@@ -16,7 +16,7 @@ Apartment.configure do |config|
   #
   config.excluded_models = %w{
     User Admin Merchant Shop ShopTranslation Theme ThemeBundle Plan Subscription PaymentMethod PaymentMethodOption PaymentMethodShop
-    PaymentMethodOptionShop
+    PaymentMethodOptionShop ShippingMethod ShippingMethodTranslation
   }
 
   # In order to migrate all of your Tenants you need to provide a list of Tenant names to Apartment.
