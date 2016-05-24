@@ -1,6 +1,6 @@
 <Layout globalVars="{this.props.globalVars}" updateCart="{this.updateCart}">
   <div class="home">
-    <Banner bannerItems="{this.props.banner.banner_items}" />
+    <Banner rt-if="this.props.banner" bannerItems="{this.props.banner.banner_items}" />
     <div class="container">
       <div class="heading" rt-if="this.props.products.length > 0">
         <span>{I18n.t("products.featured_products")}</span>
