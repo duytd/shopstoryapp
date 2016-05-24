@@ -1,4 +1,5 @@
 class Merchant::OrdersController < Merchant::BaseController
+  before_action :load_order, only: [:edit, :update]
   load_and_authorize_resource
   include PaymentHelper
 
@@ -29,11 +30,13 @@ class Merchant::OrdersController < Merchant::BaseController
 
   def edit
     @transaction_info = get_transaction_info @order
+    @shipping_methods = ShippingMethod.all
 
     @props = {
-      order: @order,
+      order: Merchant::OrderPresenter.new(@order),
       url: merchant_order_path(@order),
       transaction_info: @transaction_info,
+      shipping_methods: @shipping_methods,
       method: :put,
       invoice_url: edit_merchant_order_path(@order, format: :pdf)
     }
@@ -64,11 +67,19 @@ class Merchant::OrdersController < Merchant::BaseController
   end
 
   private
+  def load_order
+    @order = Order.includes(
+      :customer, {payment: :payment_method}, :shipping_address, :billing_address, {order_products: {variation: [:product, :variation_option_values]}}
+    ).find params[:id]
+  end
+
   def list_all
-    @orders = ProductOrder.page params[:page]
+    @orders = ProductOrder.includes(
+        {payment: :payment_method}, :shipping_address, :customer, :billing_address, {order_products: {variation: [:product, :variation_option_values]}}
+      ).page params[:page]
 
     @props = paginating @orders, {
-      orders: @orders,
+      orders: @orders.map{|o| Merchant::OrderPresenter.new(o)},
       url: merchant_orders_path
     }
   end

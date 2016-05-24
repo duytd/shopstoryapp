@@ -1,6 +1,7 @@
 <div class="merchant-logo">
   <%= link_to merchant_root_url(subdomain: current_shop.subdomain) do %>
-    <%= image_tag current_shop.logo.thumb.url, class: "logo" %>
+    <%= image_tag asset_url("logo-inverse.png"), class: "logo" %>
+    <%= image_tag asset_url("logo-icon.png"), class: "logo icon" %>
     <div class="clearfix"></div>
   <% end %>
 </div>

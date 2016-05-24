@@ -1,23 +1,31 @@
 var Variation = React.createClass({
   render: function() {
-    var optionNodes = this.props.variationOptions.map(function(option, index) {
-      var id = null;
-      var defaultValue = option.option_values && option.option_values.length > 0 ? option.option_values[0].id : null;
-      var valueNodes = null;
+    var optionNodes = [];
 
-      if (this.props.variation.variation_option_values) {
-        this.props.variation.variation_option_values.forEach(function(variationOptionValue){
-          if (variationOptionValue.option_value.variation_option_id == option.id) {
-            defaultValue = variationOptionValue.option_value.id
-            id = variationOptionValue.id
-          }
+    if (!this.props.deleted) {
+      optionNodes = this.props.variationOptions.map(function(option, index) {
+        var id = null;
+        var defaultValue = null;
+        var values = [];
+        var valueNodes = [];
+
+        option.option_values.forEach(function(value, index) {
+          if (value && value.name)
+            values.push(value);
         })
-      }
 
-       if ((option.option_values && this.props.variation.isNew) || id != null) {
-          valueNodes = option.option_values.map(function(value, index) {
-            if (value.name)
-              return <option value={value.id} key={"variation_option_value_" + index}>{value.name}</option>
+        if (option && this.props.variation && this.props.variation.variation_option_values) {
+          this.props.variation.variation_option_values.forEach(function(variationOptionValue){
+            if (variationOptionValue.option_value.variation_option_id == option.id) {
+              defaultValue = variationOptionValue.option_value.id
+              id = variationOptionValue.id
+            }
+          })
+        }
+
+        if (option && values.length > 0) {
+          valueNodes = values.map(function(value, index) {
+            return <option value={value.id} key={"variation_option_value_" + index}>{value.name}</option>;
           })
 
           return (
@@ -31,72 +39,93 @@ var Variation = React.createClass({
                   name={"product[variations_attributes][" + this.props.index + "][variation_variation_option_values_attributes][" + index + "][variation_option_value_id]"}
                   className="form-control">
                   {valueNodes}
-                </select> : <p className="option-value">{option.option_values[0].name}</p>}
+                </select> : <p className="option-value">{values[0].name}</p>}
             </div>
           )
-       } else {
-        return null;
-      }
-    }.bind(this))
+        } else {
+          return null;
+        }
+      }.bind(this))
+    }
 
     return (
-      <div className={(this.props.variation.isDeleted) ? "hide" : "row variation"}>
-        <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][id]"}
-          value={this.props.variation.id} />
-        <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][_destroy]"}
-          value={this.props.variation.isDeleted} />
-        <div className="col-xs-3">
-          {optionNodes}
-        </div>
-
-        <div className="col-xs-2">
-          <input type="text" className="form-control input-sm"
-            name={"product[variations_attributes][" + this.props.index + "][sku]"}
-            placeholder={I18n.t("merchant.admin.variations.sku_placeholder")}
-            defaultValue={this.props.variation.sku} />
-        </div>
-
-        <div className="col-xs-2">
-          <input type="text" className="form-control input-sm"
-            name={"product[variations_attributes][" + this.props.index + "][price]"}
-            placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
-            defaultValue={this.props.variation.price.toString().toKoreanFormat()} onBlur={this.props.validateNumber} />
-        </div>
-
-        <div className="col-xs-2">
-          <input type="text" className="form-control input-sm"
-            name={"product[variations_attributes][" + this.props.index + "][in_stock]"}
-            placeholder={I18n.t("merchant.admin.variations.in_stock_placeholder")}
-            defaultValue={this.props.variation.in_stock} onBlur={this.validateInt} />
-        </div>
-
-        <div className="col-xs-3">
-          {this.props.variation.has_image ?
-            <div className="file-upload">
-              <img src={this.props.variation.image.thumb.url} width="30" height="30" />
-              <input type="file" className="upload"
-                name={"product[variations_attributes][" + this.props.index + "][image]"} onChange={this.props.submit} />
-            </div> :
-            <div className="file-upload">
-              <button className="btn btn-default">
-                <i className="fa fa-photo"></i>
-              </button>
-              <input type="file" className="upload"
-                name={"product[variations_attributes][" + this.props.index + "][image]"} onChange={this.props.submit} />
+      <div className="variation">
+        {(typeof this.props.variation.id !== "undefined") ?
+          <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][id]"}
+            value={this.props.variation.id} /> : null}
+        {(this.props.deleted) ?
+          <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][_destroy]"}
+            value={true} />
+        : (
+          <div className="row">
+            <div className="col-xs-3">
+              {optionNodes}
             </div>
-          }
 
+            <div className="col-xs-2">
+              <input type="text" className="form-control input-sm"
+                name={"product[variations_attributes][" + this.props.index + "][sku]"}
+                placeholder={I18n.t("merchant.admin.variations.sku_placeholder")}
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.sku : ""} />
+            </div>
 
-          {(this.props.variationCount == this.props.index + 1) ?
-            <button className="btn btn-default" onClick={this.addVariation}>
-              <i className="fa fa-plus"></i>
-            </button> : null}
-          <button className="btn btn-default" onClick={this.deleteVariation}>
-            <i className="fa fa-trash"></i>
-          </button>
-        </div>
+            <div className="col-xs-2">
+              <input type="text" className="form-control input-sm"
+                name={"product[variations_attributes][" + this.props.index + "][price]"}
+                placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.price.toString().toKoreanFormat() : ""} onBlur={this.props.validateNumber} />
+            </div>
+
+            <div className="col-xs-2">
+              <input type="text" className="form-control input-sm"
+                name={"product[variations_attributes][" + this.props.index + "][in_stock]"}
+                placeholder={I18n.t("merchant.admin.variations.in_stock_placeholder")}
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.in_stock : ""} onBlur={this.validateInt} />
+            </div>
+
+            <div className="col-xs-3">
+              {(typeof this.props.variation.id !== "undefined") ?
+                <div className="file-upload">
+                  <img src={this.props.variation.previewImage ? this.props.variation.previewImage : this.props.variation.image.image.thumb.url} width="30" height="30" />
+                  <input type="file" ref="imageFile" className="upload" onChange={this.uploadImage.bind(this, this)}
+                    name={"product[variations_attributes][" + this.props.index + "][image]"} />
+                </div> :
+                <div className="file-upload">
+
+                {(this.props.variation.previewImage) ?
+                  <img src={this.props.variation.previewImage} width="30" height="30" />
+                  : <button className="btn btn-default"><i className="fa fa-photo"></i></button>}
+
+                  <input type="file" ref="imageFile" className="upload" onChange={this.uploadImage.bind(this, this)}
+                    name={"product[variations_attributes][" + this.props.index + "][image]"} />
+                </div>
+              }
+
+              {(this.props.lastItem) ?
+                <button className="btn btn-default" onClick={this.addVariation}>
+                  <i className="fa fa-plus"></i>
+                </button> : null}
+              <button className="btn btn-default" onClick={this.deleteVariation}>
+                <i className="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     )
+  },
+  uploadImage: function(input) {
+    var input = this.refs.imageFile;
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        this.props.uploadVariationImage(e.target.result, this.props.index);
+      }.bind(this)
+
+      reader.readAsDataURL(input.files[0]);
+    }
   },
   addVariation: function(e) {
     e.preventDefault();
@@ -104,7 +133,7 @@ var Variation = React.createClass({
   },
   deleteVariation: function(e) {
     e.preventDefault();
-    this.props.deleteVariation(this.props.variation);
+    this.props.deleteVariation(this.props.index);
   },
   validateInt: function(e) {
     this.props.validateInt(e);

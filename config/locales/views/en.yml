@@ -25,6 +25,7 @@ en:
     breadcrumbs:
       home: "Home"
       categories: "Categories"
+      search: "Search For %{q}"
     flash:
       cart_empty: "You cart must not be empty before checking out"
 
@@ -148,12 +149,21 @@ en:
       customers:
         title: "Customers"
         customer_orders: "Customer Orders"
+        no_order: "This customer haven't place any other yet"
       menus:
         title: "Menu/Navigation"
         menu_description: "Menu Description"
         menu_items: "Menu Items"
       menu_items:
         no_item: "You have not added any item to this menu yet"
+        types:
+          product: "Product"
+          product_index: "All Products"
+          category: "Category"
+          category_index: "All Categories"
+          url: "Custom URL"
+          custom_page: "Page"
+          home: "Home Page"
       developers:
         credentials:
           title: "Credentials"
@@ -201,3 +211,11 @@ en:
             weekly: "Weekly"
             monthly: "Monthly"
             yearly: "Yearly"
+      search:
+        products: "Products"
+        categories: "Categories"
+        custom_pages: "Pages"
+        customers: "Customers"
+        no_result: "No result"
+      banners:
+        title: "Banners"

@@ -29,7 +29,7 @@ class Merchant::ReportsController < Merchant::BaseController
     @data = []
 
     Product.all.each do |p|
-      @data << { product: p, total_sale: p.total_sale } if p.total_sale > 0
+      @data << { product: {id: p.id, name_ko: p.name_ko, name_en: p.name_en}, total_sale: p.total_sale } if p.total_sale > 0
     end
 
     @data.sort_by{ |d| d[:total_sale] }.reverse!
@@ -56,7 +56,7 @@ class Merchant::ReportsController < Merchant::BaseController
     total = Order.success.count
 
     PaymentMethod.all.each do |p|
-      @data << { payment_method: p, total_sale: p.total_sale, percentage: (p.total_sale/total.to_f*100)} if p.total_sale > 0
+      @data << { payment_method: {id: p.id, name: p.name}, total_sale: p.total_sale, percentage: (p.total_sale/total.to_f*100)} if p.total_sale > 0
     end
 
     @data.sort_by{ |d| d[:percentage] }.reverse!

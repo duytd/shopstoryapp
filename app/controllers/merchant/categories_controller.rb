@@ -1,6 +1,6 @@
 class Merchant::CategoriesController < Merchant::BaseController
+  before_action :load_category, only: :edit
   load_and_authorize_resource
-  include TranslationsHelper
 
   def index
     if request.delete?
@@ -13,6 +13,7 @@ class Merchant::CategoriesController < Merchant::BaseController
   def new
     @props = {
       url: merchant_categories_path,
+      redirect_url: merchant_categories_path,
       method: :post
     }
   end
@@ -20,7 +21,7 @@ class Merchant::CategoriesController < Merchant::BaseController
   def create
     @category = Category.new category_params
     if @category.save
-      render json: @category, status: :ok
+      render json: Merchant::CategoryPresenter.new(@category), status: :ok
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -28,18 +29,17 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   def edit
     @props = {
-      slug: @category.slug,
-      seo_tag: @category.seo_tag,
-      en_category: load_translation(@category.translations, :en),
-      ko_category: load_translation(@category.translations, :ko),
+      seo_tag: @category.seo_tag ? Merchant::SeoTagPresenter.new(@category.seo_tag) : nil,
+      category: Merchant::CategoryPresenter.new(@category),
       url: merchant_category_path(@category),
-      method: :put,
+      redirect_url: merchant_categories_path,
+      method: :put
     }
   end
 
   def update
     if @category.update category_params
-      render json: @category, status: :ok
+      render json: Merchant::CategoryPresenter.new(@category), status: :ok
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -51,11 +51,15 @@ class Merchant::CategoriesController < Merchant::BaseController
   end
 
   private
+  def load_category
+    @category = Category.includes(:seo_tag).find params[:id]
+  end
+
   def list_all
     @categories = Category.page params[:page]
 
     @props = paginating @categories, {
-      categories: @categories,
+      categories: @categories.map{|c| Merchant::CategoryPresenter.new(c)},
       new_url: new_merchant_category_path,
       url: merchant_categories_path,
     }

@@ -49,7 +49,7 @@ var Editor = React.createClass({
               <input ref="code" type="hidden" name={"asset[content]"} />
             </div>
             <div className="text-right">
-              <SubmitButtons redirect_url={Routes.merchant_root_path} fixed={true}>
+              <SubmitButtons redirect_url={Routes.merchant_root_path.localize()} fixed={true}>
                 <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.assets.reset")}</button>
               </SubmitButtons>
             </div>

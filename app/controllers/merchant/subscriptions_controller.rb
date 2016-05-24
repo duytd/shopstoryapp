@@ -25,8 +25,8 @@ class Merchant::SubscriptionsController < Merchant::BaseController
     plan = Plan.find_by stripe_id: params[:plan_id]
     current_merchant.create_subscription(
       plan_id: plan.id,
-      start_at: stripe_subscription["current_period_start"],
-      end_at: stripe_subscription["current_period_end"],
+      start_at: Time.at(stripe_subscription["current_period_start"]),
+      end_at: Time.at(stripe_subscription["current_period_end"]),
       status: Subscription.statuses[stripe_subscription["status"]],
       stripe_id: stripe_subscription["id"]
     )

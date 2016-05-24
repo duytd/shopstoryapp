@@ -25,6 +25,7 @@ ko:
     breadcrumbs:
       home: "Home"
       categories: "Categories"
+      search: "Search For %{q}"
     flash:
       cart_empty: "장바구니가 비어있습니다."
 
@@ -151,12 +152,21 @@ ko:
       customers:
         title: "회원"
         customer_orders: "회원 주문"
+        no_order: "This customer haven't place any other yet"
       menus:
         title: "메뉴/네비게이션"
         menu_description: "메뉴 설명"
         menu_items: "메뉴 아이템"
       menu_items:
         no_item: "이 메뉴에 등록된 아이템이 없습니다."
+        types:
+          product: "Product"
+          product_index: "All Products"
+          category: "Category"
+          category_index: "All Categories"
+          url: "Custom URL"
+          custom_page: "Page"
+          home: "Home Page"
       developers:
         credentials:
           title: "Credentials"
@@ -204,3 +214,11 @@ ko:
             weekly: "Weekly"
             monthly: "Monthly"
             yearly: "Yearly"
+      search:
+        products: "Products"
+        categories: "Categories"
+        custom_pages: "Pages"
+        customers: "Customers"
+        no_result: "No result"
+      banners:
+        title: "Banners"

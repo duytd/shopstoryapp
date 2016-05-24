@@ -4,8 +4,8 @@ server "188.166.233.60", port: 22, roles: [:web, :app, :db], primary: true
 set :repo_url,        "git@bitbucket.org:duytd/shopstoryapp.git"
 set :application,     "shopstory"
 set :user,            "deploy"
-set :puma_threads,    [4, 16]
-set :puma_workers,   1
+set :puma_threads,    [1, 1]
+set :puma_workers,   2
 set :puma_worker_timeout, 60
 
 # Don"t change these unless you know what you"re doing

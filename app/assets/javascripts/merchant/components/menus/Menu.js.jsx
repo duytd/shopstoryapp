@@ -37,7 +37,7 @@ var Menu = React.createClass({
               data-confirm={I18n.t("merchant.admin.forms.confirm")} onClick={this.deleteMenu}>
               {I18n.t("merchant.admin.buttons.delete")}
             </a>
-            <a className="btn btn-sm btn-success pull-right" href={Routes.edit_merchant_menu_path(this.props.menu.id)}>
+            <a className="btn btn-sm btn-success pull-right" href={Routes.edit_merchant_menu_path.localize(this.props.menu.id)}>
               {I18n.t("merchant.admin.buttons.edit")}
             </a>
           </p>
@@ -72,7 +72,7 @@ var Menu = React.createClass({
     data = $(this.refs.draggable).serialize();
 
     $.ajax({
-      url: Routes.merchant_menu_path(id),
+      url: Routes.merchant_menu_path.localize(id),
       data: data,
       method: "PUT"
     })
@@ -83,7 +83,7 @@ var Menu = React.createClass({
     var id = this.props.menu.id;
 
     $.ajax({
-      url: Routes.merchant_menu_path(id),
+      url: Routes.merchant_menu_path.localize(id),
       method: "DELETE",
       success: function() {
         this.props.deleteMenu(this.props.menu)

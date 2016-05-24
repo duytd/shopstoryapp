@@ -1,0 +1,20 @@
+<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+  <div class="search container">
+    <div class="row">
+      <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
+      <h2>{I18n.t("search.results", {count: this.state.total})}</h2>
+      <ProductItem rt-repeat="product in this.props.products" product="{product}" key="product_{productIndex}" />
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <Pagination
+          page="{this.state.page}"
+          totalPage="{this.state.totalPage}"
+          url="{this.state.paginationUrl}"
+          total="{this.state.total}"
+          size="{this.props.products.length}"} />
+      </div>
+    </div>
+  </div>
+</Layout>

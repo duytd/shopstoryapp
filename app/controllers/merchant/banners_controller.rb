@@ -1,5 +1,5 @@
 class Merchant::BannersController < Merchant::BaseController
-  include TranslationsHelper
+  before_action :load_banner, only: :edit
   load_and_authorize_resource
 
   def index
@@ -13,7 +13,8 @@ class Merchant::BannersController < Merchant::BaseController
   def new
     @props = {
       url: merchant_banners_path,
-      method: :post
+      method: :post,
+      redirect_url: merchant_banners_path
     }
   end
 
@@ -29,16 +30,17 @@ class Merchant::BannersController < Merchant::BaseController
 
   def edit
     @props = {
-      banner: @banner,
+      banner: Merchant::BannerPresenter.new(@banner),
       banner_items: @banner.banner_items,
       url: merchant_banner_path(@banner),
+      redirect_url: merchant_banners_path,
       method: :put
     }
   end
 
   def update
     if @banner.update banner_params
-      render json: @banner, status: :ok
+      render json: Merchant::BannerPresenter.new(@banner), status: :ok
     else
       render json: @banner.errors, status: :unprocessable_entity
     end
@@ -50,11 +52,15 @@ class Merchant::BannersController < Merchant::BaseController
   end
 
   private
+  def load_banner
+    @banner = Banner.includes(:banner_items).find params[:id]
+  end
+
   def list_all
     @banners = Banner.page params[:page]
 
     @props = paginating @banners, {
-      banners: @banners,
+      banners: @banners.map{|b| Merchant::BannerPresenter.new(b)},
       new_url: new_merchant_banner_path,
       url: merchant_banners_path,
     }

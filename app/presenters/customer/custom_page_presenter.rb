@@ -4,7 +4,8 @@ class Customer::CustomPagePresenter < Presenter
       id: @object.id,
       title_ko: @object.title_ko,
       title_en: @object.title_en,
-      content: @object.content,
+      content_en: @object.content_en,
+      content_ko: @object.content_ko,
       slug: @object.slug
     }
   end

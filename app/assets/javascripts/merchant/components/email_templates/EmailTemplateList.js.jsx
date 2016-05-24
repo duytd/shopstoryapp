@@ -16,7 +16,7 @@ var EmailTemplateList = React.createClass({
     )
   },
   updateEmailTemplate: function(templateId) {
-    $.get(Routes.edit_merchant_email_template_path(templateId), function(response) {
+    $.get(Routes.edit_merchant_email_template_path.localize(templateId), function(response) {
       this.props.updateFile(response.data, response.url, response.reset_url, "html");
     }.bind(this))
   }

@@ -9,8 +9,10 @@ class VariationVariationOptionValue < ActiveRecord::Base
   after_commit :delete_variation, on: :destroy
 
   def delete_variation
-    variation.variation_option_values.delete_all
-    variation.delete
+    unless variation.nil?
+      variation.variation_option_values.delete_all
+      variation.delete
+    end
   end
 
   def as_json options={}

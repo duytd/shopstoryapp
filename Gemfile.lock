@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: f92eba76828d91d39444151f57ec7b59fcbe8d9c
+  revision: 5bea8a633f49f65178605a48a40f254c0bed07b4
   specs:
     shopstory_ticket (0.0.1)
       rails (~> 4.2.3)
@@ -90,6 +90,9 @@ GEM
     apartment (1.0.2)
       activerecord (>= 3.1.2, < 5.0)
       rack (>= 1.3.6)
+    apartment-sidekiq (1.0.0)
+      apartment (~> 1.0)
+      sidekiq (>= 2.11)
     arel (6.0.3)
     autoprefixer-rails (6.0.3)
       execjs
@@ -110,6 +113,9 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sprockets (> 3.0.2)
     builder (3.2.2)
+    bullet (5.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (6.0.2)
     cancancan (1.12.0)
     capistrano (3.4.0)
@@ -180,6 +186,23 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (1.0.12)
+      elasticsearch-api (= 1.0.12)
+      elasticsearch-transport (= 1.0.12)
+    elasticsearch-api (1.0.12)
+      multi_json
+    elasticsearch-model (0.1.7)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-model-globalize (0.0.3)
+      activerecord
+      elasticsearch-model
+      globalize
+    elasticsearch-rails (0.1.7)
+    elasticsearch-transport (1.0.12)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -409,6 +432,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     unicode_utils (1.4.0)
+    uniform_notifier (1.10.0)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.2.1)
@@ -430,10 +454,12 @@ DEPENDENCIES
   actionpack-action_caching
   acts_as_tree
   apartment
+  apartment-sidekiq
   bootstrap-sass (~> 3.3.5)
   bower-rails (~> 0.10.0)
   browser
   browserify-rails
+  bullet
   byebug
   cancancan (~> 1.10)
   capistrano
@@ -450,6 +476,9 @@ DEPENDENCIES
   country_select
   database_cleaner
   devise
+  elasticsearch-model
+  elasticsearch-model-globalize
+  elasticsearch-rails
   factory_girl_rails
   faker
   figaro

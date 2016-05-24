@@ -4,18 +4,13 @@ var ProductForm = React.createClass({
     var variations = (this.props.variations) ? this.props.variations : [];
     var productImages = (this.props.product_images) ? this.props.product_images : [];
 
-    variationOptions.forEach(function(variationOption, index) {
-      if (!variationOption.isNew) {
-        variationOption["isDeleted"] = false;
-        variationOption["isNew"] = false;
+    variationOptions.map(function(option) {
+      if (option.option_values.length == 0) {
+        option.option_values.push(null);
       }
-    })
 
-    variations.forEach(function(variation, index) {
-      if (!variation.isNew) {
-        variation["isDeleted"] = false;
-        variation["isNew"] = false;
-      }
+      option.deleted_option_values = [];
+      return option;
     })
 
     return {
@@ -23,13 +18,11 @@ var ProductForm = React.createClass({
       koCount: 0,
       enCount: 0,
       product: this.props.product,
-      enProduct: this.props.en_product,
-      koProduct: this.props.ko_product,
-      variations: variations,
       method: this.props.method,
-      variationCount: variations.length,
+      variations: variations,
       variationOptions: variationOptions,
-      variationOptionCount: variationOptions.length,
+      deletedVariationOptions: [],
+      deletedVariations: [],
       productImages: productImages
     };
   },
@@ -39,9 +32,9 @@ var ProductForm = React.createClass({
       var url = $form.attr("action");
       var authToken = $('meta[name="csrf-token"]').attr("content");
       var headers = {"X-CSRF-Token": authToken};
-      var template = '<div class="dz-preview dz-file-preview"><div className="dz-details">' +
-                     '<img data-dz-thumbnail width="200" height="auto" /></div>' +
-                     '<i class="fa fa-trash" data-dz-remove></i>' +
+      var template = '<div class="dz-preview dz-file-preview"><div class="dz-image">' +
+                     '<img data-dz-thumbnail width="200" height="auto" /></div><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div></div>' +
+                     '<i class="fa fa-trash" data-dz-remove></i><i class="fa fa-star hide"></i>' +
                      '</div>';
 
       Dropzone.autoDiscover = false;
@@ -56,8 +49,32 @@ var ProductForm = React.createClass({
         uploadMultiple: true,
         autoProcessQueue: false,
         thumbnailWidth: 200,
-        thumbnailHeight: null
+        thumbnailHeight: null,
       });
+
+      productDropzone.on("thumbnail", function(file) {
+        $element = $(".dz-preview i.fa-star:not(.added)");
+        $element.bind("click", function() {
+          var data = "product[product_images_attributes][0][id]=" + file.id +
+            "&product[product_images_attributes][0][featured]=1";
+          $("#preview_image_" + file.id).parent().addClass("featured");
+          $("#preview_image_" + file.id).parent().siblings().removeClass("featured");
+          this.handleFeatureImage(data);
+        }.bind(this));
+
+        $element.addClass("added");
+
+        if (typeof file.id !== "undefined") {
+          $element.data("id", file.id);
+          $element.attr("id", "preview_image_" + file.id);
+          $element.removeClass("hide");
+          $element.parent().find(".dz-details").empty();
+        }
+
+        if (file.featured) {
+          $element.parent().addClass("featured");
+        }
+      }.bind(this))
 
       productDropzone.on("removedfile", function(file) {
         if (file.id) {
@@ -71,43 +88,63 @@ var ProductForm = React.createClass({
     }
 
     this.state.productImages.forEach(function (value) {
-      var mockFile = {id: value.id, name: value.name};
+      var mockFile = {id: value.id, name: value.name, featured: value.featured};
 
-      productDropzone.options.addedfile.call(productDropzone, mockFile);
-      productDropzone.options.thumbnail.call(productDropzone, mockFile, value.url);
+      productDropzone.emit("addedfile", mockFile);
+      productDropzone.emit("thumbnail", mockFile, value.url);
     });
   },
   render: function () {
-    var variationCount = this.state.variationCount;
-    var url = this.state.product ? Routes.merchant_product_path(this.state.product.id) : Routes.merchant_products_path();
+    var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
     var variationNodes = this.state.variations.map(function(variation, index) {
       return (
         <Variation
-          key={"variation_" + Math.random()}
+          key={"variation_" + index}
           index={index}
+          lastItem={(this.state.variations.length == index + 1) ? true : false}
           variation={variation}
-          submit={this.submit}
           validateInt={this.validateInt}
           validateNumber={this.validateNumber}
-          variationCount={variationCount}
           variationOptions={this.state.variationOptions}
+          uploadVariationImage={this.uploadVariationImage}
           addVariation={this.addVariation}
           deleteVariation={this.deleteVariation} />
+      )
+    }.bind(this));
+
+    var deletedVariationNodes = this.state.deletedVariations.map(function(variation, index) {
+      return (
+        <Variation
+          key={"variation_" + (this.state.variations.length + index)}
+          index={this.state.variations.length + index}
+          variation={variation}
+          deleted={true} />
       )
     }.bind(this));
 
     var variationOptionNodes = this.state.variationOptions.map(function(variationOption, index) {
       return (
         <VariationOption
-          key={"variation_option_" + Math.random()}
+          key={"variation_option_" + index}
           index={index}
-          variationOption={variationOption}
-          variationOptionCount={this.state.variationOptionCount}
-          deleteVariationOption={this.deleteVariationOption}
+          lastItem={(this.state.variationOptions.length == index + 1) ? true : false}
+          defaultNames={this.props.default_option_names}
           addVariationOption={this.addVariationOption}
-          submit={this.submit}
-          defaultNames={this.props.default_option_names} />
+          deleteVariationOption={this.deleteVariationOption}
+          addOptionValue={this.addOptionValue}
+          deleteOptionValue={this.deleteOptionValue}
+          variationOption={variationOption} />
+      )
+    }.bind(this));
+
+    var deletedVariationOptionNodes = this.state.deletedVariationOptions.map(function(variationOption, index) {
+      return (
+        <VariationOption
+          deleted={true}
+          index={this.state.variationOptions.length + index}
+          key={"variation_option_" + (this.state.variationOptions.length + index)}
+          variationOption={variationOption} />
       )
     }.bind(this));
 
@@ -129,12 +166,12 @@ var ProductForm = React.createClass({
                     }) : ""}
                   </div>
                   <input ref="name_ko" type="text" name="product[name_ko]"
-                    className="form-control" defaultValue={(this.state.koProduct) ? this.props.ko_product.name : ""} />
+                    className="form-control" defaultValue={this.state.product ? this.state.product.name_ko : ""} />
                 </div>
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
                   <textarea ref="description_ko" name="product[description_ko]"
-                    className="form-control summernote" defaultValue={(this.state.koProduct) ? this.props.ko_product.description : ""}>
+                    className="form-control summernote" defaultValue={this.state.product ? this.state.product.description_ko : ""}>
                   </textarea>
                 </div>
               </div>
@@ -147,7 +184,7 @@ var ProductForm = React.createClass({
                     }) : ""}
                   </div>
                   <input ref="name_en" type="text" name="product[name_en]"
-                    className="form-control" defaultValue={(this.state.enProduct) ? this.state.enProduct.name : ""} />
+                    className="form-control" defaultValue={this.state.product ? this.state.product.name_en : ""} />
                 </div>
                 <div className="form-group">
                   <label className="label">{I18n.t("activerecord.attributes.product.description_en")}</label>
@@ -157,19 +194,19 @@ var ProductForm = React.createClass({
                     }) : null}
                   </div>
                   <textarea ref="description_en" name="product[description_en]"
-                    className="form-control summernote" defaultValue={(this.state.enProduct) ? this.state.enProduct.description : ""}>
+                    className="form-control summernote" defaultValue={this.state.product ? this.state.product.description_en : ""}>
                   </textarea>
                 </div>
               </div>
             </div>
 
-            {(this.props.slug) ?
+            {(this.state.product && this.state.product.slug) ?
               <div className="form-group">
                 <label className="label">{I18n.t("activerecord.attributes.product.slug")}</label>
 
                 <FormErrors errors={this.state.errors.slug} />
                 <input type="text" name="product[slug]"
-                  className="form-control" defaultValue={this.props.slug} />
+                  className="form-control" defaultValue={this.state.product.slug} />
               </div>
             : null}
           </div>
@@ -205,18 +242,17 @@ var ProductForm = React.createClass({
             </div>
           </div>
 
-
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
-            <div className={(variationCount > 0) ? "hide" : "form-group"}>
+            <div className={(this.state.variations.length > 0) ? "hide" : "form-group"}>
               <label className="label">{I18n.t("activerecord.attributes.product.in_stock")}</label>
               <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
-                name="product[in_stock]" defaultValue={(this.props.product) ? this.state.product.in_stock : "0"} />
+                name="product[in_stock]" defaultValue={(this.state.product) ? this.state.product.in_stock : "0"} />
             </div>
 
             {(this.state.product) ?
             <div className="variation-wrapper">
-              {(this.state.variationOptionCount == 0) ?
+              {(this.state.variationOptions.length == 0) ?
               <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
                 {I18n.t("merchant.admin.products.buttons.add_option_type")}
               </button> : null}
@@ -230,12 +266,14 @@ var ProductForm = React.createClass({
                   <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
                 </div>
               </div>
+              {deletedVariationOptionNodes}
               {variationOptionNodes}
               {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
               <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
                 {I18n.t("merchant.admin.products.buttons.populate_variation")}
               </button> : null}
               <hr/>
+              {deletedVariationNodes}
               {variationNodes}
             </div> : null}
           </div>
@@ -259,7 +297,7 @@ var ProductForm = React.createClass({
               <label className="styled-cb">
                 <input type="hidden" name="product[featured]" value="0" />
                 <input ref="checkbox" type="checkbox" name="product[featured]" value="1"
-                  defaultChecked={(this.props.product) ? this.state.product.featured : false} />
+                  defaultChecked={(this.state.product) ? this.state.product.featured : false} />
                 <i className="fa"></i>
                 {I18n.t("merchant.admin.forms.mark_as_featured")}
               </label>
@@ -291,7 +329,7 @@ var ProductForm = React.createClass({
                       <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
                         defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
                       <i className="fa"></i>
-                      {(category.name == "") ? category.name_en : category.name}
+                      {translate(category, "name")}
                     </label>
                   </div>
                 );
@@ -347,58 +385,100 @@ var ProductForm = React.createClass({
       e.target.value = parseFloat(number).toString().toKoreanFormat();
     }
   },
+  addOptionValue: function(parentIndex) {
+    var variationOptions = this.state.variationOptions;
+    variationOptions[parentIndex].option_values.push(null);
+
+    this.setState({variationOptions: variationOptions});
+  },
+  deleteOptionValue: function(parentIndex, index) {
+    var variationOptions = this.state.variationOptions;
+    var optionValues = variationOptions[parentIndex].option_values;
+    var deletedOptionValues = variationOptions[parentIndex].deleted_option_values;
+    var value = optionValues[index];
+
+    optionValues.splice(index, 1);
+
+    if (value != null) {
+      deletedOptionValues.push(value);
+    }
+
+    if (optionValues.length == 0) {
+      optionValues.push(null);
+    }
+
+    this.setState({variationOptions: variationOptions});
+  },
   addVariationOption: function(e) {
     e.preventDefault();
+    var variationOptions = this.state.variationOptions;
+    variationOptions.push({option_values: [null], deleted_option_values: []});
 
-    this.submit(null, {name: "new_option"});
+    this.setState({variationOptions: variationOptions});
+  },
+  deleteVariationOption: function(index) {
+    var variationOptions = this.state.variationOptions;
+    var variationOption = variationOptions[index];
+    var deletedVariationOptions = this.state.deletedVariationOptions;
+
+    variationOptions.splice(index, 1);
+
+    if (variationOption != null) {
+      deletedVariationOptions.push(variationOption);
+    }
+
+    this.setState({
+      variationOptions: variationOptions,
+      deletedVariationOptions: deletedVariationOptions
+    });
+  },
+  deleteVariation: function(index) {
+    var variations = this.state.variations;
+    var variation = variations[index];
+    var deletedVariations = this.state.deletedVariations;
+
+    variations.splice(index, 1);
+
+    if (typeof variation.id !== "undefined") {
+      deletedVariations.push(variation);
+    }
+
+    this.setState({
+      variations: variations,
+      deletedVariations: deletedVariations
+    });
+  },
+  addVariation: function() {
+    var variations = this.state.variations;
+    variations.push({});
+
+    this.setState({variations: variations});
+  },
+  uploadVariationImage: function(image, index) {
+    var variations = this.state.variations;
+    variation = variations[index];
+    variation.previewImage = image;
+
+    this.setState({variations: variations});
   },
   populateVariation: function(e) {
     e.preventDefault();
-    var url = Routes.merchant_product_variations_path(this.state.product.id);
+    this.submit(e, function() {
+      var url = Routes.merchant_product_variations_path.localize(this.state.product.id);
 
-    $.ajax({
-      url: url,
-      method: "post",
-      success: function(variations) {
-        this.setState({variations: variations, variationCount: variations.length});
-      }.bind(this),
-      error: function(xhr) {
-        console.log(xhr.responseText);
-      }
+      $.ajax({
+        url: url,
+        method: "post",
+        success: function(variations) {
+          this.setState({variations: variations, deletedVariations: []});
+        }.bind(this),
+        error: function(xhr) {
+          console.log(xhr.responseText);
+        }
+      })
     })
   },
-  deleteVariationOption: function(variationOption) {
-    var variationOptions = this.state.variationOptions;
-    var index = variationOptions.indexOf(variationOption);
-    var variationOptionCount = this.state.variationOptionCount - 1;
-
-    if (variationOption.isNew) {
-      variationOptions.splice(index, 1);
-    }
-    else {
-      variationOptions[index].isDeleted = true;
-    }
-
-    this.setState({variationOptionCount: variationOptionCount}, this.submit);
-  },
-  addVariation: function() {
-    this.submit(null, {name: "new_variation"});
-  },
-  deleteVariation: function(variation) {
-    var variations = this.state.variations;
-    var index = variations.indexOf(variation);
-    var variationCount = this.state.variationCount - 1;
-
-    if (variation.isNew) {
-      variations.splice(index, 1);
-    }
-    else {
-      variations[index].isDeleted = true;
-    }
-
-    this.setState({variations: variations, variationCount: variationCount}, this.submit);
-  },
-  submit: function(e, trigger) {
+  submit: function(e, callback) {
     if (typeof e !== "undefined" && e != null) {
       e.preventDefault();
     }
@@ -409,17 +489,17 @@ var ProductForm = React.createClass({
     this.refs.description_en.value = description_en;
     this.refs.description_ko.value = description_ko;
 
-    if (this.state.variationCount > 0) {
+    if (this.state.variations.length > 0) {
       this.refs.in_stock.value = "0";
     }
 
     var form = $(this.refs.form);
 
-    this.handleProductSubmit(form, trigger);
+    this.handleProductSubmit(form, callback);
   },
-  handleProductSubmit: function(form, trigger = null) {
+  handleProductSubmit: function(form, callback) {
     var method = this.state.product ? "put" : "post";
-    var url = this.state.product ? Routes.merchant_product_path(this.state.product.id) : Routes.merchant_products_path();
+    var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
     $.ajax({
       data: new FormData(form[0]),
@@ -430,41 +510,33 @@ var ProductForm = React.createClass({
       processData: false,
       success: function(response) {
         var productId = response.product.id;
-        this.postImages(productId, Routes.merchant_product_path(productId));
+        this.postImages(productId, Routes.merchant_product_path.localize(productId));
 
-        if (trigger != null) {
-          switch(trigger.name) {
-            case "new_option":
-              response.variation_options.push({isNew: true});
-              break;
-            case "new_variation":
-              response.variations.push({isNew: true, price: this.state.product.price})
-              break;
-            case "new_option_value":
-              response.variation_options.forEach(function(option) {
-                if (option.id == trigger.id) {
-                  option.option_values.push({isNew: true});
-                }
-              })
-            default:
-              break;
-          }
+        if (this.state.product && !$.isFunction(callback)) {
+          Turbolinks.visit(this.props.redirect_url);
         }
+        else {
+          var variationOptions = response.variation_options;
 
-        this.setState({
-          errors: [],
-          koCount: 0,
-          enCount: 0,
-          product: response.product,
-          en_product: response.en_product,
-          ko_product: response.ko_product,
-          product: response.product,
-          variations: response.variations,
-          variationOptions: response.variation_options,
-          variationCount: response.variations.length,
-          variationOptionCount: response.variation_options.length,
-          method: "put"
-        });
+          variationOptions.map(function(option) {
+            if (option.option_values.length == 0) {
+              option.option_values.push(null);
+            }
+
+            option.deleted_option_values = [];
+            return option
+          })
+
+          this.setState({
+            errors: [],
+            koCount: 0,
+            enCount: 0,
+            product: response.product,
+            variationOptions: variationOptions,
+            deletedVariationOptions: [],
+            method: "put"
+          }, callback);
+        }
       }.bind(this),
       error: function(xhr) {
         var koCount = 0;
@@ -493,13 +565,23 @@ var ProductForm = React.createClass({
     productDropzone.processQueue();
   },
   handleDeleteImage: function(data) {
-    var url = Routes.merchant_product_path(this.state.product.id);
+    var url = Routes.merchant_product_path.localize(this.state.product.id);
 
     $.ajax({
       data: data,
       url: url,
       method: "put",
       dataType: "json"
+    })
+  },
+  handleFeatureImage: function(data) {
+    var url = Routes.merchant_product_path.localize(this.state.product.id);
+
+    $.ajax({
+      data: data,
+      url: url,
+      method: "put",
+      dataType: "json",
     })
   }
 })

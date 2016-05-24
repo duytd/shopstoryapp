@@ -4,25 +4,25 @@ var MenuItemForm = React.createClass({
 
     if (this.props.menu_item) {
       switch(this.props.menu_item.type) {
-        case "menu/home":
+        case "menu/home_menu":
           type = "home";
           break;
-        case "menu/product":
+        case "menu/product_menu":
           type = "product";
           break;
-        case "menu/product_all":
-          type = "product_all";
+        case "menu/product_index_menu":
+          type = "product_index";
           break;
-        case "menu/category":
+        case "menu/category_menu":
           type = "category";
           break;
-        case "menu/category_all":
-          type = "category_all";
+        case "menu/category_index_menu":
+          type = "category_index";
           break;
-        case "menu/page":
-          type = "page";
+        case "menu/custom_page_menu":
+          type = "custom_page";
           break;
-        case "menu/url":
+        case "menu/url_menu":
           type = "url";
           break;
       }
@@ -68,7 +68,7 @@ var MenuItemForm = React.createClass({
               <div className="form-group">
                 <label className="label">{I18n.t("activerecord.attributes.menu_item.parent_id")}</label>
                 <input type="hidden" name="menu_item[parent_id]" value={this.props.parent.id} />
-                <p>{this.props.parent.name}</p>
+                <p>{translate(this.props.parent, "name")}</p>
               </div> : null}
 
             <div className="form-group">
@@ -77,13 +77,13 @@ var MenuItemForm = React.createClass({
               <div className="select" onChange={this.switchType}>
                 <select name="type" className="form-control" defaultValue={this.state.type}>
                   {this.props.types.map(function(type, index) {
-                    return <option value={type} key={"item_type_" + index}>{type}</option>
+                    return <option value={type} key={"item_type_" + index}>{I18n.t("merchant.admin.menu_items.types."+ type)}</option>
                   })}
                 </select>
-              </div> : <p>{this.state.type}</p>}
+              </div> : <p>{I18n.t("merchant.admin.menu_items.types."+ this.state.type)}</p>}
             </div>
 
-            {(this.state.type == "category" || this.state.type == "product" || this.state.type == "url" || this.state.type == "page") ?
+            {(this.state.type == "category" || this.state.type == "product" || this.state.type == "url" || this.state.type == "custom_page") ?
               <div className="form-group">
                 <label className="label">{I18n.t("activerecord.attributes.menu_item.value")}</label>
                 <FormErrors errors={this.state.errors.value} />
@@ -100,10 +100,10 @@ var MenuItemForm = React.createClass({
                 {(this.state.type == "product") ?
                   <AutoComplete
                     name="menu_item[value]"
-                    url={Routes.search_merchant_products_path()}
-                    chosenSource={(this.state.type == "product" && this.props.menu_item) ? Routes.merchant_product_path(this.props.menu_item.value) : null} /> : null}
+                    url={Routes.search_merchant_products_path.localize()}
+                    chosenSource={(this.state.type == "product" && this.props.menu_item) ? Routes.merchant_product_path.localize(this.props.menu_item.value) : null} /> : null}
 
-                {(this.state.type == "page") ?
+                {(this.state.type == "custom_page") ?
                   <div className="select">
                     <select className="form-control" name="menu_item[value]" defaultValue={(this.props.menu_item) ? this.props.menu_item.value : defaultCategory}>
                       {this.props.pages.map(function(page, index) {
@@ -130,11 +130,11 @@ var MenuItemForm = React.createClass({
     var formData = $(this.refs.form).serialize();
 
     if (this.props.menu_item) {
-      url = Routes.merchant_menu_menu_item_path(this.props.menu.id, this.props.menu_item.id);
+      url = Routes.merchant_menu_menu_item_path.localize(this.props.menu.id, this.props.menu_item.id);
       method = "PUT"
      }
     else {
-      url = Routes.merchant_menu_menu_items_path(this.props.menu.id);
+      url = Routes.merchant_menu_menu_items_path.localize(this.props.menu.id);
       method = "POST"
     }
 

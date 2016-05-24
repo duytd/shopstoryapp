@@ -22,7 +22,7 @@ var Plan = React.createClass({
     })
 
     var method = (this.props.current_subscription) ? "put" : "post";
-    var action = (this.props.current_subscription) ? Routes.merchant_subscription_path(this.props.current_subscription.id) : Routes.merchant_subscriptions_path();
+    var action = (this.props.current_subscription) ? Routes.merchant_subscription_path.localize(this.props.current_subscription.id) : Routes.merchant_subscriptions_path.localize();
 
     return (
       <div className="plan col-sm-4">

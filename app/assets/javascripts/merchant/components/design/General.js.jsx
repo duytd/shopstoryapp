@@ -60,7 +60,7 @@ design.GeneralForm = React.createClass({
     var form = $(this.refs.form);
 
     $.ajax({
-      url: Routes.merchant_design_general_path(),
+      url: Routes.merchant_design_general_path.localize(),
       data: new FormData(form[0]),
       method: "put",
       contentType: false,

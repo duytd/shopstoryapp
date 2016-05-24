@@ -10,6 +10,7 @@
     "spectrum": "latest",
     "bootstrap-datepicker": "latest",
     "Chart.js": "latest",
-    "owl.carousel": "latest"
+    "owl.carousel": "latest",
+    "bootstrap-switch": "latest"
   }
 }

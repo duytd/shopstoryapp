@@ -1,9 +1,13 @@
 class Merchant::MenusController < Merchant::BaseController
+  before_action :load_menu, only: [:edit, :update]
   load_and_authorize_resource
 
   def index
+    @menus = Menu.includes(menu_items: :children).order(created_at: :asc).map{|m| Merchant::MenuPresenter.new(m)}
+
     @props = {
-      menus: Menu.all,
+      menus: @menus,
+      new_url: new_merchant_menu_path
     }
   end
 
@@ -22,7 +26,7 @@ class Merchant::MenusController < Merchant::BaseController
     @menu =  Menu.new menu_params
 
     if @menu.save
-      render json: @menu, status: :ok
+      render json: Merchant::MenuPresenter.new(@menu), status: :ok
     else
       render json: @menu.errors, status: :unprocessable_entity
     end
@@ -30,7 +34,7 @@ class Merchant::MenusController < Merchant::BaseController
 
   def edit
     @props = {
-      menu: @menu,
+      menu: Merchant::MenuPresenter.new(@menu),
       positions: Menu.positions.keys.to_a,
       categories: Category.all.map{|c| [c.name_en, c.name_ko, c.id]},
       pages: CustomPage.all.map{|p| [p.title_en, p.title_ko, p.slug]},
@@ -42,7 +46,7 @@ class Merchant::MenusController < Merchant::BaseController
 
   def update
     if @menu.update menu_params
-      render json: @menu, status: :ok
+      render json: Merchant::MenuPresenter.new(@menu), status: :ok
     else
       render json: @menu.errors, status: :unprocessable_entity
     end
@@ -54,6 +58,10 @@ class Merchant::MenusController < Merchant::BaseController
   end
 
   private
+  def load_menu
+    @menu = Menu.includes(menu_items: :children).find params[:id]
+  end
+
   def menu_params
     menu_items_permitted = MenuItem.globalize_attribute_names + [:id, :parent_id, :position, :type, :value]
     params.require(:menu).permit :name, :position, :active, menu_items_attributes: menu_items_permitted

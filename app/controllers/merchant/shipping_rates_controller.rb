@@ -1,5 +1,4 @@
 class Merchant::ShippingRatesController < Merchant::BaseController
-  include TranslationsHelper
   load_and_authorize_resource
 
   def index
@@ -14,6 +13,7 @@ class Merchant::ShippingRatesController < Merchant::BaseController
     @props = {
       types: ShippingRate.types,
       url: merchant_shipping_rates_path,
+      redirect_url: merchant_shipping_rates_path,
       method: :post
     }
   end
@@ -24,7 +24,7 @@ class Merchant::ShippingRatesController < Merchant::BaseController
       @shipping_rate.attributes = shipping_rate_params
 
       if @shipping_rate.save
-        render json: @shipping_rate, status: :ok
+        render json: Merchant::ShippingRatePresenter.new(@shipping_rate), status: :ok
       else
         render json: @shipping_rate.errors, status: :unprocessable_entity
       end
@@ -35,17 +35,16 @@ class Merchant::ShippingRatesController < Merchant::BaseController
 
   def edit
     @props = {
-      shipping_rate: @shipping_rate,
-      en_shipping_rate: load_translation(@shipping_rate.translations, :en),
-      ko_shipping_rate: load_translation(@shipping_rate.translations, :ko),
+      shipping_rate: Merchant::ShippingRatePresenter.new(@shipping_rate),
       url: merchant_shipping_rate_path(@shipping_rate),
+      redirect_url: merchant_shipping_rates_path,
       method: :put
     }
   end
 
   def update
     if @shipping_rate.update shipping_rate_params
-      render json: @shipping_rate, status: :ok
+      render json: Merchant::ShippingRatePresenter.new(@shipping_rate), status: :ok
     else
       render json: @shipping_rate.errors, status: :unprocessable_entity
     end
@@ -59,7 +58,7 @@ class Merchant::ShippingRatesController < Merchant::BaseController
   private
   def list_all
     @props = {
-      shipping_rates: ShippingRate.all,
+      shipping_rates: ShippingRate.all.map{|r| Merchant::ShippingRatePresenter.new(r)}
     }
   end
 

@@ -85,7 +85,7 @@ var CustomerForm = React.createClass({
 
                 <div className="row">
                   <div className="col-sm-12">
-                    <SubmitButtons redirect_url={Routes.merchant_customers_path()} />
+                    <SubmitButtons redirect_url={Routes.merchant_customers_path.localize()} />
                   </div>
                 </div>
               </form>
@@ -106,7 +106,7 @@ var CustomerForm = React.createClass({
               <label className="label">{I18n.t("activerecord.attributes.customer.last_order")}</label>
               {(this.props.orders.length > 0) ?
               <p>
-                <a href={Routes.merchant_order_path(this.props.orders[this.props.orders.length - 1].id)}>
+                <a href={Routes.merchant_order_path.localize(this.props.orders[this.props.orders.length - 1].id)}>
                   {"#" + this.props.orders[this.props.orders.length - 1].id}
                 </a>
               </p> : null}
@@ -116,7 +116,9 @@ var CustomerForm = React.createClass({
 
         <div className="block">
           <h3>{I18n.t("merchant.admin.customers.customer_orders")}</h3>
-          <CustomerOrderList orders={this.props.orders} />
+          {this.props.orders.length > 0 ?
+            <CustomerOrderList orders={this.props.orders} />
+            : <p>{I18n.t("merchant.admin.customers.no_order")}</p>}
         </div>
       </div>
     )

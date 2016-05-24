@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511023013) do
+ActiveRecord::Schema.define(version: 20160524083951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -380,6 +380,39 @@ ActiveRecord::Schema.define(version: 20160511023013) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "shipments", force: :cascade do |t|
+    t.integer  "status"
+    t.integer  "order_id"
+    t.string   "tracking_code"
+    t.integer  "shipping_method_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "shipments", ["order_id"], name: "index_shipments_on_order_id", using: :btree
+  add_index "shipments", ["shipping_method_id"], name: "index_shipments_on_shipping_method_id", using: :btree
+
+  create_table "shipping_method_translations", force: :cascade do |t|
+    t.integer  "shipping_method_id", null: false
+    t.string   "locale",             null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "name"
+    t.text     "description"
+  end
+
+  add_index "shipping_method_translations", ["locale"], name: "index_shipping_method_translations_on_locale", using: :btree
+  add_index "shipping_method_translations", ["shipping_method_id"], name: "index_shipping_method_translations_on_shipping_method_id", using: :btree
+
+  create_table "shipping_methods", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "tracking_url"
+    t.boolean  "active",       default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "shipping_rate_translations", force: :cascade do |t|
     t.integer  "shipping_rate_id", null: false
     t.string   "locale",           null: false
@@ -684,6 +717,7 @@ ActiveRecord::Schema.define(version: 20160511023013) do
   add_foreign_key "product_images", "products"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
+  add_foreign_key "shipments", "orders"
   add_foreign_key "shops", "themes"
   add_foreign_key "shops", "users"
   add_foreign_key "shopstory_ticket_customer_contacts", "orders"

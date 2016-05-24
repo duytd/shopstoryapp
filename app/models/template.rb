@@ -10,17 +10,17 @@ class Template < ActiveRecord::Base
 
   scope :filter_by_theme, ->theme{where theme_id: theme.id}
 
+  def self.update_bundle bundle
+    bundle.template = Template.all.map{|x| x.transformed_content}.join(" ")
+    bundle.save!
+  end
+
   def path
     if root_directory?
       "templates/#{name}.rt"
     else
       "templates/#{directory}/#{name}.rt"
     end
-  end
-
-  def self.update_bundle bundle
-    bundle.template = Template.all.map{|x| x.transformed_content}.join(" ")
-    bundle.save!
   end
 
   private

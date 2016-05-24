@@ -76,7 +76,7 @@ var MenuForm = React.createClass({
             </div>
 
             <div className="form-group">
-              <SubmitButtons redirect_url={Routes.merchant_menus_path()} />
+              <SubmitButtons redirect_url={Routes.merchant_menus_path.localize()} />
             </div>
           </div>
         </form>
@@ -140,7 +140,7 @@ var MenuForm = React.createClass({
     data = $(this.refs.draggable).serialize();
 
     $.ajax({
-      url: Routes.merchant_menu_path(id),
+      url: Routes.merchant_menu_path.localize(id),
       data: data,
       method: "PUT"
     })
@@ -253,6 +253,6 @@ var MenuForm = React.createClass({
     }
   },
   setParent: function(item) {
-    this.setState({parent: item})
+    this.setState({parent: item, menu_item: null})
   }
 })

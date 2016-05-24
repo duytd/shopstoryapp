@@ -31,7 +31,7 @@ var CustomPageBox = React.createClass({
         name="custom-page"
         list={customPageList}
         pagination={pagination}
-        url={Routes.new_merchant_custom_page_path()}
+        url={this.props.new_url}
         title={I18n.t("merchant.admin.custom_pages.title")} />
     );
   }

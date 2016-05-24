@@ -1,0 +1,35 @@
+.search-list {
+  position: absolute;
+  top: 60px;
+  width: 385px;
+  min-height: 300px;
+  h4 {
+    a {
+      color: $base-dark;
+    }
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 5px;
+  }
+  color: #aaa;
+  .nav > li > a {
+    padding: 10px;
+    font-size: 12px;
+  }
+  .tab-content {
+    margin-top: 10px;
+  }
+}
+
+.search-form {
+  position: relative;
+  .form-control {
+    padding-right: 10px;
+  }
+  a {
+    position: absolute;
+    right: 5px;
+    top: 12px;
+  }
+}

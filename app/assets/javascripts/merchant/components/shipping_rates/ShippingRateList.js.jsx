@@ -9,7 +9,7 @@ var ShippingRateList = React.createClass({
         type="shipping_rate"
         items={this.props.shipping_rates}
         headers={headers}
-        deleteAllUrl={Routes.merchant_shipping_rates_path()} />
+        deleteAllUrl={Routes.merchant_shipping_rates_path.localize()} />
     )
   }
 })

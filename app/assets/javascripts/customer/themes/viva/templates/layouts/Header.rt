@@ -38,6 +38,9 @@
             </a>
           </li>
         </ul>
+        <form class="navbar-form navbar-right" action="{Routes.customer_search_path.localize()}" method="get">
+          <input name="q" type="text" placeholder="{I18n.t('search.placeholder')}" class="form-control" />
+        </form>
       </div>
     </div>
   </nav>

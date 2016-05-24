@@ -1,102 +1,97 @@
 var VariationOption = React.createClass({
   getInitialState: function() {
-    var activeSelector = this.props.variationOption.isNew ? true : false;
-    var optionValues = this.props.variationOption.option_values ? this.props.variationOption.option_values.slice() : [];
-
-    optionValues.forEach(function(value, index) {
-      if (!value.isNew) {
-        value["isDeleted"] = false;
-        value["isNew"] = false;
-      }
-    })
-
-    if (optionValues.length == 0) {
-      optionValues.push({isNew: true})
-    }
+    var activeSelector = (typeof this.props.variationOption.id === "undefined") ? true : false;
 
     return {
-      optionValueCount: optionValues.length,
-      optionValues: optionValues,
       activeSelector: activeSelector
     }
   },
   render: function() {
-    var nameNodes = this.props.defaultNames.map(function(name, index) {
-      return <option key={"option_" + index} value={name.capitalize()}>{name.capitalize()}</option>
-    })
+    if (!this.props.deleted) {
+      var nameNodes = this.props.defaultNames.map(function(name, index) {
+        return <option key={"option_" + index} value={name.capitalize()}>{name.capitalize()}</option>
+      })
+    }
 
-    var optionValueNodes = this.state.optionValues.map(function(value, index) {
+    var optionValueNodes = this.props.variationOption.option_values.map(function(value, index) {
       return (
         <VariationOptionValue
-          key={"option_value" + index}
+          key={"option_value_" + index}
           optionValue={value}
           index={index}
-          submit={this.props.submit}
-          optionValueCount={this.state.optionValueCount}
+          lastItem={(this.props.variationOption.option_values.length == index + 1) ? true : false}
           addOptionValue={this.addOptionValue}
           deleteOptionValue={this.deleteOptionValue}
           parentPosition={this.props.index} />
       )
     }.bind(this))
 
+    var deletedOptionValueNodes = this.props.variationOption.deleted_option_values.map(function(value, index) {
+      return (
+        <VariationOptionValue
+          key={"option_value_" + (this.props.variationOption.option_values + index)}
+          deleted={true}
+          optionValue={value}
+          index={this.props.variationOption.option_values + index}
+          parentPosition={this.props.index} />
+      )
+    }.bind(this))
+
     return (
-      <div className={(this.props.variationOption.isDeleted) ? "hide" : "row variation-option"}>
-        <input type="hidden" name={"product[variation_options_attributes][" + this.props.index + "][id]"}
-          value={this.props.variationOption.id} />
-        <input type="hidden" name={"product[variation_options_attributes][" + this.props.index + "][_destroy]"}
-          value={this.props.variationOption.isDeleted} />
-        <div className="col-xs-5">
-          {(this.state.activeSelector) ? (
-              <div className="select" onChange={this.checkActiveSelector}>
-                <select className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
-                  {nameNodes}
-                  <option value="custom">{I18n.t("merchant.admin.variations.custom_name")}</option>
-                </select>
-              </div>
-            )
-          : (
-              <input ref="custom_name" type="text" className="form-control input-sm"
-                name={"product[variation_options_attributes][" + this.props.index + "][name]"}
-                placeholder={I18n.t("merchant.admin.variations.custom_name_placeholder")}
-                defaultValue={this.props.variationOption.name} onChange={this.checkInputName} />
-            )
-          }
-        </div>
-        <div className="col-xs-2">
-          {(this.props.variationOptionCount == this.props.index + 1) ?
-          <button className="btn btn-default" onClick={this.props.addVariationOption}>
-            <i className="fa fa-plus"></i>
-          </button> : null}
-          <button className="btn btn-default" onClick={this.deleteVariationOption}>
-            <i className="fa fa-trash"></i>
-          </button>
-        </div>
-        <div className="col-xs-5">
-          {optionValueNodes}
-        </div>
+      <div className="variation-option">
+        {(this.props.variationOption) ?
+          <input type="hidden" name={"product[variation_options_attributes][" + this.props.index + "][id]"}
+              value={this.props.variationOption.id} /> : null}
+
+        {(this.props.deleted) ?
+          <input type="hidden" name={"product[variation_options_attributes][" + this.props.index + "][_destroy]"}
+            value={true} />
+        : (
+            <div className="row">
+            <div className="col-xs-5">
+              {(this.state.activeSelector) ? (
+                  <div className="select" onChange={this.checkActiveSelector}>
+                    <select className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
+                      {nameNodes}
+                      <option value="custom">{I18n.t("merchant.admin.variations.custom_name")}</option>
+                    </select>
+                  </div>
+                )
+              : (
+                  <input ref="custom_name" type="text" className="form-control input-sm"
+                    name={"product[variation_options_attributes][" + this.props.index + "][name]"}
+                    placeholder={I18n.t("merchant.admin.variations.custom_name_placeholder")}
+                    defaultValue={this.props.variationOption ? this.props.variationOption.name : ""}  onChange={this.checkInputName} />
+                )
+              }
+            </div>
+            <div className="col-xs-2">
+              {(!this.props.deleted && this.props.lastItem) ?
+              <button className="btn btn-default" onClick={this.props.addVariationOption}>
+                <i className="fa fa-plus"></i>
+              </button> : null}
+              <button className="btn btn-default" onClick={this.deleteVariationOption}>
+                <i className="fa fa-trash"></i>
+              </button>
+            </div>
+            <div className="col-xs-5">
+              {deletedOptionValueNodes}
+              {optionValueNodes}
+            </div>
+          </div>
+        )}
       </div>
     )
   },
   deleteVariationOption: function(e) {
     e.preventDefault();
-    this.props.deleteVariationOption(this.props.variationOption);
+    this.props.deleteVariationOption(this.props.index);
   },
-  addOptionValue: function() {
-    this.props.submit(null, {name: "new_option_value", id: this.props.variationOption.id});
+  addOptionValue: function(parentIndex) {
+    this.props.addOptionValue(parentIndex);
   },
-  deleteOptionValue: function(optionValue) {
-    var optionValues = this.state.optionValues;
-    var index = optionValues.indexOf(optionValue);
-    var optionValueCount = this.state.optionValueCount - 1;
-
-    if (optionValue.isNew) {
-      optionValues.splice(index, 1);
-    }
-    else {
-      optionValues[index]["isDeleted"] = true;
-    }
-
-    this.setState({optionValues: optionValues, optionValueCount: optionValueCount}, this.props.submit);
+  deleteOptionValue: function(parentIndex, index) {
+    this.props.deleteOptionValue(parentIndex, index);
   },
   checkActiveSelector: function(e) {
     if (e.target.value == "custom") {

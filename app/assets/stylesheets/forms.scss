@@ -1,5 +1,5 @@
-$input-border-color: #959ea7;
-$input-bg-color: #e9ebed;
+$input-border-color: #c9c9c8;
+$input-bg-color: #ededec;
 
 .form {
   &.registrations, &.login, &.password {
@@ -50,10 +50,10 @@ $input-bg-color: #e9ebed;
         position: absolute;
         right: 10px;
         top: 12px;
-        color: $sea;
+        color: $base-dark;
         font-weight: bold;
         &:hover {
-          color: lighten($sea, 20%);
+          color: lighten($base-dark, 20%);
         }
       }
     }
@@ -140,9 +140,21 @@ $input-bg-color: #e9ebed;
   .dz-progress {
     background: rgba(255, 255, 255, 0.5) !important;
   }
-  .fa-trash {
-    color: $input-border-color;
-    cursor: pointer;
+  .dz-preview {
+    z-index: 1000;
+    .fa-trash, .fa-star {
+      color: $input-border-color;
+      cursor: pointer;
+      margin-right: 3px;
+    }
+    &.featured {
+      .fa-star {
+        color: $base-light;
+      }
+      .dz-image {
+        border: 3px solid $base-light;
+      }
+    }
   }
 }
 
@@ -201,4 +213,15 @@ $input-bg-color: #e9ebed;
 
 .form-upload {
   display: inline-block
+}
+
+.bootstrap-switch-primary {
+  background: $base-light !important;
+  font-weight: bold;
+}
+
+.bootstrap-switch-default {
+  background: $gray-light !important;
+  color: $white !important;
+  font-weight: bold;
 }

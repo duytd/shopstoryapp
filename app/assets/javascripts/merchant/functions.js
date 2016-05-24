@@ -23,6 +23,16 @@ String.prototype.addParams = function(key, value) {
   }
 }
 
+Array.prototype.clean = function(deletedValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deletedValue) {
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+}
+
 Function.prototype.localize = function(param1, param2) {
   if (typeof param1 == "undefined") {
     return this.call(this, {"locale": I18n.locale});

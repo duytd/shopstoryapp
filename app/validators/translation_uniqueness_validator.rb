@@ -2,8 +2,8 @@ class TranslationUniquenessValidator < ActiveModel::EachValidator
   def validate_each record, attribute, value
     I18n.available_locales.each do |locale|
       klass = record.class
-      table_name = "#{klass.name.downcase.pluralize}"
-      table_name_locale = "#{klass.name.downcase}_translations"
+      table_name = "#{klass.name.tableize}"
+      table_name_locale = "#{klass.name.underscore}_translations"
       attribute_locale = "#{attribute}_#{locale}"
       value_locale = record.send attribute_locale
 

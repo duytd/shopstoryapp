@@ -1,12 +1,20 @@
-require_dependency "menu/product"
-
 class Product < ActiveRecord::Base
   include Orderable
+  include Searchable
+
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
+  default_scope { includes :translations }
+
+  include Elasticsearch::Model::Globalize::MultipleFields
+
+  mapping do
+    indexes :name_ko, analyzer: "ngram_analyzer"
+    indexes :name_en, analyzer: "ngram_analyzer"
+  end
 
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
@@ -29,7 +37,7 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :variations, allow_destroy: true
   accepts_nested_attributes_for :variation_options, allow_destroy: true, reject_if: proc {|a| a[:name].blank?}
-  accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: proc {|a| a[:image].blank?}
+  accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :seo_tag, allow_destroy: false, reject_if: :all_blank
 
   scope :visible, ->{where visibility: true}
@@ -61,6 +69,8 @@ class Product < ActiveRecord::Base
   after_create :create_master
   after_update :update_master
   before_save :update_inventory
+  after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") }
+  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") }
 
   def price=(price)
     price = price.to_s.gsub ",", ""
@@ -69,6 +79,35 @@ class Product < ActiveRecord::Base
 
   def total_sale
     order_products.joins(:product_order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
+  end
+
+  def create_variations
+    options = variation_options.includes :variation_option_values
+
+    if options.size > 0 && variations.not_master.count == 0
+      option_value_array = []
+      options.each do |op|
+        option_value_array << op.variation_option_values if op.variation_option_values.size > 0
+      end
+
+      if option_value_array.size == 0
+        return false
+      end
+
+      option_value_array.first.product(*option_value_array[1..-1]).each do |a|
+        variation = variations.build price: price
+
+        a.each do |value|
+          variation.variation_variation_option_values.build variation_option_value_id: value.id
+        end
+
+        unless variation.save
+          return false
+        end
+      end
+    end
+
+    return true
   end
 
   def self.import file
@@ -86,31 +125,6 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def as_json options={}
-    super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
-  end
-
-  def create_variations
-    options = variation_options.includes :variation_option_values
-
-    if options.size > 0 && variations.not_master.count == 0
-      option_value_array = options.map{|option| option.variation_option_values}
-      option_value_array.first.product(*option_value_array[1..-1]).each do |a|
-        variation = variations.build price: price
-
-        a.each do |value|
-          variation.variation_variation_option_values.build variation_option_value_id: value.id
-        end
-
-        unless variation.save
-          return false
-        end
-      end
-    end
-
-    return true
-  end
-
   def self.search_by_name query
     with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
   end
@@ -122,6 +136,10 @@ class Product < ActiveRecord::Base
         csv << product.attributes.values_at(*column_names)
       end
     end
+  end
+
+  def self.search_fields
+    %w{ name_ko^10 name_en^10 description_ko description_en }
   end
 
   private

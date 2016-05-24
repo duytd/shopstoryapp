@@ -11,7 +11,7 @@ class Customer::ProductPresenter < Presenter
       sale_off: @object.sale_off,
       sku: @object.sku,
       in_stock: @object.in_stock,
-      vendor: @vendor,
+      vendor: @object.vendor,
       images: @object.product_images
     }
   end

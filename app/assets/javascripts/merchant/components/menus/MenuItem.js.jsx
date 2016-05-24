@@ -69,7 +69,7 @@ var MenuItem = React.createClass({
     var id = this.props.menu_item.id;
 
     $.ajax({
-      url: Routes.merchant_menu_menu_item_path(menuId, id),
+      url: Routes.merchant_menu_menu_item_path.localize(menuId, id),
       method: "DELETE",
       success: function() {
         this.props.deleteMenuItem(this.props.menu_item);

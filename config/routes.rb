@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   constraints Constraints::AdminDomainConstraint do
     namespace :admin, path: "" do
       root "pages#dashboard"
+      resources :shipping_methods, except: :show
       resources :plans, except: :show
       resources :payment_methods, only: [:index, :edit, :update]
       resources :themes, only: [:index, :edit, :update] do
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
   devise_for :customers, path: "", path_names: {sign_in: "login",
     sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
     unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "customer/registrations",
-    sessions: "customer/sessions", omniauth_callbacks: "customer/customers/omniauth_callbacks"}
+    sessions: "customer/sessions", passwords: "customer/passwords", omniauth_callbacks: "customer/customers/omniauth_callbacks"}
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
     get :success, to: "pages#success"
     get :cart, to: "pages#cart"
     get :account, to: "customers#show", path: "my-account"
+    get :search, to: "search#search"
 
     resources :categories, only: [:index, :show] do
       get :filter, on: :member
@@ -75,6 +77,7 @@ Rails.application.routes.draw do
     get :credentials, to: "pages#credentials"
     get :account, to: "pages#account"
     get :editor, to: "pages#editor"
+    get :search, to: "search#search"
 
     resources :categories, except: :show do
       delete :index, on: :collection

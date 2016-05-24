@@ -9,8 +9,8 @@ var Banner = React.createClass({
         check={this.props.banner.checked}>
 
         <td className="name">
-          <a href={Routes.edit_merchant_banner_path(this.props.banner.id)}>
-            {(this.props.banner.name == "") ? this.props.banner.name_en : this.props.banner.name}
+          <a href={Routes.edit_merchant_banner_path.localize(this.props.banner.id)}>
+            {this.props.banner.name}
           </a>
         </td>
       </Item>

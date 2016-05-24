@@ -11,6 +11,9 @@ module ShopStory
     config.active_record.raise_in_transactional_callbacks = true
     config.action_controller.include_all_helpers = false
 
+    # config.time_zone = "Seoul"
+    # config.active_record.default_timezone = "Seoul"
+
     config.generators do |g|
       g.javascripts = false
       g.helper      = false

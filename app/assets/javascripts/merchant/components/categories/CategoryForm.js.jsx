@@ -20,7 +20,7 @@ var CategoryForm = React.createClass({
                 <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
                 <FormErrors errors={this.state.errors.name_ko} />
                 <input ref="name_ko" type="text" name="category[name_ko]"
-                  className="form-control" defaultValue={(this.props.ko_category) ? this.props.ko_category.name : ""} />
+                  className="form-control" defaultValue={this.props.category ? this.props.category.name_ko : ""} />
               </div>
             </div>
             <div id="en" className="tab-pane fade">
@@ -28,18 +28,18 @@ var CategoryForm = React.createClass({
                 <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
                 <FormErrors errors={this.state.errors.name_en} />
                 <input ref="name_en" type="text" name="category[name_en]"
-                  className="form-control" defaultValue={(this.props.en_category) ? this.props.en_category.name : ""} />
+                  className="form-control" defaultValue={this.props.category ? this.props.category.name_en : ""} />
               </div>
             </div>
           </div>
 
-          {(this.props.slug) ?
+          {(this.props.category && this.props.category.slug) ?
             <div className="form-group">
               <label className="label">{I18n.t("activerecord.attributes.category.slug")}</label>
 
               <FormErrors errors={this.state.errors.slug} />
               <input type="text" name="category[slug]"
-                className="form-control" defaultValue={this.props.slug} />
+                className="form-control" defaultValue={this.props.category ? this.props.category.slug : ""} />
             </div>
           : null}
         </div>
@@ -67,7 +67,7 @@ var CategoryForm = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_categories_path());
+        Turbolinks.visit(Routes.merchant_categories_path.localize());
       },
       error: function(xhr) {
         var errors = xhr.responseJSON;

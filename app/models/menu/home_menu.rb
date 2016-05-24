@@ -1,4 +1,4 @@
-class Menu::Home < MenuItem
+class Menu::HomeMenu < MenuItem
   def url
     customer_root_path
   end

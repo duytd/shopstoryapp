@@ -15,6 +15,7 @@
 //= require ace-builds/src/mode-css
 //= require ace-builds/src/mode-html
 //= require ace-builds/src/mode-json
+//= require bootstrap-switch/dist/js/bootstrap-switch
 //= require merchant/functions
 //= require js-routes
 //= require react

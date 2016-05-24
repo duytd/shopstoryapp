@@ -1,0 +1,31 @@
+<div class="content-box-large">
+  <div class="panel-heading">
+    <h3><%= t "admin.shipping_methods.index.title" %></h3>
+    <%= link_to t("admin.buttons.add"), new_admin_shipping_method_path, class: "btn btn-primary" %>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th><%= t :id %></th>
+          <th><%= t :name %></th>
+          <th><%= t :description %></th>
+          <th><%= t :tracking_url %></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% @shipping_methods.each do |shipping_method| %>
+          <tr>
+            <td><%= shipping_method.id %></td>
+            <td><%= shipping_method.name %></td>
+            <td><%= shipping_method.description.truncate 100 %></td>
+            <td><%= shipping_method.tracking_url %></td>
+            <td><%= link_to t("admin.buttons.edit"), edit_admin_shipping_method_path(shipping_method), class: "btn btn-primary" %></td>
+            <td><%= link_to t("admin.buttons.delete"), admin_shipping_method_path(shipping_method), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

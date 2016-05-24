@@ -17,6 +17,7 @@ ProductListRT = require('./products/ProductList.rt');
 HomeRT = require('./Home.rt');
 VariationSelectorRT = require('./products/VariationSelector.rt');
 ProductRT = require('./products/Product.rt');
+SearchRT = require('./products/Search.rt');
 CategoryRT = require('./categories/Category.rt');
 CategoryListingRT = require('./categories/CategoryListing.rt');
 AccountRT = require('./customers/Account.rt');

@@ -1,5 +1,4 @@
 class ShippingRate < ActiveRecord::Base
-
   TYPES_CLASSES_MAPPING = {
     free: "Shipping::FreeShipping",
     free_by_price: "Shipping::FreeShippingByPrice",
@@ -8,19 +7,12 @@ class ShippingRate < ActiveRecord::Base
   }.freeze
 
   translates :name
-
   globalize_accessors locales: [:en, :ko], attributes: [:name]
 
   validates :name, translation_presence: true
   validate :type_must_be_unique, on: :create
 
-  def as_json options={}
-    super(options).merge({
-      type: type.underscore,
-      name_ko: name_ko,
-      name_en: name_en,
-    })
-  end
+  default_scope {includes(:translations).order created_at: :asc}
 
   def self.type_class type
     TYPES_CLASSES_MAPPING.fetch(type.to_sym).constantize.new

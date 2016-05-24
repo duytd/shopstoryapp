@@ -7,6 +7,7 @@ class ProductOrder < Order
 
   before_save :summarize
   before_save :update_inventory, if: :order_processed?
+  before_save :update_paid_at, if: :order_processed?
 
   accepts_nested_attributes_for :shipping_address, reject_if: :all_blank
   accepts_nested_attributes_for :billing_address, reject_if: :all_blank
@@ -67,6 +68,10 @@ class ProductOrder < Order
 
   def calculate_shipping
     ShippingRate.calculate_price self
+  end
+
+  def update_paid_at
+    self.paid_at = Time.zone.now
   end
 
   def steps
