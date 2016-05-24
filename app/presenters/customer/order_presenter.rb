@@ -19,7 +19,9 @@ class Customer::OrderPresenter < Presenter
       shipping_address: shipping_address,
       billing_address: billing_address,
       payment: payment,
-      order_products: @object.order_products.map{|op| Customer::OrderProductPresenter.new(op) }
+      order_products: @object.order_products.map{|op| Customer::OrderProductPresenter.new(op) },
+      created_at: @object.created_at,
+      updated_at: @object.updated_at
     }
   end
 end

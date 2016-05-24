@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :variations, allow_destroy: true
   accepts_nested_attributes_for :variation_options, allow_destroy: true, reject_if: proc {|a| a[:name].blank?}
-  accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: proc {|a| a[:image].blank?}
+  accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :seo_tag, allow_destroy: false, reject_if: :all_blank
 
   scope :visible, ->{where visibility: true}
@@ -81,15 +81,19 @@ class Product < ActiveRecord::Base
     order_products.joins(:product_order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
   end
 
-  def as_json options={}
-    super.as_json(options).merge({name_en: name_en, name_ko: name_ko, images: product_images})
-  end
-
   def create_variations
     options = variation_options.includes :variation_option_values
 
     if options.size > 0 && variations.not_master.count == 0
-      option_value_array = options.map{|option| option.variation_option_values}
+      option_value_array = []
+      options.each do |op|
+        option_value_array << op.variation_option_values if op.variation_option_values.size > 0
+      end
+
+      if option_value_array.size == 0
+        return false
+      end
+
       option_value_array.first.product(*option_value_array[1..-1]).each do |a|
         variation = variations.build price: price
 

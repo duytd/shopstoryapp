@@ -152,6 +152,7 @@ ko:
       customers:
         title: "회원"
         customer_orders: "회원 주문"
+        no_order: "This customer haven't place any other yet"
       menus:
         title: "메뉴/네비게이션"
         menu_description: "메뉴 설명"

@@ -1,4 +1,4 @@
-class Customer::ProductPresenter < Presenter
+class Merchant::ProductPresenter < Presenter
   def as_json(*)
     {
       id: @object.id,
@@ -12,6 +12,7 @@ class Customer::ProductPresenter < Presenter
       sku: @object.sku,
       in_stock: @object.in_stock,
       vendor: @object.vendor,
+      featured: @object.featured,
       images: @object.product_images
     }
   end

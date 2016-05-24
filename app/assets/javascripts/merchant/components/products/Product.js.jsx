@@ -9,17 +9,17 @@ var Product = React.createClass({
         check={this.props.product.checked}>
 
         <td>
-          <a href={Routes.edit_merchant_product_path(this.props.product.id)}>
+          <a href={Routes.edit_merchant_product_path(this.props.product.slug)}>
             {"#" + this.props.product.id}
           </a>
         </td>
         <td>
-          <a href={Routes.edit_merchant_product_path(this.props.product.id)}>
+          <a href={Routes.edit_merchant_product_path(this.props.product.slug)}>
             <img width="25" height="25" className="img-responsive" src={(this.props.product.images.length > 0) ? this.props.product.images[0].image.thumb.url : null} />
           </a>
         </td>
         <td className="name">
-          <a href={Routes.edit_merchant_product_path(this.props.product.id)}>
+          <a href={Routes.edit_merchant_product_path(this.props.product.slug)}>
             {translate(this.props.product, "name")}
           </a>
         </td>

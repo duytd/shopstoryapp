@@ -43,35 +43,13 @@ class Variation < ActiveRecord::Base
 
   def variation_image
     if master?
-      master_image
+      product.product_images.featured
     else
       image
     end
   end
 
-  def master_image
-    product.product_images.featured
-  end
-
-  def as_json options={}
-    super.as_json(options).merge({
-      name_ko: name_ko,
-      name_en: name_en,
-      variation_option_values: variation_variation_option_values,
-      master_image: master_image,
-      variation_image: variation_image,
-      has_image: has_image?,
-      product_slug: product.slug,
-      values: variation_option_values.map{|v| v.id}
-    })
-  end
-
   private
-
-  def has_image?
-    image.present?
-  end
-
   def initialize_master
     self.price = product.price
     self.sku = product.sku

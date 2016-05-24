@@ -149,6 +149,7 @@ en:
       customers:
         title: "Customers"
         customer_orders: "Customer Orders"
+        no_order: "This customer haven't place any other yet"
       menus:
         title: "Menu/Navigation"
         menu_description: "Menu Description"

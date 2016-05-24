@@ -116,7 +116,9 @@ var CustomerForm = React.createClass({
 
         <div className="block">
           <h3>{I18n.t("merchant.admin.customers.customer_orders")}</h3>
-          <CustomerOrderList orders={this.props.orders} />
+          {this.props.orders.length > 0 ?
+            <CustomerOrderList orders={this.props.orders} />
+            : <p>{I18n.t("merchant.admin.customers.no_order")}</p>}
         </div>
       </div>
     )

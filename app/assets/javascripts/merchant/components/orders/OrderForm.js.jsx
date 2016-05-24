@@ -43,7 +43,9 @@ var OrderForm = React.createClass({
                     return (
                       <tr key={"order_product_" + index}>
                         <td>
-                          <img src={orderProduct.variation.variation_image.image.thumb.url} className="img-responsive" width="50" height="50" />
+                          <a href={Routes.edit_merchant_product_path(orderProduct.variation.product_slug)}>
+                            <img src={orderProduct.variation.image.image.thumb.url} className="img-responsive" width="50" height="50" />
+                          </a>
                         </td>
                         <td>
                           {orderProduct.variation.name}

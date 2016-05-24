@@ -37,15 +37,17 @@ $(document).on("page:change", function() {
     $(this).summernote("code", $(this).val());
   });
 
-  $(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() >= $(document).height() - 34) {
-      if (!$(".form-submit.fixed").hasClass("scrolled")) {
-        $(".form-submit.fixed").addClass("scrolled");
+
+  $(window).on("scroll", function() {
+    var $fixedElement = $(".form-submit.fixed");
+    if($(window).scrollTop() + $(window).height() >= $(document).height() - $fixedElement.height()) {
+      if (!$fixedElement.hasClass("scrolled")) {
+        $fixedElement.addClass("scrolled");
       }
     }
     else {
-      if ($(".form-submit.fixed").hasClass("scrolled")) {
-        $(".form-submit.fixed").removeClass("scrolled");
+      if ($fixedElement.hasClass("scrolled")) {
+        $fixedElement.removeClass("scrolled");
       }
     }
   })
