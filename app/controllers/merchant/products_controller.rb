@@ -1,5 +1,5 @@
 class Merchant::ProductsController < Merchant::BaseController
-  before_filter :load_product, only: [:edit, :update]
+  before_filter :load_product, only: [:edit]
   load_and_authorize_resource
 
   before_action :load_categories, only: [:new, :edit]

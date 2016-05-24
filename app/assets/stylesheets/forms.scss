@@ -140,9 +140,21 @@ $input-bg-color: #ededec;
   .dz-progress {
     background: rgba(255, 255, 255, 0.5) !important;
   }
-  .fa-trash {
-    color: $input-border-color;
-    cursor: pointer;
+  .dz-preview {
+    z-index: 1000;
+    .fa-trash, .fa-star {
+      color: $input-border-color;
+      cursor: pointer;
+      margin-right: 3px;
+    }
+    &.featured {
+      .fa-star {
+        color: $base-light;
+      }
+      .dz-image {
+        border: 3px solid $base-light;
+      }
+    }
   }
 }
 

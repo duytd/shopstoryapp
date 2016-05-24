@@ -1,10 +1,12 @@
 class ProductImage < ActiveRecord::Base
   belongs_to :product
-  after_save :deactivate_relatives, if: proc{|a| a.featured_changed?&& a.featured?}
+  before_update :deactivate_relatives
 
   validates :product, presence: true
 
   mount_uploader :image, ProductImageUploader
+
+  default_scope {order created_at: :asc}
 
   def self.featured
     where(featured: true).first || first
@@ -15,6 +17,6 @@ class ProductImage < ActiveRecord::Base
   end
 
   def deactivate_relatives
-
+    product.product_images.where.not(id: self.id).update_all(featured: false) if self.featured && self.featured_changed?
   end
 end

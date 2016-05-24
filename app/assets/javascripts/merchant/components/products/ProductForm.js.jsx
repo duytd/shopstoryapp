@@ -32,8 +32,8 @@ var ProductForm = React.createClass({
       var url = $form.attr("action");
       var authToken = $('meta[name="csrf-token"]').attr("content");
       var headers = {"X-CSRF-Token": authToken};
-      var template = '<div class="dz-preview dz-file-preview"><div className="dz-details">' +
-                     '<img data-dz-thumbnail width="200" height="auto" /></div>' +
+      var template = '<div class="dz-preview dz-file-preview"><div class="dz-image">' +
+                     '<img data-dz-thumbnail width="200" height="auto" /></div><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div></div>' +
                      '<i class="fa fa-trash" data-dz-remove></i><i class="fa fa-star hide"></i>' +
                      '</div>';
 
@@ -57,14 +57,18 @@ var ProductForm = React.createClass({
         $element.bind("click", function() {
           var data = "product[product_images_attributes][0][id]=" + file.id +
             "&product[product_images_attributes][0][featured]=1";
+          $("#preview_image_" + file.id).parent().addClass("featured");
+          $("#preview_image_" + file.id).parent().siblings().removeClass("featured");
           this.handleFeatureImage(data);
         }.bind(this));
 
         $element.addClass("added");
         $element.data("id", file.id);
+        $element.attr("id", "preview_image_" + file.id);
 
         if (typeof file.id !== "undefined") {
           $element.removeClass("hide");
+          $element.parent().find(".dz-details").empty();
         }
 
         if (file.featured) {
@@ -325,7 +329,7 @@ var ProductForm = React.createClass({
                       <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
                         defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
                       <i className="fa"></i>
-                      {(category.name == "") ? category.name_en : category.name}
+                      {translate(category, "name")}
                     </label>
                   </div>
                 );
@@ -577,7 +581,7 @@ var ProductForm = React.createClass({
       data: data,
       url: url,
       method: "put",
-      dataType: "json"
+      dataType: "json",
     })
   }
 })
