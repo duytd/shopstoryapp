@@ -35,7 +35,7 @@ var List = React.createClass({
             <Order
               order={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_order_path.localize(item.id)}
+              deleteUrl={Routes.merchant_product_order_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );

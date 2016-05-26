@@ -21,7 +21,7 @@ class Merchant::CustomPagesController < Merchant::BaseController
   def create
     @custom_page = CustomPage.new custom_page_params
     if @custom_page.save
-      render json: Merchant::CustomPagePresenter.new(@custom_page), status: :ok
+      render json: present(@custom_page), status: :ok
     else
       render json: @custom_page.errors, status: :unprocessable_entity
     end
@@ -29,8 +29,8 @@ class Merchant::CustomPagesController < Merchant::BaseController
 
   def edit
     @props = {
-      seo_tag: @custom_page.seo_tag ? Merchant::SeoTagPresenter.new(@custom_page.seo_tag) : nil,
-      custom_page: Merchant::CustomPagePresenter.new(@custom_page),
+      seo_tag: @custom_page.seo_tag ? present(@custom_page.seo_tag) : nil,
+      custom_page: present(@custom_page),
       url: merchant_custom_page_path(@custom_page),
       redirect_url: merchant_custom_pages_path,
       method: :put
@@ -39,7 +39,7 @@ class Merchant::CustomPagesController < Merchant::BaseController
 
   def update
     if @custom_page.update custom_page_params
-      render json: Merchant::CustomPagePresenter.new(@custom_page), status: :ok
+      render json: present(@custom_page), status: :ok
     else
       render json: @custom_page.errors, status: :unprocessable_entity
     end

@@ -64,6 +64,11 @@ module Customer::BaseHelper
     end
   end
 
+  def present object, options={}
+    klass = options[:presenter_klass] || "Customer::#{object.class}Presenter".constantize
+    presenter = klass.new object, options
+  end
+
   private
   def ip_address
     request.remote_ip

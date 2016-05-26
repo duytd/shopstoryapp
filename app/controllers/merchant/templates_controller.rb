@@ -15,7 +15,7 @@ class Merchant::TemplatesController < Merchant::BaseController
 
     if @template.update template_params
       Template.update_bundle(@theme_bundle) if old_content != @template.content
-      render json: Merchant::TemplatePresenter.new(@template), status: :ok
+      render json: present(@template), status: :ok
     else
       render json: @template.errors, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class Merchant::TemplatesController < Merchant::BaseController
   private
   def normal_edit
     @props = {
-      data: Merchant::TemplatePresenter.new(@template),
+      data: present(@template),
       url: merchant_template_path(@template),
       reset_url: edit_merchant_template_path(@template, reset: true)
     }

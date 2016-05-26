@@ -5,8 +5,8 @@ class Merchant::EmailTemplatesController < Merchant::BaseController
     @email_template = EmailTemplate.first
 
     @props = {
-      email_templates: EmailTemplate.all.map{|t| Merchant::EmailTemplatePresenter.new(t)},
-      data: Merchant::EmailTemplatePresenter.new(@email_template),
+      email_templates: EmailTemplate.all.map{|t| present(t)},
+      data: present(@email_template),
       url: merchant_email_template_path(@email_template),
       reset_url: edit_merchant_email_template_path(@email_template, reset: true),
       preview_url: preview_merchant_email_templates_path
@@ -23,7 +23,7 @@ class Merchant::EmailTemplatesController < Merchant::BaseController
 
   def update
     if @email_template.update email_template_params
-      render json: Merchant::EmailTemplatePresenter.new(@email_template), status: :ok
+      render json: present(@email_template), status: :ok
     else
       render json: @email_template.errors, status: :unprocessable_entity
     end
@@ -47,7 +47,7 @@ class Merchant::EmailTemplatesController < Merchant::BaseController
   private
   def normal_edit
     @props = {
-      data: Merchant::EmailTemplatePresenter.new(@email_template),
+      data: present(@email_template),
       url: merchant_email_template_path(@email_template),
       reset_url: edit_merchant_email_template_path(@email_template, reset: true)
     }

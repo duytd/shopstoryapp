@@ -1,4 +1,4 @@
-class Merchant::BannerPresenter < Presenter
+class Merchant::BannerPresenter < Merchant::BasePresenter
   def as_json(*)
     {
       id: @object.id,

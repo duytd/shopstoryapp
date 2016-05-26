@@ -4,8 +4,8 @@ class Customer::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
 
   def new
-    term = current_shop.term ? Customer::CustomPagePresenter.new(current_shop.term) : nil
-    privacy = current_shop.privacy ? Customer::CustomPagePresenter.new(current_shop.privacy) : nil
+    term = current_shop.term ? present(current_shop.term) : nil
+    privacy = current_shop.privacy ? present(current_shop.privacy) : nil
 
     @props = {
       globalVars: @globalVars,

@@ -1,5 +1,5 @@
 class Presenter
-  def initialize(object)
+  def initialize object, options={}
     @object = object
   end
 

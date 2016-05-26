@@ -1,4 +1,4 @@
-class Merchant::SeoTagPresenter < Presenter
+class Merchant::SeoTagPresenter < Merchant::BasePresenter
   def as_json(*)
     {
       id: @object.id,

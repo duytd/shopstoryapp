@@ -8,7 +8,7 @@ var Cart = React.createClass({
   render: CartRT,
   checkout: function() {
     var url = (this.props.globalVars.current_customer) ?
-      Routes.new_customer_order_path.localize() :
+      Routes.new_customer_product_order_path.localize() :
       Routes.customer_checkout_path.localize();
 
     Turbolinks.visit(url);

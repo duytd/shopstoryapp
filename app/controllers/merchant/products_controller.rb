@@ -1,5 +1,5 @@
 class Merchant::ProductsController < Merchant::BaseController
-  before_filter :load_product, only: [:edit]
+  before_action :load_product, only: [:edit]
   load_and_authorize_resource
 
   before_action :load_categories, only: [:new, :edit]
@@ -14,7 +14,7 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def new
     @props = {
-      categories: @categories.map{|c| Merchant::CategoryPresenter.new(c)},
+      categories: @categories.map{|c| present(c)},
       default_option_names: VariationOption.default_names,
       redirect_url: merchant_products_path
     }
@@ -24,7 +24,7 @@ class Merchant::ProductsController < Merchant::BaseController
     @product = Product.new product_params
     if @product.save
       @props = {
-        product: Merchant::ProductPresenter.new(@product),
+        product: present(@product),
         variation_options: @product.variation_options,
       }
 
@@ -36,12 +36,12 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def edit
     @props = {
-      seo_tag: Merchant::SeoTag.new(@product.seo_tag),
-      product: Merchant::ProductPresenter.new(@product),
-      categories: @categories.map{|c| Merchant::CategoryPresenter.new(c)},
+      seo_tag: @seo_tag ? present(@seo_tag) : nil,
+      product: present(@product),
+      categories: @categories.map{|c| present(c)},
       category_ids: @product.category_ids,
       variation_options: @product.variation_options,
-      variations: @product.variations.not_master.map{|v| Merchant::VariationPresenter.new(v)},
+      variations: @product.variations.not_master.map{|v| present(v)},
       default_option_names: VariationOption.default_names,
       product_images: @product.product_images,
       redirect_url: merchant_products_path
@@ -52,7 +52,7 @@ class Merchant::ProductsController < Merchant::BaseController
     if @product.update product_params
 
       @props = {
-        product: Merchant::ProductPresenter.new(@product),
+        product: present(@product),
         variation_options: @product.variation_options,
         variations: @product.variations.not_master
       }
@@ -93,6 +93,7 @@ class Merchant::ProductsController < Merchant::BaseController
     @product = Product.includes(
       :product_images, :seo_tag, {variations: :variation_variation_option_values}, {variation_options: :variation_option_values}
     ).find params[:id]
+    @seo_tag = @product.seo_tag
   end
 
   def load_categories
@@ -103,7 +104,7 @@ class Merchant::ProductsController < Merchant::BaseController
     products = Product.latest.includes(:product_images).page params[:page]
 
     @props = paginating products, {
-      products: products.map{|p| Merchant::ProductPresenter.new(p)},
+      products: products.map{|p| present(p)},
       new_url: new_merchant_product_path,
       url: merchant_products_path,
       export_url: export_merchant_products_path,

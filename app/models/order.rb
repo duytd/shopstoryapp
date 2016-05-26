@@ -55,7 +55,7 @@ class Order < ActiveRecord::Base
   end
 
   def unprocessed?
-    incompleted? || pending?
+    incompleted? || pending? || cancelled
   end
 
   def in_usd attr, exchange_rate

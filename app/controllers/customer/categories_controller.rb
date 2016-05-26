@@ -1,11 +1,11 @@
 class Customer::CategoriesController < Customer::BaseController
   load_and_authorize_resource
-  
+
   add_breadcrumb I18n.t("customer.breadcrumbs.home"), :customer_root_path, {only: [:index, :show]}
   add_breadcrumb I18n.t("customer.breadcrumbs.categories"), :customer_categories_path, {only: [:index, :show]}
 
   def index
-    @categories = Category.all.map{|c| Customer::CategoryPresenter.new(c, {limit: 3})}
+    @categories = Category.all.map{|c| present(c, {limit: 3})}
 
     @props = {
       globalVars: @globalVars,
@@ -39,7 +39,7 @@ class Customer::CategoriesController < Customer::BaseController
       end
       format.json do
         render json: paginating(@products, {
-          data: @products.map{|p| Customer::ProductPresenter.new(p)}
+          data: @products.map{|p| present(p)}
         })
       end
     end
@@ -48,8 +48,8 @@ class Customer::CategoriesController < Customer::BaseController
   def render_props
     @props = paginating @products, {
       globalVars: @globalVars,
-      category: Customer::CategoryPresenter.new(@category),
-      products: @products.map{|p| Customer::ProductPresenter.new(p)},
+      category: present(@category),
+      products: @products.map{|p| present(p)},
       pagination_url: customer_category_path(@category),
       breadcrumb: current_breadcrumb,
       filter: {

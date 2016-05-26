@@ -14,7 +14,7 @@ var ProductBox = React.createClass({
       productList = (
         <div className="text-center">
           <p>{I18n.t("merchant.admin.messages.no_product")}</p>
-          <a href={this.props.url} className="btn btn-lg btn-primary">
+          <a href={this.props.new_url} className="btn btn-lg btn-primary">
             {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>

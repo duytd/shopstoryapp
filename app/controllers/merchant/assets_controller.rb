@@ -15,7 +15,7 @@ class Merchant::AssetsController < Merchant::BaseController
 
     if @asset.update asset_params
       @asset.class.bundle @theme_bundle if old_content != @asset.content
-      render json: Merchant::AssetPresenter.new(@asset), status: :ok
+      render json: present(@asset), status: :ok
     else
       render json: @asset.errors, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class Merchant::AssetsController < Merchant::BaseController
   private
   def normal_edit
     @props = {
-      data: Merchant::AssetPresenter.new(@asset),
+      data: present(@asset),
       url: merchant_asset_path(@asset),
       reset_url: edit_merchant_asset_path(@asset, reset: true),
     }

@@ -59,7 +59,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="shopstory-navbar-collapse">
-          <Menu menu="{this.props.globalVars.menu.main_menu}" rt-if="this.props.globalVars.menu.main_menu" />
+          <Menu menu="{this.props.globalVars.menu.main}" rt-if="this.props.globalVars.menu.main" />
           <form class="navbar-form navbar-right" action="{Routes.customer_search_path.localize()}" method="get">
             <input name="q" type="text" placeholder="{I18n.t('search.placeholder')}" class="form-control" />
           </form>

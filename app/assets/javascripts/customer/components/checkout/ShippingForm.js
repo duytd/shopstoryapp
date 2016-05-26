@@ -34,7 +34,7 @@ var ShippingForm = React.createClass({
     $.ajax({
       data: formData,
       method: "PUT",
-      url: Routes.customer_order_path(this.props.order.id, {locale: I18n.locale}),
+      url: Routes.customer_product_order_path(this.props.order.id, {locale: I18n.locale}),
       success: function(order) {
         this.setState({errors: []});
         this.props.updateOrder(order);

@@ -1,4 +1,4 @@
-class Customer::OrderProductPresenter < Presenter
+class Customer::OrderProductPresenter < Customer::BasePresenter
   def as_json(*)
     {
       id: @object.id,
@@ -6,7 +6,7 @@ class Customer::OrderProductPresenter < Presenter
       quantity: @object.quantity,
       order_id: @object.order_id,
       variation_id: @object.variation_id,
-      variation: Customer::VariationPresenter.new(@object.variation)
+      variation: present(@object.variation)
     }
   end
 end

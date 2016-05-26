@@ -7,7 +7,7 @@
 //= require bootstrap-sprockets
 //= require owl.carousel/dist/owl.carousel
 //= require elevatezoom/jquery.elevatezoom
-//= require js-routes
+//= require customer/routes
 //= require merchant/functions
 //= require react
 //= require react_ujs

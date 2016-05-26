@@ -30,7 +30,7 @@ class Merchant::BannersController < Merchant::BaseController
 
   def edit
     @props = {
-      banner: Merchant::BannerPresenter.new(@banner),
+      banner: present(@banner),
       banner_items: @banner.banner_items,
       url: merchant_banner_path(@banner),
       redirect_url: merchant_banners_path,
@@ -40,7 +40,7 @@ class Merchant::BannersController < Merchant::BaseController
 
   def update
     if @banner.update banner_params
-      render json: Merchant::BannerPresenter.new(@banner), status: :ok
+      render json: present(@banner), status: :ok
     else
       render json: @banner.errors, status: :unprocessable_entity
     end
@@ -60,7 +60,7 @@ class Merchant::BannersController < Merchant::BaseController
     @banners = Banner.page params[:page]
 
     @props = paginating @banners, {
-      banners: @banners.map{|b| Merchant::BannerPresenter.new(b)},
+      banners: @banners.map{|b| present(b)},
       new_url: new_merchant_banner_path,
       url: merchant_banners_path,
     }

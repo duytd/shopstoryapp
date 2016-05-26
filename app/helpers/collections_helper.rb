@@ -1,4 +1,4 @@
-module Merchant::ShopsHelper
+module CollectionsHelper
   def all_timezones
     ActiveSupport::TimeZone.all.map{|z| [z.tzinfo.identifier, z.to_s]}
   end

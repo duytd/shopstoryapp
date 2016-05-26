@@ -29,7 +29,7 @@
       </div>
 
       <div class="collapse navbar-collapse" id="shopstory-navbar-collapse">
-        <Menu menu="{this.props.globalVars.menu.main_menu}" rt-if="this.props.globalVars.menu.main_menu" />
+        <Menu menu="{this.props.globalVars.menu.main}" rt-if="this.props.globalVars.menu.main" />
         <ul class="nav navbar-nav navbar-right">
           <li class="cart">
             <a href="#" onClick="{this.openCart}">

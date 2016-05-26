@@ -3,7 +3,7 @@ class Merchant::VariationsController < ApplicationController
 
   def create
     if @product.create_variations
-      render json: @product.variations.not_master.map{|v| Merchant::VariationPresenter.new(v)}, status: :ok
+      render json: @product.variations.not_master.map{|v| present(v)}, status: :ok
     else
       render json: nil, status: :unprocessable_entity
     end

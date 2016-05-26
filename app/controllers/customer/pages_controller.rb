@@ -3,9 +3,8 @@ class Customer::PagesController < Customer::BaseController
   include PaymentHelper
 
   def home
-    @products = Product.latest.featured.map{|p| Customer::ProductPresenter.new(p)}
-
-    @banner = Banner.first ? Customer::BannerPresenter.new(Banner.first) : nil
+    @products = Product.latest.featured.map{|p| present(p)}
+    @banner = Banner.first ? present(Banner.first) : nil
 
     @props = {
       globalVars: @globalVars,

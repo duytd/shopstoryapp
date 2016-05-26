@@ -100,6 +100,17 @@ namespace :deploy do
     end
   end
 
+  desc "Update js routes"
+  task :update_routes do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "js:routes"
+        end
+      end
+    end
+  end
+
   desc "Restart application"
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -108,6 +119,7 @@ namespace :deploy do
   end
 
   before "deploy:assets:precompile",    :npm_install
+  before "deploy:assets:precompile",    :update_routes
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :symlinks

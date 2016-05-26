@@ -1,5 +1,5 @@
 class Merchant::ShopsController < Merchant::BaseController
-  include Merchant::ShopsHelper
+  include CollectionsHelper
 
   load_and_authorize_resource
 

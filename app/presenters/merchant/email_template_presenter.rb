@@ -1,4 +1,4 @@
-class Merchant::EmailTemplatePresenter < Presenter
+class Merchant::EmailTemplatePresenter < Merchant::BasePresenter
   def as_json(*)
     {
       id: @object.id,

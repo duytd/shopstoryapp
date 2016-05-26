@@ -13,6 +13,8 @@ module ShopsLoading
 
   private
   def load_global_variables
+    load_menus
+
     @globalVars = {
       lang: I18n.locale,
       shop_name: current_shop.name,
@@ -28,16 +30,24 @@ module ShopsLoading
         privacy_manager: current_shop.privacy_manager,
         privacy_email: current_shop.privacy_email
       },
-      current_customer: current_customer ? Customer::CustomerPresenter.new(current_customer) : nil,
+      current_customer: current_customer ? present(current_customer) : nil,
       currency: current_shop.currency,
-      cart: current_order.order_products.includes(:variation).map{|op| Customer::OrderProductPresenter.new(op)},
+      cart: current_order.order_products.includes(:variation).map{|op| present(op)},
       mobile: browser.device.mobile?,
       menu: {
-        main_menu: Menu.with_position(:main),
-        footer_menu: Menu.with_position(:footer),
-        top_left: Menu.with_position(:top_left),
-        top_right: Menu.with_position(:top_right)
+        main: @main_menu ? present(@main_menu) : nil,
+        footer: @footer_menu ? present(@footer_menu) : nil,
+        top_left: @top_left_menu ? present(@top_left_menu) : nil,
+        top_right: @top_right_menu ? present(@top_right_menu) : nil
       }
     }
+  end
+
+  def load_menus
+    menus = Menu.all
+    @main_menu = menus.detect{|menu| menu.main?}
+    @footer_menu = menus.detect{|menu| menu.footer?}
+    @top_left_menu = menus.detect{|menu| menu.top_left?}
+    @top_right_menu = menus.detect{|menu| menu.top_right?}
   end
 end

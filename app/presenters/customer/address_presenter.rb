@@ -1,4 +1,4 @@
-class Customer::AddressPresenter < Presenter
+class Customer::AddressPresenter < Customer::BasePresenter
   def as_json(*)
     {
       id: @object.id,

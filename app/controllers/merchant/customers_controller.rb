@@ -1,7 +1,7 @@
 class Merchant::CustomersController < Merchant::BaseController
   before_action :load_customer, only: [:edit, :update]
   load_and_authorize_resource
-  include Merchant::ShopsHelper
+  include CollectionsHelper
 
   def index
    if request.delete?
@@ -25,7 +25,7 @@ class Merchant::CustomersController < Merchant::BaseController
     @customer = Customer.new customer_params
 
     if @customer.save
-      render json: Merchant::CustomerPresenter.new(@customer), status: :ok
+      render json: present(@customer), status: :ok
     else
       render json: @customer.errors, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Merchant::CustomersController < Merchant::BaseController
 
   def edit
     @props = {
-      customer: Merchant::CustomerPresenter.new(@customer),
+      customer: present(@customer),
       orders: @customer.product_orders.success,
       url: merchant_customer_path(@customer),
       method: :put,
@@ -45,7 +45,7 @@ class Merchant::CustomersController < Merchant::BaseController
 
   def update
     if @customer.update customer_params
-      render json: Merchant::CustomerPresenter.new(@customer), status: :ok
+      render json: present(@customer), status: :ok
     else
       render json: @customer.errors, status: :unprocessable_entity
     end
@@ -75,7 +75,7 @@ class Merchant::CustomersController < Merchant::BaseController
     @customers = Customer.includes(:product_orders).page params[:page]
 
     @props = paginating @customers, {
-      customers: @customers.map{|c| Merchant::CustomerPresenter.new(c)},
+      customers: @customers.map{|c| present(c)},
       url: merchant_customers_path
     }
   end

@@ -6,14 +6,14 @@ class Customer::ProductsController < Customer::BaseController
 
     add_breadcrumb I18n.t("customer.breadcrumbs.home"), Rails.application.routes.url_helpers.customer_root_path
     add_breadcrumb I18n.t("customer.breadcrumbs.categories"), customer_categories_path
-    add_breadcrumb category.name, customer_category_path(category)
+    add_breadcrumb(category.name, customer_category_path(category)) if category
 
     @props = {
       globalVars: @globalVars,
-      product: Customer::ProductPresenter.new(@product),
-      variations: @product.variations.not_master.map{|v| Customer::VariationPresenter.new(v)},
-      master: Customer::VariationPresenter.new(@product.master),
-      options: @product.variation_options.relating_to_variations.map{|v| Customer::OptionPresenter.new(v)},
+      product: present(@product),
+      variations: @product.variations.not_master.map{|v| present(v)},
+      master: present(@product.master),
+      options: @product.variation_options.relating_to_variations.map{|v| present(v)},
       cart_url: customer_order_products_path,
       breadcrumb: current_breadcrumb
     }

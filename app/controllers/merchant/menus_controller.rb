@@ -3,7 +3,7 @@ class Merchant::MenusController < Merchant::BaseController
   load_and_authorize_resource
 
   def index
-    @menus = Menu.includes(menu_items: :children).order(created_at: :asc).map{|m| Merchant::MenuPresenter.new(m)}
+    @menus = Menu.includes(menu_items: :children).order(created_at: :asc).map{|m| present(m)}
 
     @props = {
       menus: @menus,
@@ -26,7 +26,7 @@ class Merchant::MenusController < Merchant::BaseController
     @menu =  Menu.new menu_params
 
     if @menu.save
-      render json: Merchant::MenuPresenter.new(@menu), status: :ok
+      render json: present(@menu), status: :ok
     else
       render json: @menu.errors, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class Merchant::MenusController < Merchant::BaseController
 
   def edit
     @props = {
-      menu: Merchant::MenuPresenter.new(@menu),
+      menu: present(@menu),
       positions: Menu.positions.keys.to_a,
       categories: Category.all.map{|c| [c.name_en, c.name_ko, c.id]},
       pages: CustomPage.all.map{|p| [p.title_en, p.title_ko, p.slug]},

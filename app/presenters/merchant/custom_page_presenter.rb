@@ -1,4 +1,4 @@
-class Merchant::CustomPagePresenter < Presenter
+class Merchant::CustomPagePresenter < Merchant::BasePresenter
   def as_json(*)
     {
       id: @object.id,

@@ -27,6 +27,11 @@ module Merchant::BaseHelper
     })
   end
 
+  def present object, options={}
+    klass = options[:presenter_klass] || "Merchant::#{object.class}Presenter".constantize
+    presenter = klass.new object, options
+  end
+
   def liquidize content, arguments
     RedCloth.new(Liquid::Template.parse(content).render(arguments)).to_html
   end

@@ -10,7 +10,7 @@ class Merchant::MenuItemsController < Merchant::BaseController
       @menu_item.menu = @menu
 
       if @menu_item.save
-        render json: Merchant::MenuItemPresenter.new(@menu_item), status: :ok
+        render json: present(@menu_item), status: :ok
       else
         render json: @menu_item.errors, status: :unprocessable_entity
       end
@@ -21,9 +21,9 @@ class Merchant::MenuItemsController < Merchant::BaseController
 
   def update
     if @menu_item.update menu_item_params
-      render json: Merchant::MenuItemPresenter.new(@menu_item), status: :ok
+      render json: present(@menu_item), status: :ok
     else
-      render json: Merchant::MenuItemPresenter.new(@menu_item).errors, status: :unprocessable_entity
+      render json: present(@menu_item).errors, status: :unprocessable_entity
     end
   end
 

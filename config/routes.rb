@@ -61,7 +61,9 @@ Rails.application.routes.draw do
 
     resources :products, only: [:index, :show]
     resources :custom_pages, only: [:show]
-    resources :orders, only: [:show, :new, :create, :update]
+    resources :product_orders, only: [:create, :update]
+    resources :product_orders, only: [:new], path: "checkout"
+    resources :orders, only: :show
 
     mount Inicis::Standard::Rails::Engine, at: "/inicis", as: "inicis"
     mount KakaoShopstory::Engine, at: "/kakao", as: "kakao"
@@ -112,7 +114,7 @@ Rails.application.routes.draw do
       resources :themes, only: [:index, :show, :create]
     end
 
-    resources :orders, except: :show do
+    resources :product_orders, except: :show do
       delete :index, on: :collection
     end
 

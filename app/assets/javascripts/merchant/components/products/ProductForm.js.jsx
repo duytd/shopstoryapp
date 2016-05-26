@@ -512,7 +512,7 @@ var ProductForm = React.createClass({
         var productId = response.product.id;
         this.postImages(productId, Routes.merchant_product_path.localize(productId));
 
-        if (this.state.product && !$.isFunction(callback)) {
+        if (this.state.product) {
           Turbolinks.visit(this.props.redirect_url);
         }
         else {
@@ -527,7 +527,7 @@ var ProductForm = React.createClass({
             return option
           })
 
-          this.setState({
+          var newState = {
             errors: [],
             koCount: 0,
             enCount: 0,
@@ -535,7 +535,14 @@ var ProductForm = React.createClass({
             variationOptions: variationOptions,
             deletedVariationOptions: [],
             method: "put"
-          }, callback);
+          }
+
+          if (typeof callback === "function" && callback()) {
+            this.setState(newState, callback);
+          }
+          else {
+            this.setState(newState);
+          }
         }
       }.bind(this),
       error: function(xhr) {

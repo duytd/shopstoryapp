@@ -1,4 +1,4 @@
-class Customer::CategoryPresenter < Presenter
+class Customer::CategoryPresenter < Customer::BasePresenter
   def initialize object, options={}
     super object
     @limit = options[:limit]
@@ -16,7 +16,7 @@ class Customer::CategoryPresenter < Presenter
       slug: @object.slug,
       name_en: @object.name_en,
       name_ko: @object.name_ko,
-      products: products.map{|p| Customer::ProductPresenter.new(p)}
+      products: products.map{|p| present(p)}
     }
   end
 end

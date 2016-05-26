@@ -21,7 +21,7 @@ class Merchant::CategoriesController < Merchant::BaseController
   def create
     @category = Category.new category_params
     if @category.save
-      render json: Merchant::CategoryPresenter.new(@category), status: :ok
+      render json: present(@category), status: :ok
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -29,8 +29,8 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   def edit
     @props = {
-      seo_tag: @category.seo_tag ? Merchant::SeoTagPresenter.new(@category.seo_tag) : nil,
-      category: Merchant::CategoryPresenter.new(@category),
+      seo_tag: @category.seo_tag ? present(@category.seo_tag) : nil,
+      category: present(@category),
       url: merchant_category_path(@category),
       redirect_url: merchant_categories_path,
       method: :put
@@ -39,7 +39,7 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   def update
     if @category.update category_params
-      render json: Merchant::CategoryPresenter.new(@category), status: :ok
+      render json: present(@category), status: :ok
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -59,7 +59,7 @@ class Merchant::CategoriesController < Merchant::BaseController
     @categories = Category.page params[:page]
 
     @props = paginating @categories, {
-      categories: @categories.map{|c| Merchant::CategoryPresenter.new(c)},
+      categories: @categories.map{|c| present(c)},
       new_url: new_merchant_category_path,
       url: merchant_categories_path,
     }
