@@ -64,8 +64,8 @@
       </div>
 
       <div class="col-sm-3">
-        <h3>{this.props.customer.first_name} {this.props.customer.last_name}</h3>
-        <p>{this.props.customer.email}</p>
+        <h3>{this.props.globalVars.current_customer.first_name} {this.props.globalVars.current_customer.last_name}</h3>
+        <p>{this.props.globalVars.current_customer.email}</p>
       </div>
     </div>
   </div>

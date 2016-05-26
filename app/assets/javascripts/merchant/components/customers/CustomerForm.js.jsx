@@ -106,7 +106,7 @@ var CustomerForm = React.createClass({
               <label className="label">{I18n.t("activerecord.attributes.customer.last_order")}</label>
               {(this.props.orders.length > 0) ?
               <p>
-                <a href={Routes.merchant_order_path.localize(this.props.orders[this.props.orders.length - 1].id)}>
+                <a href={Routes.edit_merchant_product_order_path.localize(this.props.orders[this.props.orders.length - 1].id)}>
                   {"#" + this.props.orders[this.props.orders.length - 1].id}
                 </a>
               </p> : null}

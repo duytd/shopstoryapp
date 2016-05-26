@@ -27,7 +27,7 @@ class Category < ActiveRecord::Base
 
   before_destroy :destroy_menu_item
 
-after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer::CategoryPresenter") }
+  after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer::CategoryPresenter") }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "Category", "Customer::CategoryPresenter") }
 
   default_scope {includes(:translations).order created_at: :asc}

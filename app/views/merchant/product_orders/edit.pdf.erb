@@ -1,22 +1,22 @@
 <div class="row">
         <div class="col-sm-8">
           <div class="block">
-            <h3>#<%= @order.id %></h3>
-            <p><%= I18n.t("activerecord.attributes.order.status") %>: <%= @order.status.upcase %></p>
+            <h3>#<%= @product_order.id %></h3>
+            <p><%= I18n.t("activerecord.attributes.order.status") %>: <%= @product_order.status.upcase %></p>
 
             <div class="table-responsive">
               <table class="table">
                 <tbody>
-                  <% @order.order_products.each do |op| %>
+                  <% @product_order.order_products.each do |op| %>
                     <tr>
                       <td>
-                        <%=  wicked_pdf_image_tag op.variation.variation_image.image.thumb.url, size: "50x50", class: "img-responsive" %>
+                        <%=  wicked_pdf_image_tag op.variation.variation_image.thumb.url, size: "50x50", class: "img-responsive" %>
                       </td>
                       <td>
                         <%= op.variation.name_ko %>
                       </td>
                       <td>
-                        <%= "#{@order.currency} #{op.unit_price}" %>
+                        <%= "#{@product_order.currency} #{op.unit_price}" %>
                       </td>
                       <td>
                         <%= op.quantity %>
@@ -33,10 +33,10 @@
                       <p><b><%= I18n.t("activerecord.attributes.order.total") %></b></p>
                     </td>
                     <td>
-                      <p><%= "#{@order.currency} #{@order.subtotal}" %></p>
-                      <p><%= "#{@order.currency} #{@order.shipping}" %></p>
-                      <p><%= "#{@order.currency} #{@order.tax}" %></p>
-                      <p><b><%= "#{@order.currency} #{@order.total}" %></b></p>
+                      <p><%= "#{@product_order.currency} #{@product_order.subtotal}" %></p>
+                      <p><%= "#{@product_order.currency} #{@product_order.shipping}" %></p>
+                      <p><%= "#{@product_order.currency} #{@product_order.tax}" %></p>
+                      <p><b><%= "#{@product_order.currency} #{@product_order.total}" %></b></p>
                     </td>
                   </tr>
                 </tfoot>
@@ -57,24 +57,24 @@
 
           <div class="block">
             <h3><%= I18n.t("activerecord.attributes.order.shipping_address") %></h3>
-            <p><%= "#{@order.shipping_address.first_name} #{@order.shipping_address.last_name}" %></p>
-            <p><%= @order.shipping_address.email %></p>
-            <p><%= @order.shipping_address.phone_number %></p>
-            <p><%= "#{@order.shipping_address.state} #{@order.shipping_address.city} #{@order.shipping_address.country} - #{@order.shipping_address.zip_code}" %></p>
-            <p><%= @order.shipping_address.address1%></p>
-            <p><%= @order.shipping_address.address2 %></p>
-            <p><%= @order.shipping_address.fax %></p>
+            <p><%= "#{@product_order.shipping_address.first_name} #{@product_order.shipping_address.last_name}" %></p>
+            <p><%= @product_order.shipping_address.email %></p>
+            <p><%= @product_order.shipping_address.phone_number %></p>
+            <p><%= "#{@product_order.shipping_address.state} #{@product_order.shipping_address.city} #{@product_order.shipping_address.country} - #{@product_order.shipping_address.zip_code}" %></p>
+            <p><%= @product_order.shipping_address.address1%></p>
+            <p><%= @product_order.shipping_address.address2 %></p>
+            <p><%= @product_order.shipping_address.fax %></p>
           </div>
 
           <div class="block">
             <h3><%= I18n.t("activerecord.attributes.order.billing_address") %></h3>
-            <p><%= "#{@order.billing_address.first_name} #{@order.billing_address.last_name}" %></p>
-            <p><%= @order.billing_address.email %></p>
-            <p><%= @order.billing_address.phone_number %></p>
-            <p><%= "#{@order.billing_address.state} #{@order.billing_address.city} #{@order.billing_address.country} - #{@order.billing_address.zip_code}" %></p>
-            <p><%= @order.billing_address.address1%></p>
-            <p><%= @order.billing_address.address2 %></p>
-            <p><%= @order.billing_address.fax %></p>
+            <p><%= "#{@product_order.billing_address.first_name} #{@product_order.billing_address.last_name}" %></p>
+            <p><%= @product_order.billing_address.email %></p>
+            <p><%= @product_order.billing_address.phone_number %></p>
+            <p><%= "#{@product_order.billing_address.state} #{@product_order.billing_address.city} #{@product_order.billing_address.country} - #{@product_order.billing_address.zip_code}" %></p>
+            <p><%= @product_order.billing_address.address1%></p>
+            <p><%= @product_order.billing_address.address2 %></p>
+            <p><%= @product_order.billing_address.fax %></p>
           </div>
         </div>
       </div>

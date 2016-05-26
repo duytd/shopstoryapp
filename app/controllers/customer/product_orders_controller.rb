@@ -60,9 +60,7 @@ class Customer::ProductOrdersController < Customer::BaseController
   end
 
   def authenticate_order
-    unless current_order.incompleted? || current_order.pending?
-      head :unauthorized
-    end
+    head :unauthorized unless current_order.unprocessed?
   end
 
   def load_stripe_key

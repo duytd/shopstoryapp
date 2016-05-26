@@ -72,8 +72,15 @@ group :development, :test do
   gem "selenium-webdriver"
 end
 
+group :assets do
+  gem "turbo-sprockets-rails3"
+end
+
 group :development do
   gem "bullet"
+  gem "rails_best_practices"
+  gem "rack-mini-profiler"
+   gem "brakeman", require: false
   gem "capistrano",         require: false
   gem "capistrano-rvm",     require: false
   gem "capistrano-rails",   require: false

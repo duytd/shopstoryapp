@@ -118,6 +118,18 @@ namespace :deploy do
     end
   end
 
+  desc "Clean bundle"
+  task :bundle_clean, except: {no_release: true} do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :clean
+        end
+      end
+    end
+  end
+
+
   before "deploy:assets:precompile",    :npm_install
   before "deploy:assets:precompile",    :update_routes
   before :starting,     :check_revision
@@ -126,6 +138,7 @@ namespace :deploy do
   after  :finishing,    :fix_permissions
   after  :finishing,    :cleanup
   after  :finishing,    :restart
+  after  :cleanup,      :bundle_clean
 end
 
 # ps aux | grep puma    # Get puma pid

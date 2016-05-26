@@ -29,10 +29,12 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def edit
+    load_transaction_info
+
     @props = {
       order: present(@product_order),
       url: merchant_product_order_path(@product_order),
-      transaction_info: load_transaction_info,
+      transaction_info: @transaction_info,
       shipping_methods: ShippingMethod.all,
       method: :put,
       invoice_url: edit_merchant_product_order_path(@product_order, format: :pdf)
@@ -71,7 +73,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def load_transaction_info
-    if @product_order.payment && @product_order.payment.paid?
+    @transaction_info = if @product_order.payment && @product_order.payment.paid?
       get_transaction_info(@product_order)
     else
       []
@@ -80,7 +82,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
 
   def render_invoice
     render pdf: "Invoice_##{@product_order.id}_#{Date.today}",
-      template: "merchant/orders/edit.pdf.erb",
+      template: "merchant/product_orders/edit.pdf.erb",
       layout: "merchant/layouts/pdf.html.erb",
       show_as_html: params[:debug].present? && Rails.env.development?,
       encoding: "utf8"

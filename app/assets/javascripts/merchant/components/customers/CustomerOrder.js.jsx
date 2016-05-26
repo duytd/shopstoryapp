@@ -59,7 +59,9 @@ var CustomerOrder = React.createClass({
     return (
       <tr>
         <td>
-          {"#" + this.props.order.id}
+          <a href={Routes.edit_merchant_product_order_path.localize(this.props.order.id)}>
+            {"#" + this.props.order.id}
+          </a>
         </td>
         <td>
           {I18n.l("time.formats.short", this.props.order.created_at)}
