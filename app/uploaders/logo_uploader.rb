@@ -10,7 +10,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("fallback/logo" + [version_name, "default.jpg"].compact.join('_'))
+    ActionController::Base.helpers.asset_path("fallback/logo/" + [version_name, "default.jpg"].compact.join('_'))
   end
 
   version :thumb do

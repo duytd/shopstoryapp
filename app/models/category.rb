@@ -49,7 +49,7 @@ after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer:
     min = price_list.first
     max = price_list.last
 
-    if min < max
+    if min && max && min < max
       unit = (max - min)/4.to_i
       last_tick = min + 4*unit
       last_tick = max if last_tick < max

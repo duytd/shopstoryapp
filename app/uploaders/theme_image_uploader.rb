@@ -10,11 +10,11 @@ class ThemeImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("fallback/theme/" + [version_name, "default.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path("fallback/theme/" + [version_name, "default.jpg"].compact.join('_'))
   end
 
   version :thumb do
-    process resize_to_fit: [400, 600]
+    process resize_to_fit: [500, 500]
   end
 
   def extension_white_list

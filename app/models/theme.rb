@@ -49,7 +49,9 @@ class Theme < ActiveRecord::Base
       file_content = File.read file
       file_name = File.basename file
 
-      asset = Asset::Locale.where(name: file_name, theme_id: id).first_or_create content: file_content
+      asset = Asset::Locale.where(name: file_name, theme_id: id).first_or_initialize
+      asset.content = file_content
+      asset.save!
       locales << asset.content
     end
 
@@ -64,7 +66,9 @@ class Theme < ActiveRecord::Base
       file_content = File.read file
       file_name = File.basename file
 
-      asset = Asset::Stylesheet.where(name: file_name, theme_id: id).first_or_create content: file_content
+      asset = Asset::Stylesheet.where(name: file_name, theme_id: id).first_or_initialize
+      asset.content = file_content
+      asset.save!
       content << asset.content
     end
 
@@ -79,7 +83,9 @@ class Theme < ActiveRecord::Base
       file_content = File.read file
       file_name = File.basename file
 
-      asset = Asset::Javascript.where(name: file_name, theme_id: id).first_or_create content: file_content
+      asset = Asset::Javascript.where(name: file_name, theme_id: id).first_or_initialize
+      asset.content = file_content
+      asset.save!
       content << asset.content
     end
 
@@ -96,12 +102,12 @@ class Theme < ActiveRecord::Base
       file_directory = File.basename File.dirname(file)
       transformed_content = Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
 
-      template = Template.where(name: file_name, theme_id: id).first_or_create(
-        content: file_content,
-        directory: file_directory,
-        transformed_content: transformed_content
-      )
+      template = Template.where(name: file_name, theme_id: id).first_or_initialize
+      template.content = file_content
+      template.directory = file_directory
+      template.transformed_content = transformed_content
 
+      template.save!
       content << template.transformed_content
     end
 

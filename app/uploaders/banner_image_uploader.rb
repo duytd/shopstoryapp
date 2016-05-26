@@ -10,7 +10,7 @@ class BannerImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("fallback/banner/" + [version_name, "default.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path("fallback/banner/" + [version_name, "default.jpg"].compact.join('_'))
   end
 
   version :medium do
