@@ -7,6 +7,7 @@ class Payment < ActiveRecord::Base
 
   validates :order, presence: true
   validates :payment_method, presence: true
+  validates :state, inclusion: {in: %w(pending paid refunded)}
 
   before_save :ensure_submethod
 

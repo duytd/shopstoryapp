@@ -1,6 +1,8 @@
 require "rt"
 
 class Template < ActiveRecord::Base
+  attr_accessor :theme_bundle
+
   belongs_to :theme
 
   validates :theme, presence: true
@@ -9,11 +11,6 @@ class Template < ActiveRecord::Base
   before_save :transform, if: :content_changed?
 
   scope :filter_by_theme, ->theme{where theme_id: theme.id}
-
-  def self.update_bundle bundle
-    bundle.template = Template.all.map{|x| x.transformed_content}.join(" ")
-    bundle.save!
-  end
 
   def path
     if root_directory?
@@ -29,6 +26,15 @@ class Template < ActiveRecord::Base
   end
 
   def transform
-    self.transformed_content = Rt.transform(self.content, {modules: "none", name: "#{self.name}RT"})
+    self.transformed_content = Rt.transform(content, {modules: "none", name: "#{self.name}RT"})
+    update_bundle if theme_bundle
+  end
+
+  def update_bundle
+    theme_bundle.template = Template.filter_by_theme(theme).map do |x|
+      (x.id == id) ? transformed_content : x.transformed_content
+    end.join(" ")
+
+    theme_bundle.save!
   end
 end

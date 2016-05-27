@@ -86,6 +86,7 @@ en:
       order:
         status: "Status"
         payment: "Payment"
+        shipment: "Shipment"
         subtotal: "Subtotal"
         total: "Total"
         shipping: "Shipping"
@@ -156,3 +157,7 @@ en:
         link: "Link"
         image: "Image"
         show_image: "Show Image"
+      shipment:
+        shipping_method_id: "Shipping method"
+        tracking_code: "Tracking code"
+        status: "Status"

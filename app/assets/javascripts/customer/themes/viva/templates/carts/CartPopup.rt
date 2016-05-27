@@ -6,10 +6,11 @@
       </a>
     </div>
 
-    <button rt-if="this.props.globalVars.cart.length > 0" class="btn btn-primary" onClick="{this.checkout}">{I18n.t("cart.buy_now")}</button>
-    <button class="btn btn-default" onClick="{this.props.closeCart}">
+    <a rt-if="this.props.globalVars.cart.length > 0" class="btn btn-primary"
+      href="{(this.props.globalVars.current_customer) ? Routes.new_customer_product_order_path.localize() : Routes.customer_checkout_path.localize()}">{I18n.t("cart.buy_now")}</a>
+    <a class="btn btn-default" onClick="{this.props.closeCart}">
       {I18n.t("cart.continue_shopping")}
-    </button>
+    </a>
   </div>
 
   <div class="col-xs-12">

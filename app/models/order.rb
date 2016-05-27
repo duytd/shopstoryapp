@@ -10,7 +10,9 @@ class Order < ActiveRecord::Base
   has_one :shipment, dependent: :destroy
   has_one :shipping_method, through: :shipment
 
-  enum status: [:incompleted, :pending, :processing, :processed, :shipping, :shipped, :returned, :cancelled]
+  validates :status, inclusion: {in: %w(incompleted pending processing processed cancelled)}
+
+  enum status: [:incompleted, :pending, :processing, :processed, :cancelled]
 
   before_create :generate_token
   before_save :set_locale
@@ -38,19 +40,7 @@ class Order < ActiveRecord::Base
     update_status "processed"
   end
 
-  def shipping!
-    update_status "shipping"
-  end
-
-  def shipped!
-    update_status "shipped"
-  end
-
-  def returned!
-    update_status "returned"
-  end
-
-  def cancelled
+  def cancelled!
     update_status "cancelled"
   end
 
@@ -135,8 +125,12 @@ class Order < ActiveRecord::Base
   end
 
   protected
-  def order_processed?
-    status_changed? && self.processed?
+  def changed_to_processed?
+    status_changed? && processed?
+  end
+
+  def checking_out?
+    incompleted?
   end
 
   def set_default_values
@@ -169,6 +163,6 @@ class Order < ActiveRecord::Base
   end
 
   def update_status status
-    self.update_attributes status: status
+    self.update_attributes! status: status
   end
 end

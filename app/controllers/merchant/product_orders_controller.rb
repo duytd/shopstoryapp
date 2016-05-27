@@ -19,7 +19,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def create
-    @product_order = ProductOrder.new order_params
+    @product_order = ProductOrder.new product_order_params
 
     if @product_order.save
       render json: @product_order, status: :ok
@@ -35,7 +35,8 @@ class Merchant::ProductOrdersController < Merchant::BaseController
       order: present(@product_order),
       url: merchant_product_order_path(@product_order),
       transaction_info: @transaction_info,
-      shipping_methods: ShippingMethod.all,
+      shipping_methods: ShippingMethod.is_active.map{|s| present(s)},
+      shipment_statuses: Shipment.statuses.keys.to_a,
       method: :put,
       invoice_url: edit_merchant_product_order_path(@product_order, format: :pdf)
     }
@@ -53,8 +54,8 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def update
-    if @product_order.update order_params
-      render json: @product_order, status: :ok
+    if @product_order.update product_order_params
+      render json: present(@product_order), status: :ok
     else
       render json: @product_order.errors, status: :unprocessable_entity
     end
@@ -66,9 +67,13 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   private
+  def product_order_params
+    params.require(:order).permit shipment_attributes: [:id, :order_id, :tracking_code, :shipping_method_id, :status]
+  end
+
   def load_product_order
     @product_order = ProductOrder.includes(
-      :customer, {payment: :payment_method}, :shipping_address, :billing_address, {order_products: {variation: [:product, :variation_option_values]}}
+      :customer, {payment: :payment_method}, {shipment: :shipping_method}, :shipping_address, :billing_address, {order_products: {variation: [:product, :variation_option_values]}}
     ).find params[:id]
   end
 

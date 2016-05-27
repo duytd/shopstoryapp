@@ -1,68 +1,88 @@
 var OrderForm = React.createClass({
+  getInitialState: function() {
+    return {
+      editing: false,
+      order: this.props.order,
+    }
+  },
   renderPaymentInfo: function() {
     var paymentInfo = "";
 
-    if (this.props.order.payment.payment_method) {
-      paymentInfo += this.props.order.payment.payment_method.name + " - ";
+    if (this.state.order.payment.payment_method) {
+      paymentInfo += this.state.order.payment.payment_method.name + " - ";
     }
 
-    if (this.props.order.payment.submethod) {
-      paymentInfo += this.props.order.payment.submethod + " - ";
+    if (this.state.order.payment.submethod) {
+      paymentInfo += this.state.order.payment.submethod + " - ";
     }
 
-    if (this.props.order.payment.transaction_number) {
-      paymentInfo += this.props.order.payment.transaction_number + " - ";
+    if (this.state.order.payment.transaction_number) {
+      paymentInfo += this.state.order.payment.transaction_number + " - ";
     }
 
-    paymentInfo += this.props.order.payment.state.toUpperCase();
+    paymentInfo += this.state.order.payment.state.toUpperCase();
 
     return paymentInfo;
+  },
+  renderOrderProduct: function(orderProduct, index) {
+    return (
+      <tr key={"order_product_" + index}>
+        <td>
+          <a href={Routes.edit_merchant_product_path.localize(orderProduct.variation.product_slug)}>
+            <img src={orderProduct.variation.image.image.thumb.url} className="img-responsive" width="50" height="50" />
+          </a>
+        </td>
+        <td>
+          {orderProduct.variation.name}
+        </td>
+        <td>
+          {I18n.toCurrency(orderProduct.unit_price, {precision: 0, unit: this.state.order.currency})}
+        </td>
+        <td>
+          {orderProduct.quantity}
+        </td>
+      </tr>
+    )
+  },
+  renderTransactionInfo: function(info, index) {
+    return (
+      <p key={"transaction_info_" + index}>
+        {(info["show_admin"] != false) ?
+          <span>
+            <b>{info["label"]}</b>: {info["value"]}
+          </span>: null}
+      </p>
+    )
   },
   render: function() {
     return (
       <div className="row">
         <div className="col-sm-8">
           <div className="block">
-            <h3>#{this.props.order.id}</h3>
-            {(this.props.order.shipment) ?
-              <a className="pull-right btn btn-primary">
-                {I18n.t("merchant.admin.buttons.shipment")}
-              </a> : null}
-
-            {(this.props.order.unprocessed == false) ?
+            <h3>#{this.state.order.id}</h3>
+            {(!this.state.order.unprocessed) ?
               <a className="pull-right btn btn-primary" href={this.props.invoice_url}>
                 {I18n.t("merchant.admin.buttons.download_invoice")}
               </a> : null}
-            <p>{I18n.t("activerecord.attributes.order.status")}: {this.props.order.status.toUpperCase()}</p>
 
-            {(this.props.order.payment) ?
+            {(!this.state.order.shipment && !this.state.order.unprocessed) ?
+              <a className="pull-right btn btn-default" onClick={this.createShipment}>
+                {I18n.t("merchant.admin.buttons.create_shipment")}
+              </a> : null}
+
+            <p>{I18n.t("activerecord.attributes.order.status")}: {this.state.order.status.toUpperCase()}</p>
+
+            {(this.state.order.payment) ?
             <p>
-              {I18n.t("activerecord.attributes.order.payment")}: {this.props.order.payment.state.toUpperCase()}
+              {I18n.t("activerecord.attributes.order.payment")}: {this.state.order.payment.state.toUpperCase()}
             </p> : null}
 
-            {(this.props.order.order_products && this.props.order.order_products.length > 0) ?
+            {(this.state.order.order_products && this.state.order.order_products.length > 0) ?
             <div className="table-responsive">
               <table className="table">
                 <tbody>
-                  {this.props.order.order_products.map(function(orderProduct, index) {
-                    return (
-                      <tr key={"order_product_" + index}>
-                        <td>
-                          <a href={Routes.edit_merchant_product_path.localize(orderProduct.variation.product_slug)}>
-                            <img src={orderProduct.variation.image.image.thumb.url} className="img-responsive" width="50" height="50" />
-                          </a>
-                        </td>
-                        <td>
-                          {orderProduct.variation.name}
-                        </td>
-                        <td>
-                          {I18n.toCurrency(orderProduct.unit_price, {precision: 0, unit: this.props.order.currency})}
-                        </td>
-                        <td>
-                          {orderProduct.quantity}
-                        </td>
-                      </tr>
-                    )
+                  {this.state.order.order_products.map(function(orderProduct, index) {
+                    this.renderOrderProduct(orderProduct, index)
                   }.bind(this))}
                 </tbody>
                 <tfoot>
@@ -74,10 +94,10 @@ var OrderForm = React.createClass({
                       <p><b>{I18n.t("activerecord.attributes.order.total")}</b></p>
                     </td>
                     <td>
-                      <p>{this.props.order.subtotal.toKoreanFormat()}</p>
-                      <p>{this.props.order.shipping.toKoreanFormat()}</p>
-                      <p>{this.props.order.tax.toKoreanFormat()}</p>
-                      <p><b>{this.props.order.total.toKoreanFormat()}</b></p>
+                      <p>{this.state.order.subtotal.toKoreanFormat()}</p>
+                      <p>{this.state.order.shipping.toKoreanFormat()}</p>
+                      <p>{this.state.order.tax.toKoreanFormat()}</p>
+                      <p><b>{this.state.order.total.toKoreanFormat()}</b></p>
                     </td>
                   </tr>
                 </tfoot>
@@ -85,48 +105,64 @@ var OrderForm = React.createClass({
             </div> : null}
           </div>
 
-          {(this.props.order.payment && !this.props.order.unprocessed) ?
+          {(this.state.order.payment && !this.state.order.unprocessed) ?
             <div className="block">
               <h3>{I18n.t("activerecord.attributes.order.payment")}</h3>
-              <p>{this.props.order.payment.payment_method.name}</p>
-              <p>{this.props.order.payment.transaction_number}</p>
-              {this.props.transaction_info.map(function(info){
-                return (
-                  <p>
-                    {(info["show_admin"] != false) ?
-                      <span>
-                        <b>{info["label"]}</b>: {info["value"]}
-                      </span>: null}
-                  </p>
-                )
-              })}
+              <p>{this.state.order.payment.payment_method.name}</p>
+              <p>{this.state.order.payment.transaction_number}</p>
+              {this.props.transaction_info.map(function(info, index){
+                return this.renderTransactionInfo(info, index);
+              }.bind(this))}
             </div> : null}
+
+        <ShipmentForm
+          order={this.state.order}
+          shippingMethods={this.props.shipping_methods}
+          shipmentStatuses={this.props.shipment_statuses}
+          shipment={this.state.order.shipment}
+          editing={this.state.editing}
+          disableEditing={this.disableEditing}
+          updateOrder={this.updateOrder}
+          enableEditing={this.enableEditing} />
+
         </div>
-        {(this.props.order.shipping_address && this.props.order.billing_address) ?
+        {(this.state.order.shipping_address && this.state.order.billing_address) ?
         <div className="col-sm-4">
           <div className="block">
             <h3>{I18n.t("activerecord.attributes.order.shipping_address")}</h3>
-            <p>{this.props.order.shipping_address.first_name} {this.props.order.shipping_address.last_name}</p>
-            <p>{this.props.order.shipping_address.email}</p>
-            <p>{this.props.order.shipping_address.phone_number}</p>
-            <p>{this.props.order.shipping_address.state} {this.props.order.shipping_address.city} {this.props.order.shipping_address.country} - {this.props.order.shipping_address.zip_code}</p>
-            <p>{this.props.order.shipping_address.address1}</p>
-            <p>{this.props.order.shipping_address.address2}</p>
-            <p>{this.props.order.shipping_address.fax}</p>
+            <p>{this.state.order.shipping_address.first_name} {this.state.order.shipping_address.last_name}</p>
+            <p>{this.state.order.shipping_address.email}</p>
+            <p>{this.state.order.shipping_address.phone_number}</p>
+            <p>{this.state.order.shipping_address.state} {this.state.order.shipping_address.city} {this.state.order.shipping_address.country} - {this.state.order.shipping_address.zip_code}</p>
+            <p>{this.state.order.shipping_address.address1}</p>
+            <p>{this.state.order.shipping_address.address2}</p>
+            <p>{this.state.order.shipping_address.fax}</p>
           </div>
 
           <div className="block">
             <h3>{I18n.t("activerecord.attributes.order.billing_address")}</h3>
-            <p>{this.props.order.billing_address.first_name} {this.props.order.billing_address.last_name}</p>
-            <p>{this.props.order.billing_address.email}</p>
-            <p>{this.props.order.billing_address.phone_number}</p>
-            <p>{this.props.order.billing_address.state} {this.props.order.billing_address.city} {this.props.order.billing_address.country} - {this.props.order.billing_address.zip_code}</p>
-            <p>{this.props.order.billing_address.address1}</p>
-            <p>{this.props.order.billing_address.address2}</p>
-            <p>{this.props.order.billing_address.fax}</p>
+            <p>{this.state.order.billing_address.first_name} {this.state.order.billing_address.last_name}</p>
+            <p>{this.state.order.billing_address.email}</p>
+            <p>{this.state.order.billing_address.phone_number}</p>
+            <p>{this.state.order.billing_address.state} {this.state.order.billing_address.city} {this.state.order.billing_address.country} - {this.state.order.billing_address.zip_code}</p>
+            <p>{this.state.order.billing_address.address1}</p>
+            <p>{this.state.order.billing_address.address2}</p>
+            <p>{this.state.order.billing_address.fax}</p>
           </div>
         </div> : null}
       </div>
     )
+  },
+  createShipment: function() {
+    this.setState({editing: true});
+  },
+  updateOrder: function(order) {
+    this.setState({order: order, editing: false});
+  },
+  enableEditing: function() {
+    this.setState({editing: true});
+  },
+  disableEditing: function() {
+    this.setState({editing: false});
   }
 })

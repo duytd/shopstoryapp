@@ -119,7 +119,7 @@ namespace :deploy do
   end
 
   desc "Clean bundle"
-  task :bundle_clean, except: {no_release: true} do
+  task :bundle_clean do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do

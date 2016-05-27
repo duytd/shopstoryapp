@@ -381,12 +381,12 @@ ActiveRecord::Schema.define(version: 20160524083951) do
   end
 
   create_table "shipments", force: :cascade do |t|
-    t.integer  "status"
+    t.integer  "status",             default: 0
     t.integer  "order_id"
     t.string   "tracking_code"
     t.integer  "shipping_method_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "shipments", ["order_id"], name: "index_shipments_on_order_id", using: :btree

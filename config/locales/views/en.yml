@@ -77,6 +77,7 @@ en:
         reset: "Reset"
         preview: "Preview"
         download_invoice: "Download Invoice"
+        create_shipment: "Create Shipment"
         bulk_actions: "Bulk Actions"
         export: "Export"
         import: "Import"

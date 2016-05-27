@@ -87,6 +87,7 @@ ko:
         tax: "세금"
         shipping_address: "배송 주소"
         billing_address: "구매자 주소"
+        shipment: "Shipment"
       shop:
         name: "샵 이름"
         legal_name: "상호명"
@@ -151,3 +152,7 @@ ko:
         link: "Link"
         image: "Image"
         show_image: "Show Image"
+      shipment:
+        shipping_method_id: "Shipping method"
+        tracking_code: "Tracking code"
+        status: "Status"

@@ -4,13 +4,15 @@ class ProductOrder < Order
   has_many :products, through: :order_products
   has_one :shipping_address, foreign_key: "order_id", dependent: :destroy
   has_one :billing_address, foreign_key: "order_id", dependent: :destroy
+  has_one :shipment, foreign_key: "order_id", dependent: :destroy
 
-  before_save :summarize
-  before_save :update_inventory, if: :order_processed?
-  before_save :update_paid_at, if: :order_processed?
+  before_save :summarize, if: :checking_out?
+  before_save :update_inventory, if: :changed_to_processed?
+  before_save :update_paid_at, if: :changed_to_processed?
 
   accepts_nested_attributes_for :shipping_address, reject_if: :all_blank
   accepts_nested_attributes_for :billing_address, reject_if: :all_blank
+  accepts_nested_attributes_for :shipment
 
   attr_accessor :current_step
 
@@ -38,6 +40,7 @@ class ProductOrder < Order
       shipping_address: shipping_address,
       billing_address: billing_address,
       payment: payment,
+      shipment: shipment,
       order_products: order_products
     })
   end
