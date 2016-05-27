@@ -56,6 +56,7 @@ gem "elasticsearch-model"
 gem "elasticsearch-rails"
 gem "elasticsearch-model-globalize"
 gem "apartment-sidekiq"
+gem "intercom-rails"
 
 group :development, :test do
   gem "byebug"
