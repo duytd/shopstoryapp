@@ -1,11 +1,11 @@
 class Asset::Locale < Asset
-  def self.bundle bundle
+  def update_theme_bundle
     content = "var I18n = I18n || {}; I18n.translations = {"
-    content << Asset::Locale.all.map{|x| x.content}.join(",")
+    content << Asset::Locale.filter_by_theme(theme).map{|x| x.content}.join(",")
     content << "}"
 
-    bundle.locale = content
-    bundle.save!
+    theme_bundle.locale = content
+    theme_bundle.save!
   end
 
   def path

@@ -11,20 +11,23 @@ class Merchant::AssetsController < Merchant::BaseController
   end
 
   def update
-    old_content = @asset.content
+    @asset.theme_bundle = @theme_bundle
 
-    if @asset.update asset_params
-      @asset.class.bundle @theme_bundle if old_content != @asset.content
-      render json: present(@asset), status: :ok
-    else
-      render json: @asset.errors, status: :unprocessable_entity
+    begin
+      if @asset.update asset_params
+        render json: present(@asset, {sti: true}), status: :ok
+      else
+        render json: @asset.errors, status: :unprocessable_entity
+      end
+    rescue Sass::SyntaxError, ExecJS::ProgramError => e
+      render json: {message: e.message.split("\n").first}, status: :bad_request
     end
   end
 
   private
   def normal_edit
     @props = {
-      data: present(@asset),
+      data: present(@asset, {sti: true}),
       url: merchant_asset_path(@asset),
       reset_url: edit_merchant_asset_path(@asset, reset: true),
     }

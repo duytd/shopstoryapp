@@ -1,7 +1,10 @@
 class Asset::Stylesheet < Asset
-  def self.bundle bundle
-    bundle.stylesheet = Asset::Stylesheet.all.map{|x| x.content}.join(" ")
-    bundle.save!
+  def update_theme_bundle
+    theme_bundle.stylesheet = Asset::Stylesheet.filter_by_theme(theme).map do |x|
+      x.content
+    end.join(" ")
+
+    theme_bundle.save!
   end
 
   def path

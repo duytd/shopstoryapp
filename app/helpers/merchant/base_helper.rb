@@ -28,7 +28,7 @@ module Merchant::BaseHelper
   end
 
   def present object, options={}
-    klass = options[:presenter_klass] || "Merchant::#{object.class}Presenter".constantize
+    klass = options[:presenter_klass] || "Merchant::#{options[:sti] ? object.class.superclass : object.class}Presenter".constantize
     presenter = klass.new object, options
   end
 

@@ -1,7 +1,10 @@
 class Asset::Javascript < Asset
-  def self.bundle bundle
-    bundle.javascript = Asset::Javascript.all.map{|x| x.content}.join(" ")
-    bundle.save!
+  def update_theme_bundle
+    theme_bundle.javascript = Asset::Javascript.filter_by_theme(theme).map do |x|
+      x.content
+    end.join(" ")
+
+    theme_bundle.save!
   end
 
   def path

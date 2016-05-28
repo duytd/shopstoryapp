@@ -3,7 +3,7 @@ class Customer::PaymentPresenter < Customer::BasePresenter
     {
       id: @object.id,
       state: @object.state,
-      payment_method: present(@object.payment_method, {presenter_klass: Customer::PaymentMethodPresenter})
+      payment_method: present(@object.payment_method, {sti: true})
     }
   end
 end

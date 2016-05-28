@@ -29,23 +29,27 @@ module Searchable
     def search query
       index_name "#{Rails.env}-#{Apartment::Tenant.current}-#{self.name.tableize}"
 
-      __elasticsearch__.search(
-        {
-          query: {
-            multi_match: {
-              query: "*#{query}*",
-              fields: search_fields
-            }
-          },
-          highlight: {
-            pre_tags: ["<em class='highlight'>"],
-            post_tags: ["</em>"],
-            fields: {
-              "*": {},
+      begin
+        __elasticsearch__.search(
+          {
+            query: {
+              multi_match: {
+                query: "*#{query}*",
+                fields: search_fields
+              }
+            },
+            highlight: {
+              pre_tags: ["<em class='highlight'>"],
+              post_tags: ["</em>"],
+              fields: {
+                "*": {},
+              }
             }
           }
-        }
-      )
+        )
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound
+        []
+      end
     end
   end
 end

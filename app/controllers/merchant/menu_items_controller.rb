@@ -10,7 +10,7 @@ class Merchant::MenuItemsController < Merchant::BaseController
       @menu_item.menu = @menu
 
       if @menu_item.save
-        render json: present(@menu_item, {presenter_klass: "Merchant::#{@menu_item.class.superclass.name}Presenter".constantize}), status: :ok
+        render json: present(@menu_item, {sti: true}), status: :ok
       else
         render json: @menu_item.errors, status: :unprocessable_entity
       end
@@ -21,9 +21,9 @@ class Merchant::MenuItemsController < Merchant::BaseController
 
   def update
     if @menu_item.update menu_item_params
-      render json: present(@menu_item, {presenter_klass: "Merchant::#{@menu_item.class.superclass.name}Presenter".constantize}), status: :ok
+      render json: present(@menu_item, {sti: true}), status: :ok
     else
-      render json: present(@menu_item, {presenter_klass: "Merchant::#{@menu_item.class.superclass.name}Presenter".constantize}).errors, status: :unprocessable_entity
+      render json: present(@menu_item, {sti: true}).errors, status: :unprocessable_entity
     end
   end
 

@@ -24,7 +24,7 @@ class Merchant::ShippingRatesController < Merchant::BaseController
       @shipping_rate.attributes = shipping_rate_params
 
       if @shipping_rate.save
-        render json: present(@shipping_rate, {presenter_klass: "Merchant::#{@shipping_rate.class.superclass.name}Presenter".constantize}), status: :ok
+        render json: present(@shipping_rate, {sti: true}), status: :ok
       else
         render json: @shipping_rate.errors, status: :unprocessable_entity
       end
@@ -35,7 +35,7 @@ class Merchant::ShippingRatesController < Merchant::BaseController
 
   def edit
     @props = {
-      shipping_rate: present(@shipping_rate, {presenter_klass: "Merchant::#{@shipping_rate.class.superclass.name}Presenter".constantize}),
+      shipping_rate: present(@shipping_rate, {sti: true}),
       url: merchant_shipping_rate_path(@shipping_rate),
       redirect_url: merchant_shipping_rates_path,
       method: :put
@@ -44,7 +44,7 @@ class Merchant::ShippingRatesController < Merchant::BaseController
 
   def update
     if @shipping_rate.update shipping_rate_params
-      render json: present(@shipping_rate, {presenter_klass: "Merchant::#{@shipping_rate.class.superclass.name}Presenter".constantize}), status: :ok
+      render json: present(@shipping_rate, {sti: true}), status: :ok
     else
       render json: @shipping_rate.errors, status: :unprocessable_entity
     end
@@ -58,7 +58,7 @@ class Merchant::ShippingRatesController < Merchant::BaseController
   private
   def list_all
     @props = {
-      shipping_rates: ShippingRate.all.map{|r| present(r, {presenter_klass: "Merchant::#{r.class.superclass.name}Presenter".constantize})}
+      shipping_rates: ShippingRate.all.map{|r| present(r, {sti: true})}
     }
   end
 

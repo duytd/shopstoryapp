@@ -3,7 +3,7 @@ var Editor = React.createClass({
     return {
       url: this.props.url,
       reset_url: this.props.reset_url,
-      errors: {},
+      error: [],
     };
   },
   componentDidMount: function() {
@@ -43,6 +43,7 @@ var Editor = React.createClass({
         <div className="col-md-9 col-md-pull-3">
           <form ref="form" id="asset-form" action={this.props.url}
             acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
+            <FormErrors errors={this.state.errors} />
             <div className="form-group">
               <div id="editor" ref="editor" className="code-editor">
               </div>
@@ -93,7 +94,7 @@ var Editor = React.createClass({
         this.state.editor.getSession().setMode(new JsonMode());
     }
 
-    this.setState({url: url, reset_url: reset_url})
+    this.setState({url: url, reset_url: reset_url, errors: []})
   },
   handleSubmit: function(formData, action, method) {
     $.ajax({
@@ -102,10 +103,11 @@ var Editor = React.createClass({
       method: method,
       dataType: "json",
       success: function(data) {
-      },
+        this.setState({errors: []});
+      }.bind(this),
       error: function(xhr) {
         this.setState({
-          errors: xhr.responseJSON
+          errors: [xhr.responseJSON.message]
         });
       }.bind(this)
     });
