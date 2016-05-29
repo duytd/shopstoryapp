@@ -18,14 +18,13 @@ class Category < ActiveRecord::Base
   has_many :products, through: :category_products
   has_many :variations, through: :products
   has_one :seo_tag, as: :seoable, dependent: :destroy
+  has_many :menu_items, foreign_key: "value", dependent: :destroy
   accepts_nested_attributes_for :seo_tag, allow_destroy: false, reject_if: :all_blank
 
   validates :name, translation_presence: true, translation_uniqueness: true
   I18n.available_locales.each do |locale|
     validates "name_#{locale}", length: {minimum: 2}, allow_blank: true
   end
-
-  before_destroy :destroy_menu_item
 
   after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer::CategoryPresenter") }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "Category", "Customer::CategoryPresenter") }
@@ -78,11 +77,5 @@ class Category < ActiveRecord::Base
 
   def self.search_fields
     %w{ name_ko name_en }
-  end
-
-  private
-  def destroy_menu_item
-    menu_items = Menu::CategoryMenu.where value: id
-    menu_items.destroy_all unless menu_items.empty?
   end
 end

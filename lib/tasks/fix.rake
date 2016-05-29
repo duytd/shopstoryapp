@@ -25,8 +25,7 @@ namespace :fix do
 
   task update_templates: :environment do
     Shop.all.each do |shop|
-      Apartment::Tenant.switch shop.subdomain
-      shop.theme.install shop, {javascript: false, stylesheet: false, locale: false}
+      shop.theme.setup shop, {javascript: false, stylesheet: false, locale: false}
     end
   end
 end

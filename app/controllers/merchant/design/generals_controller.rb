@@ -2,7 +2,7 @@ class Merchant::Design::GeneralsController < Merchant::BaseController
   def edit
     @props = {
       general: current_shop.as_json(only: [:logo, :term_id, :privacy_id]),
-      pages: CustomPage.all
+      pages: CustomPage.all.map{|c| present(c)}
     }
   end
 

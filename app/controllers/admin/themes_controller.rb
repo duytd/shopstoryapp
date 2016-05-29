@@ -42,7 +42,7 @@ class Admin::ThemesController < Admin::BaseController
     if @theme.update theme_params
       redirect_to admin_themes_path
     else
-      render :new
+      render :edit
     end
   end
 
@@ -78,6 +78,6 @@ class Admin::ThemesController < Admin::BaseController
   end
 
   def theme_params
-    params.require(:theme).permit :name, :directory, :description, :image, :actived
+    params.require(:theme).permit :name, :directory, :description, :image, :actived, :default
   end
 end

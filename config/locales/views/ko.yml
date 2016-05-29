@@ -8,7 +8,7 @@ ko:
     preview: "미리보기"
     language: "언어"
     korean: "한글"
-    english: "영어"
+    english: "English"
   pages:
     home:
       title: "홈"
@@ -58,6 +58,8 @@ ko:
         shipping_rates: "배송료"
         email_templates: "이메일 템플렛"
       buttons:
+        next: "Next"
+        skip: "Skip"
         add: "추가"
         add_variation: "옵션 추가"
         save: "저장"
@@ -119,6 +121,7 @@ ko:
         edit_category: "카테고리 수정"
       shops:
         general_settings: "설정 / 일반"
+        business_information: "Business Information"
         basic_information: "기본 정보"
         business_number: "비즈니스 정보"
         contact: "연락처"
@@ -223,3 +226,6 @@ ko:
         no_result: "No result"
       banners:
         title: "Banners"
+      after_signup:
+        generate_sample_data: "Do you want to generate sample data for your shop? Click Next to process"
+        done: Setup done!

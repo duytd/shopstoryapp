@@ -27,9 +27,9 @@ module Searchable
 
   class_methods do
     def search query
-      index_name "#{Rails.env}-#{Apartment::Tenant.current}-#{self.name.tableize}"
-
       begin
+        index_name "#{Rails.env}-#{Apartment::Tenant.current}-#{self.name.tableize}"
+
         __elasticsearch__.search(
           {
             query: {

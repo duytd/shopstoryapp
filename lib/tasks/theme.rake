@@ -7,7 +7,7 @@ namespace :theme do
   task generate_themes: :environment do
     Theme.theme_dirs.each do |dir|
       info = Theme.get_theme_information dir
-      default = if dir.downcase == "viva" then true else false end
+      default = if dir.downcase == "agatha" then true else false end
 
       Theme.create(
         directory: dir.downcase,
@@ -24,8 +24,14 @@ namespace :theme do
   task load_default_theme: :environment do
     default_theme = Theme.default
     Shop.all.each do |shop|
-      Apartment::Tenant.switch shop.subdomain
-      default_theme.import_asset shop
+      default_theme.setup shop
+    end
+  end
+
+  desc "Precompile all theme"
+  task precompile: :environment do
+    Theme.all.each do |theme|
+      theme.precompile
     end
   end
 end

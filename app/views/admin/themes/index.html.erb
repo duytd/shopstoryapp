@@ -12,6 +12,7 @@
           <th><%= t :description %></th>
           <th><%= t :directory %></th>
           <th><%= t :actived %></th>
+          <th><%= t :default %></th>
           <th></th>
           <th></th>
         </tr>
@@ -24,6 +25,7 @@
             <td><%= theme.description %></td>
             <td><%= theme.directory %></td>
             <td><%= theme.actived %></td>
+            <td><%= theme.default %></td>
             <td><%= link_to t("admin.buttons.edit"), edit_admin_theme_path(theme), class: "btn btn-primary" %></td>
           </tr>
         <% end %>

@@ -1,6 +1,6 @@
 class ProductImage < ActiveRecord::Base
   belongs_to :product
-  before_update :deactivate_relatives
+  before_update :ensure_only_one_image_is_active, if: Proc.new{|a| a.featured_changed? && a.featured?}
 
   validates :product, presence: true
 
@@ -27,7 +27,7 @@ class ProductImage < ActiveRecord::Base
     super.as_json(options).merge({name: image.filename, url: image.thumb.url})
   end
 
-  def deactivate_relatives
-    product.product_images.where.not(id: self.id).update_all(featured: false) if self.featured && self.featured_changed?
+  def ensure_only_one_image_is_active
+    product.product_images.where.not(id: self.id).update_all featured: false
   end
 end

@@ -3,6 +3,25 @@
     <h3><%= t "admin.pages.dashboard" %></h3>
   </div>
   <div class="panel-body">
-    <%= "#{@shops_count} shops joined" %>
+    <table class="table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Shop</th>
+        <th>Domain</th>
+        <th>Sudomain</th>
+        <th>Merchant Contact</th>
+        <th>Plan</th>
+      </tr>
+    <% @shops.each do |shop| %>
+      <tr>
+        <td><%= shop.id %></td>
+        <td><%= shop.name %></td>
+        <td><%= shop.domain %></td>
+        <td><%= shop.subdomain %></td>
+        <td><%= shop.merchant.email %></td>
+        <td><%= shop.merchant.subscription.plan.try(:name) unless shop.merchant.subscription.nil? %></td>
+      </tr>
+    <% end %>
+    </table>
   </div>
 </div>

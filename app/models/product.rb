@@ -27,6 +27,7 @@ class Product < ActiveRecord::Base
   has_many :product_images, dependent: :destroy
   has_one :master, ->{where master: true}, class_name: "Variation"
   has_one :seo_tag, as: :seoable, dependent: :destroy
+  has_many :menu_items, foreign_key: "value", dependent: :destroy
 
   validates :name, translation_presence: true, translation_uniqueness: true
   validates :price, presence: true, numericality: {minimum: 0, allow_blank: true}
@@ -158,11 +159,6 @@ class Product < ActiveRecord::Base
     unless variations.not_master.count == 0
       self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}
     end
-  end
-
-  def destroy_menu_item
-    menu_items = Menu::Product.where value: id
-    menu_items.destroy_all unless menu_items.empty?
   end
 
   def update_master

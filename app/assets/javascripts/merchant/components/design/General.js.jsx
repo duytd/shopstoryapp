@@ -11,7 +11,7 @@ design.GeneralForm = React.createClass({
       this.props.pages.map(function(page, index) {
         return (
           <option key={"page_" + type + "_" + index} value={page.id}>
-            {page.title_ko ? page.title_ko : page.title_en}
+            {translate(page, "title")}
           </option>
         )
       })

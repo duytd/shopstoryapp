@@ -1,4 +1,6 @@
 class Shop < ActiveRecord::Base
+  attr_accessor :setting_up
+
   translates :street
   globalize_accessors locales: [:en, :ko], attributes: [:street]
 
@@ -19,13 +21,16 @@ class Shop < ActiveRecord::Base
   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, allow_blank: true
   validates :subdomain, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/},
     uniqueness: true
+  validates :legal_name, presence: true, if: Proc.new{|a| a.setting_up && a.merchant.provide_business_info?}, on: :update
 
   before_validation :set_default_values, on: :create
   before_validation :strip_white_space
   before_create :generate_api_key
-  after_create :import_email_templates
-  after_create :import_payment_methods
-  after_save :install_theme, if: :theme_id_changed?
+  before_create :create_tenant
+
+  after_create :setup_data!
+  after_save :setup_theme, if: :theme_id_changed?
+
   before_destroy :drop_tenant
 
   enum weight_unit: [:kg, :g]
@@ -39,39 +44,22 @@ class Shop < ActiveRecord::Base
   end
 
   def set_default_values
-    self.theme = Theme.default
+    self.theme = Theme.get_default_theme
     self.currency = Settings.shop.default_currency
     self.time_zone = Settings.shop.default_timezone
     self.country = Settings.shop.default_country
   end
 
-  def install_theme
+  def setup_theme
      Apartment::Tenant.switch subdomain
-    self.theme.install self
-  end
-
-  def import_payment_methods
-    PaymentMethod.all.each do |payment_method|
-      payment_method_shop = self.payment_method_shops.find_or_create_by payment_method_id: payment_method.id
-
-      payment_method.payment_method_options.each do |option|
-        payment_method_shop.payment_method_option_shops.create payment_method_option_id: option.id
-      end
-    end
-  end
-
-  def import_email_templates
-    Apartment::Tenant.switch subdomain
-    template_dir = "#{Rails.root}/app/views/customer/template_mailer"
-
-    Dir.glob("#{template_dir}/**/*.liquid") do |file|
-      file_name = File.basename file
-      file_content = File.read file
-      EmailTemplate.create name: file_name, content: file_content
-    end
+    self.theme.setup self
   end
 
   private
+  def setup_data!
+    ShopService.new({shop: self}).create_initial_data
+  end
+
   def generate_api_key
     self.api_key = loop do
       random_key = SecureRandom.urlsafe_base64
@@ -85,5 +73,9 @@ class Shop < ActiveRecord::Base
 
   def drop_tenant
     Apartment::Tenant.drop subdomain
+  end
+
+  def create_tenant
+    Apartment::Tenant.create subdomain
   end
 end

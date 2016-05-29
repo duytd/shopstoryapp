@@ -59,6 +59,8 @@ en:
         email_templates: "Email Templates"
       buttons:
         add: "Add"
+        next: "Next"
+        skip: "Skip"
         add_variation: "Add variation"
         save: "Save"
         cancel: "Cancel"
@@ -220,3 +222,6 @@ en:
         no_result: "No result"
       banners:
         title: "Banners"
+      after_signup:
+        generate_sample_data: "Do you want to generate sample data for your shop? Click Next to process"
+        done: Setup done!

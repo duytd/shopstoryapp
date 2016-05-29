@@ -13,18 +13,12 @@ class Theme < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :directory, uniqueness: true
+  validate :default_cannot_be_unchecked, on: :update
 
-  def self.default
+  after_save :ensure_only_one_theme_is_default, if: Proc.new{|a| a.default_changed? && a.default?}
+
+  def self.get_default_theme
     find_by default: true
-  end
-
-  def install shop, options={}
-    bundle = ThemeBundle.where(theme_id: id, shop_id: shop.id).first_or_initialize
-    bundle.javascript = bundle_javascripts unless options[:javascript] == false
-    bundle.stylesheet = bundle_stylesheets unless options[:stylesheet] == false
-    bundle.locale = bundle_locales unless options[:locale] == false
-    bundle.template = bundle_templates unless options[:template] == false
-    bundle.save!
   end
 
   def self.theme_dirs
@@ -36,81 +30,27 @@ class Theme < ActiveRecord::Base
     JSON.parse settings
   end
 
+  def setup shop, options={}
+    bundle = ThemeBundle.where(theme_id: id, shop_id: shop.id).first_or_initialize
+    ThemeService.new({theme: self, bundle: bundle, options: options.merge({subdomain: shop.subdomain})}).create_bundle
+  end
+
+  def precompile options={}
+    ThemeService.new({theme: self, options: options}).precompile
+  end
+
   def read_file path
     File.read "#{ROOT_DIR}/#{directory}/#{path}"
   end
 
   private
-  def bundle_locales
-    locales = []
-    locales_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/locales"
-
-    Dir.glob("#{locales_dir}/*.json") do |file|
-      file_content = File.read file
-      file_name = File.basename file
-
-      asset = Asset::Locale.where(name: file_name, theme_id: id).first_or_initialize
-      asset.content = file_content
-      asset.save!
-      locales << asset.content
+  def default_cannot_be_unchecked
+    if default_changed? && !default
+      errors.add(:default, "cannot be uncheck")
     end
-
-    "var I18n = I18n || {}; I18n.translations = {#{locales.join(",")}}"
   end
 
-  def bundle_stylesheets
-    content = ""
-    stylesheets_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/assets/stylesheets"
-
-    Dir.glob("#{stylesheets_dir}/*.scss") do |file|
-      file_content = File.read file
-      file_name = File.basename file
-
-      asset = Asset::Stylesheet.where(name: file_name, theme_id: id).first_or_initialize
-      asset.content = file_content
-      asset.save!
-      content << asset.content
-    end
-
-    content
-  end
-
-  def bundle_javascripts
-    content = ""
-    javascripts_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/assets/javascripts"
-
-    Dir.glob("#{javascripts_dir}/*.js") do |file|
-      file_content = File.read file
-      file_name = File.basename file
-
-      asset = Asset::Javascript.where(name: file_name, theme_id: id).first_or_initialize
-      asset.content = file_content
-      asset.save!
-      content << asset.content
-    end
-
-    content
-  end
-
-  def bundle_templates
-    content = ""
-    templates_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{directory}/templates"
-
-    Dir.glob("#{templates_dir}/**/*.rt") do |file|
-      file_content = File.read file
-      file_name = File.basename file, ".*"
-      file_directory = File.basename File.dirname(file)
-      transformed_content = Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
-
-      template = Template.where(name: file_name, theme_id: id).first_or_initialize
-      template.content = file_content
-      template.directory = file_directory
-      template.transformed_content = transformed_content
-
-      template.save!
-      content << template.transformed_content
-    end
-
-    content
+  def ensure_only_one_theme_is_default
+    Theme.where.not(id: self.id).update_all default: false
   end
 end

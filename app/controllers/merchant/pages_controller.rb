@@ -3,6 +3,7 @@ class Merchant::PagesController < Merchant::BaseController
   before_action :load_templates, only: :editor
 
   def dashboard
+    check_setup_step
   end
 
   def credentials
@@ -38,6 +39,12 @@ class Merchant::PagesController < Merchant::BaseController
   end
 
   private
+  def check_setup_step
+    unless current_merchant.done?
+      redirect_to merchant_after_signup_path
+    end
+  end
+
   def load_assets
     @javascripts = Asset::Javascript.filter_by_theme(current_shop.theme).as_json({only: [:id, :name]})
     @stylesheets = Asset::Stylesheet.filter_by_theme(current_shop.theme).as_json({only: [:id, :name]})
