@@ -14,7 +14,7 @@ class ProductImage < ActiveRecord::Base
         thumb: {
           url: ActionController::Base.helpers.asset_path("fallback/product/" + ["thumb", "default.jpg"].compact.join('_'))
         },
-        url: ActionController::Base.helpers.asset_path("fallback/product/" + ["", "default.jpg"].compact.join('_'))
+        url: ActionController::Base.helpers.asset_path("fallback/product/default.jpg")
       }
     }
   end

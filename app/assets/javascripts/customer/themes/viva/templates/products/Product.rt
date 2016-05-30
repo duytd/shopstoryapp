@@ -11,7 +11,8 @@
     <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
     <div class="col-md-6 col-sm-6 image-slider">
       <ProductSlider rt-if="this.props.variations.length > 0" images="{[this.state.variation.image]}" />
-      <ProductSlider rt-if="this.props.variations.length == 0" images="{this.props.product.images}" zoomType="window" />
+      <ProductSlider rt-if="this.props.variations.length == 0 && this.props.product.images.length > 0" images="{this.props.product.images}" zoomType="window" />
+      <ProductSlider rt-if="this.props.variations.length == 0 && this.props.product.images.length == 0" images="{[this.props.product.featured_image]}" />
     </div>
 
     <div class="col-md-6 col-sm-6">
