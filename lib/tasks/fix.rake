@@ -28,4 +28,10 @@ namespace :fix do
       shop.theme.setup shop, {javascript: false, stylesheet: false, locale: false}
     end
   end
+
+  task update_initial_data: :environment do
+    Shop.all.each do |shop|
+      ShopService.new({shop: shop}).create_initial_data
+    end
+  end
 end

@@ -9,7 +9,8 @@ class MenuService
   end
 
   def create_main_menu
-    main_menu = Menu.create name: "Main menu", position: Menu.positions[:main]
+    main_menu = Menu.find_or_create_by(position: Menu.positions[:main])
+    main_menu.update_attributes name: "Main menu"
     main_menu.menu_items.create([
       {
         name_en: "Home",
@@ -27,7 +28,8 @@ class MenuService
   def create_footer_menu
     term = @shop.term
     privacy = @shop.privacy
-    footer_menu = Menu.create name: "Main menu", position: Menu.positions[:footer]
+    footer_menu = Menu.find_or_create_by position: Menu.positions[:footer]
+    footer_menu.update_attributes name: "Footer menu"
     footer_menu.menu_items.create([
       {
         name_en: "Terms and Conditions",

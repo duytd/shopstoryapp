@@ -13,7 +13,7 @@ class ShopService
   end
 
   def create_sample_data
-    #CategoryService.new.create_sample_data
+    CategoryService.new.create_sample_data
     ProductService.new.create_sample_data
   end
 end

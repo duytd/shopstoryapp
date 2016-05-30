@@ -28,7 +28,7 @@ class Shop < ActiveRecord::Base
   before_create :generate_api_key
   before_create :create_tenant
 
-  after_create :setup_data!
+  after_create :setup_data
   after_save :setup_theme, if: :theme_id_changed?
 
   before_destroy :drop_tenant
@@ -56,7 +56,7 @@ class Shop < ActiveRecord::Base
   end
 
   private
-  def setup_data!
+  def setup_data
     ShopService.new({shop: self}).create_initial_data
   end
 
