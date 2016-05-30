@@ -23,6 +23,17 @@
         <p>
           <strong>{I18n.toCurrency(this.state.variation.price, {precision: 0, unit: this.props.globalVars.currency})}</strong>
         </p>
+
+        <p rt-if="parseInt(this.props.product.sale_off) == 0">
+          <strong>{I18n.toCurrency(this.state.variation.price, {precision: 0, unit: this.props.currency})}</strong>
+        </p>
+
+        <p rt-if="parseInt(this.props.product.sale_off) > 0">
+          <strong>{I18n.toCurrency(this.state.variation.price - this.state.variation.price * this.props.product.sale_off / 100, {precision: 0, unit: this.props.currency})}</strong>
+          <br/>
+          <s>{I18n.toCurrency(this.state.variation.price, {precision: 0, unit: this.props.currency})}</s>
+        </p>
+
         <p>
           {(this.state.variation.in_stock > 0) ? I18n.t("products.in_stock") + ": "+ this.state.variation.in_stock : I18n.t("products.out_of_order").toUpperCase()}
         </p>

@@ -24,7 +24,7 @@
       <div class="form-group">
         <label>{I18n.t("customers.register.fields.term")}</label>
         <br/>
-        <div rt-if="this.props.term" class="term" dangerouslySetInnerHTML="{{__html:this.props.term.content}}"></div>
+        <div rt-if="this.props.term" class="term" dangerouslySetInnerHTML="{{__html: translate(this.props.term, 'content')}}"></div>
         <input type="radio" name="customer[term]" value="0" defaultChecked /> {I18n.t("buttons.decline")}
         <input type="radio" name="customer[term]" value="1" /> {I18n.t("buttons.accept")}
       </div>
@@ -32,7 +32,7 @@
       <div class="form-group">
         <label>{I18n.t("customers.register.fields.privacy")}</label>
         <br/>
-        <div rt-if="this.props.privacy" class="privacy" dangerouslySetInnerHTML="{{__html:this.props.privacy.content}}"></div>
+        <div rt-if="this.props.privacy" class="privacy" dangerouslySetInnerHTML="{{__html: translate(this.props.privacy, 'content')}}"></div>
         <input type="radio" name="customer[privacy]" value="0" defaultChecked /> {I18n.t("buttons.decline")}
         <input type="radio" name="customer[privacy]" value="1" /> {I18n.t("buttons.accept")}
       </div>
