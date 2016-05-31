@@ -128,6 +128,10 @@ Rails.application.routes.draw do
       get :payment, on: :collection
     end
 
+    resources :discounts, except: :show do
+      delete :index, on: :collection
+    end
+
     resource :after_signup, only: [:show, :update] do
       post :skip
     end

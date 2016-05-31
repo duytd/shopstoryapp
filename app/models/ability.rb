@@ -19,6 +19,7 @@ class Ability
       can :manage, Menu
       can :manage, MenuItem
       can :manage, Banner
+      can :manage, Discount
       can [:read, :update], Template
       can [:read, :update, :preview], EmailTemplate
     elsif user.is_a?(Merchant)

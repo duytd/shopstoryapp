@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   has_one :payment_method, through: :payment
   has_one :shipment, dependent: :destroy
   has_one :shipping_method, through: :shipment
+  belongs_to :discount
 
   validates :status, inclusion: {in: %w(incompleted pending processing processed cancelled)}
 

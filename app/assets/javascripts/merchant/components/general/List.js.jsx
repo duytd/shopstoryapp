@@ -80,6 +80,16 @@ var List = React.createClass({
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );
           break;
+        case "discount":
+          itemChildren = (
+            <Discount
+              discount={item}
+              key={"item_" + item.id}
+              deleteUrl={Routes.merchant_banner_path.localize(item.id)}
+              handleSelect={this.handleSelect}
+              handleDeleteItem={this.deleteItem} check={item.checked} />
+          );
+          break;
         default:
           itemChildren = null;
           break;
@@ -196,6 +206,12 @@ var List = React.createClass({
         break;
       case "shipping_rate":
         data = {shipping_rate_ids: item_ids};
+        break;
+      case "banner":
+        data = {banner_ids: item_ids};
+        break;
+      case "discount":
+        data = {discount_ids: item_ids};
         break;
       default:
         data = {};

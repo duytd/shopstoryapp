@@ -19,6 +19,12 @@ en:
             type:
               free_shipping_taken: "Free shipping type has already been set"
               flat_rate_taken: "Flat rate type has already been set"
+        discount:
+          attributes:
+            expiry_date:
+              invalid: "must be greater than start date"
+            start_date:
+              invalid: "must be greater than current date"
 
       format: "%{attribute} %{message}"
       messages:
@@ -28,7 +34,7 @@ en:
           one: "is too short (minimum is 1 character)"
           other: "is too short (minimum is %{count} characters)"
         taken: "is already taken"
-        out_of_order: "not enough in stock please lower quaunity."
+        out_of_order: "not enough in stock please lower quantity."
 
     attributes:
       merchant:
@@ -161,3 +167,9 @@ en:
         shipping_method_id: "Shipping method"
         tracking_code: "Tracking code"
         status: "Status"
+      discount:
+        code: "Coupon Code"
+        start_date: "Start Date"
+        expiry_date: "Expiry Date"
+        amount: "Amount"
+        discount_type: "Coupon Type"

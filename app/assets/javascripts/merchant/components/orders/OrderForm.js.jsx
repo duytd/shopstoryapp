@@ -82,7 +82,7 @@ var OrderForm = React.createClass({
               <table className="table">
                 <tbody>
                   {this.state.order.order_products.map(function(orderProduct, index) {
-                    this.renderOrderProduct(orderProduct, index)
+                    return this.renderOrderProduct(orderProduct, index)
                   }.bind(this))}
                 </tbody>
                 <tfoot>

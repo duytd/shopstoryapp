@@ -43,6 +43,7 @@ ko:
         order_report: "Order Report"
         payment_report: "Payment Report"
         pages: "페이지"
+        discounts: "Coupons"
         navigation: "네비게이션"
         settings: "설정"
         general_settings: "일반"
@@ -88,6 +89,7 @@ ko:
         import: "Import"
         current: "Current"
         add_banner_item: "Add Banner Item"
+        generate_code: "Generate Code"
       pagination:
         next: "다음"
         first: "처음"
@@ -115,6 +117,7 @@ ko:
         no_menu: "등록된 메뉴/네비게이션이 아직 없습니다. 지금 등록하세요."
         no_custom_page: "등록된 페이지가 아직 없습니다. 지금 등록하세요."
         no_shipping_rate: "등록된 배송료가 아직 없습니다. 지금 등록하세요."
+        no_discount: "You have not created any discount. Create now"
       categories:
         title: "모든 카테고리"
         add_category: "카테고리 추가"
@@ -229,3 +232,8 @@ ko:
       after_signup:
         generate_sample_data: "Do you want to generate sample data for your shop? Click Next to process"
         done: Setup done!
+      discounts:
+        title: "Coupons"
+        add_discount: "Add Coupon"
+        edit_discount: "Edit Coupon"
+        percentage: "Percentage"

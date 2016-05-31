@@ -47,6 +47,7 @@ en:
         settings: "Settings"
         general_settings: "General"
         payment_settings: "Payment"
+        discounts: "Coupons"
         delivery_settings: "Delivery"
         user_settings: "Account"
         search: "Search"
@@ -85,6 +86,7 @@ en:
         import: "Import"
         current: "Current"
         add_banner_item: "Add Banner Item"
+        generate_code: "Generate Code"
       pagination:
         next: "Next"
         first: "First"
@@ -112,6 +114,7 @@ en:
         no_menu: "You have not created any menu/navigation. Create now"
         no_custom_page: "You have not created any page. Create now"
         no_shipping_rate: "You have not created any shipping rate. Create now"
+        no_discount: "You have not created any discount. Create now"
       categories:
         title: "All Categories"
         add_category: "Add Category"
@@ -225,3 +228,9 @@ en:
       after_signup:
         generate_sample_data: "Do you want to generate sample data for your shop? Click Next to process"
         done: Setup done!
+      discounts:
+        title: "Coupons"
+        add_discount: "Add Coupon"
+        edit_discount: "Edit Coupon"
+        percentage: "Percentage"
+        fixed_amount: Fixed Amount"

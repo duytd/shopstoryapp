@@ -14,7 +14,12 @@ ko:
             subdomain:
               blank: "샵 이름을 입력하세요"
               invalid: "알파벳과 숫자만 입력 가능합니다. (E.g: example)"
-
+            discount:
+              attributes:
+                expiry_date:
+                  invalid: "must be greater than start date"
+                start_date:
+                  invalid: "must be greater than current date"
       format: "%{attribute} %{message}"
       messages:
         invalid: "유효하지 않은 값입니다."
@@ -156,3 +161,9 @@ ko:
         shipping_method_id: "Shipping method"
         tracking_code: "Tracking code"
         status: "Status"
+      discount:
+        code: "Coupon Code"
+        start_date: "Start Date"
+        expiry_date: "Expiry Date"
+        amount: "Amount"
+        discount_type: "Coupon Type"
