@@ -5,8 +5,9 @@ class Customer::ProductOrdersController < Customer::BaseController
   authorize_resource
   include CollectionsHelper
 
-  before_action :validate_order!, only: [:new, :update]
-  before_action :authenticate_order, only: :update
+  before_action :authenticate_customer!, only: [:verify_coupon, :remove_coupon]
+  before_action :validate_order!, only: [:new, :update, :verify_coupon, :remove_coupon]
+  before_action :authenticate_order, only: [:update, :verify_coupon, :remove_coupon]
 
   def new
     load_stripe_key
@@ -38,6 +39,24 @@ class Customer::ProductOrdersController < Customer::BaseController
     else
       render json: current_order.errors, status: :unprocessable_entity
     end
+  end
+
+  def verify_coupon
+    discount = DiscountService.verify params[:code], current_customer
+    current_order.add_discount discount, current_customer
+
+    render json: present(current_order), status: :ok
+  rescue InvalidDiscountCode
+    render json: {message: I18n.t("discounts.invalid")}, status: :unprocessable_entity
+  rescue UnavailableDiscountCode
+    render json: {message: I18n.t("discounts.unavailable")}, status: :unprocessable_entity
+  rescue AlreadyUsedDiscountCode
+    render json: {message: I18n.t("discounts.already_used")}, status: :unprocessable_entity
+  end
+
+  def remove_coupon
+    current_order.remove_discount
+    render json: present(current_order), status: :ok
   end
 
   private

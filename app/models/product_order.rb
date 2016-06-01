@@ -63,15 +63,17 @@ class ProductOrder < Order
     self.subtotal = calculate_subtotal
     self.shipping = calculate_shipping
     self.total = subtotal + shipping.to_f + tax
-    self.total = calculate_discount
+    unless discount.nil?
+      self.total = calculate_discount(total)
+    end
   end
 
   def calculate_subtotal
     self.subtotal = order_products.inject(0){|sum, item| sum + (item.quantity * item.unit_price)}
   end
 
-  def calculate_discount
-    DiscountService.new({discount: discount}).calculate(total) unless discount.nil?
+  def calculate_discount total_amount
+    DiscountService.new({discount: discount}).calculate(total_amount) unless discount.nil?
   end
 
   def calculate_shipping

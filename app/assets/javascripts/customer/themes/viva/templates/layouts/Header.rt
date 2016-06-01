@@ -10,6 +10,12 @@
       <a rt-if="this.props.globalVars.current_customer" href="{Routes.customer_account_path.localize()}">{I18n.t("buttons.my_account")}</a>
     </div>
 
+    <div class="pull-right">
+      <Currency
+        currency="{this.props.globalVars.currency}"
+        availableCurrencies="{this.props.globalVars.available_currencies}" />
+    </div>
+
     <div class="pull-right languages">
       <a href="?locale=ko" data-no-turbolink="true">{I18n.t("languages.korean")}</a>
       <a href="?locale=en" data-no-turbolink="true">{I18n.t("languages.english")}</a>
@@ -38,6 +44,7 @@
             </a>
           </li>
         </ul>
+
         <form class="navbar-form navbar-right" action="{Routes.customer_search_path.localize()}" method="get">
           <input name="q" type="text" placeholder="{I18n.t('search.placeholder')}" class="form-control" />
         </form>

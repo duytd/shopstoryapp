@@ -2,6 +2,15 @@ String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+String.prototype.convert = function() {
+  if (I18n.currency.toLowerCase() == "krw") {
+    return parseFloat(this);
+  }
+  else {
+    return parseFloat(this)/I18n.rate;
+  }
+}
+
 String.prototype.trimToLength = function(m) {
   return (this.length > m)
     ? jQuery.trim(this).substring(0, m).split(" ").slice(0, -1).join(" ") + "..."

@@ -9,7 +9,8 @@ class Order < ActiveRecord::Base
   has_one :payment_method, through: :payment
   has_one :shipment, dependent: :destroy
   has_one :shipping_method, through: :shipment
-  belongs_to :discount
+  has_one :customer_discount, dependent: :destroy
+  has_one :discount, through: :customer_discount
 
   validates :status, inclusion: {in: %w(incompleted pending processing processed cancelled)}
 
@@ -47,6 +48,14 @@ class Order < ActiveRecord::Base
 
   def unprocessed?
     incompleted? || pending? || cancelled?
+  end
+
+  def add_discount discount, customer
+    self.create_customer_discount discount_id: discount.id, customer_id: customer.id
+  end
+
+  def remove_discount
+    self.customer_discount.destroy unless customer_discount.nil?
   end
 
   def in_usd attr, exchange_rate

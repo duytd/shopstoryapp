@@ -1,6 +1,6 @@
 var DiscountForm = React.createClass({
   getInitialState: function () {
-    var discountType = this.props.discount ? this.props.discount.type : "percentage";
+    var discountType = this.props.discount ? this.props.discount.discount_type : "percentage";
 
     return {
       discountType: discountType,
@@ -43,7 +43,7 @@ var DiscountForm = React.createClass({
           </div>
 
           <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.discount.type")}</label>
+            <label className="label">{I18n.t("activerecord.attributes.discount.discount_type")}</label>
             <div className="select">
               <FormErrors errors={this.state.errors.type} />
               <select ref="discount_type" name="discount[discount_type]" className="form-control" onChange={this.switchDiscountType} defaultValue={this.state.discountType}>

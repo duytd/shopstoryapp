@@ -2,6 +2,12 @@
   <header id="header">
     <div class="container-fluid top">
       <div class="container">
+        <div class="pull-left">
+          <Currency
+            currency="{this.props.globalVars.currency}"
+            availableCurrencies="{this.props.globalVars.available_currencies}" />
+        </div>
+
         <div class="pull-right">
           <span rt-if="this.props.globalVars.current_customer == null" class="login">
             <a href="{Routes.new_customer_session_path.localize()}">{I18n.t("buttons.login")}</a>

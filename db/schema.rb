@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531070140) do
+ActiveRecord::Schema.define(version: 20160601033643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,18 @@ ActiveRecord::Schema.define(version: 20160531070140) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customer_discounts", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.integer  "discount_id"
+    t.integer  "order_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "customer_discounts", ["customer_id"], name: "index_customer_discounts_on_customer_id", using: :btree
+  add_index "customer_discounts", ["discount_id"], name: "index_customer_discounts_on_discount_id", using: :btree
+  add_index "customer_discounts", ["order_id"], name: "index_customer_discounts_on_order_id", using: :btree
+
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -150,9 +162,9 @@ ActiveRecord::Schema.define(version: 20160531070140) do
     t.date     "expiry_date"
     t.integer  "discount_type"
     t.decimal  "amount"
-    t.boolean  "active",        default: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.boolean  "active",        default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "email_templates", force: :cascade do |t|
@@ -226,11 +238,9 @@ ActiveRecord::Schema.define(version: 20160531070140) do
     t.string   "currency"
     t.string   "locale"
     t.datetime "paid_at"
-    t.integer  "discount_id"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
-  add_index "orders", ["discount_id"], name: "index_orders_on_discount_id", using: :btree
   add_index "orders", ["seller_id"], name: "index_orders_on_seller_id", using: :btree
 
   create_table "payment_method_option_shops", force: :cascade do |t|
@@ -707,11 +717,13 @@ ActiveRecord::Schema.define(version: 20160531070140) do
   add_foreign_key "banner_items", "banners"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
+  add_foreign_key "customer_discounts", "customers"
+  add_foreign_key "customer_discounts", "discounts"
+  add_foreign_key "customer_discounts", "orders"
   add_foreign_key "menu_items", "menus"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "variations"
   add_foreign_key "orders", "customers"
-  add_foreign_key "orders", "discounts"
   add_foreign_key "payment_method_option_shops", "payment_method_options"
   add_foreign_key "payment_method_option_shops", "payment_method_shops"
   add_foreign_key "payment_method_options", "payment_methods"

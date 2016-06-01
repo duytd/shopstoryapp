@@ -17,7 +17,7 @@ class Customer::SessionsController < Devise::SessionsController
   end
 
   def login_failed
-    return render json: {error: t("devise.failure.invalid", authentication_keys: :email)}, 
+    return render json: {error: t("devise.failure.invalid", authentication_keys: :email)},
       status: :unauthorized
   end
 end

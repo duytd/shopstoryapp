@@ -30,12 +30,12 @@ class Ability
       can :read, Order
       can [:read], Customer
       can :manage, OrderProduct
-      can [:read, :create, :update], Order
+      can [:read, :create, :update, :verify_coupon, :remove_coupon], Order
     else
       can [:read, :filter], Category
       can :read, Product
       can :manage, OrderProduct
-      can [:read, :create, :update], Order
+      can [:read, :create, :update, :verify_coupon, :remove_coupon], Order
     end
   end
 

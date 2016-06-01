@@ -4,6 +4,7 @@ class Customer::ProductOrderPresenter < Customer::BasePresenter
     shipping_address = @object.shipping_address ? present(@object.shipping_address) : nil
     billing_address = @object.billing_address ? present(@object.billing_address) : nil
     payment = @object.payment ? present(@object.payment) : nil
+    discount = @object.discount ? present(@object.discount) : nil
 
     {
       id: @object.id,
@@ -19,6 +20,7 @@ class Customer::ProductOrderPresenter < Customer::BasePresenter
       shipping_address: shipping_address,
       billing_address: billing_address,
       payment: payment,
+      discount: discount,
       order_products: @object.order_products.map{|o| present(o) },
       created_at: @object.created_at,
       updated_at: @object.updated_at

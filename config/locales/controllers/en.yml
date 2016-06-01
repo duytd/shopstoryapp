@@ -1,3 +1,7 @@
 en:
   registrations:
     blank_shop_name: "You must provide a shop name"
+  discounts:
+    invalid: "Invalid coupon code"
+    unavailable: "This coupon code is not available"
+    already_used: "You have already used this coupon in previous purchase"

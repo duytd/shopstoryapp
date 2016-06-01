@@ -4,15 +4,25 @@ end
 class InvalidDiscountCode < StandardError
 end
 
+class AlreadyUsedDiscountCode < StandardError
+end
+
 class DiscountService
   def initialize params
     @discount = params[:discount]
   end
 
-  def verify code
+  def self.verify code, customer
     discount = Discount.find_by code: code
     raise InvalidDiscountCode if discount.nil?
-    raise UnavailableDiscountCode if discount.start_date < Time.zone.now || discount.expiry_date > Time.zone.now
+
+    if !discount.active? || discount.start_date > Time.zone.now || discount.expiry_date < Time.zone.now
+      raise UnavailableDiscountCode
+    end
+
+    unless customer.customer_discounts.where(discount_id: discount).empty?
+      raise AlreadyUsedDiscountCode
+    end
 
     return discount
   end

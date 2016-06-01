@@ -57,6 +57,8 @@ gem "elasticsearch-rails"
 gem "elasticsearch-model-globalize"
 gem "apartment-sidekiq"
 gem "intercom-rails"
+gem "i18n_data"
+gem "geocoder"
 
 group :development, :test do
   gem "byebug"
@@ -81,7 +83,7 @@ group :development do
   gem "bullet"
   gem "rails_best_practices"
   gem "rack-mini-profiler"
-   gem "brakeman", require: false
+  gem "brakeman", require: false
   gem "capistrano",         require: false
   gem "capistrano-rvm",     require: false
   gem "capistrano-rails",   require: false

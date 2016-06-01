@@ -326,6 +326,12 @@ label {
   img.payment-method-image {
     margin: 0 0 10px 10px;
   }
+  .coupon {
+    margin: 5px;
+    label, input, button {
+      margin: 5px;
+    }
+  }
   form {
     p {
       margin: 0;

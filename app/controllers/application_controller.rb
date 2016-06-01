@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale, :authenticate
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || get_user_locale
   end
 
   def default_url_options options = {}
@@ -28,6 +28,17 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  def get_user_locale
+    request_country = request.location.country
+    country_code = I18nData.country_code(request_country)
+
+    if country_code.present? && [:en, :ko].include?(country_code.downcase.to_sym)
+      country_code
+    else
+      I18n.default_locale
+    end
+  end
+
   def authenticate
     if params[:session_id].present?
       session[:session_id] = params[:session_id]

@@ -35,14 +35,14 @@
       </div>
       <div class="col-sm-6">
         <h3>{I18n.t("customers.order.order_detail")}</h3>
-        <p>{I18n.t("customers.order.total")} - {I18n.toCurrency(this.props.order.total, {precision: 0, unit: this.props.order.currency})}</p>
+        <p>{I18n.t("customers.order.total")} - {I18n.toCurrency(this.props.order.total.convert(), {precision: 0, unit: this.props.order.currency})}</p>
         <table class="table">
           <tr rt-repeat="orderProduct in this.props.order.order_products" key="order_product_{orderProductIndex}">
             <td>
               {orderProduct.product.name_ko} <i>{orderProduct.product.name_en}</i>
             </td>
             <td>
-              {I18n.toCurrency(orderProduct.unit_price, {precision: 0, unit: this.props.order.currency})}
+              {I18n.toCurrency(orderProduct.unit_price.convert(), {precision: 0, unit: this.props.order.currency})}
             </td>
             <td>
               {orderProduct.quantity}</i>
@@ -64,8 +64,8 @@
         <h3>{I18n.t("customers.order.booking_detail")}</h3>
         <div class="qrcode" dangerouslySetInnerHTML="{{__html: this.props.qrcode}}" />
         <p>{this.props.order.ticket_bookings[0].ticket.event_name}</p>
-        <p>{this.props.order.ticket_bookings[0].ticket.name} - {this.props.order.ticket_bookings[0].quantity} - {I18n.toCurrency(this.props.order.ticket_bookings[0].ticket.price, {precision: 0, unit: this.props.order.currency})}</p>
-        <p>{I18n.t("customers.order.total")} - {I18n.toCurrency(this.props.order.total, {precision: 0, unit: this.props.order.currency})}</p>
+        <p>{this.props.order.ticket_bookings[0].ticket.name} - {this.props.order.ticket_bookings[0].quantity} - {I18n.toCurrency(this.props.order.ticket_bookings[0].ticket.price.convert(), {precision: 0, unit: this.props.order.currency})}</p>
+        <p>{I18n.t("customers.order.total")} - {I18n.toCurrency(this.props.order.total.convert(), {precision: 0, unit: this.props.order.currency})}</p>
         <p>{I18n.t("customers.order.ticket_sent_at")} - {this.props.order.ticket_sent_at}</p>
       </div>
     </div>

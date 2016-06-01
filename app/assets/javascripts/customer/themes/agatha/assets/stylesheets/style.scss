@@ -347,6 +347,12 @@ label {
   img.payment-method-image {
     margin: 0 0 10px 10px;
   }
+  .coupon {
+    margin: 5px;
+    label, input, button {
+      margin: 5px;
+    }
+  }
   .steps {
     list-style-type: none;
     display: block;
@@ -460,6 +466,10 @@ label {
 }
 
 /* Banner */
+.owl-carousel {
+  margin-top: -20px;
+}
+
 .owl-item {
   max-height: 600px;
   .text {

@@ -35,6 +35,8 @@
         currency="{this.props.globalVars.currency}"
       />
 
+      <Coupon rt-if="this.props.globalVars.current_customer" updateOrder="{this.updateOrder}" order="{this.state.order}" />
+
       <Shipping
         rt-if="this.state.order.shipping_address"
         editing="{true}"

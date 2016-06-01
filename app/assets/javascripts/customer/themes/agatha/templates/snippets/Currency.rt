@@ -1,0 +1,5 @@
+<form ref="form" action="{Routes.customer_currency_path.localize()}" method="post">
+    <select name="currency" defaultValue="{this.props.currency}" onChange="{this.submit}">
+      <option rt-repeat="currency in this.props.availableCurrencies" key="currency_{currencyIndex}" value="{currency}">{currency}</option>
+    </select>
+</form>

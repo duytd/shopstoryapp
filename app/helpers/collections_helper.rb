@@ -4,7 +4,14 @@ module CollectionsHelper
   end
 
   def all_currencies
-    Money::Currency.table.map{|c| [c[1][:iso_code], "#{c[1][:name]} (#{c[1][:iso_code]})"]}
+    currencies = []
+    Money::Currency.table.each do |c|
+      if ["KRW", "USD"].include?(c[1][:iso_code])
+        currencies << [c[1][:iso_code], "#{c[1][:name]} (#{c[1][:iso_code]})"]
+      end
+    end
+
+    currencies
   end
 
   def all_countries

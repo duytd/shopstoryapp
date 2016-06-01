@@ -19,6 +19,9 @@ class Customer < ActiveRecord::Base
   has_many :product_orders
   has_many :bookings, class_name: "ShopstoryTicket::Booking",
     dependent: :destroy, inverse_of: :customer
+  has_many :customer_discounts, dependent: :destroy
+  has_many :discounts, through: :customer_discounts
+  has_many :discounted_orders, through: :customer_discounts, class_name: "Order", source: "order_id"
 
   validates_acceptance_of :term, :privacy, allow_nil: false, on: :create
 

@@ -54,14 +54,17 @@ Rails.application.routes.draw do
     get :cart, to: "pages#cart"
     get :account, to: "customers#show", path: "my-account"
     get :search, to: "search#search"
+    post :currency, to: "currency#change"
 
     resources :categories, only: [:index, :show] do
       get :filter, on: :member
     end
-
     resources :products, only: [:index, :show]
     resources :custom_pages, only: [:show]
-    resources :product_orders, only: [:create, :update]
+    resources :product_orders, only: [:create, :update] do
+      post :verify_coupon, on: :collection
+      delete :remove_coupon, on: :collection
+    end
     resources :product_orders, only: [:new], path: "checkout"
     resources :orders, only: :show
 

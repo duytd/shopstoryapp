@@ -1,3 +1,7 @@
-ko:
+en:
   registrations:
     blank_shop_name: "샵 이름을 입력해야합니다"
+  discounts:
+    invalid: "Invalid coupon code"
+    unavailable: "This coupon code is not available"
+    already_used: "You have already used this coupon in previous purchase"
