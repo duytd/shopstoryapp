@@ -1,4 +1,4 @@
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="row checkout">
     <div class="col-sm-6">
       <h2>{I18n.t("checkout.texts.returning_customer")}</h2>

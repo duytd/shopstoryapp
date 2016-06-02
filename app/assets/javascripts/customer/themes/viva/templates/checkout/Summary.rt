@@ -6,7 +6,7 @@
   </p>
   <p>
     <label>{I18n.t("checkout.summary.shipping")} :</label>
-    <i>{(this.props.step == "shipping") ? I18n.t("checkout.summary.not_yet_calculated") : I18n.toCurrency(this.props.order.shipping, {precision: 0, unit: this.props.currency})}</i>
+    <i>{I18n.toCurrency(this.props.order.shipping, {precision: 0, unit: this.props.currency})}</i>
   </p>
   <p rt-if="this.props.order.discount">
     <label>{I18n.t("checkout.summary.coupon")} :</label>
@@ -22,7 +22,7 @@
     {I18n.toCurrency(this.props.order.total.convert(), {precision: 0, unit: this.props.currency})}
   </p>
   <div class="cart-items">
-    <div rt-repeat="item in this.props.globalVars.cart" key="item_{itemIndex}" class="row item">
+    <div rt-repeat="item in this.props.globalVars.order.cart" key="item_{itemIndex}" class="row item">
       <div class="col-xs-3">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
           <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-responsive image" />

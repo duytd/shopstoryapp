@@ -28,7 +28,7 @@ var Header = React.createClass({
   updateItemCount: function() {
     var itemCount = 0;
 
-    this.props.globalVars.cart.forEach(function(item) {
+    this.props.globalVars.order.cart.forEach(function(item) {
       itemCount += item.quantity;
     })
 

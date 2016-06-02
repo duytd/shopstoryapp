@@ -34,7 +34,7 @@ module ShopsLoading
       currency: current_currency,
       available_currencies: ["KRW", "USD"],
       exchange_rate: current_shop.exchange_rate || 10000,
-      cart: current_order.order_products.includes(:variation).map{|op| present(op)},
+      order: present(current_order),
       mobile: browser.device.mobile?,
       menu: {
         main: @main_menu ? present(@main_menu) : nil,

@@ -40,9 +40,7 @@ var Product = React.createClass({
       method: "post",
       dataType: "json",
       success: function(data) {
-        var cartData = data;
-
-        this.updateCart(cartData);
+        this.updateOrder(data);
         this.openCart();
       }.bind(this),
       error: function(xhr) {

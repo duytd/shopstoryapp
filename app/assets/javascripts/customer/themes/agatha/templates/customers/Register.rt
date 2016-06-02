@@ -1,4 +1,4 @@
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="register col-md-6 col-md-offset-3">
     <h1 class="title text-center">{I18n.t("customers.register.title")}</h1>
     <form ref="form" method="post" acceptCharset="UTF-8" action="{Routes.customer_registration_path.localize()}" class="form-horizontal" onSubmit="{this.submit}">

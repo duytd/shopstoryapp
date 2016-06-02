@@ -1,4 +1,4 @@
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="category container">
     <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
 

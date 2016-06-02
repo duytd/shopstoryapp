@@ -1,4 +1,4 @@
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="login col-md-6 col-md-offset-3">
     <h1 class="title">{I18n.t("customers.login.title")}</h1>
     <LoginForm />

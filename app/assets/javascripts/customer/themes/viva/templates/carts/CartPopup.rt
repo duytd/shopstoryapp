@@ -6,7 +6,7 @@
       </a>
     </div>
 
-    <a rt-if="this.props.globalVars.cart.length > 0" class="btn btn-primary"
+    <a rt-if="this.props.globalVars.order.cart.length > 0" class="btn btn-primary"
       href="{(this.props.globalVars.current_customer) ? Routes.new_customer_product_order_path.localize() : Routes.customer_checkout_path.localize()}">{I18n.t("cart.buy_now")}</a>
     <a class="btn btn-default" onClick="{this.props.closeCart}">
       {I18n.t("cart.continue_shopping")}
@@ -17,9 +17,9 @@
     <Errors rt-if="this.props.cartErrors && this.props.cartErrors.length > 0" errors="{this.props.cartErrors}" />
     <Errors rt-if="this.state.cartErrors && this.state.cartErrors.length > 0" errors="{this.state.cartErrors}" />
 
-    {(this.props.globalVars.cart.length == 0) ? I18n.t("cart.empty") : null}
+    {(this.props.globalVars.order.cart.length == 0) ? I18n.t("cart.empty") : null}
 
-    <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.cart">
+    <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.order.cart">
       <div class="col-xs-3">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
           <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-responsive image" />

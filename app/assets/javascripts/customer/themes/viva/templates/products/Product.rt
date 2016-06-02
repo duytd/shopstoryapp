@@ -2,7 +2,7 @@
   globalVars="{this.state.globalVars}"
   isCartOpened="{this.state.isCartOpened}"
   closeCart="{this.closeCart}"
-  updateCart="{this.updateCart}"
+  updateOrder="{this.updateOrder}"
   cartErrors="{this.state.cartErrors}"
   setCartErrors="{this.setCartErrors}"
   emptyCartErrors="{this.emptyCartErrors}">

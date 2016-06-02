@@ -1,17 +1,17 @@
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="row checkout-form">
     <div class="col-sm-8">
       <ul class="steps">
         <li rt-repeat="step in ['shipping', 'billing']" key="step_{stepIndex}">
-          <span class="badge {(this.state.order.current_step == step) ? 'active' : null}">{stepIndex+1}</span>
+          <span class="badge {(this.props.globalVars.order.current_step == step) ? 'active' : null}">{stepIndex+1}</span>
           {I18n.t("checkout.steps." + step)}
         </li>
       </ul>
 
       <Billing
-        rt-if="this.state.order.shipping_address"
+        rt-if="this.props.globalVars.order.shipping_address"
         mobile="{this.props.globalVars.mobile}"
-        order="{this.state.order}"
+        order="{this.props.globalVars.order}"
         payment_method_shops="{this.props.payment_method_shops}"
         countries="{this.props.countries}"
         default_country="{this.props.default_country}"
@@ -19,9 +19,9 @@
         updateOrder="{this.updateOrder}" />
 
       <Shipping
-        rt-if="this.state.order.shipping_address == null"
+        rt-if="this.props.globalVars.order.shipping_address == null"
         editing="{false}"
-        order="{this.state.order}"
+        order="{this.props.globalVars.order}"
         updateOrder="{this.updateOrder}"
         countries="{this.props.countries}"
         default_country="{this.props.default_country}" />
@@ -29,18 +29,18 @@
 
     <div class="col-sm-4">
       <Summary
-        step="{this.state.order.current_step}"
-        order="{this.state.order}"
+        step="{this.props.globalVars.order.current_step}"
+        order="{this.props.globalVars.order}"
         globalVars="{this.state.globalVars}"
         currency="{this.props.globalVars.currency}"
       />
 
-      <Coupon rt-if="this.props.globalVars.current_customer" updateOrder="{this.updateOrder}" order="{this.state.order}" />
+      <Coupon rt-if="this.props.globalVars.current_customer" updateOrder="{this.updateOrder}" order="{this.props.globalVars.order}" />
 
       <Shipping
-        rt-if="this.state.order.shipping_address"
+        rt-if="this.props.globalVars.order.shipping_address"
         editing="{true}"
-        order="{this.state.order}"
+        order="{this.props.globalVars.order}"
         updateOrder="{this.updateOrder}"
         countries="{this.props.countries}"
         default_country="{this.props.default_country}" />

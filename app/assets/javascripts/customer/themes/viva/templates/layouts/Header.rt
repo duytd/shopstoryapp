@@ -57,7 +57,7 @@
     isCartOpened = "{(this.props.isCartOpened) ? this.props.isCartOpened : this.state.isCartOpened}"
     openCart = "{this.openCart}"
     closeCart = "{this.closeCart}"
-    updateCart = "{this.props.updateCart}"
+    updateOrder = "{this.props.updateOrder}"
     cartErrors = "{this.props.cartErrors}"
     setCartErrors = "{this.props.setCartErrors}"
     emptyCartErrors = "{this.props.emptyCartErrors}"

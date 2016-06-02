@@ -1,4 +1,4 @@
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="account container">
     <h1>{I18n.t("customers.account.title")}</h1>
 

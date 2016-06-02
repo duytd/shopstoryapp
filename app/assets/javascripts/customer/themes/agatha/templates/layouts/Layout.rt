@@ -2,7 +2,7 @@
   <Header
     globalVars="{this.props.globalVars}"
     closeCart="{this.props.closeCart}"
-    updateCart="{this.props.updateCart}"
+    updateOrder="{this.props.updateOrder}"
     isCartOpened="{this.props.isCartOpened}"
     cartErrors="{this.props.cartErrors}"
     setCartErrors="{this.props.setCartErrors}"

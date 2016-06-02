@@ -4,10 +4,10 @@ var CartMixin = {
       globalVars: this.props.globalVars
     };
   },
-  updateCart: function(cartData) {
+  updateOrder: function(order) {
     var globalVars = this.state.globalVars;
 
-    globalVars.cart = cartData;
+    globalVars.order = order;
     this.setState({globalVars: globalVars});
   }
 }

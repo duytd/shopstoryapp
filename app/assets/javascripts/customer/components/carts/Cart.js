@@ -25,9 +25,7 @@ var Cart = React.createClass({
       method: "delete",
       dataType: "json",
       success: function(data) {
-        var cartData = data;
-
-        this.updateCart(cartData);
+        this.updateOrder(data);
         this.emptyCartErrors();
       }.bind(this)
     });
@@ -58,9 +56,7 @@ var Cart = React.createClass({
       method: "put",
       dataType: "json",
       success: function(data) {
-        var cartData = data;
-
-        this.updateCart(cartData);
+        this.updateOrder(data);
         this.emptyCartErrors();
       }.bind(this),
       error: function(xhr) {

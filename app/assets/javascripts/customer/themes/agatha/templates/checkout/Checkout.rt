@@ -1,5 +1,5 @@
 
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="checkout container">
     <div class="row">
       <div class="col-sm-6">

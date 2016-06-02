@@ -4,16 +4,17 @@ class Customer::OrderProductsController < Customer::BaseController
   before_action :authenticate_order_product, only: [:update, :destroy]
 
   def create
-    save_current_order!
+    quantity = params[:order_product][:quantity]
+    variation_id = params[:order_product][:variation_id]
 
-    if order_product = current_order.order_products.find_by(variation_id: params[:order_product][:variation_id])
-      order_product.quantity = order_product.quantity + params[:order_product][:quantity].to_i
-    else
-      order_product = current_order.order_products.new order_product_params
-    end
+    result = OrderService.new({order: current_order}).add_item variation_id, quantity
+    order_product = result[:item]
+
+    set_order_token(result[:token]) if result[:token]
 
     if order_product.save
-      render json: current_order.order_products.map{|op| present(op)}, status: :ok
+      current_order.save
+      render json: present(current_order), status: :ok
     else
       render json: order_product.errors.full_messages, status: :unprocessable_entity
     end
@@ -21,7 +22,8 @@ class Customer::OrderProductsController < Customer::BaseController
 
   def update
     if @order_product.update order_product_params
-      render json: current_order.order_products.map{|op| present(op)}, status: :ok
+      current_order.save
+      render json: present(current_order), status: :ok
     else
       render json: @order_product.errors.full_messages, status: :unprocessable_entity
     end
@@ -29,7 +31,8 @@ class Customer::OrderProductsController < Customer::BaseController
 
   def destroy
     @order_product.destroy
-    render json: current_order.order_products.map{|op| present(op)}, status: :ok
+    current_order.save
+    render json: present(current_order), status: :ok
   end
 
   private
@@ -37,11 +40,8 @@ class Customer::OrderProductsController < Customer::BaseController
     params.require(:order_product).permit :variation_id, :quantity
   end
 
-  def save_current_order!
-    unless current_order.persisted?
-      current_order.save!
-      cookies.permanent.signed[:order_token] = current_order.token
-    end
+  def set_order_token token
+    cookies.permanent.signed[:order_token] = token
   end
 
   def authenticate_order

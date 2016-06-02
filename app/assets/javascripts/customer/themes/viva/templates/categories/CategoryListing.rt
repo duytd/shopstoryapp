@@ -6,7 +6,7 @@
         <h2>{translate(category,"name")}</h2>
       </a>
       <div class="row">
-        <ProductItem rt-repeat="product in category.products" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
+        <ProductItem rt-repeat="product in category.products.slice(0, 4)" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<Layout globalVars="{this.props.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.props.globalVars}" updateOrder="{this.updateOrder}">
   <div class="category-listing container">
     <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
 
@@ -9,7 +9,7 @@
         </div>
       </a>
       <div class="row">
-        <ProductItem rt-repeat="product in category.products" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
+        <ProductItem rt-repeat="product in category.products.slice(0, 4)" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
       </div>
     </div>
   </div>

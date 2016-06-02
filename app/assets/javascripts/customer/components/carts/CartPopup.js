@@ -20,9 +20,7 @@ var CartPopup = React.createClass({
       method: "delete",
       dataType: "json",
       success: function(data) {
-        var cartData = data;
-
-        this.props.updateCart(cartData);
+        this.props.updateOrder(data);
         this.emptyCartErrors();
       }.bind(this)
     });
@@ -53,9 +51,7 @@ var CartPopup = React.createClass({
       method: "put",
       dataType: "json",
       success: function(data) {
-        var cartData = data;
-
-        this.props.updateCart(cartData);
+        this.props.updateOrder(data);
         this.emptyCartErrors();
       }.bind(this),
       error: function(xhr) {

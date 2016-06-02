@@ -1,4 +1,4 @@
-<Layout globalVars="{this.state.globalVars}" updateCart="{this.updateCart}">
+<Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="order">
     <h1 rt-if="this.props.order.type == 'product_order'">{I18n.t("customers.order.your_order")} #{this.props.order.id}</h1>
     <h1 rt-if="this.props.order.type == 'shopstory_ticket/booking'">{I18n.t("customers.order.your_ticket")} #{this.props.order.id}</h1>
