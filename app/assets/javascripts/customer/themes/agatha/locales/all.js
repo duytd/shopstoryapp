@@ -12,7 +12,9 @@ I18n.translations = {
       "my_account": "My account",
       "accept": "Accept",
       "decline": "Decline",
-      "buy_now": "Buy Now"
+      "buy_now": "Buy Now",
+      "apply": "Apply",
+      "remove": "Remove"
     },
     "customers": {
       "login": {
@@ -99,7 +101,9 @@ I18n.translations = {
         "title": "Order Summary",
         "subtotal": "Subtotal",
         "shipping": "Shipping",
-        "not_yet_calculated": "Not yet calculated"
+        "not_yet_calculated": "Not yet calculated",
+        "total": "Total",
+        "coupon": "Coupon"
       },
       "shipping": {
         "name": "Name",
@@ -168,6 +172,9 @@ I18n.translations = {
         "other": "%{count} results found"
       },
       "placeholder": "Search"
+    },
+    "coupon": {
+      "title": "Coupon"
     }
   },
   "ko": {
@@ -182,7 +189,9 @@ I18n.translations = {
       "my_account": "마이 페이지",
       "accept": "Accept",
       "decline": "Decline",
-      "buy_now": "Buy Now"
+      "buy_now": "Buy Now",
+      "apply": "Apply",
+      "remove": "Remove"
     },
     "customers": {
       "login": {
@@ -269,7 +278,9 @@ I18n.translations = {
         "title": "주문 정보",
         "subtotal": "상품 합계",
         "shipping": "배송료",
-        "not_yet_calculated": "아직 계산되지 않았습니다."
+        "not_yet_calculated": "아직 계산되지 않았습니다.",
+        "total": "Total",
+        "coupon": "Coupon"
       },
       "shipping": {
         "name": "이름",
@@ -339,5 +350,8 @@ I18n.translations = {
       },
       "placeholder": "Search"
     }
+  },
+  "coupon": {
+    "title": "Coupon"
   }
 }

@@ -129,7 +129,6 @@ namespace :deploy do
     end
   end
 
-
   before "deploy:assets:precompile",    :npm_install
   before "deploy:assets:precompile",    :update_routes
   before :starting,     :check_revision

@@ -10,7 +10,9 @@
     "my_account": "My account",
     "accept": "Accept",
     "decline": "Decline",
-    "buy_now": "Buy Now"
+    "buy_now": "Buy Now",
+    "apply": "Apply",
+    "remove": "Remove"
   },
   "customers": {
     "login": {
@@ -98,7 +100,9 @@ Your order will be confirmed immediately after the payment has been made",
       "title": "Order Summary",
       "subtotal": "Subtotal",
       "shipping": "Shipping",
-      "not_yet_calculated": "Not yet calculated"
+      "not_yet_calculated": "Not yet calculated",
+      "total": "Total",
+      "coupon": "Coupon"
     },
     "shipping": {
       "name": "Name",
@@ -167,5 +171,8 @@ Your order will be confirmed immediately after the payment has been made",
       "other": "%{count} results found"
     },
     "placeholder": "Search"
+  },
+  "coupon": {
+    "title": "Coupon"
   }
 }

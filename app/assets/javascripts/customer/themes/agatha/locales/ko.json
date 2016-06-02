@@ -10,7 +10,9 @@
     "my_account": "마이 페이지",
     "accept": "Accept",
     "decline": "Decline",
-    "buy_now": "Buy Now"
+    "buy_now": "Buy Now",
+    "apply": "Apply",
+    "remove": "Remove"
   },
   "customers": {
     "login": {
@@ -98,7 +100,9 @@
       "title": "주문 정보",
       "subtotal": "상품 합계",
       "shipping": "배송료",
-      "not_yet_calculated": "아직 계산되지 않았습니다."
+      "not_yet_calculated": "아직 계산되지 않았습니다.",
+      "total": "Total",
+      "coupon": "Coupon"
     },
     "shipping": {
       "name": "이름",
@@ -167,5 +171,8 @@
       "other": "%{count} results found"
     },
     "placeholder": "Search"
+  },
+  "coupon": {
+    "title": "Coupon"
   }
 }
