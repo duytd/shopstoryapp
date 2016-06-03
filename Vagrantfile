@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu-14.04"
+  config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -45,13 +45,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
   #   # Don't boot with headless mode
   #   vb.gui = true
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
-  # end
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
   #
   # View the documentation for the provider you're using for more
   # information on available options.
@@ -86,16 +86,36 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  # config.vm.provision "chef_solo" do |chef|
-  #   chef.cookbooks_path = "../my-recipes/cookbooks"
+  config.vm.provision "chef_solo" do |chef|
+     chef.cookbooks_path = ["cookbooks"]
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
-  #   chef.add_recipe "mysql"
-  #   chef.add_role "web"
+    chef.add_recipe "apt"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "ruby_build"
+    chef.add_recipe "rvm::user"
+    chef.add_recipe "rvm::vagrant"
+    chef.add_recipe "vim"
+    chef.add_recipe "postgresql::server"
+    chef.add_recipe "postgresql::client"
   #
   #   # You may also specify custom JSON attributes:
   #   chef.json = { mysql_password: "foo" }
-  # end
+    chef.json = {
+      rvm: {
+        user_installs: [{
+          user: 'vagrant',
+          rubies: ["2.2.1"],
+          global: "2.2.1",
+          gems: {
+            "2.2.1" => [
+              { name: "bundler" }
+            ]
+          }
+        }]
+      }
+    }
+  end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).

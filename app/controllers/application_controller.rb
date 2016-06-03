@@ -29,14 +29,17 @@ class ApplicationController < ActionController::Base
 
   protected
   def get_user_locale
-    request_country = request.location.country
-    country_code = I18nData.country_code(request_country)
+    extracted_locale = extract_locale_from_accept_language_header
 
-    if country_code.present? && [:en, :ko].include?(country_code.downcase.to_sym)
-      country_code
+    if [:en, :ko].include?(extracted_locale)
+      extracted_locale
     else
       I18n.default_locale
     end
+  end
+
+  def extract_locale_from_accept_language_header
+    request.env["HTTP_ACCEPT_LANGUAGE"].scan(/^[a-z]{2}/).first
   end
 
   def authenticate
