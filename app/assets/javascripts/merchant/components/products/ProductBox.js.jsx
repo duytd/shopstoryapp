@@ -50,6 +50,9 @@ var ProductBox = React.createClass({
       method: "POST",
       success: function(data) {
         Turbolinks.visit(Routes.merchant_products_path.localize());
+      },
+      error: function(xhr) {
+        alert(xhr.responseJSON.message);
       }
     })
   },
@@ -70,7 +73,7 @@ var ProductBox = React.createClass({
     link.href = "data:text/csv;charset=utf-8," + encodeURI(data);
     link.style = "visibility:hidden";
     link.target = "_blank";
-    link.download = (new Date()).getTime() + ".csv";
+    link.download = "products-" + (new Date()).getDate() + "-" + (new Date()).getMonth() + "-" + (new Date()).getFullYear() + ".csv";
 
     document.body.appendChild(link);
     link.click();

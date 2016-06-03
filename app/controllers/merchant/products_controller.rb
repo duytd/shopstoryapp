@@ -74,8 +74,14 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def import
-    Product.import params[:file]
-    render nothing: true, status: :ok
+    ImportExportService.new({klass: "Product", attributes: Product::ATTRIBUTES}).import params[:file]
+    render json: nil, status: :ok
+  rescue InvalidExtensionException
+    render json: {message: I18n.t("import.invalid_extension")}, status: :bad_request
+  rescue RowLimitExceededException
+    render json: {message: I18n.t("import.row_limit_exceeded")}, status: :bad_request
+  rescue SpreadSheetNotFoundException
+    render json: {message: I18n.t("import.not_found")}, status: :bad_request
   end
 
   def export
@@ -85,7 +91,7 @@ class Merchant::ProductsController < Merchant::BaseController
       @products = Product.where id: params[:product_ids]
     end
 
-    send_data @products.to_csv
+    send_data ImportExportService.new({klass: "Product", attributes: Product::ATTRIBUTES}).export
   end
 
   private

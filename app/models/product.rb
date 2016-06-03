@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  ATTRIBUTES = %w{id slug name_ko name_en description_ko description_en sku vendor in_stock price sale_off visibility featured flat_shipping_rate pay_shipping_on_delivery}
+
   include Orderable
   include Searchable
 
@@ -111,32 +113,8 @@ class Product < ActiveRecord::Base
     return true
   end
 
-  def self.import file
-    spreadsheet = open_spreadsheet file
-
-    unless spreadsheet.nil?
-      header = spreadsheet.row 1
-
-      (2..spreadsheet.last_row).each do |i|
-        row = Hash[[header, spreadsheet.row(i)].transpose]
-        product = find_by_id(row["id"]) || new
-        product.attributes = row.to_hash.slice *Product.attribute_names
-        product.save!
-      end
-    end
-  end
-
   def self.search_by_name query
     with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
-  end
-
-  def self.to_csv options={}
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |product|
-        csv << product.attributes.values_at(*column_names)
-      end
-    end
   end
 
   def self.search_fields
@@ -144,17 +122,6 @@ class Product < ActiveRecord::Base
   end
 
   private
-  def self.open_spreadsheet file
-    case File.extname(file.original_filename)
-    when ".csv"
-      Roo::CSV.new file.path
-    when ".xlsx"
-      Roo::Excelx.new file.path
-    else
-      nil
-    end
-  end
-
   def update_inventory
     unless variations.not_master.count == 0
       self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}
