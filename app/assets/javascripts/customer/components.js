@@ -20,6 +20,7 @@ Banner = require('customer/components/snippets/Banner.js');
 Breadcrumb = require('customer/components/snippets/Breadcrumb.js');
 Menu = require('customer/components/snippets/Menu.js');
 Currency = require('customer/components/snippets/Currency.js');
+SocialShare = require('customer/components/snippets/SocialShare.js');
 
 /* Layout */
 Layout = require('customer/components/layouts/Layout.js');

@@ -11,6 +11,7 @@
     "bootstrap-datepicker": "latest",
     "Chart.js": "latest",
     "owl.carousel": "latest",
-    "bootstrap-switch": "latest"
+    "bootstrap-switch": "latest",
+    "korea-share-button": "https://github.com/duytd/korean-share-button.git"
   }
 }

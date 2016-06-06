@@ -54,7 +54,7 @@ class ImportExportService
   end
 
   def import_spreadsheet file_path, extension, image=false
-    raise SpreadSheetNotFoundException if file_path = nil
+    raise SpreadSheetNotFoundException if file_path.nil?
     raise InvalidExtensionException unless [".csv", ".xlsx"].include?(extension)
 
     spreadsheet = (extension == ".csv") ? Roo::CSV.new(file_path) : Roo::Excelx.new(file_path)
@@ -85,6 +85,6 @@ class ImportExportService
   end
 
   def import_product_images product, image_path
-    product.product_images.create! image: File.new(image_path), featured: true
+    product.product_images.create image: File.new(image_path), featured: true
   end
 end

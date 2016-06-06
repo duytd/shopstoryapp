@@ -114,3 +114,24 @@ label.required:after {
   position: fixed !important;
   top: 150px !important;
 }
+
+share-button {
+  display: none;
+  background: none;
+  &:hover, &:focus {
+    display: none;
+    background: none;
+  }
+  .sb-social {
+    &.sb-center {
+      top: 0;
+      left: 0;
+      &.sb-top {
+        transform: none;
+      }
+    }
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+  }
+}
