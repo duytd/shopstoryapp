@@ -6,10 +6,14 @@ class EmailTemplateService
   end
 
   def create_initial_data
+    templates = []
+
     Dir.glob("#{TEMPLATE_PATH}/**/*.liquid") do |file|
       file_name = File.basename file
       file_content = File.read file
-      EmailTemplate.create name: file_name, content: file_content
+      templates << EmailTemplate.new(name: file_name, content: file_content)
     end
+
+    EmailTemplate.import templates
   end
 end

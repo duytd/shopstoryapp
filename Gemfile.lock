@@ -78,6 +78,8 @@ GEM
       activemodel (= 4.2.3)
       activesupport (= 4.2.3)
       arel (~> 6.0)
+    activerecord-import (0.13.0)
+      activerecord (>= 3.0)
     activesupport (4.2.3)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -222,7 +224,6 @@ GEM
       thor (~> 0.14)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    geocoder (1.2.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     globalize (5.0.1)
@@ -474,6 +475,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   actionpack-action_caching
+  activerecord-import
   acts_as_tree
   apartment
   apartment-sidekiq
@@ -506,11 +508,9 @@ DEPENDENCIES
   faker
   figaro
   friendly_id (~> 5.1.0)
-  geocoder
   globalize (~> 5.0.0)
   globalize-accessors
   i18n-js (~> 2.1.2)
-  i18n_data
   inicis-standard-rails!
   intercom-rails
   jbuilder (~> 2.0)

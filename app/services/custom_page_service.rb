@@ -27,7 +27,7 @@ class CustomPageService
     privacy_content_en = File.read "#{SAMPLE_DATA_PATH}/privacy_policy.en.html"
     privacy_content_ko = File.read "#{SAMPLE_DATA_PATH}/privacy_policy.ko.html"
 
-    CustomPage.create(
+    CustomPage.new(
       title_en: "Privacy Policy",
       title_ko: "개인정보 취급방침 및 청소년보호정책",
       content_en: privacy_content_en,

@@ -21,6 +21,8 @@ en:
       title: "Showcase"
     preview:
       title: "Preview"
+  messages:
+    setup: "Setting up your shop..."
   customer:
     breadcrumbs:
       home: "Home"

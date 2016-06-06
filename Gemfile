@@ -57,8 +57,7 @@ gem "elasticsearch-rails"
 gem "elasticsearch-model-globalize"
 gem "apartment-sidekiq"
 gem "intercom-rails"
-gem "i18n_data"
-gem "geocoder"
+gem "activerecord-import"
 
 group :development, :test do
   gem "byebug"

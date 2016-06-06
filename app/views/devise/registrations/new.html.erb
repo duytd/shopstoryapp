@@ -3,7 +3,7 @@
     <%= t("merchant.registrations.title") %>
   </h1>
   <%= form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
-    <div class="form-group">
+    <div class="form-group errors">
       <%= render "shared/form_errors", object: f.object %>
     </div>
     <div class="form-group extensions">
@@ -20,8 +20,42 @@
         class: "form-control input-lg" %>
     </div>
 
+    <div class="form-group loading pull-left hide">
+      <i class="fa fa-cog fa-spin fa-2x fa-fw"></i>
+      <span><%= I18n.t "messages.setup" %></span>
+    </div>
+
     <div class="form-group">
-      <%= f.submit t("merchant.registrations.submit"), class: "btn btn-lg btn-dangerpull-right" %>
+      <%= f.submit t("merchant.registrations.submit"), class: "btn btn-lg btn-danger pull-right" %>
     </div>
   <% end %>
 </div>
+
+<%= javascript_tag do %>
+  $('#new_merchant').submit(function(e) {
+    e.preventDefault();
+
+    var data = $('#new_merchant').serialize();
+    $.ajax({
+      url: '<%= merchant_registration_path %>',
+      data: data,
+      method: "POST",
+      success: function(response) {
+        $('#new_merchant').find('.errors').empty();
+        Turbolinks.visit(response.redirect_url);
+      },
+      beforeSend: function() {
+        $("#new_merchant").find('.loading').removeClass('hide');
+      },
+      error: function(xhr) {
+        $("#new_merchant").find('.loading').addClass('hide');
+        html = '<ul class="alert alert-warning">';
+        xhr.responseJSON.errors.forEach(function(error) {
+          html+= '<li>' + error + '</li>';
+        })
+        html += '</ul>';
+        $('#new_merchant').find('.errors').html(html);
+      }
+    })
+  })
+<% end %>

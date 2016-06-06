@@ -19,6 +19,11 @@ $input-bg-color: #ededec;
       border: 2px solid $input-border-color;
     }
   }
+  .loading {
+    span {
+      font-size: 18px;
+    }
+  }
   .alert-warning, .alert-danger {
     border: none;
     background: none;

@@ -21,6 +21,9 @@ ko:
       title: "쇼케이스"
     preview:
       title: "미리보기"
+  messages:
+    setup: "Setting up your shop..."
+
   customer:
     breadcrumbs:
       home: "Home"
