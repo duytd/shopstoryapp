@@ -8,7 +8,6 @@ class AssetService
   end
 
   def get_compiled_code type
-    Apartment::Tenant.reset
     prefix = ""
     postfix = ""
     delimiter = "\s"
@@ -28,10 +27,6 @@ class AssetService
   end
 
   def create_bundle type
-    prefix = ""
-    postfix = ""
-    delimiter = "\s"
-
     case type
     when "javascript"
       dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{@theme.directory}/assets/javascripts"
@@ -42,18 +37,14 @@ class AssetService
     when "locale"
       dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{@theme.directory}/locales"
       extension = "json"
-      delimiter = ","
-      prefix = "var I18n = I18n || {}; I18n.translations = {"
-      postfix = "}"
     else
       raise InvalidAssetType
     end
 
-    process type, dir, extension, delimiter, prefix, postfix
+    process type, dir, extension
   end
 
-  def process type, dir, extension, delimiter="\s", prefix="", postfix=""
-    content = ""
+  def process type, dir, extension
     assets = []
 
     Dir.glob("#{dir}/*.#{extension}") do |file|
@@ -61,13 +52,9 @@ class AssetService
       file_name = File.basename file
 
       assets << set_asset(type, file_name, file_content)
-      content << delimiter unless content.empty?
-      content << file_content
     end
 
-    Asset.import assets, on_duplicate_key_update: [:content]
-
-    prefix << content << postfix
+    Asset.import assets, validate: false, on_duplicate_key_update: [:content]
   end
 
   def copy type, delimiter="\s", prefix="", postfix=""
@@ -83,7 +70,7 @@ class AssetService
     end
 
     Apartment::Tenant.switch @subdomain
-    Asset.import tenant_assets, on_duplicate_key_update: [:content]
+    Asset.import tenant_assets, validate: false, on_duplicate_key_update: [:content]
 
     prefix << content << postfix
   end

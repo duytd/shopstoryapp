@@ -8,18 +8,18 @@ class ThemeService
   end
 
   def create_bundle
-    @bundle.javascript = @asset_service.get_compiled_code "javascript"
-    @bundle.stylesheet = @asset_service.get_compiled_code "stylesheet"
-    @bundle.locale = @asset_service.get_compiled_code "locale"
-    @bundle.template = @template_service.get_compiled_code "template"
+    @bundle.javascript = @asset_service.get_compiled_code "javascript" unless @options[:javascript] == false
+    @bundle.stylesheet = @asset_service.get_compiled_code "stylesheet" unless @options[:stylesheet] == false
+    @bundle.locale = @asset_service.get_compiled_code "locale" unless @options[:locale] == false
+    @bundle.template = @template_service.get_compiled_code "template" unless @options[:template] == false
     @bundle.save!
   end
 
   def precompile
     Apartment::Tenant.reset
-    @asset_service.create_bundle("javascript") unless @options[:javascript] == false
-    @asset_service.create_bundle("stylesheet") unless @options[:stylesheet] == false
-    @asset_service.create_bundle("locale") unless @options[:locale] == false
-    @template_service.create_bundle unless @options[:template] == false
+    @asset_service.create_bundle("javascript")
+    @asset_service.create_bundle("stylesheet")
+    @asset_service.create_bundle("locale")
+    @template_service.create_bundle
   end
 end

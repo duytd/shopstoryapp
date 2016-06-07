@@ -33,7 +33,7 @@ set :keep_releases, 3
 
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml config/application.yml}
-set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads public/system keys qrcodes node_modules}
+set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads public/assets public/system keys qrcodes node_modules}
 
 namespace :puma do
   desc "Create Directories for Puma Pids and Socket"

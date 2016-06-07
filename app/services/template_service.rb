@@ -19,12 +19,11 @@ class TemplateService
     end
 
     Apartment::Tenant.switch @subdomain
-    Template.import tenant_templates, on_duplicate_key_update: [:content, :transformed_content]
+    Template.import tenant_templates, validate: false, on_duplicate_key_update: [:content, :transformed_content]
     content
   end
 
   def create_bundle
-    content = ""
     templates_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{@theme.directory}/templates"
     templates = []
 
@@ -35,11 +34,9 @@ class TemplateService
       transformed_content = Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
 
       templates << set_template(file_name, file_content, file_directory, transformed_content)
-      content << transformed_content
     end
 
-    Template.import templates, on_duplicate_key_update: [:content, :transformed_content]
-    content
+    Template.import templates, validate: false, on_duplicate_key_update: [:content, :transformed_content]
   end
 
   def set_template file_name, file_content, file_directory, transformed_content

@@ -6,7 +6,7 @@
     <%= javascript_include_tag "http://dmaps.daum.net/map_js_init/postcode.v2.js", "data-turbolinks-track": true %>
     <%= stylesheet_link_tag "customer/application", media: "all", "data-turbolinks-track": true %>
 
-    <% if Rails.env.development? %>
+    <% if Rails.env.staging? %>
       <%= javascript_include_tag "customer/themes/#{current_theme.directory}/templates/template", "data-turbolinks-track": true %>
     <% else %>
       <%= javascript_include_tag customer_templates_path, "data-turbolinks-track": true %>
