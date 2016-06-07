@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  ATTRIBUTES = %w{id slug name_ko name_en description_ko description_en sku vendor in_stock price sale_off visibility featured flat_shipping_rate pay_shipping_on_delivery}
+  ATTRIBUTES = %w{slug name_ko name_en description_ko description_en sku vendor in_stock price sale_off weight visibility featured flat_shipping_rate pay_shipping_on_delivery}
 
   include Orderable
   include Searchable
@@ -72,6 +72,7 @@ class Product < ActiveRecord::Base
   after_create :create_master
   after_update :update_master
   before_save :update_inventory
+  before_save :ensure_default
   after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") }
 
@@ -122,6 +123,11 @@ class Product < ActiveRecord::Base
   end
 
   private
+  def ensure_default
+    self.in_stock = 0 if in_stock.blank?
+    self.sale_off = 0 if sale_off.blank?
+  end
+
   def update_inventory
     unless variations.not_master.count == 0
       self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}

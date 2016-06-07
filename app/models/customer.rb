@@ -12,9 +12,7 @@ class Customer < ActiveRecord::Base
     indexes :phone_number, analyzer: "ngram_analyzer"
   end
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
-         :omniauthable, omniauth_providers: [:doindie]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:doindie]
 
   has_many :product_orders
   has_many :bookings, class_name: "ShopstoryTicket::Booking",

@@ -65,7 +65,7 @@ class AssetService
       content << file_content
     end
 
-    Asset.import assets
+    Asset.import assets, on_duplicate_key_update: [:content]
 
     prefix << content << postfix
   end
@@ -83,7 +83,7 @@ class AssetService
     end
 
     Apartment::Tenant.switch @subdomain
-    Asset.import tenant_assets
+    Asset.import tenant_assets, on_duplicate_key_update: [:content]
 
     prefix << content << postfix
   end

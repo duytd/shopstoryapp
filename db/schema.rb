@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601033643) do
+ActiveRecord::Schema.define(version: 20160607054515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -367,6 +367,7 @@ ActiveRecord::Schema.define(version: 20160601033643) do
     t.boolean  "pay_shipping_on_delivery", default: false
     t.string   "slug"
     t.boolean  "featured"
+    t.string   "weight"
   end
 
   create_table "seo_tag_translations", force: :cascade do |t|

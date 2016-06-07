@@ -38,6 +38,10 @@ Rails.application.configure do
 
   config.browserify_rails.commandline_options = ["--transform [react-templatify --modules none]"]
 
+  config.assets.precompile += %w(
+    customer/themes/agatha/templates/template.js
+    customer/themes/viva/templates/template.js
+  )
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

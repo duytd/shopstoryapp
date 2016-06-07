@@ -23,6 +23,12 @@ namespace :fix do
     end
   end
 
+  task update_themes: :environment do
+    Shop.all.each do |shop|
+      shop.theme.setup shop
+    end
+  end
+
   task update_templates: :environment do
     Shop.all.each do |shop|
       shop.theme.setup shop, {javascript: false, stylesheet: false, locale: false}

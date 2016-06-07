@@ -29,6 +29,9 @@ var SocialShare = React.createClass({
       description: description,
       image: image,
       networks: {
+        kakaotalk: {
+          appKey: 'ca27b61ccb79cbbb7e56847a38d586c2'
+        },
         linkedin: {
           enabled: false
         },

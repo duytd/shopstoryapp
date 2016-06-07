@@ -19,7 +19,7 @@ class TemplateService
     end
 
     Apartment::Tenant.switch @subdomain
-    Template.import tenant_templates
+    Template.import tenant_templates, on_duplicate_key_update: [:content, :transformed_content]
     content
   end
 
@@ -38,7 +38,7 @@ class TemplateService
       content << transformed_content
     end
 
-    Template.import templates
+    Template.import templates, on_duplicate_key_update: [:content, :transformed_content]
     content
   end
 

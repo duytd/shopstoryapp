@@ -26,7 +26,7 @@ var Pagination = React.createClass({
           <span>...</span> : null}
 
           {this.state.prevPages.map(function(page, index) {
-            <a key={"prev_" + index} href={this.props.url.addParams("page", page)}>
+            return <a key={"prev_" + index} href={this.props.url.addParams("page", page)}>
               {page}
             </a>
            }.bind(this))}
@@ -34,13 +34,13 @@ var Pagination = React.createClass({
           <span className="current">{this.props.page}</span>
 
           {this.state.nextPages.map(function(page, index) {
-            <a key={"next_" + index} href={this.props.url.addParams("page", page)}>
+            return <a key={"next_" + index} href={this.props.url.addParams("page", page)}>
               {page}
             </a>
           }.bind(this))}
 
           {(this.state.nextPages[this.state.nextPages.length - 1] < this.props.totalPage) ?
-          <span rt-if="">...</span> : null}
+          <span>...</span> : null}
 
           {(this.state.next != null) ?
           <a href={this.props.url.addParams("page", this.state.next)}>
@@ -51,6 +51,10 @@ var Pagination = React.createClass({
           <a href={this.props.url.addParams("page", this.props.totalPage)}>
             {I18n.t("merchant.admin.pagination.last")}
           </a> : null}
+
+          <p className="small top15">
+            {I18n.t("merchant.admin.pagination.showing", {size: this.props.size, total: this.props.total})}
+          </p>
         </div> : null}
       </div>
     )

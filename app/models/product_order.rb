@@ -52,7 +52,7 @@ class ProductOrder < Order
       remaining_quantity = variation.in_stock - order_product.quantity
 
       if variation.master?
-          variation.product.update_attributes in_stock: remaining_quantity
+        variation.product.update_attributes in_stock: remaining_quantity
       else
         variation.update_attributes in_stock: remaining_quantity
       end

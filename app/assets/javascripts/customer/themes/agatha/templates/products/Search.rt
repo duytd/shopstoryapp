@@ -3,7 +3,7 @@
     <div class="row">
       <Breadcrumb breadcrumb="{this.props.breadcrumb}" />
       <h2>{I18n.t("search.results", {count: this.state.total})}</h2>
-      <ProductItem rt-repeat="product in this.props.products" product="{product}" key="product_{productIndex}" />
+      <ProductItem rt-repeat="product in this.props.products" product="{product}" key="product_{productIndex}" currency="{this.state.globalVars.currency}" />
     </div>
 
     <div class="row">

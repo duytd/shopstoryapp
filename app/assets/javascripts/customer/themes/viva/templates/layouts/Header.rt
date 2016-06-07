@@ -10,7 +10,7 @@
       <a rt-if="this.props.globalVars.current_customer" href="{Routes.customer_account_path.localize()}">{I18n.t("buttons.my_account")}</a>
     </div>
 
-    <div class="pull-right">
+    <div class="pull-right hidden-xs">
       <Currency
         currency="{this.props.globalVars.currency}"
         availableCurrencies="{this.props.globalVars.available_currencies}" />
@@ -36,6 +36,13 @@
 
       <div class="collapse navbar-collapse" id="shopstory-navbar-collapse">
         <Menu menu="{this.props.globalVars.menu.main}" rt-if="this.props.globalVars.menu.main" />
+
+        <div class="pull-right hidden-sm">
+          <Currency
+            currency="{this.props.globalVars.currency}"
+            availableCurrencies="{this.props.globalVars.available_currencies}" />
+        </div>
+
         <ul class="nav navbar-nav navbar-right">
           <li class="cart">
             <a href="#" onClick="{this.openCart}">

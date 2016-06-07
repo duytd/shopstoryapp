@@ -25,6 +25,8 @@ var ProductBox = React.createClass({
       <Pagination
         page={this.props.page}
         totalPage={this.props.total_page}
+        size={this.props.products.length}
+        total={this.props.total}
         url={this.props.url} />
     )
 

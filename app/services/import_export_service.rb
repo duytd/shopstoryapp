@@ -65,11 +65,42 @@ class ImportExportService
 
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        object = @klass.constantize.find_by_id(row["id"]) || @klass.constantize.new
+        object = find_object(row) || @klass.constantize.new
         object.attributes = row.to_hash.slice *@attributes
-        object.save
-        import_images(object, file_path, row["image_name"]) if image
+
+        if object.save
+          import_associations object, {file_path: file_path, row: row}
+        end
       end
+    end
+  end
+
+  def find_object row
+    case @klass
+    when "Product"
+      Product.find_by_id(row["id"]) || Product.with_translations(:en).where("product_translations.name = #{ActiveRecord::Base.connection.quote(row['name_en'])}").first
+    else
+      nil
+    end
+  end
+
+  def import_associations object, options={}
+    case @klass
+    when "Product"
+      import_images(object, options[:file_path], options[:row]["image"]) if options[:row]["image"]
+      import_categories(object, options[:row]["categories"]) if options[:row]["categories"]
+    else
+      nil
+    end
+  end
+
+  def import_categories object, category_names
+    category_names = category_names.split ", "
+
+    category_names.each do |name|
+      category = Category.with_translations(:en).where("category_translations.name = #{ActiveRecord::Base.connection.quote(name)}").first
+      category = Category.create(name_en: name, name_ko: name) if category.nil?
+      object.category_products.create category_id: category.id
     end
   end
 

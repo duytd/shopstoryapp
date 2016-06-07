@@ -5,10 +5,14 @@ var ProductSlider = React.createClass({
     }
   },
   componentDidMount: function() {
-    this.loadElevateZoom();
+    if (!this.props.mobile) {
+      this.loadElevateZoom();
+    }
   },
   componentDidUpdate: function() {
-    this.loadElevateZoom();
+    if (!this.props.mobile) {
+      this.loadElevateZoom();
+    }
   },
   render: ProductSliderRT,
   activateImage: function(e) {

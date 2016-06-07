@@ -2,7 +2,7 @@
   <header id="header">
     <div class="container-fluid top">
       <div class="container">
-        <div class="pull-left">
+        <div class="pull-left hidden-xs">
           <Currency
             currency="{this.props.globalVars.currency}"
             availableCurrencies="{this.props.globalVars.available_currencies}" />
@@ -66,6 +66,13 @@
 
         <div class="collapse navbar-collapse" id="shopstory-navbar-collapse">
           <Menu menu="{this.props.globalVars.menu.main}" rt-if="this.props.globalVars.menu.main" />
+
+          <div class="hidden-sm hidden-md hidden-lg">
+            <Currency
+              currency="{this.props.globalVars.currency}"
+              availableCurrencies="{this.props.globalVars.available_currencies}" />
+          </div>
+
           <form class="navbar-form navbar-right" action="{Routes.customer_search_path.localize()}" method="get">
             <input name="q" type="text" placeholder="{I18n.t('search.placeholder')}" class="form-control" />
           </form>

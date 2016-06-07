@@ -98,6 +98,7 @@ ko:
         first: "처음"
         last: "마지막"
         previous: "이전"
+        showing: "Showing %{size} of %{total} products"
       forms:
         ko_lang: "한글"
         en_lang: "영어"

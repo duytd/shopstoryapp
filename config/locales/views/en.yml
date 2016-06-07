@@ -94,6 +94,7 @@ en:
         first: "First"
         last: "Last"
         previous: "Previous"
+        showing: "Showing %{size} of %{total} products"
       forms:
         ko_lang: "Korean"
         en_lang: "English"
