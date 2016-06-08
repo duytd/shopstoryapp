@@ -61,7 +61,7 @@ class ImportExportService
 
     unless spreadsheet.nil?
       header = spreadsheet.row 1
-      raise RowLimitExceededException if spreadsheet.last_row >= 50
+      raise RowLimitExceededException if spreadsheet.last_row >= Settings.import.row_limit
 
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]

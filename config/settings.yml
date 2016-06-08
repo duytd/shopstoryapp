@@ -1,1 +1,3 @@
 free_trial_length: 100
+import:
+  row_limit: 100

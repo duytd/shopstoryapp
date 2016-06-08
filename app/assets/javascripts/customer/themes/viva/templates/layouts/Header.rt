@@ -37,7 +37,7 @@
       <div class="collapse navbar-collapse" id="shopstory-navbar-collapse">
         <Menu menu="{this.props.globalVars.menu.main}" rt-if="this.props.globalVars.menu.main" />
 
-        <div class="pull-right hidden-sm">
+        <div class="hidden-sm hidden-md hidden-lg">
           <Currency
             currency="{this.props.globalVars.currency}"
             availableCurrencies="{this.props.globalVars.available_currencies}" />
