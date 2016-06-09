@@ -12,7 +12,7 @@ class ShippingRate < ActiveRecord::Base
   validates :name, translation_presence: true
   validate :type_must_be_unique, on: :create
 
-  default_scope {includes(:translations).order created_at: :asc}
+  default_scope {order created_at: :asc}
 
   def self.type_class type
     TYPES_CLASSES_MAPPING.fetch(type.to_sym).constantize.new

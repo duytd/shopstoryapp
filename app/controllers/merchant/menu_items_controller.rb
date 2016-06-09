@@ -38,7 +38,7 @@ class Merchant::MenuItemsController < Merchant::BaseController
   end
 
   def load_menu_item
-    @menu_item = MenuItem.includes(:children).find params[:id]
+    @menu_item = MenuItem.find params[:id]
   end
 
   def menu_item_params

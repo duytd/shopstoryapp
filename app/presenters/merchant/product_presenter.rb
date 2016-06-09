@@ -13,7 +13,7 @@ class Merchant::ProductPresenter < Merchant::BasePresenter
       in_stock: @object.in_stock,
       vendor: @object.vendor,
       featured: @object.featured,
-      featured_image: @object.product_images.featured,
+      featured_image: ProductImage.featured(@object.product_images),
       images: @object.product_images
     }
   end

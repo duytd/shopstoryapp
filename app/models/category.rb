@@ -14,8 +14,8 @@ class Category < ActiveRecord::Base
     indexes :name_en, analyzer: "ngram_analyzer"
   end
 
-  has_many :category_products, dependent: :destroy
-  has_many :products, through: :category_products
+  has_many :category_products, dependent: :destroy, auto_include: false
+  has_many :products, through: :category_products, auto_include: false
   has_many :variations, through: :products
   has_one :seo_tag, as: :seoable, dependent: :destroy
   has_many :menu_items, foreign_key: "value", dependent: :destroy
@@ -28,8 +28,6 @@ class Category < ActiveRecord::Base
 
   after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer::CategoryPresenter") }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "Category", "Customer::CategoryPresenter") }
-
-  default_scope {includes(:translations).order created_at: :asc}
 
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, seo_tag: seo_tag})

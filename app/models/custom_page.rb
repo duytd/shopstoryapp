@@ -23,8 +23,6 @@ class CustomPage < ActiveRecord::Base
   after_save { IndexerWorker.perform_async(:index, self.id, "CustomPage", "Customer::CustomPagePresenter") }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "CustomPage", "Customer::CustomPagePresenter") }
 
-  default_scope {includes(:translations).order created_at: :asc}
-
   def self.search_fields
     %w{ title_en^10 title_ko^10 content_en content_ko }
   end

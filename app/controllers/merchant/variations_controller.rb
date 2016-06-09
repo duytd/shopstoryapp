@@ -11,6 +11,6 @@ class Merchant::VariationsController < ApplicationController
 
   private
   def load_product
-    @product = Product.includes(:variations).find params[:product_id]
+    @product = Product.find params[:product_id]
   end
 end

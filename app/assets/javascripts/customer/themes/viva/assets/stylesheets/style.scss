@@ -167,9 +167,13 @@ label {
 }
 
 /* Category */
+.category {
+  .product-item:nth-child(4n+1) {
+    clear: both;
+  }
+}
 .product-item {
   text-align: center;
-  min-height: 420px;
   img {
     display: inline-block;
   }

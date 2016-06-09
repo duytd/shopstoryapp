@@ -1,6 +1,6 @@
 class Customer::CategoryPresenter < Customer::BasePresenter
   def initialize object, options={}
-    super object
+    super
     @limit = options[:limit]
   end
 
@@ -8,7 +8,7 @@ class Customer::CategoryPresenter < Customer::BasePresenter
     products = if @limit.nil?
       []
     else
-      @object.products.limit @limit
+      @object.products.limit(@limit).map{|p| present(p)}
     end
 
     {
@@ -16,7 +16,7 @@ class Customer::CategoryPresenter < Customer::BasePresenter
       slug: @object.slug,
       name_en: @object.name_en,
       name_ko: @object.name_ko,
-      products: products.map{|p| present(p)}
+      products: products
     }
   end
 end

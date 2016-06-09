@@ -96,9 +96,7 @@ class Merchant::ProductsController < Merchant::BaseController
 
   private
   def load_product
-    @product = Product.includes(
-      :product_images, :seo_tag, {variations: :variation_variation_option_values}, {variation_options: :variation_option_values}
-    ).find params[:id]
+    @product = Product.find params[:id]
     @seo_tag = @product.seo_tag
   end
 
@@ -107,7 +105,7 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def list_all
-    products = Product.latest.includes(:product_images).page params[:page]
+    products = Product.latest.page params[:page]
 
     @props = paginating products, {
       products: products.map{|p| present(p)},

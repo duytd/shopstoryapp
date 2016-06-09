@@ -24,7 +24,6 @@ class MenuItem < ActiveRecord::Base
   after_create :calculate_position
 
   scope :is_parent, ->{where parent_id: nil}
-  default_scope {includes(:translations).order position: :asc}
 
   def self.types
     TYPES_CLASSES_MAPPING.keys

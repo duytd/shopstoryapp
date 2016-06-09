@@ -110,4 +110,5 @@ IntercomRails.config do |config|
   # uncomment this line and clicks on any element that matches the query will
   # open the messenger
   # config.inbox.custom_activator = '.intercom'
+  config.inbox.style = :custom
 end

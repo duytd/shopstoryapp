@@ -16,7 +16,7 @@
     </p>
     <p rt-repeat="price in this.props.priceFilter" key="price_filter_{priceIndex}">
       <input type="radio" value="{price.join('|')}" name="price_filter" onChange="{this.updatePrice}" />
-      {price[0].toKoreanFormat()} - {price[1].toKoreanFormat()}
+      {I18n.toCurrency(price[0].convert(), {precision: 0, unit: this.props.currency})} - {I18n.toCurrency(price[1].convert(), {precision: 0, unit: this.props.currency})}
     </p>
   </div>
 </div>

@@ -104,6 +104,9 @@ label {
     a {
       padding-right: 10px;
     }
+    .pull-right {
+      margin-top: 2px;
+    }
   }
   .login {
     margin-right: 15px;
@@ -182,9 +185,13 @@ label {
 }
 
 /* Category */
+.category {
+  .product-item:nth-child(4n+1) {
+    clear: both;
+  }
+}
 .product-item {
   text-align: center;
-  min-height: 450px;
   img {
     display: inline-block;
   }

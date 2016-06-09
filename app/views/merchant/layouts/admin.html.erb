@@ -25,7 +25,7 @@
       </div>
     </section>
 
-    <% unless Rails.env.development? %>
+    <% if Rails.env.development? %>
       <%= intercom_script_tag({
         user_id: current_merchant.id,
         email: current_merchant.email,

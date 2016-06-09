@@ -29,7 +29,7 @@ module Customer::BaseHelper
 
   def current_shop
     subdomain = Apartment::Tenant.current
-    @current_shop ||= Shop.includes(:theme).find_by_subdomain subdomain
+    @current_shop ||= Shop.find_by_subdomain subdomain
   end
 
   def current_theme

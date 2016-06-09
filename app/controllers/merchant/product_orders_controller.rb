@@ -72,9 +72,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def load_product_order
-    @product_order = ProductOrder.includes(
-      :customer, {payment: :payment_method}, {shipment: :shipping_method}, :shipping_address, :billing_address, {order_products: {variation: [:product, :variation_option_values]}}
-    ).find params[:id]
+    @product_order = ProductOrder.find params[:id]
   end
 
   def load_transaction_info
@@ -94,9 +92,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def list_all
-    @product_orders = ProductOrder.includes(
-        {payment: :payment_method}, :shipping_address, :customer, :billing_address, {order_products: {variation: [:product, :variation_option_values]}}
-      ).page params[:page]
+    @product_orders = ProductOrder.page params[:page]
 
     @props = paginating @product_orders, {
       orders: @product_orders.map{|o| present(o)},

@@ -118,6 +118,7 @@ en:
         no_custom_page: "You have not created any page. Create now"
         no_shipping_rate: "You have not created any shipping rate. Create now"
         no_discount: "You have not created any discount. Create now"
+        no_banner: "You have not created any banner. Create now"
       categories:
         title: "All Categories"
         add_category: "Add Category"

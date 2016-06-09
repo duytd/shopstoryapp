@@ -159,8 +159,8 @@ I18n.translations = {
     },
     "sorter": {
       "title": "Sort Product By",
-      "name_asc": "Name (Z-A)",
-      "name_desc": "Name (A-Z)",
+      "name_asc": "Name (A-Z)",
+      "name_desc": "Name (Z-A)",
       "price_asc": "Price (Low-High)",
       "price_desc": "Price (High-Low)"
     },
@@ -335,8 +335,8 @@ I18n.translations = {
     },
     "sorter": {
       "title": "Sort Product By",
-      "name_asc": "Name (Z-A)",
-      "name_desc": "Name (A-Z)",
+      "name_asc": "Name (A-Z)",
+      "name_desc": "Name (Z-A)",
       "price_asc": "Price (Low-High)",
       "price_desc": "Price (High-Low)"
     },

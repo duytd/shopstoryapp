@@ -19,8 +19,8 @@ class ProductImage < ActiveRecord::Base
     }
   end
 
-  def self.featured
-    where(featured: true).first || first || default_image
+  def self.featured images
+    images.detect{|img| img.featured} || images[0] || default_image
   end
 
   def as_json options={}

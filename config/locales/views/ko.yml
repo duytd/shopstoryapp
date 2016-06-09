@@ -122,6 +122,7 @@ ko:
         no_custom_page: "등록된 페이지가 아직 없습니다. 지금 등록하세요."
         no_shipping_rate: "등록된 배송료가 아직 없습니다. 지금 등록하세요."
         no_discount: "You have not created any discount. Create now"
+        no_banner: "You have not created any banner. Create now"
       categories:
         title: "모든 카테고리"
         add_category: "카테고리 추가"

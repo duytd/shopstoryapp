@@ -1,0 +1,24 @@
+#Intercom {
+  color: $base-light;
+  cursor: pointer;
+  background-color: $base-main !important;
+  background-image: url("https://js.intercomcdn.com/images/icon-launcher-support.1465758f.png") !important;
+  background-position: 50% center !important;
+  background-repeat: no-repeat !important;
+  border: 1px solid #bf3100;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 5px;
+  background-size: 15px 15px !important;
+  height: 18px;
+  width: 18px;
+  &.scrolled {
+    background-size: 22px 22px !important;
+    height: 48px;
+    width: 48px;
+    position: fixed;
+    display: block;
+    z-index: 999;
+    right: 0;
+  }
+}

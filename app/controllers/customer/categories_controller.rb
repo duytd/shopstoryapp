@@ -5,7 +5,7 @@ class Customer::CategoriesController < Customer::BaseController
   add_breadcrumb I18n.t("customer.breadcrumbs.categories"), :customer_categories_path, {only: [:index, :show]}
 
   def index
-    @categories = Category.all.map{|c| present(c, {limit: 10})}
+    @categories = Category.all.map{|c| present(c, {limit: 8})}
 
     @props = {
       globalVars: @globalVars,

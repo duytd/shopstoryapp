@@ -53,7 +53,7 @@ class Merchant::BannersController < Merchant::BaseController
 
   private
   def load_banner
-    @banner = Banner.includes(:banner_items).find params[:id]
+    @banner = Banner.find params[:id]
   end
 
   def list_all

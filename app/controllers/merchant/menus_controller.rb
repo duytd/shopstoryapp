@@ -3,7 +3,7 @@ class Merchant::MenusController < Merchant::BaseController
   load_and_authorize_resource
 
   def index
-    @menus = Menu.includes(menu_items: :children).order(created_at: :asc).map{|m| present(m)}
+    @menus = Menu.order(created_at: :asc).map{|m| present(m)}
 
     @props = {
       menus: @menus,
@@ -59,7 +59,7 @@ class Merchant::MenusController < Merchant::BaseController
 
   private
   def load_menu
-    @menu = Menu.includes(menu_items: :children).find params[:id]
+    @menu = Menu.find params[:id]
   end
 
   def menu_params

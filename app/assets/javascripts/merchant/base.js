@@ -39,6 +39,13 @@ $(document).on("page:change", function() {
 
 
   $(window).on("scroll", function() {
+    if($(window).scrollTop() >= 47) {
+      $("#Intercom").addClass('scrolled')
+    }
+    else {
+      $("#Intercom").removeClass('scrolled')
+    }
+
     var $fixedElement = $(".form-submit.fixed");
     if($(window).scrollTop() + $(window).height() >= $(document).height() - $fixedElement.height()) {
       if (!$fixedElement.hasClass("scrolled")) {

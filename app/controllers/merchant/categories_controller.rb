@@ -52,7 +52,7 @@ class Merchant::CategoriesController < Merchant::BaseController
 
   private
   def load_category
-    @category = Category.includes(:seo_tag).find params[:id]
+    @category = Category.find params[:id]
   end
 
   def list_all

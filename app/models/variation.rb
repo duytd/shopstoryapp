@@ -43,7 +43,7 @@ class Variation < ActiveRecord::Base
 
   def variation_image
     if master?
-      product.product_images.featured
+      ProductImage.featured(product.product_images)
     else
       image
     end

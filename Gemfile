@@ -60,6 +60,8 @@ gem "elasticsearch-model-globalize"
 gem "apartment-sidekiq"
 gem "intercom-rails"
 gem "activerecord-import"
+gem "goldiloader"
+gem "money"
 
 group :development, :test do
   gem "byebug"

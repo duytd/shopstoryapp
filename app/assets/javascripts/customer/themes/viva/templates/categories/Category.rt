@@ -10,6 +10,7 @@
           updateVendor="{this.updateVendor}"
           updatePrice="{this.updatePrice}"
           priceFilter="{this.props.filter.price}"
+          currency="{this.props.globalVars.currency}"
           vendorFilter="{this.props.filter.vendor}" />
       </div>
       <div class="col-md-9">

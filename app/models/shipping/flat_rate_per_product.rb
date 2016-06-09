@@ -5,7 +5,7 @@ class Shipping::FlatRatePerProduct < ShippingRate
     sum  = 0
     shipping_rate_object = first
 
-    order.order_products.includes(:variation).each do |order_product|
+    order.order_products.each do |order_product|
       product = order_product.variation.product
 
       unless product.pay_shipping_on_delivery?

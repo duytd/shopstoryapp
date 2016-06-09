@@ -68,11 +68,11 @@ class Merchant::CustomersController < Merchant::BaseController
 
   private
   def load_customer
-    @customer = Customer.includes(:product_orders).find params[:id]
+    @customer = Customer.find params[:id]
   end
 
   def list_all
-    @customers = Customer.includes(:product_orders).page params[:page]
+    @customers = Customer.page params[:page]
 
     @props = paginating @customers, {
       customers: @customers.map{|c| present(c)},

@@ -9,7 +9,6 @@ class Product < ActiveRecord::Base
 
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
-  default_scope { includes :translations }
 
   include Elasticsearch::Model::Globalize::MultipleFields
 
@@ -61,8 +60,8 @@ class Product < ActiveRecord::Base
     if ["name", "price"].include?(attribute) && ["asc", "desc"].include?(direction)
       if attribute == "name"
         includes(:translations)
-          .with_locales(I18n.available_locales)
-          .order("product_translations.name #{direction}")
+        .with_locales(I18n.available_locales)
+        .order("product_translations.name #{direction}")
       else
         order "price #{direction}"
       end
@@ -86,7 +85,7 @@ class Product < ActiveRecord::Base
   end
 
   def create_variations
-    options = variation_options.includes :variation_option_values
+    options = variation_options
 
     if options.size > 0 && variations.not_master.count == 0
       option_value_array = []

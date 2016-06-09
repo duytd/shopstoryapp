@@ -52,7 +52,7 @@ class Merchant::CustomPagesController < Merchant::BaseController
 
   private
   def load_custom_page
-    @custom_page = CustomPage.includes(:seo_tag).find params[:id]
+    @custom_page = CustomPage.find params[:id]
   end
 
   def list_all
