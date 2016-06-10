@@ -8,9 +8,7 @@
           <span>{translate(category,"name")}</span>
         </div>
       </a>
-      <div class="row">
-        <ProductItem rt-repeat="product in category.products.slice(0, 4)" key="{productIndex}" product="{product}" currency="{this.props.globalVars.currency}" />
-      </div>
+      <CategoryList limit="{4}" category="{category}" currency="{this.props.globalVars.currency}" />
     </div>
   </div>
 </Layout>

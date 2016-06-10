@@ -40,7 +40,8 @@ Search = require('customer/components/products/Search.js');
 
 /* Category */
 Category = require('customer/components/categories/Category.js');
-CategoryListing = require('customer/components/categories/CategoryListing.js');
+CategoryBox = require('customer/components/categories/CategoryBox.js');
+CategoryList = require('customer/components/categories/CategoryList.js');
 
 /* Customer */
 Account = require('customer/components/customers/Account.js');

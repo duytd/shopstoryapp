@@ -1,6 +1,13 @@
 class Customer::ProductsController < Customer::BaseController
   load_and_authorize_resource
 
+  def index
+    load_category
+    @products = @category.products.limit params[:limit]
+
+    render json: @products.map{|p| present(p)}, status: :ok
+  end
+
   def show
     category = category_from_referer_path || @product.categories.first
 
@@ -22,6 +29,10 @@ class Customer::ProductsController < Customer::BaseController
   end
 
   private
+  def load_category
+    @category = Category.find params[:category_id]
+  end
+
   def category_from_referer_path
     begin
       referer = Rails.application.routes.recognize_path URI(request.referer || "").path

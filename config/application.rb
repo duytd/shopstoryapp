@@ -53,5 +53,7 @@ module ShopStory
       user_name: ENV["SMTP_USER"],
       password: ENV["SMTP_PWD"]
     }
+
+    config.exceptions_app = self.routes
  end
 end

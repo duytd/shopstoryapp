@@ -31,7 +31,8 @@ SearchRT = require('./products/Search.rt');
 
 /* Category */
 CategoryRT = require('./categories/Category.rt');
-CategoryListingRT = require('./categories/CategoryListing.rt');
+CategoryBoxRT = require('./categories/CategoryBox.rt');
+CategoryListRT = require('./categories/CategoryList.rt');
 
 /* Customer */
 AccountRT = require('./customers/Account.rt');

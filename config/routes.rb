@@ -55,8 +55,11 @@ Rails.application.routes.draw do
     get :account, to: "customers#show", path: "my-account"
     get :search, to: "search#search"
     post :currency, to: "currency#change"
+    match "/404", to: "errors#not_found", via: :all
+    match "/500", to: "errors#internal_server_error", via: :all
 
     resources :categories, only: [:index, :show] do
+      resources :products, only: :index
       get :filter, on: :member
     end
     resources :products, only: [:index, :show]
