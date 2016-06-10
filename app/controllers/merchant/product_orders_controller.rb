@@ -9,7 +9,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
     else
       list_all
     end
-   end
+  end
 
   def new
     @props = {

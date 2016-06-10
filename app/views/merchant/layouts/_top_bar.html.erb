@@ -8,11 +8,20 @@
 
   <%= react_component "Search" %>
   <div class="nav navbar-nav navbar-right pull-right">
-    <li>
+    <li class="hidden-sm hidden-md hidden-lg">
+      <a data-no-turbolink="true" href="?locale=ko">KO</a>
+      <a data-no-turbolink="true" href="?locale=en">EN</a>
+    </li>
+    <li class="hidden-xs">
       <a data-no-turbolink="true" href="?locale=ko"><%= t "menu.korean" %></a>
       <a data-no-turbolink="true" href="?locale=en"><%= t "menu.english" %></a>
     </li>
-    <li>
+    <li class="hidden-sm hidden-md hidden-lg">
+      <%= link_to shop_url, "data-no-turbolink": true do %>
+        <i class="fa fa-eye"></i>
+      <% end %>
+    </li>
+    <li class="hidden-xs">
       <%= link_to t("merchant.admin.menu.view_shop"), shop_url, "data-no-turbolink": true %>
     </li>
     <% unless Rails.env.development? %>

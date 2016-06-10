@@ -42,9 +42,13 @@ section.content {
     }
     .navbar-right {
       &.pull-right {
+        margin: 0;
         a {
           display: inline-block;
         }
+      }
+      .avatar {
+        margin-top: 5px;
       }
       .open a {
         background: transparent;
@@ -53,7 +57,7 @@ section.content {
         float: left;
       }
       a {
-        line-height: 1em;
+        padding: 10px;
         &:hover, &:focus {
           background: transparent !important;
         }
@@ -68,6 +72,7 @@ section.content {
       }
       .dropdown-menu {
         border: none;
+        position: absolute;
         border-radius: 0;
         padding: 10px;
         color: $gray;

@@ -8,10 +8,11 @@
   border: 1px solid #bf3100;
   border-radius: 50%;
   cursor: pointer;
-  margin: 5px;
   background-size: 15px 15px !important;
-  height: 18px;
-  width: 18px;
+  width: 35px;
+  height: 35px;
+  padding: 15px;
+  margin: 5px;
   &.scrolled {
     background-size: 22px 22px !important;
     height: 48px;

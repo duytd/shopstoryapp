@@ -47,7 +47,7 @@ class Order < ActiveRecord::Base
   end
 
   def unprocessed?
-    incompleted? || pending? || cancelled?
+    incompleted? || pending?
   end
 
   def add_discount discount, customer
