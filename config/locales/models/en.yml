@@ -81,6 +81,7 @@ en:
         pay_shipping_on_delivery: "Pay Shipping Fee On Delivery"
         vendor: "Vendor"
         slug: "Friendly Slug"
+        featured: "Featured"
         total_sale: "Total Sale"
       variation:
         color: "Color"

@@ -33,7 +33,10 @@ var Product = React.createClass({
           {this.props.product.vendor}
         </td>
         <td>
-          {this.props.product.in_stock}
+          {this.props.product.unlimited ? <span>{I18n.t("merchant.admin.forms.unlimited").toUpperCase()}</span> : this.props.product.in_stock}
+        </td>
+        <td>
+          {this.props.product.featured.toString().toUpperCase()}
         </td>
         <td>
           {this.props.product.visibility.toString().toUpperCase()}

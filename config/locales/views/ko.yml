@@ -114,6 +114,7 @@ ko:
         featured_title: "Featured"
         mark_as_featured: "Mark As Featured"
         online: "온라인"
+        unlimited: "Unlimited"
         dropzone_instruction: "파일을 드래그앤드롭 하거나 클릭하여 업로드하세요"
       messages:
         no_product: "등록된 상품이 아직 없습니다. 상품을 등록하고 판매를 시작하세요"

@@ -30,7 +30,7 @@
         <s>{I18n.toCurrency(this.state.variation.price.convert(), {precision: 0, unit: this.props.globalVars.currency})}</s>
       </p>
 
-      <p>
+      <p rt-if="!this.state.variation.unlimited">
         {(this.state.variation.in_stock > 0) ? I18n.t("products.in_stock") + ": "+ this.state.variation.in_stock : I18n.t("products.out_of_order").toUpperCase()}
       </p>
 

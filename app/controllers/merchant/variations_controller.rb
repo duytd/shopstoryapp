@@ -1,4 +1,4 @@
-class Merchant::VariationsController < ApplicationController
+class Merchant::VariationsController < Merchant::BaseController
   before_action :load_product
 
   def create

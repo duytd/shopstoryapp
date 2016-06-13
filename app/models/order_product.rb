@@ -6,7 +6,7 @@ class OrderProduct < ActiveRecord::Base
   validates :product_order, presence: true
   validates :variation, presence: true
 
-  validate :quantity_must_be_less_than_variation_quantity_and_greater_than_zero
+  validate :quantity_must_be_less_than_variation_quantity_and_greater_than_zero, unless: Proc.new{|a| a.variation.unlimited?}
 
   before_create :initialize_unit_price
 

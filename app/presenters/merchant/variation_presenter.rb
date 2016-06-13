@@ -11,7 +11,8 @@ class Merchant::VariationPresenter < Merchant::BasePresenter
       image: @object.variation_image,
       product_id: @object.product_id,
       product_slug: @object.product.slug,
-      variation_option_values: @object.variation_variation_option_values
+      variation_option_values: @object.variation_variation_option_values,
+      unlimited: @object.unlimited
     }
   end
 end

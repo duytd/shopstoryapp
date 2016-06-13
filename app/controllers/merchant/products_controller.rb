@@ -59,7 +59,11 @@ class Merchant::ProductsController < Merchant::BaseController
 
       render json: @props, status: :ok
     else
-      render json: @product.errors, status: :unprocessable_entity
+      variation_errors = @product.variations.reject{|v| v.master?}.enum_for(:each_with_index).collect{|variation, index|
+        variation.errors
+      }.compact
+
+      render json: @product.errors.to_hash.merge({variations: variation_errors}), status: :unprocessable_entity
     end
   end
 
@@ -79,7 +83,7 @@ class Merchant::ProductsController < Merchant::BaseController
   rescue InvalidExtensionException
     render json: {message: I18n.t("import.invalid_extension")}, status: :bad_request
   rescue RowLimitExceededException
-    render json: {message: I18n.t("import.row_limit_exceeded")}, status: :bad_request
+    render json: {message: I18n.t("import.row_limit_exceeded", {limit: Settings.import.row_limit})}, status: :bad_request
   rescue SpreadSheetNotFoundException
     render json: {message: I18n.t("import.not_found")}, status: :bad_request
   end
@@ -123,8 +127,8 @@ class Merchant::ProductsController < Merchant::BaseController
 
   def product_params
     permitted = Product.globalize_attribute_names + [:price, :slug, :sale_off, :visibility, :flat_shipping_rate, :featured, :pay_shipping_on_delivery, :weight,
-      :vendor, :sku, :in_stock, category_ids: [], product_images: [],
-      variations_attributes: [:id, :sku, :price, :image, :in_stock, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
+      :vendor, :sku, :in_stock, :unlimited, category_ids: [], product_images: [],
+      variations_attributes: [:id, :sku, :price, :image, :in_stock, :unlimited, :_destroy, variation_variation_option_values_attributes: [:id, :variation_option_value_id, :_destroy]],
       variation_options_attributes: [:id, :name, :_destroy, variation_option_values_attributes: [:id, :name, :_destroy]],
       product_images_attributes: [:id, :image, :featured, :_destroy],
       seo_tag_attributes: SeoTag.globalize_attribute_names + [:id]]

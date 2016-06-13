@@ -12,6 +12,7 @@ class Customer::ProductPresenter < Customer::BasePresenter
       sku: @object.sku,
       in_stock: @object.in_stock,
       vendor: @object.vendor,
+      unlimited: @object.unlimited,
       featured_image: ProductImage.featured(@object.product_images),
       images: @object.product_images
     }

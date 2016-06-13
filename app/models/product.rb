@@ -98,7 +98,7 @@ class Product < ActiveRecord::Base
       end
 
       option_value_array.first.product(*option_value_array[1..-1]).each do |a|
-        variation = variations.build price: price
+        variation = variations.build price: price, unlimited: unlimited
 
         a.each do |value|
           variation.variation_variation_option_values.build variation_option_value_id: value.id
@@ -125,6 +125,8 @@ class Product < ActiveRecord::Base
   def ensure_default
     self.in_stock = 0 if in_stock.blank?
     self.sale_off = 0 if sale_off.blank?
+    self.featured = false if featured.blank?
+    self.unlimited = true if featured.blank?
   end
 
   def update_inventory

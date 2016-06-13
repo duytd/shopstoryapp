@@ -7,5 +7,5 @@ en:
     already_used: "You have already used this coupon in previous purchase"
   import:
     invalid_extension: "Only .csv, .xlsx or .zip are allowed"
-    row_limit_exceeded: "Only 50 products can be uploaded at a time"
+    row_limit_exceeded: "Only %{limit} products can be uploaded at a time"
     not_found: "Cannot find the spreadsheet to import"

@@ -3,6 +3,7 @@ var ProductForm = React.createClass({
     var variationOptions = (this.props.variation_options) ? this.props.variation_options : [];
     var variations = (this.props.variations) ? this.props.variations : [];
     var productImages = (this.props.product_images) ? this.props.product_images : [];
+    var unlimited = (this.props.product) ? this.props.product.unlimited : true
 
     variationOptions.map(function(option) {
       if (option.option_values.length == 0) {
@@ -17,8 +18,9 @@ var ProductForm = React.createClass({
       errors: {},
       koCount: 0,
       enCount: 0,
+      dropzone: null,
+      unlimited: unlimited,
       product: this.props.product,
-      method: this.props.method,
       variations: variations,
       variationOptions: variationOptions,
       deletedVariationOptions: [],
@@ -26,126 +28,71 @@ var ProductForm = React.createClass({
       productImages: productImages
     };
   },
-  componentDidMount: function() {
-    if ($("#product_dropzone").length) {
-      var $form = $("#product_dropzone").closest("form");
-      var url = $form.attr("action");
-      var authToken = $('meta[name="csrf-token"]').attr("content");
-      var headers = {"X-CSRF-Token": authToken};
-      var template = '<div class="dz-preview dz-file-preview"><div class="dz-image">' +
-                     '<img data-dz-thumbnail width="200" height="auto" /></div><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div></div>' +
-                     '<i class="fa fa-trash" data-dz-remove></i><i class="fa fa-star hide"></i>' +
-                     '</div>';
-
-      Dropzone.autoDiscover = false;
-      productDropzone = new Dropzone("div#product_dropzone", {
-        previewTemplate: template,
-        acceptedFiles: ".png, .jpg, .jpeg, .gif",
-        url: url,
-        method: "put",
-        headers: headers,
-        paramName1: "product[product_images_attributes]",
-        paramName2: "[image]",
-        uploadMultiple: true,
-        autoProcessQueue: false,
-        thumbnailWidth: 200,
-        thumbnailHeight: null,
-      });
-
-      productDropzone.on("thumbnail", function(file) {
-        $element = $(".dz-preview i.fa-star:not(.added)");
-        $element.bind("click", function() {
-          var data = "product[product_images_attributes][0][id]=" + file.id +
-            "&product[product_images_attributes][0][featured]=1";
-          $("#preview_image_" + file.id).parent().addClass("featured");
-          $("#preview_image_" + file.id).parent().siblings().removeClass("featured");
-          this.handleFeatureImage(data);
-        }.bind(this));
-
-        $element.addClass("added");
-
-        if (typeof file.id !== "undefined") {
-          $element.data("id", file.id);
-          $element.attr("id", "preview_image_" + file.id);
-          $element.removeClass("hide");
-          $element.parent().find(".dz-details").empty();
-        }
-
-        if (file.featured) {
-          $element.parent().addClass("featured");
-        }
-      }.bind(this))
-
-      productDropzone.on("removedfile", function(file) {
-        if (file.id) {
-          var data = "product[id]=" + this.state.product.id +
-            "&product[product_images_attributes][0][id]=" + file.id +
-            "&product[product_images_attributes][0][_destroy]=" + true;
-
-          this.handleDeleteImage(data);
-        }
-      }.bind(this));
-    }
-
-    this.state.productImages.forEach(function (value) {
-      var mockFile = {id: value.id, name: value.name, featured: value.featured};
-
-      productDropzone.emit("addedfile", mockFile);
-      productDropzone.emit("thumbnail", mockFile, value.url);
-    });
+  renderVariation: function(variation, index) {
+    return (
+      <Variation
+        key={"variation_" + index}
+        index={index}
+        errors={(this.state.errors.variations) ? this.state.errors.variations[index] : {}}
+        lastItem={(this.state.variations.length == index + 1) ? true : false}
+        variation={variation}
+        validateInt={this.validateInt}
+        validateNumber={this.validateNumber}
+        variationOptions={this.state.variationOptions}
+        uploadVariationImage={this.uploadVariationImage}
+        addVariation={this.addVariation}
+        deleteVariation={this.deleteVariation} />
+    )
+  },
+  renderDeletedVariation: function(variation, index) {
+    return (
+      <Variation
+        key={"variation_" + (this.state.variations.length + index)}
+        index={this.state.variations.length + index}
+        variation={variation}
+        deleted={true} />
+    )
+  },
+  renderVariationOption: function(variationOption, index) {
+    return (
+      <VariationOption
+        key={"variation_option_" + index}
+        index={index}
+        lastItem={(this.state.variationOptions.length == index + 1) ? true : false}
+        defaultNames={this.props.default_option_names}
+        addVariationOption={this.addVariationOption}
+        deleteVariationOption={this.deleteVariationOption}
+        addOptionValue={this.addOptionValue}
+        deleteOptionValue={this.deleteOptionValue}
+        variationOption={variationOption} />
+    )
+  },
+  renderDeletedVariationOption: function(variationOption, index) {
+    return (
+      <VariationOption
+        deleted={true}
+        index={this.state.variationOptions.length + index}
+        key={"variation_option_" + (this.state.variationOptions.length + index)}
+        variationOption={variationOption} />
+    )
   },
   render: function () {
     var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
     var variationNodes = this.state.variations.map(function(variation, index) {
-      return (
-        <Variation
-          key={"variation_" + index}
-          index={index}
-          lastItem={(this.state.variations.length == index + 1) ? true : false}
-          variation={variation}
-          validateInt={this.validateInt}
-          validateNumber={this.validateNumber}
-          variationOptions={this.state.variationOptions}
-          uploadVariationImage={this.uploadVariationImage}
-          addVariation={this.addVariation}
-          deleteVariation={this.deleteVariation} />
-      )
+      return this.renderVariation(variation, index);
     }.bind(this));
 
     var deletedVariationNodes = this.state.deletedVariations.map(function(variation, index) {
-      return (
-        <Variation
-          key={"variation_" + (this.state.variations.length + index)}
-          index={this.state.variations.length + index}
-          variation={variation}
-          deleted={true} />
-      )
+      return this.renderDeletedVariation(variation, index);
     }.bind(this));
 
     var variationOptionNodes = this.state.variationOptions.map(function(variationOption, index) {
-      return (
-        <VariationOption
-          key={"variation_option_" + index}
-          index={index}
-          lastItem={(this.state.variationOptions.length == index + 1) ? true : false}
-          defaultNames={this.props.default_option_names}
-          addVariationOption={this.addVariationOption}
-          deleteVariationOption={this.deleteVariationOption}
-          addOptionValue={this.addOptionValue}
-          deleteOptionValue={this.deleteOptionValue}
-          variationOption={variationOption} />
-      )
+      return this.renderVariationOption(variationOption, index);
     }.bind(this));
 
     var deletedVariationOptionNodes = this.state.deletedVariationOptions.map(function(variationOption, index) {
-      return (
-        <VariationOption
-          deleted={true}
-          index={this.state.variationOptions.length + index}
-          key={"variation_option_" + (this.state.variationOptions.length + index)}
-          variationOption={variationOption} />
-      )
+      return this.renderDeletedVariationOption(variationOption, index);
     }.bind(this));
 
     return (
@@ -235,47 +182,57 @@ var ProductForm = React.createClass({
 
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.images_title")}</h4>
-            <div className="form-group dropzone" id="product_dropzone">
-              <div className="dz-message">
-                {I18n.t("merchant.admin.forms.dropzone_instruction")}
-              </div>
-            </div>
+            <ProductImageForm product={this.state.product} productImages={this.state.productImages} updateDropzone={this.updateDropzone} />
           </div>
 
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
+
             <div className={(this.state.variations.length > 0) ? "hide" : "form-group"}>
               <label className="label">{I18n.t("activerecord.attributes.product.in_stock")}</label>
-              <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
-                name="product[in_stock]" defaultValue={(this.state.product) ? this.state.product.in_stock : "0"} />
+              <p>
+                <label className="styled-cb">
+                  <input type="hidden" name="product[unlimited]" value="0" />
+                  <input ref="unlimited" type="checkbox" name="product[unlimited]" value="1" onChange={this.updateUnlimited}
+                    defaultChecked={this.state.unlimited} />
+                  <i className="fa"></i>
+                  {I18n.t("merchant.admin.forms.unlimited")}
+                </label>
+              </p>
+
+              {(!this.state.unlimited) ?
+                <input type="text" ref="in_stock" onBlur={this.validateInt} className="form-control"
+                  name="product[in_stock]" defaultValue={(this.state.product) ? this.state.product.in_stock : "0"} /> : null}
             </div>
 
-            {(this.state.product) ?
-            <div className="variation-wrapper">
-              {(this.state.variationOptions.length == 0) ?
-              <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
-                {I18n.t("merchant.admin.products.buttons.add_option_type")}
-              </button> : null}
-              <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
-                <div className="col-xs-5">
-                  <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
+            <div id="variations">
+              {(this.state.product) ?
+              <div className="variation-wrapper">
+                {(this.state.variationOptions.length == 0) ?
+                <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
+                  {I18n.t("merchant.admin.products.buttons.add_option_type")}
+                </button> : null}
+                <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
+                  <div className="col-xs-5">
+                    <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
+                  </div>
+                  <div className="col-xs-2">
+                  </div>
+                  <div className="col-xs-5">
+                    <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
+                  </div>
                 </div>
-                <div className="col-xs-2">
-                </div>
-                <div className="col-xs-5">
-                  <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
-                </div>
-              </div>
-              {deletedVariationOptionNodes}
-              {variationOptionNodes}
-              {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
-              <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
-                {I18n.t("merchant.admin.products.buttons.populate_variation")}
-              </button> : null}
-              <hr/>
-              {deletedVariationNodes}
-              {variationNodes}
-            </div> : null}
+                {deletedVariationOptionNodes}
+                {variationOptionNodes}
+                {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
+                <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
+                  {I18n.t("merchant.admin.products.buttons.populate_variation")}
+                </button> : null}
+                <hr/>
+                {deletedVariationNodes}
+                {variationNodes}
+              </div> : null}
+            </div>
           </div>
         </div>
 
@@ -285,7 +242,7 @@ var ProductForm = React.createClass({
             <div className="form-group">
               <label className="styled-cb">
                 <input type="hidden" name="product[visibility]" value="0" />
-                <input ref="checkbox" type="checkbox" name="product[visibility]" value="1"
+                <input type="checkbox" name="product[visibility]" value="1"
                   defaultChecked={(this.props.product) ? this.state.product.visibility : true} />
                 <i className="fa"></i>
                 {I18n.t("merchant.admin.forms.online")}
@@ -296,7 +253,7 @@ var ProductForm = React.createClass({
             <div className="form-group">
               <label className="styled-cb">
                 <input type="hidden" name="product[featured]" value="0" />
-                <input ref="checkbox" type="checkbox" name="product[featured]" value="1"
+                <input type="checkbox" name="product[featured]" value="1"
                   defaultChecked={(this.state.product) ? this.state.product.featured : false} />
                 <i className="fa"></i>
                 {I18n.t("merchant.admin.forms.mark_as_featured")}
@@ -326,7 +283,7 @@ var ProductForm = React.createClass({
                   <div className="col-xs-6" key={"category_" + category.id}>
                     <label className="styled-cb" >
                       <input type="hidden" name="product[category_ids][]" value="" />
-                      <input ref="checkbox" type="checkbox" name="product[category_ids][]" value={category.id}
+                      <input type="checkbox" name="product[category_ids][]" value={category.id}
                         defaultChecked={this.props.category_ids && this.props.category_ids.indexOf(category.id) > -1} />
                       <i className="fa"></i>
                       {translate(category, "name")}
@@ -348,7 +305,7 @@ var ProductForm = React.createClass({
             <div className="form-group">
               <label className="styled-cb">
                 <input type="hidden" name="product[pay_shipping_on_delivery]" value="0" />
-                <input ref="checkbox" type="checkbox" name="product[pay_shipping_on_delivery]" value="1"
+                <input type="checkbox" name="product[pay_shipping_on_delivery]" value="1"
                   defaultChecked={(this.props.product) ? this.state.product.pay_shipping_on_delivery : false} />
                 <i className="fa"></i>
                 {I18n.t("activerecord.attributes.product.pay_shipping_on_delivery")}
@@ -473,10 +430,10 @@ var ProductForm = React.createClass({
           this.setState({variations: variations, deletedVariations: []});
         }.bind(this),
         error: function(xhr) {
-          console.log(xhr.responseText);
+          alert(xhr.responseText);
         }
       })
-    })
+    }.bind(this))
   },
   submit: function(e, callback) {
     if (typeof e !== "undefined" && e != null) {
@@ -489,15 +446,11 @@ var ProductForm = React.createClass({
     this.refs.description_en.value = description_en;
     this.refs.description_ko.value = description_ko;
 
-    if (this.state.variations.length > 0) {
-      this.refs.in_stock.value = "0";
-    }
-
     var form = $(this.refs.form);
 
-    this.handleProductSubmit(form, callback);
+    this.submitProduct(form, callback);
   },
-  handleProductSubmit: function(form, callback) {
+  submitProduct: function(form, callback) {
     var method = this.state.product ? "put" : "post";
     var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
@@ -510,9 +463,11 @@ var ProductForm = React.createClass({
       processData: false,
       success: function(response) {
         var productId = response.product.id;
-        this.postImages(productId, Routes.merchant_product_path.localize(productId));
+        var callbackDefined = (typeof callback === "function") ? true : false;
 
-        if (this.state.product) {
+        this.submitImages(productId, Routes.merchant_product_path.localize(productId));
+
+        if (this.state.product && !callbackDefined) {
           Turbolinks.visit(this.props.redirect_url);
         }
         else {
@@ -537,12 +492,14 @@ var ProductForm = React.createClass({
             method: "put"
           }
 
-          if (typeof callback === "function" && callback()) {
+          if (callbackDefined) {
             this.setState(newState, callback);
           }
           else {
             this.setState(newState);
           }
+
+          this.scrollToVariation();
         }
       }.bind(this),
       error: function(xhr) {
@@ -563,32 +520,24 @@ var ProductForm = React.createClass({
       }.bind(this)
     });
   },
-  postImages: function(productId, url) {
-    productDropzone.on("sending", function(file, xhr, formData) {
+  scrollToVariation: function() {
+    $("#variations").scrollView();
+  },
+  updateUnlimited: function() {
+    var checked = this.refs.unlimited.checked;
+    this.setState({unlimited: checked});
+  },
+  submitImages: function(productId, url) {
+    var dropzone = this.state.dropzone;
+
+    dropzone.on("sending", function(file, xhr, formData) {
       formData.append("product[id]", productId);
     });
 
-    productDropzone.options.url = url;
-    productDropzone.processQueue();
+    dropzone.options.url = url;
+    dropzone.processQueue();
   },
-  handleDeleteImage: function(data) {
-    var url = Routes.merchant_product_path.localize(this.state.product.id);
-
-    $.ajax({
-      data: data,
-      url: url,
-      method: "put",
-      dataType: "json"
-    })
-  },
-  handleFeatureImage: function(data) {
-    var url = Routes.merchant_product_path.localize(this.state.product.id);
-
-    $.ajax({
-      data: data,
-      url: url,
-      method: "put",
-      dataType: "json",
-    })
+  updateDropzone: function(dropzone) {
+    this.setState({dropzone: dropzone});
   }
 })

@@ -8,6 +8,7 @@ var ProductList = React.createClass({
       I18n.t("activerecord.attributes.product.sku"),
       I18n.t("activerecord.attributes.product.vendor"),
       I18n.t("activerecord.attributes.product.in_stock"),
+      I18n.t("activerecord.attributes.product.featured"),
       I18n.t("activerecord.attributes.product.visibility")
     ];
 

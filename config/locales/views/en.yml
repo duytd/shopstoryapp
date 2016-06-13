@@ -109,6 +109,7 @@ en:
         variations_title: "Variations"
         featured_title: "Featured"
         online: "Online"
+        unlimited: "Unlimited"
         mark_as_featured: "Mark As Featured"
         dropzone_instruction: "Drop files or click here to upload"
       messages:

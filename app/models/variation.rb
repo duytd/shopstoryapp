@@ -10,6 +10,7 @@ class Variation < ActiveRecord::Base
 
   validates :product, presence: true
   validates :price, presence: true
+  validates :in_stock, presence: true, unless: :unlimited?
 
   before_validation :initialize_master, if: :master?
 
@@ -54,5 +55,7 @@ class Variation < ActiveRecord::Base
     self.price = product.price
     self.sku = product.sku
     self.in_stock = product.in_stock
+    self.unlimited = product.unlimited
+    true
   end
 end

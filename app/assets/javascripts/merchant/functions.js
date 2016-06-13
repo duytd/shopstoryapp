@@ -63,6 +63,14 @@ function translate(object, attribute) {
   }
 }
 
+$.fn.scrollView = function () {
+  return this.each(function () {
+    $("html, body").animate({
+      scrollTop: $(this).offset().top
+    }, 1000);
+  });
+}
+
 if (typeof Dropzone != "undefined") {
   Dropzone.prototype._getParamName = function(n) {
     if (typeof this.options.paramName === "function") {
