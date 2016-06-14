@@ -3,6 +3,8 @@ en:
     admin:
       products:
         title: "All Products"
+        all: "All"
+        category: "Category"
         add_product: "Add Product"
         edit_product: "Edit Product"
         color_placeholder: "E.g: Red, Blue, White, etc.."

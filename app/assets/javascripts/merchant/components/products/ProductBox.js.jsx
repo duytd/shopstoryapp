@@ -1,16 +1,40 @@
 var ProductBox = React.createClass({
+  getInitialState: function() {
+    var selectedCategory = this.props.filter.category;
+    var url = this.props.url;
+
+    if (selectedCategory != null) {
+      url = url.addParams("category_id", selectedCategory.id);
+    }
+
+    return {
+      products: this.props.products,
+      page: this.props.page,
+      totalPage: this.props.total_page,
+      total: this.props.total,
+      url: url,
+      selectedCategory: selectedCategory
+    }
+  },
   render: function() {
     var productList = (
-      <ProductList
-        page={this.props.page}
-        totalPage={this.props.total_page}
-        url={this.props.url}
-        downloadCSV={this.downloadCSV}
-        export_url={this.props.export_url}
-        products={this.props.products} />
+      <div className="product-list">
+        <ProductFilter
+          url={this.props.url}
+          categories={this.props.categories}
+          selectedCategory={this.state.selectedCategory}
+          updateData={this.updateData} />
+        <ProductList
+          page={this.state.page}
+          totalPage={this.state.totalPage}
+          url={this.props.url}
+          downloadCSV={this.downloadCSV}
+          export_url={this.props.export_url}
+          products={this.state.products} />
+      </div>
     )
 
-    if (this.props.products.length == 0) {
+    if (this.state.products.length == 0) {
       productList = (
         <div className="text-center">
           <p>{I18n.t("merchant.admin.messages.no_product")}</p>
@@ -23,22 +47,33 @@ var ProductBox = React.createClass({
 
     var pagination = (
       <Pagination
-        page={this.props.page}
-        totalPage={this.props.total_page}
-        size={this.props.products.length}
-        total={this.props.total}
-        url={this.props.url} />
+        page={this.state.page}
+        totalPage={this.state.totalPage}
+        size={this.state.products.length}
+        total={this.state.total}
+        url={this.state.url} />
     )
 
     return (
-      <Box name="product"
-        list={productList}
-        url={this.props.new_url}
-        pagination={pagination}
-        handleExportAll={this.handleExportAll}
-        handleImport={this.handleImport}
-        title={I18n.t("merchant.admin.products.title")} />
+      <div className="products">
+        <Box name="product"
+          list={productList}
+          url={this.props.new_url}
+          pagination={pagination}
+          handleExportAll={this.handleExportAll}
+          handleImport={this.handleImport}
+          title={I18n.t("merchant.admin.products.title")} />
+      </div>
     );
+  },
+  updateData: function(data, url) {
+    this.setState({
+      products: data.products,
+      page: data.page,
+      totalPage: data.total_page,
+      total: data.total,
+      url: url
+    })
   },
   handleImport: function(form) {
     var url = this.props.import_url;

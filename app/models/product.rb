@@ -56,6 +56,7 @@ class Product < ActiveRecord::Base
     end
   }
   scope :filtered_by_vendor, ->vendor_list{where(vendor: vendor_list) if vendor_list.present? && vendor_list.size > 0}
+  scope :filtered_by_category, ->category_id{joins(:category_products).where("category_products.category_id = ?", category_id) if category_id.present?}
   scope :sorted_by, ->attribute, direction{
     if ["name", "price"].include?(attribute) && ["asc", "desc"].include?(direction)
       if attribute == "name"

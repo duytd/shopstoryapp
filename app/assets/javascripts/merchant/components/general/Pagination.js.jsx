@@ -60,20 +60,21 @@ var Pagination = React.createClass({
     )
   },
   componentDidMount: function() {
-    this.loadPages(this.props.page);
+    this.loadPages(this.props);
   },
   componentWillReceiveProps: function(nextProps) {
-    this.loadPages(nextProps.page);
+    this.loadPages(nextProps);
   },
-  loadPages: function(page) {
+  loadPages: function(props) {
     var prevPages = [],
       nextPages = [],
       prev = null,
       next = null,
       prevIndex = 0,
       nextIndex = 0;
+      page = props.page;
 
-    if (page > 1 && page <= this.props.totalPage) {
+    if (page > 1 && page <= props.totalPage) {
       prev = page - 1;
       for (var i = page - 1; i >= 1; i--) {
         prevPages.push(i);
@@ -82,9 +83,9 @@ var Pagination = React.createClass({
       }
     }
 
-    if (page >= 1 && page < this.props.totalPage) {
+    if (page >= 1 && page < props.totalPage) {
       next = page + 1;
-      for (var i = page + 1; i <= this.props.totalPage; i++) {
+      for (var i = page + 1; i <= props.totalPage; i++) {
         nextPages.push(i);
         if (nextIndex == 3) break;
         nextIndex ++;

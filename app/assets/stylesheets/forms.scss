@@ -230,3 +230,15 @@ $input-bg-color: #ededec;
   color: $white !important;
   font-weight: bold;
 }
+
+.dropdown {
+  .caret {
+    margin-left: 5px;
+  }
+  .dropdown-menu {
+    li {
+      padding: 3px 8px;
+      cursor: pointer;
+    }
+  }
+}

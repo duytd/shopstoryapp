@@ -70,6 +70,7 @@ module Customer::BaseHelper
   end
 
   def present object, options={}
+    return nil if object.nil?
     klass = options[:presenter_klass] || "Customer::#{options[:sti] ? object.class.superclass : object.class}Presenter".constantize
     presenter = klass.new object, options
   end

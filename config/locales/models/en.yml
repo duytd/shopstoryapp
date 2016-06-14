@@ -71,6 +71,7 @@ en:
         name: "Name"
         name_en: "Name"
         name_ko: "Name"
+        category: "Category"
         description_en: "Description"
         description_ko: "Description"
         price: "Price"

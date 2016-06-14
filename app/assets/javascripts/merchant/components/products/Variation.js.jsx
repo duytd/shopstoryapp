@@ -55,12 +55,19 @@ var Variation = React.createClass({
       }.bind(this))
     }
 
+    var emptyOption = true;
+    optionNodes.forEach(function(node) {
+      if (node != null) {
+        emptyOption = false;
+      }
+    })
+
     return (
       <div className="variation">
         {(typeof this.props.variation.id !== "undefined") ?
           <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][id]"}
             value={this.props.variation.id} /> : null}
-        {(this.props.deleted) ?
+        {(this.props.deleted || emptyOption) ?
           <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][_destroy]"}
             value={true} />
         : (
@@ -77,24 +84,19 @@ var Variation = React.createClass({
             </div>
 
             <div className="col-xs-2">
+              <input type="text" className="form-control input-sm"
+                name={"product[variations_attributes][" + this.props.index + "][price]"}
+                placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.price.toString().toKoreanFormat() : ""} onBlur={this.props.validateNumber} />
+
               <div className="form-errors">
                 {(this.props.errors.price) ? this.props.errors.price.map(function(object){
                   return object;
                 }) : ""}
               </div>
-
-              <input type="text" className="form-control input-sm"
-                name={"product[variations_attributes][" + this.props.index + "][price]"}
-                placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
-                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.price.toString().toKoreanFormat() : ""} onBlur={this.props.validateNumber} />
             </div>
 
             <div className="col-xs-2">
-              <div className="form-errors">
-                {(this.props.errors.in_stock) ? this.props.errors.in_stock.map(function(object){
-                  return object;
-                }) : ""}
-              </div>
               <p>
                 <label className="styled-cb">
                   <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][unlimited]"} value="0" />
@@ -106,10 +108,18 @@ var Variation = React.createClass({
               </p>
 
               {(!this.state.unlimited) ?
-                <input type="text" className="form-control input-sm"
-                  name={"product[variations_attributes][" + this.props.index + "][in_stock]"}
-                  placeholder={I18n.t("merchant.admin.variations.in_stock_placeholder")}
-                  defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.in_stock : ""} onBlur={this.validateInt} /> : null}
+                <div>
+                  <input type="text" className="form-control input-sm"
+                    name={"product[variations_attributes][" + this.props.index + "][in_stock]"}
+                    placeholder={I18n.t("merchant.admin.variations.in_stock_placeholder")}
+                    defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.in_stock : ""} onBlur={this.validateInt} />
+
+                  <div className="form-errors">
+                    {(this.props.errors.in_stock) ? this.props.errors.in_stock.map(function(object){
+                      return object;
+                    }) : ""}
+                  </div>
+                </div> : null}
             </div>
 
             <div className="col-xs-3">

@@ -2,7 +2,7 @@ class Merchant::ProductsController < Merchant::BaseController
   before_action :load_product, only: [:edit]
   load_and_authorize_resource
 
-  before_action :load_categories, only: [:new, :edit]
+  before_action :load_categories, only: [:new, :edit, :index]
 
   def index
    if request.delete?
@@ -109,15 +109,25 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def list_all
-    products = Product.latest.page params[:page]
+    products = Product.filtered_by_category(params[:category_id]).latest.page params[:page]
+    selected_category = Category.find(params[:category_id]) if params[:category_id].present?
 
     @props = paginating products, {
+      filter: {
+        category: present(selected_category)
+      },
+      categories: @categories.map{|c| present(c)},
       products: products.map{|p| present(p)},
       new_url: new_merchant_product_path,
       url: merchant_products_path,
       export_url: export_merchant_products_path,
       import_url: import_merchant_products_path
     }
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @props, status: :ok}
+    end
   end
 
   def delete_all

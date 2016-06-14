@@ -1,4 +1,13 @@
 var List = React.createClass({
+  componentWillReceiveProps: function(nextProps) {
+    var items = nextProps.items.map(function(item) {
+
+      item.checked = false;
+      return item;
+    })
+
+    this.setState({items: items, checkCount: 0, isSelectAll: false});
+  },
   getInitialState: function() {
     var items = this.props.items.map(function(item) {
 
