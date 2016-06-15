@@ -36,11 +36,18 @@ var ProductBox = React.createClass({
 
     if (this.state.products.length == 0) {
       productList = (
-        <div className="text-center">
-          <p>{I18n.t("merchant.admin.messages.no_product")}</p>
-          <a href={this.props.new_url} className="btn btn-lg btn-primary">
-            {I18n.t("merchant.admin.buttons.add")}
-          </a>
+        <div className="product-list">
+          <ProductFilter
+            url={this.props.url}
+            categories={this.props.categories}
+            selectedCategory={this.state.selectedCategory}
+            updateData={this.updateData} />
+          <div className="text-center">
+            <p>{I18n.t("merchant.admin.messages.no_product")}</p>
+            <a href={this.props.new_url} className="btn btn-lg btn-primary">
+              {I18n.t("merchant.admin.buttons.add")}
+            </a>
+          </div>
         </div>
       )
     }

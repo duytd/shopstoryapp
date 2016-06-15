@@ -23,6 +23,7 @@ class Order < ActiveRecord::Base
 
   default_scope {order created_at: :desc}
 
+ scope :latest, ->{order updated_at: :desc}
   scope :success, ->{where(status: [Order.statuses[:processed], Order.statuses[:shipping], Order.statuses[:shipped]])}
   scope :having_payment, ->{where.not(status: [Order.statuses[:incompleted], Order.statuses[:pending], Order.statuses[:cancelled]])}
 
@@ -75,27 +76,58 @@ class Order < ActiveRecord::Base
     self.update_attributes currency: currency
   end
 
+  protected
+  def self.get_revenue time=nil
+    if time.nil?
+      self.success.sum(:total)
+    else
+      case time
+      when "last_7_days"
+        self.success.where("updated_at >= ? AND updated_at <= ?", 7.days.ago, Time.current).sum(:total)
+      when "last_30_days"
+        self.success.where("updated_at >= ? AND updated_at <= ?", 1.month.ago, Time.current).sum(:total)
+      when "today"
+        self.success.where("updated_at >= ? AND updated_at <= ?", Time.current.beginning_of_day, Time.current).sum(:total)
+      end
+    end
+  end
+
+  def self.get_sale time=nil
+    if time.nil?
+      self.success.count
+    else
+      case time
+      when "last_7_days"
+        self.success.where("updated_at >= ? AND updated_at <= ?", 7.days.ago, Time.current).count
+      when "last_30_days"
+        self.success.where("updated_at >= ? AND updated_at <= ?", 1.month.ago, Time.current).count
+      when "today"
+        self.success.where("updated_at >= ? AND updated_at <= ?", Time.current.beginning_of_day, Time.current).count
+      end
+    end
+  end
+
   def self.hourly_data
     points = 24
-    start_time = Time.now.at_beginning_of_day
+    start_time = Time.current.at_beginning_of_day
     chart_data points, HOURLY_RANGE, true, start_time, "hourly"
   end
 
   def self.daily_data
     points = 30
-    start_time = Time.now.at_beginning_of_month
+    start_time = Time.current.at_beginning_of_month
     chart_data points, DAILY_RANGE, true, start_time, "daily"
   end
 
   def self.weekly_data
     points = 8
-    start_time = Time.now.at_beginning_of_week - 8.weeks
+    start_time = Time.current.at_beginning_of_week - 8.weeks
     chart_data points, WEEKLY_RANGE, true, start_time, "weekly"
   end
 
   def self.monthly_data
     points = 12
-    start_time = Time.now.at_beginning_of_year
+    start_time = Time.current.at_beginning_of_year
     monthly_range = []
     temp = start_time
 
@@ -110,7 +142,7 @@ class Order < ActiveRecord::Base
 
   def self.yearly_data
     points = 4
-    start_time = Time.now.at_end_of_year - 4.years
+    start_time = Time.current.at_end_of_year - 4.years
     chart_data points, YEARLY_RANGE, true, start_time, "yearly"
   end
 
@@ -121,7 +153,7 @@ class Order < ActiveRecord::Base
 
     points.times do
       end_time = (same_range) ? (start_time + range) : (start_time + range[i])
-      orders = Order.success.where "updated_at >= ? AND updated_at <= ?", start_time, end_time
+      orders = self.success.where "updated_at >= ? AND updated_at <= ?", start_time, end_time
       data << {time: format_time(start_time, time_type), revenue: orders.inject(0){|sum, x| sum + x.total}}
       start_time = end_time
       i = i + 1
@@ -130,11 +162,6 @@ class Order < ActiveRecord::Base
     return data
   end
 
-  def as_json options={}
-    super.as_json(options).merge({type: type.underscore, unprocessed: unprocessed?})
-  end
-
-  protected
   def changed_to_processed?
     status_changed? && processed?
   end

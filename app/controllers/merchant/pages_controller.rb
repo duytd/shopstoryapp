@@ -4,6 +4,28 @@ class Merchant::PagesController < Merchant::BaseController
 
   def dashboard
     check_setup_step
+
+    @today_sales = ProductOrder.get_sale "today"
+    @total_products = Product.count
+    @total_customers = Customer.count
+
+    @today_revenue = ProductOrder.get_revenue "today"
+    @last_7_days_revenue = ProductOrder.get_revenue "last_7_days"
+    @last_30_days_revenue = ProductOrder.get_revenue "last_30_days"
+    @weeky_chart_data = ProductOrder.weekly_data
+    @recent_orders = ProductOrder.latest.limit Settings.order.recent_count
+
+    @props = {
+      total_revenue: @total_revenue,
+      today_sales: @today_sales,
+      total_products: @total_products,
+      total_customers: @total_customers,
+      today_revenue: @today_revenue,
+      last_7_days_revenue: @last_7_days_revenue,
+      last_30_days_revenue: @last_30_days_revenue,
+      recent_orders: @recent_orders.map{|o| present(o)},
+      weeky_chart_data: @weeky_chart_data
+    }
   end
 
   def credentials

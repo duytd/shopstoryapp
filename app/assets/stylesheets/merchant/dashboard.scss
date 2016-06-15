@@ -1,0 +1,47 @@
+.dashboard {
+  .icon {
+    background-clip: padding-box;
+    border-radius: 50%;
+    height: 80px;
+    text-align: center;
+    width: 80px;
+  }
+  .btn-sm {
+    margin-top: 10px;
+  }
+  .fa {
+    line-height: 80px;
+    font-size: 32px;
+  }
+  h3 {
+    color: #aaa;
+    line-height: 15px;
+  }
+  p {
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .icon-primary {
+    background: rgba(246, 138, 30, 0.2);
+    border: 1px solid $base-light;
+    color: $base-light;
+  }
+  .icon-success {
+    background: rgba(64,212,122, 0.2);
+    border: 1px solid $green;
+    color: $green;
+  }
+  img {
+    margin-right: 5px;
+  }
+  h4 {
+    color: #ccc;
+    font-size: 15px;
+  }
+  .highlight-number {
+    text-align: center;
+    font-size: 60px;
+    color: $base-main;
+    font-weight: 700;
+  }
+}

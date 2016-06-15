@@ -42,18 +42,10 @@ var LineChart = React.createClass({
     });
   },
   render: function() {
-    var reportTypes = ["hourly", "daily", "weekly", "monthly", "yearly"]
-
     return (
       <div className="chart-container">
-        {reportTypes.map(function(type, index) {
-          return <button key={"type_" + index} onClick={this.updateData.bind(this, type)}>{I18n.t("merchant.admin.reports.order.time." + type)}</button>
-        }.bind(this))}
-        <canvas ref="chart" id="lineChart" width="400" height="200"></canvas>
+        <canvas ref="chart" id="lineChart" width={this.props.width || "400"} height={this.props.height || "400"}></canvas>
       </div>
     )
-  },
-  updateData: function(type) {
-    this.props.updateData(type);
   }
 })

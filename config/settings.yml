@@ -1,3 +1,5 @@
 free_trial_length: 100
 import:
   row_limit: 100
+order:
+  recent_count: 7
