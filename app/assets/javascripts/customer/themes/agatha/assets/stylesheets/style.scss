@@ -237,12 +237,13 @@ label {
 
 .cart-container {
   width: 320px;
-  display: none;
+  display: block;
   padding: 0px;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  z-index: 999;
+  position: fixed;
+  right: -320px;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
   padding: 5px;
   overflow: auto;
   background: #fff;
@@ -250,7 +251,7 @@ label {
   border-width: 0 1px 1px 1px;
   border-color: #c9c9c9;
   transition-property: all;
-	transition-duration: 0.5s;
+  transition-duration: 0.5s;
   -webkit-transform: translateZ(0);
   .col-xs-3 {
     padding: 2px;
@@ -258,6 +259,7 @@ label {
   }
   &.open {
     display: block;
+    right: 0;
   }
   .row {
     margin-bottom: 10px;
@@ -290,6 +292,17 @@ label {
     height: 50px;
     object-fit: cover;
     display: inline-block;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 992px) {
+  .cart-container {
+    position: absolute;
+    top: 40px;
+    bottom: auto;
+    right: 0;
+    display: none;
   }
 }
 
