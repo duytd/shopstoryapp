@@ -9,12 +9,15 @@ var List = React.createClass({
     this.setState({items: items, checkCount: 0, isSelectAll: false});
   },
   getInitialState: function() {
+    var sorting = this.props.sorting;
+    var sortBy = (sorting != null) ? sorting.sorted_by : null;
+    var sortDirection = (sorting != null) ? sorting.sort_direction : null;
     var items = this.props.items.map(function(item) {
 
       item.checked = false;
       return item;
     })
-    return {items: items, checkCount: 0, isSelectAll: false};
+    return {items: items, checkCount: 0, isSelectAll: false, sortBy: sortBy, sortDirection: sortDirection};
   },
   render: function () {
     var itemNodes = this.state.items.map(function(item) {
@@ -122,7 +125,7 @@ var List = React.createClass({
                   <SelectAllCb isSelectAll={this.state.isSelectAll} selectAllHandler={this.handleSelectAll}
                     isDisabled={this.state.items.length == 0} />
                 </th>
-                {this.props.headers.map(function(h, index){ return <th key={"h_" + index}>{h}</th>})}
+                {this.renderHeaders()}
                 <th></th>
               </tr>
             </thead>
@@ -133,6 +136,60 @@ var List = React.createClass({
         </div>
       </div>
     );
+  },
+  renderHeaders: function() {
+    return this.props.headers.map(function(h, index){
+      if (this.props.sortable && this.props.sortableColumns) {
+        var column = this.getSortableColumn(index);
+
+        if (column != null) {
+          return (
+            <th key={"h_" + index} className="sortable" onClick={this.sort.bind(this, index)}>
+              {h}
+              {(column.name == this.state.sortBy) ?
+                <span>
+                  {(this.state.sortDirection == "desc") ? <i className="fa fa-caret-down"></i> : <i className="fa fa-caret-up"></i>}
+                </span> : null}
+            </th>
+          )
+        }
+        else {
+          return <th key={"h_" + index}>{h}</th>
+        }
+      }
+      else {
+        return <th key={"h_" + index}>{h}</th>
+      }
+    }.bind(this))
+  },
+  getSortableColumn: function(index) {
+    var result = null;
+
+    this.props.sortableColumns.forEach(function(column) {
+      if (column.index == index) {
+        result = column;
+        return;
+      }
+    })
+
+    return result;
+  },
+  sort: function(index) {
+    var url = Routes.merchant_products_path();
+    var sortBy = this.getSortableColumn(index).name;
+    var sortDirection = "asc";
+
+    if (this.state.sortDirection != null) {
+      sortDirection = (this.state.sortDirection == "asc") ? "desc" : "asc";
+    }
+
+    this.setState({sortBy: sortBy, sortDirection: sortDirection}, function() {
+      $.getJSON(url, {sorted_by: sortBy, sort_direction: sortDirection}, function(data) {
+        var newUrl = url.addParams("sorted_by", sortBy).addParams("sort_direction", sortDirection);
+        this.props.updateData(data, newUrl);
+      }.bind(this))
+
+    }.bind(this))
   },
   deleteItem: function(item) {
     var items = this.state.items;

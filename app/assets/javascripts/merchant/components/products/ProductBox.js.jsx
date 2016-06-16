@@ -1,10 +1,15 @@
 var ProductBox = React.createClass({
   getInitialState: function() {
     var selectedCategory = this.props.filter.category;
+    var sorting = this.props.sorting;
     var url = this.props.url;
 
     if (selectedCategory != null) {
       url = url.addParams("category_id", selectedCategory.id);
+    }
+
+    if (sorting != null) {
+      url = url.addParams("sorted_by", sorting.sorted_by).addParams("sort_direction", sorting.sort_direction);
     }
 
     return {
@@ -26,10 +31,12 @@ var ProductBox = React.createClass({
           updateData={this.updateData} />
         <ProductList
           page={this.state.page}
-          totalPage={this.state.totalPage}
+          totalPage={this.state.totalPage}//
           url={this.props.url}
           downloadCSV={this.downloadCSV}
           export_url={this.props.export_url}
+          sorting={this.props.sorting}
+          updateData={this.updateData}
           products={this.state.products} />
       </div>
     )

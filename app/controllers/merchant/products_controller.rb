@@ -34,6 +34,10 @@ class Merchant::ProductsController < Merchant::BaseController
     end
   end
 
+  def show
+    render json: present(@product), status: :ok
+  end
+
   def edit
     @props = {
       seo_tag: @seo_tag ? present(@seo_tag) : nil,
@@ -73,8 +77,8 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def search
-    @search = Product.search_by_name params[:q]
-    render json: @search, status: :ok
+    products = Product.search_by_name(params[:q])
+    render json: products.map{|p| present(p)}, status: :ok
   end
 
   def import
@@ -95,7 +99,7 @@ class Merchant::ProductsController < Merchant::BaseController
       @products = Product.where id: params[:product_ids]
     end
 
-    send_data ImportExportService.new({klass: "Product", attributes: Product::ATTRIBUTES}).export
+    send_data ImportExportService.new({objects: @products, attributes: Product::ATTRIBUTES}).export
   end
 
   private
@@ -109,20 +113,14 @@ class Merchant::ProductsController < Merchant::BaseController
   end
 
   def list_all
-    products = Product.filtered_by_category(params[:category_id]).latest.page params[:page]
-    selected_category = Category.find(params[:category_id]) if params[:category_id].present?
-
-    @props = paginating products, {
-      filter: {
-        category: present(selected_category)
-      },
-      categories: @categories.map{|c| present(c)},
-      products: products.map{|p| present(p)},
-      new_url: new_merchant_product_path,
-      url: merchant_products_path,
-      export_url: export_merchant_products_path,
-      import_url: import_merchant_products_path
-    }
+    @selected_category = Category.find(params[:category_id]) if params[:category_id].present?
+    @sorted_by = params[:sorted_by]
+    @sort_direction = params[:sort_direction]
+    @products = Product.filtered_by_category(params[:category_id])
+                                  .sorted_by(@sorted_by, @sort_direction)
+                                  .latest
+                                  .page(params[:page])
+    render_props
 
     respond_to do |format|
       format.html
@@ -133,6 +131,24 @@ class Merchant::ProductsController < Merchant::BaseController
   def delete_all
     Product.where(id: params[:product_ids]).destroy_all
     render json: nil, status: :ok
+  end
+
+  def render_props
+    @props = paginating @products, {
+      filter: {
+        category: present(@selected_category)
+      },
+      sorting: {
+        sorted_by: @sorted_by,
+        sort_direction: @sort_direction
+      },
+      categories: @categories.map{|c| present(c)},
+      products: @products.map{|p| present(p)},
+      new_url: new_merchant_product_path,
+      url: merchant_products_path,
+      export_url: export_merchant_products_path,
+      import_url: import_merchant_products_path
+    }
   end
 
   def product_params

@@ -17,11 +17,36 @@ var ProductList = React.createClass({
         type="product"
         items={this.props.products}
         headers={headers}
+        sortable={true}
+        sortableColumns={[
+          {
+            index: 2,
+            name: "name"
+          },
+          {
+            index: 3,
+            name: "price"
+          },
+          {
+            index: 4,
+            name: "sku"
+          },
+          {
+            index: 5,
+            name: "vendor"
+          },
+          {
+            index: 7,
+            name: "featured"
+          }
+        ]}
         page={this.props.page}
         totalPage={this.props.totalPage}
         redirectUrl={this.props.url}
         deleteAllUrl={this.props.url}
         exportable={true}
+        sorting={this.props.sorting}
+        updateData={this.props.updateData}
         handleExport={this.handleExport} />
     )
   },

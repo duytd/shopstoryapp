@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   ATTRIBUTES = %w{slug name_ko name_en description_ko description_en sku vendor in_stock price sale_off weight visibility featured flat_shipping_rate pay_shipping_on_delivery}
+  SORTABLE_ATTRIBUTES = %w{ name price sku vendor in_stock featured }
 
   include Orderable
   include Searchable
@@ -58,16 +59,16 @@ class Product < ActiveRecord::Base
   scope :filtered_by_vendor, ->vendor_list{where(vendor: vendor_list) if vendor_list.present? && vendor_list.size > 0}
   scope :filtered_by_category, ->category_id{joins(:category_products).where("category_products.category_id = ?", category_id) if category_id.present?}
   scope :sorted_by, ->attribute, direction{
-    if ["name", "price"].include?(attribute) && ["asc", "desc"].include?(direction)
+    if SORTABLE_ATTRIBUTES.include?(attribute) && ["asc", "desc"].include?(direction)
       if attribute == "name"
         includes(:translations)
         .with_locales(I18n.available_locales)
         .order("product_translations.name #{direction}")
       else
-        order "price #{direction}"
+        order "#{attribute} #{direction}"
       end
     end
-   }
+  }
 
   after_create :create_master
   after_update :update_master

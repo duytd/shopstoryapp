@@ -10,6 +10,7 @@ end
 class ImportExportService
   def initialize params
     @klass = params[:klass]
+    @objects = params[:objects]
     @attributes = params[:attributes]
   end
 
@@ -30,7 +31,7 @@ class ImportExportService
     CSV.generate do |csv|
       csv << @attributes
 
-      @klass.constantize.order(created_at: :desc).each do |object|
+      @objects.each do |object|
         csv << @attributes.map{ |attr| object.send(attr) }
       end
     end
