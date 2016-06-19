@@ -6,7 +6,7 @@ class Merchant::OrderProductPresenter < Merchant::BasePresenter
       quantity: @object.quantity,
       order_id: @object.order_id,
       variation_id: @object.variation_id,
-      variation: present(@object.variation)
+      variation: present(Variation.find(@object.variation_id))
     }
   end
 end

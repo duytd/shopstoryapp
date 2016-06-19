@@ -75,6 +75,7 @@ en:
         description_en: "Description"
         description_ko: "Description"
         price: "Price"
+        discounted_price: "Discounted Price"
         sku: "SKU"
         sale_off: "Sale Off"
         in_stock: "In Stock"

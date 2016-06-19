@@ -44,7 +44,7 @@ var LineChart = React.createClass({
   render: function() {
     return (
       <div className="chart-container">
-        <canvas ref="chart" id="lineChart" width={this.props.width || "400"} height={this.props.height || "400"}></canvas>
+        <canvas ref="chart" id="lineChart" width={(this.props.width) ? this.props.width : "400"} height={(this.props.height) ? this.props.height : "200"}></canvas>
       </div>
     )
   }

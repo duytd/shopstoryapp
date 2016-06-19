@@ -154,7 +154,7 @@ var Dashboard = React.createClass({
       <div className="dashboard">
         {this.renderStatistics()}
         <div className="block">
-          <LineChart data={this.props.weeky_chart_data} dataSetLabel={I18n.t("merchant.admin.reports.order.data_title")} height="200" />
+          <LineChart data={this.props.weeky_chart_data} dataSetLabel={I18n.t("merchant.admin.reports.order.data_title")} height="150" />
         </div>
         <div className="row">
           <div className="col-sm-4">

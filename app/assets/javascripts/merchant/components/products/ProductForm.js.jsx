@@ -3,7 +3,8 @@ var ProductForm = React.createClass({
     var variationOptions = (this.props.variation_options) ? this.props.variation_options : [];
     var variations = (this.props.variations) ? this.props.variations : [];
     var productImages = (this.props.product_images) ? this.props.product_images : [];
-    var unlimited = (this.props.product) ? this.props.product.unlimited : true
+    var unlimited = (this.props.product) ? this.props.product.unlimited : true;
+    var discountedPrice = (this.props.product) ? this.props.product.price * (1 - this.props.product.sale_off / 100) : 0;
 
     variationOptions.map(function(option) {
       if (option.option_values.length == 0) {
@@ -24,6 +25,7 @@ var ProductForm = React.createClass({
       variations: variations,
       variationOptions: variationOptions,
       deletedVariationOptions: [],
+      discountedPrice: discountedPrice,
       deletedVariations: [],
       productImages: productImages
     };
@@ -161,21 +163,26 @@ var ProductForm = React.createClass({
           <div className="block">
             <h4>{I18n.t("merchant.admin.forms.pricing_title")}</h4>
             <div className="row">
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-4">
                 <label className="label">{I18n.t("activerecord.attributes.product.price")}</label>
                 <div className="form-errors">
                   {(this.state.errors.price) ? this.state.errors.price.map(function(object){
                     return object;
                   }) : null}
                 </div>
-                <input type="text" onBlur={this.validateNumber} className="form-control" name="product[price]"
+                <input ref="price" onChange={this.changePrice} type="text" onBlur={this.validateNumber} className="form-control" name="product[price]"
                   defaultValue={(this.props.product) ? this.state.product.price.toString().toKoreanFormat() : 0} />
               </div>
 
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-4">
                 <label className="label">{I18n.t("activerecord.attributes.product.sale_off")} (%)</label>
-                <input type="text" onBlur={this.validateNumber} className="form-control" name="product[sale_off]"
+                <input ref="sale_off" onChange={this.changePrice} type="text" onBlur={this.validateNumber} className="form-control" name="product[sale_off]"
                   defaultValue={(this.props.product) ? this.state.product.sale_off : "0.00"} />
+              </div>
+
+              <div className="form-group col-md-4">
+                <label className="label">{I18n.t("activerecord.attributes.product.discounted_price")}</label>
+                <p>{this.state.discountedPrice.toString().toKoreanFormat()}</p>
               </div>
             </div>
           </div>
@@ -329,17 +336,17 @@ var ProductForm = React.createClass({
       e.target.value = 0;
     }
     else {
-      e.target.value = parseInt(integer);
+      e.target.value = integer;
     }
   },
   validateNumber: function(e) {
-    var number = e.target.value.trim();
+    var number = e.target.value.trim().replace(/,/g, "");
 
-    if (!number || isNaN(number.toString().replace(/[,.]/g, ""))) {
+    if (!number || isNaN(number)) {
       e.target.value = 0;
     }
     else {
-      e.target.value = parseFloat(number).toString().toKoreanFormat();
+      e.target.value = number.toString();
     }
   },
   addOptionValue: function(parentIndex) {
@@ -347,6 +354,13 @@ var ProductForm = React.createClass({
     variationOptions[parentIndex].option_values.push(null);
 
     this.setState({variationOptions: variationOptions});
+  },
+  changePrice: function() {
+    var price = this.refs.price.value.replace(/,/g, "");
+    var sale_off = this.refs.sale_off.value.replace(/,/g, "");
+    var discountedPrice = price - price * sale_off / 100;
+    console.log(price)
+    this.setState({discountedPrice: discountedPrice});
   },
   deleteOptionValue: function(parentIndex, index) {
     var variationOptions = this.state.variationOptions;

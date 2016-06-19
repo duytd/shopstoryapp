@@ -25,7 +25,7 @@
       </p>
 
       <p rt-if="parseInt(this.props.product.sale_off) > 0">
-        <strong>{I18n.toCurrency((this.state.variation.price - this.state.variation.price * this.props.product.sale_off / 100).convert(), {precision: 0, unit: this.props.globalVars.currency})}</strong>
+        <strong>{I18n.toCurrency((this.state.variation.price - this.state.variation.price * this.props.product.sale_off / 100).toString().convert(), {precision: 0, unit: this.props.globalVars.currency})}</strong>
         <br/>
         <s>{I18n.toCurrency(this.state.variation.price.convert(), {precision: 0, unit: this.props.globalVars.currency})}</s>
       </p>

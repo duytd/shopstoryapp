@@ -1,7 +1,5 @@
 class Merchant::ShippingMethodPresenter < Merchant::BasePresenter
   def as_json(*)
-    Apartment::Tenant.reset
-
     {
       id: @object.id,
       name_ko: @object.name,

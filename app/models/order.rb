@@ -18,6 +18,7 @@ class Order < ActiveRecord::Base
 
   before_create :generate_token
   before_save :set_locale
+  before_save :set_order_time, if: Proc.new{|o| o}
 
   accepts_nested_attributes_for :payment, reject_if: :all_blank
 
@@ -121,7 +122,7 @@ class Order < ActiveRecord::Base
 
   def self.weekly_data
     points = 8
-    start_time = Time.current.at_beginning_of_week - 8.weeks
+    start_time = Time.current.at_end_of_week - 7.weeks
     chart_data points, WEEKLY_RANGE, true, start_time, "weekly"
   end
 

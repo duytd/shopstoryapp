@@ -15,6 +15,7 @@ class PaymentMethodShop < ActiveRecord::Base
   validate :necessary_fields_must_be_presented, on: :update
   validates_presence_of :key, if: :active_and_key_required?
 
+  default_scope {order created_at: :asc}
   scope :active, -> {where active: true}
 
   after_save :unzip_key

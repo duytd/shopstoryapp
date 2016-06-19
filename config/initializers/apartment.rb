@@ -15,7 +15,8 @@ Apartment.configure do |config|
   # A typical example would be a Customer or Tenant model that stores each Tenant"s information.
   #
   config.excluded_models = %w{
-    User Admin Merchant Shop ShopTranslation Theme ThemeBundle Plan Subscription PaymentMethod PaymentMethodOption PaymentMethodShop
+    User Admin Merchant Shop ShopTranslation Theme ThemeBundle Plan Subscription
+    PaymentMethod PaymentMethodOption PaymentMethodShop
     PaymentMethodOptionShop ShippingMethod ShippingMethodTranslation
   }
 

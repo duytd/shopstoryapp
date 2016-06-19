@@ -69,6 +69,7 @@ ko:
         description_en: "Description"
         description_ko: "제품 설명"
         price: "가격"
+        discounted_price: "Discounted Price"
         sku: "SKU"
         sale_off: "Sale Off"
         in_stock: "재고 있음"
