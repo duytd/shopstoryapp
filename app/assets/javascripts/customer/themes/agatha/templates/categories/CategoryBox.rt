@@ -10,5 +10,16 @@
       </a>
       <CategoryList limit="{4}" category="{category}" currency="{this.props.globalVars.currency}" />
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <Pagination
+          page="{this.props.page}"
+          totalPage="{this.props.total_page}"
+          total="{this.props.total}"
+          url="{this.props.url}"
+          size="{this.props.categories.length}"} />
+      </div>
+    </div>
   </div>
 </Layout>

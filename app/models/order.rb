@@ -18,15 +18,14 @@ class Order < ActiveRecord::Base
 
   before_create :generate_token
   before_save :set_locale
-  before_save :set_order_time, if: Proc.new{|o| o}
 
   accepts_nested_attributes_for :payment, reject_if: :all_blank
 
   default_scope {order created_at: :desc}
 
- scope :latest, ->{order updated_at: :desc}
-  scope :success, ->{where(status: [Order.statuses[:processed], Order.statuses[:shipping], Order.statuses[:shipped]])}
-  scope :having_payment, ->{where.not(status: [Order.statuses[:incompleted], Order.statuses[:pending], Order.statuses[:cancelled]])}
+  scope :latest, ->{order updated_at: :desc}
+  scope :success, ->{where status: [Order.statuses[:processing], Order.statuses[:processed], Order.statuses[:cancelled]]}
+  scope :abandoned, ->{where status: [Order.statuses[:incompleted], Order.statuses[:pending]]}
 
   after_initialize :set_default_values
 
@@ -48,7 +47,7 @@ class Order < ActiveRecord::Base
     update_status "cancelled"
   end
 
-  def unprocessed?
+  def abandoned?
     incompleted? || pending?
   end
 

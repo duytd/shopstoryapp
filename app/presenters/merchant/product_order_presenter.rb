@@ -15,13 +15,14 @@ class Merchant::ProductOrderPresenter < Merchant::BasePresenter
       status: @object.status,
       currency: @object.currency,
       locale: @object.locale,
-      unprocessed: @object.unprocessed?,
+      abandoned: @object.abandoned?,
       customer: customer,
       shipping_address: shipping_address,
       billing_address: billing_address,
       payment: payment,
       shipment: shipment,
       order_products: @object.order_products.map{|op| present(op) },
+      paid_at: @object.paid_at,
       created_at: @object.created_at,
       updated_at: @object.updated_at
     }

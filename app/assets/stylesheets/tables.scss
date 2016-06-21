@@ -10,6 +10,16 @@
   }
   th {
     border-bottom: 1px solid $white-light !important;
-    font-weight: normal;
+    font-weight: 700;
+    color: $base-dark;
+  }
+  a {
+    color: $gray;
+    font-weight: 700;
+  }
+  tr {
+    td {
+      color: $base-dark;
+    }
   }
 }

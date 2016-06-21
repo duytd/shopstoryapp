@@ -1,10 +1,14 @@
 var CustomPageForm = React.createClass({
+  mixins: [FormMixin],
   getInitialState: function () {
     return {
       errors: {},
       errors_en_count: 0,
       errors_ko_count: 0
     };
+  },
+  componentDidMount: function() {
+    this.loadSummernote();
   },
   render: function () {
     return (

@@ -1,4 +1,5 @@
 var ProductForm = React.createClass({
+  mixins: [FormMixin],
   getInitialState: function () {
     var variationOptions = (this.props.variation_options) ? this.props.variation_options : [];
     var variations = (this.props.variations) ? this.props.variations : [];
@@ -29,6 +30,9 @@ var ProductForm = React.createClass({
       deletedVariations: [],
       productImages: productImages
     };
+  },
+  componentDidMount: function() {
+    this.loadSummernote();
   },
   renderVariation: function(variation, index) {
     return (

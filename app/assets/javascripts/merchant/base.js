@@ -1,4 +1,4 @@
-$(document).on("page:change", function() {
+$(document).on("turbolinks:load", function() {
   $sideBar = $("aside.left-panel");
   $content = $("section.content");
 
@@ -18,25 +18,6 @@ $(document).on("page:change", function() {
       });
     }
   });
-
-  NProgress.configure({ showSpinner: false });
-
-  $(".summernote").summernote({
-    height: 200,
-    toolbar: [
-      ['action',['undo','redo']],
-      ['style', ['style','bold', 'italic','strikethrough','underline', 'clear']],
-      ['table', ['table']],
-      ['media', ['link','picture','hr']],
-      ['para', ['ul','ol','paragraph']],
-      ['fullscreen',['codeview', 'fullscreen']],
-    ]
-  });
-
-  $(".summernote").each( function() {
-    $(this).summernote("code", $(this).val());
-  });
-
 
   $(window).on("scroll", function() {
     if($(window).scrollTop() >= 47) {

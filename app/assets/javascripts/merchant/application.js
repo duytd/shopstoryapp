@@ -2,9 +2,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require nprogress
-//= require nprogress-turbolinks
-//= require nprogress-ajax
 //= require Chart.js/dist/Chart.js
 //= require summernote/dist/summernote
 //= require dropzone/dist/dropzone
@@ -15,7 +12,7 @@
 //= require ace-builds/src/mode-html
 //= require ace-builds/src/mode-json
 //= require bootstrap-switch/dist/js/bootstrap-switch
-//= require merchant/functions
+//= require functions
 //= require merchant/routes
 //= require react
 //= require react_ujs
@@ -24,5 +21,3 @@
 //= require spectrum/spectrum
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker
 //= require merchant/base
-
-NProgress.configure({ showSpinner: false });

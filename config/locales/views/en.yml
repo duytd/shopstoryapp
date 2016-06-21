@@ -161,6 +161,7 @@ en:
         total: "Total"
         order_status: "Order Status"
         payment_status: "Payment Status"
+        shipment_status: "Delivery Status"
         products: "Products"
       seo_tags:
         title: "SEO (Search Engine Optimization)"

@@ -15,12 +15,28 @@
       </li>
     <% end %>
 
-    <%= link_to merchant_product_orders_path do %>
-      <li class="item">
+    <li class="item">
+      <%= link_to "javascript:void(0)" do %>
         <i class="fa fa-shopping-cart"></i>
         <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
-      </li>
-    <% end %>
+      <% end %>
+
+      <ul class="subitems">
+        <%= link_to merchant_product_orders_path(type: :purchased) do %>
+          <li>
+            <i class="fa fa-cart-plus"></i>
+            <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
+          </li>
+        <% end %>
+
+        <%= link_to merchant_product_orders_path(type: :abandoned) do %>
+          <li>
+            <i class="fa fa-cart-arrow-down"></i>
+            <span class="item-label"><%= t "merchant.admin.menu.abandoned_carts" %></span>
+          </li>
+        <% end %>
+      </ul>
+    </li>
 
     <%= link_to merchant_customers_path do %>
       <li class="item">

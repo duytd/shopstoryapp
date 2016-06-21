@@ -1,9 +1,6 @@
 var Order = React.createClass({
-  render: function() {
-    var shippingAddress = this.props.order.shipping_address,
-      billingAddress = this.props.order.billing_address,
-      payment = this.props.order.payment,
-      paymentStatus = "";
+  renderPaymentStatus: function(payment) {
+    var paymentStatus = null;
 
     if (payment) {
       switch(payment.state) {
@@ -22,11 +19,41 @@ var Order = React.createClass({
 
       paymentStatus = (
         <div className={"label " + paymentStatusKlass}>
-          {payment ? this.props.order.payment.state.capitalize() : ""}
+          {this.props.order.payment.state.capitalize()}
         </div>
       )
     }
 
+    return paymentStatus;
+  },
+  renderShipmentStatus: function(shipment) {
+    var shipmentStatus = null;
+
+    if (shipment) {
+      switch(shipment.status) {
+        case "shipping":
+          shipmentStatusKlass = "label-primary";
+          break;
+        case "shipped":
+          shipmentStatusKlass = "label-success";
+          break;
+        case "returned":
+          shipmentStatusKlass = "label-danger";
+          break;
+        default:
+          break;
+      }
+
+      shipmentStatus = (
+        <div className={"label " + shipmentStatusKlass}>
+          {this.props.order.shipment.status.capitalize()}
+        </div>
+      )
+    }
+
+    return shipmentStatus;
+  },
+  renderOrderStatus: function() {
     switch(this.props.order.status) {
       case "incompleted":
         statusKlass = "label-default";
@@ -40,21 +67,22 @@ var Order = React.createClass({
       case "processed":
         statusKlass = "label-success";
         break;
-      case "shipping":
-        statusKlass = "label-info";
-        break;
-      case "shipped":
-        statusKlass = "label-primary";
-        break;
-      case "returned":
-        statusKlass = "label-danger";
-        break;
       case "cancelled":
         statusKlass = "label-danger";
         break;
       default:
         break;
     }
+
+    return (
+      <div className={"label " + statusKlass}>
+        {this.props.order.status.capitalize()}
+      </div>
+    )
+  },
+  render: function() {
+    var shippingAddress = this.props.order.shipping_address,
+      billingAddress = this.props.order.billing_address;
 
     return (
       <Item item={this.props.order} deleteUrl={this.props.deleteUrl} handleSelect={this.props.handleSelect}
@@ -65,7 +93,7 @@ var Order = React.createClass({
           </a>
         </td>
         <td>
-          {I18n.l("time.formats.short", this.props.order.created_at)}
+          {(this.props.order.paid_at) ? I18n.l("time.formats.short", this.props.order.paid_at) : null}
         </td>
         <td>
           {billingAddress ? (billingAddress.first_name || "") + " " +
@@ -76,12 +104,13 @@ var Order = React.createClass({
             (shippingAddress.last_name || "") : ""}
         </td>
         <td>
-          {paymentStatus}
+          {this.renderOrderStatus()}
         </td>
         <td>
-          <div className={"label " + statusKlass}>
-            {this.props.order.status.capitalize()}
-          </div>
+          {this.renderPaymentStatus(this.props.order.payment)}
+        </td>
+        <td>
+          {this.renderShipmentStatus(this.props.order.shipment)}
         </td>
         <td>
           {I18n.toCurrency(this.props.order.total, {precision: 0, unit: ""})}

@@ -22,7 +22,7 @@
       <% end %>
     </li>
     <li class="hidden-xs">
-      <%= link_to t("merchant.admin.menu.view_shop"), shop_url, "data-no-turbolink": true %>
+      <%= link_to t("merchant.admin.menu.view_shop"), shop_url, data: {turbolinks: false} %>
     </li>
     <% unless Rails.env.development? %>
       <li>

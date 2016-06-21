@@ -295,6 +295,16 @@ label {
   }
 }
 
+@media (min-width: 992px) {
+  .cart-container {
+    position: absolute;
+    top: 40px;
+    bottom: auto;
+    right: 0;
+    display: none;
+  }
+}
+
 /* Product Slider */
 .ps-container {
   ul {

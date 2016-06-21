@@ -166,6 +166,7 @@ ko:
         total: "총계"
         order_status: "주문 상태"
         payment_status: "결제 상태"
+        shipment_status: "Delivery Status"
         products: "Products"
       seo_tags:
         title: "SEO (Search Engine Optimization)"

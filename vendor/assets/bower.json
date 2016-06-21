@@ -12,6 +12,6 @@
     "Chart.js": "latest",
     "owl.carousel": "latest",
     "bootstrap-switch": "latest",
-    "korea-share-button": "https://github.com/duytd/korean-share-button.git"
+    "korea-share-button": "https://github.com/duytd/korean-share-button.git#1.0.5"
   }
 }

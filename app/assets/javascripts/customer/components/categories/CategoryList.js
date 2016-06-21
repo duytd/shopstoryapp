@@ -1,4 +1,5 @@
 var CategoryBox = React.createClass({
+  mixins: [PaginationMixin],
   getInitialState: function() {
     return {
       products: []

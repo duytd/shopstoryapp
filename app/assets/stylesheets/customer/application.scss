@@ -1,12 +1,6 @@
-$nprogress-color: #4aa3df;
-$nprogress-height: 2px;
-$nprogress-zindex: 10100;
-
 @import "customer/variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "nprogress";
-@import "nprogress-bootstrap";
 @import "owl.carousel/dist/assets/owl.carousel";
 @import "owl.carousel/src/scss/theme.default";
 @import "font-awesome/css/font-awesome";

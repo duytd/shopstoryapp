@@ -10,12 +10,6 @@ var Item = React.createClass({
           </label>
         </td>
         {this.props.children}
-        <td>
-          <a className="btn btn-sm btn-danger" href="#"
-            data-confirm={I18n.t("merchant.admin.forms.confirm")} onClick={this.handleDelete}>
-            {I18n.t("merchant.admin.buttons.delete")}
-          </a>
-        </td>
       </tr>
     );
   },

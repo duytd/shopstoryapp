@@ -5,8 +5,9 @@ var OrderList = React.createClass({
       I18n.t("merchant.admin.orders.order_at"),
       I18n.t("merchant.admin.orders.bill_to_name"),
       I18n.t("merchant.admin.orders.ship_to_name"),
-      I18n.t("merchant.admin.orders.payment_status"),
       I18n.t("merchant.admin.orders.order_status"),
+      I18n.t("merchant.admin.orders.payment_status"),
+      I18n.t("merchant.admin.orders.shipment_status"),
       I18n.t("merchant.admin.orders.total")
     ];
 

@@ -19,13 +19,17 @@ design.Theme = React.createClass({
           <p>{this.props.theme.description}</p>
           {(this.state.current) ?
             <button className="btn btn-success disabled">{I18n.t("merchant.admin.buttons.current")}</button> :
-            <button className="btn btn-primary" onClick={this.install}>{I18n.t("merchant.admin.buttons.choose")}</button>
+            <button className="btn btn-primary" onClick={this.install}>
+              {I18n.t("merchant.admin.buttons.choose")}
+              <i ref="loading" className="fa fa-circle-o-notch fa-spin fa-fw hide"></i>
+            </button>
           }
         </div>
       </div>
     )
   },
   install: function() {
+    var loading = $(this.refs.loading);
     var url = this.props.install_url;
     var themeId = this.props.theme.id;
 
@@ -33,6 +37,12 @@ design.Theme = React.createClass({
       url: url,
       data: {theme_id: themeId},
       method: "POST",
+      beforeSend: function() {
+        loading.removeClass("hide");
+      },
+      complete: function() {
+        loading.addClass("hide");
+      },
       success: function() {
         this.setState({current: true});
       }.bind(this)

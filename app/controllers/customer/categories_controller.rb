@@ -5,12 +5,13 @@ class Customer::CategoriesController < Customer::BaseController
   add_breadcrumb I18n.t("customer.breadcrumbs.categories"), :customer_categories_path, {only: [:index, :show]}
 
   def index
-    @categories = Category.all.map{|c| present(c, {limit: 8})}
+    @categories = Category.page(params[:page]).per(5)
 
-    @props = {
+    @props = paginating @categories, {
       globalVars: @globalVars,
-      categories: @categories,
-      breadcrumb: current_breadcrumb
+      categories: @categories.map{|c| present(c, {limit: 8})},
+      breadcrumb: current_breadcrumb,
+      url: customer_categories_path
     }
   end
 

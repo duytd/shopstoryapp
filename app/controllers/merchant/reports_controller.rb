@@ -44,7 +44,7 @@ class Merchant::ReportsController < Merchant::BaseController
           I18n.t("activerecord.attributes.product.name") + "(EN)",
           I18n.t("activerecord.attributes.product.total_sale")
         ]
-        rows = @data.map{|d| [d[:product].id, d[:product].sku, d[:product].name_ko, d[:product].name_en, d[:total_sale]]}
+        rows = @data.map{|d| [d[:product][:id], d[:product][:sku], d[:product][:name_ko], d[:product][:name_en], d[:total_sale]]}
         csv = export_to_csv headers, rows
         send_data csv, filename: "product_report_#{Time.now}.csv"
       end
@@ -64,13 +64,13 @@ class Merchant::ReportsController < Merchant::BaseController
     respond_to do |format|
       format.html
       format.csv do
-    headers = [
+        headers = [
           I18n.t("activerecord.attributes.payment_method.id"),
           I18n.t("activerecord.attributes.payment_method.name"),
           I18n.t("activerecord.attributes.payment_method.total_sale"),
           I18n.t("activerecord.attributes.payment_method.percentage")
         ]
-        rows = @data.map{|d| [d[:payment_method].id, d[:payment_method].name, d[:total_sale], d[:percentage]]}
+        rows = @data.map{|d| [d[:payment_method][:id], d[:payment_method][:name], d[:total_sale], d[:percentage]]}
         csv = export_to_csv headers, rows
         send_data csv, filename: "payment_report_#{Time.now}.csv"
       end

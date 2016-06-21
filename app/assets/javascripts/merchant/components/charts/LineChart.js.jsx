@@ -17,10 +17,10 @@ var LineChart = React.createClass({
     })
 
     var myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-        labels: labels,
-        datasets: [{
+      type: "line",
+      data: {
+          labels: labels,
+          datasets: [{
             label: dataSetLabel,
             data: data,
             backgroundColor: "transparent",
@@ -31,10 +31,11 @@ var LineChart = React.createClass({
             pointHoverBackgroundColor: "rgba(39, 174, 96, 0.9)",
             pointHoverBorderColor: "rgba(39, 174, 96, 1.0)",
             pointBorderWidth: 1,
-            pointHoverRadius: 5
-        }]
-    },
-    options: {
+            pointHoverRadius: 5,
+            lineTension: 0,
+          }]
+      },
+      options: {
         xAxes: [{
             display: false
         }]

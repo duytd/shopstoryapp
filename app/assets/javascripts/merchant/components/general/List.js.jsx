@@ -126,7 +126,6 @@ var List = React.createClass({
                     isDisabled={this.state.items.length == 0} />
                 </th>
                 {this.renderHeaders()}
-                <th></th>
               </tr>
             </thead>
             <tbody>

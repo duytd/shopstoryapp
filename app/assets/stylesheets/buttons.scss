@@ -27,6 +27,9 @@
 }
 .bulk-action {
   margin-top: 5px;
+  li {
+    padding: 0 !important;
+  }
   .btn {
     font-size: 13px;
     padding: 5px;

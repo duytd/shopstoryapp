@@ -57,7 +57,7 @@ aside.left-panel {
     }
     a {
       color: $menu-item-color;
-      font-weight: 700;
+      font-weight: 400;
       text-decoration: none;
       &:hover {
         color: $white;
@@ -77,6 +77,10 @@ aside.left-panel {
     }
     i {
       font-size: 13px;
+    }
+    li:hover {
+      color: $white;
+      font-weight: 700;
     }
   }
   &.collapsed {

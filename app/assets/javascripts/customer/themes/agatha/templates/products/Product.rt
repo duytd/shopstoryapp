@@ -44,7 +44,7 @@
         <form ref="form" action="{this.props.cart_url}" method="post">
           <input type="hidden" name="order_product[variation_id]" value="{this.state.variation.id}" />
           <input type="hidden" name="order_product[quantity]" value="1" />
-          <button class="btn btn-lg btn-primary" onClick="{this.addToCart}">
+          <button class="btn btn-lg btn-primary" onClick="{this.addToCart}" id="addToCart">
             {I18n.t("products.add_to_cart")}
           </button>
         </form>

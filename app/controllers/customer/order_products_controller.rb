@@ -45,10 +45,10 @@ class Customer::OrderProductsController < Customer::BaseController
   end
 
   def authenticate_order
-    head :unauthorized unless current_order.unprocessed?
+    head :unauthorized unless current_order.abandoned?
   end
 
   def authenticate_order_product
-    head :unauthorized unless @order_product.product_order.unprocessed?
+    head :unauthorized unless @order_product.product_order.abandoned?
   end
 end

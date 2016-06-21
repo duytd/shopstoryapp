@@ -44,7 +44,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
     respond_to do |format|
       format.html
       format.pdf do
-        if @product_order.unprocessed?
+        if @product_order.abandoned?
           head :unauthorized
         else
           render_invoice
@@ -92,7 +92,11 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def list_all
-    @product_orders = ProductOrder.page params[:page]
+    @product_orders = if params[:type] == "abandoned"
+      ProductOrder.abandoned.page params[:page]
+    else
+      ProductOrder.success.page params[:page]
+    end
 
     @props = paginating @product_orders, {
       orders: @product_orders.map{|o| present(o)},

@@ -1,8 +1,6 @@
 @import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "nprogress";
-@import "nprogress-bootstrap";
 @import "font-awesome/css/font-awesome";
 @import "summernote/dist/summernote";
 @import "perfect-scrollbar/css/perfect-scrollbar";
@@ -15,6 +13,7 @@
 @import "tabs";
 @import "tables";
 @import "intercom";
+@import "merchant/dropzone";
 @import "merchant/pagination";
 @import "merchant/base";
 @import "merchant/side_bar";
