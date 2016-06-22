@@ -1,8 +1,12 @@
 class Customer::CategoriesController < Customer::BaseController
-  load_and_authorize_resource
+  before_action :load_category, only: :show
 
   add_breadcrumb I18n.t("customer.breadcrumbs.home"), :customer_root_path, {only: [:index, :show]}
   add_breadcrumb I18n.t("customer.breadcrumbs.categories"), :customer_categories_path, {only: [:index, :show]}
+
+  caches_action :index, :show, cache_path: proc {|c| c.params.merge(format: request.format)}
+  caches_action :show, cache_path: proc {|c| c.params.merge({format: request.format, updated_at: @category.updated_at.to_i})},
+    unless: proc {|c| request.host.include? Settings.app.domain}
 
   def index
     @categories = Category.page(params[:page]).per(5)
@@ -44,6 +48,11 @@ class Customer::CategoriesController < Customer::BaseController
         })
       end
     end
+  end
+
+  private
+  def load_category
+    @category = Category.find params[:id]
   end
 
   def render_props

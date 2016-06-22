@@ -7,7 +7,7 @@ var CategoryBox = React.createClass({
   },
   render: CategoryListRT,
   componentDidMount: function() {
-    var url = Routes.customer_category_products_path(this.props.category.slug, {limit: this.props.limit});
+    var url = Routes.customer_category_products_path(this.props.category.slug, {limit: this.props.limit, format: "json"});
     var loading = $(this.refs.loading);
 
     $.ajax({

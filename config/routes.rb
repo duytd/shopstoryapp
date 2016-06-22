@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     match "/500", to: "errors#internal_server_error", via: :all
 
     resources :categories, only: [:index, :show] do
-      resources :products, only: :index
+      resources :products, only: :index, format: :json
       get :filter, on: :member
     end
     resources :products, only: [:index, :show]

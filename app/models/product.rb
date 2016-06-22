@@ -71,9 +71,9 @@ class Product < ActiveRecord::Base
   }
 
   after_create :create_master
-  after_update :update_master
-  before_save :update_inventory
-  before_save :ensure_default
+  after_update :update_master, :touch_categories
+  before_save :update_inventory, :ensure_default
+
   after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") }
 
@@ -135,6 +135,10 @@ class Product < ActiveRecord::Base
     unless variations.not_master.count == 0
       self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}
     end
+  end
+
+  def touch_categories
+    categories.update_all updated_at: Time.current
   end
 
   def update_master

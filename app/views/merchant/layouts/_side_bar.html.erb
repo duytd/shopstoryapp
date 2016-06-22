@@ -21,7 +21,7 @@
         <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
       <% end %>
 
-      <ul class="subitems">
+      <ul class="subitems hide">
         <%= link_to merchant_product_orders_path(type: :purchased) do %>
           <li>
             <i class="fa fa-cart-plus"></i>
@@ -51,7 +51,7 @@
         <span class="item-label"><%= t "merchant.admin.menu.products" %></span>
       <% end %>
 
-      <ul class="subitems">
+      <ul class="subitems hide">
         <%= link_to merchant_products_path do %>
           <li>
             <i class="fa fa-tags"></i>
@@ -81,7 +81,7 @@
         <span class="item-label"><%= t "merchant.admin.menu.shipping" %></span>
       <% end %>
 
-      <ul class="subitems">
+      <ul class="subitems hide">
         <%= link_to merchant_shipping_rates_path do %>
           <li>
             <i class="fa fa-won"></i>
@@ -97,7 +97,7 @@
         <span class="item-label"><%= t "merchant.admin.menu.reports" %></span>
       <% end %>
 
-      <ul class="subitems">
+      <ul class="subitems hide">
         <%= link_to order_merchant_reports_path do %>
           <li>
             <i class="fa fa-line-chart"></i>
@@ -139,7 +139,7 @@
         <span class="item-label"><%= t "merchant.admin.menu.design" %></span>
       <% end %>
 
-      <ul class="subitems">
+      <ul class="subitems hide">
         <%= link_to edit_merchant_design_general_path do %>
           <li>
             <i class="fa fa-globe"></i>
@@ -182,7 +182,7 @@
         <i class="fa fa-gear"></i>
         <span class="item-label"><%= t "merchant.admin.menu.settings" %></span>
       <% end %>
-      <ul class="subitems">
+      <ul class="subitems hide">
         <%= link_to edit_merchant_shop_path(current_shop) do %>
           <li>
             <i class="fa fa-globe"></i>
@@ -209,7 +209,7 @@
         <i class="fa fa-code"></i>
         <span class="item-label"><%= t "merchant.admin.menu.developers" %></span>
       <% end %>
-      <ul class="subitems">
+      <ul class="subitems hide">
         <%= link_to merchant_credentials_path do %>
           <li>
             <i class="fa fa-user-secret"></i>

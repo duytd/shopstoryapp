@@ -61,6 +61,7 @@ gem "intercom-rails"
 gem "activerecord-import"
 gem "goldiloader"
 gem "money"
+gem "dalli"
 
 group :development, :test do
   gem "byebug"

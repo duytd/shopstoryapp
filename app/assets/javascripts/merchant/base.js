@@ -11,9 +11,9 @@ $(document).on("turbolinks:load", function() {
     $sideBar.perfectScrollbar("update");
   });
 
-  $sideBar.on("click", ".item", function(){
+  $("aside.left-panel .item").on("click", function(){
     if ($(this).find(".item-label").css("display") != "none") {
-      $(this).find(".subitems").slideToggle("slow", "swing");
+      $(this).find(".subitems").toggleClass("hide");
     }
   });
 

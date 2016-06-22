@@ -46,7 +46,9 @@ aside.left-panel {
         color: $white;
       }
       .subitems {
-        display: none;
+        transition-property: all;
+        transition-duration: 0.5s;
+        -webkit-transform: translateZ(0);
       }
     }
     i {

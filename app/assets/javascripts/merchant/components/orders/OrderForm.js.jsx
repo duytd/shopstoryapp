@@ -91,13 +91,13 @@ var OrderForm = React.createClass({
                       <p>{I18n.t("activerecord.attributes.order.subtotal")}</p>
                       <p>{I18n.t("activerecord.attributes.order.shipping")}</p>
                       <p>{I18n.t("activerecord.attributes.order.tax")}</p>
-                      <p><b>{I18n.t("activerecord.attributes.order.total")}</b></p>
+                      <h3>{I18n.t("activerecord.attributes.order.total")}</h3>
                     </td>
                     <td>
                       <p>{this.state.order.subtotal.toKoreanFormat()}</p>
                       <p>{this.state.order.shipping.toKoreanFormat()}</p>
                       <p>{this.state.order.tax.toKoreanFormat()}</p>
-                      <p><b>{this.state.order.total.toKoreanFormat()}</b></p>
+                      <h3>{this.state.order.total.toKoreanFormat()}</h3>
                     </td>
                   </tr>
                 </tfoot>
