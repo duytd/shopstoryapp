@@ -33,6 +33,18 @@ ko:
       cart_empty: "장바구니가 비어있습니다."
 
   merchant:
+    breadcrumbs:
+      dashboard: "Dashboard"
+      categories: "Categories"
+      banners: "Banners"
+      products: "Products"
+      orders: "Orders"
+      custom_pages: "Pages"
+      menus: "Menus"
+      coupons: "Coupons"
+      customers: "Customers"
+      shipping_rates: "Shipping Rates"
+      themes: "Theme Store"
     admin:
       menu:
         dashboard: "대시보드"
@@ -56,7 +68,7 @@ ko:
         search: "찾기"
         view_shop: "내 샵 보기"
         design: "Design"
-        themes: "Themes"
+        themes: "Theme Store"
         editor: "수정"
         shipping: "배송"
         shipping_rates: "배송료"
@@ -117,6 +129,7 @@ ko:
         online: "온라인"
         unlimited: "Unlimited"
         dropzone_instruction: "파일을 드래그앤드롭 하거나 클릭하여 업로드하세요"
+        loading: "Loading..."
       messages:
         no_product: "등록된 상품이 아직 없습니다. 상품을 등록하고 판매를 시작하세요"
         no_category: "등록된 카테고리가 아직 없습니다. 지금 등록하세요."
@@ -125,6 +138,8 @@ ko:
         no_shipping_rate: "등록된 배송료가 아직 없습니다. 지금 등록하세요."
         no_discount: "You have not created any discount. Create now"
         no_banner: "You have not created any banner. Create now"
+        no_customer: "You dont have any customer yet"
+        no_order: "You dont have any order in this section yet"
       dashboard:
         recent_orders: "Recent Orders"
         today_revenue: "Today Revenue"
@@ -134,6 +149,9 @@ ko:
         total_revenue: "Total Revenue"
         total_products: "Total Products"
         total_customers: "Total Customers"
+      design:
+        generals:
+          edit: "General Configuration"
       categories:
         title: "모든 카테고리"
         add_category: "카테고리 추가"
@@ -226,7 +244,8 @@ ko:
         title: "이메일 템플렛"
         preview: "이메일 미리보기"
       themes:
-        index: "Themes"
+        index: "Theme Store"
+        show: "Theme"
         current: "Current"
       reports:
         product:

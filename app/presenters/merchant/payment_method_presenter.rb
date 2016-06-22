@@ -4,7 +4,7 @@ class Merchant::PaymentMethodPresenter < Merchant::BasePresenter
       id: @object.id,
       type: @object.type.underscore,
       name: @object.name,
-      image: @object.image,
+      description: @object.description,
       mobile_submethods: @object.mobile_submethods,
       desktop_submethods: @object.desktop_submethods
     }

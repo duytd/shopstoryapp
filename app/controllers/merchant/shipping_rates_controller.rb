@@ -1,6 +1,9 @@
 class Merchant::ShippingRatesController < Merchant::BaseController
   load_and_authorize_resource
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.shipping_rates"), :merchant_shipping_rates_path, {only: [:new, :edit]}
+
   def index
    if request.delete?
       delete_all

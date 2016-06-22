@@ -1,4 +1,4 @@
-module Customer::BreadcrumbHelper
+module BreadcrumbHelper
   def current_breadcrumb
     @current_breadcrumb ||= []
   end

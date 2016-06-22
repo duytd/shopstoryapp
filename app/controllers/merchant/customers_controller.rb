@@ -3,6 +3,9 @@ class Merchant::CustomersController < Merchant::BaseController
   load_and_authorize_resource
   include CollectionsHelper
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.customers"), :merchant_customers_path, {only: [:new, :edit]}
+
   def index
    if request.delete?
       delete_all
@@ -17,7 +20,7 @@ class Merchant::CustomersController < Merchant::BaseController
       method: :post,
       genders: Customer.genders.keys.to_a,
       countries: all_countries,
-      default_country: Settings.shop.default_country,
+      default_country: Settings.shop.default_country
     }
   end
 

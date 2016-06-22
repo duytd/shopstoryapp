@@ -1,6 +1,9 @@
 class Merchant::DiscountsController < Merchant::BaseController
   load_and_authorize_resource
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.coupons"), :merchant_discounts_path, {only: [:new, :edit]}
+
   def index
     if request.delete?
       delete_all
@@ -57,7 +60,7 @@ class Merchant::DiscountsController < Merchant::BaseController
     @props = paginating @discounts, {
       discounts: @discounts.map{|c| present(c)},
       new_url: new_merchant_discount_path,
-      url: merchant_discounts_path,
+      url: merchant_discounts_path
     }
 
     respond_to do |format|

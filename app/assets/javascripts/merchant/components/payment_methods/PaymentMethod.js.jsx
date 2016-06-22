@@ -7,6 +7,7 @@ var PaymentMethod = React.createClass({
   },
   componentDidMount: function() {
     $(this.refs.activator).bootstrapSwitch({
+      size: "small",
       onSwitchChange: function(event, state) {
         if (state) {
           this.active();
@@ -46,9 +47,7 @@ var PaymentMethod = React.createClass({
       <div className="row">
         <div className="col-sm-2">
           <h3 className="title">{this.props.payment_method_shop.payment_method.name}</h3>
-          <div classNam="form-group">
-            <img width="100" src={this.props.payment_method_shop.payment_method.image.thumb.url} />
-          </div>
+          <p className="small">{this.props.payment_method_shop.payment_method.description}</p>
           <input ref="activator" type="checkbox" name="payment_method_shop[active]" defaultChecked={this.state.payment_method_shop.active} onChange={this.activate} />
         </div>
         <div className="col-sm-10">
@@ -68,7 +67,13 @@ var PaymentMethod = React.createClass({
               </div>
               <div className="row">
                 <div className="form-group col-md-12">
-                  <SubmitButtons goBack={false} />
+                  <button type="submit" className="btn btn-success">
+                    {I18n.t("merchant.admin.buttons.save")}
+                    <span ref="loading" className="hide">
+                      <i className="fa fa-circle-o-notch fa-spin fa-fw"></i>
+                      <span className="sr-only">Loading...</span>
+                    </span>
+                  </button>
                 </div>
               </div>
             </form>
@@ -89,7 +94,9 @@ var PaymentMethod = React.createClass({
     if (typeof e !== "undefined")
       e.preventDefault();
 
-    var form = $(this.refs.form);
+    var loading = $(this.refs.loading),
+      form = $(this.refs.form);
+
 
     $.ajax({
       url: Routes.merchant_payment_method_shop_path.localize(this.state.payment_method_shop.id),
@@ -98,6 +105,12 @@ var PaymentMethod = React.createClass({
       contentType: false,
       processData: false,
       dataType: "json",
+      beforeSend: function() {
+        loading.removeClass("hide");
+      },
+      complete: function() {
+        loading.addClass("hide");
+      },
       success: function(response) {
         this.setState({payment_method_shop: response, errors: []});
       }.bind(this),

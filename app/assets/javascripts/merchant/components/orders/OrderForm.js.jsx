@@ -60,12 +60,12 @@ var OrderForm = React.createClass({
         <div className="col-sm-8">
           <div className="block">
             <h3>#{this.state.order.id}</h3>
-            {(!this.state.order.unprocessed) ?
+            {(!this.state.order.abandoned) ?
               <a className="pull-right btn btn-primary" href={this.props.invoice_url}>
                 {I18n.t("merchant.admin.buttons.download_invoice")}
               </a> : null}
 
-            {(!this.state.order.shipment && !this.state.order.unprocessed) ?
+            {(!this.state.order.shipment && !this.state.order.abandoned) ?
               <a className="pull-right btn btn-default" onClick={this.createShipment}>
                 {I18n.t("merchant.admin.buttons.create_shipment")}
               </a> : null}

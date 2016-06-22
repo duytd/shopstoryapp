@@ -2,6 +2,8 @@ class Merchant::PagesController < Merchant::BaseController
   before_action :load_assets, only: :editor
   before_action :load_templates, only: :editor
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:editor]}
+
   def dashboard
     check_setup_step
 

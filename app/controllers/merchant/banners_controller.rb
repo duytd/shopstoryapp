@@ -2,6 +2,9 @@ class Merchant::BannersController < Merchant::BaseController
   before_action :load_banner, only: :edit
   load_and_authorize_resource
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.banners"), :merchant_banners_path, {only: [:new, :edit]}
+
   def index
    if request.delete?
       delete_all

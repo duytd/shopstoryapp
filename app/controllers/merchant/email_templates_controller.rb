@@ -1,6 +1,8 @@
 class Merchant::EmailTemplatesController < Merchant::BaseController
   load_and_authorize_resource
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index]}
+
   def index
     @email_template = EmailTemplate.first
 

@@ -1,4 +1,7 @@
 class Merchant::Design::ThemesController < Merchant::BaseController
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :show]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.themes"), :merchant_design_themes_path, {only: [:show]}
+
   def index
     themes = Theme.all
 

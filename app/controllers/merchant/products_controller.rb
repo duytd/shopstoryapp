@@ -4,6 +4,9 @@ class Merchant::ProductsController < Merchant::BaseController
 
   before_action :load_categories, only: [:new, :edit, :index]
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.products"), :merchant_products_path, {only: [:new, :edit]}
+
   def index
    if request.delete?
       delete_all

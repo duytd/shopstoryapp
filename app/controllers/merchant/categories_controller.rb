@@ -2,6 +2,9 @@ class Merchant::CategoriesController < Merchant::BaseController
   before_action :load_category, only: :edit
   load_and_authorize_resource
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.categories"), :merchant_categories_path, {only: [:new, :edit]}
+
   def index
     if request.delete?
       delete_all
@@ -61,7 +64,7 @@ class Merchant::CategoriesController < Merchant::BaseController
     @props = paginating @categories, {
       categories: @categories.map{|c| present(c)},
       new_url: new_merchant_category_path,
-      url: merchant_categories_path,
+      url: merchant_categories_path
     }
 
     respond_to do |format|

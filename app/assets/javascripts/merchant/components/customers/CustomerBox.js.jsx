@@ -1,12 +1,20 @@
 var CustomerBox = React.createClass({
   render: function() {
-    var customPageList = (
+    var customerList = (
       <CustomerList
         page={this.props.page}
         totalPage={this.props.total_page}
         url={this.props.url}
         customers={this.props.customers} />
     )
+
+    if (this.props.customers.length == 0) {
+      customerList = (
+        <div className="text-center">
+          <p>{I18n.t("merchant.admin.messages.no_customer")}</p>
+        </div>
+      )
+    }
 
     var pagination = (
       <Pagination
@@ -19,7 +27,7 @@ var CustomerBox = React.createClass({
 
     return (
       <Box name="custom-page"
-        list={customPageList}
+        list={customerList}
         pagination={pagination}
         title={I18n.t("merchant.admin.customers.title")} />
     );

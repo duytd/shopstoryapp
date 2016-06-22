@@ -2,9 +2,8 @@ class Merchant::ShopsController < Merchant::BaseController
   include CollectionsHelper
 
   load_and_authorize_resource
-
-  before_action :load_timezones, :load_currencies,
-    :load_countries, only: :edit
+  before_action :load_timezones, :load_currencies, :load_countries, only: :edit
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:edit]}
 
   def edit
     @props = {

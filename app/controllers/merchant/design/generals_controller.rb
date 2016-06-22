@@ -1,4 +1,6 @@
 class Merchant::Design::GeneralsController < Merchant::BaseController
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:edit]}
+
   def edit
     @props = {
       general: current_shop.as_json(only: [:logo, :term_id, :privacy_id]),

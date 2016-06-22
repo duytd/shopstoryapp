@@ -13,9 +13,7 @@ $(document).on("turbolinks:load", function() {
 
   $sideBar.on("click", ".item", function(){
     if ($(this).find(".item-label").css("display") != "none") {
-      $(this).find(".subitems").slideToggle("slow", "swing", function() {
-        $sideBar.perfectScrollbar("update");
-      });
+      $(this).find(".subitems").slideToggle("slow", "swing");
     }
   });
 

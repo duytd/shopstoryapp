@@ -3,6 +3,8 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   load_and_authorize_resource
   include PaymentHelper
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+
   def index
     if request.delete?
       delete_all
@@ -29,6 +31,8 @@ class Merchant::ProductOrdersController < Merchant::BaseController
   end
 
   def edit
+    type = @product_order.abandoned? ? "abandoned" : "purchased"
+    add_breadcrumb I18n.t("merchant.breadcrumbs.orders"), merchant_product_orders_path(type: type)
     load_transaction_info
 
     @props = {
@@ -100,7 +104,7 @@ class Merchant::ProductOrdersController < Merchant::BaseController
 
     @props = paginating @product_orders, {
       orders: @product_orders.map{|o| present(o)},
-      url: merchant_product_orders_path
+      url: merchant_product_orders_path(type: params[:type])
     }
   end
 

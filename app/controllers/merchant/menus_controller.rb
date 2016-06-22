@@ -2,6 +2,9 @@ class Merchant::MenusController < Merchant::BaseController
   before_action :load_menu, only: [:edit, :update]
   load_and_authorize_resource
 
+  add_breadcrumb I18n.t("merchant.breadcrumbs.dashboard"), :merchant_root_path, {only: [:index, :new, :edit]}
+  add_breadcrumb I18n.t("merchant.breadcrumbs.menus"), :merchant_menus_path, {only: [:new, :edit]}
+
   def index
     @menus = Menu.order(created_at: :asc).map{|m| present(m)}
 
