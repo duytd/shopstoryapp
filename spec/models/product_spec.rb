@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Product, type: :model do
-  subject(:product) {build :product}
+  let(:product) {build :product}
+  let(:other_product) {build :other_product}
 
   describe "associations" do
     it {expect  :category_products}
@@ -41,5 +42,153 @@ RSpec.describe Product, type: :model do
   context "is invalid without a price" do
     before {product.price = nil}
     it {expect(product.error_on(:price).size).to eq 1}
+  end
+
+  it "should remove colon inside price value" do
+    product.price = "1,000"
+    expect(product.price).to eq(1000)
+  end
+
+  it "should ensure that default value is assigned" do
+    product = create :blank_product
+    expect(product.visibility).to eq(true)
+    expect(product.featured).to eq(false)
+    expect(product.unlimited).to eq(true)
+    expect(product.sale_off).to eq(0)
+    expect(product.in_stock).to eq(nil)
+  end
+
+  it "should update its inventory if it contains variation" do
+    variation = build :variation
+    variation.in_stock = 10
+    variation.unlimited = false
+    variation.save
+    product_id = variation.product.id
+    product = Product.find product_id
+    product.save
+
+    expect(product.in_stock).to eq(10)
+  end
+
+  it "should create a master variation after create" do
+    product.save
+    product_id = product.id
+    product = Product.find product_id
+    expect(product.variations.count).to eq(1)
+    expect(product.variations.first.master).to eq(true)
+  end
+
+  it "should update master on save" do
+    product.price = 2000
+    product.sku = "A002"
+    product.save
+
+    expect(product.master.price).to eq(2000)
+    expect(product.master.sku).to eq("A002")
+  end
+
+  it "should set itself to unlimited if it contains unlimited variation" do
+    variation = build :variation
+    variation.unlimited = true
+    variation.save
+    product_id = variation.product.id
+    product = Product.find product_id
+    product.save
+
+    expect(product.in_stock).to eq(nil)
+    expect(product.unlimited).to eq(true)
+  end
+
+  describe ".filtered_by_vendor" do
+    before do
+      product.vendor = "Vendor 1"
+      other_product.vendor = "Vendor 2"
+      product.save
+      other_product.save
+    end
+
+    context "vendor list is not presented" do
+      it{expect(Product.filtered_by_vendor(nil)).to eq([product, other_product])}
+    end
+
+    context "vendor list is presented but empty" do
+      it{expect(Product.filtered_by_vendor([])).to eq([product, other_product])}
+    end
+
+    context "vendor list is presented, not empty and has existed vendor" do
+      it{expect(Product.filtered_by_vendor(["Vendor 1"])).to eq([product])}
+    end
+
+    context "vendor list is presented, not empty and doesnt have existed vendor" do
+      it{expect(Product.filtered_by_vendor(["Strange Vendor"])).to eq([])}
+    end
+  end
+
+  describe ".filtered_by_category" do
+    before(:each) do
+      @other_category = create :other_category
+      @category_product = create :category_product
+      @product = @category_product.product
+      other_product.save
+      @category_id =  @category_product.category.id
+    end
+
+    context "category id is not presented" do
+      it{expect(Product.filtered_by_category(nil)).to eq([@product, other_product])}
+    end
+
+    context "category id is presented and doesnt belongs to an existed category" do
+      it{expect(Product.filtered_by_category(999)).to eq([])}
+    end
+
+    context "category id is presented and belongs to an existed category which contains products" do
+      it{expect(Product.filtered_by_category(@category_id)).to eq([@product])}
+    end
+
+    context "category id is presented and belongs to an existed category which doesnt contain products" do
+      it{expect(Product.filtered_by_category(@other_category.id)).to eq([])}
+    end
+  end
+
+  describe ".filtered_by_price" do
+
+  end
+
+  describe ".sorted_by" do
+
+  end
+
+  describe "#create_variations" do
+
+  end
+
+  describe ".search_by_name" do
+    before do
+      product.save
+    end
+
+    context "search by partial name" do
+      before do
+        I18n.locale = :en
+      end
+
+      it {expect(Product.search_by_name("English Na")).to eq([product])}
+    end
+
+    context "search in korean locale" do
+      before do
+        I18n.locale = :en
+      end
+
+      it {expect(Product.search_by_name("English Name")).to eq([product])}
+    end
+
+    context "search in english locale" do
+      before do
+        I18n.locale = :ko
+      end
+
+      it {expect(Product.search_by_name("Korean Name")).to eq([product])}
+    end
   end
 end

@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :variation_option do
-    name "MyString"
-product nil
+    name "Size"
+    product
   end
-
 end

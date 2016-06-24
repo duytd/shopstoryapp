@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :product do
-    name_en "Product English Name"
-    name_ko "Product Korean Name"
-    description_en "Product English Description"
-    description_ko "Product Korean Description"
+    name_en "English Name"
+    name_ko "Korean Name"
+    description_en "English Description"
+    description_ko "Korean Description"
     price "9.99"
     sale_off "9.99"
     visibility false
@@ -13,7 +13,15 @@ FactoryGirl.define do
   end
 
   factory :other_product, parent: :product do
-    name_en "Other Product English Name"
-    name_ko "Other Product Korean Name"
+    name_en "Other English Name"
+    name_ko "Other Korean Name"
+  end
+
+  factory :blank_product, parent: :product do
+    in_stock nil
+    sale_off nil
+    featured nil
+    unlimited nil
+    visibility nil
   end
 end

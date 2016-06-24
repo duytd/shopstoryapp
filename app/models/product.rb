@@ -70,8 +70,9 @@ class Product < ActiveRecord::Base
     end
   }
 
+  before_save :ensure_default, :update_inventory
   after_create :create_master
-  before_save :update_inventory, :ensure_default
+  after_update :update_master
 
   after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") }
@@ -114,8 +115,8 @@ class Product < ActiveRecord::Base
     return true
   end
 
-  def self.search_by_name query
-    with_translations(:en).where "product_translations.name LIKE ?", "%#{query}%"
+  def self.search_by_name name
+    with_translations(I18n.locale).where "product_translations.name LIKE ?", "%#{name}%"
   end
 
   def self.search_fields
@@ -124,19 +125,35 @@ class Product < ActiveRecord::Base
 
   private
   def ensure_default
-    self.in_stock = 0 if in_stock.blank?
+    self.in_stock = nil if in_stock.blank?
     self.sale_off = 0 if sale_off.blank?
     self.featured = false if featured.blank?
     self.unlimited = true if featured.blank?
+    self.visibility = true if visibility.blank?
   end
 
   def update_inventory
-    unless variations.not_master.count == 0
-      self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}
+    product_variations = variations.reject{|v| v.master}
+    is_unlimited = false
+
+    if product_variations.size > 0
+      product_variations.each do |variation|
+        is_unlimited = true if variation.unlimited
+      end
+
+      if is_unlimited
+        self.in_stock = nil
+        self.unlimited = true
+      else
+        self.in_stock = product_variations.inject(0){|sum, x| sum + x.in_stock.to_i}
+        self.unlimited = false
+      end
+    else
+      self.in_stock = nil if unlimited
     end
   end
 
   def update_master
-    master.save! if master
+    master.save if master
   end
 end
