@@ -1,15 +1,13 @@
 FactoryGirl.define do
   factory :theme do
-    name "Theme Name"
+    sequence(:name){|n| "Theme-#{n}"}
+    sequence(:directory){|n| "directory_#{n}"}
     description "Theme Description"
-    directory "theme-directory"
     default false
     actived true
   end
 
   factory :default_theme, parent: :theme do
     default true
-    name "Default"
-    directory "default"
   end
 end

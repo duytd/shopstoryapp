@@ -193,6 +193,8 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
+    doorkeeper (3.1.0)
+      railties (>= 3.2)
     elasticsearch (1.0.12)
       elasticsearch-api (= 1.0.12)
       elasticsearch-transport (= 1.0.12)
@@ -211,6 +213,9 @@ GEM
       faraday
       multi_json
     erubis (2.7.0)
+    exception_notification (4.1.4)
+      actionmailer (~> 4.0)
+      activesupport (~> 4.0)
     excon (0.45.4)
     execjs (2.7.0)
     factory_girl (4.5.0)
@@ -347,8 +352,13 @@ GEM
       activerecord (>= 3.2, < 5.1)
       activesupport (>= 3.2, < 5.1)
     hashie (3.4.3)
+    hipchat (1.4.0)
+      httparty
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n-js (2.1.2)
       i18n
@@ -621,9 +631,11 @@ DEPENDENCIES
   dalli
   database_cleaner
   devise
+  doorkeeper
   elasticsearch-model
   elasticsearch-model-globalize
   elasticsearch-rails
+  exception_notification
   factory_girl_rails
   faker
   figaro
@@ -633,6 +645,7 @@ DEPENDENCIES
   globalize (~> 5.0.0)
   globalize-accessors
   goldiloader
+  hipchat
   i18n-js (~> 2.1.2)
   inicis-standard-rails!
   intercom-rails

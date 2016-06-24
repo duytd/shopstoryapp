@@ -1,4 +1,6 @@
 module Customer::BaseHelper
+  include CacheHelper
+
   def paginating object, props
     props.merge({
       page: object.current_page,

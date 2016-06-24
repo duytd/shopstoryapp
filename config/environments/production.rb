@@ -80,4 +80,10 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.react.variant = :production
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    hipchat: {
+      api_token: "butWFCK5HF0Xkh0cNsX5KJtTq1d7idXKnVkvunYI",
+      room_name: "2866216"
+    }
 end

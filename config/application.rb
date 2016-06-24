@@ -55,6 +55,6 @@ module ShopStory
     }
 
     config.exceptions_app = self.routes
-    config.cache_store = :dalli_store, nil, {namespace: "shopstory", expires_in: 1.day, compress: true}
+    config.cache_store = :dalli_store, nil, {namespace: "shopstory", compress: true}
  end
 end

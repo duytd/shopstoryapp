@@ -19,8 +19,7 @@ class Shop < ActiveRecord::Base
   validates :theme, presence: true
   validates :email, presence: true, on: :update
   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, allow_blank: true
-  validates :subdomain, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/},
-    uniqueness: true
+  validates :subdomain, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/}, uniqueness: true
   validates :legal_name, presence: true, if: Proc.new{|a| a.setting_up && a.merchant.provide_business_info?}, on: :update
 
   before_validation :set_default_values, on: :create
@@ -35,13 +34,7 @@ class Shop < ActiveRecord::Base
 
   enum weight_unit: [:kg, :g]
 
-  scope :current,->subdomain {find_by subdomain: subdomain}
-
   liquid_methods :name
-
-  def as_json options={}
-    super(options).merge({street_en: street_en, street_ko: street_ko})
-  end
 
   def set_default_values
     self.theme = Theme.get_default_theme
@@ -51,7 +44,7 @@ class Shop < ActiveRecord::Base
   end
 
   def setup_theme
-     Apartment::Tenant.switch subdomain
+     Apartment::Tenant.switch! subdomain
     self.theme.setup self
   end
 

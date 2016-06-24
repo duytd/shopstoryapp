@@ -1,39 +1,34 @@
 require "rails_helper"
 
 RSpec.describe Shop, type: :model do
-  let(:shop) {create :shop}
-  let(:theme) {create :default_theme}
-  let(:plan) {create :default_plan}
+  let(:shop) {build :shop}
 
-  context "validations" do
+  context "when subdomain contains special characters" do
     before do
-      shop.theme = theme
-      shop.plan = plan
+      shop.subdomain = "subdomain@*_/"
     end
 
-    it {should validate_uniqueness_of :subdomain}
-    it {should allow_value("subdomain").for(:subdomain)}
-    it {should_not allow_value("wrong name").for(:subdomain)}
-    it {should_not allow_value("wrong_name").for(:subdomain)}
+    it {expect(shop).to have(1).errors_on(:subdomain)}
   end
 
-  describe "associations" do
-    it {expect have_many :discounts}
-    it {expect have_many :pages}
-    it {expect have_many :menus}
-
-    context "should belongs to correct theme" do
-      before {shop.theme_id = theme.id}
-      it {expect(shop.theme).to eq theme}
+  context "when subdomain contains white space" do
+    before do
+      shop.subdomain = "sub domain"
     end
 
-    context "should belongs to correct plan" do
-      before {shop.plan_id = plan.id}
-      it {expect(shop.plan).to eq plan}
-    end
+    it {expect(shop).to have(1).errors_on(:subdomain)}
   end
 
-  context "assigns defaults before validation" do
-    it {is_expected.to callback(:load_defaults).before(:validation)}
+  describe "#strip_white_space" do
+    before do
+      shop.domain = " domain "
+      shop.save
+    end
+
+    it {expect(shop.domain).to eq("domain")}
+  end
+
+  context "associations" do
+    it {expect(shop.theme.default).to eq true}
   end
 end

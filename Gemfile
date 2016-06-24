@@ -62,6 +62,9 @@ gem "activerecord-import"
 gem "goldiloader"
 gem "money"
 gem "dalli"
+gem "doorkeeper"
+gem "exception_notification"
+gem "hipchat"
 
 group :development, :test do
   gem "byebug"

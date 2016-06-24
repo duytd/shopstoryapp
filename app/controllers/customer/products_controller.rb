@@ -1,13 +1,6 @@
 class Customer::ProductsController < Customer::BaseController
-  authorize_resource
   before_action :load_product, only: :show
   before_action :load_category, only: :index
-
-  caches_action :show, cache_path: proc {|c| c.params.merge({format: request.format, updated_at: @product.updated_at.to_i})},
-    unless: proc {|c| request.host.include? Settings.app.domain}
-
-  caches_action :index, cache_path: proc {|c| c.params.merge({format: request.format, updated_at: @category.updated_at.to_i})},
-    unless: proc {|c| request.host.include? Settings.app.domain}
 
   def index
     @products = @category.products.limit params[:limit]
@@ -37,7 +30,9 @@ class Customer::ProductsController < Customer::BaseController
 
   private
   def load_product
-    @product = Product.find params[:id]
+    @product = cache_fetch "product_show", nil, nil do
+      Product.find params[:id]
+    end
   end
 
   def load_category

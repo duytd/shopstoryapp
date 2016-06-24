@@ -2,11 +2,11 @@ class Product < ActiveRecord::Base
   ATTRIBUTES = %w{slug name_ko name_en description_ko description_en sku vendor in_stock price sale_off weight visibility featured flat_shipping_rate pay_shipping_on_delivery}
   SORTABLE_ATTRIBUTES = %w{ name price sku vendor in_stock featured }
 
-  include Orderable
-  include Searchable
-
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
+
+  include Orderable
+  include Searchable
 
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
@@ -71,7 +71,6 @@ class Product < ActiveRecord::Base
   }
 
   after_create :create_master
-  after_update :update_master, :touch_categories
   before_save :update_inventory, :ensure_default
 
   after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") }
@@ -135,10 +134,6 @@ class Product < ActiveRecord::Base
     unless variations.not_master.count == 0
       self.in_stock = variations.not_master.inject(0){|sum, x| sum + x.in_stock.to_i}
     end
-  end
-
-  def touch_categories
-    categories.update_all updated_at: Time.current
   end
 
   def update_master

@@ -18,8 +18,10 @@ class Merchant < User
   end
 
   def next_setup_step!
-    next_step = Merchant.setup_steps.key(Merchant.setup_steps[setup_step] + 1)
-    self.update_attributes!(setup_step: next_step)
+    current_index = Merchant.setup_steps[setup_step]
+    next_index = current_index + 1
+    next_step = Merchant.setup_steps.key(next_index)
+    self.update_attributes!(setup_step: next_step) unless next_step.nil?
   end
 
   private

@@ -1,15 +1,27 @@
 require "rails_helper"
 
 RSpec.describe Merchant, type: :model do
-  it {should validate_presence_of :password}
-  it {should allow_value("example@shopstoryapp.com").for(:email)}
-  it {should_not allow_value("example@shopstoryapp").for(:email)}  
+  let(:merchant) {build :merchant}
 
-  context "create shop after registration" do
-    it {is_expected.to callback(:create_merchant_shop).after(:create)}
+  it "should generate subdomain after create" do
+    merchant.email = "example@shopstoryapp.com"
+    merchant.save
+    expect(merchant.subdomain).to eq "example"
   end
 
-  context "create tenant after registration" do
-    it {is_expected.to callback(:create_tenant).after(:create)}
+  describe "#next_setup_step!" do
+    it "should change setup step to next step if not last step" do
+      merchant.setup_step = Merchant.setup_steps[:provide_business_info]
+      merchant.save
+      merchant.next_setup_step!
+      expect(merchant.setup_step).to eq("generate_sample_data")
+    end
+
+    it "should not change setup step if last step" do
+      merchant.setup_step = Merchant.setup_steps[:done]
+      merchant.next_setup_step!
+      merchant.save
+      expect(merchant.setup_step).to eq("done")
+    end
   end
 end

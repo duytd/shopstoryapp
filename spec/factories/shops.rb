@@ -9,10 +9,14 @@ FactoryGirl.define do
     zip_code "10000"
     time_zone "GMT+7"
     weight_unit 1
-    subdomain "examplesubdomain"
+    subdomain "subdomain"
     currency "USD"
-    association :plan, factory: :default_plan
     association :theme, factory: :default_theme
     merchant
+
+    after(:build) do |shop|
+      shop.class.skip_callback(:create, :after, :setup_data)
+      shop.class.skip_callback(:save, :after, :setup_theme)
+    end
   end
 end

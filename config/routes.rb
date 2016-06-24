@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   constraints subdomain: false do
     get ":any", to: redirect(subdomain: "www", path: "/%{any}"), any: /.*/
   end
@@ -35,6 +36,8 @@ Rails.application.routes.draw do
     sign_out: "logout", password: "secret", registration: "register", confirmation: "verification",
     unlock: "unblock", sign_up: "signup"}, controllers: {registrations: "customer/registrations",
     sessions: "customer/sessions", passwords: "customer/passwords", omniauth_callbacks: "customer/customers/omniauth_callbacks"}
+
+  use_doorkeeper
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do

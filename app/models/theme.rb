@@ -1,5 +1,3 @@
-require "rt"
-
 class Theme < ActiveRecord::Base
   ROOT_DIR = "#{Rails.root}/app/assets/javascripts/customer/themes"
   mount_uploader :image, ThemeImageUploader
@@ -7,9 +5,6 @@ class Theme < ActiveRecord::Base
   has_many :shops
   has_many :theme_bundles, dependent: :nullify
   has_many :assets, dependent: :nullify
-
-  scope :current, ->subdomain {joins(:shops)
-    .where("shops.subdomain = ?", subdomain).first}
 
   validates :name, presence: true, uniqueness: true
   validates :directory, uniqueness: true
