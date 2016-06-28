@@ -1,11 +1,10 @@
 FactoryGirl.define do
   factory :variation_option_value do
     name "X"
-    variation_option
+    association :variation_option, factory: :variation_option
   end
 
-  factory :other_variation_option_value do
+  factory :other_variation_option_value, class: VariationOptionValue do
     name "Y"
-    variation_option
   end
 end

@@ -151,15 +151,83 @@ RSpec.describe Product, type: :model do
   end
 
   describe ".filtered_by_price" do
+    before do
+      product.price = 1000
+      other_product.price = 2000
+      product.save
+      other_product.save
+    end
 
+    context "price range is not presented" do
+      it{expect(Product.filtered_by_price(nil)).to eq([product, other_product])}
+    end
+
+    context "price range is presented but empty" do
+      it{expect(Product.filtered_by_price([])).to eq([product, other_product])}
+    end
+
+    context "price range is presented but min equal max" do
+      it{expect(Product.filtered_by_price([1000, 1000])).to eq([product, other_product])}
+    end
+
+    context "price range is presented and min < max" do
+      it{expect(Product.filtered_by_price([1000, 1200])).to eq([product])}
+    end
   end
 
   describe ".sorted_by" do
+    before do
+      product.price = 2000
+      product.weight = 20
+      other_product.price = 1000
+      other_product.weight = 10
+      product.save
+      other_product.save
+    end
 
+    context "provided attribute is not sortable" do
+      it {expect(Product.sorted_by("weight", "asc")).to eq([product, other_product])}
+    end
+
+    context "provided attribute is sortable but direction is invalid" do
+      it {expect(Product.sorted_by("price", "descending")).to eq([product, other_product])}
+    end
+
+    context "provided attribute is sortable and direction is valid" do
+      it {expect(Product.sorted_by("price", "asc")).to eq([other_product, product])}
+    end
+
+    context "sort by name in korean locale" do
+      before do
+        I18n.locale = :ko
+      end
+
+      it {expect(Product.sorted_by("name", "desc")).to eq([other_product, product])}
+    end
+
+    context "sort by name in english locale" do
+      before do
+        I18n.locale = :en
+      end
+
+      it {expect(Product.sorted_by("name", "desc")).to eq([other_product, product])}
+    end
   end
 
   describe "#create_variations" do
+    before do
+      @variation_option_value = create :variation_option_value
+      other_variation_option_value = build :other_variation_option_value
+      other_variation_option_value.variation_option = @variation_option_value.variation_option
+      other_variation_option_value.save
+      @product = Product.find @variation_option_value.variation_option.product.id
+      @product.create_variations
+    end
 
+    it {expect(@product.variations.not_master.count).to eq(2)}
+  end
+
+  describe "#total_sale" do
   end
 
   describe ".search_by_name" do
@@ -175,7 +243,7 @@ RSpec.describe Product, type: :model do
       it {expect(Product.search_by_name("English Na")).to eq([product])}
     end
 
-    context "search in korean locale" do
+    context "search in english locale" do
       before do
         I18n.locale = :en
       end
@@ -183,7 +251,7 @@ RSpec.describe Product, type: :model do
       it {expect(Product.search_by_name("English Name")).to eq([product])}
     end
 
-    context "search in english locale" do
+    context "search in korean locale" do
       before do
         I18n.locale = :ko
       end

@@ -61,8 +61,7 @@ class Product < ActiveRecord::Base
   scope :sorted_by, ->attribute, direction{
     if SORTABLE_ATTRIBUTES.include?(attribute) && ["asc", "desc"].include?(direction)
       if attribute == "name"
-        includes(:translations)
-        .with_locales(I18n.available_locales)
+        self.with_translations(I18n.locale)
         .order("product_translations.name #{direction}")
       else
         order "#{attribute} #{direction}"
