@@ -18,14 +18,14 @@
       ga('send', 'pageview');
     <% end %>
   </head>
-  <body>
+  <body data-spy="scroll" data-target="#navbar-menu">
     <div class="main-wrapper">
       <%= render "layouts/flash" %>
       <%= render "layouts/header" %>
-      <div class="container-fluid">
-        <%= yield %>
-      </div>
-      <%= render "layouts/footer" %>
+      <%= yield %>
     </div>
+
+    <%= render "layouts/footer" %>
+    <a href="#" class="back-to-top" id="back-to-top"> <i class="pe-7s-angle-up"> </i> </a>
   </body>
 </html>

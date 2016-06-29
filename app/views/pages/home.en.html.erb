@@ -1,72 +1,8 @@
 <% provide :title, t("pages.home.title") %>
-  <div class="landing">
-  <section class="row top-banner">
-    <div class="color-overlay"></div>
-    <div class="container">
-      <h1>Fastest way to build your store in Korea</h1>
-      <p>ShopStory can help you to launch your online store in no time. Start your journey today!</p>
-      <%= form_tag new_merchant_registration_path, method: :get, class: "form-inline" do |f| %>
-        <%= text_field_tag :shop_name, nil, placeholder: t("pages.home.shop_name"),
-          class: "form-control input-lg" %>
-        <%= submit_tag t("buttons.get_started"), class: "btn btn-lg btn-inline btn-danger"%>
-      <% end %>
-    </div>
-  </section>
+<% provide :klass, "landing" %>
 
-  <section class="row features odd">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 col-sm-6">
-          <h2>Korean Localization</h2>
-          <p>Shop Story helps you build a fully Korean localized ecommerce store easily. All major Korean payment gateways are integrated</p>
-        </div>
-        <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-          <%= image_tag asset_url("landing/feature-1.png"),class: "img-responsive" %>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="row features even">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 col-sm-6">
-          <%= image_tag asset_url("landing/feature-2.png"),class: "img-responsive" %>
-        </div>
-        <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-          <h2>Optimized Website Performation</h2>
-          <p>Shop Story uses latest technologies to help your website SEO Friendly and to let your customers have the best shopping experience</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="row features odd">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 col-sm-6">
-          <h2>Clean and Elegant Design</h2>
-          <p>Shop Story prioritizes the important of mobile shopping. We provides Reponsive, Clean and Elegant Design templates to help your site looks awesome on all devices</p>
-        </div>
-        <div class="col-lg-5 col-lg-offset-2 col-sm-6 padding-20">
-          <%= image_tag asset_url("landing/feature-3.png"),class: "img-responsive" %>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="row get-started text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h2>We offer free trial for 14 days. Try Shop Story without risk</h2>
-          <%= form_tag new_merchant_registration_path, method: :get, class: "form-inline" do |f| %>
-            <%= text_field_tag :shop_name, nil, placeholder: t("pages.home.shop_name"),
-              class: "form-control input-lg" %>
-            <%= submit_tag t("buttons.get_started"), class: "btn btn-lg btn-inline btn-danger"%>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+<%= render "home/banner" %>
+<%= render "home/highlight" %>
+<%= render "home/features" %>
+<%= render "home/pricing" %>
+<%= render "home/signup" %>

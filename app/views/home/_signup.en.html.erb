@@ -1,0 +1,20 @@
+<section class="section bg-custom">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h3 class="title text-white">Be engaged Newsletter</h3>
+        <p class="text-light sub-title">The clean and well commented code allows easy customization of the theme.It's <br> designed for describing your app, agency or business.</p>
+      </div>
+    </div><!-- End row -->
+
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <%= form_tag new_merchant_registration_path, method: :get, class: "form-inline" do |f| %>
+          <%= text_field_tag :shop_name, nil, placeholder: t("pages.home.shop_name"),
+            class: "form-control input-lg" %>
+          <%= submit_tag t("buttons.get_started"), class: "btn btn-lg btn-inline btn-danger"%>
+        <% end %>
+      </div>
+    </div><!-- End row -->
+  </div> <!-- end container -->
+</section>

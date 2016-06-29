@@ -1,4 +1,5 @@
 asset "font-awesome", "4.5.0"
+asset "pixeden-stroke-7-icon"
 asset "perfect-scrollbar", "0.6.8"
 asset "summernote", "0.7.0"
 asset "dropzone", "4.2.0"

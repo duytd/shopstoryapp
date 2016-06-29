@@ -1,10 +1,53 @@
-<footer class="text-center" id="footer">
+<footer class="section bg-gray footer">
   <div class="container">
     <div class="row">
-      <div class="col-md-12 copyright">
-        <%= t "application.copyright" %>
-        &copy; ShopStory <%= Time.now.year %>
+      <div class="col-md-3 col-sm-6">
+        <h5>ShopStory</h5>
+        <ul class="list-unstyled">
+          <li><a href="">Home</a></li>
+          <li><a href="">Features</a></li>
+          <li><a href="">Team</a></li>
+          <li><a href="">FAQ</a></li>
+        </ul>
       </div>
-    </div>
-  </div>
-</footer>
+
+      <div class="col-md-3 col-sm-6">
+        <h5>Social</h5>
+        <ul class="list-unstyled">
+          <li><a href="https://www.facebook.com/shopstory.korea/">Facebook</a></li>
+          <li><a href="https://twitter.com/ShopStorykorea">Twitter</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-3 col-sm-6">
+        <h5>Support</h5>
+        <ul class="list-unstyled">
+          <li><a href="">Help & Support</a></li>
+          <li><a href="">Privacy Policy</a></li>
+          <li><a href="">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 col-sm-6">
+        <h5>Contact</h5>
+        <address>
+          Yongsan-gu<br>
+          Seoul, South Korea<br>
+          <abbr title="Phone"></abbr>010-2252-3193<br/>
+          <a href="mailto:info@shopstory.co.kr">info@shopstory.co.kr</a>
+        </address>
+      </div>
+
+    </div> <!-- end row -->
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="footer-alt text-center">
+          <p class="text-muted m-b-0">
+            <%= t "application.copyright" %> &copy; ShopStory <%= Time.now.year %></p>
+          </div>
+        </div>
+      </div> <!-- end row -->
+    </div> <!-- end container -->
+  </footer>
