@@ -3,8 +3,8 @@ ko:
     admin:
       products:
         title: "모든 상품"
-        category: "Category"
-        all: "All"
+        category: "카테고리"
+        all: "모두 보기"
         add_product: "상품 추가"
         edit_product: "상품 수정"
         color_placeholder: "예: 빨강, 파랑, 흰색 등등.."

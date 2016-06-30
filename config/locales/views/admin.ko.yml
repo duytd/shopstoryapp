@@ -9,15 +9,15 @@ ko:
       delete: "삭제"
       edit: "수정"
     menu:
-      plans: "Plans"
-      payment_methods: "Payment methods"
+      plans: "플랜"
+      payment_methods: "결제 수단"
     plans:
       index:
-        title: "Plans"
+        title: "플랜"
       edit:
-        title: "Edit plan"
+        title: "플랜 수정"
     payment_methods:
       index:
-        title: "Payment methods"
+        title: "결제 수단"
       edit:
-        title: "Edit payment method"
+        title: "결제 수단 수정"

@@ -8,11 +8,11 @@
     "register": "가입하기",
     "logout": "로그아웃",
     "my_account": "마이 페이지",
-    "accept": "Accept",
-    "decline": "Decline",
-    "buy_now": "Buy Now",
-    "apply": "Apply",
-    "remove": "Remove"
+    "accept": "승인",
+    "decline": "거절",
+    "buy_now": "지금 구매",
+    "apply": "적용",
+    "remove": "삭제"
   },
   "customers": {
     "login": {
@@ -29,8 +29,8 @@
     "register": {
       "title": "가입하기",
       "fields": {
-        "term": "Terms and conditions",
-        "privacy": "Privacy"
+        "term": "이용약관",
+        "privacy": "개인정보처리방침"
       },
       "texts": {
         "return_customer": "계정이 이미 있으세요? "
@@ -101,13 +101,13 @@
       "subtotal": "상품 합계",
       "shipping": "배송료",
       "not_yet_calculated": "아직 계산되지 않았습니다.",
-      "total": "Total",
-      "coupon": "Coupon"
+      "total": "총게",
+      "coupon": "쿠폰"
     },
     "shipping": {
       "name": "이름",
-      "first_name": "First name",
-      "last_name": "Last name",
+      "first_name": "이름",
+      "last_name": "성",
       "email": "이메일",
       "address1": "주소",
       "address2": "상세주소",
@@ -116,14 +116,14 @@
       "state": "도",
       "zip_code": "우편번호",
       "phone_number": "전화번호",
-      "alternative_phone": "Alternative Number",
+      "alternative_phone": "추가 전화번호",
       "fax": "팩스",
-      "delivery_message": "Delivery Message"
+      "delivery_message": "배송 메세지"
     },
     "billing": {
       "name": "이름",
-      "first_name": "First name",
-      "last_name": "Last name",
+      "first_name": "이름",
+      "last_name": "성",
       "email": "이메일",
       "address1": "주소",
       "address2": "상세주소",
@@ -132,13 +132,13 @@
       "state": "도",
       "zip_code": "우편번호",
       "phone_number": "전화번호",
-      "alternative_phone": "Alternative Number",
+      "alternative_phone": "추가 전화번호",
       "fax": "팩스",
       "user_shipping_address": "청구지와 배송지가 같습니다."
     }
   },
   "cart": {
-    "title": "Your cart (%{item_count})",
+    "title": "장바구니 (%{item_count})",
     "empty": "장바구니가 비어있습니다!",
     "subtotal": "상품 합계",
     "buy_now": "지금 구매",
@@ -150,29 +150,29 @@
     "last": "마지막",
     "previous": "이전",
     "next": "다음",
-    "showing": "Showing %{size} of %{total} products"
+    "showing": "%{size} 의 %{total} 상품 노출"
   },
   "filter": {
-    "all": "All",
-    "vendor_filter": "Vendor Filter",
-    "price_filter": "Price Filter"
+    "all": "모두",
+    "vendor_filter": "판매자 필터",
+    "price_filter": "상품 필터"
   },
   "sorter": {
     "title": "Sort Product By",
-    "name_asc": "Name (A-Z)",
-    "name_desc": "Name (Z-A)",
-    "price_asc": "Price (Low-High)",
-    "price_desc": "Price (High-Low)"
+    "name_asc": "이름 (A-Z)",
+    "name_desc": "이름 (Z-A)",
+    "price_asc": "가격 (오름차순)",
+    "price_desc": "가격 (내림차순)"
   },
   "search": {
     "results": {
-      "zero": "No result found",
-      "one": "1 result found",
-      "other": "%{count} results found"
+      "zero": "결과가 없습니다.",
+      "one": "1 개를 찾았습니다.",
+      "other": "%{count} 개를 찾았습니다."
     },
-    "placeholder": "Search"
+    "placeholder": "검색"
   },
   "coupon": {
-    "title": "Coupon"
+    "title": "쿠폰"
   }
 }
