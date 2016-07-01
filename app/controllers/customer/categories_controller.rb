@@ -32,7 +32,6 @@ class Customer::CategoriesController < Customer::BaseController
                                   .sorted_by(params[:sorted_by], params[:sort_direction])
                                   .page(params[:page])
 
-
     respond_to do |format|
       format.html do
         render_props

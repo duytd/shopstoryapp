@@ -30,9 +30,7 @@ class Customer::ProductsController < Customer::BaseController
 
   private
   def load_product
-    @product = cache_fetch "product_show", nil, nil do
-      Product.find params[:id]
-    end
+    @product = Product.find params[:id]
   end
 
   def load_category
