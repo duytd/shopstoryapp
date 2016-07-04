@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   SORTABLE_ATTRIBUTES = %w{ name price sku vendor in_stock featured }
 
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name_en, use: [:slugged, :finders]
 
   include Orderable
   include Searchable

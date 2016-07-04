@@ -33,4 +33,12 @@ RSpec.describe Category, type: :model do
     it {expect(category.error_on(:name_en).size).to eq 1}
     it {expect(category.error_on(:name_ko).size).to eq 1}
   end
+
+  it "should use english name to generate slug" do
+    category.name_en = "English Name"
+    category.name_ko = "Korean Name"
+    category.save
+    expect(category.slug).to eq("english-name")
+    expect(category.slug).not_to eq("korean-name")
+  end
 end

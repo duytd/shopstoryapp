@@ -99,6 +99,12 @@ RSpec.describe Product, type: :model do
     expect(product.unlimited).to eq(true)
   end
 
+  it "should use english name to generate slug" do
+    product.name_en = "English Name"
+    product.save
+    expect(product.slug).to eq("english-name")
+  end
+
   describe ".filtered_by_vendor" do
     before do
       product.vendor = "Vendor 1"

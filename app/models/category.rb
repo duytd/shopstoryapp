@@ -2,7 +2,7 @@ class Category < ActiveRecord::Base
   include Orderable
 
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name_en, use: [:slugged, :finders]
 
   translates :name
   globalize_accessors locales: [:en, :ko], attributes: [:name]
