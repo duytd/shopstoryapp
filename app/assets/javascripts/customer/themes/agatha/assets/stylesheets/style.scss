@@ -45,6 +45,13 @@ label {
   font-weight: 400;
 }
 
+/* Home */
+.featured-products {
+  .product-item:nth-child(4n+1) {
+    clear: both;
+  }
+}
+
 /* Heading */
 .heading {
   text-align: center;

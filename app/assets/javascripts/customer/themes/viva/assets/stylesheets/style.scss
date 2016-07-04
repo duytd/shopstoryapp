@@ -88,6 +88,13 @@ label {
   margin-top: 15px;
 }
 
+/* Home */
+.featured-products {
+  .product-item:nth-child(4n+1) {
+    clear: both;
+  }
+}
+
 /* Header */
 .header {
   .top {

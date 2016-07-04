@@ -50,7 +50,7 @@
       </form>
 
       <SocialShare title="{translate(this.state.variation, 'name')}" image="{this.props.product.featured_image}" description="{translate(this.props.product, 'description')}" url="{window.location.href}" />
-      <div>{translate(this.props.product, "description")}</div>
+      <div dangerouslySetInnerHTML="{{__html: translate(this.props.product, 'description')}}"></div>
     </div>
   </div>
 </Layout>
