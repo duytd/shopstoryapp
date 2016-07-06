@@ -1,5 +1,8 @@
 class Constraints::AdminDomainConstraint
   def self.matches? request
-    request.domain == Settings.app.domain && request.subdomain == "admin"
+    domain = request.domain 2
+    subdomain = request.subdomain 2
+
+    domain == Settings.app.domain && subdomain == "admin"
   end
 end

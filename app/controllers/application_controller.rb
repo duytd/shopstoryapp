@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def customer_url
-    if request.domain == Settings.app.domain
+    if matched_root_domain?
       customer_root_url subdomain: Apartment::Tenant.current
     else
       customer_root_url

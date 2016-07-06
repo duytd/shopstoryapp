@@ -11,7 +11,7 @@ class CustomElevator < Apartment::Elevators::Generic
 
     def parse_tenant_name request
       host = request.host
-      shop = Shop.where(domain: [host, alternative_domain(host)]).first
+      shop = Shop.find_by domain: [host, alternative_domain(host)]
 
       tenant = if shop
         shop.subdomain
@@ -26,11 +26,15 @@ class CustomElevator < Apartment::Elevators::Generic
     def tenant_from_subdomain host
       request_subdomain = subdomain host
 
-      if self.class.excluded_subdomains.include?(request_subdomain)
-        nil
-      else
-        request_subdomain
+      if excluded_scope?(request_subdomain)
+        return nil
       end
+
+      request_subdomain
+    end
+
+    def excluded_scope? subdomain
+      self.class.excluded_subdomains.include? subdomain
     end
 
     def alternative_domain domain
