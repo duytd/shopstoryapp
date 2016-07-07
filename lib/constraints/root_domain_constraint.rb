@@ -1,10 +1,14 @@
 class Constraints::RootDomainConstraint
   def self.matches? request
     subdomains = %w{ www }
-    domain = request.domain 2
-    subdomain = request.subdomain 2
+    top_level_domain = request.domain
+    top_level_subdomain = request.subdomain
+    second_level_domain = request.domain 2
+    second_level_subdomain = request.subdomain 2
 
-    (domain == Settings.app.domain && subdomain.blank?) ||
-    (domain == Settings.app.domain && subdomains.include?(subdomain))
+    (Settings.app.domains.include?(top_level_domain) && top_level_subdomain.blank?) ||
+      (Settings.app.domains.include?(top_level_domain) && subdomains.include?(top_level_subdomain)) ||
+      (Settings.app.domains.include?(second_level_domain) && second_level_subdomain.blank?) ||
+      (Settings.app.domains.include?(second_level_domain) && subdomains.include?(second_level_subdomain))
   end
 end

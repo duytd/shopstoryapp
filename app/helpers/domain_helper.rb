@@ -1,5 +1,5 @@
 module DomainHelper
   def matched_root_domain?
-    request.domain(2) == Settings.app.domain
+    Settings.app.domains.include?(request.domain) || Settings.app.domains.include?(request.domain(2))
   end
 end

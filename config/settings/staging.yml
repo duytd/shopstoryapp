@@ -1,4 +1,5 @@
 app:
+  domains: ["shopstory.co.kr", "shopstoryapp.com"]
   domain: shopstory.co.kr
 shop:
   default_name: ShopStory

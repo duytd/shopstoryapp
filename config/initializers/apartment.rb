@@ -28,7 +28,6 @@ Apartment.configure do |config|
   # config.tenant_names = ["tenant1", "tenant2"]
   #
   config.tenant_names = lambda { Shop.pluck :subdomain }
-  config.tld_length = 2
 
   #
   # ==> PostgreSQL only options
@@ -70,4 +69,4 @@ end
 
 # Rails.application.config.middleware.use "Apartment::Elevators::Domain"
 Rails.application.config.middleware.use "CustomElevator"
-CustomElevator.excluded_subdomains = ["www", "", "admin"]
+CustomElevator.excluded_subdomains = ["", "www", "admin"]

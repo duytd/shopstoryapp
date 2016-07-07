@@ -10,5 +10,7 @@ class Customer::CustomPagesController < Customer::BaseController
       page: present(@custom_page),
       breadcrumb: current_breadcrumb
     }
+
+    render_meta_tags @custom_page, {title: @custom_page.title, meta_description: @custom_page.content}
   end
 end
