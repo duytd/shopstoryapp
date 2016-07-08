@@ -10,7 +10,7 @@ class Ability
       can :manage, Category
       can :manage, CustomPage
       can :manage, Product
-      can [:read, :create, :update], Shop
+      can [:read, :create, :update, :webmaster], Shop
       can [:read, :update], Asset
       can [:read, :update], PaymentMethodShop
       can :manage, Order

@@ -20,6 +20,7 @@ class Customer::BaseController < ApplicationController
   end
 
   def set_default_meta_tags
-    generate_meta_tags current_shop.name, "An ecommerce store powered by Shopstory", ""
+    meta_title = current_shop.meta_title.present? ? current_shop.meta_title : current_shop.name
+    generate_meta_tags meta_title, current_shop.meta_description, current_shop.meta_keywords
   end
 end

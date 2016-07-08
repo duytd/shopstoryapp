@@ -29,12 +29,33 @@ class Merchant::ShopsController < Merchant::BaseController
     end
   end
 
+  def webmaster
+    if request.put?
+      if current_shop.update webmaster_params
+        render json: current_shop, status: :ok
+      else
+        render json: current_shop.errors, status: :unprocessable_entity
+      end
+    else
+      @props = {
+        shop: current_shop,
+        url: webmaster_merchant_shops_path,
+        method: "PUT",
+        redirect_url: merchant_root_path
+      }
+    end
+  end
+
   private
   def shop_params
     permitted = Shop.globalize_attribute_names + [:name, :email, :legal_name, :phone, :city, :country, :zip_code, :time_zone, :metric_system,
       :weight_unit, :domain, :currency, :facebook_url, :instagram_url, :pinterest_url, :naver, :daum, :kakao, :yellow, :ceo, :business_number, :service_phone,
       :online_retail_number, :privacy_manager, :privacy_email]
     params.require(:shop).permit *permitted
+  end
+
+  def webmaster_params
+    params.require(:shop).permit :google_verification_code, :naver_verification_code, :meta_title, :meta_description, :meta_keywords
   end
 
   def load_timezones

@@ -146,7 +146,13 @@ Rails.application.routes.draw do
     end
 
     resources :subscriptions, only: [:index, :create, :update, :destroy]
-    resources :shops, only: [:edit, :update]
+    resources :shops, only: [:edit, :update] do
+      collection do
+        put :webmaster
+        get :webmaster
+      end
+    end
+
     resources :assets, only: [:edit, :update]
     resources :templates, only: [:edit, :update]
     resources :email_templates, only: [:index, :edit, :update] do

@@ -73,6 +73,7 @@ ko:
         shipping: "배송"
         shipping_rates: "배송료"
         email_templates: "이메일 템플렛"
+        webmaster: "Webmaster"
       buttons:
         next: "다음"
         skip: "넘기기"
@@ -274,3 +275,6 @@ ko:
         add_discount: "쿠폰 추가"
         edit_discount: "쿠폰 수정"
         percentage: "퍼센트"
+      webmaster:
+        seo: "Search Engine Optimization (SEO)"
+        verification: "Webmaster Verification"

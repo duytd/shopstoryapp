@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622091957) do
+ActiveRecord::Schema.define(version: 20160708085928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -520,9 +520,9 @@ ActiveRecord::Schema.define(version: 20160622091957) do
     t.string   "instagram_url"
     t.string   "pinterest_url"
     t.string   "api_key"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.decimal  "exchange_rate",        default: 1000.0
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.decimal  "exchange_rate",            default: 1000.0
     t.string   "ceo"
     t.string   "business_number"
     t.string   "service_phone"
@@ -536,6 +536,11 @@ ActiveRecord::Schema.define(version: 20160622091957) do
     t.string   "daum"
     t.string   "kakao"
     t.string   "yellow"
+    t.string   "google_verification_code"
+    t.string   "naver_verification_code"
+    t.string   "meta_title"
+    t.text     "meta_description"
+    t.text     "meta_keywords"
   end
 
   add_index "shops", ["privacy_id"], name: "index_shops_on_privacy_id", using: :btree

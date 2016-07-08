@@ -3,6 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= display_meta_tags site: current_shop.name %>
+    <meta name="google-site-verification" content="<%= current_shop.google_verification_code %>"/>
+    <meta name="naver-site-verification" content="<%= current_shop.naver_verification_code %>"/>
+
     <%= javascript_include_tag "http://dmaps.daum.net/map_js_init/postcode.v2.js", "data-turbolinks-track": true %>
     <%= stylesheet_link_tag "customer/application", media: "all", "data-turbolinks-track": true %>
 

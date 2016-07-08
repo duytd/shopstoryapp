@@ -73,6 +73,7 @@ en:
         shipping: "Shipping"
         shipping_rates: "Shipping Rates"
         email_templates: "Email Templates"
+        webmaster: "Webmaster"
       buttons:
         add: "Add"
         next: "Next"
@@ -271,3 +272,6 @@ en:
         edit_discount: "Edit Coupon"
         percentage: "Percentage"
         fixed_amount: Fixed Amount"
+      webmaster:
+        seo: "Search Engine Optimization (SEO)"
+        verification: "Webmaster Verification"

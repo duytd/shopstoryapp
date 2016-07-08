@@ -189,6 +189,12 @@
             <%= t "merchant.admin.menu.general_settings" %>
           </li>
         <% end %>
+        <%= link_to webmaster_merchant_shops_path do %>
+          <li>
+            <i class="fa fa-laptop"></i>
+            <%= t "merchant.admin.menu.webmaster" %>
+          </li>
+        <% end %>
         <%= link_to merchant_payment_method_shops_path do %>
           <li>
             <i class="fa fa-money"></i>

@@ -38,6 +38,12 @@ class Merchant::PagesController < Merchant::BaseController
     }
   end
 
+  def webmaster
+    @props = {
+      shop: current_shop
+    }
+  end
+
   def account
     @props = {
       user: current_merchant,

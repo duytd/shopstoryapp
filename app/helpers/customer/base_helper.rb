@@ -11,7 +11,7 @@ module Customer::BaseHelper
 
   def render_meta_tags object, default_options
     unless object.seo_tag.nil?
-      generate_meta_tags title: object.seo_tag.title, description: object.seo_tag.meta_description, keywords: object.seo_tag.meta_keywords
+      generate_meta_tags object.seo_tag.title, object.seo_tag.meta_description, object.seo_tag.meta_keywords
     else
       generate_meta_tags default_options[:title], html_to_text(default_options[:meta_description]), keywords: default_options[:meta_keywords]
     end

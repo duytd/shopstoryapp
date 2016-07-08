@@ -134,6 +134,11 @@ en:
         logo: "Logo"
         term_id: "Terms and Conditions Page"
         privacy_id: "Privacy Page"
+        meta_title: "Meta Title"
+        meta_description: "Meta Description"
+        meta_keywords: "Meta Keywords"
+        google_verification_code: "Google Verification Code"
+        naver_verification_code: "Naver Verification Code"
       payment_method_shop:
         key: "Key (*.zip)"
         active: "Enabled"
