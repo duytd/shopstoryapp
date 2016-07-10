@@ -15,7 +15,7 @@ module Merchant::BaseHelper
     if current_shop.domain.present?
       full_http_url current_shop.domain
     else
-      customer_root_url subdomain: current_shop.subdomain
+      customer_root_url subdomain: current_shop.subdomain, domain: Settings.app.domain
     end
   end
 

@@ -51,13 +51,13 @@ class ApplicationController < ActionController::Base
 
   def customer_url
     if matched_root_domain?
-      customer_root_url subdomain: Apartment::Tenant.current
+      customer_root_url subdomain: Apartment::Tenant.current, domain: Settings.app.domain
     else
       customer_root_url
     end
   end
 
   def merchant_url subdomain
-    merchant_root_url subdomain: subdomain
+    merchant_root_url subdomain: subdomain, domain: Settings.app.domain
   end
 end

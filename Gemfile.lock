@@ -38,6 +38,14 @@ GIT
       thrift
 
 GIT
+  remote: https://github.com/duytd/prerender_rails.git
+  revision: 5a7abea2e19ae739eccec797a30cfdc386e1d863
+  specs:
+    prerender_rails (1.3.0)
+      activesupport
+      rack
+
+GIT
   remote: https://github.com/duytd/rt-transform-ruby.git
   revision: e44e994308c03dfaa10de34cf0882f013b0cc525
   specs:
@@ -663,6 +671,7 @@ DEPENDENCIES
   omniauth-oauth2 (~> 1.3.1)
   paypal_shopstory!
   pg
+  prerender_rails!
   puma
   rack-mini-profiler
   rails (= 4.2.3)

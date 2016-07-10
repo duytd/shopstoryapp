@@ -80,6 +80,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.react.variant = :production
+  config.middleware.use Rack::Prerender, prerender_service_url: "http://localhost:8000"
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
     hipchat: {
