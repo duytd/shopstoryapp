@@ -6,6 +6,16 @@ require "iconv"
 
 Bundler.require(*Rails.groups)
 
+class TemplateRenderer < React::ServerRendering::ExecJSRenderer
+  def initialize options={}
+    super options.merge({code: ""})
+  end
+
+  def before_render component_name, props, prerender_options
+    prerender_options[:template]
+  end
+end
+
 module ShopStory
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
@@ -34,9 +44,9 @@ module ShopStory
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths << Rails.root.join("app", "presenters")
 
-    config.react.server_renderer = React::ServerRendering::SprocketsRenderer
+    config.react.server_renderer = TemplateRenderer
     config.react.server_renderer_options = {
-      files: ["react-server.js", "merchant/components.js"],
+      files: ["react-server.js", "customer/components.js"],
       replay_console: true,
     }
 
