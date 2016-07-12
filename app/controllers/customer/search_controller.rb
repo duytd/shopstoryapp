@@ -8,7 +8,7 @@ class Customer::SearchController < Customer::BaseController
     @props = paginating @products, {
       globalVars: @globalVars,
       products: @products.map{|p| p._source.merge({highlight: p.highlight})},
-      pagination_url: customer_search_path(q: params[:q]),
+      url: customer_search_path(q: params[:q]),
       breadcrumb: current_breadcrumb
     }
   end

@@ -1,5 +1,14 @@
 var Product = React.createClass({
   mixins: [CartMixin],
+  componentDidMount: function() {
+    $.fn.scrollView = function () {
+      return this.each(function () {
+        $("html, body").animate({
+          scrollTop: $(this).offset().top
+        }, 1000);
+      });
+    }
+  },
   getInitialState: function() {
     if (this.props.variations.length == 0) {
       variation = this.props.master;
