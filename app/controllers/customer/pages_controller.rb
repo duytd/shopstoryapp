@@ -5,8 +5,6 @@ class Customer::PagesController < Customer::BaseController
   def home
     @products = Product.latest.featured.map{|p| present(p)}
     @banner = Banner.first ? present(Banner.first) : nil
-    @theme_bundle = current_shop.theme_bundles.with_theme current_shop.theme_id
-    @template = @theme_bundle.template
 
     @props = {
       globalVars: @globalVars,

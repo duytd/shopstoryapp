@@ -65,7 +65,6 @@ gem "dalli"
 gem "doorkeeper"
 gem "exception_notification"
 gem "hipchat"
-gem "prerender_rails", git: "https://github.com/duytd/prerender_rails.git"
 
 group :development, :test do
   gem "byebug"
@@ -98,6 +97,7 @@ group :development do
   gem "capistrano3-puma",   require: false
   gem "capistrano-linked-files",   require: false
   gem "capistrano-sidekiq"
+  gem "better_errors"
 end
 
 group :production do

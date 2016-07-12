@@ -17,6 +17,17 @@ module Customer::BaseHelper
     end
   end
 
+  def prerender_options
+    {
+      prerender: {
+        template: current_theme_bundle.template,
+        theme: current_theme.directory,
+        locale: current_theme_bundle.locale,
+        currency: current_currency
+      }
+    }
+  end
+
   def generate_meta_tags title, description, meta_keywords
     set_meta_tags title: title,
       description: description,
@@ -42,6 +53,10 @@ module Customer::BaseHelper
 
   def current_theme
     @current_theme ||= current_shop.theme
+  end
+
+  def current_theme_bundle
+    @current_theme_bundle ||= current_shop.theme_bundles.with_theme current_shop.theme_id
   end
 
   def current_currency

@@ -50,7 +50,7 @@ class Customer::CategoriesController < Customer::BaseController
       globalVars: @globalVars,
       category: present(@category),
       products: @products.map{|p| present(p)},
-      pagination_url: customer_category_path(@category),
+      url: customer_category_path(@category),
       breadcrumb: current_breadcrumb,
       filter: {
         url: filter_customer_category_path(@category),

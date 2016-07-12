@@ -4,7 +4,7 @@ var PaginationMixin = {
       totalPage: this.props.total_page,
       total: this.props.total,
       page: this.props.page,
-      paginationUrl: window.location.href
+      paginationUrl: this.props.url
     }
   },
   updatePagination: function(options) {

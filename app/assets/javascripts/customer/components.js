@@ -1,10 +1,6 @@
 global.React = require('react');
 global.ReactDOM = require('react-dom');
-
-var injectTapEventPlugin =  require('react-tap-event-plugin');
-injectTapEventPlugin();
-
-var _ = require('lodash');
+global._ = require('lodash');
 
 CartMixin = require('customer/mixins/CartMixin.js');
 PaginationMixin = require('customer/mixins/PaginationMixin.js');
@@ -70,3 +66,4 @@ Order = require('customer/components/orders/Order.js');
 CustomPage = require('customer/components/custom_pages/CustomPage.js');
 
 Home = require('customer/components/Home.js');
+
