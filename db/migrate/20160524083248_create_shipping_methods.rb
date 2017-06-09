@@ -10,7 +10,7 @@ class CreateShippingMethods < ActiveRecord::Migration
     end
 
     ShippingMethod.create_translation_table! name: :string, description: :text
-    rename_column :shipping_methods_translations, "public.shipping_method_id", "shipping_method_id"
+    rename_column :shipping_method_translations, "public.shipping_method_id", "shipping_method_id"
   end
 
   def down

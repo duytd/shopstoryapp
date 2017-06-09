@@ -23,7 +23,6 @@ set :puma_preload_app, false
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :nginx_use_ssl, false
-set :nginx_config_name, "shopstory"
 
 ## Defaults:
 set :scm,           :git

@@ -278,7 +278,6 @@ ActiveRecord::Schema.define(version: 20160708085928) do
     t.string   "currency"
     t.string   "locale"
     t.datetime "paid_at"
-    t.datetime "ordered_at"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -457,7 +456,7 @@ ActiveRecord::Schema.define(version: 20160708085928) do
   end
 
   add_index "shipping_method_translations", ["locale"], name: "index_shipping_method_translations_on_locale", using: :btree
-  add_index "shipping_method_translations", ["shipping_method_id"], name: "index_shipping_method_translations_on_shipping_method_id", using: :btree
+  add_index "shipping_method_translations", ["shipping_method_id"], name: "index_d18925c68417b15023b73190fb04cfcefbb8f8d5", using: :btree
 
   create_table "shipping_methods", force: :cascade do |t|
     t.string   "name"
@@ -619,17 +618,6 @@ ActiveRecord::Schema.define(version: 20160708085928) do
   end
 
   add_index "shopstory_ticket_tickets", ["shopstory_ticket_event_id"], name: "index_shopstory_ticket_tickets_on_shopstory_ticket_event_id", using: :btree
-
-  create_table "stylesheets", force: :cascade do |t|
-    t.string   "name"
-    t.text     "content"
-    t.string   "directory"
-    t.integer  "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "stylesheets", ["theme_id"], name: "index_stylesheets_on_theme_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "stripe_id"
