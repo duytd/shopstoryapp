@@ -39,24 +39,18 @@
     "account": {
       "title": "고객님의 정보",
       "orders": "주문내역",
-      "bookings": "티켓 예매내역",
       "fields": {
         "order": "주문",
-        "booking": "예매",
         "date": "날짜",
         "payment_status": "결제상태",
-        "ticket_sent_at": "이메일 티켓 전송 시각",
         "status": "상태",
         "total": "합계"
       }
     },
     "order": {
       "customer_contact": "고객님의 연락처",
-      "your_ticket": "고객님의 티켓",
       "your_order": "고객님의 주문",
       "total": "합계",
-      "ticket_sent_at": "이메일 티켓 전송 시각",
-      "booking_detail": "예매 상세정보",
       "shipping_address": "배송 주소",
       "billing_address": "주문 주소",
       "payment": "결제",

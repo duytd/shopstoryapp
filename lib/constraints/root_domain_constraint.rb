@@ -1,6 +1,6 @@
 class Constraints::RootDomainConstraint
   def self.matches? request
-    subdomains = %w{ www }
+    subdomains = Settings.app.root_subdomains
     top_level_domain = request.domain
     top_level_subdomain = request.subdomain
     second_level_domain = request.domain 2

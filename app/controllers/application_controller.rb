@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def get_user_locale
     extracted_locale = extract_locale_from_accept_language_header
 
-    if [:en, :ko].include?(extracted_locale)
+    if %w( en ko ).include?(extracted_locale)
       extracted_locale
     else
       I18n.default_locale

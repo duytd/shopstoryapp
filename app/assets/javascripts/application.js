@@ -6,4 +6,4 @@
 //= require bootstrap-sprockets
 //= require home/jquery.easing.1.3.min
 //= require home/jquery.sticky
-//= require app.home
+//= require landing

@@ -11,4 +11,3 @@
 //= require react_ujs
 //= require i18n
 //= require customer/components
-//= require shopstory_ticket/frontend

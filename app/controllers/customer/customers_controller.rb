@@ -6,7 +6,6 @@ class Customer::CustomersController < Customer::BaseController
     @props = {
       globalVars: @globalVars,
       orders: current_customer.product_orders.success.map{|p| present(p)},
-      bookings: current_customer.bookings.success
     }
   end
 end

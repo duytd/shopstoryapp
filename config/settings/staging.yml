@@ -1,6 +1,7 @@
 app:
   domains: ["shopstory.co.kr", "shopstoryapp.com"]
   domain: shopstory.co.kr
+  root_subdomains: ["www"]
 shop:
   default_name: ShopStory
   default_currency: KRW

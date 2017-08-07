@@ -29,5 +29,5 @@ config/environments/*.local.yml
 /inicis/
 kakao
 inicis
-app/assets/i18n
+app/assets/javascripts/i18n
 .DS_Store

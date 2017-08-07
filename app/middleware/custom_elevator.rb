@@ -31,6 +31,7 @@ class CustomElevator < Apartment::Elevators::Generic
   end
 
   protected
+
   def tenant_from_subdomain host
     subdomain = parse_subdomain host
 
@@ -59,7 +60,7 @@ class CustomElevator < Apartment::Elevators::Generic
     Settings.app.domains.each do |domain|
       if host.include?(domain)
         subdomain = host.split('.')[0..-4] if domain == "shopstory.co.kr"
-        subdomain = host.split('.')[0..-3] if domain == "shopstoryapp.com" || domain == "shopstory.com"
+        subdomain = host.split('.')[0..-3] if domain == "shopstoryapp.com" || domain == "shopstory.com" || domain == "shopstory.dev"
       end
     end
 

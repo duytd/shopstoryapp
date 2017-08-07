@@ -15,7 +15,6 @@ Page.prototype.init = function () {
   $this.$topSection.css('height', windowHeight);
 
   //init sticky
-  console.log($this.$stickyElem.attr("id"));
   $this.$stickyElem.sticky({topSpacing: 0});
 
   //Handling the resize event
@@ -53,5 +52,5 @@ Page.prototype.init = function () {
 
 $(document).on('ready', function() {
   $.Page = new Page, $.Page.Constructor = Page;
-  $.Page.init()
+  $.Page.init();
 })

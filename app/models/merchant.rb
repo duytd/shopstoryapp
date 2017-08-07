@@ -25,6 +25,7 @@ class Merchant < User
   end
 
   private
+
   def create_merchant_shop!
     self.shop_name = if shop_name.empty? then Settings.shop.default_name else shop_name end
     self.create_shop! name: shop_name, subdomain: subdomain, email: email

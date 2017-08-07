@@ -7,13 +7,6 @@ GIT
       rails (~> 4.2.3)
 
 GIT
-  remote: git@bitbucket.org:duytd/shopstory_ticket.git
-  revision: a6124a03bbadd6a28de01b929b84829f31b4a0fe
-  specs:
-    shopstory_ticket (0.0.1)
-      rails (~> 4.2.3)
-
-GIT
   remote: git@bitbucket.org:shopstory/kakao_shopstory.git
   revision: 7b4980a915b5d7084857679ecf1478c37464e4b3
   specs:
@@ -684,7 +677,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
-  shopstory_ticket!
   shoulda-callback-matchers (~> 1.1.1)
   shoulda-matchers
   sidekiq
