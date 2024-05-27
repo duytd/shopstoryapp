@@ -1,4 +1,4 @@
-class PaymentMethodOptionShop < ActiveRecord::Base
+class PaymentMethodOptionShop < ApplicationRecord
   belongs_to :payment_method_option
   belongs_to :payment_method_shop
 

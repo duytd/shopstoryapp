@@ -1,6 +1,6 @@
 require "zip"
 
-class PaymentMethodShop < ActiveRecord::Base
+class PaymentMethodShop < ApplicationRecord
   mount_uploader :key, KeyUploader
 
   belongs_to :payment_method

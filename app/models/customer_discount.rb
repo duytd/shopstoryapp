@@ -1,4 +1,4 @@
-class CustomerDiscount < ActiveRecord::Base
+class CustomerDiscount < ApplicationRecord
   belongs_to :customer
   belongs_to :discount
   belongs_to :order

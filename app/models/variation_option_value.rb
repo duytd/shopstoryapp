@@ -1,4 +1,4 @@
-class VariationOptionValue < ActiveRecord::Base
+class VariationOptionValue < ApplicationRecord
   belongs_to :variation_option, inverse_of: :variation_option_values
 
   validates :variation_option, presence: true

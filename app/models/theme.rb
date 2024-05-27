@@ -1,4 +1,4 @@
-class Theme < ActiveRecord::Base
+class Theme < ApplicationRecord
   ROOT_DIR = "#{Rails.root}/app/assets/javascripts/customer/themes"
   mount_uploader :image, ThemeImageUploader
 

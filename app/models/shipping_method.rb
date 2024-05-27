@@ -1,4 +1,4 @@
-class ShippingMethod < ActiveRecord::Base
+class ShippingMethod < ApplicationRecord
   translates :name, :description
   globalize_accessors locales: [:en, :ko], attributes: [:name, :description]
 

@@ -1,4 +1,4 @@
-class Discount < ActiveRecord::Base
+class Discount < ApplicationRecord
   enum discount_type: [:percentage, :fixed_amount]
 
   has_many :customer_discounts, dependent: :destroy

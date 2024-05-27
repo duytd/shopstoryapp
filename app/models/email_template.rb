@@ -1,4 +1,4 @@
-class EmailTemplate < ActiveRecord::Base
+class EmailTemplate < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :content, presence: true
 

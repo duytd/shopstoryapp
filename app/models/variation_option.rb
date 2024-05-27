@@ -1,4 +1,4 @@
-class VariationOption < ActiveRecord::Base
+class VariationOption < ApplicationRecord
   belongs_to :product, inverse_of: :variation_options
   has_many :variation_option_values, dependent: :destroy, inverse_of: :variation_option
   has_many :variation_variation_option_values, through: :variation_option_values

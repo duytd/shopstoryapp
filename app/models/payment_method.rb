@@ -1,4 +1,4 @@
-class PaymentMethod < ActiveRecord::Base
+class PaymentMethod < ApplicationRecord
   mount_uploader :image, PaymentMethodImageUploader
   validates :name, presence: true, uniqueness: true
 

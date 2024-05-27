@@ -1,4 +1,4 @@
-class PaymentMethodOption < ActiveRecord::Base
+class PaymentMethodOption < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: {scope: :payment_method_id}
 

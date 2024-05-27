@@ -1,4 +1,4 @@
-class Menu < ActiveRecord::Base
+class Menu < ApplicationRecord
   enum position: [:main, :footer]
 
   has_many :menu_items, dependent: :destroy

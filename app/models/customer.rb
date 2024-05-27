@@ -1,4 +1,4 @@
-class Customer < ActiveRecord::Base
+class Customer < ApplicationRecord
   attr_accessor :term, :privacy
   enum gender: [:male, :female]
 

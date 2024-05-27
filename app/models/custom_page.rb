@@ -1,4 +1,4 @@
-class CustomPage < ActiveRecord::Base
+class CustomPage < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
 

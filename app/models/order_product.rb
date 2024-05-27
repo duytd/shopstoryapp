@@ -1,4 +1,4 @@
-class OrderProduct < ActiveRecord::Base
+class OrderProduct < ApplicationRecord
   belongs_to :product_order, class_name: "ProductOrder", foreign_key: "order_id"
   belongs_to :variation
 

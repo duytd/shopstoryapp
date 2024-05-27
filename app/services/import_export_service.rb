@@ -79,7 +79,7 @@ class ImportExportService
   def find_object row
     case @klass
     when "Product"
-      Product.find_by_id(row["id"]) || Product.with_translations(:en).where("product_translations.name = #{ActiveRecord::Base.connection.quote(row['name_en'])}").first
+      Product.find_by_id(row["id"]) || Product.with_translations(:en).where("product_translations.name = #{ApplicationRecord.connection.quote(row['name_en'])}").first
     else
       nil
     end
@@ -99,7 +99,7 @@ class ImportExportService
     category_names = category_names.split ", "
 
     category_names.each do |name|
-      category = Category.with_translations(:en).where("category_translations.name = #{ActiveRecord::Base.connection.quote(name)}").first
+      category = Category.with_translations(:en).where("category_translations.name = #{ApplicationRecord.connection.quote(name)}").first
       category = Category.create(name_en: name, name_ko: name) if category.nil?
       object.category_products.create category_id: category.id
     end

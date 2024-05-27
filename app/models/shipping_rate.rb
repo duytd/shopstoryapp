@@ -1,4 +1,4 @@
-class ShippingRate < ActiveRecord::Base
+class ShippingRate < ApplicationRecord
   TYPES_CLASSES_MAPPING = {
     free: "Shipping::FreeShipping",
     free_by_price: "Shipping::FreeShippingByPrice",

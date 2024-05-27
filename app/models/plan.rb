@@ -1,4 +1,4 @@
-class Plan < ActiveRecord::Base
+class Plan < ApplicationRecord
   has_many :subscriptions, dependent: :nullify
   has_many :shop, through: :subscriptions
 

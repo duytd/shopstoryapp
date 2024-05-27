@@ -1,4 +1,4 @@
-class ProductImage < ActiveRecord::Base
+class ProductImage < ApplicationRecord
   belongs_to :product
   before_update :ensure_only_one_image_is_active, if: Proc.new{|a| a.featured_changed? && a.featured?}
 

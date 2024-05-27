@@ -1,4 +1,4 @@
-class Asset < ActiveRecord::Base
+class Asset < ApplicationRecord
   TYPES_CLASSES_MAPPING = {
     javascript: "Asset::Javascript",
     stylesheet: "Asset::Stylesheet",

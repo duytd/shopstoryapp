@@ -1,4 +1,4 @@
-class Order < ActiveRecord::Base
+class Order < ApplicationRecord
   HOURLY_RANGE = 60 * 60
   DAILY_RANGE = 24 * HOURLY_RANGE
   WEEKLY_RANGE = 7 * DAILY_RANGE

@@ -1,3 +1,3 @@
-class ShopTranslation < ActiveRecord::Base
+class ShopTranslation < ApplicationRecord
   belongs_to :shop
 end

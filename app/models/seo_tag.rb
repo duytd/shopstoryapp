@@ -1,4 +1,4 @@
-class SeoTag < ActiveRecord::Base
+class SeoTag < ApplicationRecord
   belongs_to :seoable, polymorphic: true
 
   translates :title, :meta_description, :meta_keywords

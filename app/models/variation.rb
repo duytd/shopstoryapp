@@ -1,4 +1,4 @@
-class Variation < ActiveRecord::Base
+class Variation < ApplicationRecord
   mount_uploader :image, ProductImageUploader
 
   belongs_to :product, inverse_of: :variations
@@ -51,6 +51,7 @@ class Variation < ActiveRecord::Base
   end
 
   private
+
   def initialize_master
     self.price = product.price
     self.sku = product.sku

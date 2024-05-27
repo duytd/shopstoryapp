@@ -1,4 +1,4 @@
-class BannerItem < ActiveRecord::Base
+class BannerItem < ApplicationRecord
   mount_uploader :image, BannerImageUploader
 
   belongs_to :banner, inverse_of: :banner_items

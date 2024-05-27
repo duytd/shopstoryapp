@@ -1,4 +1,4 @@
-class Shipment < ActiveRecord::Base
+class Shipment < ApplicationRecord
   enum status: [:shipping, :shipped, :returned]
 
   belongs_to :product_order, foreign_key: "order_id"

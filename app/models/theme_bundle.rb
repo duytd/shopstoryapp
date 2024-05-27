@@ -1,6 +1,6 @@
 require "minifier"
 
-class ThemeBundle < ActiveRecord::Base
+class ThemeBundle < ApplicationRecord
   belongs_to :shop
   belongs_to :theme
 

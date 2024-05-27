@@ -1,4 +1,4 @@
-class Shop < ActiveRecord::Base
+class Shop < ApplicationRecord
   attr_accessor :setting_up
 
   translates :street

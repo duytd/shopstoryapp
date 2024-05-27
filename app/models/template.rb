@@ -1,6 +1,6 @@
 require "rt"
 
-class Template < ActiveRecord::Base
+class Template < ApplicationRecord
   attr_accessor :theme_bundle
 
   belongs_to :theme

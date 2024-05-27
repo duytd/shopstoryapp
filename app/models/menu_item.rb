@@ -1,4 +1,4 @@
-class MenuItem < ActiveRecord::Base
+class MenuItem < ApplicationRecord
   TYPES_CLASSES_MAPPING = {
     home: "Menu::HomeMenu",
     category: "Menu::CategoryMenu",

@@ -1,4 +1,4 @@
-class Subscription < ActiveRecord::Base
+class Subscription < ApplicationRecord
   belongs_to :plan
   belongs_to :merchant, foreign_key: :user_id
 

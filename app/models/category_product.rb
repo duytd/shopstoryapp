@@ -1,4 +1,4 @@
-class CategoryProduct < ActiveRecord::Base
+class CategoryProduct < ApplicationRecord
   belongs_to :category, touch: true
   belongs_to :product
 
