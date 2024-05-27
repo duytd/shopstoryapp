@@ -1,4 +1,4 @@
-class CreateThemeEditors < ActiveRecord::Migration
+class CreateThemeEditors < ActiveRecord::Migration[4.2]
   def change
     create_table :theme_editors do |t|
       t.text :stylesheet

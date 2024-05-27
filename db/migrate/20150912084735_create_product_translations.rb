@@ -1,4 +1,4 @@
-class CreateProductTranslations < ActiveRecord::Migration
+class CreateProductTranslations < ActiveRecord::Migration[4.2]
   def up
     Product.create_translation_table! name: :string, description: :text
   end

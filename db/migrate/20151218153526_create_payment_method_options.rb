@@ -1,4 +1,4 @@
-class CreatePaymentMethodOptions < ActiveRecord::Migration
+class CreatePaymentMethodOptions < ActiveRecord::Migration[4.2]
   def change
     create_table :payment_method_options do |t|
       t.string :name

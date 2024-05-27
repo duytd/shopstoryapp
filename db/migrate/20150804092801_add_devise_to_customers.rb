@@ -1,4 +1,4 @@
-class AddDeviseToCustomers < ActiveRecord::Migration
+class AddDeviseToCustomers < ActiveRecord::Migration[4.2]
   def self.up
     change_table(:customers) do |t|
       ## Database authenticatable

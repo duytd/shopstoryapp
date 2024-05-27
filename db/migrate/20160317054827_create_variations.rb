@@ -1,4 +1,4 @@
-class CreateVariations < ActiveRecord::Migration
+class CreateVariations < ActiveRecord::Migration[4.2]
   def change
     create_table :variations do |t|
       t.integer :in_stock, default: 1

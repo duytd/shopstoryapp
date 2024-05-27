@@ -1,4 +1,4 @@
-class CreateCategoryProducts < ActiveRecord::Migration
+class CreateCategoryProducts < ActiveRecord::Migration[4.2]
   def change
     create_table :category_products do |t|
       t.references :category, index: true, foreign_key: true

@@ -1,4 +1,4 @@
-class CreateVariationVariationOptionValues < ActiveRecord::Migration
+class CreateVariationVariationOptionValues < ActiveRecord::Migration[4.2]
   def change
     create_table :variation_variation_option_values do |t|
       t.references :variation, index: true, foreign_key: true

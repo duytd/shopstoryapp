@@ -1,4 +1,4 @@
-class CreateSeoTags < ActiveRecord::Migration
+class CreateSeoTags < ActiveRecord::Migration[4.2]
   def up
     create_table :seo_tags do |t|
       t.string :title

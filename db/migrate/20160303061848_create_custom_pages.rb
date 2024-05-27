@@ -1,4 +1,4 @@
-class CreateCustomPages < ActiveRecord::Migration
+class CreateCustomPages < ActiveRecord::Migration[4.2]
   def up
     create_table :custom_pages do |t|
       t.string :title

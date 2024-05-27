@@ -1,4 +1,4 @@
-class CreatePaymentMethodOptionShops < ActiveRecord::Migration
+class CreatePaymentMethodOptionShops < ActiveRecord::Migration[4.2]
   def change
     create_table :payment_method_option_shops do |t|
       t.references :payment_method_option, index: true, foreign_key: true

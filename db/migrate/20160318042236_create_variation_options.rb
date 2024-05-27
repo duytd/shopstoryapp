@@ -1,4 +1,4 @@
-class CreateVariationOptions < ActiveRecord::Migration
+class CreateVariationOptions < ActiveRecord::Migration[4.2]
   def change
     create_table :variation_options do |t|
       t.string :name

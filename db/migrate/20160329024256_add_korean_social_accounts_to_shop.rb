@@ -1,4 +1,4 @@
-class AddKoreanSocialAccountsToShop < ActiveRecord::Migration
+class AddKoreanSocialAccountsToShop < ActiveRecord::Migration[4.2]
   def change
     add_column :shops, :naver, :string
     add_column :shops, :daum, :string
