@@ -116,6 +116,6 @@ module ShopStory
     }
 
     config.exceptions_app = self.routes
-    config.cache_store = :dalli_store, nil, {namespace: "shopstory", compress: true}
+    config.cache_store = :mem_cache_store
  end
 end
