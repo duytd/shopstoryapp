@@ -1,4 +1,4 @@
-var CategoryList = React.createClass({
+export default class CategoryList extends React.Component {
   render: function() {
     var headers = [
       I18n.t("activerecord.attributes.category.name")
@@ -15,4 +15,4 @@ var CategoryList = React.createClass({
         deleteAllUrl={this.props.url} />
     )
   }
-});
+};

@@ -1,5 +1,5 @@
-var Box = React.createClass({
-  render: function() {
+export default class Box extends React.Component {
+  render() {
     var wrapper = (this.props.wrapper) ? this.props.wrapper : "block";
 
     return (
@@ -38,8 +38,8 @@ var Box = React.createClass({
       </div>
     );
   },
-  handleImport: function() {
+  handleImport() {
     var form = $(this.refs.import_form);
     this.props.handleImport(form);
   }
-});
+};

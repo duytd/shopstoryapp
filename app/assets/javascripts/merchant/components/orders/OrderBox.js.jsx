@@ -1,5 +1,5 @@
-var OrderBox = React.createClass({
-  render: function() {
+export default class OrderBox extends React.Component {
+  render() {
     var orderList = (
       <OrderList
         page={this.props.page}
@@ -33,4 +33,4 @@ var OrderBox = React.createClass({
         title={I18n.t("merchant.admin.orders.title")} />
     );
   }
-})
+}

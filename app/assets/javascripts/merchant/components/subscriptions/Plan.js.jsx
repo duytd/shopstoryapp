@@ -1,5 +1,5 @@
-var Plan = React.createClass({
-  componentDidMount: function() {
+export default class Plan extends React.Component {
+  componentDidMount() {
     var script = document.createElement("script");
     var stripe = document.getElementById("stripe_" + this.props.plan.id);
     var label = I18n.t("merchant.admin.buttons.choose");
@@ -16,7 +16,7 @@ var Plan = React.createClass({
       stripe.parentNode.insertBefore(script, stripe);
     }
   },
-  render: function() {
+  render() {
     var featureNodes = this.props.plan.parsed_features.map(function(feature, index) {
       return <li key={"feature" + index}><b>{feature[0].capitalize()}</b> {feature[1].capitalize()}</li>
     })
@@ -52,4 +52,4 @@ var Plan = React.createClass({
       </div>
     )
   }
-})
+}

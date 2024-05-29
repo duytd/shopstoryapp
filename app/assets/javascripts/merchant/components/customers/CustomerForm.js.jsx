@@ -1,11 +1,11 @@
-var CustomerForm = React.createClass({
-  getInitialState: function() {
+export default class CustomerForm extends React.Component {
+  getInitialState() {
     return {
       errors: {},
       country: "KR"
     }
   },
-  render: function() {
+  render() {
     var countryNodes = this.props.countries.map(function (country, index) {
       return <option key={index} value={country[0]}>{country[1]}</option>
     }.bind(this));
@@ -123,10 +123,10 @@ var CustomerForm = React.createClass({
       </div>
     )
   },
-  updateCountry: function(e) {
+  updateCountry(e) {
     this.setState({country: e.target.value})
   },
-  streetClick: function() {
+  streetClick() {
     if (this.state.country == "KR") {
       openDaumPostcode(function(data) {
         var address = data.address,
@@ -136,14 +136,14 @@ var CustomerForm = React.createClass({
       }.bind(this))
     }
   },
-  setAddress: function(address, zipcode) {
+  setAddress(address, zipcode) {
     address = typeof address !== "undefined" ? address : "";
     zipcode = typeof zipcode !== "undefined" ? zipcode : "";
 
     this.refs.address.value = address;
     this.refs.zipcode.value = zipcode;
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
     var data = $(this.refs.form).serialize(),
       url = this.props.url,
@@ -164,4 +164,4 @@ var CustomerForm = React.createClass({
       }.bind(this)
     });
   },
-});
+};

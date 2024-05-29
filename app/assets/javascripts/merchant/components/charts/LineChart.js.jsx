@@ -1,11 +1,11 @@
-var LineChart = React.createClass({
-  componentDidMount: function() {
+export default class LineChart extends React.Component {
+  componentDidMount() {
     this.draw();
   },
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     this.draw();
   },
-  draw: function() {
+  draw() {
     var ctx = $(this.refs.chart);
     var labels = [];
     var data = [];
@@ -42,11 +42,11 @@ var LineChart = React.createClass({
       }
     });
   },
-  render: function() {
+  render() {
     return (
       <div className="chart-container">
         <canvas ref="chart" id="lineChart" width={(this.props.width) ? this.props.width : "400"} height={(this.props.height) ? this.props.height : "200"}></canvas>
       </div>
     )
   }
-})
+}

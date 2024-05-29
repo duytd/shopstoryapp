@@ -1,12 +1,12 @@
-var Menu = React.createClass({
+export default class Menu extends React.Component {
   mixins: [DragMixin],
-  getInitialState: function() {
+  getInitialState() {
     return {
       items: this.props.menu.menu_items,
       draggableKlass: "parent"
     }
   },
-  render: function() {
+  render() {
     var menuItems = this.state.items.map(function(item, index) {
       return (
         <div className={"draggable-item " + this.state.draggableKlass} key={"menu_item" + index} data-index={index}>
@@ -50,7 +50,7 @@ var Menu = React.createClass({
       </div>
     )
   },
-  swapItem: function(from, to, parent) {
+  swapItem(from, to, parent) {
     var items = this.state.items;
 
     if (parent) {
@@ -67,7 +67,7 @@ var Menu = React.createClass({
 
     this.setState({items: items}, this.submitDraggable);
   },
-  submitDraggable: function() {
+  submitDraggable() {
     var id = this.props.menu.id;
     data = $(this.refs.draggable).serialize();
 
@@ -77,7 +77,7 @@ var Menu = React.createClass({
       method: "PUT"
     })
   },
-  deleteMenu: function(e) {
+  deleteMenu(e) {
     e.preventDefault();
 
     var id = this.props.menu.id;
@@ -90,4 +90,4 @@ var Menu = React.createClass({
       }.bind(this)
     })
   }
-})
+}

@@ -1,11 +1,11 @@
-var PaymentMethod = React.createClass({
-  getInitialState: function() {
+export default class PaymentMethod extends React.Component {
+  getInitialState() {
     return {
       errors: [],
       payment_method_shop: this.props.payment_method_shop
     }
   },
-  componentDidMount: function() {
+  componentDidMount() {
     $(this.refs.activator).bootstrapSwitch({
       size: "small",
       onSwitchChange: function(event, state) {
@@ -18,7 +18,7 @@ var PaymentMethod = React.createClass({
       }.bind(this)
     });
   },
-  render: function() {
+  render() {
     var options = this.state.payment_method_shop.payment_method_option_shops.map(function(option, index){
       return (
         <div className="form-group col-md-6" key={"payment_method_shop_" + index}>
@@ -82,15 +82,15 @@ var PaymentMethod = React.createClass({
       </div>
     )
   },
-  disactive: function() {
+  disactive() {
     this.refs.active.value = false;
     this.submit();
   },
-  active: function() {
+  active() {
     this.refs.active.value = true;
     this.submit();
   },
-  submit: function(e) {
+  submit(e) {
     if (typeof e !== "undefined")
       e.preventDefault();
 
@@ -122,4 +122,4 @@ var PaymentMethod = React.createClass({
       }.bind(this)
     });
   }
-});
+};

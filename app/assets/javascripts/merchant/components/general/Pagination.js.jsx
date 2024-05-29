@@ -1,5 +1,5 @@
-var Pagination = React.createClass({
-  getInitialState: function() {
+export default class Pagination extends React.Component {
+  getInitialState() {
     return {
       prev: null,
       next: null,
@@ -7,7 +7,7 @@ var Pagination = React.createClass({
       nextPages: []
     }
   },
-  render: function() {
+  render() {
     return (
       <div>
       {(this.props.totalPage > 1) ?
@@ -59,13 +59,13 @@ var Pagination = React.createClass({
       </div>
     )
   },
-  componentDidMount: function() {
+  componentDidMount() {
     this.loadPages(this.props);
   },
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.loadPages(nextProps);
   },
-  loadPages: function(props) {
+  loadPages(props) {
     var prevPages = [],
       nextPages = [],
       prev = null,
@@ -94,4 +94,4 @@ var Pagination = React.createClass({
 
     this.setState({prev: prev, next: next, prevPages: prevPages.reverse(), nextPages: nextPages})
   }
-})
+}

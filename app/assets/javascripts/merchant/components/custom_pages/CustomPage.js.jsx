@@ -1,5 +1,5 @@
-var CustomPage = React.createClass({
-  render: function() {
+export default class CustomPage extends React.Component {
+  render() {
     return (
       <Item
         item={this.props.custom_page}
@@ -16,4 +16,4 @@ var CustomPage = React.createClass({
       </Item>
     );
   }
-})
+}

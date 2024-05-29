@@ -1,5 +1,5 @@
-var BulkAction = React.createClass({
-  render: function() {
+export default class BulkAction extends React.Component {
+  render() {
     return (
       <div className={(this.props.checkCount > 0) ? "btn-group bulk-action" : "hide"} role="group">
         <button type="button" className="btn btn-default disabled">
@@ -20,4 +20,4 @@ var BulkAction = React.createClass({
       </div>
     );
   }
-});
+};

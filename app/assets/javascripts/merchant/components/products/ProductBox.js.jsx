@@ -1,5 +1,5 @@
-var ProductBox = React.createClass({
-  getInitialState: function() {
+export default class ProductBox extends React.Component {
+  getInitialState() {
     var selectedCategory = this.props.filter.category;
     var sorting = this.props.sorting;
     var url = this.props.url;
@@ -21,7 +21,7 @@ var ProductBox = React.createClass({
       selectedCategory: selectedCategory
     }
   },
-  render: function() {
+  render() {
     var productList = (
       <div className="product-list">
         <ProductFilter
@@ -80,7 +80,7 @@ var ProductBox = React.createClass({
       </div>
     );
   },
-  updateData: function(data, url) {
+  updateData(data, url) {
     this.setState({
       products: data.products,
       page: data.page,
@@ -89,7 +89,7 @@ var ProductBox = React.createClass({
       url: url
     })
   },
-  handleImport: function(form) {
+  handleImport(form) {
     var url = this.props.import_url;
 
     $.ajax({
@@ -107,7 +107,7 @@ var ProductBox = React.createClass({
       }
     })
   },
-  handleExportAll: function() {
+  handleExportAll() {
     var url = this.props.export_url;
 
     $.ajax({
@@ -119,7 +119,7 @@ var ProductBox = React.createClass({
       }.bind(this)
     })
   },
-  downloadCSV: function(data) {
+  downloadCSV(data) {
     var link = document.createElement("a");
     link.href = "data:text/csv;charset=utf-8," + encodeURI(data);
     link.style = "visibility:hidden";
@@ -130,4 +130,4 @@ var ProductBox = React.createClass({
     link.click();
     document.body.removeChild(link);
   }
-})
+}

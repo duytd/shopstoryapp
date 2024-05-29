@@ -1,10 +1,10 @@
-var Webmaster = React.createClass({
-  getInitialState: function () {
+export default class Webmaster extends React.Component {
+  getInitialState() {
     return {
       errors: {}
     };
   },
-  renderSeo: function() {
+  renderSeo() {
     return (
       <div className="row">
         <div className="col-md-12 block">
@@ -24,7 +24,7 @@ var Webmaster = React.createClass({
       </div>
     )
   },
-  renderVerificationCode: function() {
+  renderVerificationCode() {
     return (
       <div className="row">
         <div className="col-md-12 block">
@@ -42,7 +42,7 @@ var Webmaster = React.createClass({
       </div>
     )
   },
-  render: function () {
+  render() {
     return (
       <form ref="form" id="webmaster-form" className="webmaster-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}>
@@ -58,7 +58,7 @@ var Webmaster = React.createClass({
       </form>
     );
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
     var method = this.props.method;
@@ -79,4 +79,4 @@ var Webmaster = React.createClass({
       }.bind(this)
     });
   },
-});
+};

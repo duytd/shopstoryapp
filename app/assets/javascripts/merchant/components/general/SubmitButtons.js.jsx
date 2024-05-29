@@ -1,5 +1,5 @@
-var SubmitButtons = React.createClass({
-  render: function() {
+export default class SubmitButtons extends React.Component {
+  render() {
     var goBackButton = <button onClick={this.goBack} className="btn btn-default">
       {I18n.t("merchant.admin.buttons.cancel")}</button>
     goBackButton = (this.props.goBack == true) ? goBackButton : "";
@@ -14,13 +14,13 @@ var SubmitButtons = React.createClass({
       </div>
     );
   },
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       goBack: true
     }
   },
-  goBack: function(e) {
+  goBack(e) {
     e.preventDefault();
     Turbolinks.visit(this.props.redirect_url);
   }
-})
+}

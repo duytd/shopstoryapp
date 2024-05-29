@@ -1,5 +1,5 @@
-var SeoTag = React.createClass({
-  render: function() {
+export default class SeoTag extends React.Component {
+  render() {
     this.props.errors["seo_tag.title_ko"] = this.props.errors["seo_tag.title_ko"] || [];
     this.props.errors["seo_tag.title_en"] = this.props.errors["seo_tag.title_en"] || [];
     this.props.errors["seo_tag.meta_description_ko"] = this.props.errors["seo_tag.meta_description_ko"] || [];
@@ -70,4 +70,4 @@ var SeoTag = React.createClass({
       </div>
     )
   }
-})
+}

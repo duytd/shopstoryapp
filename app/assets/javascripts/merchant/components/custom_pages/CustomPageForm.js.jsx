@@ -1,16 +1,16 @@
-var CustomPageForm = React.createClass({
+export default class CustomPageForm extends React.Component {
   mixins: [FormMixin],
-  getInitialState: function () {
+  getInitialState() {
     return {
       errors: {},
       errors_en_count: 0,
       errors_ko_count: 0
     };
   },
-  componentDidMount: function() {
+  componentDidMount() {
     this.loadSummernote();
   },
-  render: function () {
+  render() {
     return (
       <form ref="form" className="custom-page-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
@@ -74,13 +74,13 @@ var CustomPageForm = React.createClass({
       </form>
     )
   },
-  handleSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
     this.handleCustomPageSubmit(formData, this.props.url, this.props.method);
   },
-  handleCustomPageSubmit: function(formData, action, method) {
+  handleCustomPageSubmit(formData, action, method) {
     $.ajax({
       data: formData,
       url: action,
@@ -104,4 +104,4 @@ var CustomPageForm = React.createClass({
       }.bind(this)
     });
   },
-})
+}

@@ -1,5 +1,5 @@
-var List = React.createClass({
-  componentWillReceiveProps: function(nextProps) {
+export default class List extends React.Component {
+  componentWillReceiveProps(nextProps) {
     var items = nextProps.items.map(function(item) {
 
       item.checked = false;
@@ -8,7 +8,7 @@ var List = React.createClass({
 
     this.setState({items: items, checkCount: 0, isSelectAll: false});
   },
-  getInitialState: function() {
+  getInitialState() {
     var sorting = this.props.sorting;
     var sortBy = (sorting != null) ? sorting.sorted_by : null;
     var sortDirection = (sorting != null) ? sorting.sort_direction : null;
@@ -19,7 +19,7 @@ var List = React.createClass({
     })
     return {items: items, checkCount: 0, isSelectAll: false, sortBy: sortBy, sortDirection: sortDirection};
   },
-  render: function () {
+  render() {
     var itemNodes = this.state.items.map(function(item) {
       switch(this.props.type) {
         case "category":
@@ -136,7 +136,7 @@ var List = React.createClass({
       </div>
     );
   },
-  renderHeaders: function() {
+  renderHeaders() {
     return this.props.headers.map(function(h, index){
       if (this.props.sortable && this.props.sortableColumns) {
         var column = this.getSortableColumn(index);
@@ -161,7 +161,7 @@ var List = React.createClass({
       }
     }.bind(this))
   },
-  getSortableColumn: function(index) {
+  getSortableColumn(index) {
     var result = null;
 
     this.props.sortableColumns.forEach(function(column) {
@@ -173,7 +173,7 @@ var List = React.createClass({
 
     return result;
   },
-  sort: function(index) {
+  sort(index) {
     var url = Routes.merchant_products_path();
     var sortBy = this.getSortableColumn(index).name;
     var sortDirection = "asc";
@@ -190,7 +190,7 @@ var List = React.createClass({
 
     }.bind(this))
   },
-  deleteItem: function(item) {
+  deleteItem(item) {
     var items = this.state.items;
     var index = items.indexOf(item);
 
@@ -212,7 +212,7 @@ var List = React.createClass({
       this.replaceState({items: items, checkCount: this.state.checkCount});
     }
   },
-  deleteAllItem: function(item_ids) {
+  deleteAllItem(item_ids) {
     var items = this.state.items;
 
     items = items.filter(function(item) {
@@ -231,7 +231,7 @@ var List = React.createClass({
       this.replaceState({items: items, checkCount: 0, isSelectAll: false});
     }
   },
-  handleExport: function(e) {
+  handleExport(e) {
     e.preventDefault();
 
     var item_ids = [];
@@ -243,7 +243,7 @@ var List = React.createClass({
 
     this.props.handleExport(item_ids);
   },
-  handleDeleteAll: function(e) {
+  handleDeleteAll(e) {
     e.preventDefault();
 
     var item_ids = [];
@@ -293,7 +293,7 @@ var List = React.createClass({
       }.bind(this)
     });
   },
-  handleSelectAll: function(checked) {
+  handleSelectAll(checked) {
     var items = this.state.items.map(function(item) {
 
       item.checked = checked;
@@ -303,7 +303,7 @@ var List = React.createClass({
 
     this.replaceState({items: items, checkCount: checkCount, isSelectAll: checked});
   },
-  handleSelect: function(item, checked) {
+  handleSelect(item, checked) {
     var items = this.state.items;
     var index = items.indexOf(item);
     var currentChecked = items[index].checked;
@@ -313,4 +313,4 @@ var List = React.createClass({
     items[index].checked = checked;
     this.replaceState({items: items, checkCount: checkCount, isSelectAll: isSelectAll});
   }
-})
+}

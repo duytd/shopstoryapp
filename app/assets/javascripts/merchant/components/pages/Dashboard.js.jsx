@@ -1,5 +1,5 @@
-var Dashboard = React.createClass({
-  renderOrders: function() {
+export default class Dashboard extends React.Component {
+  renderOrders() {
     return (
       <div className="table-responsive">
         <table className="table">
@@ -31,7 +31,7 @@ var Dashboard = React.createClass({
       </div>
     )
   },
-  renderProducts: function(orderProducts) {
+  renderProducts(orderProducts) {
     return (
       <span>
         {orderProducts.map(function(orderProduct, index) {
@@ -44,7 +44,7 @@ var Dashboard = React.createClass({
       </span>
     )
   },
-  getPaymentStateKlass: function(state) {
+  getPaymentStateKlass(state) {
     switch(state) {
       case "pending":
         paymentStatusKlass = "label-default";
@@ -59,7 +59,7 @@ var Dashboard = React.createClass({
         break;
     }
   },
-  getStatusKlass: function(status) {
+  getStatusKlass(status) {
     switch(status) {
       case "incompleted":
         statusKlass = "label-default";
@@ -91,7 +91,7 @@ var Dashboard = React.createClass({
 
     return statusKlass;
   },
-  renderRevenueNumber: function() {
+  renderRevenueNumber() {
     return (
       <div className="block">
         <h3 className="text-center">
@@ -116,7 +116,7 @@ var Dashboard = React.createClass({
       </div>
     )
   },
-  renderStatistics: function() {
+  renderStatistics() {
     var data = [
       ["icon-success", <i className="fa fa-3x fa-won"></i>, I18n.t("merchant.admin.dashboard.total_revenue"), this.props.total_revenue, "javascript:void(0)"],
       ["icon-primary", <i className="fa fa-3x fa-cart-plus"></i>, I18n.t("merchant.admin.dashboard.today_sales"), this.props.today_sales, Routes.merchant_product_orders_path.localize()],
@@ -149,7 +149,7 @@ var Dashboard = React.createClass({
       </div>
     )
   },
-  render: function() {
+  render() {
     return (
       <div className="dashboard">
         {this.renderStatistics()}
@@ -173,4 +173,4 @@ var Dashboard = React.createClass({
       </div>
     )
   }
-})
+}

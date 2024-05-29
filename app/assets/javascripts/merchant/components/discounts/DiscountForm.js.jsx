@@ -1,5 +1,5 @@
-var DiscountForm = React.createClass({
-  getInitialState: function () {
+export default class DiscountForm extends React.Component {
+  getInitialState() {
     var discountType = this.props.discount ? this.props.discount.discount_type : "percentage";
 
     return {
@@ -7,7 +7,7 @@ var DiscountForm = React.createClass({
       errors: {},
     };
   },
-  renderPercentageInput: function() {
+  renderPercentageInput() {
     return (
       <div className="input-group">
         <span className="input-group-addon">%</span>
@@ -15,13 +15,13 @@ var DiscountForm = React.createClass({
       </div>
     )
   },
-  componentDidMount: function() {
+  componentDidMount() {
     this.loadDatePicker();
   },
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     this.loadDatePicker();
   },
-  renderFixedAmountInput: function() {
+  renderFixedAmountInput() {
     return (
       <div className="input-group">
         <span className="input-group-addon">{this.props.currency}</span>
@@ -29,7 +29,7 @@ var DiscountForm = React.createClass({
       </div>
     )
   },
-  render: function () {
+  render() {
     return (
       <form ref="form" className="discount-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}>
@@ -81,21 +81,21 @@ var DiscountForm = React.createClass({
       </form>
     )
   },
-  loadDatePicker: function() {
+  loadDatePicker() {
     $(".datepicker").datepicker({
       locale: I18n.locale,
       format: "yyyy-mm-dd"
     });
   },
-  switchDiscountType: function() {
+  switchDiscountType() {
     var discountType = this.refs.discount_type.value;
     this.setState({discountType: discountType});
   },
-  generateCode: function() {
+  generateCode() {
     var code = this.randomCode();
     this.refs.code.value = code;
   },
-  randomCode: function() {
+  randomCode() {
     var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890";
     var code = "";
     for (var x = 0; x < 8; x++) {
@@ -104,7 +104,7 @@ var DiscountForm = React.createClass({
     }
     return code;
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
     var method = this.props.method;
@@ -127,4 +127,4 @@ var DiscountForm = React.createClass({
       }.bind(this)
     });
   }
-})
+}

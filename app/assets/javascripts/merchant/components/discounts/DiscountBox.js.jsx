@@ -1,5 +1,5 @@
-var DiscountBox = React.createClass({
-  render: function() {
+export default class DiscountBox extends React.Component {
+  render() {
     var discountList = (
       <DiscountList
         page={this.props.page}
@@ -37,4 +37,4 @@ var DiscountBox = React.createClass({
         title={I18n.t("merchant.admin.discounts.title")} />
     );
   }
-})
+}

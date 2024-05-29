@@ -1,20 +1,20 @@
-var ShipmentForm = React.createClass({
-  getInitialState: function() {
+export default class ShipmentForm extends React.Component {
+  getInitialState() {
     return {
       errors: []
     }
   },
-  renderShippingMethod: function(method, index) {
+  renderShippingMethod(method, index) {
     return (
       <option value={method.id} key={"shipping_method_" + index}>{translate(method, "name")}</option>
     )
   },
-  renderStatus: function(status, index) {
+  renderStatus(status, index) {
     return (
       <option value={status} key={"status_" + index}>{status.capitalize()}</option>
     )
   },
-  renderShipment: function() {
+  renderShipment() {
     return (
       <div className="block">
         <h3>{I18n.t("activerecord.attributes.order.shipment")}</h3>
@@ -25,7 +25,7 @@ var ShipmentForm = React.createClass({
       </div>
     )
   },
-  renderForm: function() {
+  renderForm() {
     return (
       <div className="block">
         <h3>{I18n.t("activerecord.attributes.order.shipment")}</h3>
@@ -70,7 +70,7 @@ var ShipmentForm = React.createClass({
       </div>
     )
   },
-  render: function() {
+  render() {
     if (this.props.editing) {
       return this.renderForm();
     }
@@ -81,7 +81,7 @@ var ShipmentForm = React.createClass({
       return <span></span>
     }
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
 
     var formData = $(this.refs.form).serialize();
@@ -99,4 +99,4 @@ var ShipmentForm = React.createClass({
       }.bind(this)
     })
   }
-})
+}

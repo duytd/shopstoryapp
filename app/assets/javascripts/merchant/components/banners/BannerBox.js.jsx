@@ -1,5 +1,5 @@
-var BannerBox = React.createClass({
-  render: function() {
+export default class BannerBox extends React.Component {
+  render() {
     var bannerList = (
       <BannerList
         page={this.props.page}
@@ -37,4 +37,4 @@ var BannerBox = React.createClass({
         title={I18n.t("merchant.admin.banners.title")} />
     );
   }
-})
+}

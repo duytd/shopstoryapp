@@ -1,11 +1,11 @@
-var OrderForm = React.createClass({
-  getInitialState: function() {
+export default class OrderForm extends React.Component {
+  getInitialState() {
     return {
       editing: false,
       order: this.props.order,
     }
   },
-  renderPaymentInfo: function() {
+  renderPaymentInfo() {
     var paymentInfo = "";
 
     if (this.state.order.payment.payment_method) {
@@ -24,7 +24,7 @@ var OrderForm = React.createClass({
 
     return paymentInfo;
   },
-  renderOrderProduct: function(orderProduct, index) {
+  renderOrderProduct(orderProduct, index) {
     return (
       <tr key={"order_product_" + index}>
         <td>
@@ -44,7 +44,7 @@ var OrderForm = React.createClass({
       </tr>
     )
   },
-  renderTransactionInfo: function(info, index) {
+  renderTransactionInfo(info, index) {
     return (
       <p key={"transaction_info_" + index}>
         {(info["show_admin"] != false) ?
@@ -54,7 +54,7 @@ var OrderForm = React.createClass({
       </p>
     )
   },
-  render: function() {
+  render() {
     return (
       <div className="row">
         <div className="col-sm-8">
@@ -153,16 +153,16 @@ var OrderForm = React.createClass({
       </div>
     )
   },
-  createShipment: function() {
+  createShipment() {
     this.setState({editing: true});
   },
-  updateOrder: function(order) {
+  updateOrder(order) {
     this.setState({order: order, editing: false});
   },
-  enableEditing: function() {
+  enableEditing() {
     this.setState({editing: true});
   },
-  disableEditing: function() {
+  disableEditing() {
     this.setState({editing: false});
   }
-})
+}

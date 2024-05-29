@@ -1,5 +1,5 @@
-var Product = React.createClass({
-  render: function() {
+export default class Product extends React.Component {
+  render() {
     return (
       <Item
         item={this.props.product}
@@ -44,4 +44,4 @@ var Product = React.createClass({
       </Item>
     );
   }
-});
+};

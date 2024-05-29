@@ -1,5 +1,5 @@
-var Customer = React.createClass({
-  render: function() {
+export default class Customer extends React.Component {
+  render() {
     return (
       <Item
         item={this.props.customer}
@@ -22,4 +22,4 @@ var Customer = React.createClass({
       </Item>
     );
   }
-});
+};

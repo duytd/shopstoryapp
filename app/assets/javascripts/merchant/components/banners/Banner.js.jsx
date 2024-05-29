@@ -1,5 +1,5 @@
-var Banner = React.createClass({
-  render: function() {
+export default class Banner extends React.Component {
+  render() {
     return (
       <Item
         item={this.props.banner}
@@ -16,4 +16,4 @@ var Banner = React.createClass({
       </Item>
     );
   }
-})
+}

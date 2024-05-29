@@ -1,5 +1,5 @@
-var ShippingRate = React.createClass({
-  render: function() {
+export default class ShippingRate extends React.Component {
+  render() {
     return (
       <Item
         item={this.props.shipping_rate}
@@ -16,4 +16,4 @@ var ShippingRate = React.createClass({
       </Item>
     );
   }
-})
+}

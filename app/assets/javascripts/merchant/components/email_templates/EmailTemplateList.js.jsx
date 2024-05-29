@@ -1,5 +1,5 @@
-var EmailTemplateList = React.createClass({
-  render: function() {
+export default class EmailTemplateList extends React.Component {
+  render() {
     var templateNodes = this.props.email_templates.map(function(template, index) {
       return <li key={"locale_" + index}><a onClick={this.updateEmailTemplate.bind(this, template.id)}>{template.name}</a></li>
     }.bind(this))
@@ -15,9 +15,9 @@ var EmailTemplateList = React.createClass({
       </div>
     )
   },
-  updateEmailTemplate: function(templateId) {
+  updateEmailTemplate(templateId) {
     $.get(Routes.edit_merchant_email_template_path.localize(templateId), function(response) {
       this.props.updateFile(response.data, response.url, response.reset_url, "html");
     }.bind(this))
   }
-})
+}

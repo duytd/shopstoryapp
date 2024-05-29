@@ -1,12 +1,12 @@
-var ProductFilter = React.createClass({
-  getInitialState: function() {
+export default class ProductFilter extends React.Component {
+  getInitialState() {
     var label = this.props.selectedCategory ? translate(this.props.selectedCategory, "name") : I18n.t("merchant.admin.products.category")
 
     return {
       label: label
     }
   },
-  render: function() {
+  render() {
     var categoryNodes = this.props.categories.map(function (category, index) {
       return <li key={"category_" + index} onClick={this.filterByCategory.bind(this, category)}>{translate(category, "name")}</li>
     }.bind(this));
@@ -26,7 +26,7 @@ var ProductFilter = React.createClass({
       </div>
     )
   },
-  filterByCategory: function(category) {
+  filterByCategory(category) {
     var url = this.props.url,
       label = (category == null) ? I18n.t("merchant.admin.products.all") : translate(category, "name"),
       newUrl = (category == null) ? url : url.addParams("category_id", category.id),
@@ -38,4 +38,4 @@ var ProductFilter = React.createClass({
       }.bind(this))
     })
   }
-})
+}

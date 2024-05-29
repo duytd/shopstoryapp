@@ -1,5 +1,5 @@
-var BannerList = React.createClass({
-  render: function() {
+export default class BannerList extends React.Component {
+  render() {
     var headers = [
       I18n.t("activerecord.attributes.banner.name")
     ];
@@ -15,4 +15,4 @@ var BannerList = React.createClass({
         deleteAllUrl={this.props.url} />
     )
   }
-});
+};

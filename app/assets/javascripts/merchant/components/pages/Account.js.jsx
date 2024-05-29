@@ -1,5 +1,5 @@
-var Account = React.createClass({
-  render: function() {
+export default class Account extends React.Component {
+  render() {
     return (
       <div className="account">
         <div className="block">
@@ -29,4 +29,4 @@ var Account = React.createClass({
       </div>
     )
   }
-})
+}

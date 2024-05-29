@@ -1,5 +1,5 @@
-var Order = React.createClass({
-  renderPaymentStatus: function(payment) {
+export default class Order extends React.Component {
+  renderPaymentStatus(payment) {
     var paymentStatus = null;
 
     if (payment) {
@@ -26,7 +26,7 @@ var Order = React.createClass({
 
     return paymentStatus;
   },
-  renderShipmentStatus: function(shipment) {
+  renderShipmentStatus(shipment) {
     var shipmentStatus = null;
 
     if (shipment) {
@@ -53,7 +53,7 @@ var Order = React.createClass({
 
     return shipmentStatus;
   },
-  renderOrderStatus: function() {
+  renderOrderStatus() {
     switch(this.props.order.status) {
       case "incompleted":
         statusKlass = "label-default";
@@ -80,7 +80,7 @@ var Order = React.createClass({
       </div>
     )
   },
-  render: function() {
+  render() {
     var shippingAddress = this.props.order.shipping_address,
       billingAddress = this.props.order.billing_address;
 
@@ -118,4 +118,4 @@ var Order = React.createClass({
       </Item>
     );
   }
-});
+};

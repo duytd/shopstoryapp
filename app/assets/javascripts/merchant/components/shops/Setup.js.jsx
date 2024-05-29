@@ -1,5 +1,5 @@
-var Setup = React.createClass({
-  getInitialState: function() {
+export default class Setup extends React.Component {
+  getInitialState() {
     var currentStep = this.props.current_step;
 
     return {
@@ -7,7 +7,7 @@ var Setup = React.createClass({
       errors: []
     }
   },
-  renderProvideBusinessInfo: function() {
+  renderProvideBusinessInfo() {
     return (
       <form ref="shop_form">
         <h4 className="form-title">{I18n.t("merchant.admin.shops.business_information")}</h4>
@@ -45,17 +45,17 @@ var Setup = React.createClass({
       </form>
     )
   },
-  renderGenerateSampleData: function() {
+  renderGenerateSampleData() {
     return (
       <p>{I18n.t("merchant.admin.after_signup.generate_sample_data")}</p>
     )
   },
-  renderDone: function() {
+  renderDone() {
     return (
       <p><i className="fa fa-check text-green"></i> {I18n.t("merchant.admin.after_signup.done")}</p>
     )
   },
-  skip: function(e) {
+  skip(e) {
     e.preventDefault();
 
     var url = this.props.skip_url;
@@ -81,7 +81,7 @@ var Setup = React.createClass({
       }
     })
   },
-  next: function(e) {
+  next(e) {
     e.preventDefault();
 
     var url = this.props.next_url;
@@ -112,7 +112,7 @@ var Setup = React.createClass({
       }.bind(this)
     })
   },
-  render: function() {
+  render() {
     var form = null;
 
     switch(this.state.currentStep) {
@@ -140,4 +140,4 @@ var Setup = React.createClass({
       </div>
     )
   }
-})
+}

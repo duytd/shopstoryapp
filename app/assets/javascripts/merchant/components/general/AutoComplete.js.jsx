@@ -1,11 +1,11 @@
-var AutoComplete = React.createClass({
-  getInitialState: function() {
+export default class AutoComplete extends React.Component {
+  getInitialState() {
     return {
       chosen: null,
       data: []
     }
   },
-  componentDidMount: function() {
+  componentDidMount() {
     var chosenSource = this.props.chosenSource;
 
     if (chosenSource) {
@@ -14,7 +14,7 @@ var AutoComplete = React.createClass({
       }.bind(this))
     }
   },
-  render: function() {
+  render() {
     return (
       <div className="autocomplete">
         {(this.state.chosen) ?
@@ -40,7 +40,7 @@ var AutoComplete = React.createClass({
       </div>
     )
   },
-  getData: function(e) {
+  getData(e) {
     var q = e.target.value;
     var url = this.props.url;
 
@@ -48,10 +48,10 @@ var AutoComplete = React.createClass({
       this.setState({data: data});
     }.bind(this))
   },
-  removeChosen: function() {
+  removeChosen() {
     this.setState({chosen: null});
   },
-  setChosen: function(element) {
+  setChosen(element) {
     this.setState({chosen: element, data: []})
   }
-})
+}

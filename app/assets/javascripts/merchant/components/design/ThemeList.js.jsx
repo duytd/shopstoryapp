@@ -1,7 +1,7 @@
 window.design = window.design || {};
 
-design.ThemeList = React.createClass({
-  renderTheme: function(theme, key, isCurrent) {
+export default class design.ThemeList extends React.Component {
+  renderTheme(theme, key, isCurrent) {
     return (
       <div className="col-sm-3 theme" key={key}>
         <div className="block">
@@ -16,7 +16,7 @@ design.ThemeList = React.createClass({
       </div>
     )
   },
-  render: function() {
+  render() {
     return (
       <div className="row">
         {this.props.themes.map(function(theme, index) {
@@ -31,4 +31,4 @@ design.ThemeList = React.createClass({
       </div>
     )
   }
-})
+}

@@ -1,12 +1,12 @@
-var CategoryForm = React.createClass({
-  getInitialState: function () {
+export default class CategoryForm extends React.Component {
+  getInitialState() {
     return {
       errors: {},
       name_ko_count: 0,
       name_en_count: 0
     };
   },
-  render: function () {
+  render() {
     return (
       <form ref="form" className="category-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
@@ -54,13 +54,13 @@ var CategoryForm = React.createClass({
       </form>
     )
   },
-  handleSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
     this.handleCategorySubmit(formData, this.props.url, this.props.method);
   },
-  handleCategorySubmit: function(formData, action, method) {
+  handleCategorySubmit(formData, action, method) {
     $.ajax({
       data: formData,
       url: action,
@@ -82,4 +82,4 @@ var CategoryForm = React.createClass({
       }.bind(this)
     });
   }
-})
+}

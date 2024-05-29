@@ -1,10 +1,10 @@
-var MenuList = React.createClass({
-  getInitialState: function() {
+export default class MenuList extends React.Component {
+  getInitialState() {
     return {
       menus: this.props.menus
     }
   },
-  render: function() {
+  render() {
     var menus = this.state.menus.map(function(menu, index) {
       return <Menu menu={menu} key={"menu_" + index} deleteMenu={this.deleteMenu} />
     }.bind(this))
@@ -15,11 +15,11 @@ var MenuList = React.createClass({
       </div>
     )
   },
-  deleteMenu: function(menu) {
+  deleteMenu(menu) {
     var menus = this.state.menus;
     var index = menus.indexOf(menu);
 
     menus.splice(index, 1);
     this.setState({menus: menus})
   }
-})
+}

@@ -1,12 +1,12 @@
-var VariationOption = React.createClass({
-  getInitialState: function() {
+export default class VariationOption extends React.Component {
+  getInitialState() {
     var activeSelector = (typeof this.props.variationOption.id === "undefined") ? true : false;
 
     return {
       activeSelector: activeSelector
     }
   },
-  render: function() {
+  render() {
     if (!this.props.deleted) {
       var nameNodes = this.props.defaultNames.map(function(name, index) {
         return <option key={"option_" + index} value={name.capitalize()}>{name.capitalize()}</option>
@@ -83,24 +83,24 @@ var VariationOption = React.createClass({
       </div>
     )
   },
-  deleteVariationOption: function(e) {
+  deleteVariationOption(e) {
     e.preventDefault();
     this.props.deleteVariationOption(this.props.index);
   },
-  addOptionValue: function(parentIndex) {
+  addOptionValue(parentIndex) {
     this.props.addOptionValue(parentIndex);
   },
-  deleteOptionValue: function(parentIndex, index) {
+  deleteOptionValue(parentIndex, index) {
     this.props.deleteOptionValue(parentIndex, index);
   },
-  checkActiveSelector: function(e) {
+  checkActiveSelector(e) {
     if (e.target.value == "custom") {
       this.setState({activeSelector: false});
     }
   },
-  checkInputName: function() {
+  checkInputName() {
     if ($(this.refs.custom_name).val().length == 0) {
       this.setState({activeSelector: true});
     }
   }
-})
+}

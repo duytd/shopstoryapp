@@ -1,6 +1,6 @@
-var ProductForm = React.createClass({
+export default class ProductForm extends React.Component {
   mixins: [FormMixin],
-  getInitialState: function () {
+  getInitialState () {
     var variationOptions = (this.props.variation_options) ? this.props.variation_options : [];
     var variations = (this.props.variations) ? this.props.variations : [];
     var productImages = (this.props.product_images) ? this.props.product_images : [];
@@ -31,10 +31,10 @@ var ProductForm = React.createClass({
       productImages: productImages
     };
   },
-  componentDidMount: function() {
+  componentDidMount() {
     this.loadSummernote();
   },
-  renderVariation: function(variation, index) {
+  renderVariation(variation, index) {
     return (
       <Variation
         key={"variation_" + index}
@@ -50,7 +50,7 @@ var ProductForm = React.createClass({
         deleteVariation={this.deleteVariation} />
     )
   },
-  renderDeletedVariation: function(variation, index) {
+  renderDeletedVariation(variation, index) {
     return (
       <Variation
         key={"variation_" + (this.state.variations.length + index)}
@@ -59,7 +59,7 @@ var ProductForm = React.createClass({
         deleted={true} />
     )
   },
-  renderVariationOption: function(variationOption, index) {
+  renderVariationOption(variationOption, index) {
     return (
       <VariationOption
         key={"variation_option_" + index}
@@ -73,7 +73,7 @@ var ProductForm = React.createClass({
         variationOption={variationOption} />
     )
   },
-  renderDeletedVariationOption: function(variationOption, index) {
+  renderDeletedVariationOption(variationOption, index) {
     return (
       <VariationOption
         deleted={true}
@@ -82,7 +82,7 @@ var ProductForm = React.createClass({
         variationOption={variationOption} />
     )
   },
-  render: function () {
+  render() {
     var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
     var variationNodes = this.state.variations.map(function(variation, index) {
@@ -333,7 +333,7 @@ var ProductForm = React.createClass({
       </form>
     )
   },
-  validateInt: function(e) {
+  validateInt(e) {
     var integer = e.target.value.trim();
 
     if (!integer || isNaN(integer)) {
@@ -343,7 +343,7 @@ var ProductForm = React.createClass({
       e.target.value = integer;
     }
   },
-  validateNumber: function(e) {
+  validateNumber(e) {
     var number = e.target.value.trim().replace(/,/g, "");
 
     if (!number || isNaN(number)) {
@@ -353,20 +353,20 @@ var ProductForm = React.createClass({
       e.target.value = number.toString();
     }
   },
-  addOptionValue: function(parentIndex) {
+  addOptionValue(parentIndex) {
     var variationOptions = this.state.variationOptions;
     variationOptions[parentIndex].option_values.push(null);
 
     this.setState({variationOptions: variationOptions});
   },
-  changePrice: function() {
+  changePrice() {
     var price = this.refs.price.value.replace(/,/g, "");
     var sale_off = this.refs.sale_off.value.replace(/,/g, "");
     var discountedPrice = price - price * sale_off / 100;
     console.log(price)
     this.setState({discountedPrice: discountedPrice});
   },
-  deleteOptionValue: function(parentIndex, index) {
+  deleteOptionValue(parentIndex, index) {
     var variationOptions = this.state.variationOptions;
     var optionValues = variationOptions[parentIndex].option_values;
     var deletedOptionValues = variationOptions[parentIndex].deleted_option_values;
@@ -384,14 +384,14 @@ var ProductForm = React.createClass({
 
     this.setState({variationOptions: variationOptions});
   },
-  addVariationOption: function(e) {
+  addVariationOption(e) {
     e.preventDefault();
     var variationOptions = this.state.variationOptions;
     variationOptions.push({option_values: [null], deleted_option_values: []});
 
     this.setState({variationOptions: variationOptions});
   },
-  deleteVariationOption: function(index) {
+  deleteVariationOption(index) {
     var variationOptions = this.state.variationOptions;
     var variationOption = variationOptions[index];
     var deletedVariationOptions = this.state.deletedVariationOptions;
@@ -407,7 +407,7 @@ var ProductForm = React.createClass({
       deletedVariationOptions: deletedVariationOptions
     });
   },
-  deleteVariation: function(index) {
+  deleteVariation(index) {
     var variations = this.state.variations;
     var variation = variations[index];
     var deletedVariations = this.state.deletedVariations;
@@ -423,20 +423,20 @@ var ProductForm = React.createClass({
       deletedVariations: deletedVariations
     });
   },
-  addVariation: function() {
+  addVariation() {
     var variations = this.state.variations;
     variations.push({});
 
     this.setState({variations: variations});
   },
-  uploadVariationImage: function(image, index) {
+  uploadVariationImage(image, index) {
     var variations = this.state.variations;
     variation = variations[index];
     variation.previewImage = image;
 
     this.setState({variations: variations});
   },
-  populateVariation: function(e) {
+  populateVariation(e) {
     e.preventDefault();
     this.submit(e, function() {
       var url = Routes.merchant_product_variations_path.localize(this.state.product.id);
@@ -453,7 +453,7 @@ var ProductForm = React.createClass({
       })
     }.bind(this))
   },
-  submit: function(e, callback) {
+  submit(e, callback) {
     if (typeof e !== "undefined" && e != null) {
       e.preventDefault();
     }
@@ -468,7 +468,7 @@ var ProductForm = React.createClass({
 
     this.submitProduct(form, callback);
   },
-  submitProduct: function(form, callback) {
+  submitProduct(form, callback) {
     var method = this.state.product ? "put" : "post";
     var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
@@ -538,14 +538,14 @@ var ProductForm = React.createClass({
       }.bind(this)
     });
   },
-  scrollToVariation: function() {
+  scrollToVariation() {
     $("#variations").scrollView();
   },
-  updateUnlimited: function() {
+  updateUnlimited() {
     var checked = this.refs.unlimited.checked;
     this.setState({unlimited: checked});
   },
-  submitImages: function(productId, url) {
+  submitImages(productId, url) {
     var dropzone = this.state.dropzone;
 
     dropzone.on("sending", function(file, xhr, formData) {
@@ -555,7 +555,7 @@ var ProductForm = React.createClass({
     dropzone.options.url = url;
     dropzone.processQueue();
   },
-  updateDropzone: function(dropzone) {
+  updateDropzone(dropzone) {
     this.setState({dropzone: dropzone});
   }
-})
+}

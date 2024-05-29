@@ -1,4 +1,4 @@
-var Discount = React.createClass({
+export default class Discount extends React.Component {
   render: function() {
     return (
       <Item
@@ -20,4 +20,4 @@ var Discount = React.createClass({
       </Item>
     );
   }
-})
+}

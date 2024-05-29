@@ -1,5 +1,5 @@
-var CustomPageBox = React.createClass({
-  render: function() {
+export default class CustomPageBox extends React.Component {
+  render() {
     var customPageList = (
       <CustomPageList
         page={this.props.page}
@@ -37,4 +37,4 @@ var CustomPageBox = React.createClass({
         title={I18n.t("merchant.admin.custom_pages.title")} />
     );
   }
-})
+}

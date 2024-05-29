@@ -1,5 +1,5 @@
-var ProductImageForm = React.createClass({
-  componentDidMount: function() {
+export default class ProductImageForm extends React.Component {
+  componentDidMount() {
     if ($("#product_dropzone").length) {
       var $form = $("#product_dropzone").closest("form");
       var url = $form.attr("action");
@@ -69,7 +69,7 @@ var ProductImageForm = React.createClass({
 
     this.props.updateDropzone(productDropzone);
   },
-  render: function() {
+  render() {
     return (
       <div className="form-group dropzone" id="product_dropzone">
         <div className="dz-message">
@@ -78,7 +78,7 @@ var ProductImageForm = React.createClass({
       </div>
     )
   },
-  deleteImage: function(data) {
+  deleteImage(data) {
     var url = Routes.merchant_product_path.localize(this.props.product.slug);
 
     $.ajax({
@@ -88,7 +88,7 @@ var ProductImageForm = React.createClass({
       dataType: "json"
     })
   },
-  featureImage: function(data) {
+  featureImage(data) {
     var url = Routes.merchant_product_path.localize(this.props.product.slug);
 
     $.ajax({
@@ -98,4 +98,4 @@ var ProductImageForm = React.createClass({
       dataType: "json",
     })
   }
-})
+}

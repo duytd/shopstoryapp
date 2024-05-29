@@ -1,5 +1,5 @@
-var CustomPageList = React.createClass({
-  render: function() {
+export default class CustomPageList extends React.Component {
+  render() {
     var headers = [
       I18n.t("activerecord.attributes.custom_page.title")
     ];
@@ -15,4 +15,4 @@ var CustomPageList = React.createClass({
         deleteAllUrl={this.props.url} />
     )
   }
-});
+};

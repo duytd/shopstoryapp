@@ -1,5 +1,5 @@
-var BannerForm = React.createClass({
-  getInitialState: function () {
+export default class BannerForm extends React.Component {
+  getInitialState() {
     var bannerItems = this.props.banner_items ? this.props.banner_items : [];
 
     return {
@@ -7,7 +7,7 @@ var BannerForm = React.createClass({
       bannerItems: bannerItems
     };
   },
-  renderBannerItem: function(item, index) {
+  renderBannerItem(item, index) {
     return (
       <div className={"block " + ((item.destroy) ? "hide" : "")} id={"banner_item_" + index} key={"banner_item_" + index}>
         <a onClick={this.removeBannerItem.bind(this, item)} className="pull-right">
@@ -42,7 +42,7 @@ var BannerForm = React.createClass({
       </div>
     )
   },
-  render: function () {
+  render() {
     return (
       <form ref="form" className="banner-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
@@ -69,14 +69,14 @@ var BannerForm = React.createClass({
       </form>
     )
   },
-  addBannerItem: function(e) {
+  addBannerItem(e) {
     e.preventDefault();
     var bannerItems = this.state.bannerItems;
 
     bannerItems.push({});
     this.setState({bannerItems: bannerItems});
   },
-  removeBannerItem: function(item) {
+  removeBannerItem(item) {
     var bannerItems = this.state.bannerItems;
     var index = bannerItems.indexOf(item);
 
@@ -90,13 +90,13 @@ var BannerForm = React.createClass({
 
     this.setState({bannerItems: bannerItems});
   },
-  handleSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     var form = $(this.refs.form);
 
     this.handleBannerSubmit(form, this.props.url, this.props.method);
   },
-  handleBannerSubmit: function(form, action, method) {
+  handleBannerSubmit(form, action, method) {
     $.ajax({
       url: action,
       method: method,
@@ -116,4 +116,4 @@ var BannerForm = React.createClass({
       }.bind(this)
     });
   }
-})
+}

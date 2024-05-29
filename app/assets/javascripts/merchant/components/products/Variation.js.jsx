@@ -1,12 +1,12 @@
-var Variation = React.createClass({
-  getInitialState: function() {
+export default class Variation extends React.Component {
+  getInitialState() {
     var unlimited = (this.props.variation) ? this.props.variation.unlimited : true
 
     return {
       unlimited: unlimited
     }
   },
-  render: function() {
+  render() {
     var optionNodes = [];
 
     if (!this.props.deleted) {
@@ -153,7 +153,7 @@ var Variation = React.createClass({
       </div>
     )
   },
-  uploadImage: function(input) {
+  uploadImage(input) {
     var input = this.refs.imageFile;
 
     if (input.files && input.files[0]) {
@@ -166,22 +166,22 @@ var Variation = React.createClass({
       reader.readAsDataURL(input.files[0]);
     }
   },
-  addVariation: function(e) {
+  addVariation(e) {
     e.preventDefault();
     this.props.addVariation();
   },
-  deleteVariation: function(e) {
+  deleteVariation(e) {
     e.preventDefault();
     this.props.deleteVariation(this.props.index);
   },
-  validateInt: function(e) {
+  validateInt(e) {
     this.props.validateInt(e);
   },
-  validateNumber: function(e) {
+  validateNumber(e) {
     this.props.validateNumber(e);
   },
-  updateUnlimited: function() {
+  updateUnlimited() {
     var checked = this.refs.unlimited.checked;
     this.setState({unlimited: checked});
   }
-})
+}

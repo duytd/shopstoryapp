@@ -1,5 +1,5 @@
-var LocaleNavTab = React.createClass({
-  render: function() {
+export default class LocaleNavTab extends React.Component {
+  render() {
     return (
       <ul className="nav nav-tabs">
         <li className="active">
@@ -17,4 +17,4 @@ var LocaleNavTab = React.createClass({
       </ul>
     );
   }
-})
+}

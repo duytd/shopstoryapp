@@ -1,5 +1,5 @@
-var OrderList = React.createClass({
-  render: function () {
+export default class OrderList extends React.Component {
+  render() {
     var headers = [
       I18n.t("merchant.admin.orders.order_id"),
       I18n.t("merchant.admin.orders.order_at"),
@@ -22,4 +22,4 @@ var OrderList = React.createClass({
         deleteAllUrl={this.props.url} />
     )
   }
-});
+};

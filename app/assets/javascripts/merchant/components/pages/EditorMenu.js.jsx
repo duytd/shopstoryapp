@@ -1,5 +1,5 @@
-var EditorMenu = React.createClass({
-  render: function() {
+export default class EditorMenu extends React.Component {
+  render() {
     var javascriptNodes = this.props.javascripts.map(function(javascript, index) {
       return <li key={"javascript_" + index}><a onClick={this.updateAsset.bind(this, javascript.id)}>{javascript.name}</a></li>
     }.bind(this))
@@ -70,7 +70,7 @@ var EditorMenu = React.createClass({
       </div>
     )
   },
-  updateAsset: function(assetId) {
+  updateAsset(assetId) {
     $.get(Routes.edit_merchant_asset_path.localize(assetId), function(response) {
       var mode = "javascript";
 
@@ -83,12 +83,12 @@ var EditorMenu = React.createClass({
       this.props.updateFile(response.data, response.url, response.reset_url, mode);
     }.bind(this))
   },
-  updateTemplate: function(templateId) {
+  updateTemplate(templateId) {
     $.get(Routes.edit_merchant_template_path.localize(templateId), function(response) {
       this.props.updateFile(response.data, response.url, response.reset_url, "html");
     }.bind(this))
   },
-  showSubitems: function(e) {
+  showSubitems(e) {
     $(e.target).parent().parent().find(".subitems").slideToggle();
   }
-})
+}

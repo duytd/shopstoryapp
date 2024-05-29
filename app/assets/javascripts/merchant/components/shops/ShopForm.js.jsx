@@ -1,5 +1,5 @@
-var ShopForm = React.createClass({
-  getInitialState: function () {
+export default class ShopForm extends React.Component {
+  getInitialState() {
     var koreanMode = (!this.props.shop.country ||
       (this.props.shop.country == this.props.config.default_country)) ? true : false;
     return {
@@ -7,7 +7,7 @@ var ShopForm = React.createClass({
       errors: {},
     };
   },
-  render: function () {
+  render() {
     var countryNodes = this.props.countries.map(function (country, index) {
       return <option key={index} value={country[0]}>{country[1]}</option>
     }.bind(this));
@@ -209,7 +209,7 @@ var ShopForm = React.createClass({
       </form>
     );
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
     if (!this.state.koreanMode) {
       this.refs.street_ko.value = this.refs.street_en.value;
@@ -219,7 +219,7 @@ var ShopForm = React.createClass({
 
     this.handleShopSubmit(formData, this.props.url, this.props.method);
   },
-  handleShopSubmit: function(formData, action, method) {
+  handleShopSubmit(formData, action, method) {
     $.ajax({
       data: formData,
       url: action,
@@ -239,15 +239,15 @@ var ShopForm = React.createClass({
       }.bind(this)
     });
   },
-  streetClick: function() {
+  streetClick() {
     if (this.state.koreanMode) {
       openDaumPostcode(this.handleStreetClick);
     }
   },
-  handleStreetClick: function(data) {
+  handleStreetClick(data) {
     this.setAddress(data.address, data.addressEnglish, data.zonecode);
   },
-  countryChange: function() {
+  countryChange() {
     var country = this.refs.country.value;
 
     this.setAddress();
@@ -259,7 +259,7 @@ var ShopForm = React.createClass({
       this.setState({koreanMode: false});
     }
   },
-  setAddress: function(address, englishAddress, zipcode) {
+  setAddress(address, englishAddress, zipcode) {
     address = typeof address !== "undefined" ? address : "";
     englishAddress = typeof englishAddress !== "undefined" ? englishAddress : "";
     zipcode = typeof zipcode !== "undefined" ? zipcode : "";
@@ -268,4 +268,4 @@ var ShopForm = React.createClass({
     this.refs.street_en.value = englishAddress;
     this.refs.zip_code.value = zipcode;
   }
-});
+};

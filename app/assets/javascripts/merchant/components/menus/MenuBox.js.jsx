@@ -1,5 +1,5 @@
-var MenuBox = React.createClass({
-  render: function() {
+export default class MenuBox extends React.Component {
+  render() {
     var menuList = (
       <MenuList
         menus={this.props.menus} />
@@ -31,4 +31,4 @@ var MenuBox = React.createClass({
       </div>
     )
   }
-})
+}

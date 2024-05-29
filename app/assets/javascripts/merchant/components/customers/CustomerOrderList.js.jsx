@@ -1,4 +1,4 @@
-var CustomerOrderList = React.createClass({
+export default class CustomerOrderList extends React.Component {
   render: function() {
     var headers = [
       I18n.t("merchant.admin.orders.order_id"),
@@ -29,4 +29,4 @@ var CustomerOrderList = React.createClass({
       </div>
     )
   }
-})
+}

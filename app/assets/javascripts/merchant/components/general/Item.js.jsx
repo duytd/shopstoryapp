@@ -1,5 +1,5 @@
-var Item = React.createClass({
-  render: function() {
+export default class Item extends React.Component {
+  render() {
     return (
       <tr className="item">
         <td>
@@ -13,7 +13,7 @@ var Item = React.createClass({
       </tr>
     );
   },
-  handleDelete: function(e) {
+  handleDelete(e) {
     e.preventDefault();
 
     $.ajax({
@@ -30,4 +30,4 @@ var Item = React.createClass({
 
     this.props.handleSelect(this.props.item, checked);
   }
-})
+}

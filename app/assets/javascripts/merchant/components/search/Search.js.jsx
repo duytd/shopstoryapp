@@ -1,5 +1,5 @@
-var Search = React.createClass({
-  getInitialState: function() {
+export default class Search extends React.Component {
+  getInitialState() {
     return {
       products: [],
       categories: [],
@@ -8,7 +8,7 @@ var Search = React.createClass({
       hasInput: false
     }
   },
-  render: function() {
+  render() {
     return (
       <div className="search">
         <form className="form-inline search-form navbar-left hidden-xs">
@@ -25,7 +25,7 @@ var Search = React.createClass({
       </div>
     )
   },
-  setVisible: function() {
+  setVisible() {
     if (this.state.products.length > 0 || this.state.categories.length > 0 || this.state.customers.length > 0 || this.state.pages.length > 0) {
       $("section.content > .main-wrapper").animate({opacity: "0.6", marginLeft: "400px"}, function() {
         if ($(".search-list").hasClass("hide")) {
@@ -41,7 +41,7 @@ var Search = React.createClass({
       });
     }
   },
-  search: function() {
+  search() {
     var query = $(this.refs.query).val();
     var hasInput = (query != "") ? true : false;
 
@@ -51,9 +51,9 @@ var Search = React.createClass({
       }.bind(this))
     }.bind(this))
   },
-  reset: function() {
+  reset() {
     $(this.refs.query).val("");
     this.search();
   }
-})
+}
 

@@ -1,5 +1,5 @@
-var CustomerOrder = React.createClass({
-  render: function() {
+export default class CustomerOrder extends React.Component {
+  render() {
     var shippingAddress = this.props.order.shipping_address,
       billingAddress = this.props.order.billing_address,
       payment = this.props.order.payment,
@@ -88,4 +88,4 @@ var CustomerOrder = React.createClass({
       </tr>
     );
   }
-})
+}

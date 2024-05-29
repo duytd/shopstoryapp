@@ -1,12 +1,12 @@
 window.design = window.design || {};
 
-design.GeneralForm = React.createClass({
-  getInitialState: function() {
+export default class design.GeneralForm extends React.Component {
+  getInitialState() {
     return {
       general: this.props.general,
     }
   },
-  renderPages: function(type) {
+  renderPages(type) {
     return (
       this.props.pages.map(function(page, index) {
         return (
@@ -17,7 +17,7 @@ design.GeneralForm = React.createClass({
       })
     )
   },
-  render: function() {
+  render() {
     return (
       <form ref="form" className="design-general-form" action={this.props.url}
         acceptCharset="UTF-8" method="put" onSubmit={this.submit} encType="multipart/form-data">
@@ -54,7 +54,7 @@ design.GeneralForm = React.createClass({
       </form>
     )
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
 
     var form = $(this.refs.form);
@@ -73,4 +73,4 @@ design.GeneralForm = React.createClass({
       }
     })
   }
-})
+}

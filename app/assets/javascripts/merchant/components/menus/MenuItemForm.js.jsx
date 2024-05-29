@@ -1,5 +1,5 @@
-var MenuItemForm = React.createClass({
-  getInitialState: function () {
+export default class MenuItemForm extends React.Component {
+  getInitialState() {
     var type = (this.props.types) ? "home" : null;
 
     if (this.props.menu_item) {
@@ -35,7 +35,7 @@ var MenuItemForm = React.createClass({
       name_en_count: 0
     };
   },
-  render: function () {
+  render() {
     var defaultCategory = (this.props.categories.length > 0) ? this.props.categories[0][3] : null;
 
     return (
@@ -125,7 +125,7 @@ var MenuItemForm = React.createClass({
       </form>
     )
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
@@ -164,7 +164,7 @@ var MenuItemForm = React.createClass({
       }.bind(this)
     });
   },
-  switchType: function(e) {
+  switchType(e) {
     this.setState({type: e.target.value});
   }
-})
+}

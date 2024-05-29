@@ -1,5 +1,5 @@
-var DiscountList = React.createClass({
-  render: function() {
+export default class DiscountList extends React.Component {
+  render() {
     var headers = [
       I18n.t("activerecord.attributes.discount.code"),
       I18n.t("activerecord.attributes.discount.discount_type"),
@@ -19,4 +19,4 @@ var DiscountList = React.createClass({
         deleteAllUrl={this.props.url} />
     )
   }
-});
+};

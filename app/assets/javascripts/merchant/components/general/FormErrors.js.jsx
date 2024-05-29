@@ -1,5 +1,5 @@
-var FormErrors = React.createClass({
-  render: function() {
+export default class FormErrors extends React.Component {
+  render() {
     var errors = null;
 
     if (this.props.errors) {
@@ -14,4 +14,4 @@ var FormErrors = React.createClass({
       </div>
     );
   }
-})
+}

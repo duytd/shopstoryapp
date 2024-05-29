@@ -1,5 +1,5 @@
-var CategoryBox = React.createClass({
-  render: function() {
+export default class CategoryBox extends React.Component {
+  render() {
     var categoryList = (
       <CategoryList
         page={this.props.page}
@@ -37,4 +37,4 @@ var CategoryBox = React.createClass({
         title={I18n.t("merchant.admin.categories.title")} />
     );
   }
-})
+}

@@ -1,11 +1,11 @@
-var OrderReport = React.createClass({
-  getInitialState: function() {
+export default class OrderReport extends React.Component {
+  getInitialState() {
     return {
       data: this.props.data,
       reportType: "daily",
     }
   },
-  render: function() {
+  render() {
     var reportTypes = ["hourly", "daily", "weekly", "monthly", "yearly"]
 
     return (
@@ -23,11 +23,11 @@ var OrderReport = React.createClass({
       </div>
     )
   },
-  updateData: function(reportType) {
+  updateData(reportType) {
     var url = this.props.url;
 
     $.get(url, {report_type: reportType}, function(data) {
       this.setState({data: data, reportType: reportType});
     }.bind(this))
   }
-})
+}

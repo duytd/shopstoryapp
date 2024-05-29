@@ -1,6 +1,6 @@
-var MenuForm = React.createClass({
+export default class MenuForm extends React.Component {
   mixins: [DragMixin],
-  getInitialState: function () {
+  getInitialState() {
     var items = (this.props.menu) ? this.props.menu.menu_items : [];
 
     return {
@@ -14,7 +14,7 @@ var MenuForm = React.createClass({
       name_en_count: 0
     };
   },
-  render: function () {
+  render() {
     var menuItems = this.state.items.map(function(item, index) {
       return (
         <div className={"draggable-item " + this.state.draggableKlass} data-index={index} key={"menu_item" + index}>
@@ -118,7 +118,7 @@ var MenuForm = React.createClass({
       </div>
     )
   },
-  swapItem: function(from, to, parent) {
+  swapItem(from, to, parent) {
     var items = this.state.items;
 
     if (parent) {
@@ -135,7 +135,7 @@ var MenuForm = React.createClass({
 
     this.setState({items: items}, this.submitDraggable);
   },
-  submitDraggable: function() {
+  submitDraggable() {
     var id = this.state.menu.id;
     data = $(this.refs.draggable).serialize();
 
@@ -145,7 +145,7 @@ var MenuForm = React.createClass({
       method: "PUT"
     })
   },
-  submit: function(e) {
+  submit(e) {
     if (typeof e !== "undefined")
       e.preventDefault();
 
@@ -174,7 +174,7 @@ var MenuForm = React.createClass({
       }.bind(this)
     });
   },
-  addMenuItem: function(item) {
+  addMenuItem(item) {
     var items = this.state.items;
 
     if (item.parent_id) {
@@ -191,7 +191,7 @@ var MenuForm = React.createClass({
 
     this.setState({items: items, menu_item: null, parent: null});
   },
-  deleteMenuItem: function(item) {
+  deleteMenuItem(item) {
     var items = this.state.items;
 
     if (item.parent_id) {
@@ -217,7 +217,7 @@ var MenuForm = React.createClass({
 
     this.setState({items: items});
   },
-  updateMenuItem: function(oldItem, newItem) {
+  updateMenuItem(oldItem, newItem) {
     var items = this.state.items;
 
     if (oldItem.parent_id) {
@@ -244,7 +244,7 @@ var MenuForm = React.createClass({
 
     this.setState({items: items, menu_item: null, parent: null});
   },
-  setMenuItem: function(item, parent) {
+  setMenuItem(item, parent) {
     if (parent) {
       this.setState({menu_item: item, parent: parent});
     }
@@ -252,7 +252,7 @@ var MenuForm = React.createClass({
       this.setState({menu_item: item})
     }
   },
-  setParent: function(item) {
+  setParent(item) {
     this.setState({parent: item, menu_item: null})
   }
-})
+}

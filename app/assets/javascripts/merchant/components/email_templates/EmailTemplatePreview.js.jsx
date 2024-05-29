@@ -1,8 +1,7 @@
-var EmailTemplatePreview = React.createClass({
-  componentDidUpdate: function() {
-
+export default class EmailTemplatePreview extends React.Component {
+  componentDidUpdate() {
   },
-  render: function() {
+  render() {
     return (
       <div className={this.props.preview ? "modal fade in" : "modal fade"} role="dialog" style={this.props.preview ? {display: "block"} : {display: "none"}}>
         <div className="modal-dialog modal-lg">
@@ -22,5 +21,5 @@ var EmailTemplatePreview = React.createClass({
       </div>
     )
   }
-})
+}
 

@@ -1,5 +1,5 @@
-var Category = React.createClass({
-  render: function() {
+export default class Category extends React.Component {
+  render() {
     return (
       <Item
         item={this.props.category}
@@ -16,4 +16,4 @@ var Category = React.createClass({
       </Item>
     );
   }
-})
+}

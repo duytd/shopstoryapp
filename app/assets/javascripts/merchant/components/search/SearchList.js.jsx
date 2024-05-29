@@ -1,5 +1,5 @@
-var SearchList = React.createClass({
-  render: function() {
+export default class SearchList extends React.Component {
+  render() {
     var productTab = (
       <li className="active">
         <a data-toggle="tab" href="#products">
@@ -77,7 +77,7 @@ var SearchList = React.createClass({
       </div>
     )
   },
-  renderProduct: function(product) {
+  renderProduct(product) {
     return (
       <div className="media" key={"product_" + product.id}>
         <div className="media-left">
@@ -98,7 +98,7 @@ var SearchList = React.createClass({
       </div>
     )
   },
-  renderCategory: function(category) {
+  renderCategory(category) {
     return (
       <div className="category" key={"category_" + category.id}>
         <h4>
@@ -109,7 +109,7 @@ var SearchList = React.createClass({
       </div>
     )
   },
-  renderPage: function(page) {
+  renderPage(page) {
     return (
       <div className="page" key={"page_" + page.id}>
         <h4>
@@ -121,7 +121,7 @@ var SearchList = React.createClass({
       </div>
     )
   },
-  renderCustomer: function(customer) {
+  renderCustomer(customer) {
     return (
       <div className="customer" key={"customer_" + customer.id}>
         <h4>
@@ -134,4 +134,4 @@ var SearchList = React.createClass({
       </div>
     )
   }
-})
+}

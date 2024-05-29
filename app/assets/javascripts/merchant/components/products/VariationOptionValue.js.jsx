@@ -1,5 +1,5 @@
-var VariationOptionValue = React.createClass({
-  render: function() {
+export default class VariationOptionValue extends React.Component {
+  render() {
     return (
       <div className="option-value">
         {(this.props.optionValue) ?
@@ -34,13 +34,13 @@ var VariationOptionValue = React.createClass({
       </div>
     )
   },
-  addOptionValue: function(e) {
+  addOptionValue(e) {
     e.preventDefault();
     this.props.addOptionValue(this.props.parentPosition);
   },
-  deleteOptionValue: function(e) {
+  deleteOptionValue(e) {
     e.preventDefault();
     this.refs.name.value = "";
     this.props.deleteOptionValue(this.props.parentPosition, this.props.index);
   }
-})
+}

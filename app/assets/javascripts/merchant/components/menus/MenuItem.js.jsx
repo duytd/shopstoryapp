@@ -1,11 +1,11 @@
-var MenuItem = React.createClass({
-  getInitialState: function() {
+export default class MenuItem extends React.Component {
+  getInitialState() {
     return {
       draggableKlass: "child_" + this.props.menu_item.id
     }
   },
   mixins: [DragMixin],
-  render: function() {
+  render() {
     var children = this.props.menu_item.children.map(function(child, index) {
       return (
         <div
@@ -76,13 +76,13 @@ var MenuItem = React.createClass({
       }.bind(this)
     })
   },
-  swapItem: function(from, to, parent) {
+  swapItem(from, to, parent) {
     this.props.swapItem(from, to, parent);
   },
-  setMenuItem: function() {
+  setMenuItem() {
     this.props.setMenuItem(this.props.menu_item, this.props.parent);
   },
-  setParent: function() {
+  setParent() {
     this.props.setParent(this.props.menu_item);
   }
-})
+}

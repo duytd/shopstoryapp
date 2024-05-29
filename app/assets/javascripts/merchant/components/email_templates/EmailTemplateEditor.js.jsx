@@ -1,5 +1,5 @@
-var EmailTemplateEditor = React.createClass({
-  getInitialState: function () {
+export default class EmailTemplateEditor extends React.Component {
+  getInitialState() {
     return {
       previewData: null,
       url: this.props.url,
@@ -8,7 +8,7 @@ var EmailTemplateEditor = React.createClass({
       preview: false
     };
   },
-  componentDidMount: function() {
+  componentDidMount() {
     var editor = ace.edit("editor");
     var HtmlMode = ace.require("ace/mode/html").Mode;
 
@@ -28,7 +28,7 @@ var EmailTemplateEditor = React.createClass({
 
     this.setState({editor: editor});
   },
-  render: function () {
+  render() {
     return (
       <div className="row theme-editors">
         <EmailTemplatePreview
@@ -62,7 +62,7 @@ var EmailTemplateEditor = React.createClass({
       </div>
     );
   },
-  preview: function(e) {
+  preview(e) {
     e.preventDefault();
 
     var url = this.props.preview_url;
@@ -77,10 +77,10 @@ var EmailTemplateEditor = React.createClass({
       }.bind(this)
     })
   },
-  closePreview: function() {
+  closePreview() {
     this.setState({preview: false});
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
     this.refs.code.value = this.state.editor.getValue();
 
@@ -88,7 +88,7 @@ var EmailTemplateEditor = React.createClass({
 
     this.handleSubmit(formData, this.state.url, "put");
   },
-  reset: function(e) {
+  reset(e) {
     e.preventDefault();
     var url = this.state.reset_url;
 
@@ -96,11 +96,11 @@ var EmailTemplateEditor = React.createClass({
       this.state.editor.setValue(data.data);
     }.bind(this))
   },
-  updateFile: function(data, url, reset_url, mode) {
+  updateFile(data, url, reset_url, mode) {
     this.state.editor.setValue(data.content, -1);
     this.setState({url: url, reset_url: reset_url})
   },
-  handleSubmit: function(formData, action, method) {
+  handleSubmit(formData, action, method) {
     $.ajax({
       data: formData,
       url: action,
@@ -115,4 +115,4 @@ var EmailTemplateEditor = React.createClass({
       }.bind(this)
     });
   }
-})
+}

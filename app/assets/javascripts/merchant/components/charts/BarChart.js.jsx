@@ -1,8 +1,8 @@
-var BarChart = React.createClass({
-  componentDidMount: function() {
+export default class BarChart extends React.Component {
+  componentDidMount() {
     this.draw();
   },
-  draw: function() {
+  draw() {
     var ctx = $(this.refs.chart);
     var dataSetLabel = this.props.dataSetLabel;
     var labels = [];
@@ -38,11 +38,11 @@ var BarChart = React.createClass({
       }
     });
   },
-  render: function() {
+  render() {
     return (
       <div className="chart-container">
         <canvas ref="chart" id="barChart" width="400" height="150"></canvas>
       </div>
     )
   }
-})
+}

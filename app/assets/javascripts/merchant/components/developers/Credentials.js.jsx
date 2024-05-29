@@ -1,4 +1,4 @@
-var Credentials = React.createClass({
+export default class Credentials extends React.Component {
   getInitialState: function() {
     return {
       credentials: this.props.credentials
@@ -32,4 +32,4 @@ var Credentials = React.createClass({
       </div>
     );
   }
-})
+}

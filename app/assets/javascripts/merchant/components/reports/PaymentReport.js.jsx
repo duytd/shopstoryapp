@@ -1,10 +1,10 @@
-var PaymentReport = React.createClass({
-  getInitialState: function() {
+export default class PaymentReport extends React.Component {
+  getInitialState() {
     return {
       data: this.props.data
     }
   },
-  render: function() {
+  render() {
     return (
       <div className="reports block">
         <div className="chart">
@@ -39,4 +39,4 @@ var PaymentReport = React.createClass({
       </div>
     )
   }
-})
+}

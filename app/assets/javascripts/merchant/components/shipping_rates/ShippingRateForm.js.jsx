@@ -1,5 +1,5 @@
-var ShippingRateForm = React.createClass({
-  getInitialState: function () {
+export default class ShippingRateForm extends React.Component {
+  getInitialState() {
     var type = (this.props.types) ? "free" : null;
 
     if (this.props.shipping_rate) {
@@ -27,7 +27,7 @@ var ShippingRateForm = React.createClass({
       name_en_count: 0
     };
   },
-  render: function () {
+  render() {
     return (
       <form ref="form" className="shipping-rate-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
@@ -132,13 +132,13 @@ var ShippingRateForm = React.createClass({
       </form>
     )
   },
-  handleSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
     this.handleShippingRateSubmit(formData, this.props.url, this.props.method);
   },
-  handleShippingRateSubmit: function(formData, action, method) {
+  handleShippingRateSubmit(formData, action, method) {
     $.ajax({
       data: formData,
       url: action,
@@ -160,10 +160,10 @@ var ShippingRateForm = React.createClass({
       }.bind(this)
     });
   },
-  switchType: function(e) {
+  switchType(e) {
     this.setState({type: e.target.value});
   },
-  switchGeneralType: function(e) {
+  switchGeneralType(e) {
     var type = null;
 
     if (e.target.value == "free_shipping") {
@@ -175,4 +175,4 @@ var ShippingRateForm = React.createClass({
 
     this.setState({generalType: e.target.value, type: type});
   }
-});
+};

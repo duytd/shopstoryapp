@@ -1,5 +1,5 @@
-var ProductList = React.createClass({
-  render: function() {
+export default class ProductList extends React.Component {
+  render() {
     var headers = [
       I18n.t("activerecord.attributes.product.id"),
       "",
@@ -50,7 +50,7 @@ var ProductList = React.createClass({
         handleExport={this.handleExport} />
     )
   },
-  handleExport: function(productIds) {
+  handleExport(productIds) {
     var url = this.props.export_url;
 
     $.ajax({
@@ -62,4 +62,4 @@ var ProductList = React.createClass({
       }.bind(this)
     })
   }
-})
+}

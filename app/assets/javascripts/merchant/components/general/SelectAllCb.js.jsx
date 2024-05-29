@@ -1,5 +1,5 @@
-var SelectAllCb = React.createClass({
-  render: function() {
+export default class SelectAllCb extends React.Component {
+  render() {
     return (
     <label className="styled-cb">
       <input ref="checkbox" type="checkbox" disabled={this.props.isDisabled}
@@ -8,9 +8,9 @@ var SelectAllCb = React.createClass({
     </label>
     )
   },
-  handleSelect: function() {
+  handleSelect() {
     var checked = this.refs.checkbox.checked;
 
     this.props.selectAllHandler(checked);
   }
-})
+}

@@ -1,5 +1,5 @@
-var CustomerBox = React.createClass({
-  render: function() {
+export default class CustomerBox extends React.Component {
+  render() {
     var customerList = (
       <CustomerList
         page={this.props.page}
@@ -32,4 +32,4 @@ var CustomerBox = React.createClass({
         title={I18n.t("merchant.admin.customers.title")} />
     );
   }
-})
+}

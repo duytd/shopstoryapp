@@ -1,8 +1,8 @@
-var PieChart = React.createClass({
-  componentDidMount: function() {
+export default class PieChart extends React.Component {
+  componentDidMount() {
     this.draw();
   },
-  draw: function() {
+  draw() {
     var ctx = $(this.refs.chart);
     var dataSetLabel = this.props.dataSetLabel;
     var labels = [];
@@ -24,11 +24,11 @@ var PieChart = React.createClass({
       },
     });
   },
-  render: function() {
+  render() {
     return (
       <div className="chart-container">
         <canvas ref="chart" id="pieChart" width="400" height="150"></canvas>
       </div>
     )
   }
-})
+}

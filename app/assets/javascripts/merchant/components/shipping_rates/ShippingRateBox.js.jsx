@@ -1,5 +1,5 @@
-var ShippingRateBox = React.createClass({
-  render: function() {
+export default class ShippingRateBox extends React.Component {
+  render() {
     var shippingRateList = (
       <ShippingRateList
         shipping_rates={this.props.shipping_rates} />
@@ -23,4 +23,4 @@ var ShippingRateBox = React.createClass({
         title={I18n.t("merchant.admin.shipping_rates.title")} />
     );
   }
-})
+}

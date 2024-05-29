@@ -1,12 +1,12 @@
 window.design = window.design || {};
 
-design.Theme = React.createClass({
-  getInitialState: function() {
+export default class design.Theme extends React.Component {
+  getInitialState() {
     return {
       current: this.props.current
     }
   },
-  render: function() {
+  render() {
     return (
       <div className="theme row">
         <div className="col-sm-6">
@@ -28,7 +28,7 @@ design.Theme = React.createClass({
       </div>
     )
   },
-  install: function() {
+  install() {
     var loading = $(this.refs.loading);
     var url = this.props.install_url;
     var themeId = this.props.theme.id;
@@ -48,4 +48,4 @@ design.Theme = React.createClass({
       }.bind(this)
     })
   }
-})
+}

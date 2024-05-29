@@ -1,5 +1,5 @@
-var CustomerList = React.createClass({
-  render: function() {
+export default class CustomerList extends React.Component {
+  render() {
     var headers = [
       I18n.t("activerecord.attributes.customer.email"),
       I18n.t("activerecord.attributes.customer.total_orders"),
@@ -17,4 +17,4 @@ var CustomerList = React.createClass({
         deleteAllUrl={this.props.url} />
     )
   }
-})
+}

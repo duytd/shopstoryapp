@@ -1,12 +1,12 @@
-var Editor = React.createClass({
-  getInitialState: function () {
+export default class Editor extends React.Component {
+  getInitialState() {
     return {
       url: this.props.url,
       reset_url: this.props.reset_url,
       error: [],
     };
   },
-  componentDidMount: function() {
+  componentDidMount() {
     var editor = ace.edit("editor");
     var CssMode = ace.require("ace/mode/css").Mode;
 
@@ -26,7 +26,7 @@ var Editor = React.createClass({
 
     this.setState({editor: editor});
   },
-  render: function () {
+  render() {
     return (
       <div className="row theme-editors">
         <div className="col-md-3 col-md-push-9 files">
@@ -59,7 +59,7 @@ var Editor = React.createClass({
       </div>
     );
   },
-  submit: function(e) {
+  submit(e) {
     e.preventDefault();
     this.refs.code.value = this.state.editor.getValue();
 
@@ -67,7 +67,7 @@ var Editor = React.createClass({
 
     this.handleSubmit(formData, this.state.url, "put");
   },
-  reset: function(e) {
+  reset(e) {
     e.preventDefault();
     var url = this.state.reset_url;
 
@@ -75,7 +75,7 @@ var Editor = React.createClass({
       this.state.editor.setValue(data.data);
     }.bind(this))
   },
-  updateFile: function(data, url, reset_url, mode) {
+  updateFile(data, url, reset_url, mode) {
     var JavascriptMode = ace.require("ace/mode/javascript").Mode;
     var CssMode = ace.require("ace/mode/css").Mode;
     var HtmlMode = ace.require("ace/mode/html").Mode;
@@ -96,7 +96,7 @@ var Editor = React.createClass({
 
     this.setState({url: url, reset_url: reset_url, errors: []})
   },
-  handleSubmit: function(formData, action, method) {
+  handleSubmit(formData, action, method) {
     $.ajax({
       data: formData,
       url: action,
@@ -112,4 +112,4 @@ var Editor = React.createClass({
       }.bind(this)
     });
   }
-})
+}

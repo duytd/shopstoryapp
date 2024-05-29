@@ -1,5 +1,5 @@
-var Breadcrumb = React.createClass({
-  render: function() {
+export default class Breadcrumb extends React.Component {
+  render() {
     return (
       <div className="breadcrumb">
         {this.props.breadcrumb.map(function(item, index) {
@@ -12,4 +12,4 @@ var Breadcrumb = React.createClass({
       </div>
     )
   }
-})
+}

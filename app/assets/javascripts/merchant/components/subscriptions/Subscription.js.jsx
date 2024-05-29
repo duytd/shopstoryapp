@@ -1,5 +1,5 @@
-var Subscription = React.createClass({
-  render: function() {
+export default class Subscription extends React.Component {
+  render() {
     var planNodes = this.props.plans.map(function(plan, index) {
       return (
         <Plan
@@ -17,4 +17,4 @@ var Subscription = React.createClass({
       </div>
     )
   }
-})
+}
