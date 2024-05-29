@@ -4,8 +4,9 @@
     <title><%= full_title yield :title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag "merchant/application", media: "all", "data-turbolinks-track": true %>
-    <%= javascript_include_tag "merchant/application", "data-turbolinks-track": true %>
+    <%= javascript_pack_tag "merchant/application" %>
+    <%= stylesheet_pack_tag "merchant/application" %>
+
     <%= javascript_include_tag "http://dmaps.daum.net/map_js_init/postcode.v2.js", "data-turbolinks-track": true %>
     <%= csrf_meta_tags %>
 

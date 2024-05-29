@@ -1,0 +1,31 @@
+$fa-font-path: '~font-awesome/fonts/';
+@import '../../stylesheets/variables';
+@import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
+@import "~dropzone/src/dropzone";
+@import "~summernote/src/styles/bs5/summernote-bs5";
+@import "~perfect-scrollbar/css/perfect-scrollbar";
+
+// Base components
+@import "../../stylesheets/alerts";
+@import "../../stylesheets/buttons";
+@import "../../stylesheets/forms";
+@import "../../stylesheets/checkboxes";
+@import "../../stylesheets/tabs";
+@import "../../stylesheets/tables";
+@import "../../stylesheets/merchant/intercom";
+
+// Merchant
+@import "../../stylesheets/merchant/dropzone";
+@import "../../stylesheets/merchant/pagination";
+@import "../../stylesheets/merchant/base";
+@import "../../stylesheets/merchant/side_bar";
+@import "../../stylesheets/merchant/content";
+@import "../../stylesheets/merchant/dashboard";
+@import "../../stylesheets/merchant/theme_editors";
+@import "../../stylesheets/merchant/products";
+@import "../../stylesheets/merchant/payments";
+@import "../../stylesheets/merchant/design";
+@import "../../stylesheets/merchant/menus";
+@import "../../stylesheets/merchant/subscriptions";
+@import "../../stylesheets/merchant/search";

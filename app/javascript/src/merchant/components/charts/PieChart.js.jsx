@@ -1,7 +1,10 @@
+import Chart from 'chart.js/auto';
+
 export default class PieChart extends React.Component {
   componentDidMount() {
     this.draw();
-  },
+  }
+
   draw() {
     var ctx = $(this.refs.chart);
     var dataSetLabel = this.props.dataSetLabel;
@@ -23,7 +26,8 @@ export default class PieChart extends React.Component {
         }]
       },
     });
-  },
+  }
+
   render() {
     return (
       <div className="chart-container">

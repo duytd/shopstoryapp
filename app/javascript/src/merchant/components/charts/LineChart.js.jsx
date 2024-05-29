@@ -1,10 +1,14 @@
+import Chart from 'chart.js/auto';
+
 export default class LineChart extends React.Component {
   componentDidMount() {
     this.draw();
-  },
+  }
+
   componentDidUpdate() {
     this.draw();
-  },
+  }
+
   draw() {
     var ctx = $(this.refs.chart);
     var labels = [];
@@ -41,7 +45,8 @@ export default class LineChart extends React.Component {
         }]
       }
     });
-  },
+  }
+
   render() {
     return (
       <div className="chart-container">

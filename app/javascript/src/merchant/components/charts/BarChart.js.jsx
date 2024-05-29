@@ -1,7 +1,10 @@
+import Chart from 'chart.js/auto';
+
 export default class BarChart extends React.Component {
   componentDidMount() {
     this.draw();
-  },
+  }
+
   draw() {
     var ctx = $(this.refs.chart);
     var dataSetLabel = this.props.dataSetLabel;
@@ -14,30 +17,32 @@ export default class BarChart extends React.Component {
     })
 
     var barChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-        labels: labels,
-        datasets: [{
-            label: dataSetLabel,
-            data: data,
-            backgroundColor: "rgba(46, 204, 113, 0.9)",
-            borderColor: "rgba(46, 204, 113, 1.0)",
-            hoverBackgroundColor: "rgba(39, 174, 96, 0.9)",
-            hoverBorderColor: "rgba(39, 174, 96, 1.0)",
-            borderWidth: 2,
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
+      type: "bar",
+      data: {
+          labels: labels,
+          datasets: [{
+              label: dataSetLabel,
+              data: data,
+              backgroundColor: "rgba(46, 204, 113, 0.9)",
+              borderColor: "rgba(46, 204, 113, 1.0)",
+              hoverBackgroundColor: "rgba(39, 174, 96, 0.9)",
+              hoverBorderColor: "rgba(39, 174, 96, 1.0)",
+              borderWidth: 2,
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
         }
       }
-    });
-  },
+    );
+  }
+
   render() {
     return (
       <div className="chart-container">
