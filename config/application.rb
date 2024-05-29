@@ -5,67 +5,67 @@ require "csv"
 
 Bundler.require(*Rails.groups)
 
-module React
-  module ServerRendering
-    class SprocketsRenderer
-      attr_reader :components
+# module React
+#   module ServerRendering
+#     class SprocketsRenderer
+#       attr_reader :components
 
-      def initialize(options={})
-        @replay_console = options.fetch(:replay_console, true)
-        filenames = options[:files]
-        js_code = "var document = document || this;"
-        js_code << CONSOLE_POLYFILL.dup
+#       def initialize(options={})
+#         @replay_console = options.fetch(:replay_console, true)
+#         filenames = options[:files]
+#         js_code = "var document = document || this;"
+#         # js_code << CONSOLE_POLYFILL.dup
 
-        filenames.each do |filename|
-          js_code << asset_container.find_asset(filename)
-        end
+#         filenames.each do |filename|
+#           js_code << asset_container.find_asset(filename)
+#         end
 
-        @components = asset_container.find_asset "customer/components.js"
-        super(options.merge(code: js_code))
-      end
+#         @components = asset_container.find_asset "customer/components.js"
+#         super(options.merge(code: js_code))
+#       end
 
-      def render component_name, props, prerender_options
-        react_render_method = if prerender_options == :static
-            "renderToStaticMarkup"
-          else
-            "renderToString"
-          end
+#       def render component_name, props, prerender_options
+#         react_render_method = if prerender_options == :static
+#             "renderToStaticMarkup"
+#           else
+#             "renderToString"
+#           end
 
-        if !props.is_a?(String)
-          props = props.to_json
-        end
+#         if !props.is_a?(String)
+#           props = props.to_json
+#         end
 
-        super(component_name, props, prerender_options.merge({render_function: react_render_method}))
-      end
-    end
-  end
-end
+#         super(component_name, props, prerender_options.merge({render_function: react_render_method}))
+#       end
+#     end
+#   end
+# end
 
-class TemplateRenderer < React::ServerRendering::SprocketsRenderer
-  def before_render component_name, props, prerender_options
-    theme = prerender_options[:theme]
-    currency = prerender_options[:currency]
+# class TemplateRenderer < React::ServerRendering::SprocketsRenderer
+#   def before_render component_name, props, prerender_options
+#     theme = prerender_options[:theme]
+#     currency = prerender_options[:currency]
 
-    if Rails.env.development?
-      js_code = asset_container.find_asset("customer/themes/#{theme}/templates/template.js")
-    else
-      js_code = prerender_options[:locale]
-    end
+#     if Rails.env.development?
+#       js_code = asset_container.find_asset("customer/themes/#{theme}/templates/template.js")
+#     else
+#       js_code = prerender_options[:locale]
+#     end
 
-    js_code << "I18n.locale = '#{I18n.locale.to_s}'; I18n.currency = '#{currency}';"
+#     js_code << "I18n.locale = '#{I18n.locale.to_s}'; I18n.currency = '#{currency}';"
 
-    if Rails.env.development?
-      js_code << asset_container.find_asset("customer/themes/#{theme}/locales/all.js")
-    else
-      js_code << prerender_options[:template]
+#     if Rails.env.development?
+#       js_code << asset_container.find_asset("customer/themes/#{theme}/locales/all.js")
+#     else
+#       js_code << prerender_options[:template]
 
-    end
+#     end
 
-    js_code << self.components
+#     js_code << self.components
 
-    js_code
-  end
-end
+#     js_code
+#   end
+# end
 
 module ShopStory
   class Application < Rails::Application
@@ -90,16 +90,9 @@ module ShopStory
     end
 
     config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts")
-    config.assets.precompile << /\.(?:png|gif|jpg|svg|eot|woff|ttf)$/
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths << Rails.root.join("app", "presenters")
-
-    config.react.server_renderer = TemplateRenderer
-    config.react.server_renderer_options = {
-      files: ["react-server.js", "customer/vendor.js"],
-      replay_console: true,
-    }
 
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.perform_deliveries = true

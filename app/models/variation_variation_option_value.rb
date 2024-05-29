@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: variation_variation_option_values
+#
+#  id                        :integer          not null, primary key
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  variation_id              :integer
+#  variation_option_value_id :integer
+#
+# Indexes
+#
+#  index_variation_variation_option_values_on_variation_id  (variation_id)
+#  option_value_id                                          (variation_option_value_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (variation_id => variations.id)
+#  fk_rails_...  (variation_option_value_id => variation_option_values.id)
+#
 class VariationVariationOptionValue < ApplicationRecord
   belongs_to :variation, inverse_of: :variation_variation_option_values
   belongs_to :variation_option_value

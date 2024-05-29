@@ -8,6 +8,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = true
+  config.force_ssl = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -35,11 +36,6 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
-  config.assets.precompile += %w(
-    customer/themes/agatha/templates/template.js
-    customer/themes/viva/templates/template.js
-  )
 
   config.browserify_rails.commandline_options = ["--transform [react-templatify --modules none]"]
 

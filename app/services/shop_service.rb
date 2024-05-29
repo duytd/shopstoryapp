@@ -4,12 +4,12 @@ class ShopService
   end
 
   def create_initial_data
-    Apartment::Tenant.switch @shop.subdomain
-
-    EmailTemplateService.new({shop: @shop}).create_initial_data
-    PaymentMethodService.new({shop: @shop}).create_initial_data
-    CustomPageService.new({shop: @shop}).create_initial_data
-    MenuService.new({shop: @shop}).create_initial_data
+    Apartment::Tenant.switch(@shop.subdomain) do
+      EmailTemplateService.new({shop: @shop}).create_initial_data
+      PaymentMethodService.new({shop: @shop}).create_initial_data
+      CustomPageService.new({shop: @shop}).create_initial_data
+      MenuService.new({shop: @shop}).create_initial_data
+    end
   end
 
   def create_sample_data

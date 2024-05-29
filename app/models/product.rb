@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id                       :integer          not null, primary key
+#  description              :text
+#  featured                 :boolean
+#  flat_shipping_rate       :decimal(, )
+#  in_stock                 :integer          default(0)
+#  name                     :string
+#  pay_shipping_on_delivery :boolean          default(FALSE)
+#  price                    :decimal(, )      default(0.0)
+#  sale_off                 :decimal(, )      default(0.0)
+#  sku                      :string
+#  slug                     :string
+#  unlimited                :boolean          default(TRUE)
+#  vendor                   :string
+#  visibility               :boolean          default(TRUE)
+#  weight                   :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#
 class Product < ApplicationRecord
   ATTRIBUTES = %w{slug name_ko name_en description_ko description_en sku vendor in_stock price sale_off weight visibility featured flat_shipping_rate pay_shipping_on_delivery}
   SORTABLE_ATTRIBUTES = %w{ name price sku vendor in_stock featured }

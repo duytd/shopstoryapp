@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: templates
+#
+#  id                  :integer          not null, primary key
+#  content             :text
+#  directory           :string
+#  name                :string
+#  transformed_content :text
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  theme_id            :integer
+#
+# Indexes
+#
+#  index_templates_on_theme_id  (theme_id)
+#
 require "rt"
 
 class Template < ApplicationRecord

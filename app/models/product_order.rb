@@ -1,3 +1,35 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                 :integer          not null, primary key
+#  confirmation_token :string
+#  currency           :string
+#  ip_address         :string
+#  locale             :string
+#  paid_at            :datetime
+#  product_count      :integer          default(0)
+#  shipping           :decimal(, )      default(0.0)
+#  status             :integer          default("incompleted")
+#  subtotal           :decimal(, )      default(0.0)
+#  tax                :decimal(, )      default(0.0)
+#  ticket_code        :string
+#  ticket_sent_at     :datetime
+#  token              :string
+#  total              :decimal(, )      default(0.0)
+#  type               :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  customer_id        :integer
+#
+# Indexes
+#
+#  index_orders_on_customer_id  (customer_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (customer_id => customers.id)
+#
 class ProductOrder < Order
   belongs_to :customer
   has_many :order_products, foreign_key: "order_id", dependent: :destroy

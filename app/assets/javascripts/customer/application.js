@@ -10,4 +10,5 @@
 //= require react
 //= require react_ujs
 //= require i18n
+//= require js-routes
 //= require customer/components

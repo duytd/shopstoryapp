@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: public.payment_method_shops
+#
+#  id                :integer          not null, primary key
+#  active            :boolean          default(FALSE)
+#  key               :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  payment_method_id :integer
+#  shop_id           :integer
+#
+# Indexes
+#
+#  index_payment_method_shops_on_payment_method_id  (payment_method_id)
+#  index_payment_method_shops_on_shop_id            (shop_id)
+#
 require "zip"
 
 class PaymentMethodShop < ApplicationRecord

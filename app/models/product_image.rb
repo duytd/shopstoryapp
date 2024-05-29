@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: product_images
+#
+#  id         :integer          not null, primary key
+#  featured   :boolean          default(FALSE)
+#  image      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  product_id :integer
+#
+# Indexes
+#
+#  index_product_images_on_product_id  (product_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (product_id => products.id)
+#
 class ProductImage < ApplicationRecord
   belongs_to :product
   before_update :ensure_only_one_image_is_active, if: Proc.new{|a| a.featured_changed? && a.featured?}

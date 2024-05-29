@@ -60,7 +60,7 @@ class CustomElevator < Apartment::Elevators::Generic
     Settings.app.domains.each do |domain|
       if host.include?(domain)
         subdomain = host.split('.')[0..-4] if domain == "shopstory.co.kr"
-        subdomain = host.split('.')[0..-3] if domain == "shopstoryapp.com" || domain == "shopstory.com" || domain == "shopstory.dev"
+        subdomain = host.split('.')[0..-3] if domain == "shopstoryapp.com" || domain == "shopstory.com" || domain == "shopstory.local"
       end
     end
 

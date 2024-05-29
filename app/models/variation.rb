@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: variations
+#
+#  id         :integer          not null, primary key
+#  image      :string
+#  in_stock   :integer          default(1)
+#  master     :boolean          default(FALSE)
+#  price      :decimal(, )
+#  sku        :string
+#  unlimited  :boolean          default(TRUE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  product_id :integer
+#
+# Indexes
+#
+#  index_variations_on_product_id  (product_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (product_id => products.id)
+#
 class Variation < ApplicationRecord
   mount_uploader :image, ProductImageUploader
 

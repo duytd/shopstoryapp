@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: seo_tags
+#
+#  id               :integer          not null, primary key
+#  meta_description :text
+#  meta_keywords    :string
+#  seoable_type     :string
+#  title            :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  seoable_id       :integer
+#
 class SeoTag < ApplicationRecord
   belongs_to :seoable, polymorphic: true
 

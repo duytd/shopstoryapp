@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: public.theme_bundles
+#
+#  id         :integer          not null, primary key
+#  javascript :text
+#  locale     :text
+#  stylesheet :text
+#  template   :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  shop_id    :integer
+#  theme_id   :integer
+#
+# Indexes
+#
+#  index_theme_bundles_on_shop_id   (shop_id)
+#  index_theme_bundles_on_theme_id  (theme_id)
+#
 require "minifier"
 
 class ThemeBundle < ApplicationRecord

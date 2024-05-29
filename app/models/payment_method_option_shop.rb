@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: public.payment_method_option_shops
+#
+#  id                       :integer          not null, primary key
+#  value                    :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  payment_method_option_id :integer
+#  payment_method_shop_id   :integer
+#
+# Indexes
+#
+#  index_payment_method_option_shops_on_payment_method_option_id  (payment_method_option_id)
+#  index_payment_method_option_shops_on_payment_method_shop_id    (payment_method_shop_id)
+#
 class PaymentMethodOptionShop < ApplicationRecord
   belongs_to :payment_method_option
   belongs_to :payment_method_shop

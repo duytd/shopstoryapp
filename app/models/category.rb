@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  slug       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Category < ApplicationRecord
   include Orderable
 
@@ -14,8 +24,8 @@ class Category < ApplicationRecord
     indexes :name_en, analyzer: "ngram_analyzer"
   end
 
-  has_many :category_products, dependent: :destroy, auto_include: false
-  has_many :products, through: :category_products, auto_include: false
+  has_many :category_products, dependent: :destroy
+  has_many :products, through: :category_products
   has_many :variations, through: :products
   has_one :seo_tag, as: :seoable, dependent: :destroy
   has_many :menu_items, foreign_key: "value", dependent: :destroy

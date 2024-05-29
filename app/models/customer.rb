@@ -1,4 +1,38 @@
+# == Schema Information
+#
+# Table name: customers
+#
+#  id                     :integer          not null, primary key
+#  access_token           :string
+#  address                :string
+#  city                   :string
+#  country                :string
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :inet
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  gender                 :integer
+#  last_name              :string
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :inet
+#  locale                 :string
+#  phone                  :string
+#  provider               :string
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  sign_in_count          :integer          default(0), not null
+#  uid                    :string
+#  zip_code               :string
+#
+# Indexes
+#
+#  index_customers_on_email                 (email) UNIQUE
+#  index_customers_on_reset_password_token  (reset_password_token) UNIQUE
+#
 class Customer < ApplicationRecord
+  include LiquidMethods
   attr_accessor :term, :privacy
   enum gender: [:male, :female]
 

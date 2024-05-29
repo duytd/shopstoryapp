@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: payments
+#
+#  id                 :integer          not null, primary key
+#  amount             :decimal(, )      default(0.0)
+#  extra_data         :text
+#  paid_at            :string
+#  paypal_token       :string
+#  state              :integer          default("pending")
+#  submethod          :string
+#  transaction_number :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  order_id           :integer
+#  payer_id           :string
+#  payment_method_id  :integer
+#
+# Indexes
+#
+#  index_payments_on_order_id           (order_id)
+#  index_payments_on_payment_method_id  (payment_method_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (order_id => orders.id)
+#
 class Payment < ApplicationRecord
   belongs_to :order, touch: true
 

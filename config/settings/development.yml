@@ -1,6 +1,6 @@
 app:
-  domains: ["shopstory.dev"]
-  domain: shopstory.dev
+  domains: ["shopstory.local"]
+  domain: shopstory.local
   root_subdomains: ["www"]
 shop:
   default_name: ShopStory

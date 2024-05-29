@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: order_products
+#
+#  id           :integer          not null, primary key
+#  quantity     :integer
+#  unit_price   :decimal(, )
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  order_id     :integer
+#  variation_id :integer
+#
+# Indexes
+#
+#  index_order_products_on_order_id      (order_id)
+#  index_order_products_on_variation_id  (variation_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (order_id => orders.id)
+#  fk_rails_...  (variation_id => variations.id)
+#
 class OrderProduct < ApplicationRecord
   belongs_to :product_order, class_name: "ProductOrder", foreign_key: "order_id"
   belongs_to :variation

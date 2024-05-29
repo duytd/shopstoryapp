@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: public.plans
+#
+#  id         :integer          not null, primary key
+#  features   :text
+#  highlight  :boolean          default(FALSE)
+#  interval   :string
+#  name       :string
+#  position   :integer
+#  price      :float
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  stripe_id  :string
+#
 class Plan < ApplicationRecord
   has_many :subscriptions, dependent: :nullify
   has_many :shop, through: :subscriptions

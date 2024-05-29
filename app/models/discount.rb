@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: discounts
+#
+#  id            :integer          not null, primary key
+#  active        :boolean          default(TRUE)
+#  amount        :decimal(, )
+#  code          :string
+#  discount_type :integer
+#  expiry_date   :date
+#  start_date    :date
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 class Discount < ApplicationRecord
   enum discount_type: [:percentage, :fixed_amount]
 

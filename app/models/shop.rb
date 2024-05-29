@@ -1,4 +1,59 @@
+# == Schema Information
+#
+# Table name: public.shops
+#
+#  id                       :integer          not null, primary key
+#  api_key                  :string
+#  business_number          :string
+#  ceo                      :string
+#  city                     :string
+#  country                  :string
+#  currency                 :string
+#  daum                     :string
+#  domain                   :string
+#  email                    :string
+#  exchange_rate            :decimal(, )      default(1000.0)
+#  facebook_url             :string
+#  google_verification_code :string
+#  instagram_url            :string
+#  kakao                    :string
+#  legal_name               :string
+#  logo                     :string
+#  meta_description         :text
+#  meta_keywords            :text
+#  meta_title               :string
+#  name                     :string
+#  naver                    :string
+#  naver_verification_code  :string
+#  online_retail_number     :string
+#  phone                    :string
+#  pinterest_url            :string
+#  privacy_email            :string
+#  privacy_manager          :string
+#  service_phone            :string
+#  street                   :string
+#  subdomain                :string
+#  time_zone                :string
+#  weight_unit              :integer
+#  yellow                   :string
+#  zip_code                 :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  privacy_id               :integer
+#  shop_id                  :integer          not null
+#  term_id                  :integer
+#  theme_id                 :integer
+#  user_id                  :integer
+#
+# Indexes
+#
+#  index_shops_on_privacy_id  (privacy_id)
+#  index_shops_on_term_id     (term_id)
+#  index_shops_on_theme_id    (theme_id)
+#  index_shops_on_user_id     (user_id)
+#
 class Shop < ApplicationRecord
+  include LiquidMethods
   attr_accessor :setting_up
 
   translates :street
@@ -44,11 +99,12 @@ class Shop < ApplicationRecord
   end
 
   def setup_theme
-     Apartment::Tenant.switch! subdomain
+    Apartment::Tenant.switch! subdomain
     self.theme.setup self
   end
 
   private
+
   def setup_data
     ShopService.new({shop: self}).create_initial_data
   end

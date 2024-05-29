@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: custom_pages
+#
+#  id         :integer          not null, primary key
+#  content    :text
+#  slug       :string
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class CustomPage < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
@@ -20,8 +31,8 @@ class CustomPage < ApplicationRecord
   validates :content, translation_presence: true
   validates :slug, presence: true, uniqueness: true, on: :update
 
-  after_save { IndexerWorker.perform_async(:index, self.id, "CustomPage", "Customer::CustomPagePresenter") }
-  after_destroy { IndexerWorker.perform_async(:delete, self.id, "CustomPage", "Customer::CustomPagePresenter") }
+  # after_save { IndexerWorker.perform_async(:index, self.id, "CustomPage", "Customer::CustomPagePresenter") }
+  # after_destroy { IndexerWorker.perform_async(:delete, self.id, "CustomPage", "Customer::CustomPagePresenter") }
 
   def self.search_fields
     %w{ title_en^10 title_ko^10 content_en content_ko }

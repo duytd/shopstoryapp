@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: public.themes
+#
+#  id          :integer          not null, primary key
+#  actived     :boolean          default(TRUE)
+#  author      :string
+#  default     :boolean          default(FALSE)
+#  description :text
+#  directory   :string
+#  image       :string
+#  name        :string
+#  version     :decimal(, )
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class Theme < ApplicationRecord
   ROOT_DIR = "#{Rails.root}/app/assets/javascripts/customer/themes"
   mount_uploader :image, ThemeImageUploader

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: menus
+#
+#  id         :integer          not null, primary key
+#  active     :boolean          default(TRUE)
+#  name       :string
+#  position   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Menu < ApplicationRecord
   enum position: [:main, :footer]
 
