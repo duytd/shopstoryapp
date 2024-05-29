@@ -1,22 +1,15 @@
-// See the shakacode/shakapacker README and docs directory for advice on customizing your webpackConfig.
-const { generateWebpackConfig } = require('shakapacker')
+const { env } = require('shakapacker')
+const { existsSync } = require('fs')
+const { resolve } = require('path')
 
-const customConfig = {
-  module: {
-    rules: [
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          'sass-loader',
-        ],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.css']
+const envSpecificConfig = () => {
+  const path = resolve(__dirname, `${env.nodeEnv}.js`)
+  if (existsSync(path)) {
+    console.log(`Loading ENV specific webpack configuration file ${path}`)
+    return require(path)
+  } else {
+    throw new Error(`Could not find file to load ${path}, based on NODE_ENV`)
   }
 }
 
-const webpackConfig = generateWebpackConfig(customConfig)
-
-module.exports = webpackConfig
+module.exports = envSpecificConfig()

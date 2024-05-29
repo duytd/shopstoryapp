@@ -4,15 +4,14 @@ import 'jquery-ujs'
 import 'bootstrap';
 import 'summernote/dist/summernote';
 import 'dropzone/dist/dropzone';
+import 'ace-builds/src/ace';
+import 'ace-builds/src/theme-solarized_light';
+import 'ace-builds/src/mode-javascript';
+import 'ace-builds/src/mode-css';
+import 'ace-builds/src/mode-html';
+import 'ace-builds/src/mode-json';
 
-//= require ace-builds/src/ace
-//= require ace-builds/src/theme-solarized_light
-//= require ace-builds/src/mode-javascript
-//= require ace-builds/src/mode-css
-//= require ace-builds/src/mode-html
-//= require ace-builds/src/mode-json
-
-//= require functions
+import '../functions';
 //= require merchant/routes
 //= require react
 //= require react_ujs
