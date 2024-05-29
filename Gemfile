@@ -2,16 +2,18 @@ source "https://rubygems.org"
 
 ruby "2.7.0"
 
-gem "rails", "5.0.7.2"
+gem "rails", "5.2.0"
 gem "pg"
-gem "sass"
-gem "sass-rails"
-gem "bootstrap-sass"
-gem "font-awesome-sass"
-gem "uglifier"
 gem "turbolinks"
-gem "jquery-rails"
-gem "jbuilder"
+
+# gem "sass"
+# gem "sass-rails"
+# gem "bootstrap-sass"
+# gem "font-awesome-sass"
+# gem "uglifier"
+# gem "jquery-rails"
+gem "shakapacker"
+
 gem "bower-rails"
 gem "devise"
 gem "cancancan"
@@ -77,9 +79,9 @@ group :development, :test do
   gem "selenium-webdriver"
 end
 
-group :assets do
-  gem "turbo-sprockets-rails3"
-end
+# group :assets do
+#   gem "turbo-sprockets-rails3"
+# end
 
 group :development do
   gem "annotate"
