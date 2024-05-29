@@ -11,8 +11,12 @@
     <%= csrf_meta_tags %>
 
     <%= javascript_tag do %>
-      I18n.defaultLocale = "<%= I18n.default_locale %>";
-      I18n.locale = "<%= I18n.locale %>";
+      <%
+=begin%>
+ window.I18n.defaultLocale = "<%= I18n.default_locale %>";
+      window.I18n.locale = "<%= I18n.locale %>";
+<%
+=end%>
     <% end %>
   </head>
   <body>
@@ -20,7 +24,11 @@
       <%= render "merchant/layouts/side_bar" %>
     </aside>
     <section class="content">
-      <%= render "merchant/layouts/top_bar" %>
+      <%
+=begin%>
+ <%= render "merchant/layouts/top_bar" %>
+<%
+=end%>
       <div class="container-fluid main-wrapper">
         <%= yield %>
       </div>

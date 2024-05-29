@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ReactOnRailsHelper
   include DomainHelper
 
   def full_title page_title

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default class Setup extends React.Component {
   getInitialState() {
     var currentStep = this.props.current_step;
@@ -6,7 +8,8 @@ export default class Setup extends React.Component {
       currentStep: currentStep,
       errors: []
     }
-  },
+  }
+
   renderProvideBusinessInfo() {
     return (
       <form ref="shop_form">
@@ -44,17 +47,20 @@ export default class Setup extends React.Component {
         </div>
       </form>
     )
-  },
+  }
+
   renderGenerateSampleData() {
     return (
       <p>{I18n.t("merchant.admin.after_signup.generate_sample_data")}</p>
     )
-  },
+  }
+
   renderDone() {
     return (
       <p><i className="fa fa-check text-green"></i> {I18n.t("merchant.admin.after_signup.done")}</p>
     )
-  },
+  }
+
   skip(e) {
     e.preventDefault();
 
@@ -80,7 +86,8 @@ export default class Setup extends React.Component {
         alert(xhr.responseText);
       }
     })
-  },
+  }
+
   next(e) {
     e.preventDefault();
 
@@ -111,7 +118,8 @@ export default class Setup extends React.Component {
         this.setState({errors: xhr.responseJSON});
       }.bind(this)
     })
-  },
+  }
+
   render() {
     var form = null;
 
