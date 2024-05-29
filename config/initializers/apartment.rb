@@ -68,5 +68,5 @@ end
 # }
 
 # Rails.application.config.middleware.use "Apartment::Elevators::Domain"
-Rails.application.config.middleware.use "CustomElevator"
+Rails.application.config.middleware.use CustomElevator
 CustomElevator.excluded_subdomains = ["", "www", "admin"]

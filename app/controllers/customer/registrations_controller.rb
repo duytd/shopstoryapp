@@ -1,7 +1,7 @@
 class Customer::RegistrationsController < Devise::RegistrationsController
   include ShopsLoading
 
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
 
   def new
     term = current_shop.term ? present(current_shop.term) : nil

@@ -31,3 +31,10 @@ kakao
 inicis
 app/assets/javascripts/i18n
 .DS_Store
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

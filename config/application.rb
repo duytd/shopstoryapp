@@ -69,7 +69,6 @@ Bundler.require(*Rails.groups)
 
 module ShopStory
   class Application < Rails::Application
-    config.active_record.raise_in_transactional_callbacks = true
     config.action_controller.include_all_helpers = false
 
     config.time_zone = "Seoul"
@@ -88,8 +87,6 @@ module ShopStory
         request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
-
-    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components", "fonts")
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths << Rails.root.join("app", "presenters")

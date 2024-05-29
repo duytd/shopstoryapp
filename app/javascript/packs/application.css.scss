@@ -1,0 +1,14 @@
+$fa-font-path: '~font-awesome/fonts/';
+$pe-7s-font-path: '~pixeden-stroke-7-icon/pe-icon-7-stroke/fonts/';
+@import '../stylesheets/variables';
+@import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
+@import '~pixeden-stroke-7-icon/pe-icon-7-stroke/scss/pe-icon-7-stroke';
+@import '../stylesheets/alerts';
+@import '../stylesheets/buttons';
+@import '../stylesheets/base';
+@import '../stylesheets/checkboxes';
+@import '../stylesheets/forms';
+@import '../stylesheets/menu';
+@import '../stylesheets/pages';
+@import '../stylesheets/landing';

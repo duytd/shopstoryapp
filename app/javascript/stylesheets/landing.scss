@@ -18,7 +18,7 @@ body {
 
   /* Background Images */
   .bg-img-2 {
-    background: asset-url("landing/splash.jpg");
+    background: asset-url("../images/landing/splash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -674,14 +674,12 @@ body {
   }
 
   .no-padding.img {
-    background: url(../images/showcase-1.jpg) scroll center no-repeat;
     background-size: cover;
     position: absolute;
     height: 100%;
   }
 
   .no-padding.img-2 {
-    background: url(../images/showcase-2.jpg) scroll center no-repeat;
     background-size: cover;
     position: absolute;
     height: 100%;
