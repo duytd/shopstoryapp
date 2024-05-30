@@ -12,7 +12,7 @@ export default class Search extends React.Component {
     return (
       <div className="search">
         <form className="form-inline search-form navbar-left hidden-xs">
-          <input type="text" ref="query" className="form-control" placeholder={I18n.t("merchant.admin.menu.search")} onChange={this.search} name="q" />
+          <input type="text" ref="query" className="form-control" placeholder={i18n.t("merchant.admin.menu.search")} onChange={this.search} name="q" />
           {(this.state.hasInput) ?
             <a onClick={this.reset} className="pull-right"><i className="fa fa-times-circle-o"></i></a> : null}
         </form>

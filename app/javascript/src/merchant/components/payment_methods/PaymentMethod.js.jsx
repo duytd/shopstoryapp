@@ -35,7 +35,7 @@ export default class PaymentMethod extends React.Component {
       keyUploader = (
       <div className="form-group col-md-12">
         <label>
-          {I18n.t("activerecord.attributes.payment_method_shop.key")}
+          {i18n.t("activerecord.attributes.payment_method_shop.key")}
         </label>
         <p className="small">{(this.state.payment_method_shop.key.url) ? this.state.payment_method_shop.key.url.split("/").pop() : ""}</p>
         <input type="file" name="payment_method_shop[key]" />
@@ -68,7 +68,7 @@ export default class PaymentMethod extends React.Component {
               <div className="row">
                 <div className="form-group col-md-12">
                   <button type="submit" className="btn btn-success">
-                    {I18n.t("merchant.admin.buttons.save")}
+                    {i18n.t("merchant.admin.buttons.save")}
                     <span ref="loading" className="hide">
                       <i className="fa fa-circle-o-notch fa-spin fa-fw"></i>
                       <span className="sr-only">Loading...</span>

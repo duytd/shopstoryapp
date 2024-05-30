@@ -23,13 +23,13 @@ export default class design.GeneralForm extends React.Component {
         acceptCharset="UTF-8" method="put" onSubmit={this.submit} encType="multipart/form-data">
 
         <div className="form-group">
-          <label className="label">{I18n.t("activerecord.attributes.shop.logo")}</label>
+          <label className="label">{i18n.t("activerecord.attributes.shop.logo")}</label>
           <input type="file" name="shop[logo]" />
           <img src={this.state.general.logo.thumb.url} height="30" />
         </div>
 
         <div className="form-group">
-          <label className="label">{I18n.t("activerecord.attributes.shop.term_id")}</label>
+          <label className="label">{i18n.t("activerecord.attributes.shop.term_id")}</label>
           <div className="select">
             <select name="shop[term_id]" className="form-control" defaultValue={this.state.general.term_id}>
               {this.renderPages("term")}
@@ -38,7 +38,7 @@ export default class design.GeneralForm extends React.Component {
         </div>
 
         <div className="form-group">
-          <label className="label">{I18n.t("activerecord.attributes.shop.privacy_id")}</label>
+          <label className="label">{i18n.t("activerecord.attributes.shop.privacy_id")}</label>
           <div className="select">
             <select name="shop[privacy_id]" className="form-control" defaultValue={this.state.general.privacy_id}>
               {this.renderPages("privacy")}

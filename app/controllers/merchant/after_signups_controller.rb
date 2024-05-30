@@ -50,9 +50,9 @@ class Merchant::AfterSignupsController < Merchant::BaseController
 
   private
   def check_setup_step
-    if current_merchant.done?
-      redirect_to merchant_root_path
-    end
+    # if current_merchant.done?
+    #   redirect_to merchant_root_path
+    # end
   end
 
   def shop_params

@@ -18,9 +18,9 @@ export default class design.Theme extends React.Component {
           <p>{this.props.theme.author}</p>
           <p>{this.props.theme.description}</p>
           {(this.state.current) ?
-            <button className="btn btn-success disabled">{I18n.t("merchant.admin.buttons.current")}</button> :
+            <button className="btn btn-success disabled">{i18n.t("merchant.admin.buttons.current")}</button> :
             <button className="btn btn-primary" onClick={this.install}>
-              {I18n.t("merchant.admin.buttons.choose")}
+              {i18n.t("merchant.admin.buttons.choose")}
               <i ref="loading" className="fa fa-circle-o-notch fa-spin fa-fw hide"></i>
             </button>
           }

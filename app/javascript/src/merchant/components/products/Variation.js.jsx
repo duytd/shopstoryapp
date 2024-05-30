@@ -79,14 +79,14 @@ export default class Variation extends React.Component {
             <div className="col-xs-2">
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][sku]"}
-                placeholder={I18n.t("merchant.admin.variations.sku_placeholder")}
+                placeholder={i18n.t("merchant.admin.variations.sku_placeholder")}
                 defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.sku : ""} />
             </div>
 
             <div className="col-xs-2">
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][price]"}
-                placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
+                placeholder={i18n.t("merchant.admin.variations.price_placeholder")}
                 defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.price.toString().toKoreanFormat() : ""} onBlur={this.props.validateNumber} />
 
               <div className="form-errors">
@@ -103,7 +103,7 @@ export default class Variation extends React.Component {
                   <input ref="unlimited" type="checkbox" name={"product[variations_attributes][" + this.props.index + "][unlimited]"} value="1" onChange={this.updateUnlimited}
                     defaultChecked={this.state.unlimited} />
                   <i className="fa"></i>
-                  {I18n.t("merchant.admin.forms.unlimited")}
+                  {i18n.t("merchant.admin.forms.unlimited")}
                 </label>
               </p>
 
@@ -111,7 +111,7 @@ export default class Variation extends React.Component {
                 <div>
                   <input type="text" className="form-control input-sm"
                     name={"product[variations_attributes][" + this.props.index + "][in_stock]"}
-                    placeholder={I18n.t("merchant.admin.variations.in_stock_placeholder")}
+                    placeholder={i18n.t("merchant.admin.variations.in_stock_placeholder")}
                     defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.in_stock : ""} onBlur={this.validateInt} />
 
                   <div className="form-errors">

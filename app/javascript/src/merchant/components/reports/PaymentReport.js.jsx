@@ -9,7 +9,7 @@ export default class PaymentReport extends React.Component {
       <div className="reports block">
         <div className="chart">
           <a className="btn btn-sm btn-primary pull-right" href={Routes.payment_merchant_reports_path({"format": "csv", "locale": I18n.locale})}>
-            {I18n.t("merchant.admin.buttons.export")}
+            {i18n.t("merchant.admin.buttons.export")}
           </a>
           <PieChart data={this.state.data} />
         </div>
@@ -18,9 +18,9 @@ export default class PaymentReport extends React.Component {
           <table className="table">
             <thead>
               <tr>
-                <th>{I18n.t("activerecord.attributes.payment_method.id")}</th>
-                <th>{I18n.t("activerecord.attributes.payment_method.name")}</th>
-                <th>{I18n.t("activerecord.attributes.payment_method.total_sale")}</th>
+                <th>{i18n.t("activerecord.attributes.payment_method.id")}</th>
+                <th>{i18n.t("activerecord.attributes.payment_method.name")}</th>
+                <th>{i18n.t("activerecord.attributes.payment_method.total_sale")}</th>
               </tr>
             </thead>
             <tbody>

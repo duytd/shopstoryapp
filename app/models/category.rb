@@ -10,8 +10,8 @@
 #
 class Category < ApplicationRecord
   include Orderable
-
   extend FriendlyId
+
   friendly_id :name_en, use: [:slugged, :finders]
 
   translates :name
@@ -19,6 +19,7 @@ class Category < ApplicationRecord
 
   include Searchable
   include Elasticsearch::Model::Globalize::MultipleFields
+
   mapping do
     indexes :name_ko, analyzer: "ngram_analyzer"
     indexes :name_en, analyzer: "ngram_analyzer"

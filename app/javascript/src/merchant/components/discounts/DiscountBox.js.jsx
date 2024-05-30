@@ -11,9 +11,9 @@ export default class DiscountBox extends React.Component {
     if (this.props.discounts.length == 0) {
       discountList = (
         <div className="text-center">
-          <p>{I18n.t("merchant.admin.messages.no_discount")}</p>
+          <p>{i18n.t("merchant.admin.messages.no_discount")}</p>
           <a href={this.props.new_url} className="btn btn-lg btn-primary">
-            {I18n.t("merchant.admin.buttons.add")}
+            {i18n.t("merchant.admin.buttons.add")}
           </a>
         </div>
       )
@@ -34,7 +34,7 @@ export default class DiscountBox extends React.Component {
         list={discountList}
         url={this.props.new_url}
         pagination={pagination}
-        title={I18n.t("merchant.admin.discounts.title")} />
+        title={i18n.t("merchant.admin.discounts.title")} />
     );
   }
 }

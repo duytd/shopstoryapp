@@ -53,14 +53,14 @@ export default class VariationOption extends React.Component {
                   <div className="select" onChange={this.checkActiveSelector}>
                     <select className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
                       {nameNodes}
-                      <option value="custom">{I18n.t("merchant.admin.variations.custom_name")}</option>
+                      <option value="custom">{i18n.t("merchant.admin.variations.custom_name")}</option>
                     </select>
                   </div>
                 )
               : (
                   <input ref="custom_name" type="text" className="form-control input-sm"
                     name={"product[variation_options_attributes][" + this.props.index + "][name]"}
-                    placeholder={I18n.t("merchant.admin.variations.custom_name_placeholder")}
+                    placeholder={i18n.t("merchant.admin.variations.custom_name_placeholder")}
                     defaultValue={this.props.variationOption ? this.props.variationOption.name : ""}  onChange={this.checkInputName} />
                 )
               }

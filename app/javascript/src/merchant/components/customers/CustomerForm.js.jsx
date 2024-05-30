@@ -21,13 +21,13 @@ export default class CustomerForm extends React.Component {
                 {(this.state.country != "KR") ?
                 <div className="row">
                   <div className="form-group col-sm-6">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.first_name")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.first_name")}</label>
                     <input type="text" name="customer[first_name]"
                       className="form-control" defaultValue={this.props.customer.first_name} />
                   </div>
 
                   <div className="form-group col-sm-6">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.last_name")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.last_name")}</label>
                     <input type="text" name="customer[last_name]"
                       className="form-control" defaultValue={this.props.customer.first_name} />
                   </div>
@@ -36,7 +36,7 @@ export default class CustomerForm extends React.Component {
                 {(this.state.country == "KR") ?
                 <div className="row">
                   <div className="form-group col-sm-12">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.name")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.name")}</label>
                     <input type="text" name="customer[last_name]"
                       className="form-control" defaultValue={this.props.customer.first_name} />
                   </div>
@@ -44,14 +44,14 @@ export default class CustomerForm extends React.Component {
 
                 <div className="row">
                   <div className="form-group col-sm-6">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.email")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.email")}</label>
                     <FormErrors errors={this.state.errors.email} />
                     <input type="text" name="customer[email]"
                       className="form-control" defaultValue={this.props.customer.email} />
                   </div>
 
                   <div className="form-group col-sm-6">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.phone")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.phone")}</label>
                     <input type="text" name="customer[phone]"
                       className="form-control" defaultValue={this.props.customer.phone} />
                   </div>
@@ -59,7 +59,7 @@ export default class CustomerForm extends React.Component {
 
                 <div className="row">
                   <div className="form-group col-md-12">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.country")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.country")}</label>
                     <div className="select">
                       <select ref="country" className="form-control" name="customer[country]" onChange={this.updateCountry}
                         defaultValue={(this.props.customer.country) ? this.props.customer.country : this.props.default_country}>
@@ -71,13 +71,13 @@ export default class CustomerForm extends React.Component {
 
                 <div className="row">
                   <div className="form-group col-sm-8">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.address")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.address")}</label>
                     <input ref="address" type="text" name="customer[address]"
                       className="form-control" defaultValue={this.props.customer.address} onClick={this.streetClick} />
                   </div>
 
                   <div className="form-group col-sm-4">
-                    <label className="label">{I18n.t("activerecord.attributes.customer.zip_code")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.customer.zip_code")}</label>
                     <input ref="zipcode" type="text" name="customer[zip_code]"
                       className="form-control" defaultValue={this.props.customer.zip_code} />
                   </div>
@@ -94,16 +94,16 @@ export default class CustomerForm extends React.Component {
 
           <div className="col-sm-4">
             <div className="block">
-              <label className="label">{I18n.t("activerecord.attributes.customer.total_spent")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.customer.total_spent")}</label>
               <p>{this.props.customer.total_spent}</p>
               <hr/>
-              <label className="label">{I18n.t("activerecord.attributes.customer.total_orders")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.customer.total_orders")}</label>
               <p>{this.props.customer.total_orders}</p>
               <hr/>
-              <label className="label">{I18n.t("activerecord.attributes.customer.last_sign_in_at")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.customer.last_sign_in_at")}</label>
               <p>{this.props.customer.last_sign_in_at}</p>
               <hr/>
-              <label className="label">{I18n.t("activerecord.attributes.customer.last_order")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.customer.last_order")}</label>
               {(this.props.orders.length > 0) ?
               <p>
                 <a href={Routes.edit_merchant_product_order_path.localize(this.props.orders[this.props.orders.length - 1].id)}>
@@ -115,10 +115,10 @@ export default class CustomerForm extends React.Component {
         </div>
 
         <div className="block">
-          <h3>{I18n.t("merchant.admin.customers.customer_orders")}</h3>
+          <h3>{i18n.t("merchant.admin.customers.customer_orders")}</h3>
           {this.props.orders.length > 0 ?
             <CustomerOrderList orders={this.props.orders} />
-            : <p>{I18n.t("merchant.admin.customers.no_order")}</p>}
+            : <p>{i18n.t("merchant.admin.customers.no_order")}</p>}
         </div>
       </div>
     )

@@ -8,7 +8,7 @@ export default class EmailTemplatePreview extends React.Component {
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.props.closePreview}>&times;</button>
-              <h4 className="modal-title">{I18n.t("merchant.admin.email_templates.preview")}</h4>
+              <h4 className="modal-title">{i18n.t("merchant.admin.email_templates.preview")}</h4>
             </div>
             <div className="modal-body">
               <iframe src={"data:text/html;charset=UTF-8," + encodeURIComponent(this.props.data)}></iframe>

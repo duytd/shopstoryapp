@@ -1,13 +1,13 @@
 export default class CustomerOrderList extends React.Component {
   render: function() {
     var headers = [
-      I18n.t("merchant.admin.orders.order_id"),
-      I18n.t("merchant.admin.orders.order_at"),
-      I18n.t("merchant.admin.orders.bill_to_name"),
-      I18n.t("merchant.admin.orders.ship_to_name"),
-      I18n.t("merchant.admin.orders.payment_status"),
-      I18n.t("merchant.admin.orders.order_status"),
-      I18n.t("merchant.admin.orders.total")
+      i18n.t("merchant.admin.orders.order_id"),
+      i18n.t("merchant.admin.orders.order_at"),
+      i18n.t("merchant.admin.orders.bill_to_name"),
+      i18n.t("merchant.admin.orders.ship_to_name"),
+      i18n.t("merchant.admin.orders.payment_status"),
+      i18n.t("merchant.admin.orders.order_status"),
+      i18n.t("merchant.admin.orders.total")
     ];
 
     return (

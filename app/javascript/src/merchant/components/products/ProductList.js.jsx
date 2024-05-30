@@ -1,15 +1,15 @@
 export default class ProductList extends React.Component {
   render() {
     var headers = [
-      I18n.t("activerecord.attributes.product.id"),
+      i18n.t("activerecord.attributes.product.id"),
       "",
-      I18n.t("activerecord.attributes.product.name"),
-      I18n.t("activerecord.attributes.product.price"),
-      I18n.t("activerecord.attributes.product.sku"),
-      I18n.t("activerecord.attributes.product.vendor"),
-      I18n.t("activerecord.attributes.product.in_stock"),
-      I18n.t("activerecord.attributes.product.featured"),
-      I18n.t("activerecord.attributes.product.visibility")
+      i18n.t("activerecord.attributes.product.name"),
+      i18n.t("activerecord.attributes.product.price"),
+      i18n.t("activerecord.attributes.product.sku"),
+      i18n.t("activerecord.attributes.product.vendor"),
+      i18n.t("activerecord.attributes.product.in_stock"),
+      i18n.t("activerecord.attributes.product.featured"),
+      i18n.t("activerecord.attributes.product.visibility")
     ];
 
     return (

@@ -17,7 +17,7 @@ export default class CategoryForm extends React.Component {
           <div className="tab-content">
             <div id="ko" className="tab-pane fade in active">
               <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
+                <label className="label">{i18n.t("activerecord.attributes.category.name")}</label>
                 <FormErrors errors={this.state.errors.name_ko} />
                 <input ref="name_ko" type="text" name="category[name_ko]"
                   className="form-control" defaultValue={this.props.category ? this.props.category.name_ko : ""} />
@@ -25,7 +25,7 @@ export default class CategoryForm extends React.Component {
             </div>
             <div id="en" className="tab-pane fade">
               <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
+                <label className="label">{i18n.t("activerecord.attributes.category.name")}</label>
                 <FormErrors errors={this.state.errors.name_en} />
                 <input ref="name_en" type="text" name="category[name_en]"
                   className="form-control" defaultValue={this.props.category ? this.props.category.name_en : ""} />
@@ -35,7 +35,7 @@ export default class CategoryForm extends React.Component {
 
           {(this.props.category && this.props.category.slug) ?
             <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.category.slug")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.category.slug")}</label>
 
               <FormErrors errors={this.state.errors.slug} />
               <input type="text" name="category[slug]"

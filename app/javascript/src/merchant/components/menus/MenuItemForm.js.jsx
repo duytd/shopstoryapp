@@ -48,7 +48,7 @@ export default class MenuItemForm extends React.Component {
             <div className="tab-content">
               <div id="ko" className="tab-pane fade in active">
                 <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.menu_item.name")}</label>
+                  <label className="label">{i18n.t("activerecord.attributes.menu_item.name")}</label>
                   <FormErrors errors={this.state.errors.name_ko} />
                   <input ref="name_ko" type="text" name="menu_item[name_ko]"
                     className="form-control" defaultValue={(this.props.menu_item) ? this.props.menu_item.name_ko : ""} />
@@ -56,7 +56,7 @@ export default class MenuItemForm extends React.Component {
               </div>
               <div id="en" className="tab-pane fade">
                 <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.menu_item.name")}</label>
+                  <label className="label">{i18n.t("activerecord.attributes.menu_item.name")}</label>
                   <FormErrors errors={this.state.errors.name_en} />
                   <input ref="name_en" type="text" name="menu_item[name_en]"
                     className="form-control" defaultValue={(this.props.menu_item) ? this.props.menu_item.name_en : null} />
@@ -66,26 +66,26 @@ export default class MenuItemForm extends React.Component {
 
             {(this.props.parent) ?
               <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.menu_item.parent_id")}</label>
+                <label className="label">{i18n.t("activerecord.attributes.menu_item.parent_id")}</label>
                 <input type="hidden" name="menu_item[parent_id]" value={this.props.parent.id} />
                 <p>{translate(this.props.parent, "name")}</p>
               </div> : null}
 
             <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.menu_item.type")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.menu_item.type")}</label>
               {(!this.props.menu_item) ?
               <div className="select" onChange={this.switchType}>
                 <select name="type" className="form-control" defaultValue={this.state.type}>
                   {this.props.types.map(function(type, index) {
-                    return <option value={type} key={"item_type_" + index}>{I18n.t("merchant.admin.menu_items.types."+ type)}</option>
+                    return <option value={type} key={"item_type_" + index}>{i18n.t("merchant.admin.menu_items.types."+ type)}</option>
                   })}
                 </select>
-              </div> : <p>{I18n.t("merchant.admin.menu_items.types."+ this.state.type)}</p>}
+              </div> : <p>{i18n.t("merchant.admin.menu_items.types."+ this.state.type)}</p>}
             </div>
 
             {(this.state.type == "category" || this.state.type == "product" || this.state.type == "url" || this.state.type == "custom_page") ?
               <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.menu_item.value")}</label>
+                <label className="label">{i18n.t("activerecord.attributes.menu_item.value")}</label>
                 <FormErrors errors={this.state.errors.value} />
 
                 {(this.state.type == "category") ?

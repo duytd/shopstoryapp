@@ -112,7 +112,7 @@ export default class ProductForm extends React.Component {
             <div className="tab-content">
               <div id="ko" className="tab-pane fade in active">
                 <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.product.name")}</label>
+                  <label className="label">{i18n.t("activerecord.attributes.product.name")}</label>
                   <div className="form-errors">
                     { (this.state.errors.name_ko) ? this.state.errors.name_ko.map(function(object){
                       return object;
@@ -122,7 +122,7 @@ export default class ProductForm extends React.Component {
                     className="form-control" defaultValue={this.state.product ? this.state.product.name_ko : ""} />
                 </div>
                 <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
+                  <label className="label">{i18n.t("activerecord.attributes.product.description_ko")}</label>
                   <textarea ref="description_ko" name="product[description_ko]"
                     className="form-control summernote" defaultValue={this.state.product ? this.state.product.description_ko : ""}>
                   </textarea>
@@ -130,7 +130,7 @@ export default class ProductForm extends React.Component {
               </div>
               <div id="en" className="tab-pane fade">
                 <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.product.name")}</label>
+                  <label className="label">{i18n.t("activerecord.attributes.product.name")}</label>
                   <div className="form-errors">
                     {(this.state.errors.name_en) ? this.state.errors.name_en.map(function(object){
                       return object;
@@ -140,7 +140,7 @@ export default class ProductForm extends React.Component {
                     className="form-control" defaultValue={this.state.product ? this.state.product.name_en : ""} />
                 </div>
                 <div className="form-group">
-                  <label className="label">{I18n.t("activerecord.attributes.product.description_en")}</label>
+                  <label className="label">{i18n.t("activerecord.attributes.product.description_en")}</label>
                   <div className="form-errors">
                     {(this.state.errors.description_en) ? this.state.errors.description_en.map(function(object){
                       return object;
@@ -155,7 +155,7 @@ export default class ProductForm extends React.Component {
 
             {(this.state.product && this.state.product.slug) ?
               <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.product.slug")}</label>
+                <label className="label">{i18n.t("activerecord.attributes.product.slug")}</label>
 
                 <FormErrors errors={this.state.errors.slug} />
                 <input type="text" name="product[slug]"
@@ -165,10 +165,10 @@ export default class ProductForm extends React.Component {
           </div>
 
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.pricing_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.pricing_title")}</h4>
             <div className="row">
               <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.product.price")}</label>
+                <label className="label">{i18n.t("activerecord.attributes.product.price")}</label>
                 <div className="form-errors">
                   {(this.state.errors.price) ? this.state.errors.price.map(function(object){
                     return object;
@@ -179,35 +179,35 @@ export default class ProductForm extends React.Component {
               </div>
 
               <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.product.sale_off")} (%)</label>
+                <label className="label">{i18n.t("activerecord.attributes.product.sale_off")} (%)</label>
                 <input ref="sale_off" onChange={this.changePrice} type="text" onBlur={this.validateNumber} className="form-control" name="product[sale_off]"
                   defaultValue={(this.props.product) ? this.state.product.sale_off : "0.00"} />
               </div>
 
               <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.product.discounted_price")}</label>
+                <label className="label">{i18n.t("activerecord.attributes.product.discounted_price")}</label>
                 <p>{this.state.discountedPrice.toString().toKoreanFormat()}</p>
               </div>
             </div>
           </div>
 
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.images_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.images_title")}</h4>
             <ProductImageForm product={this.state.product} productImages={this.state.productImages} updateDropzone={this.updateDropzone} />
           </div>
 
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.variations_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.variations_title")}</h4>
 
             <div className={(this.state.variations.length > 0) ? "hide" : "form-group"}>
-              <label className="label">{I18n.t("activerecord.attributes.product.in_stock")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.product.in_stock")}</label>
               <p>
                 <label className="styled-cb">
                   <input type="hidden" name="product[unlimited]" value="0" />
                   <input ref="unlimited" type="checkbox" name="product[unlimited]" value="1" onChange={this.updateUnlimited}
                     defaultChecked={this.state.unlimited} />
                   <i className="fa"></i>
-                  {I18n.t("merchant.admin.forms.unlimited")}
+                  {i18n.t("merchant.admin.forms.unlimited")}
                 </label>
               </p>
 
@@ -221,23 +221,23 @@ export default class ProductForm extends React.Component {
               <div className="variation-wrapper">
                 {(this.state.variationOptions.length == 0) ?
                 <button className="btn btn-sm btn-primary" onClick={this.addVariationOption}>
-                  {I18n.t("merchant.admin.products.buttons.add_option_type")}
+                  {i18n.t("merchant.admin.products.buttons.add_option_type")}
                 </button> : null}
                 <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
                   <div className="col-xs-5">
-                    <label className="label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.variation_option.name")}</label>
                   </div>
                   <div className="col-xs-2">
                   </div>
                   <div className="col-xs-5">
-                    <label className="label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
+                    <label className="label">{i18n.t("activerecord.attributes.variation_option.value")}</label>
                   </div>
                 </div>
                 {deletedVariationOptionNodes}
                 {variationOptionNodes}
                 {(this.state.variationOptions.length > 0 && this.state.variations.length == 0) ?
                 <button className="btn btn-sm btn-primary" onClick={this.populateVariation}>
-                  {I18n.t("merchant.admin.products.buttons.populate_variation")}
+                  {i18n.t("merchant.admin.products.buttons.populate_variation")}
                 </button> : null}
                 <hr/>
                 {deletedVariationNodes}
@@ -249,45 +249,45 @@ export default class ProductForm extends React.Component {
 
         <div className="col-md-3">
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.visibility_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.visibility_title")}</h4>
             <div className="form-group">
               <label className="styled-cb">
                 <input type="hidden" name="product[visibility]" value="0" />
                 <input type="checkbox" name="product[visibility]" value="1"
                   defaultChecked={(this.props.product) ? this.state.product.visibility : true} />
                 <i className="fa"></i>
-                {I18n.t("merchant.admin.forms.online")}
+                {i18n.t("merchant.admin.forms.online")}
               </label>
             </div>
 
-            <h4>{I18n.t("merchant.admin.forms.featured_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.featured_title")}</h4>
             <div className="form-group">
               <label className="styled-cb">
                 <input type="hidden" name="product[featured]" value="0" />
                 <input type="checkbox" name="product[featured]" value="1"
                   defaultChecked={(this.state.product) ? this.state.product.featured : false} />
                 <i className="fa"></i>
-                {I18n.t("merchant.admin.forms.mark_as_featured")}
+                {i18n.t("merchant.admin.forms.mark_as_featured")}
               </label>
             </div>
           </div>
 
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.inventory_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.inventory_title")}</h4>
             <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.product.sku")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.product.sku")}</label>
               <input type="text" className="form-control" name="product[sku]"
                 defaultValue={(this.props.product) ? this.state.product.sku : ""}/>
             </div>
             <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.product.vendor")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.product.vendor")}</label>
               <input type="text" className="form-control" name="product[vendor]"
                 defaultValue={(this.props.product) ? this.state.product.vendor : ""}/>
             </div>
           </div>
 
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.categories_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.categories_title")}</h4>
             <div className="row">
               {this.props.categories.map(function(category){
                 return (
@@ -306,9 +306,9 @@ export default class ProductForm extends React.Component {
           </div>
 
           <div className="block">
-            <h4>{I18n.t("merchant.admin.forms.shipping_title")}</h4>
+            <h4>{i18n.t("merchant.admin.forms.shipping_title")}</h4>
             <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.product.flat_shipping_rate")}</label>
+              <label className="label">{i18n.t("activerecord.attributes.product.flat_shipping_rate")}</label>
               <input type="text" className="form-control" name="product[flat_shipping_rate]"
                 defaultValue={(this.props.product) ? this.state.product.flat_shipping_rate : ""}/>
             </div>
@@ -319,7 +319,7 @@ export default class ProductForm extends React.Component {
                 <input type="checkbox" name="product[pay_shipping_on_delivery]" value="1"
                   defaultChecked={(this.props.product) ? this.state.product.pay_shipping_on_delivery : false} />
                 <i className="fa"></i>
-                {I18n.t("activerecord.attributes.product.pay_shipping_on_delivery")}
+                {i18n.t("activerecord.attributes.product.pay_shipping_on_delivery")}
               </label>
             </div>
           </div>

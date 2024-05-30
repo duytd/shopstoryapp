@@ -48,7 +48,7 @@ export default class MenuItem extends React.Component {
               <a onClick={this.setMenuItem}>
                 <i className="fa fa-edit"></i>
               </a>
-              <a data-confirm={I18n.t("merchant.admin.forms.confirm")} onClick={this.deleteMenuItem}>
+              <a data-confirm={i18n.t("merchant.admin.forms.confirm")} onClick={this.deleteMenuItem}>
                 <i className="fa fa-times-circle-o"></i>
               </a>
             </span> : null}
