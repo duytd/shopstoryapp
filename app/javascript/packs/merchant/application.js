@@ -10,15 +10,12 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-json';
-//= require perfect-scrollbar/js/perfect-scrollbar.jquery
-//= require spectrum/spectrum
-//= require bootstrap-datepicker/dist/js/bootstrap-datepicker
+import 'perfect-scrollbar/dist/perfect-scrollbar';
+import 'spectrum/lib/spectrum';
 
+// Utilities
 import '../../src/functions';
 import '../../src/merchant/base';
-import '../../src/merchant/components';
-//= require merchant/routes
-//= require merchant/components
 
-import { I18n } from 'i18n-js';
-window.I18n = I18n
+// Register components
+import '../../src/merchant/components';

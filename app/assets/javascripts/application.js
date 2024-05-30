@@ -1,9 +1,0 @@
-//= require turbolinks
-//= require react
-//= require react_ujs
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap-sprockets
-//= require home/jquery.easing.1.3.min
-//= require home/jquery.sticky
-//= require landing
