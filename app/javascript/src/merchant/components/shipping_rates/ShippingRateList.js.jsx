@@ -1,7 +1,7 @@
 export default class ShippingRateList extends React.Component {
   render() {
     var headers = [
-      i18n.t("activerecord.attributes.shipping_rate.name")
+      I18n.t("activerecord.attributes.shipping_rate.name")
     ];
 
     return (

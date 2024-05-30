@@ -2,7 +2,7 @@ export default class Plan extends React.Component {
   componentDidMount() {
     var script = document.createElement("script");
     var stripe = document.getElementById("stripe_" + this.props.plan.id);
-    var label = i18n.t("merchant.admin.buttons.choose");
+    var label = I18n.t("merchant.admin.buttons.choose");
 
     if (stripe != null) {
       script.src = "https://checkout.stripe.com/checkout.js";
@@ -40,7 +40,7 @@ export default class Plan extends React.Component {
             {featureNodes}
           </ul>
           {(this.props.current_subscription && this.props.current_subscription.plan.id == this.props.plan.id) ?
-            <button disabled="true" className="btn btn-default btn-lg">{i18n.t("merchant.admin.buttons.current_plan")}</button> :
+            <button disabled="true" className="btn btn-default btn-lg">{I18n.t("merchant.admin.buttons.current_plan")}</button> :
             <form method="post" action={action}>
               {(method == "put") ?
                 <input type="hidden" name="_method" value="put"/> : null}

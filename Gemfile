@@ -7,14 +7,9 @@ gem "pg"
 gem "turbolinks"
 
 gem "sass"
-# gem "sass-rails"
-# gem "bootstrap-sass"
-# gem "font-awesome-sass"
 gem "uglifier"
-# gem "jquery-rails"
 gem "shakapacker"
 
-# gem "bower-rails"
 gem "devise"
 gem "cancancan"
 gem "apartment"
@@ -22,7 +17,7 @@ gem "figaro"
 gem "globalize"
 gem "globalize-accessors"
 gem "react_on_rails"
-gem "i18n-js"
+gem "i18n-js", "~> 3.9.2"
 gem "carrierwave"
 gem "fog-aws"
 gem "mini_magick"
@@ -66,7 +61,7 @@ gem "hipchat"
 
 group :development, :test do
   gem "pry"
-  gem "web-console", "~> 2.0"
+  gem "web-console"
   gem "spring", "~> 3.1.1"
   gem "rspec-rails"
   gem "rspec-collection_matchers"
@@ -78,10 +73,6 @@ group :development, :test do
   gem "launchy"
   gem "selenium-webdriver"
 end
-
-# group :assets do
-#   gem "turbo-sprockets-rails3"
-# end
 
 group :development do
   gem "annotate"

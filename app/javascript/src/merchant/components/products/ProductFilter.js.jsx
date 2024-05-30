@@ -1,6 +1,6 @@
 export default class ProductFilter extends React.Component {
   getInitialState() {
-    var label = this.props.selectedCategory ? translate(this.props.selectedCategory, "name") : i18n.t("merchant.admin.products.category")
+    var label = this.props.selectedCategory ? translate(this.props.selectedCategory, "name") : I18n.t("merchant.admin.products.category")
 
     return {
       label: label
@@ -20,7 +20,7 @@ export default class ProductFilter extends React.Component {
           </button>
           <ul className="dropdown-menu" aria-labelledby="categoryFilterDropDown">
             {categoryNodes}
-            <li onClick={this.filterByCategory.bind(this, null)}>{i18n.t("merchant.admin.products.all")}</li>
+            <li onClick={this.filterByCategory.bind(this, null)}>{I18n.t("merchant.admin.products.all")}</li>
           </ul>
         </div>
       </div>
@@ -28,7 +28,7 @@ export default class ProductFilter extends React.Component {
   },
   filterByCategory(category) {
     var url = this.props.url,
-      label = (category == null) ? i18n.t("merchant.admin.products.all") : translate(category, "name"),
+      label = (category == null) ? I18n.t("merchant.admin.products.all") : translate(category, "name"),
       newUrl = (category == null) ? url : url.addParams("category_id", category.id),
       categoryId = (category == null) ? null : category.id;
 

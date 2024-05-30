@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def render_breadcrumb
-    react_component "Breadcrumb", {breadcrumb: current_breadcrumb}
+    react_component "Breadcrumb", { props: { breadcrumb: current_breadcrumb } }
   end
 end

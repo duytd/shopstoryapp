@@ -1,27 +1,27 @@
 <div class="top-bar container-fluid">
-  <button class="navbar-toggle pull-left" type="button">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
+  <button class="navbar-toggler pull-left" type="button">
+    <span class="navbar-toggler-icon"></span>
   </button>
 
-  <%= react_component "Search" %>
+  <div class="search">
+    <%= react_component "Search" %>
+  </div>
+
   <div class="nav navbar-nav navbar-right pull-right">
-    <li class="hidden-sm hidden-md hidden-lg">
+    <li class="d-block d-sm-none">
       <a data-no-turbolink="true" href="?locale=ko">KO</a>
       <a data-no-turbolink="true" href="?locale=en">EN</a>
     </li>
-    <li class="hidden-xs">
+    <li class="d-none d-sm-block">
       <a data-no-turbolink="true" href="?locale=ko"><%= t "menu.korean" %></a>
       <a data-no-turbolink="true" href="?locale=en"><%= t "menu.english" %></a>
     </li>
-    <li class="hidden-sm hidden-md hidden-lg">
+    <li class="d-block d-sm-none">
       <%= link_to shop_url, "data-no-turbolink": true do %>
         <i class="fa fa-eye"></i>
       <% end %>
     </li>
-    <li class="hidden-xs">
+    <li class="d-none d-sm-block">
       <%= link_to t("merchant.admin.menu.view_shop"), shop_url, data: {turbolinks: false} %>
     </li>
     <% unless Rails.env.development? %>

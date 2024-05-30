@@ -11,9 +11,9 @@ export default class CategoryBox extends React.Component {
     if (this.props.categories.length == 0) {
       categoryList = (
         <div className="text-center">
-          <p>{i18n.t("merchant.admin.messages.no_category")}</p>
+          <p>{I18n.t("merchant.admin.messages.no_category")}</p>
           <a href={this.props.new_url} className="btn btn-lg btn-primary">
-            {i18n.t("merchant.admin.buttons.add")}
+            {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>
       )
@@ -34,7 +34,7 @@ export default class CategoryBox extends React.Component {
         list={categoryList}
         url={this.props.new_url}
         pagination={pagination}
-        title={i18n.t("merchant.admin.categories.title")} />
+        title={I18n.t("merchant.admin.categories.title")} />
     );
   }
 }

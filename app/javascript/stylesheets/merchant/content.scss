@@ -25,6 +25,9 @@ section.content {
         background: $gray;
       }
     }
+    .search {
+      display: inline-block;
+    }
     .search-form {
       padding-top: 5px;
       min-width:300px;
@@ -33,15 +36,11 @@ section.content {
       }
       input[name='q'] {
         padding-left: 10px;
-        &:before {
-          content: "\f002";
-          font-family: "FontAwesome";
-          position: absolute;
-        }
       }
     }
     .navbar-right {
       &.pull-right {
+        display: inline-block;
         margin: 0;
         a {
           display: inline-block;

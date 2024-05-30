@@ -1,14 +1,16 @@
-$(document).on("turbolinks:load", function() {
-  $sideBar = $("aside.left-panel");
-  $content = $("section.content");
+import PerfectScrollbar from 'perfect-scrollbar';
 
-  $sideBar.perfectScrollbar();
+$(document).ready(function() {
+  const $sideBar = $("aside.left-panel");
+  const $content = $("section.content");
+  const ps = new PerfectScrollbar('aside.left-panel');
 
-  $(".navbar-toggle").click(function() {
+  $(".navbar-toggler").click(function() {
     $sideBar.toggleClass("collapsed");
     $content.toggleClass("expansed");
     $(".subitems").hide();
-    $sideBar.perfectScrollbar("update");
+
+    ps.update();
   });
 
   $("aside.left-panel .item").on("click", function(){
@@ -18,7 +20,7 @@ $(document).on("turbolinks:load", function() {
   });
 
   $(window).on("scroll", function() {
-    if($(window).scrollTop() >= 47) {
+    if ($(window).scrollTop() >= 47) {
       $("#Intercom").addClass('scrolled')
     }
     else {

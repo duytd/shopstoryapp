@@ -33,7 +33,7 @@ export default class Product extends React.Component {
           {this.props.product.vendor}
         </td>
         <td>
-          {this.props.product.unlimited ? <span>{i18n.t("merchant.admin.forms.unlimited").toUpperCase()}</span> : this.props.product.in_stock}
+          {this.props.product.unlimited ? <span>{I18n.t("merchant.admin.forms.unlimited").toUpperCase()}</span> : this.props.product.in_stock}
         </td>
         <td>
           {this.props.product.featured.toString().toUpperCase()}

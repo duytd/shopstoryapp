@@ -1,0 +1,14 @@
+$fa-font-path: '~font-awesome/fonts/';
+
+@import "../../stylesheets/customer/variables";
+@import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
+
+@import "~owl.carousel/dist/assets/owl.carousel";
+@import "~owl.carousel/src/scss/theme.default";
+
+// Base components
+@import "../../stylesheets/checkboxes";
+
+// Customer
+@import "../../stylesheets/customer/base";

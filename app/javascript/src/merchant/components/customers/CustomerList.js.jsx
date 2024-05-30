@@ -1,9 +1,9 @@
 export default class CustomerList extends React.Component {
   render() {
     var headers = [
-      i18n.t("activerecord.attributes.customer.email"),
-      i18n.t("activerecord.attributes.customer.total_orders"),
-      i18n.t("activerecord.attributes.customer.total_spent")
+      I18n.t("activerecord.attributes.customer.email"),
+      I18n.t("activerecord.attributes.customer.total_orders"),
+      I18n.t("activerecord.attributes.customer.total_spent")
     ];
 
     return (

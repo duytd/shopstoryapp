@@ -41,28 +41,28 @@ export default class EditorMenu extends React.Component {
       <div className="editor-menu">
         <h4>
           <span><i className="fa fa-folder-o"></i></span>
-          {i18n.t("merchant.admin.assets.stylesheets")}
+          {I18n.t("merchant.admin.assets.stylesheets")}
         </h4>
         <ul>
           {stylesheetNodes}
         </ul>
         <h4>
           <span><i className="fa fa-folder-o"></i></span>
-          {i18n.t("merchant.admin.assets.javascripts")}
+          {I18n.t("merchant.admin.assets.javascripts")}
         </h4>
         <ul>
           {javascriptNodes}
         </ul>
         <h4>
           <span><i className="fa fa-folder-o"></i></span>
-          {i18n.t("merchant.admin.assets.translations")}
+          {I18n.t("merchant.admin.assets.translations")}
         </h4>
         <ul>
           {localeNodes}
         </ul>
         <h4>
           <span><i className="fa fa-folder-o"></i></span>
-          {i18n.t("merchant.admin.templates.title")}
+          {I18n.t("merchant.admin.templates.title")}
         </h4>
         <ul>
           {templateNodes}

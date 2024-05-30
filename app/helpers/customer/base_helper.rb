@@ -4,7 +4,7 @@ module Customer::BaseHelper
   def paginating object, props
     props.merge({
       page: object.current_page,
-      total_page: object.num_pages,
+      total_page: object.total_pages,
       total: object.total_count
     })
   end

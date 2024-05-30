@@ -1,5 +1,5 @@
 <% if Rails.env.development? %>
-  <%= stylesheet_link_tag "customer/themes/#{current_theme.directory}/application", "data-turbolinks-track": true %>
+  <%= stylesheet_pack_tag "customer/themes/#{current_theme.directory}/application", "data-turbolinks-track": true %>
 <% else %>
   <%= stylesheet_link_tag customer_styles_path, media: "all", "data-turbolinks-track": true %>
 <% end %>

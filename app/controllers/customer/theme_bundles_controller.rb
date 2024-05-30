@@ -19,6 +19,7 @@ class Customer::ThemeBundlesController < Customer::BaseController
   end
 
   private
+
   def load_theme_bundle
     @theme_bundle = current_shop.theme_bundles.with_theme current_shop.theme_id
   end

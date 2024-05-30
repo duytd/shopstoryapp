@@ -17,8 +17,8 @@ export default class ShipmentForm extends React.Component {
   renderShipment() {
     return (
       <div className="block">
-        <h3>{i18n.t("activerecord.attributes.order.shipment")}</h3>
-        <a className="btn btn-primary pull-right" onClick={this.props.enableEditing}>{i18n.t("merchant.admin.buttons.edit")}</a>
+        <h3>{I18n.t("activerecord.attributes.order.shipment")}</h3>
+        <a className="btn btn-primary pull-right" onClick={this.props.enableEditing}>{I18n.t("merchant.admin.buttons.edit")}</a>
         <p>{this.props.shipment.status.toUpperCase()}</p>
         <p>{translate(this.props.shipment.shipping_method, "name")}</p>
         <p>{this.props.shipment.tracking_code}</p>
@@ -28,14 +28,14 @@ export default class ShipmentForm extends React.Component {
   renderForm() {
     return (
       <div className="block">
-        <h3>{i18n.t("activerecord.attributes.order.shipment")}</h3>
+        <h3>{I18n.t("activerecord.attributes.order.shipment")}</h3>
         <form ref="form" id="shipment-form" className="shipment-form" action={Routes.merchant_product_order_path(this.props.order)}
           acceptCharset="UTF-8" method="put" onSubmit={this.submit}>
 
           {(this.props.shipment) ?
           <div className="form-group">
             <input type="hidden" className="form-control" name="order[shipment_attributes][order_id]" defaultValue={this.props.order.id}/>
-            <label className="label">{i18n.t("activerecord.attributes.shipment.status")}</label>
+            <label className="label">{I18n.t("activerecord.attributes.shipment.status")}</label>
             <FormErrors errors={this.state.errors.status} />
 
             <div className="select">
@@ -48,7 +48,7 @@ export default class ShipmentForm extends React.Component {
           </div> : null}
 
           <div className="form-group">
-            <label className="label">{i18n.t("activerecord.attributes.shipment.shipping_method_id")}</label>
+            <label className="label">{I18n.t("activerecord.attributes.shipment.shipping_method_id")}</label>
             <div className="select">
               <select className="form-control" name="order[shipment_attributes][shipping_method_id]" defaultValue={this.props.shipment ? this.props.shipment.shipment_method_id : ""}>
                 {this.props.shippingMethods.map(function(method, index) {
@@ -59,12 +59,12 @@ export default class ShipmentForm extends React.Component {
           </div>
 
           <div className="form-group">
-            <label className="label">{i18n.t("activerecord.attributes.shipment.tracking_code")}</label>
+            <label className="label">{I18n.t("activerecord.attributes.shipment.tracking_code")}</label>
             <input type="text" className="form-control" name="order[shipment_attributes][tracking_code]" defaultValue={(this.props.shipment) ? this.props.shipment.tracking_code : ""}/>
           </div>
 
           <div className="form-group text-right">
-            <button type="submit" className="btn btn-success" onClick={this.submit}>{i18n.t("merchant.admin.buttons.save")}</button>
+            <button type="submit" className="btn btn-success" onClick={this.submit}>{I18n.t("merchant.admin.buttons.save")}</button>
           </div>
         </form>
       </div>

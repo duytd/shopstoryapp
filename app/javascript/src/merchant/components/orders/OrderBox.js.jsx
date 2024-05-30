@@ -11,7 +11,7 @@ export default class OrderBox extends React.Component {
     if (this.props.orders.length == 0) {
       orderList = (
         <div className="text-center">
-          <p>{i18n.t("merchant.admin.messages.no_order")}</p>
+          <p>{I18n.t("merchant.admin.messages.no_order")}</p>
         </div>
       )
     }
@@ -30,7 +30,7 @@ export default class OrderBox extends React.Component {
         name="order"
         pagination={pagination}
         list={orderList}
-        title={i18n.t("merchant.admin.orders.title")} />
+        title={I18n.t("merchant.admin.orders.title")} />
     );
   }
 }

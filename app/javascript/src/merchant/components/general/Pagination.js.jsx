@@ -14,12 +14,12 @@ export default class Pagination extends React.Component {
         <div className="pagination">
           {(this.props.page > 1) ?
           <a href={this.props.url.addParams("page", 1)}>
-            {i18n.t("merchant.admin.pagination.first")}
+            {I18n.t("merchant.admin.pagination.first")}
           </a> : null}
 
           {(this.state.prev != null) ?
           <a href={this.props.url.addParams("page", this.state.prev)}>
-            {i18n.t("merchant.admin.pagination.previous")}
+            {I18n.t("merchant.admin.pagination.previous")}
           </a> : null}
 
           {(this.state.prevPages[0] > 1) ?
@@ -44,16 +44,16 @@ export default class Pagination extends React.Component {
 
           {(this.state.next != null) ?
           <a href={this.props.url.addParams("page", this.state.next)}>
-            {i18n.t("merchant.admin.pagination.next")}
+            {I18n.t("merchant.admin.pagination.next")}
           </a> : null}
 
           {(this.props.page < this.props.totalPage) ?
           <a href={this.props.url.addParams("page", this.props.totalPage)}>
-            {i18n.t("merchant.admin.pagination.last")}
+            {I18n.t("merchant.admin.pagination.last")}
           </a> : null}
 
           <p className="small top15">
-            {i18n.t("merchant.admin.pagination.showing", {size: this.props.size, total: this.props.total})}
+            {I18n.t("merchant.admin.pagination.showing", {size: this.props.size, total: this.props.total})}
           </p>
         </div> : null}
       </div>

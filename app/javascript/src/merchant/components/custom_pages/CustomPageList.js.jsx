@@ -1,7 +1,7 @@
 export default class CustomPageList extends React.Component {
   render() {
     var headers = [
-      i18n.t("activerecord.attributes.custom_page.title")
+      I18n.t("activerecord.attributes.custom_page.title")
     ];
 
     return (

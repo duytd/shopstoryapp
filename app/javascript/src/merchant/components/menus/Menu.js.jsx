@@ -34,11 +34,11 @@ export default class Menu extends React.Component {
           <p className="title">
             {this.props.menu.name}
             <a className="btn btn-sm btn-danger pull-right"
-              data-confirm={i18n.t("merchant.admin.forms.confirm")} onClick={this.deleteMenu}>
-              {i18n.t("merchant.admin.buttons.delete")}
+              data-confirm={I18n.t("merchant.admin.forms.confirm")} onClick={this.deleteMenu}>
+              {I18n.t("merchant.admin.buttons.delete")}
             </a>
             <a className="btn btn-sm btn-success pull-right" href={Routes.edit_merchant_menu_path.localize(this.props.menu.id)}>
-              {i18n.t("merchant.admin.buttons.edit")}
+              {I18n.t("merchant.admin.buttons.edit")}
             </a>
           </p>
           <form ref="draggable">

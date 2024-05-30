@@ -11,9 +11,9 @@ export default class BannerBox extends React.Component {
     if (this.props.banners.length == 0) {
       bannerList = (
         <div className="text-center">
-          <p>{i18n.t("merchant.admin.messages.no_banner")}</p>
+          <p>{I18n.t("merchant.admin.messages.no_banner")}</p>
           <a href={this.props.new_url} className="btn btn-lg btn-primary">
-            {i18n.t("merchant.admin.buttons.add")}
+            {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>
       )
@@ -34,7 +34,7 @@ export default class BannerBox extends React.Component {
         list={bannerList}
         url={this.props.new_url}
         pagination={pagination}
-        title={i18n.t("merchant.admin.banners.title")} />
+        title={I18n.t("merchant.admin.banners.title")} />
     );
   }
 }

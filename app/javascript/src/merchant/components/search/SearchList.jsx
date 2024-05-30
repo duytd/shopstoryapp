@@ -1,9 +1,12 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
 export default class SearchList extends React.Component {
   render() {
     var productTab = (
       <li className="active">
         <a data-toggle="tab" href="#products">
-          {i18n.t("merchant.admin.search.products")}
+          {I18n.t("merchant.admin.search.products")}
           {(this.props.products.length > 0) ? <span className="badge badge-danger">{this.props.products.length}</span> : null}
         </a>
       </li>
@@ -12,7 +15,7 @@ export default class SearchList extends React.Component {
     var categoryTab = (
       <li>
         <a data-toggle="tab" href="#categories">
-          {i18n.t("merchant.admin.search.categories")}
+          {I18n.t("merchant.admin.search.categories")}
           {(this.props.categories.length > 0) ? <span className="badge badge-danger">{this.props.categories.length}</span> : null}
         </a>
       </li>
@@ -21,7 +24,7 @@ export default class SearchList extends React.Component {
     var customPageTab = (
       <li>
         <a data-toggle="tab" href="#pages">
-          {i18n.t("merchant.admin.search.custom_pages")}
+          {I18n.t("merchant.admin.search.custom_pages")}
           {(this.props.pages.length > 0) ? <span className="badge badge-danger">{this.props.pages.length}</span> : null}
         </a>
       </li>
@@ -30,14 +33,14 @@ export default class SearchList extends React.Component {
     var customerTab = (
       <li>
         <a data-toggle="tab" href="#customers">
-          {i18n.t("merchant.admin.search.customers")}
+          {I18n.t("merchant.admin.search.customers")}
           {(this.props.customers.length > 0) ? <span className="badge badge-danger">{this.props.customers.length}</span> : null}
         </a>
       </li>
     )
 
     return (
-      <div className="search-list block hide">
+      <div className="search-list block d-none">
         <ul className="nav nav-tabs">
           {productTab}
           {categoryTab}
@@ -47,28 +50,28 @@ export default class SearchList extends React.Component {
 
         <div className="tab-content">
           <div id="products" className="tab-pane fade in active">
-            {this.props.products.length == 0 ? <p>{i18n.t("merchant.admin.search.no_result")}</p> : null}
+            {this.props.products.length == 0 ? <p>{I18n.t("merchant.admin.search.no_result")}</p> : null}
             {this.props.products.map(function(product) {
               return this.renderProduct(product);
             }.bind(this))}
           </div>
 
           <div id="categories" className="tab-pane fade">
-            {this.props.categories.length == 0 ? <p>{i18n.t("merchant.admin.search.no_result")}</p> : null}
+            {this.props.categories.length == 0 ? <p>{I18n.t("merchant.admin.search.no_result")}</p> : null}
             {this.props.categories.map(function(category) {
               return this.renderCategory(category);
             }.bind(this))}
           </div>
 
           <div id="pages" className="tab-pane fade">
-            {this.props.pages.length == 0 ? <p>{i18n.t("merchant.admin.search.no_result")}</p> : null}
+            {this.props.pages.length == 0 ? <p>{I18n.t("merchant.admin.search.no_result")}</p> : null}
             {this.props.pages.map(function(page) {
               return this.renderPage(page);
             }.bind(this))}
           </div>
 
           <div id="customers" className="tab-pane fade">
-            {this.props.customers.length == 0 ? <p>{i18n.t("merchant.admin.search.no_result")}</p> : null}
+            {this.props.customers.length == 0 ? <p>{I18n.t("merchant.admin.search.no_result")}</p> : null}
             {this.props.customers.map(function(customer) {
               return this.renderCustomer(customer);
             }.bind(this))}
@@ -76,7 +79,8 @@ export default class SearchList extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   renderProduct(product) {
     return (
       <div className="media" key={"product_" + product.id}>
@@ -91,13 +95,14 @@ export default class SearchList extends React.Component {
               {translate(product, "name")}
             </a>
           </h4>
-          <p><label>{i18n.t("activerecord.attributes.product.sku")}:</label> {product.sku}</p>
-          <p><label>{i18n.t("activerecord.attributes.product.price")}:</label> {product.price}</p>
-          <p><label>{i18n.t("activerecord.attributes.product.in_stock")}:</label> {product.in_stock}</p>
+          <p><label>{I18n.t("activerecord.attributes.product.sku")}:</label> {product.sku}</p>
+          <p><label>{I18n.t("activerecord.attributes.product.price")}:</label> {product.price}</p>
+          <p><label>{I18n.t("activerecord.attributes.product.in_stock")}:</label> {product.in_stock}</p>
         </div>
       </div>
     )
-  },
+  }
+
   renderCategory(category) {
     return (
       <div className="category" key={"category_" + category.id}>
@@ -108,7 +113,8 @@ export default class SearchList extends React.Component {
         </h4>
       </div>
     )
-  },
+  }
+
   renderPage(page) {
     return (
       <div className="page" key={"page_" + page.id}>
@@ -120,7 +126,8 @@ export default class SearchList extends React.Component {
         <p>{translate(page, "content")}</p>
       </div>
     )
-  },
+  }
+
   renderCustomer(customer) {
     return (
       <div className="customer" key={"customer_" + customer.id}>
@@ -129,8 +136,8 @@ export default class SearchList extends React.Component {
             {customer.first_name} {customer.last_name}
           </a>
         </h4>
-        <p><label>{i18n.t("activerecord.attributes.customer.email")}:</label> <a href={Routes.edit_merchant_customer_path.localize(customer.id)}>{customer.email}</a></p>
-        <p><label>{i18n.t("activerecord.attributes.customer.phone_number")}:</label> {customer.phone_number}</p>
+        <p><label>{I18n.t("activerecord.attributes.customer.email")}:</label> <a href={Routes.edit_merchant_customer_path.localize(customer.id)}>{customer.email}</a></p>
+        <p><label>{I18n.t("activerecord.attributes.customer.phone_number")}:</label> {customer.phone_number}</p>
       </div>
     )
   }

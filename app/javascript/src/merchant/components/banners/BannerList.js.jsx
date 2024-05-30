@@ -1,7 +1,7 @@
 export default class BannerList extends React.Component {
   render() {
     var headers = [
-      i18n.t("activerecord.attributes.banner.name")
+      I18n.t("activerecord.attributes.banner.name")
     ];
 
     return (

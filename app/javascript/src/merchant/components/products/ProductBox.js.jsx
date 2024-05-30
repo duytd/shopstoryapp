@@ -50,9 +50,9 @@ export default class ProductBox extends React.Component {
             selectedCategory={this.state.selectedCategory}
             updateData={this.updateData} />
           <div className="text-center">
-            <p>{i18n.t("merchant.admin.messages.no_product")}</p>
+            <p>{I18n.t("merchant.admin.messages.no_product")}</p>
             <a href={this.props.new_url} className="btn btn-lg btn-primary">
-              {i18n.t("merchant.admin.buttons.add")}
+              {I18n.t("merchant.admin.buttons.add")}
             </a>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default class ProductBox extends React.Component {
           pagination={pagination}
           handleExportAll={this.handleExportAll}
           handleImport={this.handleImport}
-          title={i18n.t("merchant.admin.products.title")} />
+          title={I18n.t("merchant.admin.products.title")} />
       </div>
     );
   },

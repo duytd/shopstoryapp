@@ -5,10 +5,10 @@ export default class Dashboard extends React.Component {
         <table className="table">
           <thead>
             <tr>
-              <th>{i18n.t("merchant.admin.orders.order_id")}</th>
-              <th>{i18n.t("merchant.admin.orders.products")}</th>
-              <th>{i18n.t("merchant.admin.orders.order_status")}</th>
-              <th>{i18n.t("merchant.admin.orders.total")}</th>
+              <th>{I18n.t("merchant.admin.orders.order_id")}</th>
+              <th>{I18n.t("merchant.admin.orders.products")}</th>
+              <th>{I18n.t("merchant.admin.orders.order_status")}</th>
+              <th>{I18n.t("merchant.admin.orders.total")}</th>
             </tr>
           </thead>
           <tbody>
@@ -22,7 +22,7 @@ export default class Dashboard extends React.Component {
                   </td>
                   <td>{this.renderProducts(order.order_products)}</td>
                   <td><div className={"label " + this.getStatusKlass(order.status)}>#{order.status.toUpperCase()}</div></td>
-                  <td>{i18n.toNumber(order.total, {precision: 0, delimiter: ","})}</td>
+                  <td>{I18n.toNumber(order.total, {precision: 0, delimiter: ","})}</td>
                 </tr>
               )
             }.bind(this))}
@@ -95,22 +95,22 @@ export default class Dashboard extends React.Component {
     return (
       <div className="block">
         <h3 className="text-center">
-          {i18n.t("merchant.admin.dashboard.today_revenue")}
+          {I18n.t("merchant.admin.dashboard.today_revenue")}
         </h3>
 
-        <div className="highlight-number">{i18n.toNumber(this.props.today_revenue, {precision: 0, delimiter: ","})}</div>
+        <div className="highlight-number">{I18n.toNumber(this.props.today_revenue, {precision: 0, delimiter: ","})}</div>
         <div className="row">
           <div className="col-xs-6 text-center">
             <h4>
-              {i18n.t("merchant.admin.dashboard.last_7_days")}
+              {I18n.t("merchant.admin.dashboard.last_7_days")}
             </h4>
-            <p>{i18n.toCurrency(this.props.last_7_days_revenue, {precision: 0, delimiter: ",", unit: "₩"})}</p>
+            <p>{I18n.toCurrency(this.props.last_7_days_revenue, {precision: 0, delimiter: ",", unit: "₩"})}</p>
           </div>
           <div className="col-xs-6 text-center">
             <h4>
-              {i18n.t("merchant.admin.dashboard.last_30_days")}
+              {I18n.t("merchant.admin.dashboard.last_30_days")}
             </h4>
-            <p>{i18n.toCurrency(this.props.last_30_days_revenue, {precision: 0, delimiter: ",", unit: "₩"})}</p>
+            <p>{I18n.toCurrency(this.props.last_30_days_revenue, {precision: 0, delimiter: ",", unit: "₩"})}</p>
           </div>
         </div>
       </div>
@@ -118,10 +118,10 @@ export default class Dashboard extends React.Component {
   },
   renderStatistics() {
     var data = [
-      ["icon-success", <i className="fa fa-3x fa-won"></i>, i18n.t("merchant.admin.dashboard.total_revenue"), this.props.total_revenue, "javascript:void(0)"],
-      ["icon-primary", <i className="fa fa-3x fa-cart-plus"></i>, i18n.t("merchant.admin.dashboard.today_sales"), this.props.today_sales, Routes.merchant_product_orders_path.localize()],
-      ["icon-success", <i className="fa fa-3x fa-tag"></i>, i18n.t("merchant.admin.dashboard.total_products"), this.props.total_products, Routes.merchant_products_path.localize()],
-      ["icon-primary", <i className="fa fa-3x fa-user"></i>, i18n.t("merchant.admin.dashboard.total_customers"), this.props.total_customers, Routes.merchant_customers_path.localize()]
+      ["icon-success", <i className="fa fa-3x fa-won"></i>, I18n.t("merchant.admin.dashboard.total_revenue"), this.props.total_revenue, "javascript:void(0)"],
+      ["icon-primary", <i className="fa fa-3x fa-cart-plus"></i>, I18n.t("merchant.admin.dashboard.today_sales"), this.props.today_sales, Routes.merchant_product_orders_path.localize()],
+      ["icon-success", <i className="fa fa-3x fa-tag"></i>, I18n.t("merchant.admin.dashboard.total_products"), this.props.total_products, Routes.merchant_products_path.localize()],
+      ["icon-primary", <i className="fa fa-3x fa-user"></i>, I18n.t("merchant.admin.dashboard.total_customers"), this.props.total_customers, Routes.merchant_customers_path.localize()]
     ]
     return (
       <div className="row">
@@ -137,7 +137,7 @@ export default class Dashboard extends React.Component {
                   </div>
                   <div className="col-xs-6">
                     <a href={d[4]}>
-                      <h3>{i18n.toNumber(d[3], {precision: 0, delimiter: ","})}</h3>
+                      <h3>{I18n.toNumber(d[3], {precision: 0, delimiter: ","})}</h3>
                     </a>
                     <p>{d[2]}</p>
                   </div>
@@ -154,7 +154,7 @@ export default class Dashboard extends React.Component {
       <div className="dashboard">
         {this.renderStatistics()}
         <div className="block">
-          <LineChart data={this.props.weeky_chart_data} dataSetLabel={i18n.t("merchant.admin.reports.order.data_title")} height="150" />
+          <LineChart data={this.props.weeky_chart_data} dataSetLabel={I18n.t("merchant.admin.reports.order.data_title")} height="150" />
         </div>
         <div className="row">
           <div className="col-sm-4">
@@ -163,9 +163,9 @@ export default class Dashboard extends React.Component {
           <div className="col-sm-8">
             <div className="block">
               <a href={Routes.merchant_product_orders_path.localize()} className="btn btn-sm btn-danger pull-right">
-                {i18n.t("merchant.admin.buttons.view_all")}
+                {I18n.t("merchant.admin.buttons.view_all")}
               </a>
-              <h3>{i18n.t("merchant.admin.dashboard.recent_orders")}</h3>
+              <h3>{I18n.t("merchant.admin.dashboard.recent_orders")}</h3>
               {this.renderOrders()}
             </div>
           </div>

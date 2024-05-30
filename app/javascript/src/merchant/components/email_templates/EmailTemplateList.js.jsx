@@ -7,7 +7,7 @@ export default class EmailTemplateList extends React.Component {
     return (
       <div className="editor-menu">
         <h4>
-          {i18n.t("merchant.admin.email_templates.title")}
+          {I18n.t("merchant.admin.email_templates.title")}
         </h4>
         <ul>
           {templateNodes}

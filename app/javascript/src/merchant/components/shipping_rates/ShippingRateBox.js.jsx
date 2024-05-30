@@ -8,9 +8,9 @@ export default class ShippingRateBox extends React.Component {
     if (this.props.shipping_rates.length == 0) {
       shippingRateList = (
         <div className="text-center">
-          <p>{i18n.t("merchant.admin.messages.no_shipping_rate")}</p>
+          <p>{I18n.t("merchant.admin.messages.no_shipping_rate")}</p>
           <a href={Routes.new_merchant_shipping_rate_path.localize()} className="btn btn-lg btn-primary">
-            {i18n.t("merchant.admin.buttons.add")}
+            {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>
       )
@@ -20,7 +20,7 @@ export default class ShippingRateBox extends React.Component {
       <Box name="shipping_rate"
         list={shippingRateList}
         url={Routes.new_merchant_shipping_rate_path.localize()}
-        title={i18n.t("merchant.admin.shipping_rates.title")} />
+        title={I18n.t("merchant.admin.shipping_rates.title")} />
     );
   }
 }

@@ -26,7 +26,7 @@ class TemplateService
   end
 
   def create_bundle
-    templates_dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{@theme.directory}/templates"
+    templates_dir = "#{Rails.root}/app/javascripts/src/customer/themes/#{@theme.directory}/templates"
     templates = []
 
     Dir.glob("#{templates_dir}/**/*.rt") do |file|

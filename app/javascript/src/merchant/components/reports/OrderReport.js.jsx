@@ -11,14 +11,14 @@ export default class OrderReport extends React.Component {
     return (
       <div className="reports block">
         {reportTypes.map(function(type, index) {
-          return <button key={"type_" + index} onClick={this.updateData.bind(this, type)}>{i18n.t("merchant.admin.reports.order.time." + type)}</button>
+          return <button key={"type_" + index} onClick={this.updateData.bind(this, type)}>{I18n.t("merchant.admin.reports.order.time." + type)}</button>
         }.bind(this))}
 
         <div className="chart">
           <a className="btn btn-sm btn-primary pull-right" href={Routes.order_merchant_reports_path({"format": "csv", "report_type": this.state.reportType, "locale": I18n.locale})}>
-            {i18n.t("merchant.admin.buttons.export")}
+            {I18n.t("merchant.admin.buttons.export")}
           </a>
-          <LineChart data={this.state.data} dataSetLabel={i18n.t("merchant.admin.reports.order.data_title")} />
+          <LineChart data={this.state.data} dataSetLabel={I18n.t("merchant.admin.reports.order.data_title")} />
         </div>
       </div>
     )

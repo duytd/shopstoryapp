@@ -11,9 +11,9 @@ export default class CustomPageBox extends React.Component {
     if (this.props.custom_pages.length == 0) {
       customPageList = (
         <div className="text-center">
-          <p>{i18n.t("merchant.admin.messages.no_custom_page")}</p>
+          <p>{I18n.t("merchant.admin.messages.no_custom_page")}</p>
           <a href={this.props.new_url} className="btn btn-lg btn-primary">
-            {i18n.t("merchant.admin.buttons.add")}
+            {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>
       )
@@ -34,7 +34,7 @@ export default class CustomPageBox extends React.Component {
         list={customPageList}
         pagination={pagination}
         url={this.props.new_url}
-        title={i18n.t("merchant.admin.custom_pages.title")} />
+        title={I18n.t("merchant.admin.custom_pages.title")} />
     );
   }
 }

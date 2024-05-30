@@ -1,7 +1,7 @@
 export default class CategoryList extends React.Component {
   render: function() {
     var headers = [
-      i18n.t("activerecord.attributes.category.name")
+      I18n.t("activerecord.attributes.category.name")
     ];
 
     return (

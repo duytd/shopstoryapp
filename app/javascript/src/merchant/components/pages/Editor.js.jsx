@@ -51,7 +51,7 @@ export default class Editor extends React.Component {
             </div>
             <div className="text-right">
               <SubmitButtons redirect_url={Routes.merchant_root_path.localize()} fixed={true}>
-                <button onClick={this.reset} className="btn btn-danger">{i18n.t("merchant.admin.assets.reset")}</button>
+                <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.assets.reset")}</button>
               </SubmitButtons>
             </div>
           </form>

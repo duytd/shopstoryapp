@@ -47,13 +47,13 @@ export default class MenuForm extends React.Component {
         <form ref="form" action={this.props.url}
           acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}>
           <div className="col-sm-2">
-            <h4>{i18n.t("merchant.admin.menus.menu_description")}</h4>
+            <h4>{I18n.t("merchant.admin.menus.menu_description")}</h4>
           </div>
           <div className="col-sm-10">
             <div className="block">
               <div className="form-group row">
                 <div className="col-sm-12">
-                  <label className="label">{i18n.t("activerecord.attributes.menu.position")}</label>
+                  <label className="label">{I18n.t("activerecord.attributes.menu.position")}</label>
                   <FormErrors errors={this.state.errors.position} />
                   <div className="select">
                     <select className="form-control" name="menu[position]"
@@ -68,7 +68,7 @@ export default class MenuForm extends React.Component {
 
               <div className="form-group row">
                 <div className="col-sm-12">
-                  <label className="label">{i18n.t("activerecord.attributes.menu.name")}</label>
+                  <label className="label">{I18n.t("activerecord.attributes.menu.name")}</label>
                   <FormErrors errors={this.state.errors.name} />
                   <input type="text" name="menu[name]" defaultValue={(this.state.menu) ? this.state.menu.name : null} className="form-control" />
                 </div>
@@ -84,7 +84,7 @@ export default class MenuForm extends React.Component {
         {(this.state.menu) ?
           <div className="menu-items">
             <div className="col-sm-2">
-              <h4>{i18n.t("merchant.admin.menus.menu_items")}</h4>
+              <h4>{I18n.t("merchant.admin.menus.menu_items")}</h4>
             </div>
             <div className="col-sm-10">
               <div className="row">
@@ -107,7 +107,7 @@ export default class MenuForm extends React.Component {
                   <div className="block">
                     <form ref="draggable">
                       <div className="draggable-list" onDragOver={this.dragOver}>
-                        {(this.state.items.length > 0) ? menuItems : i18n.t("merchant.admin.menu_items.no_item")}
+                        {(this.state.items.length > 0) ? menuItems : I18n.t("merchant.admin.menu_items.no_item")}
                       </div>
                     </form>
                   </div>

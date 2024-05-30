@@ -10,7 +10,6 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-json';
-import 'perfect-scrollbar/dist/perfect-scrollbar';
 
 // Utilities
 import '../../src/functions';

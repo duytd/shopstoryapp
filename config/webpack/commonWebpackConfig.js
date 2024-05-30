@@ -14,6 +14,12 @@ const commonOptions = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.rt$/i,
+        use: [
+          'react-templates-loader?modules=amd'
+        ]
+      }
     ],
   },
   resolve: {

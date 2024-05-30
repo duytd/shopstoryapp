@@ -11,7 +11,7 @@ export default class CustomerBox extends React.Component {
     if (this.props.customers.length == 0) {
       customerList = (
         <div className="text-center">
-          <p>{i18n.t("merchant.admin.messages.no_customer")}</p>
+          <p>{I18n.t("merchant.admin.messages.no_customer")}</p>
         </div>
       )
     }
@@ -29,7 +29,7 @@ export default class CustomerBox extends React.Component {
       <Box name="custom-page"
         list={customerList}
         pagination={pagination}
-        title={i18n.t("merchant.admin.customers.title")} />
+        title={I18n.t("merchant.admin.customers.title")} />
     );
   }
 }
