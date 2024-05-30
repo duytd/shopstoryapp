@@ -11,7 +11,6 @@ import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-json';
 import 'perfect-scrollbar/dist/perfect-scrollbar';
-import 'spectrum/lib/spectrum';
 
 // Utilities
 import '../../src/functions';
