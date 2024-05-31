@@ -1,26 +1,52 @@
+import React from 'react';
+import Banner from '../../components/banners/Banner';
+import Category from '../../components/categories/Category';
+import Product from '../../components/products/Product';
+import Order from '../../components/orders/Order';
+import CustomPage from '../../components/custom_pages/CustomPage';
+import Customer from '../../components/customers/Customer';
+import ShippingRate from '../../components/shipping_rates/ShippingRate';
+import Discount from '../../components/discounts/Discount';
+
+import BulkAction from './BulkAction';
+import SelectAllCb from './SelectAllCb';
+
+import * as Routes from '../../../routes';
+
 export default class List extends React.Component {
+  constructor(props) {
+    super(props);
+
+    var sorting = this.props.sorting;
+    var sortBy = (sorting != null) ? sorting.sorted_by : null;
+    var sortDirection = (sorting != null) ? sorting.sort_direction : null;
+    var items = this.props.items.map(function(item) {
+      item.checked = false;
+      return item;
+    })
+
+    this.state = {
+      items: items,
+      checkCount: 0,
+      isSelectAll: false,
+      sortBy: sortBy,
+      sortDirection: sortDirection
+    };
+  }
+
   componentWillReceiveProps(nextProps) {
     var items = nextProps.items.map(function(item) {
-
       item.checked = false;
       return item;
     })
 
     this.setState({items: items, checkCount: 0, isSelectAll: false});
-  },
-  getInitialState() {
-    var sorting = this.props.sorting;
-    var sortBy = (sorting != null) ? sorting.sorted_by : null;
-    var sortDirection = (sorting != null) ? sorting.sort_direction : null;
-    var items = this.props.items.map(function(item) {
+  }
 
-      item.checked = false;
-      return item;
-    })
-    return {items: items, checkCount: 0, isSelectAll: false, sortBy: sortBy, sortDirection: sortDirection};
-  },
   render() {
     var itemNodes = this.state.items.map(function(item) {
+      let itemChildren = null;
+
       switch(this.props.type) {
         case "category":
           itemChildren = (
@@ -103,7 +129,6 @@ export default class List extends React.Component {
           );
           break;
         default:
-          itemChildren = null;
           break;
       }
 
@@ -135,7 +160,8 @@ export default class List extends React.Component {
         </div>
       </div>
     );
-  },
+  }
+
   renderHeaders() {
     return this.props.headers.map(function(h, index){
       if (this.props.sortable && this.props.sortableColumns) {
@@ -160,7 +186,8 @@ export default class List extends React.Component {
         return <th key={"h_" + index}>{h}</th>
       }
     }.bind(this))
-  },
+  }
+
   getSortableColumn(index) {
     var result = null;
 
@@ -172,7 +199,8 @@ export default class List extends React.Component {
     })
 
     return result;
-  },
+  }
+
   sort(index) {
     var url = Routes.merchant_products_path();
     var sortBy = this.getSortableColumn(index).name;
@@ -189,7 +217,8 @@ export default class List extends React.Component {
       }.bind(this))
 
     }.bind(this))
-  },
+  }
+
   deleteItem(item) {
     var items = this.state.items;
     var index = items.indexOf(item);
@@ -211,7 +240,8 @@ export default class List extends React.Component {
     else {
       this.replaceState({items: items, checkCount: this.state.checkCount});
     }
-  },
+  }
+
   deleteAllItem(item_ids) {
     var items = this.state.items;
 
@@ -230,8 +260,9 @@ export default class List extends React.Component {
     else {
       this.replaceState({items: items, checkCount: 0, isSelectAll: false});
     }
-  },
-  handleExport(e) {
+  }
+
+  handleExport = (e) => {
     e.preventDefault();
 
     var item_ids = [];
@@ -242,8 +273,9 @@ export default class List extends React.Component {
     })
 
     this.props.handleExport(item_ids);
-  },
-  handleDeleteAll(e) {
+  }
+
+  handleDeleteAll = (e) => {
     e.preventDefault();
 
     var item_ids = [];
@@ -292,8 +324,9 @@ export default class List extends React.Component {
         this.deleteAllItem(item_ids);
       }.bind(this)
     });
-  },
-  handleSelectAll(checked) {
+  }
+
+  handleSelectAll = (checked) => {
     var items = this.state.items.map(function(item) {
 
       item.checked = checked;
@@ -301,9 +334,10 @@ export default class List extends React.Component {
     });
     var checkCount = (checked) ? items.length : 0;
 
-    this.replaceState({items: items, checkCount: checkCount, isSelectAll: checked});
-  },
-  handleSelect(item, checked) {
+    this.setState({items: items, checkCount: checkCount, isSelectAll: checked});
+  }
+
+  handleSelect = (item, checked) => {
     var items = this.state.items;
     var index = items.indexOf(item);
     var currentChecked = items[index].checked;
@@ -311,6 +345,6 @@ export default class List extends React.Component {
     var isSelectAll = (checkCount < items.length) ? false : true;
 
     items[index].checked = checked;
-    this.replaceState({items: items, checkCount: checkCount, isSelectAll: isSelectAll});
+    this.setState({items: items, checkCount: checkCount, isSelectAll: isSelectAll});
   }
 }

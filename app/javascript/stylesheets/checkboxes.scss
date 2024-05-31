@@ -20,11 +20,6 @@
   input[type="checkbox"]:checked + i::before {
     content: "\f00c";
   }
-  input:checked + i {
-    border-color: $checkbox-border-color;
-    color: $checkbox-color;
-    background: $checkbox-bg-color;
-  }
   span {
     margin-left: 5px;
     font-weight: normal;

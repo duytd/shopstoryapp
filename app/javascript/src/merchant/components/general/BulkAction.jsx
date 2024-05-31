@@ -1,3 +1,6 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
 export default class BulkAction extends React.Component {
   render() {
     return (
@@ -14,7 +17,6 @@ export default class BulkAction extends React.Component {
             {(this.props.exportable) ?
               <li><a onClick={this.props.exportHandler}>{I18n.t("merchant.admin.buttons.export_selected")}</a></li>
             : null}
-
           </ul>
         </div>
       </div>

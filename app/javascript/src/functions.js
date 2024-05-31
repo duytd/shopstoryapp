@@ -1,3 +1,5 @@
+import I18n from 'i18n-js';
+
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
@@ -62,14 +64,6 @@ function translate(object, attribute) {
     return object[attribute + "_en"]
   }
 }
-
-// $.fn.scrollView = function () {
-//   return this.each(function () {
-//     $("html, body").animate({
-//       scrollTop: $(this).offset().top
-//     }, 1000);
-//   });
-// }
 
 if (typeof Dropzone != "undefined") {
   Dropzone.prototype._getParamName = function(n) {

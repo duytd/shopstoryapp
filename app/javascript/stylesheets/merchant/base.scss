@@ -28,7 +28,7 @@ body {
 }
 
 label.label {
-  color: $gray;
+  color: $gray-dark;
   font-size: 13px;
   line-height: 2em;
   padding: 10px 0;
@@ -79,7 +79,7 @@ a {
 }
 
 aside.left-panel {
-  background: $base-dark;
+  background: $purple;
   position: fixed;
   left: 0;
   top: 0;

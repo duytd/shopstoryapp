@@ -1,0 +1,22 @@
+<div class="home bg-img-2">
+  <div class="container px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+      <div class="col-sm-8 col-lg-6">
+        <h1 class="display-3 fw-bold lh-1 mb-3 text-light">WORLD FIRST COMMUNITY-LED E-COMMERCE</h1>
+        <p class="lead text-light">Shopstory enables you to launch a fully featured online stores in minutes. Product development is fully led by community. Learn more</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <% if merchant_signed_in? %>
+            <%= link_to t("buttons.go_to_store"), merchant_root_url(subdomain: current_merchant.shop.subdomain),
+              class: "btn btn-lg btn-primary px-4 me-md-2 mt-3" %>
+          <% else %>
+            <%= form_tag new_merchant_registration_path, method: :get do |f| %>
+              <%= text_field_tag :shop_name, nil, placeholder: t("pages.home.shop_name"),
+                class: "form-control" %>
+              <%= submit_tag t("buttons.get_started"), class: "btn btn-lg btn-primary px-4 me-md-2 mt-3"%>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

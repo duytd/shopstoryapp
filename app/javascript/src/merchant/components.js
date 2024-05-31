@@ -8,7 +8,12 @@ import ShopForm from './components/shops/ShopForm';
 import Webmaster from './components/shops/Webmaster';
 import Search from './components/search/Search';
 
-import Breadcrumb from './components/general/Breadcrumb.js';
+//Banners
+import BannerBox from './components/banners/BannerBox';
+import BannerForm from './components/banners/BannerForm';
+
+// General
+import Breadcrumb from './components/general/Breadcrumb';
 
 // Setup locales
 I18n.translations = translations;
@@ -19,5 +24,7 @@ ReactOnRails.register({
   ShopForm,
   Webmaster,
   Search,
-  Breadcrumb
+  Breadcrumb,
+  BannerForm,
+  BannerBox
 });

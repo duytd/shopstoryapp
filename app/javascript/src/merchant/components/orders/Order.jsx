@@ -1,3 +1,7 @@
+import React from 'react';
+import Item from '../../components/general/Item';
+import * as Routes from '../../../routes';
+
 export default class Order extends React.Component {
   renderPaymentStatus(payment) {
     var paymentStatus = null;
@@ -25,7 +29,8 @@ export default class Order extends React.Component {
     }
 
     return paymentStatus;
-  },
+  }
+
   renderShipmentStatus(shipment) {
     var shipmentStatus = null;
 
@@ -52,7 +57,8 @@ export default class Order extends React.Component {
     }
 
     return shipmentStatus;
-  },
+  }
+
   renderOrderStatus() {
     switch(this.props.order.status) {
       case "incompleted":
@@ -79,7 +85,8 @@ export default class Order extends React.Component {
         {this.props.order.status.capitalize()}
       </div>
     )
-  },
+  }
+
   render() {
     var shippingAddress = this.props.order.shipping_address,
       billingAddress = this.props.order.billing_address;

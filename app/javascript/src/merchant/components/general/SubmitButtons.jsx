@@ -3,7 +3,7 @@ import I18n from 'i18n-js';
 
 export default class SubmitButtons extends React.Component {
   render() {
-    var goBackButton = <button onClick={this.goBack} className="btn btn-default">
+    var goBackButton = <button onClick={this.goBack} className="btn btn-secondary">
       {I18n.t("merchant.admin.buttons.cancel")}</button>
     goBackButton = (this.props.goBack == true) ? goBackButton : "";
 

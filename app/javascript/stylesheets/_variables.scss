@@ -4,55 +4,13 @@ $white-light: #ecf0f1;
 $gray: #aaa;
 $gray-dark: #222;
 $gray-light: #9e9ea6;
-$blue: #3498db;
 $base-dark: #4C4C4A;
 $base-light: #F68A1E;
-$base-main: #E55925;
+$base-main: #e16756;
 $green: #40d47e;
-$red: #e74c3c;
+$red: #de484c;
 $red-dark: #a94442;
-$yellow-dark: #f1c40f;
-
-$navbar-inverse-color:                      lighten($base-dark, 15%) !default;
-$navbar-inverse-bg:                         $white !default;
-$navbar-inverse-border:                     darken($navbar-inverse-bg, 10%) !default;
-// Inverted navbar links
-$navbar-inverse-link-color:                 lighten($base-dark, 15%) !default;
-$navbar-inverse-link-hover-color:           $base-dark !default;
-$navbar-inverse-link-hover-bg:              transparent !default;
-$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
-$navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%) !default;
-// Inverted navbar brand label
-$navbar-inverse-brand-color:                $navbar-inverse-link-color !default;
-$navbar-inverse-brand-hover-color:          $white !default;
-$navbar-inverse-brand-hover-bg:             transparent !default;
-// Inverted navbar toggle
-$navbar-inverse-toggle-hover-bg:            lighten($base-dark, 5%) !default;
-$navbar-inverse-toggle-icon-bar-bg:         $white-dark !default;
-$navbar-inverse-toggle-border-color:        $white-dark !default;
-
-$btn-primary-color:              $white !important;
-$btn-primary-bg:                 $blue !default;
-$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
-
-$btn-success-color:              #fff !important;
-$btn-success-bg:                 $green !default;
-$btn-success-border:             darken($btn-success-bg, 5%) !default;
-
-$btn-info-color:                 #fff !important;
-$btn-info-bg:                    $blue !default;
-$btn-info-border:                darken($btn-info-bg, 5%) !default;
-
-$btn-warning-color:              #fff !important;
-$btn-warning-bg:                 $yellow-dark !default;
-$btn-warning-border:             darken($btn-warning-bg, 5%) !default;
-
-$btn-danger-color:               $white !important;
-$btn-danger-bg:                  $base-main !default;
-$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
-
-$btn-font-size: 0.75rem;
-
-$checkbox-border-color:       $base-light;
-$checkbox-color:              $base-light;
-$checkbox-bg-color:           $white;
+$primary:       #e16756;
+$secondary:     #f09172;
+$tertiary:  #f8d48a;
+$purple:  #402651;

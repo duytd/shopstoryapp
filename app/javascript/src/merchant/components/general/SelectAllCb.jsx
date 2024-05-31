@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default class SelectAllCb extends React.Component {
   render() {
     return (
@@ -7,8 +9,9 @@ export default class SelectAllCb extends React.Component {
       <i className="fa"></i>
     </label>
     )
-  },
-  handleSelect() {
+  }
+
+  handleSelect = () => {
     var checked = this.refs.checkbox.checked;
 
     this.props.selectAllHandler(checked);

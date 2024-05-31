@@ -7,7 +7,6 @@ aside.left-panel {
   left: -230px;
   .merchant-logo {
     color: $white !important;
-    background: $base-dark;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -40,6 +39,7 @@ aside.left-panel {
     }
     .item {
       padding: 15px 25px;
+      color: $tertiary;
       &:hover, &:hover a {
         background: $base-main;
         cursor: pointer;

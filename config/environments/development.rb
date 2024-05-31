@@ -32,4 +32,8 @@ Rails.application.configure do
     Bullet.enable = true
     Bullet.bullet_logger = true
   end
+
+  config.public_file_server.headers = {
+    'Cache-Control' => "no-cache"
+  }
 end

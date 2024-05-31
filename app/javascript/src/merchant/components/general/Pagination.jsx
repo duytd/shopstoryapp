@@ -1,12 +1,18 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
 export default class Pagination extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       prev: null,
       next: null,
       prevPages: [],
       nextPages: []
-    }
-  },
+    };
+  }
+
   render() {
     return (
       <div>
@@ -58,21 +64,24 @@ export default class Pagination extends React.Component {
         </div> : null}
       </div>
     )
-  },
+  }
+
   componentDidMount() {
     this.loadPages(this.props);
-  },
+  }
+
   componentWillReceiveProps(nextProps) {
     this.loadPages(nextProps);
-  },
+  }
+
   loadPages(props) {
-    var prevPages = [],
-      nextPages = [],
-      prev = null,
-      next = null,
-      prevIndex = 0,
-      nextIndex = 0;
-      page = props.page;
+    let prevPages = [];
+    let nextPages = [];
+    let prev = null;
+    let next = null;
+    let prevIndex = 0;
+    let nextIndex = 0;
+    let page = props.page;
 
     if (page > 1 && page <= props.totalPage) {
       prev = page - 1;

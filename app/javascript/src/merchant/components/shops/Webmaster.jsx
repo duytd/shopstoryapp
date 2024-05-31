@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import SubmitButtons from '../../components/general/SubmitButtons'
+import SubmitButtons from '../../components/general/SubmitButtons';
 
 export default class Webmaster extends React.Component {
   constructor(props) {
@@ -55,10 +55,10 @@ export default class Webmaster extends React.Component {
     return (
       <form ref="form" id="webmaster-form" className="webmaster-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}>
-        <div className="col-md-12">
-          <h4 className="form-title">{I18n.t("merchant.admin.webmaster.seo")}</h4>
+        <div className="container">
+          <h6 className="form-title row">{I18n.t("merchant.admin.webmaster.seo")}</h6>
           {this.renderSeo()}
-          <h4 className="form-title">{I18n.t("merchant.admin.webmaster.verification")}</h4>
+          <h6 className="form-title row">{I18n.t("merchant.admin.webmaster.verification")}</h6>
           {this.renderVerificationCode()}
         </div>
         <div className="col-md-12 text-right">

@@ -1,3 +1,7 @@
+import React from 'react';
+import Item from '../../components/general/Item';
+import * as Routes from '../../../routes';
+
 export default class Banner extends React.Component {
   render() {
     return (

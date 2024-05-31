@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default class Item extends React.Component {
   render() {
     return (
@@ -12,8 +14,9 @@ export default class Item extends React.Component {
         {this.props.children}
       </tr>
     );
-  },
-  handleDelete(e) {
+  }
+
+  handleDelete = (e) => {
     e.preventDefault();
 
     $.ajax({
@@ -24,8 +27,9 @@ export default class Item extends React.Component {
         this.props.handleDeleteItem(this.props.item);
       }.bind(this)
     });
-  },
-  handleSelect: function() {
+  }
+
+  handleSelect = () => {
     var checked = !this.props.check;
 
     this.props.handleSelect(this.props.item, checked);

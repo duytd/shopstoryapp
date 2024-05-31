@@ -1,3 +1,6 @@
+import React from 'react';
+import * as Routes from '../../../routes';
+
 export default class CustomPage extends React.Component {
   render() {
     return (

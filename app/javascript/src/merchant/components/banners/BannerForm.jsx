@@ -1,12 +1,22 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
+
 export default class BannerForm extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var bannerItems = this.props.banner_items ? this.props.banner_items : [];
 
-    return {
+    this.state = {
       errors: {},
       bannerItems: bannerItems
     };
-  },
+  }
+
   renderBannerItem(item, index) {
     return (
       <div className={"block " + ((item.destroy) ? "hide" : "")} id={"banner_item_" + index} key={"banner_item_" + index}>
@@ -16,7 +26,7 @@ export default class BannerForm extends React.Component {
         {(typeof item.id !== "undefined") ?
           <input className="hidden" readOnly name={"banner[banner_items_attributes][" + index + "][id]"} value={item.id} /> : null}
         {(item.destroy) ?
-        <input className="hidden" className="destroy" name={"banner[banner_items_attributes][" + index + "][_destroy]"} value={true} /> : null}
+        <input className="hidden" name={"banner[banner_items_attributes][" + index + "][_destroy]"} value={true} /> : null}
         <div className="form-group">
           <label className="label">{I18n.t("activerecord.attributes.banner_item.image")}</label>
           <input type="file" name={"banner[banner_items_attributes][" + index + "][image]"} />
@@ -41,7 +51,8 @@ export default class BannerForm extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   render() {
     return (
       <form ref="form" className="banner-form" action={this.props.url}
@@ -68,15 +79,17 @@ export default class BannerForm extends React.Component {
         </div>
       </form>
     )
-  },
-  addBannerItem(e) {
+  }
+
+  addBannerItem = (e) => {
     e.preventDefault();
     var bannerItems = this.state.bannerItems;
 
     bannerItems.push({});
     this.setState({bannerItems: bannerItems});
-  },
-  removeBannerItem(item) {
+  }
+
+  removeBannerItem = (item) => {
     var bannerItems = this.state.bannerItems;
     var index = bannerItems.indexOf(item);
 
@@ -89,13 +102,15 @@ export default class BannerForm extends React.Component {
     }
 
     this.setState({bannerItems: bannerItems});
-  },
-  handleSubmit(e) {
+  }
+
+  handleSubmit = (e) => {
     e.preventDefault();
     var form = $(this.refs.form);
 
     this.handleBannerSubmit(form, this.props.url, this.props.method);
-  },
+  }
+
   handleBannerSubmit(form, action, method) {
     $.ajax({
       url: action,

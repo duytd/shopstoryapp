@@ -1,3 +1,6 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
 export default class Box extends React.Component {
   render() {
     var wrapper = (this.props.wrapper) ? this.props.wrapper : "block";
@@ -37,8 +40,9 @@ export default class Box extends React.Component {
         </div>
       </div>
     );
-  },
-  handleImport() {
+  }
+
+  handleImport = () => {
     var form = $(this.refs.import_form);
     this.props.handleImport(form);
   }

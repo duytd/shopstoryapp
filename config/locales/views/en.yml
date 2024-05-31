@@ -1,6 +1,6 @@
 en:
   buttons:
-    get_started: "Get Started"
+    get_started: "Open it now"
   menu:
     features: "Features"
     pricing: "Pricing"
@@ -12,7 +12,7 @@ en:
   pages:
     home:
       title: "Home"
-      shop_name: "Shop name"
+      shop_name: "Tell us your store name"
     pricing:
       title: "Pricing"
     features:

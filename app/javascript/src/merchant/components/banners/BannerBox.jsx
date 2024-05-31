@@ -1,3 +1,10 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
+import BannerList from './BannerList';
+import Box from '../../components/general/Box';
+import Pagination from '../../components/general/Pagination';
+
 export default class BannerBox extends React.Component {
   render() {
     var bannerList = (

@@ -16,10 +16,10 @@
     <% end %>
 
     <li class="item">
-      <%= link_to "javascript:void(0)" do %>
+      <div>
         <i class="fa fa-shopping-cart"></i>
         <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
-      <% end %>
+      </div>
 
       <ul class="subitems">
         <%= link_to merchant_product_orders_path(type: :purchased) do %>
@@ -46,10 +46,10 @@
     <% end %>
 
     <li class="item">
-      <%= link_to "javascript:void(0)" do %>
+      <div>
         <i class="fa fa-tag"></i>
         <span class="item-label"><%= t "merchant.admin.menu.products" %></span>
-      <% end %>
+      </div>
 
       <ul class="subitems">
         <%= link_to merchant_products_path do %>
@@ -76,10 +76,10 @@
     </li>
 
     <li class="item">
-      <%= link_to "javascript:void(0)" do %>
+      <div>
         <i class="fa fa-truck"></i>
         <span class="item-label"><%= t "merchant.admin.menu.shipping" %></span>
-      <% end %>
+      </div>
 
       <ul class="subitems">
         <%= link_to merchant_shipping_rates_path do %>
@@ -92,10 +92,10 @@
     </li>
 
     <li class="item">
-      <%= link_to "javascript:void(0)" do %>
+      <div>
         <i class="fa fa-list-alt"></i>
         <span class="item-label"><%= t "merchant.admin.menu.reports" %></span>
-      <% end %>
+      </div>
 
       <ul class="subitems">
         <%= link_to order_merchant_reports_path do %>
@@ -134,10 +134,10 @@
     <% end %>
 
     <li class="item">
-      <%= link_to "javascript:void(0)" do %>
+      <div>
         <i class="fa fa-th-large"></i>
         <span class="item-label"><%= t "merchant.admin.menu.design" %></span>
-      <% end %>
+      </div>
 
       <ul class="subitems">
         <%= link_to edit_merchant_design_general_path do %>
@@ -178,10 +178,10 @@
     </li>
 
     <li class="item">
-      <%= link_to "javascript:void(0)" do %>
+      <div>
         <i class="fa fa-gear"></i>
         <span class="item-label"><%= t "merchant.admin.menu.settings" %></span>
-      <% end %>
+      </div>
       <ul class="subitems">
         <%= link_to edit_merchant_shop_path(current_shop) do %>
           <li>
@@ -211,10 +211,10 @@
     </li>
 
     <li class="item">
-      <%= link_to "javascript:void(0)" do %>
+      <div>
         <i class="fa fa-code"></i>
         <span class="item-label"><%= t "merchant.admin.menu.developers" %></span>
-      <% end %>
+      </div>
       <ul class="subitems">
         <%= link_to merchant_credentials_path do %>
           <li>

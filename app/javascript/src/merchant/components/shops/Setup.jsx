@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import FormErrors from '../../components/general/FormErrors'
+import FormErrors from '../../components/general/FormErrors';
 
 export default class Setup extends React.Component {
   constructor(props) {
@@ -17,7 +17,6 @@ export default class Setup extends React.Component {
   renderProvideBusinessInfo = () => {
     return (
       <form ref="shop_form">
-        <h4 className="form-title">{I18n.t("merchant.admin.shops.business_information")}</h4>
         <div className="row">
           <div className="form-group col-md-12">
             <label className="label">{I18n.t("activerecord.attributes.shop.legal_name")}</label>
@@ -141,12 +140,14 @@ export default class Setup extends React.Component {
 
     return (
       <div className="col-md-8 col-md-offset-2">
+        <h6 className="form-title">{I18n.t("merchant.admin.shops.business_information")}</h6>
+
         <div className="block">
           {form}
           {(this.state.currentStep != "done") ?
           <div className="mt-3">
-            <button className="btn btn-success" onClick={this.skip}>{I18n.t("merchant.admin.buttons.skip")}</button>
-            <button className="btn btn-danger" onClick={this.next}>{I18n.t("merchant.admin.buttons.next")}</button>
+            <button className="btn btn-secondary" onClick={this.skip}>{I18n.t("merchant.admin.buttons.skip")}</button>
+            <button className="btn btn-success" onClick={this.next}>{I18n.t("merchant.admin.buttons.next")}</button>
           </div> : null}
         </div>
       </div>

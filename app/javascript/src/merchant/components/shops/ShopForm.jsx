@@ -42,8 +42,8 @@ export default class ShopForm extends React.Component {
     return (
       <form ref="form" id="shop-form" className="shop-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
-        <div className="col-md-12">
-          <h4 className="form-title">{I18n.t("merchant.admin.shops.basic_information")}</h4>
+        <div className="container">
+          <h6 className="form-title row">{I18n.t("merchant.admin.shops.basic_information")}</h6>
           <div className="row">
             <div className="col-md-12 block">
               <div className="form-group col-md-6">
@@ -60,7 +60,7 @@ export default class ShopForm extends React.Component {
               <div className="form-group col-md-6">
                 <label className="label">{I18n.t("activerecord.attributes.shop.domain")}</label>
                 <div className="input-group">
-                  <span className="input-group-addon" id="basic-addon1">http://</span>
+                  <span className="input-group-text" id="basic-addon1">http://</span>
                   <input type="text" className="form-control" placeholder="yourdomain.com" name="shop[domain]" defaultValue={this.props.shop.domain} />
                 </div>
                 <FormErrors errors={this.state.errors.domain} />
@@ -70,8 +70,8 @@ export default class ShopForm extends React.Component {
           </div>
         </div>
 
-        <div className="col-md-12">
-          <h4 className="form-title">{I18n.t("merchant.admin.shops.business_information")}</h4>
+        <div className="container">
+          <h6 className="form-title row">{I18n.t("merchant.admin.shops.business_information")}</h6>
           <div className="row">
             <div className="col-md-12 block">
               <div className="form-group col-md-4">
@@ -106,8 +106,8 @@ export default class ShopForm extends React.Component {
           </div>
         </div>
 
-        <div className="col-md-12">
-          <h4 className="form-title">{I18n.t("merchant.admin.shops.contact")}</h4>
+        <div className="container">
+          <h6 className="form-title row">{I18n.t("merchant.admin.shops.contact")}</h6>
           <div className="row">
             <div className="col-md-12 block">
               <div className="form-group col-md-4">
@@ -156,8 +156,8 @@ export default class ShopForm extends React.Component {
           </div>
         </div>
 
-        <div className="col-md-12">
-          <h4 className="form-title">{I18n.t("merchant.admin.shops.format")}</h4>
+        <div className="container">
+          <h6 className="form-title row">{I18n.t("merchant.admin.shops.format")}</h6>
           <div className="row">
             <div className="col-md-12 block">
               <div className="form-group col-md-6">
@@ -204,17 +204,15 @@ export default class ShopForm extends React.Component {
           </div>
         </div>
 
-        <div className="col-md-12">
-          <h4 className="form-title">{I18n.t("merchant.admin.shops.social")}</h4>
+        <div className="container">
+          <h6 className="form-title row">{I18n.t("merchant.admin.shops.social")}</h6>
           <div className="row">
             <div className="col-md-12 block">
               {socialAccountNodes}
             </div>
           </div>
         </div>
-        <div className="col-md-12 text-right">
-          <SubmitButtons goBack={false} />
-        </div>
+        <SubmitButtons goBack={false} />
       </form>
     );
   }

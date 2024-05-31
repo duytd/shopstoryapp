@@ -1,97 +1,16 @@
-$white: #fff;
-$black: #222;
+$white: #ffffff;
+$white-dark: #eeeeee;
+$white-light: #ecf0f1;
 $gray: #aaa;
-$red: #e74c3c;
+$gray-dark: #222;
+$gray-light: #9e9ea6;
 $blue: #3498db;
-$green: #2ecc71;
-$yellow: #f1c40f;
-$gray-light: #eee;
-
-$body-bg:               #fff !default;
-$text-color:            $black !default;
-$link-color:            $blue !default;
-$link-hover-color:      darken($link-color, 15%) !default;
-$link-hover-decoration: underline !default;
-
-/* Navbar */
-$navbar-default-color:                      lighten($black, 15%) !default;
-$navbar-default-bg:                         $white !default;
-$navbar-default-border:                     darken($navbar-default-bg, 10%) !default;
-$navbar-default-link-color:                 $white !default;
-$navbar-default-link-hover-color:           darken($white, 15%) !default;
-$navbar-default-link-hover-bg:              transparent !default;
-$navbar-default-link-active-color:          $navbar-default-link-hover-color !default;
-$navbar-default-link-active-bg:             transparent !default;
-$navbar-default-link-disabled-color:        $gray !default;
-$navbar-default-link-disabled-bg:           transparent !default;
-$navbar-default-brand-color:                $navbar-default-link-color !default;
-$navbar-default-brand-hover-color:          lighten($black, 15%) !default;
-$navbar-default-brand-hover-bg:             transparent !default;
-$navbar-default-toggle-hover-bg:            $white !default;
-$navbar-default-toggle-icon-bar-bg:         $black !default;
-$navbar-default-toggle-border-color:        $black !default;
-
-/* Button */
-$btn-font-weight: 300 !default;
-
-$btn-primary-color:              $black !important;
-$btn-primary-bg:                 $white !default;
-$btn-primary-border:             darken($black, 5%) !default;
-
-$btn-success-color:              $white !default;
-$btn-success-bg:                 $green !default;
-$btn-success-border:             darken($btn-success-bg, 5%) !default;
-
-$btn-border-radius-base:         3px !default;
-$btn-border-radius-large:        3px !default;
-$btn-border-radius-small:        3px !default;
-
-$btn-info-color:                 $white !default;
-$btn-info-bg:                    $blue !default;
-$btn-info-border:                darken($btn-info-bg, 5%) !default;
-
-$btn-warning-color:              $white !default;
-$btn-warning-bg:                 $yellow !default;
-$btn-warning-border:             darken($btn-warning-bg, 5%) !default;
-
-$btn-danger-color:               $white !default;
-$btn-danger-bg:                  $red !default;
-$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
-
-/* Alert */
-$alert-padding:               5px 15px !default;
-$alert-border-radius:         5px !default;
-$alert-link-font-weight:      bold !default;
-
-$alert-success-bg:            transparent !default;
-$alert-success-text:          $green !default;
-$alert-success-border:        $white !default;
-
-$alert-info-bg:               transparent !default;
-$alert-info-text:             $blue !default;
-$alert-info-border:           $white !default;
-
-$alert-warning-bg:            transparent !default;
-$alert-warning-text:          $yellow !default;
-$alert-warning-border:        $white !default;
-
-$alert-danger-bg:             transparent !default;
-$alert-danger-text:           $red !default;
-$alert-danger-border:         $white !default;
-
-/* Input */
-$input-bg:                       $white !default;
-$input-bg-disabled:              $gray-light !default;
-$input-color:                    $black !default;
-$input-border:                   $black !default;
-$input-border-radius:            2px !default;
-$input-border-radius-large:      2px !default;
-$input-border-radius-small:      2px !default;
-$input-border-focus:             $gray !default;
-$input-color-placeholder:        $gray !default;
-
-$checkbox-border-color:       $black;
-$checkbox-color:              $black;
-$checkbox-bg-color:           $white;
-$grid-float-breakpoint:     767px !default;
-
+$base-dark: #4C4C4A;
+$base-light: #F68A1E;
+$base-main: #E55925;
+$green: #40d47e;
+$red: #e74c3c;
+$red-dark: #a94442;
+$primary:       #e16756;
+$secondary:     #f09172;
+$dark:          #402651;
