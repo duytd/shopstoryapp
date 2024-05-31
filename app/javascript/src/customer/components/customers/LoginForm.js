@@ -27,7 +27,7 @@ var LoginForm = React.createClass({
       method: "post",
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(data.redirect_url);
+        window.location = data.redirect_url;
       },
       error: function(xhr) {
         this.setState({

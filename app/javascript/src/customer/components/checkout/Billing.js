@@ -13,7 +13,7 @@ var Billing = React.createClass({
         locale: "auto",
         token: function(token) {
           $.post(Routes.customer_stripe_charges_path.localize(), {stripeEmail: token.email, stripeToken: token.id}, function(response) {
-            Turbolinks.visit(response.url);
+            window.location = response.url;
           })
           .fail(function(xhr) {
             alert(xhr.responseJSON.error);

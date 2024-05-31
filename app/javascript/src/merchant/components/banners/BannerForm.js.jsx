@@ -105,7 +105,7 @@ export default class BannerForm extends React.Component {
       processData: false,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_banners_path.localize());
+        window.location = Routes.merchant_banners_path.localize();
       },
       error: function(xhr) {
         var errors = xhr.responseJSON;

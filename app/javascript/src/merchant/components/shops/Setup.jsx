@@ -111,7 +111,7 @@ export default class Setup extends React.Component {
 
         if (step == "done") {
           this.setState({currentStep: step, errors: []}, function() {
-            Turbolinks.visit(response.redirect_url);
+            window.location = response.redirect_url;
           });
         }
         else {

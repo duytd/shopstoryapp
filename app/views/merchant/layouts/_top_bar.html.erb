@@ -22,27 +22,17 @@
       <% end %>
     </li>
     <li class="d-none d-sm-block">
-      <%= link_to t("merchant.admin.menu.view_shop"), shop_url, data: {turbolinks: false} %>
+      <%= link_to t("merchant.admin.menu.view_shop"), shop_url %>
     </li>
     <% unless Rails.env.development? %>
       <li>
         <a id="Intercom"></a>
       </li>
     <% end %>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle avatar"
-        data-toggle="dropdown" role="button" aria-haspopup="true"
-        aria-expanded="false">
-        <%= image_tag current_shop.logo.thumb.url, alt: current_shop.name %>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-          <i class="fa fa-power-off"></i>
-          <span>
-            <%= link_to t("merchant.admin.menu.logout"), destroy_merchant_session_path %>
-          </span>
-        </li>
-      </ul>
+    <li>
+      <%= link_to destroy_merchant_session_path do %>
+        <i class="fa fa-power-off"></i>
+      <% end %>
     </li>
   </div>
 </div>

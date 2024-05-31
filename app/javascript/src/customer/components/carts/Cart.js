@@ -11,7 +11,7 @@ var Cart = React.createClass({
       Routes.new_customer_product_order_path.localize() :
       Routes.customer_checkout_path.localize();
 
-    Turbolinks.visit(url);
+    window.location = url;
    },
   removeItem: function(e) {
     e.preventDefault();

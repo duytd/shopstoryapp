@@ -29,7 +29,7 @@ export default class ShopForm extends React.Component {
       return <option key={index} value={timeZone[0]}>{timeZone[1]}</option>
     }.bind(this));
 
-    var socialAccountNodes = ["facebook_url", "instagram_url", "pinterest_url", "naver", "daum", "kakao", "yellow"].map(function(account, index) {
+    var socialAccountNodes = ["facebook_url", "instagram_url", "pinterest_url"].map(function(account, index) {
       return (
         <div className="form-group col-sm-6" key={"social" + index}>
           <label className="label">{I18n.t("activerecord.attributes.shop." + account)}</label>
@@ -237,7 +237,7 @@ export default class ShopForm extends React.Component {
       method: method,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_root_path.localize());
+        window.location = Routes.merchant_root_path.localize();
 
         this.setState({
           errors: [],

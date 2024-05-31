@@ -5,7 +5,7 @@
     <%= display_meta_tags site: current_shop.name %>
     <meta name="google-site-verification" content="<%= current_shop.google_verification_code %>"/>
     <meta name="naver-site-verification" content="<%= current_shop.naver_verification_code %>"/>
-    <%= stylesheet_pack_tag "customer/application", media: "all", "data-turbolinks-track": true %>
+    <%= stylesheet_pack_tag "customer/application", media: "all" %>
 
     <%= render "customer/layouts/stylesheets" %>
     <%= render "customer/layouts/javascripts" %>

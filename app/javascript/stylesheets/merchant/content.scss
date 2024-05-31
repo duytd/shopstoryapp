@@ -41,7 +41,7 @@ section.content {
     .navbar-right {
       &.pull-right {
         display: inline-block;
-        margin: 0;
+        margin-top: 5px;
         a {
           display: inline-block;
         }
@@ -62,7 +62,7 @@ section.content {
         }
       }
       img {
-        display: block;
+        display: inline-block;
         background: lighten($base-dark, 60%);
         border-radius: 50%;
         width: 35px;

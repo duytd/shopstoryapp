@@ -100,7 +100,7 @@ export default class ProductBox extends React.Component {
       processData: false,
       method: "POST",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_products_path.localize());
+        window.location = Routes.merchant_products_path.localize();
       },
       error: function(xhr) {
         alert(xhr.responseJSON.message);

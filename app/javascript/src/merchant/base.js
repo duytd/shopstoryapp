@@ -1,11 +1,11 @@
 import PerfectScrollbar from 'perfect-scrollbar';
 
-$(document).ready(function() {
+$(document).ready(() => {
   const $sideBar = $("aside.left-panel");
   const $content = $("section.content");
   const ps = new PerfectScrollbar('aside.left-panel');
 
-  $(".navbar-toggler").click(function() {
+  $(".navbar-toggler").click(() => {
     $sideBar.toggleClass("collapsed");
     $content.toggleClass("expansed");
     $(".subitems").hide();
@@ -13,13 +13,7 @@ $(document).ready(function() {
     ps.update();
   });
 
-  $("aside.left-panel .item").on("click", function(){
-    if ($(this).find(".item-label").css("display") != "none") {
-      $(this).find(".subitems").toggleClass("hide");
-    }
-  });
-
-  $(window).on("scroll", function() {
+  $(window).on("scroll", () => {
     if ($(window).scrollTop() >= 47) {
       $("#Intercom").addClass('scrolled')
     }

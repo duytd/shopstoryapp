@@ -486,7 +486,7 @@ export default class ProductForm extends React.Component {
         this.submitImages(productId, Routes.merchant_product_path.localize(productId));
 
         if (this.state.product && !callbackDefined) {
-          Turbolinks.visit(this.props.redirect_url);
+          window.location = this.props.redirect_url;
         }
         else {
           var variationOptions = response.variation_options;

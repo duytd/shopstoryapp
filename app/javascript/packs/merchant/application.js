@@ -1,7 +1,6 @@
 // Global dependencies
 import 'jquery/src/jquery';
-import 'jquery-ujs'
-import 'bootstrap';
+
 import 'summernote/dist/summernote';
 import 'dropzone/dist/dropzone';
 import 'ace-builds/src-noconflict/ace';

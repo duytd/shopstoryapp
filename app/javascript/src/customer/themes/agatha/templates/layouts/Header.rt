@@ -20,8 +20,8 @@
           </span>
 
           <span class="languages">
-            <a href="?locale=ko" data-turbolinks="false">{I18n.t("languages.korean")}</a>
-            <a href="?locale=en" data-turbolinks="false">{I18n.t("languages.english")}</a>
+            <a href="?locale=ko">{I18n.t("languages.korean")}</a>
+            <a href="?locale=en">{I18n.t("languages.english")}</a>
           </span>
 
           <span class="cart">

@@ -202,10 +202,10 @@ export default class List extends React.Component {
 
     if (typeof this.props.redirectUrl !== "undefined") {
       if (this.state.items.length == 0 && this.props.page > 1) {
-        Turbolinks.visit(this.props.redirectUrl.addParams("page", this.props.page - 1))
+        window.location = this.props.redirectUrl.addParams("page", this.props.page - 1);
       }
       else {
-        Turbolinks.visit(this.props.redirectUrl.addParams("page", this.props.page));
+        window.location = this.props.redirectUrl.addParams("page", this.props.page);
       }
     }
     else {
@@ -221,10 +221,10 @@ export default class List extends React.Component {
 
     if (typeof this.props.redirectUrl !== "undefined") {
       if (this.props.totalPage > 1) {
-        Turbolinks.visit(this.props.redirectUrl.addParams("page", this.props.page - 1));
+        window.location = this.props.redirectUrl.addParams("page", this.props.page - 1);
       }
       else {
-        Turbolinks.visit(this.props.redirectUrl);
+        window.location = this.props.redirectUrl;
       }
     }
     else {

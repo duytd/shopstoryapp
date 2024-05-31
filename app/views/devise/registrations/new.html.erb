@@ -42,7 +42,7 @@
       method: "POST",
       success: function(response) {
         $('#new_merchant').find('.errors').empty();
-        Turbolinks.visit(response.redirect_url);
+        window.location = response.redirect_url);
       },
       beforeSend: function() {
         $("#new_merchant").find('.loading').removeClass('hide');

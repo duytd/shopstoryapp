@@ -87,7 +87,7 @@ export default class CustomPageForm extends React.Component {
       method: method,
       dataType: "json",
       success: function(data) {
-        Turbolinks.visit(Routes.merchant_custom_pages_path.localize());
+        window.location = Routes.merchant_custom_pages_path.localize();
       },
       error: function(xhr) {
         var errors = xhr.responseJSON,

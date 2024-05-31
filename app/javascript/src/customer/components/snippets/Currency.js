@@ -10,7 +10,7 @@ var Currency = React.createClass({
 
     $.post(action, data, function(response) {
       I18n.currency = response.currency;
-      Turbolinks.visit(location.toString())
+      window.location = location.toString();
     })
   }
 })

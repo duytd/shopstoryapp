@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function() {
+$(document).ready(function() {
   $(".owl-carousel").owlCarousel({
     items: 1,
     dots: false,
