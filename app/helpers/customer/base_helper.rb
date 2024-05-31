@@ -17,17 +17,6 @@ module Customer::BaseHelper
     end
   end
 
-  def prerender_options
-    {
-      prerender: {
-        template: current_theme_bundle.template,
-        theme: current_theme.directory,
-        locale: current_theme_bundle.locale,
-        currency: current_currency
-      }
-    }
-  end
-
   def generate_meta_tags title, description, meta_keywords
     set_meta_tags title: title,
       description: description,

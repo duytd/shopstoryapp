@@ -371,8 +371,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.0)
     rack (2.2.9)
-    rack-mini-profiler (3.3.1)
-      rack (>= 1.2.0)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
@@ -610,7 +608,6 @@ DEPENDENCIES
   pg
   pry
   puma
-  rack-mini-profiler
   rails (= 5.2.0)
   rails_12factor
   rails_best_practices

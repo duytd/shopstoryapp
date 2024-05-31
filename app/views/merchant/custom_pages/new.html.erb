@@ -1,5 +1,5 @@
 <div class="custom-pages">
   <%= render_breadcrumb %>
   <h3 class="title"><%= t "merchant.admin.custom_pages.add_custom_page" %></h3>
-  <%= react_component "CustomPageForm", @props %>
+  <%= react_component "CustomPageForm", { props: @props } %>
 </div>

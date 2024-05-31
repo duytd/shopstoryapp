@@ -41,7 +41,7 @@ class Merchant::EmailTemplatesController < Merchant::BaseController
       "shop" => random_shop
     }
 
-    data = liquidize content, @props
+    data = liquidize content, { props: @props }
 
     render json: {data: data}, status: :ok
   end

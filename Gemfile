@@ -2,48 +2,60 @@ source "https://rubygems.org"
 
 ruby "2.7.0"
 
+# Rails
 gem "rails", "5.2.0"
-gem "pg"
-gem "turbolinks"
+gem "puma"
 
+# DB
+gem "pg"
+gem "apartment"
+
+# Assets
 gem "sass"
 gem "uglifier"
 gem "shakapacker"
-
-gem "devise"
-gem "cancancan"
-gem "apartment"
-gem "figaro"
-gem "globalize"
-gem "globalize-accessors"
-gem "react_on_rails"
-gem "i18n-js", "~> 3.9.2"
 gem "carrierwave"
 gem "fog-aws"
 gem "mini_magick"
+gem "rubyzip"
+
+# Auth
+gem "devise"
+gem "cancancan"
+
+# Config
+gem "figaro"
+gem "config"
+
+# Localization
+gem "globalize"
+gem "globalize-accessors"
+gem "i18n-js", "~> 3.9.2"
 gem "money-rails"
 gem "country_select"
-gem "config"
-gem "actionpack-action_caching"
-gem "kaminari"
+
+# Frontend
+gem "react_on_rails"
 gem "js-routes"
+gem "rt-transform-ruby", git: "git@github.com:duytd/rt-transform-ruby.git"
+
+# Payment
 gem "paypal_shopstory", git: "git@github.com:duytd/paypal_shopstory.git"
 gem "stripe_shopstory", git: "git@github.com:duytd/stripe_shopstory.git"
-gem "rt-transform-ruby", git: "git@github.com:duytd/rt-transform-ruby.git"
-gem "puma"
-gem "rubyzip"
+gem "stripe"
+
+gem "actionpack-action_caching"
+gem "kaminari"
 gem "browser"
 gem "rqrcode"
 gem "omniauth-oauth2"
 gem "friendly_id"
 gem "browserify-rails"
 gem "acts_as_tree"
-gem "stripe"
 gem "sidekiq"
 gem "meta-tags"
 gem "liquid-rails"
 gem "RedCloth"
-gem "faker"
 gem "wicked_pdf"
 gem "roo"
 gem "elasticsearch-model"
@@ -72,13 +84,13 @@ group :development, :test do
   gem "database_cleaner"
   gem "launchy"
   gem "selenium-webdriver"
+  gem "faker"
 end
 
 group :development do
   gem "annotate"
   gem "bullet"
   gem "rails_best_practices"
-  gem "rack-mini-profiler"
   gem "brakeman", require: false
   gem "capistrano",         require: false
   gem "capistrano-rvm",     require: false
@@ -88,8 +100,4 @@ group :development do
   gem "capistrano-linked-files",   require: false
   gem "capistrano-sidekiq"
   gem "better_errors"
-end
-
-group :production do
-  gem "rails_12factor"
 end

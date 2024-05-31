@@ -15,6 +15,6 @@ module CollectionsHelper
   end
 
   def all_countries
-    ISO3166::Country.all.map{|c| [c.alpha2, c.name]}
+    ISO3166::Country.all.map{|c| [c.alpha2, c.iso_short_name]}
   end
 end

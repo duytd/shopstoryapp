@@ -14,7 +14,7 @@ export default class Setup extends React.Component {
     };
   }
 
-  renderProvideBusinessInfo() {
+  renderProvideBusinessInfo = () => {
     return (
       <form ref="shop_form">
         <h4 className="form-title">{I18n.t("merchant.admin.shops.business_information")}</h4>
