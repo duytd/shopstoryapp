@@ -28,6 +28,30 @@ import ProductForm from './components/products/ProductForm';
 import CategoryBox from './components/categories/CategoryBox';
 import CategoryForm from './components/categories/CategoryForm';
 
+// Categories
+import DiscountBox from './components/discounts/DiscountBox';
+import DiscountForm from './components/discounts/DiscountForm';
+
+// Menu
+import MenuBox from './components/menus/MenuBox';
+import MenuForm from './components/menus/MenuForm';
+
+// Shipping Rates
+import ShippingRateBox from './components/shipping_rates/ShippingRateBox';
+import ShippingRateForm from './components/shipping_rates/ShippingRateForm';
+
+// Reports
+import OrderReport from './components/reports/OrderReport';
+import ProductReport from './components/reports/ProductReport';
+import PaymentReport from './components/reports/PaymentReport';
+
+// Custom Pages
+import CustomPageBox from './components/custom_pages/CustomPageBox';
+import CustomPageForm from './components/custom_pages/CustomPageForm';
+
+// Developer
+import Credentials from './components/developers/Credentials';
+
 // General
 import Breadcrumb from './components/general/Breadcrumb';
 
@@ -50,5 +74,17 @@ ReactOnRails.register({
   ProductBox,
   ProductForm,
   CategoryBox,
-  CategoryForm
+  CategoryForm,
+  DiscountBox,
+  DiscountForm,
+  MenuBox,
+  MenuForm,
+  ShippingRateBox,
+  ShippingRateForm,
+  OrderReport,
+  ProductReport,
+  PaymentReport,
+  CustomPageBox,
+  CustomPageForm,
+  Credentials
 });

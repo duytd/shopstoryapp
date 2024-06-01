@@ -2,7 +2,7 @@ import React from 'react';
 import I18n from 'i18n-js';
 import * as Routes from '../../../routes';
 
-import ShippingRateList from './ProductList';
+import ShippingRateList from './ShippingRateList';
 import Box from '../../components/general/Box';
 
 export default class ShippingRateBox extends React.Component {

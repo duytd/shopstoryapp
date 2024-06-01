@@ -4,6 +4,8 @@ import * as Routes from '../../../routes';
 
 import FormErrors from '../../components/general/FormErrors';
 import SubmitButtons from '../../components/general/SubmitButtons';
+import LocaleNavTab from '../../components/general/LocaleNavTab';
+import SeoTag from '../../components/seo_tags/SeoTag';
 
 export default class CategoryForm extends React.Component {
   constructor(props) {

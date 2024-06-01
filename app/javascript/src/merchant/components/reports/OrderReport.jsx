@@ -32,11 +32,11 @@ export default class OrderReport extends React.Component {
     )
   }
 
-  updateData(reportType) {
+  updateData = (reportType) => {
     var url = this.props.url;
 
-    $.get(url, {report_type: reportType}, function(data) {
+    $.get(url, {report_type: reportType}, (data) => {
       this.setState({data: data, reportType: reportType});
-    }.bind(this))
+    })
   }
 }

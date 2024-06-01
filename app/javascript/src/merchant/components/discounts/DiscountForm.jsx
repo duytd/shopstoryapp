@@ -1,5 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
+import datepicker from 'js-datepicker'
 import * as Routes from '../../../routes';
 
 import FormErrors from '../../components/general/FormErrors';
@@ -77,14 +78,14 @@ export default class DiscountForm extends React.Component {
           <div className="form-group">
             <label className="label">{I18n.t("activerecord.attributes.discount.start_date")}</label>
             <FormErrors errors={this.state.errors.start_date} />
-            <input type="text" name="discount[start_date]" className="datepicker form-control"
+            <input type="text" name="discount[start_date]" className="datepicker start-date form-control"
               defaultValue={this.props.discount ? this.props.discount.start_date : ""} />
           </div>
 
          <div className="form-group">
             <label className="label">{I18n.t("activerecord.attributes.discount.expiry_date")}</label>
             <FormErrors errors={this.state.errors.expiry_date} />
-            <input type="text" name="discount[expiry_date]" className="datepicker form-control"
+            <input type="text" name="discount[expiry_date]" className="datepicker end-date form-control"
               defaultValue={this.props.discount ? this.props.discount.expiry_date : ""} />
           </div>
         </div>
@@ -97,18 +98,16 @@ export default class DiscountForm extends React.Component {
   }
 
   loadDatePicker() {
-    $(".datepicker").datepicker({
-      locale: I18n.locale,
-      format: "yyyy-mm-dd"
-    });
+    const _startPicker = datepicker(".datepicker.start-date", {})
+    const _endPicker = datepicker(".datepicker.end-date", {})
   }
 
-  switchDiscountType() {
+  switchDiscountType = () => {
     var discountType = this.refs.discount_type.value;
     this.setState({discountType: discountType});
   }
 
-  generateCode() {
+  generateCode = () => {
     var code = this.randomCode();
     this.refs.code.value = code;
   }
@@ -123,7 +122,7 @@ export default class DiscountForm extends React.Component {
     return code;
   }
 
-  submit(e) {
+  submit = (e) => {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
     var method = this.props.method;

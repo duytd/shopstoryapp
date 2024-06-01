@@ -82,3 +82,5 @@ function openDaumPostcode(callback) {
     }
   }).open();
 }
+
+export { translate };

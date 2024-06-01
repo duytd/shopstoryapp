@@ -11,7 +11,7 @@ const withFormMixins = (WrappedComponent) => {
     }
 
     loadSummernote() {
-      $(".summernote").summernote({
+      $(".summernote ").summernote({
         height: 200,
         toolbar: [
           ['action',['undo','redo']],

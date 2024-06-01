@@ -92,4 +92,4 @@ const withDragMixin = (WrappedComponent) => {
   }
 }
 
-export default withFormMixins;
+export default withDragMixin;

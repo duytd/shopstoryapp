@@ -1,4 +1,10 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
 import LocaleNavTab from '../../components/general/LocaleNavTab';
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
 
 export default class ShippingRateForm extends React.Component {
   constructor(props) {
@@ -138,8 +144,9 @@ export default class ShippingRateForm extends React.Component {
     )
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
+
     var formData = $(this.refs.form).serialize();
 
     this.handleShippingRateSubmit(formData, this.props.url, this.props.method);
@@ -168,11 +175,11 @@ export default class ShippingRateForm extends React.Component {
     });
   }
 
-  switchType(e) {
+  switchType = (e) => {
     this.setState({type: e.target.value});
   }
 
-  switchGeneralType(e) {
+  switchGeneralType = (e) => {
     var type = null;
 
     if (e.target.value == "free_shipping") {

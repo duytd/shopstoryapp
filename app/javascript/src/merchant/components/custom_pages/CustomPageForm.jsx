@@ -9,8 +9,10 @@ import LocaleNavTab from '../../components/general/LocaleNavTab';
 import withFormMixins from '../../mixins/FormMixin';
 
 class Form extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       errors: {},
       errors_en_count: 0,
       errors_ko_count: 0
@@ -82,7 +84,7 @@ class Form extends React.Component {
     )
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 

@@ -2,6 +2,9 @@ import React from 'react';
 import I18n from 'i18n-js';
 import * as Routes from '../../../routes';
 import withDragMixin from '../../mixins/DragMixin';
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
+import MenuItemForm from './MenuItemForm';
 
 class WrappedComponent extends React.Component {
   constructor(props) {
@@ -155,7 +158,7 @@ class WrappedComponent extends React.Component {
     })
   }
 
-  submit(e) {
+  submit = (e) => {
     if (typeof e !== "undefined")
       e.preventDefault();
 

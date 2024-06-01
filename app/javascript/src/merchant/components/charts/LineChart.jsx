@@ -10,7 +10,7 @@ export default class LineChart extends React.Component {
     this.draw();
   }
 
-  draw() {
+  draw = () => {
     var ctx = $(this.refs.chart);
     var labels = [];
     var data = [];
