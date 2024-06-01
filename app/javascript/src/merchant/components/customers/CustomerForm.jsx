@@ -1,10 +1,20 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
+
 export default class CustomerForm extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       errors: {},
       country: "KR"
-    }
-  },
+    };
+  }
+
   render() {
     var countryNodes = this.props.countries.map(function (country, index) {
       return <option key={index} value={country[0]}>{country[1]}</option>
@@ -122,11 +132,13 @@ export default class CustomerForm extends React.Component {
         </div>
       </div>
     )
-  },
-  updateCountry(e) {
+  }
+
+  updateCountry = (e) => {
     this.setState({country: e.target.value})
-  },
-  streetClick() {
+  }
+
+  streetClick = () => {
     if (this.state.country == "KR") {
       openDaumPostcode(function(data) {
         var address = data.address,
@@ -135,15 +147,17 @@ export default class CustomerForm extends React.Component {
         this.setAddress(address, zipcode);
       }.bind(this))
     }
-  },
+  }
+
   setAddress(address, zipcode) {
     address = typeof address !== "undefined" ? address : "";
     zipcode = typeof zipcode !== "undefined" ? zipcode : "";
 
     this.refs.address.value = address;
     this.refs.zipcode.value = zipcode;
-  },
-  submit(e) {
+  }
+
+  submit = (e) => {
     e.preventDefault();
     var data = $(this.refs.form).serialize(),
       url = this.props.url,

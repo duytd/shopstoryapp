@@ -1,5 +1,9 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import CustomerOrder from './CustomerOrder'
+
 export default class CustomerOrderList extends React.Component {
-  render: function() {
+  render() {
     var headers = [
       I18n.t("merchant.admin.orders.order_id"),
       I18n.t("merchant.admin.orders.order_at"),

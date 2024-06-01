@@ -12,6 +12,10 @@ import Search from './components/search/Search';
 import BannerBox from './components/banners/BannerBox';
 import BannerForm from './components/banners/BannerForm';
 
+//Banners
+import OrderBox from './components/orders/OrderBox';
+import OrderForm from './components/orders/OrderForm';
+
 // General
 import Breadcrumb from './components/general/Breadcrumb';
 
@@ -26,5 +30,7 @@ ReactOnRails.register({
   Search,
   Breadcrumb,
   BannerForm,
-  BannerBox
+  BannerBox,
+  OrderForm,
+  OrderBox
 });

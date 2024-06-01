@@ -80,6 +80,7 @@ class Merchant::ReportsController < Merchant::BaseController
   end
 
   private
+
   def export_to_csv headers, rows
     CSV.generate do |csv|
       csv << headers

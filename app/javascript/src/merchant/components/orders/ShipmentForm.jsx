@@ -1,19 +1,30 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import FormErrors from '../../components/general/FormErrors';
+
 export default class ShipmentForm extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       errors: []
-    }
-  },
+    };
+  }
+
   renderShippingMethod(method, index) {
     return (
       <option value={method.id} key={"shipping_method_" + index}>{translate(method, "name")}</option>
     )
-  },
+  }
+
   renderStatus(status, index) {
     return (
       <option value={status} key={"status_" + index}>{status.capitalize()}</option>
     )
-  },
+  }
+
   renderShipment() {
     return (
       <div className="block">
@@ -24,7 +35,8 @@ export default class ShipmentForm extends React.Component {
         <p>{this.props.shipment.tracking_code}</p>
       </div>
     )
-  },
+  }
+
   renderForm() {
     return (
       <div className="block">
@@ -69,7 +81,8 @@ export default class ShipmentForm extends React.Component {
         </form>
       </div>
     )
-  },
+  }
+
   render() {
     if (this.props.editing) {
       return this.renderForm();
@@ -80,8 +93,9 @@ export default class ShipmentForm extends React.Component {
     else {
       return <span></span>
     }
-  },
-  submit(e) {
+  }
+
+  submit = (e) => {
     e.preventDefault();
 
     var formData = $(this.refs.form).serialize();

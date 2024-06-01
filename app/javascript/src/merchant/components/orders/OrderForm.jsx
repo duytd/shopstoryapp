@@ -1,10 +1,19 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import ShipmentForm from './ShipmentForm';
+
 export default class OrderForm extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       editing: false,
       order: this.props.order,
-    }
-  },
+    };
+  }
+
   renderPaymentInfo() {
     var paymentInfo = "";
 
@@ -23,7 +32,8 @@ export default class OrderForm extends React.Component {
     paymentInfo += this.state.order.payment.state.toUpperCase();
 
     return paymentInfo;
-  },
+  }
+
   renderOrderProduct(orderProduct, index) {
     return (
       <tr key={"order_product_" + index}>
@@ -43,7 +53,8 @@ export default class OrderForm extends React.Component {
         </td>
       </tr>
     )
-  },
+  }
+
   renderTransactionInfo(info, index) {
     return (
       <p key={"transaction_info_" + index}>
@@ -53,7 +64,8 @@ export default class OrderForm extends React.Component {
           </span>: null}
       </p>
     )
-  },
+  }
+
   render() {
     return (
       <div className="row">
@@ -152,16 +164,20 @@ export default class OrderForm extends React.Component {
         </div> : null}
       </div>
     )
-  },
+  }
+
   createShipment() {
     this.setState({editing: true});
-  },
+  }
+
   updateOrder(order) {
     this.setState({order: order, editing: false});
-  },
+  }
+
   enableEditing() {
     this.setState({editing: true});
-  },
+  }
+
   disableEditing() {
     this.setState({editing: false});
   }
