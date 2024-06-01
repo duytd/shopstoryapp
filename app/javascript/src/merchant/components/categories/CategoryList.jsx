@@ -1,3 +1,8 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
+import List from '../../components/general/List';
+
 export default class CategoryList extends React.Component {
   render() {
     var headers = [

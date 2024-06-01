@@ -1,11 +1,17 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
 export default class Variation extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var unlimited = (this.props.variation) ? this.props.variation.unlimited : true
 
-    return {
+    this.state = {
       unlimited: unlimited
-    }
-  },
+    };
+  }
+
   render() {
     var optionNodes = [];
 
@@ -152,7 +158,8 @@ export default class Variation extends React.Component {
         )}
       </div>
     )
-  },
+  }
+
   uploadImage(input) {
     var input = this.refs.imageFile;
 
@@ -165,21 +172,26 @@ export default class Variation extends React.Component {
 
       reader.readAsDataURL(input.files[0]);
     }
-  },
+  }
+
   addVariation(e) {
     e.preventDefault();
     this.props.addVariation();
-  },
+  }
+
   deleteVariation(e) {
     e.preventDefault();
     this.props.deleteVariation(this.props.index);
-  },
+  }
+
   validateInt(e) {
     this.props.validateInt(e);
-  },
+  }
+
   validateNumber(e) {
     this.props.validateNumber(e);
-  },
+  }
+
   updateUnlimited() {
     var checked = this.refs.unlimited.checked;
     this.setState({unlimited: checked});

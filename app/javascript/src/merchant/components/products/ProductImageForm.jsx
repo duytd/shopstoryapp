@@ -1,3 +1,8 @@
+import Dropzone from 'dropzone/dist/dropzone';
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
 export default class ProductImageForm extends React.Component {
   componentDidMount() {
     if ($("#product_dropzone").length) {
@@ -68,7 +73,8 @@ export default class ProductImageForm extends React.Component {
     });
 
     this.props.updateDropzone(productDropzone);
-  },
+  }
+
   render() {
     return (
       <div className="form-group dropzone" id="product_dropzone">
@@ -77,7 +83,8 @@ export default class ProductImageForm extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   deleteImage(data) {
     var url = Routes.merchant_product_path.localize(this.props.product.slug);
 
@@ -87,7 +94,8 @@ export default class ProductImageForm extends React.Component {
       method: "put",
       dataType: "json"
     })
-  },
+  }
+
   featureImage(data) {
     var url = Routes.merchant_product_path.localize(this.props.product.slug);
 

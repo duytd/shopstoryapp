@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default class VariationOptionValue extends React.Component {
   render() {
     return (
@@ -33,11 +35,13 @@ export default class VariationOptionValue extends React.Component {
         )}
       </div>
     )
-  },
+  }
+
   addOptionValue(e) {
     e.preventDefault();
     this.props.addOptionValue(this.props.parentPosition);
-  },
+  }
+
   deleteOptionValue(e) {
     e.preventDefault();
     this.refs.name.value = "";

@@ -1,5 +1,15 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
+import ProductFilter from './ProductFilter';
+import ProductList from './ProductList';
+import Box from '../../components/general/Box';
+import Pagination from '../../components/general/Pagination';
+
 export default class ProductBox extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var selectedCategory = this.props.filter.category;
     var sorting = this.props.sorting;
     var url = this.props.url;
@@ -12,15 +22,16 @@ export default class ProductBox extends React.Component {
       url = url.addParams("sorted_by", sorting.sorted_by).addParams("sort_direction", sorting.sort_direction);
     }
 
-    return {
+    this.state = {
       products: this.props.products,
       page: this.props.page,
       totalPage: this.props.total_page,
       total: this.props.total,
       url: url,
       selectedCategory: selectedCategory
-    }
-  },
+    };
+  }
+
   render() {
     var productList = (
       <div className="product-list">
@@ -79,7 +90,8 @@ export default class ProductBox extends React.Component {
           title={I18n.t("merchant.admin.products.title")} />
       </div>
     );
-  },
+  }
+
   updateData(data, url) {
     this.setState({
       products: data.products,
@@ -88,7 +100,8 @@ export default class ProductBox extends React.Component {
       total: data.total,
       url: url
     })
-  },
+  }
+
   handleImport(form) {
     var url = this.props.import_url;
 
@@ -106,7 +119,8 @@ export default class ProductBox extends React.Component {
         alert(xhr.responseJSON.message);
       }
     })
-  },
+  }
+
   handleExportAll() {
     var url = this.props.export_url;
 
@@ -118,7 +132,8 @@ export default class ProductBox extends React.Component {
         this.downloadCSV(data);
       }.bind(this)
     })
-  },
+  }
+
   downloadCSV(data) {
     var link = document.createElement("a");
     link.href = "data:text/csv;charset=utf-8," + encodeURI(data);

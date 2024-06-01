@@ -3,7 +3,6 @@ import 'jquery/src/jquery';
 import 'jquery-ujs'
 
 import 'summernote/dist/summernote';
-import 'dropzone/dist/dropzone';
 import 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/theme-solarized_light';
 import 'ace-builds/src-noconflict/mode-javascript';

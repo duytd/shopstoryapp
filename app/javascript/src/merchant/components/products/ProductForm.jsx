@@ -1,6 +1,17 @@
-export default class ProductForm extends React.Component {
-  mixins: [FormMixin],
-  getInitialState () {
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import ProductImageForm from './ProductImageForm';
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
+import LocaleNavTab from '../../components/general/LocaleNavTab';
+import withFormMixins from '../../mixins/FormMixin';
+
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+
     var variationOptions = (this.props.variation_options) ? this.props.variation_options : [];
     var variations = (this.props.variations) ? this.props.variations : [];
     var productImages = (this.props.product_images) ? this.props.product_images : [];
@@ -16,7 +27,7 @@ export default class ProductForm extends React.Component {
       return option;
     })
 
-    return {
+    this.state = {
       errors: {},
       koCount: 0,
       enCount: 0,
@@ -30,10 +41,12 @@ export default class ProductForm extends React.Component {
       deletedVariations: [],
       productImages: productImages
     };
-  },
+  }
+
   componentDidMount() {
     this.loadSummernote();
-  },
+  }
+
   renderVariation(variation, index) {
     return (
       <Variation
@@ -49,7 +62,8 @@ export default class ProductForm extends React.Component {
         addVariation={this.addVariation}
         deleteVariation={this.deleteVariation} />
     )
-  },
+  }
+
   renderDeletedVariation(variation, index) {
     return (
       <Variation
@@ -58,7 +72,8 @@ export default class ProductForm extends React.Component {
         variation={variation}
         deleted={true} />
     )
-  },
+  }
+
   renderVariationOption(variationOption, index) {
     return (
       <VariationOption
@@ -72,7 +87,8 @@ export default class ProductForm extends React.Component {
         deleteOptionValue={this.deleteOptionValue}
         variationOption={variationOption} />
     )
-  },
+  }
+
   renderDeletedVariationOption(variationOption, index) {
     return (
       <VariationOption
@@ -81,7 +97,8 @@ export default class ProductForm extends React.Component {
         key={"variation_option_" + (this.state.variationOptions.length + index)}
         variationOption={variationOption} />
     )
-  },
+  }
+
   render() {
     var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
@@ -332,7 +349,8 @@ export default class ProductForm extends React.Component {
         </div>
       </form>
     )
-  },
+  }
+
   validateInt(e) {
     var integer = e.target.value.trim();
 
@@ -342,7 +360,8 @@ export default class ProductForm extends React.Component {
     else {
       e.target.value = integer;
     }
-  },
+  }
+
   validateNumber(e) {
     var number = e.target.value.trim().replace(/,/g, "");
 
@@ -352,20 +371,23 @@ export default class ProductForm extends React.Component {
     else {
       e.target.value = number.toString();
     }
-  },
+  }
+
   addOptionValue(parentIndex) {
     var variationOptions = this.state.variationOptions;
     variationOptions[parentIndex].option_values.push(null);
 
     this.setState({variationOptions: variationOptions});
-  },
+  }
+
   changePrice() {
     var price = this.refs.price.value.replace(/,/g, "");
     var sale_off = this.refs.sale_off.value.replace(/,/g, "");
     var discountedPrice = price - price * sale_off / 100;
-    console.log(price)
+
     this.setState({discountedPrice: discountedPrice});
-  },
+  }
+
   deleteOptionValue(parentIndex, index) {
     var variationOptions = this.state.variationOptions;
     var optionValues = variationOptions[parentIndex].option_values;
@@ -383,14 +405,16 @@ export default class ProductForm extends React.Component {
     }
 
     this.setState({variationOptions: variationOptions});
-  },
-  addVariationOption(e) {
+  }
+
+  addVariationOption = (e) => {
     e.preventDefault();
     var variationOptions = this.state.variationOptions;
     variationOptions.push({option_values: [null], deleted_option_values: []});
 
     this.setState({variationOptions: variationOptions});
-  },
+  }
+
   deleteVariationOption(index) {
     var variationOptions = this.state.variationOptions;
     var variationOption = variationOptions[index];
@@ -406,7 +430,8 @@ export default class ProductForm extends React.Component {
       variationOptions: variationOptions,
       deletedVariationOptions: deletedVariationOptions
     });
-  },
+  }
+
   deleteVariation(index) {
     var variations = this.state.variations;
     var variation = variations[index];
@@ -422,22 +447,26 @@ export default class ProductForm extends React.Component {
       variations: variations,
       deletedVariations: deletedVariations
     });
-  },
+  }
+
   addVariation() {
     var variations = this.state.variations;
     variations.push({});
 
     this.setState({variations: variations});
-  },
+  }
+
   uploadVariationImage(image, index) {
     var variations = this.state.variations;
     variation = variations[index];
     variation.previewImage = image;
 
     this.setState({variations: variations});
-  },
-  populateVariation(e) {
+  }
+
+  populateVariation = (e) => {
     e.preventDefault();
+
     this.submit(e, function() {
       var url = Routes.merchant_product_variations_path.localize(this.state.product.id);
 
@@ -452,8 +481,9 @@ export default class ProductForm extends React.Component {
         }
       })
     }.bind(this))
-  },
-  submit(e, callback) {
+  }
+
+  submit = (e, callback) => {
     if (typeof e !== "undefined" && e != null) {
       e.preventDefault();
     }
@@ -467,7 +497,8 @@ export default class ProductForm extends React.Component {
     var form = $(this.refs.form);
 
     this.submitProduct(form, callback);
-  },
+  }
+
   submitProduct(form, callback) {
     var method = this.state.product ? "put" : "post";
     var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
@@ -537,14 +568,17 @@ export default class ProductForm extends React.Component {
         });
       }.bind(this)
     });
-  },
+  }
+
   scrollToVariation() {
     $("#variations").scrollView();
-  },
+  }
+
   updateUnlimited() {
     var checked = this.refs.unlimited.checked;
     this.setState({unlimited: checked});
-  },
+  }
+
   submitImages(productId, url) {
     var dropzone = this.state.dropzone;
 
@@ -554,8 +588,12 @@ export default class ProductForm extends React.Component {
 
     dropzone.options.url = url;
     dropzone.processQueue();
-  },
+  }
+
   updateDropzone(dropzone) {
     this.setState({dropzone: dropzone});
   }
 }
+
+const ProductForm = withFormMixins(Form);
+export default ProductForm;

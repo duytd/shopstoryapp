@@ -1,3 +1,8 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
+import List from '../../components/general/List';
+
 export default class ProductList extends React.Component {
   render() {
     var headers = [
@@ -49,7 +54,8 @@ export default class ProductList extends React.Component {
         updateData={this.props.updateData}
         handleExport={this.handleExport} />
     )
-  },
+  }
+
   handleExport(productIds) {
     var url = this.props.export_url;
 

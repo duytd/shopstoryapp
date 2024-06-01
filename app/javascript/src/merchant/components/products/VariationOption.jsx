@@ -1,11 +1,18 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import VariationOptionValue from './VariationOptionValue';
+
 export default class VariationOption extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var activeSelector = (typeof this.props.variationOption.id === "undefined") ? true : false;
 
-    return {
+    this.state = {
       activeSelector: activeSelector
-    }
-  },
+    };
+  }
+
   render() {
     if (!this.props.deleted) {
       var nameNodes = this.props.defaultNames.map(function(name, index) {
@@ -82,22 +89,27 @@ export default class VariationOption extends React.Component {
         )}
       </div>
     )
-  },
+  }
+
   deleteVariationOption(e) {
     e.preventDefault();
     this.props.deleteVariationOption(this.props.index);
-  },
+  }
+
   addOptionValue(parentIndex) {
     this.props.addOptionValue(parentIndex);
-  },
+  }
+
   deleteOptionValue(parentIndex, index) {
     this.props.deleteOptionValue(parentIndex, index);
-  },
+  }
+
   checkActiveSelector(e) {
     if (e.target.value == "custom") {
       this.setState({activeSelector: false});
     }
-  },
+  }
+
   checkInputName() {
     if ($(this.refs.custom_name).val().length == 0) {
       this.setState({activeSelector: true});

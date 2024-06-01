@@ -177,5 +177,5 @@ export default class CustomerForm extends React.Component {
         this.setState({errors: errors});
       }.bind(this)
     });
-  },
+  }
 };

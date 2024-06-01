@@ -1,11 +1,17 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
 export default class ProductFilter extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var label = this.props.selectedCategory ? translate(this.props.selectedCategory, "name") : I18n.t("merchant.admin.products.category")
 
-    return {
+    this.state = {
       label: label
-    }
-  },
+    };
+  }
+
   render() {
     var categoryNodes = this.props.categories.map(function (category, index) {
       return <li key={"category_" + index} onClick={this.filterByCategory.bind(this, category)}>{translate(category, "name")}</li>
@@ -25,8 +31,9 @@ export default class ProductFilter extends React.Component {
         </div>
       </div>
     )
-  },
-  filterByCategory(category) {
+  }
+
+  filterByCategory = (category) => {
     var url = this.props.url,
       label = (category == null) ? I18n.t("merchant.admin.products.all") : translate(category, "name"),
       newUrl = (category == null) ? url : url.addParams("category_id", category.id),

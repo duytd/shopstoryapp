@@ -16,6 +16,18 @@ import BannerForm from './components/banners/BannerForm';
 import OrderBox from './components/orders/OrderBox';
 import OrderForm from './components/orders/OrderForm';
 
+// Customers
+import CustomerBox from './components/customers/CustomerBox';
+import CustomerForm from './components/customers/CustomerForm';
+
+// Products
+import ProductBox from './components/products/ProductBox';
+import ProductForm from './components/products/ProductForm';
+
+// Categories
+import CategoryBox from './components/categories/CategoryBox';
+import CategoryForm from './components/categories/CategoryForm';
+
 // General
 import Breadcrumb from './components/general/Breadcrumb';
 
@@ -32,5 +44,11 @@ ReactOnRails.register({
   BannerForm,
   BannerBox,
   OrderForm,
-  OrderBox
+  OrderBox,
+  CustomerBox,
+  CustomerForm,
+  ProductBox,
+  ProductForm,
+  CategoryBox,
+  CategoryForm
 });

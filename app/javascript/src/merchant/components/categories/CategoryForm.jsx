@@ -1,11 +1,21 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
+
 export default class CategoryForm extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       errors: {},
       name_ko_count: 0,
       name_en_count: 0
     };
-  },
+  }
+
   render() {
     return (
       <form ref="form" className="category-form" action={this.props.url}
@@ -53,13 +63,15 @@ export default class CategoryForm extends React.Component {
         </div>
       </form>
     )
-  },
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
     this.handleCategorySubmit(formData, this.props.url, this.props.method);
-  },
+  }
+
   handleCategorySubmit(formData, action, method) {
     $.ajax({
       data: formData,
