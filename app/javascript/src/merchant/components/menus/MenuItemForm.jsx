@@ -1,3 +1,5 @@
+import LocaleNavTab from '../../components/general/LocaleNavTab';
+
 export default class MenuItemForm extends React.Component {
   getInitialState() {
     var type = (this.props.types) ? "home" : null;

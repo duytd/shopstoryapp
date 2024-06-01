@@ -1,3 +1,5 @@
+import LocaleNavTab from '../../components/general/LocaleNavTab';
+
 export default class SeoTag extends React.Component {
   render() {
     this.props.errors["seo_tag.title_ko"] = this.props.errors["seo_tag.title_ko"] || [];

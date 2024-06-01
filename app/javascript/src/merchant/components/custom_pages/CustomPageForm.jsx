@@ -1,3 +1,5 @@
+import LocaleNavTab from '../../components/general/LocaleNavTab';
+
 export default class CustomPageForm extends React.Component {
   mixins: [FormMixin],
   getInitialState() {

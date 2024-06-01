@@ -1,3 +1,5 @@
+import LocaleNavTab from '../../components/general/LocaleNavTab';
+
 export default class ShippingRateForm extends React.Component {
   getInitialState() {
     var type = (this.props.types) ? "free" : null;
