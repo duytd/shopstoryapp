@@ -1,12 +1,22 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
+
 export default class DiscountForm extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var discountType = this.props.discount ? this.props.discount.discount_type : "percentage";
 
-    return {
+    this.state = {
       discountType: discountType,
       errors: {},
     };
-  },
+  }
+
   renderPercentageInput() {
     return (
       <div className="input-group">
@@ -14,13 +24,16 @@ export default class DiscountForm extends React.Component {
         <input type="text" name="discount[amount]" className="form-control"/>
       </div>
     )
-  },
+  }
+
   componentDidMount() {
     this.loadDatePicker();
-  },
+  }
+
   componentDidUpdate() {
     this.loadDatePicker();
-  },
+  }
+
   renderFixedAmountInput() {
     return (
       <div className="input-group">
@@ -28,7 +41,8 @@ export default class DiscountForm extends React.Component {
         <input type="text" name="discount[amount]" className="form-control"/>
       </div>
     )
-  },
+  }
+
   render() {
     return (
       <form ref="form" className="discount-form" action={this.props.url}
@@ -80,21 +94,25 @@ export default class DiscountForm extends React.Component {
         </div>
       </form>
     )
-  },
+  }
+
   loadDatePicker() {
     $(".datepicker").datepicker({
       locale: I18n.locale,
       format: "yyyy-mm-dd"
     });
-  },
+  }
+
   switchDiscountType() {
     var discountType = this.refs.discount_type.value;
     this.setState({discountType: discountType});
-  },
+  }
+
   generateCode() {
     var code = this.randomCode();
     this.refs.code.value = code;
-  },
+  }
+
   randomCode() {
     var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890";
     var code = "";
@@ -103,7 +121,8 @@ export default class DiscountForm extends React.Component {
         code += chars.charAt(i);
     }
     return code;
-  },
+  }
+
   submit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();

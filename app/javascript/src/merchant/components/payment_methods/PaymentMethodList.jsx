@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default class PaymentMethodList extends React.Component {
   render() {
     var paymentMethodNodes = this.props.payment_method_shops.map(function (method_shop) {

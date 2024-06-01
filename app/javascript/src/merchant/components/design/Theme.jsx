@@ -1,11 +1,15 @@
-window.design = window.design || {};
+import React from 'react';
+import I18n from 'i18n-js';
 
-export default class design.Theme extends React.Component {
-  getInitialState() {
-    return {
+export default class Theme extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       current: this.props.current
-    }
-  },
+    };
+  }
+
   render() {
     return (
       <div className="theme row">
@@ -27,7 +31,8 @@ export default class design.Theme extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   install() {
     var loading = $(this.refs.loading);
     var url = this.props.install_url;

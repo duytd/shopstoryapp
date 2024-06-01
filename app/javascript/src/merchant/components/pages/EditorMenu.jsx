@@ -1,3 +1,7 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
 export default class EditorMenu extends React.Component {
   render() {
     var javascriptNodes = this.props.javascripts.map(function(javascript, index) {
@@ -69,7 +73,8 @@ export default class EditorMenu extends React.Component {
         </ul>
       </div>
     )
-  },
+  }
+
   updateAsset(assetId) {
     $.get(Routes.edit_merchant_asset_path.localize(assetId), function(response) {
       var mode = "javascript";
@@ -82,12 +87,14 @@ export default class EditorMenu extends React.Component {
 
       this.props.updateFile(response.data, response.url, response.reset_url, mode);
     }.bind(this))
-  },
+  }
+
   updateTemplate(templateId) {
     $.get(Routes.edit_merchant_template_path.localize(templateId), function(response) {
       this.props.updateFile(response.data, response.url, response.reset_url, "html");
     }.bind(this))
-  },
+  }
+
   showSubitems(e) {
     $(e.target).parent().parent().find(".subitems").slideToggle();
   }

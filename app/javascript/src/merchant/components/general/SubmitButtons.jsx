@@ -1,7 +1,7 @@
 import React from 'react';
 import I18n from 'i18n-js';
 
-export default class SubmitButtons extends React.Component {
+class SubmitButtons extends React.Component {
   render() {
     var goBackButton = <button onClick={this.goBack} className="btn btn-secondary">
       {I18n.t("merchant.admin.buttons.cancel")}</button>
@@ -18,15 +18,15 @@ export default class SubmitButtons extends React.Component {
     );
   }
 
-  getDefaultProps() {
-    return {
-      goBack: true
-    }
-  }
-
   goBack = (e) => {
     e.preventDefault();
 
     window.location = this.props.redirect_url;
   }
 }
+
+SubmitButtons.defaultProps = {
+  goBack: true
+}
+
+export default SubmitButtons

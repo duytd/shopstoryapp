@@ -1,3 +1,7 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
 export default class Plan extends React.Component {
   componentDidMount() {
     var script = document.createElement("script");
@@ -15,7 +19,8 @@ export default class Plan extends React.Component {
 
       stripe.parentNode.insertBefore(script, stripe);
     }
-  },
+  }
+
   render() {
     var featureNodes = this.props.plan.parsed_features.map(function(feature, index) {
       return <li key={"feature" + index}><b>{feature[0].capitalize()}</b> {feature[1].capitalize()}</li>

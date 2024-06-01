@@ -1,3 +1,7 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
 export default class Dashboard extends React.Component {
   renderOrders() {
     return (
@@ -30,7 +34,8 @@ export default class Dashboard extends React.Component {
         </table>
       </div>
     )
-  },
+  }
+
   renderProducts(orderProducts) {
     return (
       <span>
@@ -43,7 +48,8 @@ export default class Dashboard extends React.Component {
         })}
       </span>
     )
-  },
+  }
+
   getPaymentStateKlass(state) {
     switch(state) {
       case "pending":
@@ -58,7 +64,8 @@ export default class Dashboard extends React.Component {
       default:
         break;
     }
-  },
+  }
+
   getStatusKlass(status) {
     switch(status) {
       case "incompleted":
@@ -90,7 +97,8 @@ export default class Dashboard extends React.Component {
     }
 
     return statusKlass;
-  },
+  }
+
   renderRevenueNumber() {
     return (
       <div className="block">
@@ -115,7 +123,8 @@ export default class Dashboard extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   renderStatistics() {
     var data = [
       ["icon-success", <i className="fa fa-3x fa-won"></i>, I18n.t("merchant.admin.dashboard.total_revenue"), this.props.total_revenue, "javascript:void(0)"],
@@ -148,7 +157,8 @@ export default class Dashboard extends React.Component {
         })}
       </div>
     )
-  },
+  }
+
   render() {
     return (
       <div className="dashboard">

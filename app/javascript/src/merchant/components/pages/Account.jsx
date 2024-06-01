@@ -1,3 +1,8 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
+import Subscription from '../subscriptions/Subscription';
+
 export default class Account extends React.Component {
   render() {
     return (

@@ -1,7 +1,12 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
 import LocaleNavTab from '../../components/general/LocaleNavTab';
 
 export default class MenuItemForm extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var type = (this.props.types) ? "home" : null;
 
     if (this.props.menu_item) {
@@ -30,13 +35,14 @@ export default class MenuItemForm extends React.Component {
       }
     }
 
-    return {
+    this.state = {
       type: type,
       errors: {},
       name_ko_count: 0,
       name_en_count: 0
     };
-  },
+  }
+
   render() {
     var defaultCategory = (this.props.categories.length > 0) ? this.props.categories[0][3] : null;
 
@@ -126,7 +132,8 @@ export default class MenuItemForm extends React.Component {
         </div>
       </form>
     )
-  },
+  }
+
   submit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
@@ -165,7 +172,8 @@ export default class MenuItemForm extends React.Component {
         });
       }.bind(this)
     });
-  },
+  }
+
   switchType(e) {
     this.setState({type: e.target.value});
   }

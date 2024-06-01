@@ -1,10 +1,16 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
 export default class Credentials extends React.Component {
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       credentials: this.props.credentials
-    }
-  },
-  render: function() {
+    };
+  }
+
+  render() {
     var credentials = (
       <div className="block">
         <div className="row">

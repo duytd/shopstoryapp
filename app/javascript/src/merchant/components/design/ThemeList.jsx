@@ -1,6 +1,7 @@
-window.design = window.design || {};
+import React from 'react';
+import I18n from 'i18n-js';
 
-export default class design.ThemeList extends React.Component {
+export default class ThemeList extends React.Component {
   renderTheme(theme, key, isCurrent) {
     return (
       <div className="col-sm-3 theme" key={key}>
@@ -15,7 +16,8 @@ export default class design.ThemeList extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   render() {
     return (
       <div className="row">

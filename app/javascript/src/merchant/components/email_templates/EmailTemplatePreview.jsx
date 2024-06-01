@@ -1,6 +1,6 @@
+import React from 'react';
+
 export default class EmailTemplatePreview extends React.Component {
-  componentDidUpdate() {
-  },
   render() {
     return (
       <div className={this.props.preview ? "modal fade in" : "modal fade"} role="dialog" style={this.props.preview ? {display: "block"} : {display: "none"}}>

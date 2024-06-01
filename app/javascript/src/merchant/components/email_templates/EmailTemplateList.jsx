@@ -1,3 +1,6 @@
+import React from 'react';
+import * as Routes from '../../../routes';
+
 export default class EmailTemplateList extends React.Component {
   render() {
     var templateNodes = this.props.email_templates.map(function(template, index) {
@@ -14,8 +17,9 @@ export default class EmailTemplateList extends React.Component {
         </ul>
       </div>
     )
-  },
-  updateEmailTemplate(templateId) {
+  }
+
+  updateEmailTemplate = (templateId) => {
     $.get(Routes.edit_merchant_email_template_path.localize(templateId), function(response) {
       this.props.updateFile(response.data, response.url, response.reset_url, "html");
     }.bind(this))

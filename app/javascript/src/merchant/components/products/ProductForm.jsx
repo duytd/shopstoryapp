@@ -5,6 +5,7 @@ import * as Routes from '../../../routes';
 import ProductImageForm from './ProductImageForm';
 import FormErrors from '../../components/general/FormErrors';
 import SubmitButtons from '../../components/general/SubmitButtons';
+import SeoTag from '../../components/seo_tags/SeoTag';
 import LocaleNavTab from '../../components/general/LocaleNavTab';
 import withFormMixins from '../../mixins/FormMixin';
 
@@ -41,10 +42,6 @@ class Form extends React.Component {
       deletedVariations: [],
       productImages: productImages
     };
-  }
-
-  componentDidMount() {
-    this.loadSummernote();
   }
 
   renderVariation(variation, index) {
@@ -373,14 +370,14 @@ class Form extends React.Component {
     }
   }
 
-  addOptionValue(parentIndex) {
+  addOptionValue = (parentIndex) => {
     var variationOptions = this.state.variationOptions;
     variationOptions[parentIndex].option_values.push(null);
 
     this.setState({variationOptions: variationOptions});
   }
 
-  changePrice() {
+  changePrice = () => {
     var price = this.refs.price.value.replace(/,/g, "");
     var sale_off = this.refs.sale_off.value.replace(/,/g, "");
     var discountedPrice = price - price * sale_off / 100;
@@ -388,7 +385,7 @@ class Form extends React.Component {
     this.setState({discountedPrice: discountedPrice});
   }
 
-  deleteOptionValue(parentIndex, index) {
+  deleteOptionValue = (parentIndex, index) => {
     var variationOptions = this.state.variationOptions;
     var optionValues = variationOptions[parentIndex].option_values;
     var deletedOptionValues = variationOptions[parentIndex].deleted_option_values;
@@ -415,7 +412,7 @@ class Form extends React.Component {
     this.setState({variationOptions: variationOptions});
   }
 
-  deleteVariationOption(index) {
+  deleteVariationOption = (index) => {
     var variationOptions = this.state.variationOptions;
     var variationOption = variationOptions[index];
     var deletedVariationOptions = this.state.deletedVariationOptions;
@@ -432,7 +429,7 @@ class Form extends React.Component {
     });
   }
 
-  deleteVariation(index) {
+  deleteVariation = (index) => {
     var variations = this.state.variations;
     var variation = variations[index];
     var deletedVariations = this.state.deletedVariations;
@@ -449,14 +446,14 @@ class Form extends React.Component {
     });
   }
 
-  addVariation() {
+  addVariation = () => {
     var variations = this.state.variations;
     variations.push({});
 
     this.setState({variations: variations});
   }
 
-  uploadVariationImage(image, index) {
+  uploadVariationImage = (image, index) => {
     var variations = this.state.variations;
     variation = variations[index];
     variation.previewImage = image;
@@ -590,7 +587,7 @@ class Form extends React.Component {
     dropzone.processQueue();
   }
 
-  updateDropzone(dropzone) {
+  updateDropzone = (dropzone) => {
     this.setState({dropzone: dropzone});
   }
 }

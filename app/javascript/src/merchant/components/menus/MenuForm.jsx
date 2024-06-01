@@ -1,9 +1,15 @@
-export default class MenuForm extends React.Component {
-  mixins: [DragMixin],
-  getInitialState() {
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+import withDragMixin from '../../mixins/DragMixin';
+
+class WrappedComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
     var items = (this.props.menu) ? this.props.menu.menu_items : [];
 
-    return {
+    this.state = {
       menu: this.props.menu,
       draggableKlass: "parent",
       menu_item: null,
@@ -13,7 +19,8 @@ export default class MenuForm extends React.Component {
       name_ko_count: 0,
       name_en_count: 0
     };
-  },
+  }
+
   render() {
     var menuItems = this.state.items.map(function(item, index) {
       return (
@@ -117,7 +124,8 @@ export default class MenuForm extends React.Component {
           </div> : null}
       </div>
     )
-  },
+  }
+
   swapItem(from, to, parent) {
     var items = this.state.items;
 
@@ -134,7 +142,8 @@ export default class MenuForm extends React.Component {
     }
 
     this.setState({items: items}, this.submitDraggable);
-  },
+  }
+
   submitDraggable() {
     var id = this.state.menu.id;
     data = $(this.refs.draggable).serialize();
@@ -144,7 +153,8 @@ export default class MenuForm extends React.Component {
       data: data,
       method: "PUT"
     })
-  },
+  }
+
   submit(e) {
     if (typeof e !== "undefined")
       e.preventDefault();
@@ -173,7 +183,8 @@ export default class MenuForm extends React.Component {
         });
       }.bind(this)
     });
-  },
+  }
+
   addMenuItem(item) {
     var items = this.state.items;
 
@@ -190,7 +201,8 @@ export default class MenuForm extends React.Component {
     }
 
     this.setState({items: items, menu_item: null, parent: null});
-  },
+  }
+
   deleteMenuItem(item) {
     var items = this.state.items;
 
@@ -216,7 +228,8 @@ export default class MenuForm extends React.Component {
     }
 
     this.setState({items: items});
-  },
+  }
+
   updateMenuItem(oldItem, newItem) {
     var items = this.state.items;
 
@@ -243,7 +256,8 @@ export default class MenuForm extends React.Component {
     }
 
     this.setState({items: items, menu_item: null, parent: null});
-  },
+  }
+
   setMenuItem(item, parent) {
     if (parent) {
       this.setState({menu_item: item, parent: parent});
@@ -251,8 +265,12 @@ export default class MenuForm extends React.Component {
     else {
       this.setState({menu_item: item})
     }
-  },
+  }
+
   setParent(item) {
     this.setState({parent: item, menu_item: null})
   }
 }
+
+const MenuForm = withDragMixin(WrappedComponent);
+export default MenuForm;

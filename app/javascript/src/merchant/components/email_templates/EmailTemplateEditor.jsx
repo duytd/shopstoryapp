@@ -1,13 +1,23 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+
+import EmailTemplatePreview from './EmailTemplatePreview';
+import SubmitButtons from '../../components/general/SubmitButtons';
+
 export default class EmailTemplateEditor extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       previewData: null,
       url: this.props.url,
       reset_url: this.props.reset_url,
       errors: {},
       preview: false
     };
-  },
+  }
+
   componentDidMount() {
     var editor = ace.edit("editor");
     var HtmlMode = ace.require("ace/mode/html").Mode;
@@ -27,7 +37,8 @@ export default class EmailTemplateEditor extends React.Component {
     $(".ace_scroller").perfectScrollbar();
 
     this.setState({editor: editor});
-  },
+  }
+
   render() {
     return (
       <div className="row theme-editors">
@@ -61,7 +72,8 @@ export default class EmailTemplateEditor extends React.Component {
         </div>
       </div>
     );
-  },
+  }
+
   preview(e) {
     e.preventDefault();
 
@@ -76,10 +88,12 @@ export default class EmailTemplateEditor extends React.Component {
         this.setState({previewData: response.data, preview: true});
       }.bind(this)
     })
-  },
+  }
+
   closePreview() {
     this.setState({preview: false});
-  },
+  }
+
   submit(e) {
     e.preventDefault();
     this.refs.code.value = this.state.editor.getValue();
@@ -87,7 +101,8 @@ export default class EmailTemplateEditor extends React.Component {
     var formData = $(this.refs.form).serialize();
 
     this.handleSubmit(formData, this.state.url, "put");
-  },
+  }
+
   reset(e) {
     e.preventDefault();
     var url = this.state.reset_url;
@@ -95,11 +110,13 @@ export default class EmailTemplateEditor extends React.Component {
     $.get(url, function(data) {
       this.state.editor.setValue(data.data);
     }.bind(this))
-  },
+  }
+
   updateFile(data, url, reset_url, mode) {
     this.state.editor.setValue(data.content, -1);
     this.setState({url: url, reset_url: reset_url})
-  },
+  }
+
   handleSubmit(formData, action, method) {
     $.ajax({
       data: formData,

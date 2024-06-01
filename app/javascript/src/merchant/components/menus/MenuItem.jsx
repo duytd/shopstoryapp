@@ -1,10 +1,17 @@
-export default class MenuItem extends React.Component {
-  getInitialState() {
-    return {
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+import withDragMixin from '../../mixins/DragMixin';
+
+class WrappedComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       draggableKlass: "child_" + this.props.menu_item.id
-    }
-  },
-  mixins: [DragMixin],
+    };
+  }
+
   render() {
     var children = this.props.menu_item.children.map(function(child, index) {
       return (
@@ -58,11 +65,13 @@ export default class MenuItem extends React.Component {
           </div>
       </div>
     )
-  },
-  submitDraggable: function() {
+  }
+
+  submitDraggable() {
    this.props.submitDraggable();
-  },
-  deleteMenuItem: function(e) {
+  }
+
+  deleteMenuItem(e) {
     e.preventDefault();
 
     var menuId = this.props.menu_id;
@@ -75,14 +84,20 @@ export default class MenuItem extends React.Component {
         this.props.deleteMenuItem(this.props.menu_item);
       }.bind(this)
     })
-  },
+  }
+
   swapItem(from, to, parent) {
     this.props.swapItem(from, to, parent);
-  },
+  }
+
   setMenuItem() {
     this.props.setMenuItem(this.props.menu_item, this.props.parent);
-  },
+  }
+
   setParent() {
     this.props.setParent(this.props.menu_item);
   }
 }
+
+const MenuItem = withDragMixin(WrappedComponent);
+export default MenuItem;

@@ -1,7 +1,9 @@
 import LocaleNavTab from '../../components/general/LocaleNavTab';
 
 export default class ShippingRateForm extends React.Component {
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
     var type = (this.props.types) ? "free" : null;
 
     if (this.props.shipping_rate) {
@@ -21,14 +23,15 @@ export default class ShippingRateForm extends React.Component {
       }
     }
 
-    return {
+    this.state = {
       generalType: "free_shipping",
       type: type,
       errors: {},
       name_ko_count: 0,
       name_en_count: 0
     };
-  },
+  }
+
   render() {
     return (
       <form ref="form" className="shipping-rate-form" action={this.props.url}
@@ -133,13 +136,15 @@ export default class ShippingRateForm extends React.Component {
         </div>
       </form>
     )
-  },
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
     this.handleShippingRateSubmit(formData, this.props.url, this.props.method);
-  },
+  }
+
   handleShippingRateSubmit(formData, action, method) {
     $.ajax({
       data: formData,
@@ -161,10 +166,12 @@ export default class ShippingRateForm extends React.Component {
         });
       }.bind(this)
     });
-  },
+  }
+
   switchType(e) {
     this.setState({type: e.target.value});
-  },
+  }
+
   switchGeneralType(e) {
     var type = null;
 

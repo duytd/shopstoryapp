@@ -1,11 +1,22 @@
+import * as ace from 'ace-builds/src-noconflict/ace';
+import 'ace-builds/src-noconflict/theme-solarized_light';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/mode-css';
+import 'ace-builds/src-noconflict/mode-html';
+import 'ace-builds/src-noconflict/mode-json';
+import PerfectScrollbar from 'perfect-scrollbar';
+
 export default class Editor extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       url: this.props.url,
       reset_url: this.props.reset_url,
       error: [],
     };
-  },
+  }
+
   componentDidMount() {
     var editor = ace.edit("editor");
     var CssMode = ace.require("ace/mode/css").Mode;
@@ -22,10 +33,11 @@ export default class Editor extends React.Component {
     editor.getSession().setMode(new CssMode());
     editor.setValue(this.props.data.content, -1);
 
-    $(".ace_scroller").perfectScrollbar();
+    const ps = new PerfectScrollbar('.ace_scroller');
 
     this.setState({editor: editor});
-  },
+  }
+
   render() {
     return (
       <div className="row theme-editors">
@@ -58,7 +70,8 @@ export default class Editor extends React.Component {
         </div>
       </div>
     );
-  },
+  }
+
   submit(e) {
     e.preventDefault();
     this.refs.code.value = this.state.editor.getValue();
@@ -66,7 +79,8 @@ export default class Editor extends React.Component {
     var formData = $(this.refs.form).serialize();
 
     this.handleSubmit(formData, this.state.url, "put");
-  },
+  }
+
   reset(e) {
     e.preventDefault();
     var url = this.state.reset_url;
@@ -74,7 +88,8 @@ export default class Editor extends React.Component {
     $.get(url, function(data) {
       this.state.editor.setValue(data.data);
     }.bind(this))
-  },
+  }
+
   updateFile(data, url, reset_url, mode) {
     var JavascriptMode = ace.require("ace/mode/javascript").Mode;
     var CssMode = ace.require("ace/mode/css").Mode;
@@ -95,7 +110,8 @@ export default class Editor extends React.Component {
     }
 
     this.setState({url: url, reset_url: reset_url, errors: []})
-  },
+  }
+
   handleSubmit(formData, action, method) {
     $.ajax({
       data: formData,

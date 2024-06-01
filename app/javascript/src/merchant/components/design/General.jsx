@@ -1,11 +1,17 @@
-window.design = window.design || {};
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
 
-export default class design.GeneralForm extends React.Component {
-  getInitialState() {
-    return {
+export default class GeneralForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       general: this.props.general,
-    }
-  },
+
+    };
+  }
+
   renderPages(type) {
     return (
       this.props.pages.map(function(page, index) {
@@ -16,7 +22,8 @@ export default class design.GeneralForm extends React.Component {
         )
       })
     )
-  },
+  }
+
   render() {
     return (
       <form ref="form" className="design-general-form" action={this.props.url}
@@ -53,8 +60,9 @@ export default class design.GeneralForm extends React.Component {
         </div>
       </form>
     )
-  },
-  submit(e) {
+  }
+
+  submit = (e) => {
     e.preventDefault();
 
     var form = $(this.refs.form);

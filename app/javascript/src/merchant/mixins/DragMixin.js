@@ -1,80 +1,95 @@
-/* To use this mixin, an items state and submit method must be set */
-var DragMixin = {
-  getInitialState: function() {
-    var placeholder = document.createElement("div");
-    placeholder.className = "placeholder";
+import React from 'react';
 
-    return {
-      placeholder: placeholder,
+const withDragMixin = (WrappedComponent) => {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+
+      var placeholder = document.createElement("div");
+      placeholder.className = "placeholder";
+
+      this.state = {
+        placeholder: placeholder,
+      };
     }
-  },
-  dragStart: function(e) {
-    this.dragged = e.currentTarget.parentNode;
 
-    if (typeof e.dataTransfer !== "undefined") {
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.setData("text/html", e.currentTarget.parentNode);
+    dragStart = (e) => {
+      this.dragged = e.currentTarget.parentNode;
+
+      if (typeof e.dataTransfer !== "undefined") {
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/html", e.currentTarget.parentNode);
+      }
     }
-  },
-  dragEnd: function(e) {
-    e.preventDefault();
 
-    if( typeof this.dragged === "undefined" || this.dragged == null) return;
-    this.dragged.style.display = "block";
+    dragEnd = (e) => {
+      e.preventDefault();
 
-    if (this.dragged.parentNode.querySelectorAll(".placeholder").length == 0) return;
-    this.dragged.parentNode.removeChild(this.state.placeholder);
+      if( typeof this.dragged === "undefined" || this.dragged == null) return;
+      this.dragged.style.display = "block";
 
-    var from = Number(this.dragged.dataset.index);
-    var to = Number(this.over.dataset.index);
+      if (this.dragged.parentNode.querySelectorAll(".placeholder").length == 0) return;
+      this.dragged.parentNode.removeChild(this.state.placeholder);
 
-    this.dragged = null;
-    this.swapItem(from, to, this.props.menu_item);
-  },
-  dragOver: function(e) {
-    e.preventDefault();
+      var from = Number(this.dragged.dataset.index);
+      var to = Number(this.over.dataset.index);
 
-    if( typeof this.dragged === "undefined" || this.dragged == null) return;
-    this.dragged.style.display = "none";
-
-    if (this.dragged.className != e.target.parentNode.className) return;
-    this.over = e.target.parentNode;
-
-    var from = Number(this.dragged.dataset.index);
-    var to = Number(this.over.dataset.index);
-    var parent = this.over.parentNode;
-
-    if (from < to) {
-      this.nodePlacement = "after";
-      parent.insertBefore(this.state.placeholder, this.over.nextElementSibling);
+      this.dragged = null;
+      this.swapItem(from, to, this.props.menu_item);
     }
-    else if (from > to) {
-      this.nodePlacement = "before";
-      parent.insertBefore(this.state.placeholder, this.over);
+
+    dragOver = (e) => {
+      e.preventDefault();
+
+      if( typeof this.dragged === "undefined" || this.dragged == null) return;
+      this.dragged.style.display = "none";
+
+      if (this.dragged.className != e.target.parentNode.className) return;
+      this.over = e.target.parentNode;
+
+      var from = Number(this.dragged.dataset.index);
+      var to = Number(this.over.dataset.index);
+      var parent = this.over.parentNode;
+
+      if (from < to) {
+        this.nodePlacement = "after";
+        parent.insertBefore(this.state.placeholder, this.over.nextElementSibling);
+      }
+      else if (from > to) {
+        this.nodePlacement = "before";
+        parent.insertBefore(this.state.placeholder, this.over);
+      }
     }
-  },
-  touchMove: function(e) {
-    e.preventDefault();
 
-    if( typeof this.dragged === "undefined" || this.dragged == null) return;
-    this.dragged.style.display = "none";
-    var location = e.touches.item(0);
+    touchMove = (e) => {
+      e.preventDefault();
 
-    if (this.dragged.className != document.elementFromPoint(location.clientX, location.clientY).className) return;
-    this.over = document.elementFromPoint(location.clientX, location.clientY);
+      if( typeof this.dragged === "undefined" || this.dragged == null) return;
+      this.dragged.style.display = "none";
+      var location = e.touches.item(0);
+
+      if (this.dragged.className != document.elementFromPoint(location.clientX, location.clientY).className) return;
+      this.over = document.elementFromPoint(location.clientX, location.clientY);
 
 
-    var from = Number(this.dragged.dataset.index);
-    var to = Number(this.over.dataset.index);
-    var parent = this.over.parentNode;
+      var from = Number(this.dragged.dataset.index);
+      var to = Number(this.over.dataset.index);
+      var parent = this.over.parentNode;
 
-    if (from < to) {
-      this.nodePlacement = "after";
-      parent.insertBefore(this.state.placeholder, this.over.nextElementSibling);
+      if (from < to) {
+        this.nodePlacement = "after";
+        parent.insertBefore(this.state.placeholder, this.over.nextElementSibling);
+      }
+      else if (from > to) {
+        this.nodePlacement = "before";
+        parent.insertBefore(this.state.placeholder, this.over);
+      }
     }
-    else if (from > to) {
-      this.nodePlacement = "before";
-      parent.insertBefore(this.state.placeholder, this.over);
+
+    render() {
+      return <WrappedComponent {...this.props} />;
     }
   }
 }
+
+export default withFormMixins;

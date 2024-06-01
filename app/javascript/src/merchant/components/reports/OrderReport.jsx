@@ -1,10 +1,18 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import LineChart from '../charts/LineChart';
+import * as Routes from '../../../routes';
+
 export default class OrderReport extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       data: this.props.data,
       reportType: "daily",
-    }
-  },
+    };
+  }
+
   render() {
     var reportTypes = ["hourly", "daily", "weekly", "monthly", "yearly"]
 
@@ -22,7 +30,8 @@ export default class OrderReport extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   updateData(reportType) {
     var url = this.props.url;
 

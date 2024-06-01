@@ -1,17 +1,22 @@
-import LocaleNavTab from '../../components/general/LocaleNavTab';
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
 
-export default class CustomPageForm extends React.Component {
-  mixins: [FormMixin],
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
+import SeoTag from '../../components/seo_tags/SeoTag';
+import LocaleNavTab from '../../components/general/LocaleNavTab';
+import withFormMixins from '../../mixins/FormMixin';
+
+class Form extends React.Component {
   getInitialState() {
     return {
       errors: {},
       errors_en_count: 0,
       errors_ko_count: 0
     };
-  },
-  componentDidMount() {
-    this.loadSummernote();
-  },
+  }
+
   render() {
     return (
       <form ref="form" className="custom-page-form" action={this.props.url}
@@ -75,13 +80,15 @@ export default class CustomPageForm extends React.Component {
         </div>
       </form>
     )
-  },
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
     this.handleCustomPageSubmit(formData, this.props.url, this.props.method);
-  },
+  }
+
   handleCustomPageSubmit(formData, action, method) {
     $.ajax({
       data: formData,
@@ -105,5 +112,8 @@ export default class CustomPageForm extends React.Component {
         });
       }.bind(this)
     });
-  },
+  }
 }
+
+const CustomPageForm = withFormMixins(Form);
+export default CustomPageForm;

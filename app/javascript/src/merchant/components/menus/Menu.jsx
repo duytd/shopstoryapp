@@ -1,11 +1,18 @@
-export default class Menu extends React.Component {
-  mixins: [DragMixin],
-  getInitialState() {
-    return {
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
+import withDragMixin from '../../mixins/DragMixin';
+
+class WrappedComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       items: this.props.menu.menu_items,
       draggableKlass: "parent"
-    }
-  },
+    };
+  }
+
   render() {
     var menuItems = this.state.items.map(function(item, index) {
       return (
@@ -49,7 +56,8 @@ export default class Menu extends React.Component {
         </div>
       </div>
     )
-  },
+  }
+
   swapItem(from, to, parent) {
     var items = this.state.items;
 
@@ -66,7 +74,8 @@ export default class Menu extends React.Component {
     }
 
     this.setState({items: items}, this.submitDraggable);
-  },
+  }
+
   submitDraggable() {
     var id = this.props.menu.id;
     data = $(this.refs.draggable).serialize();
@@ -76,7 +85,8 @@ export default class Menu extends React.Component {
       data: data,
       method: "PUT"
     })
-  },
+  }
+
   deleteMenu(e) {
     e.preventDefault();
 
@@ -91,3 +101,6 @@ export default class Menu extends React.Component {
     })
   }
 }
+
+const Menu = withDragMixin(WrappedComponent);
+export default Menu;

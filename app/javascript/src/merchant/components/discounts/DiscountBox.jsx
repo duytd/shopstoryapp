@@ -1,3 +1,10 @@
+import React from 'react';
+import I18n from 'i18n-js';
+
+import DiscountList from './DiscountList';
+import Box from '../../components/general/Box';
+import Pagination from '../../components/general/Pagination';
+
 export default class DiscountBox extends React.Component {
   render() {
     var discountList = (

@@ -1,4 +1,7 @@
+import React from 'react';
+import I18n from 'i18n-js';
 import LocaleNavTab from '../../components/general/LocaleNavTab';
+import FormErrors from '../../components/general/FormErrors';
 
 export default class SeoTag extends React.Component {
   render() {

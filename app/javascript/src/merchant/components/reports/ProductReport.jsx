@@ -1,9 +1,17 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import BarChart from '../charts/BarChart';
+import * as Routes from '../../../routes';
+
 export default class ProductReport extends React.Component {
-  getInitialState() {
-    return {
-      data: this.props.data
-    }
-  },
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: this.props.data,
+    };
+  }
+
   render() {
     return (
       <div className="reports block">

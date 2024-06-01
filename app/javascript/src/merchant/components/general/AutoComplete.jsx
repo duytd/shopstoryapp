@@ -1,10 +1,15 @@
+import React from 'react';
+
 export default class AutoComplete extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       chosen: null,
       data: []
     }
-  },
+  }
+
   componentDidMount() {
     var chosenSource = this.props.chosenSource;
 
@@ -13,7 +18,8 @@ export default class AutoComplete extends React.Component {
         this.setState({chosen: chosen});
       }.bind(this))
     }
-  },
+  }
+
   render() {
     return (
       <div className="autocomplete">
@@ -39,7 +45,8 @@ export default class AutoComplete extends React.Component {
         </div> : null}
       </div>
     )
-  },
+  }
+
   getData(e) {
     var q = e.target.value;
     var url = this.props.url;
@@ -47,10 +54,12 @@ export default class AutoComplete extends React.Component {
     $.getJSON(url, {q: q}, function(data) {
       this.setState({data: data});
     }.bind(this))
-  },
+  }
+
   removeChosen() {
     this.setState({chosen: null});
-  },
+  }
+
   setChosen(element) {
     this.setState({chosen: element, data: []})
   }

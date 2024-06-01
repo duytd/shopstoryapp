@@ -1,3 +1,6 @@
+import React from 'react';
+import Plan from './Plan';
+
 export default class Subscription extends React.Component {
   render() {
     var planNodes = this.props.plans.map(function(plan, index) {

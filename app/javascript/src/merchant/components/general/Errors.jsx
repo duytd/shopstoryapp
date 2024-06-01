@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default class Errors extends React.Component {
   render() {
     var errors = this.props.errors.map(function(error) {
