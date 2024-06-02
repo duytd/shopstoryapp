@@ -183,7 +183,7 @@
 
     <li class="item <%= current_page?(edit_merchant_shop_path(current_shop)) ||
       current_page?(webmaster_merchant_shops_path) ||
-      current_page?(merchant_payment_method_shops_path) ||
+      current_page?(merchant_payment_methods_path) ||
       current_page?(merchant_account_path) ? 'active' : '' %>">
       <div>
         <i class="fa fa-gear"></i>
@@ -202,7 +202,7 @@
             <%= t "merchant.admin.menu.webmaster" %>
           </li>
         <% end %>
-        <%= link_to merchant_payment_method_shops_path do %>
+        <%= link_to merchant_payment_methods_path do %>
           <li>
             <i class="fa fa-money"></i>
             <%= t "merchant.admin.menu.payment_settings" %>

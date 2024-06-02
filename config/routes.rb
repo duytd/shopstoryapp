@@ -154,6 +154,6 @@ Rails.application.routes.draw do
     resources :email_templates, only: [:index, :edit, :update] do
       post :preview, on: :collection
     end
-    resources :payment_method_shops, only: [:index, :update], path: "payment"
+    resources :payment_methods, only: [:index, :update], path: "payment"
   end
 end

@@ -14,10 +14,10 @@ var CategoryBox = React.createClass({
       url: url,
       method: "GET",
       beforeSend: function() {
-        loading.removeClass("hide");
+        loading.removeClass("d-none");
       },
       success: function(data) {
-        loading.addClass("hide");
+        loading.addClass("d-none");
         this.setState({products: data})
       }.bind(this),
       error: function(xhr) {

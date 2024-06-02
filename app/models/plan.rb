@@ -40,7 +40,7 @@ class Plan < ApplicationRecord
       amount: plan.price.to_i,
       interval: plan.interval,
       name: plan.name,
-      currency: "krw",
+      currency: "usd",
       trial_plan: nil,
       id: plan.stripe_id
     )

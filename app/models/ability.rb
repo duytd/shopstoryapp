@@ -6,13 +6,13 @@ class Ability
     user ||= User.new
     if user.is_a? Admin
       can :manage, :all
-    elsif user.is_a?(Merchant) && current_tenant?(user) && (user.has_subscription? || !trial_expired_for?(user))
+    elsif user.is_a?(Merchant) && current_tenant?(user) && (user.has_subscription? || free_plan?(user))
       can :manage, Category
       can :manage, CustomPage
       can :manage, Product
       can [:read, :create, :update, :webmaster], Shop
       can [:read, :update], Asset
-      can [:read, :update], PaymentMethodShop
+      can [:read, :update], PaymentMethod
       can :manage, Order
       can :manage, ShippingRate
       can :manage, Customer

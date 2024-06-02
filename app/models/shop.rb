@@ -52,6 +52,11 @@
 #  index_shops_on_theme_id    (theme_id)
 #  index_shops_on_user_id     (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (theme_id => themes.id)
+#  fk_rails_...  (user_id => users.id)
+#
 class Shop < ApplicationRecord
   include LiquidMethods
   attr_accessor :setting_up

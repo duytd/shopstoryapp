@@ -1,11 +1,12 @@
 module Merchant::SubscriptionsHelper
-  def trial_expired_for? user
-    remaining_days(user) <= 0
+  PRODUCT_LIMIT = 3
+
+  def free_plan? user
+    Product.count <= PRODUCT_LIMIT
   end
 
-  def remaining_days user
-    days_left = ((user.created_at + Settings.free_trial_length.days).to_date - Date.today).round
-    return 0 if days_left < 0
-    days_left
+  def remaining_products user
+    remaining_size = PRODUCT_LIMIT - Product.count
+    remaining_size < 0 ? 0 : remaining_size
   end
 end

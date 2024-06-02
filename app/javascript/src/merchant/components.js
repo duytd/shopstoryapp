@@ -65,6 +65,7 @@ import Dashboard from './components/pages/Dashboard';
 
 // General
 import Breadcrumb from './components/general/Breadcrumb';
+import PaymentMethodBox from './components/payment_methods/PaymentMethodBox';
 
 // Setup locales
 I18n.translations = translations;
@@ -104,5 +105,6 @@ ReactOnRails.register({
   Editor,
   Dashboard,
   Account,
-  EmailTemplateEditor
+  EmailTemplateEditor,
+  PaymentMethodBox
 });

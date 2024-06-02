@@ -15,6 +15,11 @@
 #  index_payment_method_shops_on_payment_method_id  (payment_method_id)
 #  index_payment_method_shops_on_shop_id            (shop_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (payment_method_id => payment_methods.id)
+#  fk_rails_...  (shop_id => shops.id)
+#
 require "zip"
 
 class PaymentMethodShop < ApplicationRecord

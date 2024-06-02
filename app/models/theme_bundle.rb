@@ -17,6 +17,11 @@
 #  index_theme_bundles_on_shop_id   (shop_id)
 #  index_theme_bundles_on_theme_id  (theme_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (shop_id => shops.id)
+#  fk_rails_...  (theme_id => themes.id)
+#
 require "minifier"
 
 class ThemeBundle < ApplicationRecord

@@ -7,6 +7,7 @@
 #  name              :string
 #  option_type       :string
 #  title             :string
+#  value             :string           default("")
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  payment_method_id :integer
@@ -14,6 +15,10 @@
 # Indexes
 #
 #  index_payment_method_options_on_payment_method_id  (payment_method_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (payment_method_id => payment_methods.id)
 #
 class PaymentMethodOption < ApplicationRecord
   validates :name, presence: true

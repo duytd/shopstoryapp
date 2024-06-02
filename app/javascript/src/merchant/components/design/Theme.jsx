@@ -43,10 +43,10 @@ export default class Theme extends React.Component {
       data: {theme_id: themeId},
       method: "POST",
       beforeSend: function() {
-        loading.removeClass("hide");
+        loading.removeClass("d-none");
       },
       complete: function() {
-        loading.addClass("hide");
+        loading.addClass("d-none");
       },
       success: function() {
         this.setState({current: true});

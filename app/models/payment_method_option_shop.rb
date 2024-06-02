@@ -14,6 +14,11 @@
 #  index_payment_method_option_shops_on_payment_method_option_id  (payment_method_option_id)
 #  index_payment_method_option_shops_on_payment_method_shop_id    (payment_method_shop_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (payment_method_option_id => payment_method_options.id)
+#  fk_rails_...  (payment_method_shop_id => payment_method_shops.id)
+#
 class PaymentMethodOptionShop < ApplicationRecord
   belongs_to :payment_method_option
   belongs_to :payment_method_shop
