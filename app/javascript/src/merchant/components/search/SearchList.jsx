@@ -1,5 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
+import { translate } from '../../../functions';
 
 export default class SearchList extends React.Component {
   render() {

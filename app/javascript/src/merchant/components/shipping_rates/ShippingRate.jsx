@@ -1,6 +1,7 @@
 import React from 'react';
 import Item from '../../components/general/Item';
 import * as Routes from '../../../routes';
+import { translate } from '../../../functions';
 
 export default class ShippingRate extends React.Component {
   render() {

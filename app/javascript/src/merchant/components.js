@@ -52,6 +52,17 @@ import CustomPageForm from './components/custom_pages/CustomPageForm';
 // Developer
 import Credentials from './components/developers/Credentials';
 
+// Design
+import GeneralForm from './components/design/General';
+import Theme from './components/design/Theme';
+import ThemeList from './components/design/ThemeList';
+import Editor from './components/design/Editor';
+import EmailTemplateEditor from './components/email_templates/EmailTemplateEditor';
+
+// Pages
+import Account from './components/pages/Account';
+import Dashboard from './components/pages/Dashboard';
+
 // General
 import Breadcrumb from './components/general/Breadcrumb';
 
@@ -86,5 +97,12 @@ ReactOnRails.register({
   PaymentReport,
   CustomPageBox,
   CustomPageForm,
-  Credentials
+  Credentials,
+  GeneralForm,
+  Theme,
+  ThemeList,
+  Editor,
+  Dashboard,
+  Account,
+  EmailTemplateEditor
 });

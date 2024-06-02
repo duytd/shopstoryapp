@@ -1,5 +1,3 @@
-require "rqrcode"
-
 class Customer::OrdersController < Customer::BaseController
   authorize_resource
 

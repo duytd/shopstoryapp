@@ -1,4 +1,5 @@
 import React from 'react';
+import I18n from 'i18n-js';
 import * as Routes from '../../../routes';
 
 export default class EmailTemplateList extends React.Component {

@@ -15,7 +15,7 @@
       </li>
     <% end %>
 
-    <li class="item">
+    <li class="item <%= current_page?(merchant_product_orders_path(type: :purchased)) || current_page?(merchant_product_orders_path(type: :abandoned)) ? 'active' : '' %>">
       <div>
         <i class="fa fa-shopping-cart"></i>
         <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
@@ -39,13 +39,13 @@
     </li>
 
     <%= link_to merchant_customers_path do %>
-      <li class="item">
+      <li class="item <%= current_page?(merchant_customers_path) %>">
         <i class="fa fa-users"></i>
         <span class="item-label"><%= t "merchant.admin.menu.customers" %></span>
       </li>
     <% end %>
 
-    <li class="item">
+    <li class="item <%= current_page?(merchant_products_path) || current_page?(merchant_categories_path) || current_page?(merchant_discounts_path) ? 'active' : '' %>">
       <div>
         <i class="fa fa-tag"></i>
         <span class="item-label"><%= t "merchant.admin.menu.products" %></span>
@@ -75,7 +75,7 @@
       </ul>
     </li>
 
-    <li class="item">
+    <li class="item <%= current_page?(merchant_shipping_rates_path) ? 'active' : '' %>">
       <div>
         <i class="fa fa-truck"></i>
         <span class="item-label"><%= t "merchant.admin.menu.shipping" %></span>
@@ -91,7 +91,7 @@
       </ul>
     </li>
 
-    <li class="item">
+    <li class="item <%= current_page?(order_merchant_reports_path) || current_page?(product_merchant_reports_path) || current_page?(payment_merchant_reports_path) ? 'active' : '' %>">
       <div>
         <i class="fa fa-list-alt"></i>
         <span class="item-label"><%= t "merchant.admin.menu.reports" %></span>
@@ -120,20 +120,24 @@
     </li>
 
     <%= link_to merchant_custom_pages_path do %>
-      <li class="item">
+      <li class="item <%= current_page?(merchant_custom_pages_path) ? 'active' : '' %>">
         <i class="fa fa-file-text"></i>
         <span class="item-label"><%= t "merchant.admin.menu.pages" %></span>
       </li>
     <% end %>
 
     <%= link_to merchant_menus_path do %>
-      <li class="item">
+      <li class="item <%= current_page?(merchant_menus_path) ? 'active' : '' %>">
         <i class="fa fa-sitemap"></i>
         <span class="item-label"><%= t "merchant.admin.menu.navigation" %></span>
       </li>
     <% end %>
 
-    <li class="item">
+    <li class="item <%= current_page?(edit_merchant_design_general_path) ||
+      current_page?(merchant_design_themes_path) ||
+      current_page?(merchant_banners_path) ||
+      current_page?(merchant_editor_path) ||
+      current_page?(merchant_email_templates_path) ? 'active' : '' %>">
       <div>
         <i class="fa fa-th-large"></i>
         <span class="item-label"><%= t "merchant.admin.menu.design" %></span>
@@ -177,7 +181,10 @@
       </ul>
     </li>
 
-    <li class="item">
+    <li class="item <%= current_page?(edit_merchant_shop_path(current_shop)) ||
+      current_page?(webmaster_merchant_shops_path) ||
+      current_page?(merchant_payment_method_shops_path) ||
+      current_page?(merchant_account_path) ? 'active' : '' %>">
       <div>
         <i class="fa fa-gear"></i>
         <span class="item-label"><%= t "merchant.admin.menu.settings" %></span>
@@ -210,7 +217,7 @@
       </ul>
     </li>
 
-    <li class="item">
+    <li class="item <%= current_page?(merchant_credentials_path) ? 'active' : '' %>">
       <div>
         <i class="fa fa-code"></i>
         <span class="item-label"><%= t "merchant.admin.menu.developers" %></span>

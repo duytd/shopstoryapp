@@ -1,6 +1,8 @@
 import React from 'react';
 import I18n from 'i18n-js';
 import * as Routes from '../../../routes';
+import { translate } from '../../../functions';
+import SubmitButtons from '../../components/general/SubmitButtons';
 
 export default class GeneralForm extends React.Component {
   constructor(props) {

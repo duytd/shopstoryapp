@@ -1,8 +1,13 @@
 import React from 'react';
 import I18n from 'i18n-js';
 import * as Routes from '../../../routes';
+import * as ace from 'ace-builds/src-noconflict/ace';
+import 'ace-builds/src-noconflict/mode-html';
+import 'ace-builds/src-noconflict/theme-solarized_light';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 import EmailTemplatePreview from './EmailTemplatePreview';
+import EmailTemplateList from './EmailTemplateList';
 import SubmitButtons from '../../components/general/SubmitButtons';
 
 export default class EmailTemplateEditor extends React.Component {
@@ -34,7 +39,7 @@ export default class EmailTemplateEditor extends React.Component {
     editor.getSession().setMode(new HtmlMode());
     editor.setValue(this.props.data.content, -1);
 
-    $(".ace_scroller").perfectScrollbar();
+    const ps = new PerfectScrollbar('.ace_scroller');
 
     this.setState({editor: editor});
   }
@@ -74,7 +79,7 @@ export default class EmailTemplateEditor extends React.Component {
     );
   }
 
-  preview(e) {
+  preview = (e) => {
     e.preventDefault();
 
     var url = this.props.preview_url;
@@ -94,7 +99,7 @@ export default class EmailTemplateEditor extends React.Component {
     this.setState({preview: false});
   }
 
-  submit(e) {
+  submit = (e) => {
     e.preventDefault();
     this.refs.code.value = this.state.editor.getValue();
 
@@ -103,7 +108,7 @@ export default class EmailTemplateEditor extends React.Component {
     this.handleSubmit(formData, this.state.url, "put");
   }
 
-  reset(e) {
+  reset = (e) => {
     e.preventDefault();
     var url = this.state.reset_url;
 

@@ -2,6 +2,7 @@ import React from 'react';
 import I18n from 'i18n-js';
 import BarChart from '../charts/BarChart';
 import * as Routes from '../../../routes';
+import { translate } from '../../../functions';
 
 export default class ProductReport extends React.Component {
   constructor(props) {

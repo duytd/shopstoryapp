@@ -14,7 +14,7 @@ export default class Theme extends React.Component {
     return (
       <div className="theme row">
         <div className="col-sm-6">
-          <img className="img-responsive"src={this.props.theme.image.url} />
+          <img className="img-thumbnail" src={this.props.theme.image.url} />
         </div>
         <div className="col-sm-6">
           <h2>{this.props.theme.name}</h2>

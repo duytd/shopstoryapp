@@ -144,7 +144,6 @@ GEM
       mini_mime (>= 0.1.3)
       ssrf_filter (~> 1.0)
     childprocess (5.0.0)
-    chunky_png (1.4.0)
     code_analyzer (0.5.5)
       sexp_processor
     coderay (1.1.3)
@@ -398,9 +397,6 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
     rails_best_practices (1.23.2)
       activesupport
       code_analyzer (~> 0.5.5)
@@ -409,8 +405,6 @@ GEM
       json
       require_all (~> 3.0)
       ruby-progressbar
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -443,10 +437,6 @@ GEM
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
     rouge (4.2.1)
-    rqrcode (2.2.0)
-      chunky_png (~> 1.0)
-      rqrcode_core (~> 1.0)
-    rqrcode_core (1.2.0)
     rspec-collection_matchers (1.2.1)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.13.0)
@@ -520,9 +510,6 @@ GEM
     thor (1.3.1)
     thread_safe (0.3.6)
     timeout (0.4.1)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
@@ -609,11 +596,9 @@ DEPENDENCIES
   pry
   puma
   rails (= 5.2.0)
-  rails_12factor
   rails_best_practices
   react_on_rails
   roo
-  rqrcode
   rspec-collection_matchers
   rspec-rails
   rt-transform-ruby!
@@ -627,7 +612,6 @@ DEPENDENCIES
   spring (~> 3.1.1)
   stripe
   stripe_shopstory!
-  turbolinks
   uglifier
   web-console
   wicked_pdf

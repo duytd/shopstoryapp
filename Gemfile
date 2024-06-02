@@ -22,6 +22,8 @@ gem "rubyzip"
 # Auth
 gem "devise"
 gem "cancancan"
+gem "omniauth-oauth2"
+gem "doorkeeper"
 
 # Config
 gem "figaro"
@@ -33,6 +35,7 @@ gem "globalize-accessors"
 gem "i18n-js", "~> 3.9.2"
 gem "money-rails"
 gem "country_select"
+gem "money"
 
 # Frontend
 gem "react_on_rails"
@@ -44,17 +47,21 @@ gem "paypal_shopstory", git: "git@github.com:duytd/paypal_shopstory.git"
 gem "stripe_shopstory", git: "git@github.com:duytd/stripe_shopstory.git"
 gem "stripe"
 
-gem "actionpack-action_caching"
+# Template
+gem "liquid-rails"
+
+# Pagination
 gem "kaminari"
-gem "browser"
-gem "rqrcode"
-gem "omniauth-oauth2"
+
+# SEO
+gem "meta-tags"
 gem "friendly_id"
+
+gem "actionpack-action_caching"
+gem "browser"
 gem "browserify-rails"
 gem "acts_as_tree"
 gem "sidekiq"
-gem "meta-tags"
-gem "liquid-rails"
 gem "RedCloth"
 gem "wicked_pdf"
 gem "roo"
@@ -65,9 +72,7 @@ gem "apartment-sidekiq"
 gem "intercom-rails"
 gem "activerecord-import"
 gem "goldiloader"
-gem "money"
 gem "dalli"
-gem "doorkeeper"
 gem "exception_notification"
 gem "hipchat"
 

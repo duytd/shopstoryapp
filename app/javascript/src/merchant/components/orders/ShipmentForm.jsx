@@ -3,6 +3,7 @@ import I18n from 'i18n-js';
 import * as Routes from '../../../routes';
 
 import FormErrors from '../../components/general/FormErrors';
+import { translate } from '../../../functions';
 
 export default class ShipmentForm extends React.Component {
   constructor(props) {

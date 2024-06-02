@@ -1,6 +1,7 @@
 import React from 'react';
 import Item from '../../components/general/Item';
 import * as Routes from '../../../routes';
+import { translate } from '../../../functions';
 
 export default class Product extends React.Component {
   render() {
@@ -19,7 +20,7 @@ export default class Product extends React.Component {
         </td>
         <td>
           <a href={Routes.edit_merchant_product_path.localize(this.props.product.slug)}>
-            <img width="25" height="25" className="img-responsive" src={this.props.product.featured_image ? this.props.product.featured_image.image.thumb.url : null} />
+            <img width="25" height="25" className="img-thumbnail" src={this.props.product.featured_image ? this.props.product.featured_image.image.thumb.url : null} />
           </a>
         </td>
         <td className="name">

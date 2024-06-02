@@ -1,4 +1,3 @@
-require "rqrcode"
 require "stripe_shopstory"
 
 class Customer::ProductOrdersController < Customer::BaseController

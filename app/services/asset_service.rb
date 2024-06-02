@@ -29,13 +29,13 @@ class AssetService
   def create_bundle type
     case type
     when "javascript"
-      dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{@theme.directory}/assets/javascripts"
+      dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/assets/javascripts"
       extension = "js"
     when "stylesheet"
-      dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{@theme.directory}/assets/stylesheets"
+      dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/assets/stylesheets"
       extension = "scss"
     when "locale"
-      dir = "#{Rails.root}/app/assets/javascripts/customer/themes/#{@theme.directory}/locales"
+      dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/locales"
       extension = "json"
     else
       raise InvalidAssetType
@@ -77,9 +77,10 @@ class AssetService
   end
 
   def set_asset type, file_name, file_content
-    Apartment::Tenant.switch(@subdomain) unless @subdomain.nil?
-    asset = Asset.type_class(type).where(name: file_name, theme_id: @theme.id).first_or_initialize
-    asset.content = file_content
-    asset
+    Apartment::Tenant.switch(@subdomain) do
+      asset = Asset.type_class(type).where(name: file_name, theme_id: @theme.id).first_or_initialize
+      asset.content = file_content
+      asset
+    end
   end
 end

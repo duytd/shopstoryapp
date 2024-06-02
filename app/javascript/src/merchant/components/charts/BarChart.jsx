@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
+import { translate } from '../../../functions';
 
 export default class BarChart extends React.Component {
   componentDidMount() {

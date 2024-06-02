@@ -25,7 +25,7 @@
     <div rt-repeat="item in this.props.globalVars.order.cart" key="item_{itemIndex}" class="row item">
       <div class="col-xs-3">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
-          <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-responsive image" />
+          <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-thumbnail image" />
         </a>
       </div>
 

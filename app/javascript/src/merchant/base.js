@@ -5,6 +5,10 @@ $(document).ready(() => {
   const $content = $("section.content");
   const ps = new PerfectScrollbar('aside.left-panel');
 
+  $('aside.left-panel').animate({
+    scrollTop: $('.navigation .item.active').position().top
+  }, 1000);
+
   $(".navbar-toggler").click(() => {
     $sideBar.toggleClass("collapsed");
     $content.toggleClass("expansed");

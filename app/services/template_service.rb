@@ -26,7 +26,7 @@ class TemplateService
   end
 
   def create_bundle
-    templates_dir = "#{Rails.root}/app/javascripts/src/customer/themes/#{@theme.directory}/templates"
+    templates_dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/templates"
     templates = []
 
     Dir.glob("#{templates_dir}/**/*.rt") do |file|
@@ -42,11 +42,12 @@ class TemplateService
   end
 
   def set_template file_name, file_content, file_directory, transformed_content
-    Apartment::Tenant.switch(@subdomain) unless @subdomain.nil?
-    template = Template.where(name: file_name, theme_id: @theme.id).first_or_initialize
-    template.content = file_content
-    template.directory = file_directory
-    template.transformed_content = transformed_content
-    template
+    Apartment::Tenant.switch(@subdomain) do
+      template = Template.where(name: file_name, theme_id: @theme.id).first_or_initialize
+      template.content = file_content
+      template.directory = file_directory
+      template.transformed_content = transformed_content
+      template
+    end
   end
 end

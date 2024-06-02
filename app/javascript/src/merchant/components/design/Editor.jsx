@@ -1,3 +1,6 @@
+import React from 'react';
+import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
 import * as ace from 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/theme-solarized_light';
 import 'ace-builds/src-noconflict/mode-javascript';
@@ -5,6 +8,9 @@ import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-json';
 import PerfectScrollbar from 'perfect-scrollbar';
+import EditorMenu from './EditorMenu';
+import FormErrors from '../../components/general/FormErrors';
+import SubmitButtons from '../../components/general/SubmitButtons';
 
 export default class Editor extends React.Component {
   constructor(props) {
@@ -72,7 +78,7 @@ export default class Editor extends React.Component {
     );
   }
 
-  submit(e) {
+  submit = (e) => {
     e.preventDefault();
     this.refs.code.value = this.state.editor.getValue();
 
@@ -90,7 +96,7 @@ export default class Editor extends React.Component {
     }.bind(this))
   }
 
-  updateFile(data, url, reset_url, mode) {
+  updateFile = (data, url, reset_url, mode) => {
     var JavascriptMode = ace.require("ace/mode/javascript").Mode;
     var CssMode = ace.require("ace/mode/css").Mode;
     var HtmlMode = ace.require("ace/mode/html").Mode;

@@ -5,6 +5,7 @@ import LocaleNavTab from '../../components/general/LocaleNavTab';
 import FormErrors from '../../components/general/FormErrors';
 import SubmitButtons from '../../components/general/SubmitButtons';
 import AutoComplete from '../../components/general/AutoComplete';
+import { translate } from '../../../functions';
 
 export default class MenuItemForm extends React.Component {
   constructor(props) {
