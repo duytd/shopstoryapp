@@ -8,5 +8,11 @@ body {
 
   .navbar {
     background: $purple;
+
+    .navbar-brand.logo {
+      img {
+        width: 150px;
+      }
+    }
   }
 }

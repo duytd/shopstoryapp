@@ -13,13 +13,8 @@ aside.left-panel {
     padding: 15px 25px;
     text-transform: uppercase;
     .logo {
-      float: left;
-      height: 25px;
       &:not(.icon) {
         display: block;
-      }
-      &.icon {
-        display: none;
       }
     }
     .name {
