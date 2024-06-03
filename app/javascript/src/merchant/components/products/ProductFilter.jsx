@@ -15,19 +15,18 @@ export default class ProductFilter extends React.Component {
 
   render() {
     var categoryNodes = this.props.categories.map(function (category, index) {
-      return <li key={"category_" + index} onClick={this.filterByCategory.bind(this, category)}>{translate(category, "name")}</li>
+      return <li className="dropdown-item" key={"category_" + index} onClick={this.filterByCategory.bind(this, category)}>{translate(category, "name")}</li>
     }.bind(this));
 
     return (
       <div className="product-filter">
         <div className="dropdown">
-          <button className="btn btn-default dropdown-toggle" type="button" id="categoryFilterDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <a href="#" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button">
             {this.state.label}
-            <span className="caret"></span>
-          </button>
-          <ul className="dropdown-menu" aria-labelledby="categoryFilterDropDown">
+          </a>
+          <ul className="dropdown-menu">
             {categoryNodes}
-            <li onClick={this.filterByCategory.bind(this, null)}>{I18n.t("merchant.admin.products.all")}</li>
+            <li className="dropdown-item" onClick={this.filterByCategory.bind(this, null)}>{I18n.t("merchant.admin.products.all")}</li>
           </ul>
         </div>
       </div>
