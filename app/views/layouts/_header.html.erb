@@ -4,11 +4,11 @@
       <%= image_tag asset_pack_path("static/images/logo.svg"), placeholder: t("application.brand") %>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="active nav-item">
           <a href="<%= root_url %>#home" class="nav-link"><%= t("menu.home") %></a>

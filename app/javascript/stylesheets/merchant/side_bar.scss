@@ -1,5 +1,11 @@
 $menu-item-color: #a5a5a4;
 
+.top-bar {
+  .navbar-toggler {
+    height: 50px;
+  }
+}
+
 aside.left-panel {
   top: 0;
   bottom: 0;
@@ -26,6 +32,9 @@ aside.left-panel {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+  }
+  .navbar-toggler {
+    height: 50px;
   }
   .navigation {
     ul {
@@ -96,45 +105,11 @@ aside.left-panel {
 @media (min-width: 992px) {
   aside.left-panel {
     left: 0;
-    &.collapsed {
-      display: block;
-      width: 80px;
-      overflow: visible !important;
-      bottom: 0;
-      position: absolute;
-      left: 0;
-      .merchant-logo {
-        .name {
-          display: none;
-        }
-      }
-      .item {
-        padding: 25px;
-        position: relative;
-        text-align: center;
-        i {
-          margin-top: -10px;
-        }
-        .item-label {
-          display: none;
-        }
-        &:hover > .subitems {
-          display: block !important;
-        }
-      }
-      .subitems {
-        background-color: $base-main;
-        box-shadow: none;
-        left: 100%;
-        min-width: 150px;
-        padding: 10px 0;
-        position: absolute;
-        bottom: 0;
-        z-index: 999;
-        i {
-          display: none;
-        }
-      }
+  }
+
+  .top-bar {
+    .navbar-toggler {
+      display: none;
     }
   }
 }
