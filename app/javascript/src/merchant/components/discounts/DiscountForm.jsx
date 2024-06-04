@@ -49,16 +49,16 @@ export default class DiscountForm extends React.Component {
       <form ref="form" className="discount-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit}>
         <div className="block">
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.discount.code")}</label>
+          <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.discount.code")}</label>
             <span className="pull-right"><a onClick={this.generateCode}>{I18n.t("merchant.admin.buttons.generate_code")}</a></span>
             <FormErrors errors={this.state.errors.code} />
             <input ref="code" type="text" name="discount[code]" className="form-control"
               defaultValue={this.props.discount ? this.props.discount.code : ""} />
           </div>
 
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.discount.discount_type")}</label>
+          <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.discount.discount_type")}</label>
             <div className="select">
               <FormErrors errors={this.state.errors.type} />
               <select ref="discount_type" name="discount[discount_type]" className="form-control" onChange={this.switchDiscountType} defaultValue={this.state.discountType}>
@@ -69,21 +69,21 @@ export default class DiscountForm extends React.Component {
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.discount.amount")}</label>
+          <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.discount.amount")}</label>
             <FormErrors errors={this.state.errors.amount} />
             {(this.state.discountType == "percentage") ? this.renderPercentageInput() : this.renderFixedAmountInput()}
           </div>
 
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.discount.start_date")}</label>
+          <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.discount.start_date")}</label>
             <FormErrors errors={this.state.errors.start_date} />
             <input type="text" name="discount[start_date]" className="datepicker start-date form-control"
               defaultValue={this.props.discount ? this.props.discount.start_date : ""} />
           </div>
 
-         <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.discount.expiry_date")}</label>
+         <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.discount.expiry_date")}</label>
             <FormErrors errors={this.state.errors.expiry_date} />
             <input type="text" name="discount[expiry_date]" className="datepicker end-date form-control"
               defaultValue={this.props.discount ? this.props.discount.expiry_date : ""} />

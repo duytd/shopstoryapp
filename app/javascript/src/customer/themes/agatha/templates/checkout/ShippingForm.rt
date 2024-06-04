@@ -1,7 +1,7 @@
 <form ref="form" id="shippingForm">
   <input name="order[shipping_address_attributes][order_id]" value="{this.props.order.id}" type="hidden" />
 
-  <div rt-if="this.state.country != 'KR'" class="form-group row">
+  <div rt-if="this.state.country != 'KR'" class="mb-3 row">
     <div class="{this.props.halfContainerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.first_name")}</label>
       <Errors errors="{this.state.errors['shipping_address.first_name']}" />
@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div rt-if="this.state.country == 'KR'" class="form-group row">
+  <div rt-if="this.state.country == 'KR'" class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.name")}</label>
       <Errors errors="{this.state.errors['shipping_address.first_name']}" />
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.email")}</label>
       <Errors errors="{this.state.errors['shipping_address.email']}" />
@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.address1")}</label>
       <Errors errors="{this.state.errors['shipping_address.address1']}" />
@@ -44,7 +44,7 @@
     </div>
   </div>
 
- <div class="form-group row">
+ <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass}">{I18n.t("checkout.shipping.address2")}</label>
       <Errors errors="{this.state.errors['shipping_address.address2']}" />
@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div rt-if="this.state.country != 'KR'" class="{this.props.halfContainerKlass}">
       <label class="{this.props.labelKlass} required"}>{I18n.t("checkout.shipping.city")}</label>
       <Errors errors="{this.state.errors['shipping_address.city']}" />
@@ -69,7 +69,7 @@
     </div>
   </div>
 
-  <div rt-if="this.state.country != 'KR'" class="form-group row">
+  <div rt-if="this.state.country != 'KR'" class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.state")}</label>
       <Errors errors="{this.state.errors['shipping_address.state']}" />
@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.country")}</label>
       <Errors errors="{this.state.errors['shipping_address.country']}" />
@@ -92,7 +92,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass} required">{I18n.t("checkout.shipping.phone_number")}</label>
       <Errors errors="{this.state.errors['shipping_address.phone_number']}" />
@@ -100,7 +100,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass}">{I18n.t("checkout.shipping.alternative_phone")}</label>
       <Errors errors="{this.state.errors['shipping_address.alternative_phone']}" />
@@ -108,7 +108,7 @@
     </div>
   </div>
 
-  <div rt-if="this.state.country != 'KR'" class="form-group row">
+  <div rt-if="this.state.country != 'KR'" class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass}">{I18n.t("checkout.shipping.fax")}</label>
       <Errors errors="{this.state.errors['shipping_address.fax']}" />
@@ -117,7 +117,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <label class="{this.props.labelKlass}">{I18n.t("checkout.shipping.delivery_message")}</label>
       <Errors errors="{this.state.errors['shipping_address.delivery_message']}" />
@@ -126,7 +126,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="mb-3 row">
     <div class="{this.props.containerKlass}">
       <input type="submit" class="btn {this.props.btnKlass} btn-primary pull-right" value="{this.props.btnName}" onClick="{this.updateOrder}" />
       <input rf-if="this.props.disableEditing" type="button" class="btn {this.props.btnKlass} btn-default pull-right" value="{I18n.t('checkout.buttons.cancel')}" onClick="{this.props.disableEditing}" />

@@ -16,7 +16,7 @@ export default class PaymentReport extends React.Component {
     return (
       <div className="reports block">
         <div className="chart">
-          <a className="btn btn-sm btn-primary pull-right" href={Routes.payment_merchant_reports_path({"format": "csv", "locale": I18n.locale})}>
+          <a className="btn btn-sm btn-info pull-right" href={Routes.payment_merchant_reports_path({"format": "csv", "locale": I18n.locale})}>
             {I18n.t("merchant.admin.buttons.export")}
           </a>
           <PieChart data={this.state.data} />

@@ -45,9 +45,9 @@ export default class ShippingRateForm extends React.Component {
 
         {(!this.props.shipping_rate && this.props.types) ?
         <div className="block">
-          <div className="form-group row">
+          <div className="mb-3 row">
             <div className="col-sm-6">
-              <label className="label">{I18n.t("merchant.admin.shipping_rates.choose_shipping_type")}</label>
+              <label className="form-label">{I18n.t("merchant.admin.shipping_rates.choose_shipping_type")}</label>
               <div className="select">
                 <FormErrors errors={this.state.errors.type} />
                 <select className="form-control" onChange={this.switchGeneralType}>
@@ -59,7 +59,7 @@ export default class ShippingRateForm extends React.Component {
             </div>
           </div>
 
-          <div className="form-group row">
+          <div className="mb-3 row">
               {(this.state.generalType == "free_shipping") ?
                 <div className="col-sm-6">
                   <p>
@@ -84,9 +84,9 @@ export default class ShippingRateForm extends React.Component {
 
         {(this.props.shipping_rate) ?
           <div className="block">
-            <div className="form-group row">
+            <div className="mb-3 row">
               <div className="col-sm-6">
-                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.type")}</label>
+                <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.type")}</label>
                 <p>{I18n.t("merchant.admin.shipping_rates.type_labels." + this.state.type)}</p>
               </div>
             </div>
@@ -96,17 +96,17 @@ export default class ShippingRateForm extends React.Component {
           <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
 
           <div className="tab-content">
-            <div id="ko" className="tab-pane fade in active">
-              <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
+            <div id="ko" className="tab-pane fade show active">
+              <div className="mb-3">
+                <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
                 <FormErrors errors={this.state.errors.name_ko} />
                 <input ref="name_ko" type="text" name="shipping_rate[name_ko]"
                   className="form-control" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.name_ko : ""} />
               </div>
             </div>
             <div id="en" className="tab-pane fade">
-              <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
+              <div className="mb-3">
+                <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
                 <FormErrors errors={this.state.errors.name_en} />
                 <input ref="name_en" type="text" name="shipping_rate[name_en]"
                   className="form-control" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.name_en : ""} />
@@ -117,9 +117,9 @@ export default class ShippingRateForm extends React.Component {
 
         {(this.state.type == "free_by_price") ?
         <div className="block">
-          <div className="form-group row">
+          <div className="mb-3 row">
             <div className="col-sm-6">
-              <label className="label">{I18n.t("activerecord.attributes.shipping_rate.min_price")}</label>
+              <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.min_price")}</label>
               <input type="text" name="shipping_rate[min_price]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.min_price : null} className="form-control" />
             </div>
           </div>
@@ -127,9 +127,9 @@ export default class ShippingRateForm extends React.Component {
 
       {(this.state.type == "flat_rate_per_product" || this.state.type == "flat_rate_per_order") ?
         <div className="block">
-          <div className="form-group row">
+          <div className="mb-3 row">
             <div className="col-sm-6">
-              <label className="label">{I18n.t("activerecord.attributes.shipping_rate.rate")}</label>
+              <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.rate")}</label>
               <input type="text" name="shipping_rate[rate]" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.rate : null} className="form-control" />
             </div>
           </div>

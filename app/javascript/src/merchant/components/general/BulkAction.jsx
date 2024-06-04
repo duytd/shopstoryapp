@@ -9,7 +9,7 @@ export default class BulkAction extends React.Component {
           {this.props.checkCount + " " + I18n.t("merchant.admin.forms.selected")}
         </button>
         <div className="dropdown">
-          <button className="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" type="button">{I18n.t("merchant.admin.buttons.bulk_actions")}
+          <button className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" type="button">{I18n.t("merchant.admin.buttons.bulk_actions")}
           <span className="caret"></span></button>
           <ul className="dropdown-menu">
             <li><a data-confirm={I18n.t("merchant.admin.forms.confirm")} onClick={this.props.deleteAllHandler}>{I18n.t("merchant.admin.buttons.delete_selected")}</a></li>

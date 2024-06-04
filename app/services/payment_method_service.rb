@@ -1,10 +1,6 @@
 class PaymentMethodService
-  def initialize params
-    @shop = params[:shop]
-  end
-
   def create_initial_data
-    paypal_payment_method = PaymentMethods::Paypal.find_or_create_by name: "Paypal"
+    paypal_payment_method = PaymentMethods::Paypal.find_or_create_by(name: "Paypal")
 
     paypal_payment_method.payment_method_options.create([
       {
@@ -33,7 +29,7 @@ class PaymentMethodService
       }
     ])
 
-    stripe_payment_method = PaymentMethods::Stripe.find_or_create_by name: "Stripe"
+    stripe_payment_method = PaymentMethods::Stripe.find_or_create_by(name: "Stripe")
 
     stripe_payment_method.payment_method_options.create([
       {

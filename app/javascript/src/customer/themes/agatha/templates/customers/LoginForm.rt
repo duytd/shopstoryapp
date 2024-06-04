@@ -1,8 +1,8 @@
 <form ref="form" class="form-horizontal" method="post" acceptCharset="UTF-8" action="{Routes.customer_session_path.localize()}" onSubmit="{this.submit}">
-  <div class="form-group">
+  <div class="mb-3">
     <ul rt-if="this.state.error != ''" class="alert alert-danger"><li>{this.state.error}</li></ul>
   </div>
-  <div class="form-group">
+  <div class="mb-3">
     <label class="control-label col-sm-2" htmlFor="customer_email">
       {I18n.t("customers.login.fields.email")}
     </label>
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <label class="control-label col-sm-2" htmlFor="customer_password">
       {I18n.t("customers.login.fields.password")}
     </label>
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <div class="col-sm-offset-2 col-sm-10">
       <label htmlFor="customer_remember_me" class="styled-cb">
         <input type="hidden" value="0" name="customer[remember_me]" />

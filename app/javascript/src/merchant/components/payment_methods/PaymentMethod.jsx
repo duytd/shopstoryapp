@@ -14,7 +14,7 @@ export default class PaymentMethod extends React.Component {
   render() {
     var options = this.state.payment_method.payment_method_options.map(function(option, index){
       return (
-        <div className="form-group col-md-6" key={"payment_method_" + index}>
+        <div className="mb-3 col-md-6" key={"payment_method_" + index}>
           <label>{option.title}</label>
           <input type="hidden" name={"payment_method[payment_method_options_attributes][" + index + "][id]"} value={option.id} />
           <input type="text" className="form-control" name={"payment_method_shop[payment_method_options_attributes][" + index + "][value]"} defaultValue={option.value} />
@@ -34,7 +34,7 @@ export default class PaymentMethod extends React.Component {
             <form ref="form" id="paymentMethod" acceptCharset="UTF-8" onSubmit={this.submit}>
               <input type="hidden" ref="active" name="payment_method_shop[active]" value={this.state.payment_method.active} />
               <div className="row">
-                <div className="form-group col-md-12">
+                <div className="mb-3 col-md-12">
                   {(this.state.errors.length > 0) ? <Errors errors={this.state.errors} /> : null}
                 </div>
               </div>
@@ -42,7 +42,7 @@ export default class PaymentMethod extends React.Component {
                 {options}
               </div>
               <div className="row">
-                <div className="form-group col-md-12">
+                <div className="mb-3 col-md-12">
                   <button type="submit" className="btn btn-success">
                     {I18n.t("merchant.admin.buttons.save")}
                     <span ref="loading" className="d-none">

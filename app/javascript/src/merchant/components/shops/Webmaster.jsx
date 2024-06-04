@@ -15,16 +15,16 @@ export default class Webmaster extends React.Component {
     return (
       <div className="row">
         <div className="col-md-12 block">
-          <div className="form-group col-md-12">
-            <label className="label">{I18n.t("activerecord.attributes.shop.meta_title")}</label>
+          <div className="mb-3 col-md-12">
+            <label className="form-label">{I18n.t("activerecord.attributes.shop.meta_title")}</label>
             <input type="text" className="form-control" name="shop[meta_title]" defaultValue={this.props.shop.meta_title} />
           </div>
-          <div className="form-group col-md-12">
-            <label className="label">{I18n.t("activerecord.attributes.shop.meta_description")}</label>
+          <div className="mb-3 col-md-12">
+            <label className="form-label">{I18n.t("activerecord.attributes.shop.meta_description")}</label>
             <input type="text" className="form-control" name="shop[meta_description]" defaultValue={this.props.shop.meta_description} />
           </div>
-          <div className="form-group col-md-12">
-            <label className="label">{I18n.t("activerecord.attributes.shop.meta_keywords")}</label>
+          <div className="mb-3 col-md-12">
+            <label className="form-label">{I18n.t("activerecord.attributes.shop.meta_keywords")}</label>
             <input type="text" className="form-control" name="shop[meta_keywords]" defaultValue={this.props.shop.meta_keywords} />
           </div>
         </div>
@@ -36,14 +36,14 @@ export default class Webmaster extends React.Component {
     return (
       <div className="row">
         <div className="col-md-12 block">
-            <div className="form-group col-md-6">
-              <label className="label">{I18n.t("activerecord.attributes.shop.google_verification_code")}</label>
+            <div className="mb-3 col-md-6">
+              <label className="form-label">{I18n.t("activerecord.attributes.shop.google_verification_code")}</label>
               <input type="text" className="form-control" name="shop[google_verification_code]" defaultValue={this.props.shop.google_verification_code} />
             </div>
         </div>
         <div className="col-md-12 block">
-            <div className="form-group col-md-6">
-              <label className="label">{I18n.t("activerecord.attributes.shop.naver_verification_code")}</label>
+            <div className="mb-3 col-md-6">
+              <label className="form-label">{I18n.t("activerecord.attributes.shop.naver_verification_code")}</label>
               <input type="text" className="form-control" name="shop[naver_verification_code]" defaultValue={this.props.shop.naver_verification_code} />
             </div>
         </div>

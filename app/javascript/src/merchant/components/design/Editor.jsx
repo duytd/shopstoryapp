@@ -62,7 +62,7 @@ export default class Editor extends React.Component {
           <form ref="form" id="asset-form" action={this.props.url}
             acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
             <FormErrors errors={this.state.errors} />
-            <div className="form-group">
+            <div className="mb-3">
               <div id="editor" ref="editor" className="code-editor">
               </div>
               <input ref="code" type="hidden" name={"asset[content]"} />

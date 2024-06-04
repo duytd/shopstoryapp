@@ -24,23 +24,23 @@ export default class BannerForm extends React.Component {
           <i className="fa fa-times-circle-o"></i>
         </a>
         {(typeof item.id !== "undefined") ?
-          <input className="hidden" readOnly name={"banner[banner_items_attributes][" + index + "][id]"} value={item.id} /> : null}
+          <input type="hidden" readOnly name={"banner[banner_items_attributes][" + index + "][id]"} value={item.id} /> : null}
         {(item.destroy) ?
-        <input className="hidden" name={"banner[banner_items_attributes][" + index + "][_destroy]"} value={true} /> : null}
-        <div className="form-group">
-          <label className="label">{I18n.t("activerecord.attributes.banner_item.image")}</label>
+        <input type="hidden" name={"banner[banner_items_attributes][" + index + "][_destroy]"} value={true} /> : null}
+        <div className="mb-3">
+          <label className="form-label">{I18n.t("activerecord.attributes.banner_item.image")}</label>
           <input type="file" name={"banner[banner_items_attributes][" + index + "][image]"} />
             {(item.image) ? <img src={item.image.thumb.url} /> : null}
         </div>
-        <div className="form-group">
-          <label className="label">{I18n.t("activerecord.attributes.banner_item.text")}</label>
+        <div className="mb-3">
+          <label className="form-label">{I18n.t("activerecord.attributes.banner_item.text")}</label>
           <input type="text" name={"banner[banner_items_attributes][" + index + "][text]"} className="form-control" defaultValue={item.text} />
         </div>
-        <div className="form-group">
-          <label className="label">{I18n.t("activerecord.attributes.banner_item.link")}</label>
+        <div className="mb-3">
+          <label className="form-label">{I18n.t("activerecord.attributes.banner_item.link")}</label>
           <input type="text" name={"banner[banner_items_attributes][" + index + "][link]"} className="form-control" defaultValue={item.link} />
         </div>
-        <div className="form-group">
+        <div className="mb-3">
           <label className="styled-cb">
             <input type="hidden" name={"banner[banner_items_attributes][" + index + "][show_image]"} value="0" />
             <input ref="checkbox" type="checkbox" name={"banner[banner_items_attributes][" + index + "][show_image]"} value="1"
@@ -58,8 +58,8 @@ export default class BannerForm extends React.Component {
       <form ref="form" className="banner-form" action={this.props.url}
         acceptCharset="UTF-8" method={this.props.method} onSubmit={this.handleSubmit}>
         <div className="block">
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.banner.name")}</label>
+          <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.banner.name")}</label>
             <FormErrors errors={this.state.errors.name} />
             <input ref="name" type="text" name="banner[name]"
               className="form-control" defaultValue={(this.props.banner) ? this.props.banner.name : ""} />
@@ -73,7 +73,7 @@ export default class BannerForm extends React.Component {
         <div className="row">
           <div className="col-md-12">
             <SubmitButtons redirect_url={this.props.redirect_url}>
-              <a className="btn btn-primary" onClick={this.addBannerItem}>{I18n.t("merchant.admin.buttons.add_banner_item")}</a>
+              <a className="btn btn-info" onClick={this.addBannerItem}>{I18n.t("merchant.admin.buttons.add_banner_item")}</a>
             </SubmitButtons>
           </div>
         </div>

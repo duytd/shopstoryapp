@@ -2,7 +2,7 @@
   <form class="form-inline" rt-if="!this.props.order.discount">
     <label>{I18n.t("coupon.title")}</label>
     <Errors errors="{this.state.error}" />
-    <div class="form-group">
+    <div class="mb-3">
       <input ref="code" type="text" class="form-control">
       <button type="submit" class="btn btn-primary" onClick="{this.submit}">
         {I18n.t("buttons.apply")}

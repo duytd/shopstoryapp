@@ -16,7 +16,7 @@ export default class ShippingRateBox extends React.Component {
       shippingRateList = (
         <div className="text-center">
           <p>{I18n.t("merchant.admin.messages.no_shipping_rate")}</p>
-          <a href={Routes.new_merchant_shipping_rate_path.localize()} className="btn btn-lg btn-primary">
+          <a href={Routes.new_merchant_shipping_rate_path.localize()} className="btn btn-lg btn-success">
             {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>

@@ -14,7 +14,7 @@ export default class MenuBox extends React.Component {
       menuList = (
         <div className="text-center">
           <p>{I18n.t("merchant.admin.messages.no_menu")}</p>
-          <a href={this.props.url} className="btn btn-lg btn-primary">
+          <a href={this.props.url} className="btn btn-lg btn-success">
             {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>
@@ -26,7 +26,7 @@ export default class MenuBox extends React.Component {
         <div className="block">
           <div className="block-header">
             <span className="title">{I18n.t("merchant.admin.menus.title")}</span>
-            <a className="btn btn-sm btn-primary pull-right" href={this.props.new_url}>
+            <a className="btn btn-sm btn-success pull-right" href={this.props.new_url}>
               {I18n.t("merchant.admin.buttons.add")}
             </a>
           </div>

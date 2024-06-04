@@ -2,9 +2,9 @@
 import "jquery/src/jquery";
 import "jquery-ujs"
 
-import "summernote/src/js/summernote";
-
 window.bootstrap = require("bootstrap");
+
+import "summernote/src/js/summernote";
 
 // Utilities
 import "../../src/functions";

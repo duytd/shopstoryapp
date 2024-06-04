@@ -1,39 +1,39 @@
 <%= form_for [:admin, @plan] do |f| %>
   <%= render "admin/shared/form_errors", object: f.object %>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <% if @plan.new_record? %>
-    <div class="form-group">
+    <div class="mb-3">
       <%= f.label :price %>
       <%= f.text_field :price, class: "form-control" %>
     </div>
 
-    <div class="form-group">
+    <div class="mb-3">
       <%= f.label :interval %>
       <%= f.select :interval, options_for_select(Plan.interval_options), class: "form-control" %>
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :position %>
     <%= f.number_field :position, class: "form-control" %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :features %>
     <%= f.text_area :features, placeholder: "{value1|criteria1}{value2|criteria2}{value3|criteria3}",class: "form-control" %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :highlight %>
     <%= f.check_box :highlight, {}, true, false %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.submit :save, class: "btn btn-primary" %>
   </div>
 

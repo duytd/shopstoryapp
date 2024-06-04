@@ -50,7 +50,7 @@ export default class SearchList extends React.Component {
         </ul>
 
         <div className="tab-content">
-          <div id="products" className="tab-pane fade in active">
+          <div id="products" className="tab-pane fade show active">
             {this.props.products.length == 0 ? <p>{I18n.t("merchant.admin.search.no_result")}</p> : null}
             {this.props.products.map(function(product) {
               return this.renderProduct(product);

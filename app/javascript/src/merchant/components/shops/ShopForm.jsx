@@ -31,8 +31,8 @@ export default class ShopForm extends React.Component {
 
     var socialAccountNodes = ["facebook_url", "instagram_url", "pinterest_url"].map(function(account, index) {
       return (
-        <div className="form-group col-sm-6" key={"social" + index}>
-          <label className="label">{I18n.t("activerecord.attributes.shop." + account)}</label>
+        <div className="mb-3 col-sm-6" key={"social" + index}>
+          <label className="form-label">{I18n.t("activerecord.attributes.shop." + account)}</label>
           <input type="text" className="form-control" name={"shop[" + account +"]"}
             defaultValue={this.props.shop[account]} />
         </div>
@@ -46,19 +46,19 @@ export default class ShopForm extends React.Component {
           <h6 className="form-title row">{I18n.t("merchant.admin.shops.basic_information")}</h6>
           <div className="row">
             <div className="col-md-12 block">
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.name")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.name")}</label>
                 <input type="text" className="form-control" name="shop[name]" defaultValue={this.props.shop.name} />
                 <FormErrors errors={this.state.errors.name} />
               </div>
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.email")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.email")}</label>
                 <input type="text" className="form-control" name="shop[email]" defaultValue={this.props.shop.email} />
                 <FormErrors errors={this.state.errors.email} />
               </div>
 
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.domain")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.domain")}</label>
                 <div className="input-group">
                   <span className="input-group-text" id="basic-addon1">http://</span>
                   <input type="text" className="form-control" placeholder="yourdomain.com" name="shop[domain]" defaultValue={this.props.shop.domain} />
@@ -74,32 +74,32 @@ export default class ShopForm extends React.Component {
           <h6 className="form-title row">{I18n.t("merchant.admin.shops.business_information")}</h6>
           <div className="row">
             <div className="col-md-12 block">
-              <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.shop.legal_name")}</label>
+              <div className="mb-3 col-md-4">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.legal_name")}</label>
                 <input type="text" className="form-control" name="shop[legal_name]" defaultValue={this.props.shop.legal_name} />
               </div>
-              <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.shop.business_number")}</label>
+              <div className="mb-3 col-md-4">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.business_number")}</label>
                 <input type="text" className="form-control" name="shop[business_number]" defaultValue={this.props.shop.business_number} />
               </div>
-              <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.shop.ceo")}</label>
+              <div className="mb-3 col-md-4">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.ceo")}</label>
                 <input type="text" className="form-control" name="shop[ceo]" defaultValue={this.props.shop.ceo} />
               </div>
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.service_phone")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.service_phone")}</label>
                 <input type="text" className="form-control" name="shop[service_phone]" defaultValue={this.props.shop.service_phone} />
               </div>
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.online_retail_number")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.online_retail_number")}</label>
                 <input type="text" className="form-control" name="shop[online_retail_number]" defaultValue={this.props.shop.online_retail_number} />
               </div>
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.privacy_manager")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.privacy_manager")}</label>
                 <input type="text" className="form-control" name="shop[privacy_manager]" defaultValue={this.props.shop.privacy_manager} />
               </div>
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.privacy_email")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.privacy_email")}</label>
                 <input type="text" className="form-control" name="shop[privacy_email]" defaultValue={this.props.shop.privacy_email} />
               </div>
             </div>
@@ -110,12 +110,12 @@ export default class ShopForm extends React.Component {
           <h6 className="form-title row">{I18n.t("merchant.admin.shops.contact")}</h6>
           <div className="row">
             <div className="col-md-12 block">
-              <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.shop.phone")}</label>
+              <div className="mb-3 col-md-4">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.phone")}</label>
                 <input type="text" className="form-control" name="shop[phone]" defaultValue={this.props.shop.phone} />
               </div>
-              <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.shop.country")}</label>
+              <div className="mb-3 col-md-4">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.country")}</label>
                 <div className="select">
                   <select ref="country" className="form-control" name="shop[country]" onChange={this.countryChange}
                     defaultValue={(this.props.shop.country) ? this.props.shop.country : this.props.config.default_country}>
@@ -125,13 +125,13 @@ export default class ShopForm extends React.Component {
               </div>
 
               {(!this.state.koreanMode) ?
-              <div className="form-group col-md-4">
-                <label className="label">{I18n.t("activerecord.attributes.shop.city")}</label>
+              <div className="mb-3 col-md-4">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.city")}</label>
                 <input type="text" className="form-control" name="shop[city]" defaultValue={this.props.shop.city} />
               </div> : null}
 
-              <div className="form-group col-md-4">
-                <label className="label">
+              <div className="mb-3 col-md-4">
+                <label className="form-label">
                   {I18n.t("activerecord.attributes.shop.zip_code")}
                   <span className="hint">
                     {(this.state.koreanMode) ? I18n.t("merchant.admin.shops.zipcode_hint") : ""}
@@ -140,13 +140,13 @@ export default class ShopForm extends React.Component {
                 <input type="text" ref="zip_code" readOnly={this.state.koreanMode} className="form-control"
                   name="shop[zip_code]" defaultValue={this.props.shop.zip_code} />
               </div>
-              <div className={(this.state.koreanMode) ? "form-group col-md-12" : "hide"}>
-                <label className="label">{I18n.t("activerecord.attributes.shop.street_ko")}</label>
+              <div className={(this.state.koreanMode) ? "mb-3 col-md-12" : "hide"}>
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.street_ko")}</label>
                 <input type="text" ref="street_ko" className="form-control" name="shop[street_ko]"
                   onClick={this.streetClick} defaultValue={this.props.shop.street_ko} />
               </div>
-              <div className="form-group col-md-12">
-                <label className="label">
+              <div className="mb-3 col-md-12">
+                <label className="form-label">
                   {(this.state.koreanMode) ? I18n.t("activerecord.attributes.shop.street_en") : I18n.t("activerecord.attributes.shop.street")}
                 </label>
                 <input type="text" ref="street_en" className="form-control" name="shop[street_en]"
@@ -160,8 +160,8 @@ export default class ShopForm extends React.Component {
           <h6 className="form-title row">{I18n.t("merchant.admin.shops.format")}</h6>
           <div className="row">
             <div className="col-md-12 block">
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.time_zone")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.time_zone")}</label>
                 <div className="select">
                   <select className="form-control" name="shop[time_zone]"
                     defaultValue={(this.props.shop.time_zone) ? this.props.shop.time_zone : this.props.config.default_timezone}>
@@ -169,8 +169,8 @@ export default class ShopForm extends React.Component {
                   </select>
                 </div>
               </div>
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.currency")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.currency")}</label>
                 <div className="select">
                   <select className="form-control" name="shop[currency]"
                     defaultValue={(this.props.shop.currency) ? this.props.shop.currency : this.props.config.default_currency}>
@@ -179,8 +179,8 @@ export default class ShopForm extends React.Component {
                 </div>
               </div>
 
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.weight_unit")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.weight_unit")}</label>
                 <div className="select">
                   <select ref="weight_unit" className="form-control" name="shop[weight_unit]"
                     defaultValue={(this.props.shop.weight_unit) ? this.props.shop.weight_unit : "kg"}>
@@ -194,8 +194,8 @@ export default class ShopForm extends React.Component {
                 </div>
               </div>
 
-              <div className="form-group col-md-6">
-                <label className="label">{I18n.t("activerecord.attributes.shop.exchange_rate")}</label>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">{I18n.t("activerecord.attributes.shop.exchange_rate")}</label>
                 <input type="text" className="form-control" name="shop[exchange_rate]"
                   defaultValue={this.props.shop.exchange_rate} />
               </div>

@@ -5,7 +5,7 @@
       <ul class="alert alert-danger">
         <li rt-repeat="error in this.state.errors" key="error_{errorIndex}">{error}</li>
       </ul>
-      <div class="form-group">
+      <div class="mb-3">
         <label htmlFor="customer_email">
           {I18n.t("customers.login.fields.email")}
         </label>
@@ -13,7 +13,7 @@
           autoFocus="autofocus" />
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <label htmlFor="customer_password">
           {I18n.t("customers.login.fields.password")}
         </label>
@@ -21,7 +21,7 @@
           class="form-control" autoComplete="off" />
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <label>{I18n.t("customers.register.fields.term")}</label>
         <br/>
         <div rt-if="this.props.term" class="term" dangerouslySetInnerHTML="{{__html: translate(this.props.term, 'content')}}"></div>
@@ -29,7 +29,7 @@
         <input type="radio" name="customer[term]" value="1" /> {I18n.t("buttons.accept")}
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <label>{I18n.t("customers.register.fields.privacy")}</label>
         <br/>
         <div rt-if="this.props.privacy" class="privacy" dangerouslySetInnerHTML="{{__html: translate(this.props.privacy, 'content')}}"></div>
@@ -37,7 +37,7 @@
         <input type="radio" name="customer[privacy]" value="1" /> {I18n.t("buttons.accept")}
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
         <p class="small pull-left">
           {I18n.t("customers.register.texts.return_customer")}
           <a href="/login">{I18n.t("buttons.login")}</a>

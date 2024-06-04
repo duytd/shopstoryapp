@@ -19,7 +19,7 @@ export default class BannerBox extends React.Component {
       bannerList = (
         <div className="text-center">
           <p>{I18n.t("merchant.admin.messages.no_banner")}</p>
-          <a href={this.props.new_url} className="btn btn-lg btn-primary">
+          <a href={this.props.new_url} className="btn btn-lg btn-success">
             {I18n.t("merchant.admin.buttons.add")}
           </a>
         </div>

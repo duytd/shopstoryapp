@@ -48,7 +48,7 @@ $input-bg-color: #ededec;
       color: $green;
     }
   }
-  .form-group {
+  .mb-3 {
     &.password {
       position: relative;
       a {
@@ -83,7 +83,7 @@ $input-bg-color: #ededec;
   font-weight: 700;
 }
 
-.form-group {
+.mb-3 {
   .label {
     .hint {
       font-size: 10px;

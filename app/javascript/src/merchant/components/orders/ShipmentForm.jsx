@@ -46,9 +46,9 @@ export default class ShipmentForm extends React.Component {
           acceptCharset="UTF-8" method="put" onSubmit={this.submit}>
 
           {(this.props.shipment) ?
-          <div className="form-group">
+          <div className="mb-3">
             <input type="hidden" className="form-control" name="order[shipment_attributes][order_id]" defaultValue={this.props.order.id}/>
-            <label className="label">{I18n.t("activerecord.attributes.shipment.status")}</label>
+            <label className="form-label">{I18n.t("activerecord.attributes.shipment.status")}</label>
             <FormErrors errors={this.state.errors.status} />
 
             <div className="select">
@@ -60,8 +60,8 @@ export default class ShipmentForm extends React.Component {
             </div>
           </div> : null}
 
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.shipment.shipping_method_id")}</label>
+          <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.shipment.shipping_method_id")}</label>
             <div className="select">
               <select className="form-control" name="order[shipment_attributes][shipping_method_id]" defaultValue={this.props.shipment ? this.props.shipment.shipment_method_id : ""}>
                 {this.props.shippingMethods.map(function(method, index) {
@@ -71,12 +71,12 @@ export default class ShipmentForm extends React.Component {
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="label">{I18n.t("activerecord.attributes.shipment.tracking_code")}</label>
+          <div className="mb-3">
+            <label className="form-label">{I18n.t("activerecord.attributes.shipment.tracking_code")}</label>
             <input type="text" className="form-control" name="order[shipment_attributes][tracking_code]" defaultValue={(this.props.shipment) ? this.props.shipment.tracking_code : ""}/>
           </div>
 
-          <div className="form-group text-right">
+          <div className="mb-3 text-right">
             <button type="submit" className="btn btn-success" onClick={this.submit}>{I18n.t("merchant.admin.buttons.save")}</button>
           </div>
         </form>

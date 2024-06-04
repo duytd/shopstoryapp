@@ -39,6 +39,7 @@
     "js-datepicker": "^5.18.2",
     "mini-css-extract-plugin": "^2.9.0",
     "owl.carousel": "^2.3.4",
+    "path": "^0.12.7",
     "perfect-scrollbar": "^1.5.5",
     "pixeden-stroke-7-icon": "^1.2.3",
     "prop-types": "^15.8.1",

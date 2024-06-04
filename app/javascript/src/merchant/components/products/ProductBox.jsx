@@ -62,7 +62,7 @@ export default class ProductBox extends React.Component {
             updateData={this.updateData} />
           <div className="text-center">
             <p>{I18n.t("merchant.admin.messages.no_product")}</p>
-            <a href={this.props.new_url} className="btn btn-lg btn-primary">
+            <a href={this.props.new_url} className="btn btn-lg btn-success">
               {I18n.t("merchant.admin.buttons.add")}
             </a>
           </div>

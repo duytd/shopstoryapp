@@ -12,19 +12,19 @@ export default class Box extends React.Component {
             <div className="col-xs-12">
               <span className="title">{this.props.title}</span>
               {(this.props.url) ?
-              <a className="btn btn-sm btn-primary pull-right" href={this.props.url}>
+              <a className="btn btn-sm btn-success pull-right" href={this.props.url}>
                 {I18n.t("merchant.admin.buttons.add")}
               </a> : null}
 
               {(this.props.handleExportAll) ?
-              <a className="btn btn-sm btn-success pull-right" onClick={this.props.handleExportAll}>
+              <a className="btn btn-sm btn-info pull-right" onClick={this.props.handleExportAll}>
                 {I18n.t("merchant.admin.buttons.export")}
               </a> : null}
 
               {(this.props.handleImport) ?
               <form ref="import_form" className="form-upload pull-right">
                 <div className="file-upload">
-                    <button className="btn btn-sm btn-default">
+                    <button className="btn btn-sm btn-warning">
                       {I18n.t("merchant.admin.buttons.import")}
                     </button>
                     <input type="file" className="upload" name="file" onChange={this.handleImport} />

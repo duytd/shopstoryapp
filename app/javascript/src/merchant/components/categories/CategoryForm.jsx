@@ -27,17 +27,17 @@ export default class CategoryForm extends React.Component {
           <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
 
           <div className="tab-content">
-            <div id="ko" className="tab-pane fade in active">
-              <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
+            <div id="ko" className="tab-pane fade show active">
+              <div className="mb-3">
+                <label className="form-label">{I18n.t("activerecord.attributes.category.name")}</label>
                 <FormErrors errors={this.state.errors.name_ko} />
                 <input ref="name_ko" type="text" name="category[name_ko]"
                   className="form-control" defaultValue={this.props.category ? this.props.category.name_ko : ""} />
               </div>
             </div>
             <div id="en" className="tab-pane fade">
-              <div className="form-group">
-                <label className="label">{I18n.t("activerecord.attributes.category.name")}</label>
+              <div className="mb-3">
+                <label className="form-label">{I18n.t("activerecord.attributes.category.name")}</label>
                 <FormErrors errors={this.state.errors.name_en} />
                 <input ref="name_en" type="text" name="category[name_en]"
                   className="form-control" defaultValue={this.props.category ? this.props.category.name_en : ""} />
@@ -46,8 +46,8 @@ export default class CategoryForm extends React.Component {
           </div>
 
           {(this.props.category && this.props.category.slug) ?
-            <div className="form-group">
-              <label className="label">{I18n.t("activerecord.attributes.category.slug")}</label>
+            <div className="mb-3">
+              <label className="form-label">{I18n.t("activerecord.attributes.category.slug")}</label>
 
               <FormErrors errors={this.state.errors.slug} />
               <input type="text" name="category[slug]"

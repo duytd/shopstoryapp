@@ -17,7 +17,7 @@ export default class ProductReport extends React.Component {
     return (
       <div className="reports block">
         <div className="chart">
-          <a className="btn btn-sm btn-primary pull-right" href={Routes.product_merchant_reports_path({"format": "csv", "locale": I18n.locale})}>
+          <a className="btn btn-sm btn-info pull-right" href={Routes.product_merchant_reports_path({"format": "csv", "locale": I18n.locale})}>
             {I18n.t("merchant.admin.buttons.export")}
           </a>
           <BarChart data={this.state.data} dataSetLabel={I18n.t("merchant.admin.reports.product.data_title")} />

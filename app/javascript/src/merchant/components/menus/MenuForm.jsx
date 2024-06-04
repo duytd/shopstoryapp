@@ -61,9 +61,9 @@ class WrappedComponent extends React.Component {
           </div>
           <div className="col-sm-10">
             <div className="block">
-              <div className="form-group row">
+              <div className="mb-3 row">
                 <div className="col-sm-12">
-                  <label className="label">{I18n.t("activerecord.attributes.menu.position")}</label>
+                  <label className="form-label">{I18n.t("activerecord.attributes.menu.position")}</label>
                   <FormErrors errors={this.state.errors.position} />
                   <div className="select">
                     <select className="form-control" name="menu[position]"
@@ -76,16 +76,16 @@ class WrappedComponent extends React.Component {
                 </div>
               </div>
 
-              <div className="form-group row">
+              <div className="mb-3 row">
                 <div className="col-sm-12">
-                  <label className="label">{I18n.t("activerecord.attributes.menu.name")}</label>
+                  <label className="form-label">{I18n.t("activerecord.attributes.menu.name")}</label>
                   <FormErrors errors={this.state.errors.name} />
                   <input type="text" name="menu[name]" defaultValue={(this.state.menu) ? this.state.menu.name : null} className="form-control" />
                 </div>
               </div>
             </div>
 
-            <div className="form-group">
+            <div className="mb-3">
               <SubmitButtons redirect_url={Routes.merchant_menus_path.localize()} />
             </div>
           </div>

@@ -23,7 +23,7 @@ export default class OrderReport extends React.Component {
         }.bind(this))}
 
         <div className="chart">
-          <a className="btn btn-sm btn-primary pull-right" href={Routes.order_merchant_reports_path({"format": "csv", "report_type": this.state.reportType, "locale": I18n.locale})}>
+          <a className="btn btn-sm btn-info pull-right" href={Routes.order_merchant_reports_path({"format": "csv", "report_type": this.state.reportType, "locale": I18n.locale})}>
             {I18n.t("merchant.admin.buttons.export")}
           </a>
           <LineChart data={this.state.data} dataSetLabel={I18n.t("merchant.admin.reports.order.data_title")} />

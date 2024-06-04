@@ -77,7 +77,7 @@ export default class ProductImageForm extends React.Component {
 
   render() {
     return (
-      <div className="form-group dropzone" id="product_dropzone">
+      <div className="mb-3 dropzone" id="product_dropzone">
         <div className="dz-message">
           {I18n.t("merchant.admin.forms.dropzone_instruction")}
         </div>

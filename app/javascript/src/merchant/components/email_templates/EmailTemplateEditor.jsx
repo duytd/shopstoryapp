@@ -62,7 +62,7 @@ export default class EmailTemplateEditor extends React.Component {
         <div className="col-md-9 col-md-pull-3">
           <form ref="form" id="asset-form" action={this.props.url}
             acceptCharset="UTF-8" method={this.props.method} onSubmit={this.submit} >
-            <div className="form-group">
+            <div className="mb-3">
               <div id="editor" ref="editor" className="code-editor">
               </div>
               <input ref="code" type="hidden" name={"email_template[content]"} />
