@@ -39,9 +39,9 @@ class Form extends React.Component {
               <div className="mb-3">
                 <label className="form-label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
                 <FormErrors errors={this.state.errors.content_ko} />
-                <textarea name="custom_page[content_ko]" ref="content_ko"
-                  className="form-control summernote" defaultValue={(this.props.custom_page) ? this.props.custom_page.content_ko : ""}>
-                </textarea>
+                <input name="custom_page[content_ko]" id="content_ko_value" ref="content_ko"
+                  type="hidden" defaultValue={(this.props.custom_page) ? this.props.custom_page.content_ko : ""} />
+                <div className="quill-editor" id="content_ko"></div>
               </div>
             </div>
             <div id="en" className="tab-pane fade">
@@ -55,9 +55,9 @@ class Form extends React.Component {
               <div className="mb-3">
                 <label className="form-label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
                 <FormErrors errors={this.state.errors.content_en} />
-                <textarea name="custom_page[content_en]" ref="content_en"
-                  className="form-control summernote" defaultValue={(this.props.custom_page) ? this.props.custom_page.content_en : ""}>
-                </textarea>
+                <input name="custom_page[content_en]" id="content_en_value" ref="content_en"
+                  type="hidden" defaultValue={(this.props.custom_page) ? this.props.custom_page.content_en : ""} />
+                <div className="quill-editor" id="content_en"></div>
               </div>
             </div>
           </div>

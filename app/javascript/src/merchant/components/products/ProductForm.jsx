@@ -137,9 +137,9 @@ class Form extends React.Component {
                 </div>
                 <div className="mb-3">
                   <label className="form-label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
-                  <textarea ref="description_ko" name="product[description_ko]"
-                    className="form-control summernote" defaultValue={this.state.product ? this.state.product.description_ko : ""}>
-                  </textarea>
+                  <input type="hidden" id="description_ko_value" ref="description_ko" name="product[description_ko]"
+                    defaultValue={this.state.product ? this.state.product.description_ko : ""} />
+                  <div className="quill-editor" id="description_ko"></div>
                 </div>
               </div>
               <div id="en" className="tab-pane fade">
@@ -160,9 +160,9 @@ class Form extends React.Component {
                       return object;
                     }) : null}
                   </div>
-                  <textarea ref="description_en" name="product[description_en]"
-                    className="form-control summernote" defaultValue={this.state.product ? this.state.product.description_en : ""}>
-                  </textarea>
+                  <input ref="description_en" id="description_en_value" name="product[description_en]"
+                    type="hidden" defaultValue={this.state.product ? this.state.product.description_en : ""} />
+                  <div className="quill-editor" id="description_en"></div>
                 </div>
               </div>
             </div>
@@ -485,11 +485,8 @@ class Form extends React.Component {
       e.preventDefault();
     }
 
-    var description_en = $(this.refs.description_en).summernote("code");
-    var description_ko = $(this.refs.description_ko).summernote("code");
-
-    this.refs.description_en.value = description_en;
-    this.refs.description_ko.value = description_ko;
+    this.refs.description_en.value = "description_en";
+    this.refs.description_ko.value = "description_ko";
 
     var form = $(this.refs.form);
 

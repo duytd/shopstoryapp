@@ -4,8 +4,6 @@
 // Common configuration applying to client and server configuration
 const { merge } = require('webpack-merge');
 const { baseConfig } = require('shakapacker');
-const path = require('path');
-const webpack = require('webpack');
 
 const commonOptions = {
   module: {
@@ -26,13 +24,7 @@ const commonOptions = {
   },
   resolve: {
     extensions: ['.css', '.ts', '.tsx'],
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    })
-  ]
+  }
 };
 
 // Copy the object using merge b/c the baseClientWebpackConfig and commonOptions are mutable globals

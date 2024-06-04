@@ -1,4 +1,5 @@
 import React from 'react';
+import Quill from 'quill';
 
 const withFormMixins = (WrappedComponent) => {
   return class extends React.Component {
@@ -10,21 +11,17 @@ const withFormMixins = (WrappedComponent) => {
       this.loadSummernote();
     }
 
-    loadSummernote() {
-      $(".summernote ").summernote({
-        height: 200,
-        toolbar: [
-          ['action',['undo','redo']],
-          ['style', ['style','bold', 'italic','strikethrough','underline', 'clear']],
-          ['table', ['table']],
-          ['media', ['link','picture','hr']],
-          ['para', ['ul','ol','paragraph']],
-          ['fullscreen',['codeview', 'fullscreen']],
-        ]
-      });
+    loadSummernote = () => {
+      $(".quill-editor").each(function() {
+        const id = $(this).attr('id')
+        const quill = new Quill(`#${id}`, {theme: 'snow'});
+        const valueInput = $(`#${id}_value`);
+        const htmlContent = quill.clipboard.dangerouslyPasteHTML(valueInput.val());
+        quill.setContents(htmlContent);
 
-      $(".summernote").each( function() {
-        $(this).summernote("code", $(this).val());
+        quill.on('text-change', (_delta, _oldDelta, _source) => {
+          valueInput.val(quill.root.innerHTML);
+        });
       });
     }
   }

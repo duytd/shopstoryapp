@@ -4,8 +4,6 @@ import "jquery-ujs"
 
 window.bootstrap = require("bootstrap");
 
-import "summernote/src/js/summernote";
-
 // Utilities
 import "../../src/functions";
 import "../../src/merchant/base";
