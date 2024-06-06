@@ -1,29 +1,40 @@
-var PaginationMixin = {
-  getInitialState: function () {
-    return {
-      totalPage: this.props.total_page,
-      total: this.props.total,
-      page: this.props.page,
-      paginationUrl: this.props.url
+import React from 'react';
+
+const withPaginationMixins = (WrappedComponent) => {
+  return class extends React.Component {
+    constructor() {
+      super(props);
+
+      this.state = {
+        totalPage: this.props.total_page,
+        total: this.props.total,
+        page: this.props.page,
+        paginationUrl: this.props.url
+      };
     }
-  },
-  updatePagination: function(options) {
-    var newState = {};
 
-    if(options.total)
-      newState.total = options.total;
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
 
-    if(options.page)
-      newState.page = options.page;
+    updatePagination = (options) => {
+      var newState = {};
 
-    if(options.totalPage)
-      newState.totalPage = options.totalPage;
+      if(options.total)
+        newState.total = options.total;
 
-    if(options.paginationUrl)
-      newState.paginationUrl = options.paginationUrl;
+      if(options.page)
+        newState.page = options.page;
 
-    this.setState(newState);
+      if(options.totalPage)
+        newState.totalPage = options.totalPage;
+
+      if(options.paginationUrl)
+        newState.paginationUrl = options.paginationUrl;
+
+      this.setState(newState);
+    }
   }
 }
 
-module.exports = PaginationMixin;
+export default withPaginationMixins;

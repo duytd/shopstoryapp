@@ -1,8 +1,9 @@
 // Global dependencies
 import 'jquery/src/jquery';
 import 'jquery-ujs'
-import 'bootstrap';
-import 'i18n-js';
+
+window.bootstrap = require("bootstrap");
+
 import 'owl.carousel/dist/owl.carousel';
 import '@zeitiger/elevatezoom/jquery.elevatezoom';
 

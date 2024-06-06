@@ -63,8 +63,14 @@
 
 import ReactOnRails from 'react-on-rails';
 import Home from './components/Home';
+import Layout from './components/layouts/Layout';
+import Header from './components/layouts/Header';
+import Footer from './components/layouts/Footer';
 
 // Register components
 ReactOnRails.register({
-  Home
+  Home,
+  Layout,
+  Footer,
+  Header
 });

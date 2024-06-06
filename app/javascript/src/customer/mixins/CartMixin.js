@@ -1,15 +1,26 @@
-var CartMixin = {
-  getInitialState: function () {
-    return {
-      globalVars: this.props.globalVars
-    };
-  },
-  updateOrder: function(order) {
-    var globalVars = this.state.globalVars;
+import React from 'react';
 
-    globalVars.order = order;
-    this.setState({globalVars: globalVars});
+const withCartMixins = (WrappedComponent) => {
+  return class extends React.Component {
+    constructor() {
+      super(props);
+
+      this.state = {
+        globalVars: this.props.globalVars
+      };
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+
+    updateOrder = (order) => {
+      var globalVars = this.state.globalVars;
+
+      globalVars.order = order;
+      this.setState({globalVars: globalVars});
+    }
   }
 }
 
-module.exports = CartMixin;
+export default withCartMixins;

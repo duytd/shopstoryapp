@@ -35,7 +35,7 @@ export default class Header extends React.Component {
     }
   }
 
-  updateItemCount() {
+  updateItemCount = () => {
     var itemCount = 0;
 
     this.props.globalVars.order.cart.forEach(function(item) {
