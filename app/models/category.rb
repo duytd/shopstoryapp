@@ -37,8 +37,8 @@ class Category < ApplicationRecord
     validates "name_#{locale}", length: {minimum: 2}, allow_blank: true
   end
 
-  after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer::CategoryPresenter") }
-  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Category", "Customer::CategoryPresenter") }
+  after_save { IndexerWorker.perform_async(:index, self.id, "Category", "Customer::CategoryPresenter") if Flipper.enabled?(:search) }
+  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Category", "Customer::CategoryPresenter") if Flipper.enabled?(:search) }
 
   def as_json options={}
     super.as_json(options).merge({name_en: name_en, name_ko: name_ko, seo_tag: seo_tag})

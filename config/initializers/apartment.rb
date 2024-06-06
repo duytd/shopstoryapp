@@ -16,7 +16,7 @@ Apartment.configure do |config|
   #
   config.excluded_models = %w{
     User Admin Merchant Shop Theme ThemeBundle Plan Subscription
-    ShippingMethod
+    ShippingMethod Flipper::Adapters::ActiveRecord::Feature Flipper::Adapters::ActiveRecord::Gate
   }
 
   # In order to migrate all of your Tenants you need to provide a list of Tenant names to Apartment.

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   constraints Constraints::AdminDomainConstraint do
     namespace :admin, path: "" do
+      constraints CanAccessFlipperUI do
+        mount Flipper::UI.app(Flipper) => '/flipper'
+      end
       root "pages#dashboard"
       resources :shipping_methods, except: :show
       resources :plans, except: :show

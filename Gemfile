@@ -53,6 +53,11 @@ gem "liquid-rails"
 # Pagination
 gem "kaminari"
 
+# Feature flags
+gem "flipper"
+gem "flipper-active_record"
+gem "flipper-ui"
+
 # SEO
 gem "meta-tags"
 gem "friendly_id"

@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from '../../components/general/Item';
+import I18n from 'i18n-js';
 import * as Routes from '../../../routes';
 import { translate } from '../../../functions';
 

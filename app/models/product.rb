@@ -95,8 +95,8 @@ class Product < ApplicationRecord
   after_create :create_master
   after_update :update_master
 
-  after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") }
-  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") }
+  after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") if Flipper.enabled?(:search) }
+  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") if Flipper.enabled?(:search) }
 
   def price=(price)
     price = price.to_s.gsub ",", ""

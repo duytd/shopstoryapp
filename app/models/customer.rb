@@ -55,8 +55,8 @@ class Customer < ApplicationRecord
 
   validates_acceptance_of :term, :privacy, allow_nil: false, on: :create
 
-  after_save { IndexerWorker.perform_async(:index, self.id, "Customer", "Customer::CustomerPresenter") }
-  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Customer", "Customer::CustomerPresenter") }
+  after_save { IndexerWorker.perform_async(:index, self.id, "Customer", "Customer::CustomerPresenter") if Flipper.enabled?(:search) }
+  after_destroy { IndexerWorker.perform_async(:delete, self.id, "Customer", "Customer::CustomerPresenter") if Flipper.enabled?(:search) }
 
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

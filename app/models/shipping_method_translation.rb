@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.shipping_method_translations
+# Table name: shipping_method_translations
 #
 #  id                 :integer          not null, primary key
 #  description        :text

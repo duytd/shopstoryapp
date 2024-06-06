@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.shop_translations
+# Table name: shop_translations
 #
 #  id         :integer          not null, primary key
 #  locale     :string           not null

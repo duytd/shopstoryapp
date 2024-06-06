@@ -3,9 +3,11 @@
     <i class="fa fa-bars navbar-toggler-icon"></i>
   </button>
 
-  <div class="search">
-    <%= react_component "Search" %>
-  </div>
+  <% if Flipper.enabled?(:search) %>
+    <div class="search">
+      <%= react_component "Search" %>
+    </div>
+  <% end %>
 
   <div class="nav navbar-nav navbar-right pull-right">
     <li class="d-block d-sm-none">

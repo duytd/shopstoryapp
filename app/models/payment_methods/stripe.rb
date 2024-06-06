@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: public.payment_methods
+# Table name: payment_methods
 #
 #  id                 :integer          not null, primary key
 #  active             :boolean          default(FALSE)
