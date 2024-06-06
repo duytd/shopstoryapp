@@ -1,7 +1,5 @@
 import React from 'react';
 
-import React from 'react';
-
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +17,7 @@ export default class Header extends React.Component {
   componentWillReceiveProps() {
     this.updateItemCount();
   }
+
 
   openCart = (e) => {
     e.preventDefault();
