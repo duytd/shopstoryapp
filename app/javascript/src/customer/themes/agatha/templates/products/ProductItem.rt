@@ -1,3 +1,7 @@
+<rt-import name="*" as="Routes" from="../../../../../routes" />
+<rt-import name="*" as="I18n" from="i18n-js" />
+<rt-import name="translate" from="../../../../../functions" />
+
 <div class="col-sm-3 text-center product-item">
   <a href="{Routes.customer_product_path.localize(this.props.product.slug)}">
     <div class="product-image">

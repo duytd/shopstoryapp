@@ -4,7 +4,7 @@ import withCartMixins from '../../mixins/CartMixin';
 import withPaginationMixins from '../../mixins/PaginationMixin';
 
 class CategoryComponent extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props);
 
     this.state = {

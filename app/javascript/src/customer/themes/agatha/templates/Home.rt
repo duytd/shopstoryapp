@@ -1,3 +1,8 @@
+<rt-import name="default" as="Layout" from="../../../components/layouts/Layout" />
+<rt-import name="default" as="Banner" from="../../../components/snippets/Banner" />
+<rt-import name="default" as="ProductList" from="../../../components/products/ProductList" />
+<rt-import name="*" as="I18n" from="i18n-js" />
+
 <Layout globalVars="{this.props.globalVars}" updateOrder="{this.updateOrder}">
   <div class="home">
     <Banner rt-if="this.props.banner" bannerItems="{this.props.banner.banner_items}" />

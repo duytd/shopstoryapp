@@ -1,3 +1,5 @@
+<rt-import name="default" as="ProductItem" from="../../../../components/products/ProductItem" />
+
 <div class="row">
   <ProductItem rt-repeat="product in this.props.products"
     product="{product}"

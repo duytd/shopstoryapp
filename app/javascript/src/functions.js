@@ -5,12 +5,7 @@ String.prototype.capitalize = function() {
 }
 
 String.prototype.convert = function() {
-  if (I18n.currency.toLowerCase() == "krw") {
-    return parseFloat(this);
-  }
-  else {
-    return parseFloat(this)/I18n.rate;
-  }
+  parseFloat(this);
 }
 
 String.prototype.trimToLength = function(m) {

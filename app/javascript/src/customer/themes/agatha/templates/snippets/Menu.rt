@@ -1,3 +1,5 @@
+<rt-import name="translate" from="../../../../../functions" />
+
 <ul class="nav navbar-nav">
   <li class="{(item.children.length > 0) ? 'dropdown' : ''}" rt-repeat="item in this.props.menu.menu_items" key="menu_item_{itemIndex}">
     <a href="{item.url.addParams('locale', I18n.locale)}" rt-if="item.children.length == 0">

@@ -3,7 +3,7 @@ import I18n from 'i18n-js';
 import withCartMixins from '../../mixins/CartMixin';
 
 class ProductComponent extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props);
 
     let variation = null;

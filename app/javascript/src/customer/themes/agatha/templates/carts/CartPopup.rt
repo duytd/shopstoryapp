@@ -1,3 +1,8 @@
+<rt-import name="default" as="Errors" from="../../../../components/snippets/Errors" />
+<rt-import name="*" as="Routes" from="../../../../../routes" />
+<rt-import name="*" as="I18n" from="i18n-js" />
+<rt-import name="translate" from="../../../../../functions" />
+
 <div id="cart" class="{this.props.isCartOpened ? 'cart-container open' : 'cart-container'}">
   <div class="text-right">
     <a onClick="{this.props.closeCart}">

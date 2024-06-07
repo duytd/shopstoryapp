@@ -2,7 +2,7 @@ import React from 'react';
 
 const withCartMixins = (WrappedComponent) => {
   return class extends React.Component {
-    constructor() {
+    constructor(props) {
       super(props);
 
       this.state = {
