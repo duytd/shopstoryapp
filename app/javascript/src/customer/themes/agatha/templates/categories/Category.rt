@@ -1,3 +1,11 @@
+<rt-import name="default" as="Layout" from="../../../../components/layouts/Layout" />
+<rt-import name="default" as="Breadcrumb" from="../../../../components/snippets/Breadcrumb" />
+<rt-import name="default" as="Filter" from="../../../../components/snippets/Filter" />
+<rt-import name="default" as="Sorter" from="../../../../components/snippets/Sorter" />
+<rt-import name="default" as="Pagination" from="../../../../components/snippets/Pagination" />
+<rt-import name="default" as="ProductItem" from="../../../../components/products/ProductItem" />
+<rt-import name="*" as="I18n" from="i18n-js" />
+
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="category container">
     <Breadcrumb breadcrumb="{this.props.breadcrumb}" />

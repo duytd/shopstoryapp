@@ -1,11 +1,11 @@
 import React from 'react';
-import withCartMixins from '../../mixins/CartMixin';
 
-class CartComponent extends React.Component {
+export default class Cart extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      globalVars: this.props.globalVars,
       cartErrors: []
     };
   }
@@ -20,6 +20,13 @@ class CartComponent extends React.Component {
       Routes.customer_checkout_path.localize();
 
     window.location = url;
+  }
+
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
   }
 
   removeItem = (e) => {
@@ -86,6 +93,3 @@ class CartComponent extends React.Component {
     this.setState({cartErrors: []})
   }
 }
-
-const Cart = withCartMixins(CartComponent);
-export default Cart;

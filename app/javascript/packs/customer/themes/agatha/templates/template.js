@@ -8,10 +8,6 @@ import '@zeitiger/elevatezoom/jquery.elevatezoom';
 // Utilities
 import '../../../../../src/functions';
 
-import Layout from '../../../../../src/customer/components/layouts/Layout';
-import Header from '../../../../../src/customer/components/layouts/Header';
-import Footer from '../../../../../src/customer/components/layouts/Footer';
-
 // Template
 import '../../../../../src/customer/themes/agatha/templates/template';
 

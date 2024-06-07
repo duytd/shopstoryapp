@@ -1,18 +1,25 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
+import * as Routes from '../../../routes';
 
-class RegisterComponent extends React.Component {
+export default class Register extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      globalVars: this.props.globalVars,
       errors: []
     };
   }
 
   render() {
     return RegisterRT.apply(this);
+  }
+
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
   }
 
   submit = (e) => {
@@ -39,6 +46,3 @@ class RegisterComponent extends React.Component {
     });
   }
 }
-
-const Register = withCartMixins(RegisterComponent);
-export default Register;

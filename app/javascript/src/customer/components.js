@@ -19,19 +19,19 @@ import Login from './components/customers/Login';
 // Register components
 ReactOnRails.register({
   Home,
-  // CategoryBox,
-  // Category,
+  CategoryBox,
+  Category,
   // CustomPage,
   // Account,
   // Order,
-  // Cart,
-  // Checkout,
+  Cart,
+  Checkout,
   // Success,
   // ResetPassword,
   // ForgotPassword,
   // CheckoutForm,
-  // Product,
-  // Register,
+  Product,
+  Register,
   // Search,
-  // Login
+  Login
 });

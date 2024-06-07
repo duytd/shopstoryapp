@@ -1,3 +1,7 @@
+<rt-import name="default" as="Layout" from="../../../../components/layouts/Layout" />
+<rt-import name="default" as="LoginForm" from="../../../../components/customers/LoginForm" />
+<rt-import name="*" as="I18n" from="i18n-js" />
+<rt-import name="*" as="Routes" from="../../../../../routes" />
 
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="checkout container">

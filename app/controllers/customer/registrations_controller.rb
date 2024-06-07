@@ -4,6 +4,8 @@ class Customer::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
 
   def new
+    load_global_variables
+
     term = current_shop.term ? present(current_shop.term) : nil
     privacy = current_shop.privacy ? present(current_shop.privacy) : nil
 
@@ -33,7 +35,7 @@ class Customer::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit :full_name, :email, :password, :password_confirmation, :term, :privacy
     end
   end

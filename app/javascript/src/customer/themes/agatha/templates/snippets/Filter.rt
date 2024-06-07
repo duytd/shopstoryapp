@@ -1,3 +1,5 @@
+<rt-import name="*" as="I18n" from="i18n-js" />
+
 <div class="filter">
   <div class="vendor-filter" rt-if="this.props.vendorFilter.length > 0">
     <h4>{I18n.t("filter.vendor_filter")}</h4>

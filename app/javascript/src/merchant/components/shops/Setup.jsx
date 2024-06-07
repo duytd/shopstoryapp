@@ -139,7 +139,7 @@ export default class Setup extends React.Component {
     }
 
     return (
-      <div className="col-md-8 col-md-offset-2">
+      <div className="col-md-8 offset-md-2">
         <h6 className="form-title">{I18n.t("merchant.admin.shops.business_information")}</h6>
 
         <div className="block">

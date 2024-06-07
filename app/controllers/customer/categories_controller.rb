@@ -5,6 +5,7 @@ class Customer::CategoriesController < Customer::BaseController
   add_breadcrumb I18n.t("customer.breadcrumbs.categories"), :customer_categories_path, {only: [:index, :show]}
 
   def index
+    load_global_variables
     @categories = Category.page(params[:page]).per(5)
 
     @props = paginating @categories, {
@@ -16,6 +17,7 @@ class Customer::CategoriesController < Customer::BaseController
   end
 
   def show
+    load_global_variables
     add_breadcrumb @category.name, customer_category_path(@category)
 
     @products = @category.products.visible.page params[:page]

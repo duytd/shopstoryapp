@@ -9,6 +9,7 @@ class Customer::ProductsController < Customer::BaseController
   end
 
   def show
+    load_global_variables
     category = category_from_referer_path || @product.categories.first
 
     add_breadcrumb I18n.t("customer.breadcrumbs.home"), Rails.application.routes.url_helpers.customer_root_path

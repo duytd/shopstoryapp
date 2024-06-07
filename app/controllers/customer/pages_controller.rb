@@ -3,6 +3,8 @@ class Customer::PagesController < Customer::BaseController
   include PaymentHelper
 
   def home
+    load_global_variables
+
     @products = Product.latest.featured.map{|p| present(p)}
     @banner = Banner.first ? present(Banner.first) : nil
 
@@ -14,9 +16,11 @@ class Customer::PagesController < Customer::BaseController
   end
 
   def checkout
+    load_global_variables
   end
 
   def success
+    load_global_variables
     transaction_info = get_transaction_info @order
 
     @props = {
@@ -30,12 +34,15 @@ class Customer::PagesController < Customer::BaseController
   end
 
   def cart
+    load_global_variables
+
     @props = {
       globalVars: @globalVars
     }
   end
 
   private
+
   def authenticate_order!
     @order = current_order
 

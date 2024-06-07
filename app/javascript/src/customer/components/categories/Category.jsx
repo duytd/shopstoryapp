@@ -1,6 +1,4 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
 import withPaginationMixins from '../../mixins/PaginationMixin';
 
 class CategoryComponent extends React.Component {
@@ -8,6 +6,7 @@ class CategoryComponent extends React.Component {
     super(props);
 
     this.state = {
+      globalVars: this.props.globalVars,
       data: this.props.products,
       vendor: [],
       price: [],
@@ -17,6 +16,13 @@ class CategoryComponent extends React.Component {
 
   render() {
     return CategoryRT.apply(this);
+  }
+
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
   }
 
   updatePrice = (price) => {
@@ -50,7 +56,7 @@ class CategoryComponent extends React.Component {
 
     $.getJSON(filterUrl, function(response) {
       this.setState({data: response.data}, function() {
-        this.updatePagination({
+        this.props.updatePagination({
           paginationUrl: filterUrl,
           totalPage: response.total_page,
           page: response.page, total: response.total
@@ -60,5 +66,5 @@ class CategoryComponent extends React.Component {
   }
 }
 
-const Category = withPaginationMixins(withCartMixins(CategoryComponent));
+const Category = withPaginationMixins(CategoryComponent);
 export default Category;

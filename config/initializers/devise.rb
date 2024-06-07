@@ -20,4 +20,5 @@ Devise.setup do |config|
   config.navigational_formats = ["*/*", :html, :json]
   config.omniauth :doindie, ENV["DOINDIE_OAUTH_ID"], ENV["DOINDIE_OAUTH_SECRET"]
   config.omniauth_path_prefix = "/auth"
+  config.responder.error_status = :unprocessable_entity
 end

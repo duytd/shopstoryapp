@@ -14,7 +14,7 @@ const withPaginationMixins = (WrappedComponent) => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent updatePagination={this.updatePagination} {...this.props} {...this.state} />;
     }
 
     updatePagination = (options) => {

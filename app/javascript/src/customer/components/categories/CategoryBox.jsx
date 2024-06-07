@@ -1,12 +1,22 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
 
-class CategoryBoxComponent extends React.Component {
+export default class CategoryBox extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      globalVars: this.props.globalVars,
+    }
+  }
+
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
+  }
+
   render() {
     return CategoryBoxRT.apply(this);
   }
 }
-
-const CategoryBox = withCartMixins(CategoryBoxComponent);
-export default CategoryBox;

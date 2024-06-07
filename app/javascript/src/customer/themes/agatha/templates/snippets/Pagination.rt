@@ -1,3 +1,5 @@
+<rt-import name="*" as="I18n" from="i18n-js" />
+
 <div class="pagination" rt-if="this.props.totalPage > 1">
   <a rt-if="this.props.page > 1" href="{this.props.url.addParams('page', 1)}">{I18n.t("pagination.first")}</a>
   <a rt-if="this.state.prev != null" href="{this.props.url.addParams('page', this.state.prev)}">{I18n.t("pagination.previous")}</a>
@@ -14,4 +16,3 @@
   <a rt-if="this.props.page < this.props.totalPage" href="{this.props.url.addParams('page', this.props.totalPage)}">{I18n.t("pagination.last")}</a>
   <p class="small top15">{I18n.t("pagination.showing", {size: this.props.size, total: this.props.total})}</p>
 </div>
-

@@ -8,10 +8,11 @@ module ShopsLoading
   included do
     helper Customer::BaseHelper
     layout "customer/layouts/application"
-    before_action :load_global_variables, except: [:create, :update, :destroy]
+    # before_action :load_global_variables, except: [:create, :update, :destroy]
   end
 
   private
+
   def load_global_variables
     load_menus
 

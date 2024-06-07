@@ -1,7 +1,11 @@
+<rt-import name="default" as="Layout" from="../../../../components/layouts/Layout" />
+<rt-import name="default" as="LoginForm" from="../../../../components/customers/LoginForm" />
+<rt-import name="*" as="I18n" from="i18n-js" />
+
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="login container-fluid">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 offset-md-3">
         <h1 class="title text-center">{I18n.t("customers.login.title")}</h1>
         <LoginForm />
       </div>

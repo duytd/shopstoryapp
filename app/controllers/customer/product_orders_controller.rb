@@ -9,7 +9,7 @@ class Customer::ProductOrdersController < Customer::BaseController
   before_action :authenticate_order, only: [:update, :verify_coupon, :remove_coupon]
 
   def new
-    load_stripe_key
+    stripe_key = load_stripe_key
 
     @props = {
       order: present(current_order),
@@ -59,6 +59,7 @@ class Customer::ProductOrdersController < Customer::BaseController
   end
 
   private
+
   def validate_order!
     if current_order.order_products.count == 0
       flash[:danger] = t "customer.flash.cart_empty"
@@ -83,6 +84,6 @@ class Customer::ProductOrdersController < Customer::BaseController
 
   def load_stripe_key
     stripe_interface = StripeShopstory::StripeInterface.new current_shop
-    @stripe_key = stripe_interface.publishable_key
+    stripe_interface.publishable_key
   end
 end

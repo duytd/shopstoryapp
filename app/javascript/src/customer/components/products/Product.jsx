@@ -1,8 +1,6 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
 
-class ProductComponent extends React.Component {
+export default class Product extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,6 +14,7 @@ class ProductComponent extends React.Component {
     }
 
     this.state = {
+      globalVars: this.props.globalVars,
       variation: variation,
       cartErrors: [],
       isCartOpened: false
@@ -44,12 +43,15 @@ class ProductComponent extends React.Component {
     this.setState({isCartOpened: false});
   }
 
-  setCartErrors = (errors) => {
-    this.setState({cartErrors: errors});
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
   }
 
-  emptyCartErrors = (errors) => {
-    this.setState({cartErrors: []});
+  updateVariation = (variation) => {
+    this.setState({variation: variation});
   }
 
   addToCart = (e) => {
@@ -76,10 +78,11 @@ class ProductComponent extends React.Component {
     });
   }
 
-  updateVariation = (variation) => {
-    this.setState({variation: variation});
+  setCartErrors = (errors) => {
+    this.setState({cartErrors: errors});
+  }
+
+  emptyCartErrors = (_errors) => {
+    this.setState({cartErrors: []});
   }
 }
-
-const Product = withCartMixins(ProductComponent);
-export default Product;

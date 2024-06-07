@@ -1,3 +1,5 @@
+<rt-import name="default" as="ProductItem" from="../../../../components/products/ProductItem" />
+
 <div class="row">
   <div ref="loading" class="loading text-center hide"><i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i></div>
   <ProductItem rt-repeat="product in this.state.products" key="{productIndex}" product="{product}" currency="{this.props.currency}" />

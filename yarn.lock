@@ -1510,10 +1510,6 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
 
-bootstrap-switch@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-switch/-/bootstrap-switch-3.4.0.tgz#6bbb0445ad8b4264883d06366d48aad3c06988f4"
-
 bootstrap@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.3.tgz#de35e1a765c897ac940021900fcbb831602bac38"
@@ -4323,10 +4319,6 @@ stylehacks@^7.0.0:
   dependencies:
     browserslist "^4.23.0"
     postcss-selector-parser "^6.0.16"
-
-summernote@^0.8.20:
-  version "0.8.20"
-  resolved "https://registry.yarnpkg.com/summernote/-/summernote-0.8.20.tgz#395905f2cec0aceebc712edc019d91b8ef88f7cf"
 
 supports-color@^5.3.0:
   version "5.5.0"
