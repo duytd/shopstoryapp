@@ -29,7 +29,7 @@ ReactOnRails.register({
   // Success,
   // ResetPassword,
   // ForgotPassword,
-  // CheckoutForm,
+  CheckoutForm,
   Product,
   Register,
   // Search,

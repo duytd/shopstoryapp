@@ -9,7 +9,8 @@ class Customer::ProductOrdersController < Customer::BaseController
   before_action :authenticate_order, only: [:update, :verify_coupon, :remove_coupon]
 
   def new
-    stripe_key = load_stripe_key
+    load_global_variables
+    publishable_key =
 
     @props = {
       order: present(current_order),
@@ -83,7 +84,6 @@ class Customer::ProductOrdersController < Customer::BaseController
   end
 
   def load_stripe_key
-    stripe_interface = StripeShopstory::StripeInterface.new current_shop
-    stripe_interface.publishable_key
+    PaymentMethod.stripe.load_option("publishable_key")
   end
 end
