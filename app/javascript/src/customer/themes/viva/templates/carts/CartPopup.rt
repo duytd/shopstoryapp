@@ -1,5 +1,5 @@
 <div id="#cart" class="{this.props.isCartOpened ? 'cart-container open' : 'cart-container'}">
-  <div class="col-xs-12 text-center cart-buttons">
+  <div class="col-12 text-center cart-buttons">
     <div class="row text-right">
       <a onClick="{this.props.closeCart}">
         <i class="fa fa-2x fa-times-circle-o"></i>
@@ -13,30 +13,30 @@
     </a>
   </div>
 
-  <div class="col-xs-12">
+  <div class="col-12">
     <Errors rt-if="this.props.cartErrors && this.props.cartErrors.length > 0" errors="{this.props.cartErrors}" />
     <Errors rt-if="this.state.cartErrors && this.state.cartErrors.length > 0" errors="{this.state.cartErrors}" />
 
     {(this.props.globalVars.order.cart.length == 0) ? I18n.t("cart.empty") : null}
 
     <div class="row item" key="product_item_{item.id}" rt-repeat="item in this.props.globalVars.order.cart">
-      <div class="col-xs-3">
+      <div class="col-3">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
           <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-thumbnail image" />
         </a>
       </div>
 
-      <div class="col-xs-3 name">
+      <div class="col-3 name">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
           <strong>{translate(item.variation, "name")}</strong>
         </a>
       </div>
 
-      <div class="col-xs-3">
+      <div class="col-3">
         <p class="price">{I18n.toCurrency(item.unit_price.convert(), {precision: 0, unit: this.props.globalVars.currency})}</p>
       </div>
 
-      <div class="col-xs-3">
+      <div class="col-3">
         <i class="fa fa-minus" data-item="{item.id}" data-quantity="{item.quantity}" onClick="{this.substractItemQuantity}"></i>
         <span class="quantity">{item.quantity}</span>
         <i class="fa fa-plus" data-item="{item.id}" data-quantity="{item.quantity}" onClick="{this.addItemQuantity}"></i>

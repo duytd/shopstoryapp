@@ -1,11 +1,22 @@
 import React from 'react';
-import withCartMixins from '../../mixins/CartMixin';
 
-class CheckoutFormComponent extends React.Component {
+export default class CheckoutForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      globalVars: this.props.globalVars,
+    }
+  }
+
   render() {
     return CheckoutFormRT.apply(this);
   }
-}
 
-const CheckoutForm = withCartMixins(CheckoutFormComponent);
-export default CheckoutForm;
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
+  }
+}

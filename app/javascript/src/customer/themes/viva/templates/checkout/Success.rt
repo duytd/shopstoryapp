@@ -5,10 +5,10 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div rt-if="this.props.order_info.transaction_info" rt-repeat="info in this.props.order_info.transaction_info" key="info_{infoIndex}" class="row">
-          <div class="col-xs-6 text-right">
+          <div class="col-6 text-right">
             <label>{info.label + ":"}</label>
           </div>
-          <div class="col-xs-6 text-left">
+          <div class="col-6 text-left">
             {info.value}
           </div>
         </div>

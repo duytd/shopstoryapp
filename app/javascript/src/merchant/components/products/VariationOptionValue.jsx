@@ -15,14 +15,14 @@ export default class VariationOptionValue extends React.Component {
             value={true} />
         : (
           <div className="row">
-            <div className="col-xs-7">
+            <div className="col-7">
               <input className="form-control"
                 ref="name"
                 name={"product[variation_options_attributes][" + this.props.parentPosition + "][variation_option_values_attributes][" + this.props.index + "][name]"}
                 defaultValue={this.props.optionValue ? this.props.optionValue.name : null} />
             </div>
 
-            <div className="col-xs-5">
+            <div className="col-5">
               {(!this.props.deleted && this.props.lastItem) ?
                 <button className="btn btn-default" onClick={this.addOptionValue}>
                   <i className="fa fa-plus"></i>

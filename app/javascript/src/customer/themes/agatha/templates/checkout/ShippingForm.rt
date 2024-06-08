@@ -1,5 +1,6 @@
 <rt-import name="*" as="I18n" from="i18n-js" />
 <rt-import name="default" as="Errors" from="../../../../components/snippets/Errors" />
+<rt-import name="default" as="PhoneField" from="../../../../components/snippets/PhoneField" />
 
 <form ref="form" id="shippingForm">
   <input name="order[shipping_address_attributes][order_id]" value="{this.props.order.id}" type="hidden" />

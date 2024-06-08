@@ -55,7 +55,7 @@ export default class VariationOption extends React.Component {
             value={true} />
         : (
             <div className="row">
-            <div className="col-xs-5">
+            <div className="col-5">
               {(this.state.activeSelector) ? (
                   <div className="select" onChange={this.checkActiveSelector}>
                     <select className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
@@ -72,7 +72,7 @@ export default class VariationOption extends React.Component {
                 )
               }
             </div>
-            <div className="col-xs-2">
+            <div className="col-2">
               {(!this.props.deleted && this.props.lastItem) ?
               <button className="btn btn-default" onClick={this.props.addVariationOption}>
                 <i className="fa fa-plus"></i>
@@ -81,7 +81,7 @@ export default class VariationOption extends React.Component {
                 <i className="fa fa-trash"></i>
               </button>
             </div>
-            <div className="col-xs-5">
+            <div className="col-5">
               {deletedOptionValueNodes}
               {optionValueNodes}
             </div>

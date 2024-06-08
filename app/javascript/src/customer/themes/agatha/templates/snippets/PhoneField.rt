@@ -1,7 +1,7 @@
 <div class="phone-field">
   <input type="hidden" ref="phone_value" name="{this.props.name}" value="{this.state.value}" />
 
-  <div rt-repeat="field in this.props.fields" key="phone_field_{fieldIndex}" class="col-xs-{field}">
+  <div rt-repeat="field in this.props.fields" key="phone_field_{fieldIndex}" class="col-{field}">
     <input onChange="{this.updateValue}" ref="phone_field_{fieldIndex}" type="text" maxlength="{field}" class="{this.props.klass}" defaultValue="{(this.state.arrayValue.length > 0) ? this.state.arrayValue[fieldIndex] : null}" />
   </div>
 </div>

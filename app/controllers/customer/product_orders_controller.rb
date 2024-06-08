@@ -10,15 +10,15 @@ class Customer::ProductOrdersController < Customer::BaseController
 
   def new
     load_global_variables
-    publishable_key =
+    publishable_key = load_stripe_key
 
     @props = {
       order: present(current_order),
       globalVars: @globalVars,
       countries: all_countries,
       default_country: Settings.shop.default_country,
-      payment_method_shops: current_shop.payment_method_shops.active.map{|e| present(e)},
-      publishable_key: @stripe_key
+      payment_methods: PaymentMethod.active.map{|e| present(e)},
+      publishable_key: publishable_key
     }
 
     session[:customer_return_to] = new_customer_product_order_path

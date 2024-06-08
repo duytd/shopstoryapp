@@ -78,18 +78,18 @@ export default class Variation extends React.Component {
             value={true} />
         : (
           <div className="row">
-            <div className="col-xs-3">
+            <div className="col-3">
               {optionNodes}
             </div>
 
-            <div className="col-xs-2">
+            <div className="col-2">
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][sku]"}
                 placeholder={I18n.t("merchant.admin.variations.sku_placeholder")}
                 defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.sku : ""} />
             </div>
 
-            <div className="col-xs-2">
+            <div className="col-2">
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][price]"}
                 placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
@@ -102,7 +102,7 @@ export default class Variation extends React.Component {
               </div>
             </div>
 
-            <div className="col-xs-2">
+            <div className="col-2">
               <p>
                 <label className="styled-cb">
                   <input type="hidden" name={"product[variations_attributes][" + this.props.index + "][unlimited]"} value="0" />
@@ -128,7 +128,7 @@ export default class Variation extends React.Component {
                 </div> : null}
             </div>
 
-            <div className="col-xs-3">
+            <div className="col-3">
               {(typeof this.props.variation.id !== "undefined") ?
                 <div className="file-upload">
                   <img src={this.props.variation.previewImage ? this.props.variation.previewImage : this.props.variation.image.image.thumb.url} width="30" height="30" />

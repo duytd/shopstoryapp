@@ -20,7 +20,7 @@
           rt-if="this.props.globalVars.order.shipping_address"
           mobile="{this.props.globalVars.mobile}"
           order="{this.props.globalVars.order}"
-          payment_method_shops="{this.props.payment_method_shops}"
+          payment_methods="{this.props.payment_methods}"
           countries="{this.props.countries}"
           default_country="{this.props.default_country}"
           publishable_key="{this.props.publishable_key}"

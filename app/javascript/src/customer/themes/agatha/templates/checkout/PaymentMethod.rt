@@ -5,24 +5,4 @@
       defaultChecked="{this.props.currentPaymentMethod.id == this.props.method.id}" />
     <span><img src="{this.props.method.image.image.thumb.url}" class="payment-method-image" height="40" /></span>
   </span>
-
-  <ul rt-if="this.props.mobile && this.props.method.id == this.props.currentPaymentMethod.id && this.props.method.mobile_submethods">
-    <li rt-repeat="submethod in this.props.method.mobile_submethods.split('|')" key="submethod_{submethodIndex}">
-      <input type="radio" name="order[payment_attributes][submethod]" value="{submethod}"
-        defaultChecked="{(this.props.order.payment && this.props.order.payment.submethod) ? (this.props.order.payment.submethod == submethod) : (submethodIndex == 0)}" />
-      {submethod.toUpperCase()}
-    </li>
-  </ul>
-
-  <input rt-if="this.props.mobile && this.props.method.id == this.props.currentPaymentMethod.id && !this.props.method.mobile_submethods" type="hidden" name="order[payment_attributes][submethod]" />
-
-  <ul rt-if="!this.props.mobile && this.props.method.id == this.props.currentPaymentMethod.id && this.props.method.desktop_submethods">
-    <li rt-repeat="submethod in this.props.method.mobile_submethods.split('|')" key="submethod_{submethodIndex}">
-      <input type="radio" name="order[payment_attributes][submethod]" value="{submethod}"
-        defaultChecked="{(this.props.order.payment && this.props.order.payment.submethod) ? (this.props.order.payment.submethod == submethod) : (submethodIndex == 0)}" />
-      {submethod.toUpperCase()}
-    </li>
-  </ul>
-
-  <input rt-if="!this.props.mobile && this.props.method.id == this.props.currentPaymentMethod.id && !this.props.method.desktop_submethods" type="hidden" name="order[payment_attributes][submethod]" />
 </div>

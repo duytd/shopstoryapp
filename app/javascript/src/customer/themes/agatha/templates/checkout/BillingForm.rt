@@ -123,16 +123,14 @@
     <input rt-if="this.props.order.payment" type="hidden" name="order[payment_attributes][id]" value="{this.props.order.payment.id}" />
 
     <PaymentMethod
-      rt-repeat="methodShop in this.props.payment_method_shops"
+      rt-repeat="method in this.props.payment_methods"
       mobile="{this.props.mobile}"
-      key="method_shop_{methodShopIndex}"
+      key="method_{methodShopIndex}"
       order="{this.props.order}"
-      method="{methodShop.payment_method}"
+      method="{method}"
       currentPaymentMethod="{this.props.currentPaymentMethod}"
       switchPaymentMethod="{this.props.switchPaymentMethod}"
     />
-
-    <div id="inicisPayment"></div>
 
     <div class="mb-3 row">
       <div class="col-md-8">

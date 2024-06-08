@@ -66,6 +66,7 @@ export default class PaymentMethod extends React.Component {
     else {
       this.refs.active.value = false;
     }
+    this.submit();
   }
 
   submit = (e) => {

@@ -1,5 +1,4 @@
 import React from 'react';
-import I18n from 'i18n-js';
 
 export default class Billing extends React.Component {
   constructor(props) {
@@ -8,7 +7,7 @@ export default class Billing extends React.Component {
     var currentPaymentMethod = null,
       hasPaymentMethod = true;
 
-    if (this.props.payment_method_shops.length == 0) {
+    if (this.props.payment_methods.length == 0) {
       hasPaymentMethod = false;
     }
 
@@ -17,7 +16,7 @@ export default class Billing extends React.Component {
         currentPaymentMethod = this.props.order.payment.payment_method;
       }
       else {
-        currentPaymentMethod = this.props.payment_method_shops[0].payment_method;
+        currentPaymentMethod = this.props.payment_method[0];
       }
     }
 

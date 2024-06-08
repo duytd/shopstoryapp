@@ -239,12 +239,12 @@ class Form extends React.Component {
                   {I18n.t("merchant.admin.products.buttons.add_option_type")}
                 </button> : null}
                 <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
-                  <div className="col-xs-5">
+                  <div className="col-5">
                     <label className="form-label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
                   </div>
-                  <div className="col-xs-2">
+                  <div className="col-2">
                   </div>
-                  <div className="col-xs-5">
+                  <div className="col-5">
                     <label className="form-label">{I18n.t("activerecord.attributes.variation_option.value")}</label>
                   </div>
                 </div>
@@ -306,7 +306,7 @@ class Form extends React.Component {
             <div className="row">
               {this.props.categories.map(function(category){
                 return (
-                  <div className="col-xs-6" key={"category_" + category.id}>
+                  <div className="col-6" key={"category_" + category.id}>
                     <label className="styled-cb" >
                       <input type="hidden" name="product[category_ids][]" value="" />
                       <input type="checkbox" name="product[category_ids][]" value={category.id}

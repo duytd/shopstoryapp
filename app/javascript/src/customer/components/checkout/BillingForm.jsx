@@ -1,5 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
+import * as Routes from '../../../routes';
 
 export default class BillingForm extends React.Component {
   constructor(props) {
@@ -31,11 +32,11 @@ export default class BillingForm extends React.Component {
   }
 
   setAddress = (address, zipcode) => {
-    const address = typeof address !== "undefined" ? address : "";
-    const zipcode = typeof zipcode !== "undefined" ? zipcode : "";
+    const addressValue = typeof address !== "undefined" ? address : "";
+    const zipcodeValue = typeof zipcode !== "undefined" ? zipcode : "";
 
-    this.refs.address.value = address;
-    this.refs.zipcode.value = zipcode;
+    this.refs.address.value = addressValue;
+    this.refs.zipcode.value = zipcodeValue;
   }
 
   updateOrder = (e) => {

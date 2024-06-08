@@ -22,8 +22,14 @@ class PaymentMethod < ApplicationRecord
   has_many :payments, dependent: :nullify
   has_many :orders, through: :payments
 
+  scope :active, -> { where(active: true) }
+
   def self.stripe
-    find(name: "paypal")
+    PaymentMethods::Stripe.first
+  end
+
+  def self.paypal
+    PaymentMethods::Paypal.first
   end
 
   def as_json options={}

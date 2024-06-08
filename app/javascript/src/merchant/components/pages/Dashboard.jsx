@@ -108,13 +108,13 @@ export default class Dashboard extends React.Component {
 
         <div className="highlight-number">{I18n.toNumber(this.props.today_revenue, {precision: 0, delimiter: ","})}</div>
         <div className="row">
-          <div className="col-xs-6 text-center">
+          <div className="col-6 text-center">
             <h4>
               {I18n.t("merchant.admin.dashboard.last_7_days")}
             </h4>
             <p>{I18n.toCurrency(this.props.last_7_days_revenue, {precision: 0, delimiter: ",", unit: "₩"})}</p>
           </div>
-          <div className="col-xs-6 text-center">
+          <div className="col-6 text-center">
             <h4>
               {I18n.t("merchant.admin.dashboard.last_30_days")}
             </h4>
@@ -139,12 +139,12 @@ export default class Dashboard extends React.Component {
             <div className="col-sm-3" key={"statistics_" + index}>
               <div className="block">
                 <div className="row">
-                  <div className="col-xs-6">
+                  <div className="col-6">
                     <div className={"icon " + d[0]}>
                       {d[1]}
                     </div>
                   </div>
-                  <div className="col-xs-6">
+                  <div className="col-6">
                     <a href={d[4]}>
                       <h3>{I18n.toNumber(d[3], {precision: 0, delimiter: ","})}</h3>
                     </a>

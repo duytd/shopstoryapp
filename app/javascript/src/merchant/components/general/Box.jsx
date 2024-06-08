@@ -9,7 +9,7 @@ export default class Box extends React.Component {
       <div className={this.props.name + "-box " + wrapper}>
         <div className="block-header">
           <div className="row">
-            <div className="col-xs-12">
+            <div className="col-12">
               <span className="title">{this.props.title}</span>
               {(this.props.url) ?
               <a className="btn btn-sm btn-success pull-right" href={this.props.url}>

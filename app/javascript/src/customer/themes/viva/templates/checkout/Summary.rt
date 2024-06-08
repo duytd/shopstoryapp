@@ -23,23 +23,23 @@
   </p>
   <div class="cart-items">
     <div rt-repeat="item in this.props.globalVars.order.cart" key="item_{itemIndex}" class="row item">
-      <div class="col-xs-3">
+      <div class="col-3">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
           <img rt-if="item.variation.image" src="{item.variation.image.image.url}" class="img-thumbnail image" />
         </a>
       </div>
 
-      <div class="col-xs-3">
+      <div class="col-3">
         <a href="{Routes.customer_product_path.localize(item.variation.product_slug)}">
           <strong>{translate(item.variation, "name")}</strong>
         </a>
       </div>
 
-      <div class="col-xs-3">
+      <div class="col-3">
         <p class="price">{I18n.toCurrency(item.unit_price.convert(), {precision: 0, unit: this.props.currency})}</p>
       </div>
 
-      <div class="col-xs-3">
+      <div class="col-3">
         <span class="quantity">{item.quantity}</span>
       </div>
     </div>

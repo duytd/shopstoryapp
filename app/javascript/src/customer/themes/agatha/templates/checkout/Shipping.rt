@@ -1,4 +1,4 @@
-<rt-import name="default" as="Billing" from="../../../../components/checkout/ShippingForm" />
+<rt-import name="default" as="ShippingForm" from="../../../../components/checkout/ShippingForm" />
 <rt-import name="*" as="I18n" from="i18n-js" />
 
 <div class="row">
