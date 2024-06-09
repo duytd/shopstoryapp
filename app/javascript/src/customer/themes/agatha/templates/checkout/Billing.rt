@@ -13,7 +13,7 @@
     useShippingAddress="{this.state.useShippingAddress}"
     mobile="{this.props.mobile}"
     order="{this.props.order}"
-    payment_method_shops="{this.props.payment_method_shops}"
+    payment_methods="{this.props.payment_methods}"
     countries="{this.props.countries}"
     default_country="{this.props.default_country}"
     updateOrder="{this.updateOrder}"

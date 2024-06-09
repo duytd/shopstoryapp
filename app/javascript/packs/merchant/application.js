@@ -4,7 +4,7 @@ import "jquery-ujs"
 
 window.bootstrap = require("bootstrap");
 
-import "../../src/routes";
+import "../../src/merchant/routes";
 
 // Utilities
 import "../../src/functions";

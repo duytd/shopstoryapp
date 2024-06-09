@@ -21,11 +21,11 @@
 #  fk_rails_...  (variation_id => variations.id)
 #
 class OrderProduct < ApplicationRecord
-  belongs_to :product_order, class_name: "ProductOrder", foreign_key: "order_id"
+  belongs_to :order
   belongs_to :variation
 
   validates :order_id, uniqueness: {scope: :variation_id}, on: :create
-  validates :product_order, presence: true
+  validates :order, presence: true
   validates :variation, presence: true
 
   validate :quantity_must_be_less_than_variation_quantity_and_greater_than_zero, unless: Proc.new{|a| a.variation.unlimited?}

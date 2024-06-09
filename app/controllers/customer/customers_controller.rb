@@ -5,7 +5,7 @@ class Customer::CustomersController < Customer::BaseController
   def show
     @props = {
       globalVars: @globalVars,
-      orders: current_customer.product_orders.success.map{|p| present(p)},
+      orders: current_customer.orders.success.map{|p| present(p)},
     }
   end
 end

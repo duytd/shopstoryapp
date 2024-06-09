@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import * as Routes from '../../../routes';
+
 
 export default class ShippingForm extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ export default class ShippingForm extends React.Component {
     $.ajax({
       data: formData,
       method: "PUT",
-      url: Routes.customer_product_order_path(this.props.order.id, {locale: I18n.locale}),
+      url: Routes.customer_order_path(this.props.order.id, {locale: I18n.locale}),
       success: function(order) {
         this.setState({errors: []});
         this.props.updateOrder(order);

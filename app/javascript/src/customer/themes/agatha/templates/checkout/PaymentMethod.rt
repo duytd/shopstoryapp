@@ -3,6 +3,6 @@
     <input type="radio" name="order[payment_attributes][payment_method_id]" value="{this.props.method.id}"
       onChange="{this.switchPaymentMethod.bind(this, this.props.method)}"
       defaultChecked="{this.props.currentPaymentMethod.id == this.props.method.id}" />
-    <span><img src="{this.props.method.image.image.thumb.url}" class="payment-method-image" height="40" /></span>
+    <span><img src="{this.props.method.image.thumb.url}" class="payment-method-image" height="40" /></span>
   </span>
 </div>

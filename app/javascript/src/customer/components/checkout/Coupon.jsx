@@ -17,7 +17,7 @@ export default class Coupon extends React.Component {
   submit = (e) => {
     e.preventDefault();
 
-    var url = Routes.verify_coupon_customer_product_orders_path.localize();
+    var url = Routes.verify_coupon_customer_orders_path.localize();
     var code = this.refs.code.value;
 
     $.ajax({
@@ -37,7 +37,7 @@ export default class Coupon extends React.Component {
 
   remove = (e) => {
     e.preventDefault();
-    var url = Routes.remove_coupon_customer_product_orders_path.localize();
+    var url = Routes.remove_coupon_customer_orders_path.localize();
 
     $.ajax({
       url: url,

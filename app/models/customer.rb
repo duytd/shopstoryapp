@@ -48,7 +48,7 @@ class Customer < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:doindie]
 
-  has_many :product_orders
+  has_many :orders
   has_many :customer_discounts, dependent: :destroy
   has_many :discounts, through: :customer_discounts
   has_many :discounted_orders, through: :customer_discounts, class_name: "Order", source: "order_id"
@@ -73,10 +73,10 @@ class Customer < ApplicationRecord
   end
 
   def total_orders
-    product_orders.success.count
+    orders.success.count
   end
 
   def total_spent
-    product_orders.success.inject(0){|sum, item| sum + item.total}
+    orders.success.inject(0){|sum, item| sum + item.total}
   end
 end

@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import * as Routes from '../../../routes';
+
 
 import FormErrors from '../../components/general/FormErrors';
 import { translate } from '../../../functions';
@@ -42,7 +42,7 @@ export default class ShipmentForm extends React.Component {
     return (
       <div className="block">
         <h3>{I18n.t("activerecord.attributes.order.shipment")}</h3>
-        <form ref="form" id="shipment-form" className="shipment-form" action={Routes.merchant_product_order_path(this.props.order)}
+        <form ref="form" id="shipment-form" className="shipment-form" action={Routes.merchant_order_path(this.props.order)}
           acceptCharset="UTF-8" method="put" onSubmit={this.submit}>
 
           {(this.props.shipment) ?

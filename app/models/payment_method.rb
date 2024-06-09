@@ -24,6 +24,8 @@ class PaymentMethod < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
+  accepts_nested_attributes_for :payment_method_options, allow_destroy: false
+
   def self.stripe
     PaymentMethods::Stripe.first
   end

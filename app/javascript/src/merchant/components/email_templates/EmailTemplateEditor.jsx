@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import * as Routes from '../../../routes';
+
 import * as ace from 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-solarized_light';

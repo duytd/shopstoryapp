@@ -1,10 +1,10 @@
-class Customer::ProductOrderPresenter < Customer::BasePresenter
+class Merchant::OrderPresenter < Merchant::BasePresenter
   def as_json(*)
     customer = @object.customer ? present(@object.customer) : nil
     shipping_address = @object.shipping_address ? present(@object.shipping_address) : nil
     billing_address = @object.billing_address ? present(@object.billing_address) : nil
     payment = @object.payment ? present(@object.payment) : nil
-    discount = @object.discount ? present(@object.discount) : nil
+    shipment = @object.shipment ? present(@object.shipment) : nil
 
     {
       id: @object.id,
@@ -15,13 +15,14 @@ class Customer::ProductOrderPresenter < Customer::BasePresenter
       status: @object.status,
       currency: @object.currency,
       locale: @object.locale,
-      current_step: @object.current_step,
+      abandoned: @object.abandoned?,
       customer: customer,
       shipping_address: shipping_address,
       billing_address: billing_address,
       payment: payment,
-      discount: discount,
-      cart: @object.order_products.map{|o| present(o) },
+      shipment: shipment,
+      order_products: @object.order_products.map{|op| present(op) },
+      paid_at: @object.paid_at,
       created_at: @object.created_at,
       updated_at: @object.updated_at
     }

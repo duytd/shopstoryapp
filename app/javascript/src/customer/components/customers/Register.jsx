@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Routes from '../../../routes';
+
 
 export default class Register extends React.Component {
   constructor(props) {

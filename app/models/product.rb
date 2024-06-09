@@ -104,7 +104,7 @@ class Product < ApplicationRecord
   end
 
   def total_sale
-    order_products.joins(:product_order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
+    order_products.joins(:order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
   end
 
   def create_variations

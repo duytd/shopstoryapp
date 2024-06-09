@@ -11,7 +11,7 @@ import Discount from '../../components/discounts/Discount';
 import BulkAction from './BulkAction';
 import SelectAllCb from './SelectAllCb';
 
-import * as Routes from '../../../routes';
+
 
 export default class List extends React.Component {
   constructor(props) {
@@ -73,7 +73,7 @@ export default class List extends React.Component {
             <Order
               order={item}
               key={"item_" + item.id}
-              deleteUrl={Routes.merchant_product_order_path.localize(item.id)}
+              deleteUrl={Routes.merchant_order_path.localize(item.id)}
               handleSelect={this.handleSelect}
               handleDeleteItem={this.deleteItem} check={item.checked} />
           );

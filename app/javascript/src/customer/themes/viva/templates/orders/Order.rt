@@ -1,9 +1,9 @@
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="order">
-    <h1 rt-if="this.props.order.type == 'product_order'">{I18n.t("customers.order.your_order")} #{this.props.order.id}</h1>
+    <h1>{I18n.t("customers.order.your_order")} #{this.props.order.id}</h1>
 
-    <label rt-if="this.props.order.type == 'product_order'" class="label label-primary">{this.props.order.status.toUpperCase()}</label>
-    <div rt-if="this.props.order.type == 'product_order'" class="row">
+    <label class="label label-primary">{this.props.order.status.toUpperCase()}</label>
+    <div class="row">
       <div class="col-sm-6">
         <h3>{I18n.t("customers.order.billing_address")}</h3>
         <p>{this.props.order.billing_address.first_name} {this.props.order.billing_address.last_name}</p>

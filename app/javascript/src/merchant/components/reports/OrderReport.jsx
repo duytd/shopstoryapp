@@ -1,7 +1,7 @@
 import React from 'react';
 import I18n from 'i18n-js';
 import LineChart from '../charts/LineChart';
-import * as Routes from '../../../routes';
+
 
 export default class OrderReport extends React.Component {
   constructor(props) {

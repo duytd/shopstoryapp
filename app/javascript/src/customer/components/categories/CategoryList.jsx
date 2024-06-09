@@ -1,6 +1,6 @@
 import React from 'react';
 import withPaginationMixins from '../../mixins/PaginationMixin';
-import * as Routes from '../../../routes';
+
 
 class CategoryListComponent extends React.Component {
   constructor(props) {

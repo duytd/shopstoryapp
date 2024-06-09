@@ -17,7 +17,7 @@ export default class PaymentMethod extends React.Component {
         <div className="mb-3 col-md-6" key={"payment_method_" + index}>
           <label>{option.title}</label>
           <input type="hidden" name={"payment_method[payment_method_options_attributes][" + index + "][id]"} value={option.id} />
-          <input type="text" className="form-control" name={"payment_method_shop[payment_method_options_attributes][" + index + "][value]"} defaultValue={option.value} />
+          <input type="text" className="form-control" name={"payment_method[payment_method_options_attributes][" + index + "][value]"} defaultValue={option.value} />
         </div>
       )
     }.bind(this));
@@ -27,12 +27,12 @@ export default class PaymentMethod extends React.Component {
         <div className="col-sm-2">
           <h3 className="title">{this.props.payment_method.name}</h3>
           <p className="small">{this.props.payment_method.description}</p>
-          <input ref="activator" type="checkbox" name="payment_method_shop[active]" defaultChecked={this.state.payment_method.active} onChange={this.activate} />
+          <input ref="activator" type="checkbox" name="payment_method[active]" defaultChecked={this.state.payment_method.active} onChange={this.activate} />
         </div>
         <div className="col-sm-10">
           <div className="block">
             <form ref="form" id="paymentMethod" acceptCharset="UTF-8" onSubmit={this.submit}>
-              <input type="hidden" ref="active" name="payment_method_shop[active]" value={this.state.payment_method.active} />
+              <input type="hidden" ref="active" name="payment_method[active]" value={this.state.payment_method.active} />
               <div className="row">
                 <div className="mb-3 col-md-12">
                   {(this.state.errors.length > 0) ? <Errors errors={this.state.errors} /> : null}
@@ -66,6 +66,7 @@ export default class PaymentMethod extends React.Component {
     else {
       this.refs.active.value = false;
     }
+
     this.submit();
   }
 

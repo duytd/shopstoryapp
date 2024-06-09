@@ -49,6 +49,6 @@ class Customer::OrderProductsController < Customer::BaseController
   end
 
   def authenticate_order_product
-    head :unauthorized unless @order_product.product_order.abandoned?
+    head :unauthorized unless @order_product.order.abandoned?
   end
 end

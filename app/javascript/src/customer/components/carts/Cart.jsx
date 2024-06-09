@@ -16,7 +16,7 @@ export default class Cart extends React.Component {
 
   checkout = () => {
     var url = (this.props.globalVars.current_customer) ?
-      Routes.new_customer_product_order_path.localize() :
+      Routes.new_customer_order_path.localize() :
       Routes.customer_checkout_path.localize();
 
     window.location = url;

@@ -19,6 +19,6 @@ class Merchant::PaymentMethodsController < Merchant::BaseController
   def payment_method_params
     permitted_payment_method_option_attributes = [:id, :value]
 
-    params.require(:payment_method).permit payment_method_option_attributes: permitted_payment_method_option_attributes
+    params.require(:payment_method).permit :active, payment_method_options_attributes: permitted_payment_method_option_attributes
   end
 end

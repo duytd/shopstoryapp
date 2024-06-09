@@ -1,7 +1,7 @@
 <rt-import name="default" as="Layout" from="../../../../components/layouts/Layout" />
 <rt-import name="default" as="Errors" from="../../../../components/snippets/Errors" />
 <rt-import name="*" as="I18n" from="i18n-js" />
-<rt-import name="*" as="Routes" from="../../../../../routes" />
+
 <rt-import name="translate" from="../../../../../functions" />
 
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">

@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import * as Routes from '../../../routes';
+
 
 export default class CustomerOrder extends React.Component {
   render() {
@@ -63,7 +63,7 @@ export default class CustomerOrder extends React.Component {
     return (
       <tr>
         <td>
-          <a href={Routes.edit_merchant_product_order_path.localize(this.props.order.id)}>
+          <a href={Routes.edit_merchant_order_path.localize(this.props.order.id)}>
             {"#" + this.props.order.id}
           </a>
         </td>

@@ -1,7 +1,7 @@
 import React from 'react';
 import I18n from 'i18n-js';
 import PieChart from '../charts/PieChart';
-import * as Routes from '../../../routes';
+
 
 export default class PaymentReport extends React.Component {
   constructor(props) {

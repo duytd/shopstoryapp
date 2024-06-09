@@ -1,7 +1,5 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import * as Routes from '../../../routes';
-
 import FormErrors from '../../components/general/FormErrors';
 import SubmitButtons from '../../components/general/SubmitButtons';
 
@@ -116,7 +114,7 @@ export default class CustomerForm extends React.Component {
               <label className="form-label">{I18n.t("activerecord.attributes.customer.last_order")}</label>
               {(this.props.orders.length > 0) ?
               <p>
-                <a href={Routes.edit_merchant_product_order_path.localize(this.props.orders[this.props.orders.length - 1].id)}>
+                <a href={Routes.edit_merchant_order_path.localize(this.props.orders[this.props.orders.length - 1].id)}>
                   {"#" + this.props.orders[this.props.orders.length - 1].id}
                 </a>
               </p> : null}

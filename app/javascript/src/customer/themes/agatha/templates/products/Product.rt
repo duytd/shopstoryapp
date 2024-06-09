@@ -5,7 +5,7 @@
 <rt-import name="default" as="SocialShare" from="../../../../components/snippets/SocialShare" />
 <rt-import name="*" as="I18n" from="i18n-js" />
 <rt-import name="translate" from="../../../../../functions" />
-<rt-import name="*" as="Routes" from="../../../../../routes" />
+
 
 <Layout
   globalVars="{this.state.globalVars}"

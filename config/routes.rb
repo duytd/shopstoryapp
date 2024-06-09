@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::AdminDomainConstraint do
-    namespace :admin, path: "" do
+    namespace :admin, path: "admin" do
       constraints CanAccessFlipperUI do
         mount Flipper::UI.app(Flipper) => '/flipper'
       end
@@ -68,16 +68,18 @@ Rails.application.routes.draw do
     end
     resources :products, only: [:index, :show]
     resources :custom_pages, only: [:show]
-    resources :product_orders, only: [:create, :update] do
+    resources :orders, only: [:create, :update] do
       post :verify_coupon, on: :collection
       delete :remove_coupon, on: :collection
     end
-    resources :product_orders, only: [:new], path: "checkout"
+    resources :orders, only: [:new], path: "checkout"
     resources :orders, only: :show
 
-    # mount PaypalShopstory::Engine, at: "/paypal", as: "paypal"
-    # mount StripeShopstory::Engine, at: "/stripe", as: "stripe"
     resources :order_products, only: [:create, :update, :destroy]
+
+    namespace :stripe do
+      resources :charges, only: :create
+    end
   end
 
   post :stripe_webhook, to: "stripe#webhook"
@@ -122,7 +124,7 @@ Rails.application.routes.draw do
       resources :themes, only: [:index, :show, :create]
     end
 
-    resources :product_orders, except: :show do
+    resources :orders, except: :show do
       delete :index, on: :collection
     end
 

@@ -55,7 +55,7 @@ module Customer::BaseHelper
 
   def current_order
     unless cookies.signed[:order_token].blank?
-      @current_order ||= ProductOrder.find_by_token(cookies.signed[:order_token]) || initialize_order
+      @current_order ||= Order.find_by_token(cookies.signed[:order_token]) || initialize_order
     else
       @current_order ||= initialize_order
     end
@@ -75,9 +75,9 @@ module Customer::BaseHelper
 
   def initialize_order
     if customer_signed_in?
-      current_customer.product_orders.where(status: Order.statuses[:incompleted]).first_or_initialize
+      current_customer.orders.where(status: Order.statuses[:incompleted]).first_or_initialize
     else
-      ProductOrder.new status: Order.statuses[:incompleted], currency: current_shop.currency.upcase
+      Order.new status: Order.statuses[:incompleted], currency: current_shop.currency.upcase
     end
   end
 

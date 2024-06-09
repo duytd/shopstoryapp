@@ -11,7 +11,7 @@ export default class Checkout extends React.Component {
 
   componentWillMount() {
     if (this.props.globalVars.current_customer) {
-      window.location = Routes.new_customer_product_order_path.localize();
+      window.location = Routes.new_customer_order_path.localize();
     }
   }
 

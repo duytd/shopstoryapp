@@ -16,7 +16,7 @@ export default class Billing extends React.Component {
         currentPaymentMethod = this.props.order.payment.payment_method;
       }
       else {
-        currentPaymentMethod = this.props.payment_method[0];
+        currentPaymentMethod = this.props.payment_methods[0];
       }
     }
 
@@ -46,7 +46,7 @@ export default class Billing extends React.Component {
         key: key,
         locale: "auto",
         token: function(token) {
-          $.post(Routes.customer_stripe_charges_path.localize(), {stripeEmail: token.email, stripeToken: token.id}, function(response) {
+          $.post(Routes.customer_stripe_charges_path.localize(), {stripe_email: token.email, stripe_token: token.id}, function(response) {
             window.location = response.url;
           })
           .fail(function(xhr) {

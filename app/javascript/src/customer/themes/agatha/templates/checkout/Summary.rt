@@ -1,5 +1,5 @@
 <rt-import name="*" as="I18n" from="i18n-js" />
-<rt-import name="*" as="Routes" from="../../../../../routes" />
+
 <rt-import name="translate" from="../../../../../functions" />
 
 <div class="summary">

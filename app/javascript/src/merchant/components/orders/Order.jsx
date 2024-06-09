@@ -1,6 +1,6 @@
 import React from 'react';
 import Item from '../../components/general/Item';
-import * as Routes from '../../../routes';
+
 
 export default class Order extends React.Component {
   renderPaymentStatus(payment) {
@@ -95,7 +95,7 @@ export default class Order extends React.Component {
       <Item item={this.props.order} deleteUrl={this.props.deleteUrl} handleSelect={this.props.handleSelect}
           handleDeleteItem={this.props.handleDeleteItem} check={this.props.order.checked}>
         <td>
-          <a href={Routes.edit_merchant_product_order_path.localize(this.props.order)}>
+          <a href={Routes.edit_merchant_order_path.localize(this.props.order)}>
             {"#" + this.props.order.id}
           </a>
         </td>

@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-import * as Routes from '../../../routes';
+
 
 export default class Dashboard extends React.Component {
   renderOrders() {
@@ -20,7 +20,7 @@ export default class Dashboard extends React.Component {
               return (
                 <tr key={"order_" + index}>
                   <td>
-                    <a href={Routes.edit_merchant_product_order_path.localize(order)}>
+                    <a href={Routes.edit_merchant_order_path.localize(order)}>
                       {"#" + order.id}
                     </a>
                   </td>
@@ -128,7 +128,7 @@ export default class Dashboard extends React.Component {
   renderStatistics() {
     var data = [
       ["icon-success", <i className="fa fa-3x fa-won"></i>, I18n.t("merchant.admin.dashboard.total_revenue"), this.props.total_revenue, "javascript:void(0)"],
-      ["icon-primary", <i className="fa fa-3x fa-cart-plus"></i>, I18n.t("merchant.admin.dashboard.today_sales"), this.props.today_sales, Routes.merchant_product_orders_path.localize()],
+      ["icon-primary", <i className="fa fa-3x fa-cart-plus"></i>, I18n.t("merchant.admin.dashboard.today_sales"), this.props.today_sales, Routes.merchant_orders_path.localize()],
       ["icon-success", <i className="fa fa-3x fa-tag"></i>, I18n.t("merchant.admin.dashboard.total_products"), this.props.total_products, Routes.merchant_products_path.localize()],
       ["icon-primary", <i className="fa fa-3x fa-user"></i>, I18n.t("merchant.admin.dashboard.total_customers"), this.props.total_customers, Routes.merchant_customers_path.localize()]
     ]
@@ -172,7 +172,7 @@ export default class Dashboard extends React.Component {
           </div>
           <div className="col-sm-8">
             <div className="block">
-              <a href={Routes.merchant_product_orders_path.localize()} className="btn btn-sm btn-danger pull-right">
+              <a href={Routes.merchant_orders_path.localize()} className="btn btn-sm btn-danger pull-right">
                 {I18n.t("merchant.admin.buttons.view_all")}
               </a>
               <h3>{I18n.t("merchant.admin.dashboard.recent_orders")}</h3>

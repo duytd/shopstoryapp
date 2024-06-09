@@ -37,7 +37,7 @@ class Merchant::CustomersController < Merchant::BaseController
   def edit
     @props = {
       customer: present(@customer),
-      orders: @customer.product_orders.success,
+      orders: @customer.orders.success,
       url: merchant_customer_path(@customer),
       method: :put,
       genders: Customer.genders.keys.to_a,

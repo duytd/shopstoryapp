@@ -2,6 +2,8 @@
 import 'jquery/src/jquery';
 import 'jquery-ujs'
 window.bootstrap = require("bootstrap");
+import "../../../../../src/customer/routes";
+
 import 'owl.carousel/dist/owl.carousel';
 import '@zeitiger/elevatezoom/jquery.elevatezoom';
 

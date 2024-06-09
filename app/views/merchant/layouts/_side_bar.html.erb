@@ -14,21 +14,21 @@
       </li>
     <% end %>
 
-    <li class="item <%= current_page?(merchant_product_orders_path(type: :purchased)) || current_page?(merchant_product_orders_path(type: :abandoned)) ? 'active' : '' %>">
+    <li class="item <%= current_page?(merchant_orders_path(type: :purchased)) || current_page?(merchant_orders_path(type: :abandoned)) ? 'active' : '' %>">
       <div>
         <i class="fa fa-shopping-cart"></i>
         <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
       </div>
 
       <ul class="subitems">
-        <%= link_to merchant_product_orders_path(type: :purchased) do %>
+        <%= link_to merchant_orders_path(type: :purchased) do %>
           <li>
             <i class="fa fa-cart-plus"></i>
             <span class="item-label"><%= t "merchant.admin.menu.orders" %></span>
           </li>
         <% end %>
 
-        <%= link_to merchant_product_orders_path(type: :abandoned) do %>
+        <%= link_to merchant_orders_path(type: :abandoned) do %>
           <li>
             <i class="fa fa-exclamation-triangle"></i>
             <span class="item-label"><%= t "merchant.admin.menu.abandoned_carts" %></span>

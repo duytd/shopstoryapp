@@ -4,15 +4,15 @@ class Merchant::ReportsController < Merchant::BaseController
   def order
     @data = case params[:report_type]
       when "hourly"
-        ProductOrder.hourly_data
+        Order.hourly_data
       when "weekly"
-        ProductOrder.weekly_data
+        Order.weekly_data
       when "monthly"
-        ProductOrder.monthly_data
+        Order.monthly_data
       when "yearly"
-        ProductOrder.yearly_data
+        Order.yearly_data
       else
-        ProductOrder.daily_data
+        Order.daily_data
       end
 
     respond_to do |format|
