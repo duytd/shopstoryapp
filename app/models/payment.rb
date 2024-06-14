@@ -4,7 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  amount             :decimal(, )      default(0.0)
-#  extra_data         :text
+#  extra_data         :jsonb
 #  paid_at            :string
 #  paypal_token       :string
 #  state              :integer          default("pending")

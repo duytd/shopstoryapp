@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_09_064310) do
+ActiveRecord::Schema.define(version: 2024_06_14_052537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(version: 2024_06_09_064310) do
     t.string "transaction_number"
     t.string "paid_at"
     t.string "submethod"
-    t.text "extra_data"
+    t.jsonb "extra_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "paypal_token"

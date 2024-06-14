@@ -1,5 +1,5 @@
 class Customer::PagesController < Customer::BaseController
-  before_action :authenticate_order!, only: :success
+  before_action :load_global_variables, :authenticate_order!, only: :success
   include PaymentHelper
 
   def home
@@ -20,7 +20,6 @@ class Customer::PagesController < Customer::BaseController
   end
 
   def success
-    load_global_variables
     transaction_info = get_transaction_info @order
 
     @props = {

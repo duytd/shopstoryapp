@@ -26,7 +26,7 @@ ReactOnRails.register({
   // Order,
   Cart,
   Checkout,
-  // Success,
+  Success,
   // ResetPassword,
   // ForgotPassword,
   CheckoutForm,

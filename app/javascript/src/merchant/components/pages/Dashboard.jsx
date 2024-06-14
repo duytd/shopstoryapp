@@ -51,6 +51,8 @@ export default class Dashboard extends React.Component {
   }
 
   getPaymentStateKlass(state) {
+    let paymentStatusKlass = "";
+
     switch(state) {
       case "pending":
         paymentStatusKlass = "label-default";
@@ -67,6 +69,8 @@ export default class Dashboard extends React.Component {
   }
 
   getStatusKlass(status) {
+    let statusKlass = "";
+
     switch(status) {
       case "incompleted":
         statusKlass = "label-default";

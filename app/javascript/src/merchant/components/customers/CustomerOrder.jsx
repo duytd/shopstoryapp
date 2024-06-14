@@ -10,6 +10,8 @@ export default class CustomerOrder extends React.Component {
       paymentStatus = "";
 
     if (payment) {
+      let paymentStatusKlass = "";
+
       switch(payment.state) {
         case "pending":
           paymentStatusKlass = "label-default";
@@ -30,6 +32,8 @@ export default class CustomerOrder extends React.Component {
         </div>
       )
     }
+
+    let statusKlass = "";
 
     switch(this.props.order.status) {
       case "incompleted":

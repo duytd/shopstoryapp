@@ -1,12 +1,14 @@
 import React from 'react';
 import Item from '../../components/general/Item';
-
+import I18n from 'i18n-js';
 
 export default class Order extends React.Component {
   renderPaymentStatus(payment) {
     var paymentStatus = null;
 
     if (payment) {
+      let paymentStatusKlass = "";
+
       switch(payment.state) {
         case "pending":
           paymentStatusKlass = "label-default";
@@ -60,6 +62,8 @@ export default class Order extends React.Component {
   }
 
   renderOrderStatus() {
+    let statusKlass = "";
+
     switch(this.props.order.status) {
       case "incompleted":
         statusKlass = "label-default";

@@ -1,8 +1,8 @@
-module Stripe
+module Payments
   class StripeClient
-    attr_reader :secret_key, :email, :token, :amount, :customer_id, :description, :currency
+    attr_reader :secret_key, :email, :token, :amount, :description, :currency
 
-    def initialize options
+    def initialize options = {}
       @secret_key = options[:secret_key]
       @email = options[:email]
       @token = options[:token]
@@ -12,18 +12,26 @@ module Stripe
     end
 
     def pay!
-      Stripe.api_key = secret_key
-
       customer = ::Stripe::Customer.create(
-        email: email,
-        source: token
+        {
+          email: email,
+          source: token,
+        },
+        {
+          api_key: secret_key
+        }
       )
 
       charge = ::Stripe::Charge.create(
-        customer: customer.id,
-        amount: amount,
-        description: description,
-        currency: currency
+        {
+          customer: customer.id,
+          amount: amount,
+          description: description,
+          currency: currency
+        },
+        {
+          api_key: secret_key
+        }
       )
 
       {

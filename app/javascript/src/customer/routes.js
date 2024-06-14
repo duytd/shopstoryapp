@@ -525,6 +525,98 @@
         ...{
   /**
    * Generates rails route to
+   * /password(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_password_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"password"],[1,[2,[8,"."],[3,"format"]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/payment_methods/:id(.:format)
+   * @param {any} id
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_payment_method_path: __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"payment_methods"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/payment_methods(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_payment_methods_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"payment_methods"],[1,[2,[8,"."],[3,"format"]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/plans/:id(.:format)
+   * @param {any} id
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_plan_path: __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"plans"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/plans(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_plans_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"plans"],[1,[2,[8,"."],[3,"format"]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_root_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[1,[2,[8,"."],[3,"format"]]]]]),
+
+  /**
+   * Generates rails route to
+   * /login(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_session_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"login"],[1,[2,[8,"."],[3,"format"]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/shipping_methods/:id(.:format)
+   * @param {any} id
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_shipping_method_path: __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"shipping_methods"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/shipping_methods(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_shipping_methods_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"shipping_methods"],[1,[2,[8,"."],[3,"format"]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/themes/:id(.:format)
+   * @param {any} id
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_theme_path: __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"themes"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/themes(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  admin_themes_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"themes"],[1,[2,[8,"."],[3,"format"]]]]]]]),
+
+  /**
+   * Generates rails route to
    * /auth/doindie(.:format)
    * @param {object | undefined} options
    * @returns {string} route path
