@@ -40,11 +40,9 @@ gem "money"
 # Frontend
 gem "react_on_rails"
 gem "js-routes"
-gem "rt-transform-ruby", git: "git@github.com:duytd/rt-transform-ruby.git"
+gem "execjs", "2.7.0"
 
 # Payment
-gem "paypal_shopstory", git: "git@github.com:duytd/paypal_shopstory.git"
-gem "stripe_shopstory", git: "git@github.com:duytd/stripe_shopstory.git"
 gem "stripe"
 
 # Template

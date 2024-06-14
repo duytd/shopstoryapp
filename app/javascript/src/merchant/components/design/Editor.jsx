@@ -87,7 +87,7 @@ export default class Editor extends React.Component {
     this.handleSubmit(formData, this.state.url, "put");
   }
 
-  reset(e) {
+  reset = (e) => {
     e.preventDefault();
     var url = this.state.reset_url;
 

@@ -1,6 +1,5 @@
 <rt-import name="*" as="I18n" from="i18n-js" />
 
-
 <form ref="form" class="form-horizontal" method="post" acceptCharset="UTF-8" action="{Routes.customer_session_path.localize()}" onSubmit="{this.submit}">
   <div class="mb-3">
     <ul rt-if="this.state.error != ''" class="alert alert-danger"><li>{this.state.error}</li></ul>

@@ -2,7 +2,6 @@
 <rt-import name="*" as="I18n" from="i18n-js" />
 <rt-import name="translate" from="../../../../../functions" />
 
-
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="register container-fluid">
     <div class="row">

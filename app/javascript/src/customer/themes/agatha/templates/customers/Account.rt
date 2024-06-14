@@ -1,3 +1,5 @@
+<rt-import name="*" as="I18n" from="i18n-js" />
+
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="account container">
     <h1>{I18n.t("customers.account.title")}</h1>
@@ -20,7 +22,7 @@
             <tr rt-repeat="order in this.props.orders" key="order_{orderIndex}">
               <td>
                 <a href="{Routes.customer_order_path.localize(order.id)}">
-                  #{order.id}
+                  {order.id}
                 </a>
               </td>
               <td>{order.created_at}</td>

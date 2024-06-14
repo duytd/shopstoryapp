@@ -33,7 +33,7 @@ class TemplateService
       file_content = File.read file
       file_name = File.basename file, ".*"
       file_directory = File.basename File.dirname(file)
-      transformed_content = Rt.transform(file_content, {modules: "none", name: "#{file_name}RT"})
+      transformed_content = transform(file_content, file_name)
 
       templates << set_template(file_name, file_content, file_directory, transformed_content)
     end
@@ -49,5 +49,12 @@ class TemplateService
       template.transformed_content = transformed_content
       template
     end
+  end
+
+  def transform(file_content, file_name)
+    js_path = File.join(Rails.root, 'reactTemplates.js')
+    contents = File.read(js_path)
+    @context = ExecJS.compile(contents)
+    @context.call "reactTemplates.convertTemplateToReact", file_content, {modules: "none", name: "#{file_name}RT"}
   end
 end
