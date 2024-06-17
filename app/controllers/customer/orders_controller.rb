@@ -1,5 +1,3 @@
-require "stripe_shopstory"
-
 class Customer::OrdersController < Customer::BaseController
   authorize_resource
   include CollectionsHelper

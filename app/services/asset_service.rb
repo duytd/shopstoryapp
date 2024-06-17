@@ -8,40 +8,44 @@ class AssetService
   end
 
   def get_compiled_code type
-    prefix = ""
-    postfix = ""
-    delimiter = "\s"
+    Apartment::Tenant.switch @subdomain do
+      prefix = ""
+      postfix = ""
+      delimiter = "\s"
 
-    case type
-    when "javascript"
-    when "stylesheet"
-    when "locale"
-      delimiter = ","
-      prefix = "var I18n = I18n || {}; I18n.translations = {"
-      postfix = "}"
-    else
-      raise InvalidAssetType
+      case type
+      when "javascript"
+      when "stylesheet"
+      when "locale"
+        delimiter = ","
+        prefix = "I18n.translations = {"
+        postfix = "}"
+      else
+        raise InvalidAssetType
+      end
+
+      copy type, delimiter, prefix, postfix
     end
-
-    copy type, delimiter, prefix, postfix
   end
 
   def create_bundle type
-    case type
-    when "javascript"
-      dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/assets/javascripts"
-      extension = "js"
-    when "stylesheet"
-      dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/assets/stylesheets"
-      extension = "scss"
-    when "locale"
-      dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/locales"
-      extension = "json"
-    else
-      raise InvalidAssetType
-    end
+    Apartment::Tenant.switch @subdomain do
+      case type
+      when "javascript"
+        dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/assets/javascripts"
+        extension = "js"
+      when "stylesheet"
+        dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/assets/stylesheets"
+        extension = "scss"
+      when "locale"
+        dir = "#{Rails.root}/app/javascript/src/customer/themes/#{@theme.directory}/locales"
+        extension = "json"
+      else
+        raise InvalidAssetType
+      end
 
-    process type, dir, extension
+      process type, dir, extension
+    end
   end
 
   def process type, dir, extension
@@ -59,7 +63,6 @@ class AssetService
 
   def copy type, delimiter="\s", prefix="", postfix=""
     content = ""
-    Apartment::Tenant.reset
     tenant_assets= []
     compiled_assets = Asset.type_class(type).where(theme_id: @theme.id)
 
@@ -69,18 +72,14 @@ class AssetService
       content << asset.content
     end
 
-    Apartment::Tenant.switch @subdomain do
-      Asset.import tenant_assets, validate: false, on_duplicate_key_update: [:content]
-    end
+    Asset.import tenant_assets, validate: false, on_duplicate_key_update: [:content]
 
     prefix << content << postfix
   end
 
   def set_asset type, file_name, file_content
-    Apartment::Tenant.switch(@subdomain) do
-      asset = Asset.type_class(type).where(name: file_name, theme_id: @theme.id).first_or_initialize
-      asset.content = file_content
-      asset
-    end
+    asset = Asset.type_class(type).where(name: file_name, theme_id: @theme.id).first_or_initialize
+    asset.content = file_content
+    asset
   end
 end

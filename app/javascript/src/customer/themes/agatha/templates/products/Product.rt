@@ -1,12 +1,3 @@
-<rt-import name="default" as="Layout" from="../../../../components/layouts/Layout" />
-<rt-import name="default" as="Breadcrumb" from="../../../../components/snippets/Breadcrumb" />
-<rt-import name="default" as="ProductSlider" from="../../../../components/snippets/ProductSlider" />
-<rt-import name="default" as="VariationSelector" from="../../../../components/products/VariationSelector" />
-<rt-import name="default" as="SocialShare" from="../../../../components/snippets/SocialShare" />
-<rt-import name="*" as="I18n" from="i18n-js" />
-<rt-import name="translate" from="../../../../../functions" />
-
-
 <Layout
   globalVars="{this.state.globalVars}"
   isCartOpened="{this.state.isCartOpened}"

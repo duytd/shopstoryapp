@@ -15,8 +15,6 @@
 #
 #  index_templates_on_theme_id  (theme_id)
 #
-require "rt"
-
 class Template < ApplicationRecord
   attr_accessor :theme_bundle
 
@@ -38,12 +36,13 @@ class Template < ApplicationRecord
   end
 
   private
+
   def root_directory?
     directory == "templates"
   end
 
   def transform
-    self.transformed_content = Rt.transform(content, {modules: "none", name: "#{self.name}RT"})
+    self.transformed_content = TemplateService.transform(content, name)
     update_bundle if theme_bundle
   end
 

@@ -1,12 +1,4 @@
 
-<rt-import name="default" as="Layout" from="../../../../components/layouts/Layout" />
-<rt-import name="default" as="CategoryList" from="../../../../components/categories/CategoryList" />
-<rt-import name="default" as="Breadcrumb" from="../../../../components/snippets/Breadcrumb" />
-<rt-import name="default" as="Pagination" from="../../../../components/snippets/Pagination" />
-<rt-import name="*" as="I18n" from="i18n-js" />
-<rt-import name="translate" from="../../../../../functions" />
-
-
 <Layout globalVars="{this.props.globalVars}" updateOrder="{this.updateOrder}">
   <div class="category-listing container">
     <Breadcrumb breadcrumb="{this.props.breadcrumb}" />

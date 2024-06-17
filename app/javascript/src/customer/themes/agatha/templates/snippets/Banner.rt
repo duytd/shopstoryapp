@@ -1,5 +1,3 @@
-<rt-import name="*" as="I18n" from="i18n-js" />
-
 <div class="owl-carousel owl-theme">
   <div rt-repeat="item in this.props.bannerItems" key="banner_item_{itemIndex}">
     <div class="text">

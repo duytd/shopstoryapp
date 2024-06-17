@@ -1,14 +1,22 @@
 // Global dependencies
 import 'jquery/src/jquery';
 import 'jquery-ujs'
-window.bootstrap = require("bootstrap");
-import "../../../../../src/customer/routes";
-
 import 'owl.carousel/dist/owl.carousel';
 import '@zeitiger/elevatezoom/jquery.elevatezoom';
 
-// Utilities
-import '../../../../../src/functions';
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
+
+import * as I18n from 'i18n-js';
+window.I18n = I18n;
+
+import * as _ from 'lodash';
+window._ = _;
+
+import { translate } from '../../../../../src/functions';
+window.translate = translate;
+
+import "../../../../../src/customer/routes";
 
 // Template
 import '../../../../../src/customer/themes/agatha/templates/template';
@@ -19,5 +27,8 @@ import '../../../../../src/customer/themes/agatha/locales/all';
 // Custom js
 import '../../../../../src/customer/themes/agatha/assets/javascripts/shop';
 
-// Register customer components
+// Components
 import '../../../../../src/customer/components';
+
+// Register customer pages
+import '../../../../../src/customer/pages';

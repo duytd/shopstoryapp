@@ -14,6 +14,7 @@
 #
 class Asset::Locale < Asset
   def update_theme_bundle
+    theme_bundle = ThemeBundle.last
     content = "var I18n = I18n || {}; I18n.translations = {"
     content << Asset::Locale.filter_by_theme(theme).map{|x| x.content}.join(",")
     content << "}"

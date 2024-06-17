@@ -55,6 +55,7 @@ class Theme < ApplicationRecord
   end
 
   private
+
   def default_cannot_be_unchecked
     if default_changed? && !default
       errors.add(:default, "cannot be uncheck")

@@ -1,9 +1,3 @@
-<rt-import name="default" as="Currency" from="../../../../components/snippets/Currency" />
-<rt-import name="default" as="CartPopup" from="../../../../components/carts/CartPopup" />
-<rt-import name="default" as="Menu" from="../../../../components/snippets/Menu" />
-
-<rt-import name="*" as="I18n" from="i18n-js" />
-
 <div class="header">
   <header id="header">
     <div class="container-fluid top">

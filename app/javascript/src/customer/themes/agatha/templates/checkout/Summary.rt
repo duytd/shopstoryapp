@@ -1,7 +1,3 @@
-<rt-import name="*" as="I18n" from="i18n-js" />
-
-<rt-import name="translate" from="../../../../../functions" />
-
 <div class="summary">
   <h2>{I18n.t("checkout.summary.title")}</h2>
   <p>

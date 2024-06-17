@@ -1,6 +1,3 @@
-<rt-import name="default" as="Header" from="../../../../components/layouts/Header" />
-<rt-import name="default" as="Footer" from="../../../../components/layouts/Footer" />
-
 <div class="main-wrapper">
   <Header
     globalVars="{this.props.globalVars}"

@@ -3,19 +3,19 @@ class Customer::ThemeBundlesController < Customer::BaseController
   before_action :load_theme_bundle
 
   def styles
-    render text: @theme_bundle.stylesheet, content_type: "text/css"
+    render plain: @theme_bundle.stylesheet, content_type: "text/css"
   end
 
   def scripts
-    render text: @theme_bundle.javascript, content_type: "text/javascript"
+    render plain: @theme_bundle.javascript, content_type: "text/javascript"
   end
 
   def templates
-    render text: @theme_bundle.template, content_type: "text/javascript"
+    render plain: @theme_bundle.template, content_type: "text/javascript"
   end
 
   def locale
-    render text: @theme_bundle.locale, content_type: "text/javascript"
+    render plain: @theme_bundle.locale, content_type: "text/javascript"
   end
 
   private

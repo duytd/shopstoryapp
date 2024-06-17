@@ -1,6 +1,3 @@
-<rt-import name="default" as="BillingForm" from="../../../../components/checkout/BillingForm" />
-<rt-import name="*" as="I18n" from="i18n-js" />
-
 <div class="billing-address">
   <label class="styled-cb">
     <input ref="useShippingAddress" type="checkbox" defaultChecked="{true}" onChange="{this.switchBilling}" />

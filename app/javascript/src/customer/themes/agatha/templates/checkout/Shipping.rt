@@ -1,6 +1,3 @@
-<rt-import name="default" as="ShippingForm" from="../../../../components/checkout/ShippingForm" />
-<rt-import name="*" as="I18n" from="i18n-js" />
-
 <div class="row">
   <div class="col-md-12">
     <h3 rt-if="this.props.editing">{I18n.t("checkout.texts.shipping_info")}<i class="fa fa-edit pull-right" onClick="{this.enableEditing}"></i></h3>

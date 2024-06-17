@@ -1,10 +1,3 @@
-<rt-import name="default" as="Layout" from="../../../../components/layouts/Layout" />
-<rt-import name="default" as="Billing" from="../../../../components/checkout/Billing" />
-<rt-import name="default" as="Shipping" from="../../../../components/checkout/Shipping" />
-<rt-import name="default" as="Summary" from="../../../../components/checkout/Summary" />
-<rt-import name="default" as="Coupon" from="../../../../components/checkout/Coupon" />
-<rt-import name="*" as="I18n" from="i18n-js" />
-
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
   <div class="container checkout-form">
     <div class="row">

@@ -1,5 +1,3 @@
-<rt-import name="*" as="I18n" from="i18n-js" />
-
 <div class="sorter pull-right">
   <div class="select">
     <select onChange="{this.updateSorter}">

@@ -1,5 +1,3 @@
-<rt-import name="*" as="I18n" from="i18n-js" />
-
 <div class="pagination" rt-if="this.props.totalPage > 1">
   <a rt-if="this.props.page > 1" href="{this.props.url.addParams('page', 1)}">{I18n.t("pagination.first")}</a>
   <a rt-if="this.state.prev != null" href="{this.props.url.addParams('page', this.state.prev)}">{I18n.t("pagination.previous")}</a>

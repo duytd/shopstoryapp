@@ -36,6 +36,7 @@
     "jquery": "^3.7.1",
     "jquery-ujs": "^1.2.3",
     "js-datepicker": "^5.18.2",
+    "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.9.0",
     "owl.carousel": "^2.3.4",
     "path": "^0.12.7",

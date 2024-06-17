@@ -14,14 +14,10 @@
   <%= javascript_include_tag customer_locale_path %>
 <% end %>
 
-<%
-=begin%>
- <%= javascript_tag do %>
+<%= javascript_tag do %>
   I18n.defaultLocale = "<%= I18n.default_locale %>";
   I18n.locale = "<%= I18n.locale %>";
   I18n.currency = "<%= current_currency %>";
   I18n.rate = "<%= current_shop.exchange_rate.blank? ? 1000 : current_shop.exchange_rate %>";
 <% end %>
-<%
-=end%>
 

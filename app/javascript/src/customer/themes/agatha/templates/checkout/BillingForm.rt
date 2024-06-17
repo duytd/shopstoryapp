@@ -1,7 +1,3 @@
-<rt-import name="*" as="I18n" from="i18n-js" />
-<rt-import name="default" as="PaymentMethod" from="../../../../components/checkout/PaymentMethod" />
-<rt-import name="default" as="Errors" from="../../../../components/snippets/Errors" />
-
 <div>
   <form ref="form" rt-if="!this.props.useShippingAddress" id="billingForm" onSubmit="{this.updateOrder}">
     <input name="order[billing_address_attributes][order_id]" value="{this.props.order.id}" type="hidden" />
