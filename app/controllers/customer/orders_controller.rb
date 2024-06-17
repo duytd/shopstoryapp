@@ -23,7 +23,8 @@ class Customer::OrdersController < Customer::BaseController
   end
 
   def show
-    load_order
+    load_global_variables
+    @order = current_customer.orders.find params[:id]
 
     @props = {
       globalVars: @globalVars,

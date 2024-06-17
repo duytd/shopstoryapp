@@ -2,12 +2,16 @@ class Customer::PasswordsController < Devise::PasswordsController
   include ShopsLoading
 
   def new
+    load_global_variables
+
     @props = {
       globalVars: @globalVars
     }
   end
 
   def edit
+    load_global_variables
+
     @props = {
       globalVars: @globalVars,
       token: params[:reset_password_token]

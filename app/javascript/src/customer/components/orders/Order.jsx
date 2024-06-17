@@ -1,12 +1,22 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
 
-class OrderComponent extends React.Component {
+export default class Order extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      globalVars: this.props.globalVars
+    };
+  }
+
   render() {
     return OrderRT.apply(this);
   }
-}
 
-const Order = withCartMixins(OrderComponent);
-export default Order;
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
+  }
+}

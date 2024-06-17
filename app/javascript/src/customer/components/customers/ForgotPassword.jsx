@@ -1,18 +1,24 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
 
-class ForgotPasswordComponent extends React.Component {
+export default class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      globalVars: this.props.globalVars,
       error: ""
     };
   }
 
   render() {
     return ForgotPasswordRT.apply(this);
+  }
+
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
   }
 
   submit = (e) => {
@@ -48,6 +54,3 @@ class ForgotPasswordComponent extends React.Component {
     });
   }
 }
-
-const ForgotPassword = withCartMixins(ForgotPasswordComponent);
-export default ForgotPassword;

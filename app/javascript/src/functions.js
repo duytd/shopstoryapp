@@ -1,11 +1,14 @@
-import I18n from 'i18n-js';
-
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-String.prototype.convert = () => {
-  return parseFloat(this);
+String.prototype.convert = function() {
+  if (Shopstory.currency.toLowerCase() == "krw") {
+    return parseFloat(this);
+  }
+  else {
+    return parseFloat(this)/Shopstory.rate;
+  }
 }
 
 String.prototype.trimToLength = function(m) {
@@ -68,14 +71,6 @@ if (typeof Dropzone != "undefined") {
       return "" + this.options.paramName1 + (this.options.uploadMultiple ? "[" + n + "]" : "") + this.options.paramName2 + "";
     }
   };
-}
-
-function openDaumPostcode(callback) {
-  new daum.Postcode({
-    oncomplete: function(data) {
-      callback(data);
-    }
-  }).open();
 }
 
 export { translate };

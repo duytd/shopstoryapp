@@ -1,12 +1,22 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
 
-class AccountComponent extends React.Component {
+export default class Account extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      globalVars: this.props.globalVars
+    };
+  }
+
   render() {
     return AccountRT.apply(this);
   }
-}
 
-const Account = withCartMixins(AccountComponent);
-export default CustomPage;
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
+  }
+}

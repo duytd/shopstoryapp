@@ -1,5 +1,5 @@
 <Layout globalVars="{this.state.globalVars}" updateOrder="{this.updateOrder}">
-  <div class="order">
+  <div class="order container">
     <h1>{I18n.t("customers.order.your_order")} #{this.props.order.id}</h1>
 
     <label class="label label-primary">{this.props.order.status.toUpperCase()}</label>

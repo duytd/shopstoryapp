@@ -20,6 +20,8 @@ class Customer::PagesController < Customer::BaseController
   end
 
   def success
+    load_global_variables
+
     transaction_info = get_transaction_info @order
 
     @props = {

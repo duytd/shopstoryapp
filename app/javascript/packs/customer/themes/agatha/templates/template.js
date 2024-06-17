@@ -10,11 +10,16 @@ window.bootstrap = bootstrap;
 import * as I18n from 'i18n-js';
 window.I18n = I18n;
 
+I18n.defaultLocale = Shopstory.defaultLocale;
+I18n.locale = Shopstory.locale;
+
 import * as _ from 'lodash';
 window._ = _;
 
 import { translate } from '../../../../../src/functions';
 window.translate = translate;
+
+import '../../../../../src/functions';
 
 import "../../../../../src/customer/routes";
 

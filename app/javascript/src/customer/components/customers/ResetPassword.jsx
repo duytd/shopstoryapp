@@ -1,12 +1,22 @@
 import React from 'react';
-import I18n from 'i18n-js';
-import withCartMixins from '../../mixins/CartMixin';
 
-class ResetPasswordComponent extends React.Component {
+export default class ResetPassword extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      globalVars: this.props.globalVars
+    };
+  }
+
   render() {
     return ResetPasswordRT.apply(this);
   }
-}
 
-const ResetPassword = withCartMixins(ResetPasswordComponent);
-export default ResetPassword;
+  updateOrder = (order) => {
+    var globalVars = this.state.globalVars;
+
+    globalVars.order = order;
+    this.setState({globalVars: globalVars});
+  }
+}
