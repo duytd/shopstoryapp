@@ -138,9 +138,11 @@ export default class MenuItemForm extends React.Component {
     )
   }
 
-  submit(e) {
+  submit = (e) => {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
+    let url = null;
+    let method = null;
 
     if (this.props.menu_item) {
       url = Routes.merchant_menu_menu_item_path.localize(this.props.menu.id, this.props.menu_item.id);
@@ -178,7 +180,7 @@ export default class MenuItemForm extends React.Component {
     });
   }
 
-  switchType(e) {
+  switchType = (e) => {
     this.setState({type: e.target.value});
   }
 }

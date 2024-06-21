@@ -38,7 +38,7 @@ class Variation < ApplicationRecord
   before_validation :initialize_master, if: :master?
 
   default_scope { order created_at: :asc }
-  scope :not_master, -> {where master: false}
+  scope :not_master, -> { where master: false }
 
   def price=(price)
     price = price.to_s.gsub ",", ""

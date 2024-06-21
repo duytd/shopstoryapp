@@ -67,11 +67,11 @@ class WrappedComponent extends React.Component {
     )
   }
 
-  submitDraggable() {
+  submitDraggable = () => {
    this.props.submitDraggable();
   }
 
-  deleteMenuItem(e) {
+  deleteMenuItem = (e) => {
     e.preventDefault();
 
     var menuId = this.props.menu_id;
@@ -86,15 +86,15 @@ class WrappedComponent extends React.Component {
     })
   }
 
-  swapItem(from, to, parent) {
+  swapItem = (from, to, parent) => {
     this.props.swapItem(from, to, parent);
   }
 
-  setMenuItem() {
+  setMenuItem = () => {
     this.props.setMenuItem(this.props.menu_item, this.props.parent);
   }
 
-  setParent() {
+  setParent = () => {
     this.props.setParent(this.props.menu_item);
   }
 }

@@ -1,6 +1,6 @@
 app:
-  domains: ["shopstory.co.kr", "shopstoryapp.com"]
-  domain: shopstory.co.kr
+  domains: ["shopstory.xyz"]
+  domain: shopstory.xyz
   root_subdomains: ["www"]
 shop:
   default_name: ShopStory

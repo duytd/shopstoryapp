@@ -99,7 +99,7 @@ export default class OrderForm extends React.Component {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colSpan="3" className="text-right">
+                    <td colSpan="3" className="text-end">
                       <p>{I18n.t("activerecord.attributes.order.subtotal")}</p>
                       <p>{I18n.t("activerecord.attributes.order.shipping")}</p>
                       <p>{I18n.t("activerecord.attributes.order.tax")}</p>

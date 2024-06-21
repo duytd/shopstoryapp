@@ -4,7 +4,7 @@
     상호명 {this.props.businessInfo.legal_name} | 주소 {this.props.businessInfo.address} | 사업자등록번호 {this.props.businessInfo.business_number} | 대표자 {this.props.businessInfo.ceo} | 이메일 {this.props.businessInfo.email} | 대표전화 {this.props.businessInfo.service_phone} | 통신판매업신고 {this.props.businessInfo.online_retail_number} | 개인정보관리책임자 {this.props.businessInfo.privacy_manager} | 개인정보관리책임자 연락처 {this.props.businessInfo.privacy_email}
     </div>
 
-    <div class="col-sm-6 text-right">
+    <div class="col-sm-6 text-end">
       <p>Powered by <a href="http://www.shopstory.xyz">Shopstory</a></p>
     </div>
   </div>

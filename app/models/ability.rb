@@ -6,7 +6,7 @@ class Ability
     user ||= User.new
     if user.is_a? Admin
       can :manage, :all
-    elsif user.is_a?(Merchant) && current_tenant?(user) && (user.has_subscription? || free_plan?(user))
+    elsif user.is_a?(Merchant) && current_tenant?(user) && (user.has_active_subscription? || free_plan?(user))
       can :manage, Category
       can :manage, CustomPage
       can :manage, Product

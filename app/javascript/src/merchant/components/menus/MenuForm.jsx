@@ -5,6 +5,7 @@ import withDragMixin from '../../mixins/DragMixin';
 import FormErrors from '../../components/general/FormErrors';
 import SubmitButtons from '../../components/general/SubmitButtons';
 import MenuItemForm from './MenuItemForm';
+import MenuItem from './MenuItem';
 
 class WrappedComponent extends React.Component {
   constructor(props) {
@@ -129,7 +130,7 @@ class WrappedComponent extends React.Component {
     )
   }
 
-  swapItem(from, to, parent) {
+  swapItem = (from, to, parent) => {
     var items = this.state.items;
 
     if (parent) {
@@ -147,7 +148,7 @@ class WrappedComponent extends React.Component {
     this.setState({items: items}, this.submitDraggable);
   }
 
-  submitDraggable() {
+  submitDraggable = () => {
     var id = this.state.menu.id;
     data = $(this.refs.draggable).serialize();
 
@@ -188,7 +189,7 @@ class WrappedComponent extends React.Component {
     });
   }
 
-  addMenuItem(item) {
+  addMenuItem = (item) => {
     var items = this.state.items;
 
     if (item.parent_id) {
@@ -206,7 +207,7 @@ class WrappedComponent extends React.Component {
     this.setState({items: items, menu_item: null, parent: null});
   }
 
-  deleteMenuItem(item) {
+  deleteMenuItem = (item) => {
     var items = this.state.items;
 
     if (item.parent_id) {
@@ -233,7 +234,7 @@ class WrappedComponent extends React.Component {
     this.setState({items: items});
   }
 
-  updateMenuItem(oldItem, newItem) {
+  updateMenuItem = (oldItem, newItem) => {
     var items = this.state.items;
 
     if (oldItem.parent_id) {
@@ -261,7 +262,7 @@ class WrappedComponent extends React.Component {
     this.setState({items: items, menu_item: null, parent: null});
   }
 
-  setMenuItem(item, parent) {
+  setMenuItem = (item, parent) => {
     if (parent) {
       this.setState({menu_item: item, parent: parent});
     }
@@ -270,7 +271,7 @@ class WrappedComponent extends React.Component {
     }
   }
 
-  setParent(item) {
+  setParent = (item) => {
     this.setState({parent: item, menu_item: null})
   }
 }

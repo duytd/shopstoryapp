@@ -61,7 +61,7 @@ export default class Webmaster extends React.Component {
           <h6 className="form-title row">{I18n.t("merchant.admin.webmaster.verification")}</h6>
           {this.renderVerificationCode()}
         </div>
-        <div className="col-md-12 text-right">
+        <div className="col-md-12 text-end">
           <SubmitButtons goBack={false} />
         </div>
       </form>

@@ -23,7 +23,7 @@ class Merchant::BaseController < ApplicationController
   end
 
   def authenticate_subscription!
-    unless current_merchant.has_subscription? || free_plan?(current_merchant)
+    unless current_merchant.has_active_subscription? || free_plan?(current_merchant)
       redirect_to merchant_account_path
     end
   end

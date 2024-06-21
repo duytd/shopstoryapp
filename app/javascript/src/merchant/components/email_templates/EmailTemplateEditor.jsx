@@ -67,7 +67,7 @@ export default class EmailTemplateEditor extends React.Component {
               </div>
               <input ref="code" type="hidden" name={"email_template[content]"} />
             </div>
-            <div className="text-right">
+            <div className="text-end">
               <SubmitButtons redirect_url={Routes.merchant_root_path.localize()} fixed={true}>
                 <button onClick={this.reset} className="btn btn-danger">{I18n.t("merchant.admin.buttons.reset")}</button>
                 <button onClick={this.preview} className="btn btn-primary">{I18n.t("merchant.admin.buttons.preview")}</button>

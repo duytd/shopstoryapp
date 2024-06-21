@@ -31,10 +31,6 @@ export default class DiscountForm extends React.Component {
     this.loadDatePicker();
   }
 
-  componentDidUpdate() {
-    this.loadDatePicker();
-  }
-
   renderFixedAmountInput() {
     return (
       <div className="input-group">

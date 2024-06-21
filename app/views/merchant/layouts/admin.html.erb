@@ -4,6 +4,12 @@
     <title><%= full_title yield :title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <%= javascript_tag do %>
+      var Shopstory = {};
+      Shopstory.defaultLocale = "<%= I18n.default_locale %>";
+      Shopstory.locale = "<%= I18n.locale %>";
+    <% end %>
+
     <%= javascript_pack_tag "merchant/application" %>
     <%= stylesheet_pack_tag "merchant/application" %>
 

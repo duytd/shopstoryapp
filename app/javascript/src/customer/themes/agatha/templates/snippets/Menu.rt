@@ -4,7 +4,7 @@
       {translate(item, "name")}
     </a>
 
-    <a href="{item.url.addParams('locale', I18n.locale)}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rt-if="item.children.length > 0">
+    <a href="{item.url.addParams('locale', I18n.locale)}" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rt-if="item.children.length > 0">
       {translate(item, "name")} <span class="caret"></span>
     </a>
 

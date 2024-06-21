@@ -1,6 +1,6 @@
 import React from 'react';
 import I18n from 'i18n-js';
-
+import LineChart from '../charts/LineChart';
 
 export default class Dashboard extends React.Component {
   renderOrders() {
@@ -131,7 +131,7 @@ export default class Dashboard extends React.Component {
 
   renderStatistics() {
     var data = [
-      ["icon-success", <i className="fa fa-3x fa-won"></i>, I18n.t("merchant.admin.dashboard.total_revenue"), this.props.total_revenue, "javascript:void(0)"],
+      ["icon-success", <i className="fa fa-3x fa-money"></i>, I18n.t("merchant.admin.dashboard.total_revenue"), this.props.total_revenue, "javascript:void(0)"],
       ["icon-primary", <i className="fa fa-3x fa-cart-plus"></i>, I18n.t("merchant.admin.dashboard.today_sales"), this.props.today_sales, Routes.merchant_orders_path.localize()],
       ["icon-success", <i className="fa fa-3x fa-tag"></i>, I18n.t("merchant.admin.dashboard.total_products"), this.props.total_products, Routes.merchant_products_path.localize()],
       ["icon-primary", <i className="fa fa-3x fa-user"></i>, I18n.t("merchant.admin.dashboard.total_customers"), this.props.total_customers, Routes.merchant_customers_path.localize()]

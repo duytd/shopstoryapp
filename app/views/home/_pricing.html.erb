@@ -1,0 +1,47 @@
+<div class="container px-4 py-5" id="pricing">
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="pb-2">Pricing</h1>
+    <p class="fs-5 text-muted">Simple pricing that fits all size of businesses.</p>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">Free</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>3 product included</li>
+            <li>All current and future features are free to use</li>
+          </ul>
+          <% if merchant_signed_in? && !current_merchant.has_active_subscription? %>
+            <%= link_to "Upgrade now", merchant_account_url(subdomain: current_merchant.shop.subdomain), class: "w-100 btn btn-lg btn-outline-success" %>
+          <% else %>
+            <%= link_to "Sign up for free", new_merchant_registration_path, class: "w-100 btn btn-lg btn-success" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">Pro</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$17.99<small class="text-muted fw-light">/mo</small> + 0.6% <small class="text-muted fw-light">/sale</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Unlimited products</li>
+            <li>All current and future features are free to use</li>
+          </ul>
+          <% if merchant_signed_in? && !current_merchant.has_active_subscription? %>
+            <%= link_to "Upgrade now", merchant_account_url(subdomain: current_merchant.shop.subdomain), class: "w-100 btn btn-lg btn-outline-success" %>
+          <% else %>
+            <%= link_to t("buttons.get_started"), new_merchant_registration_path, class: "w-100 btn btn-lg btn-success" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

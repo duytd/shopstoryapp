@@ -1,5 +1,5 @@
 <div id="cart" class="{this.props.isCartOpened ? 'cart-container open' : 'cart-container'}">
-  <div class="text-right">
+  <div class="text-end">
     <a onClick="{this.props.closeCart}">
       <i class="fa fa-times-circle-o"></i>
     </a>

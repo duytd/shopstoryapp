@@ -10,18 +10,24 @@
 
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="active nav-item">
-          <a href="<%= root_url %>#home" class="nav-link"><%= t("menu.home") %></a>
+        <li class="nav-item">
+          <a href="<%= root_url %>#offers" class="nav-link"><%= t("menu.our_offers") %> 🤝</a>
         </li>
         <li class="nav-item">
-          <a href="<%= root_url %>#pricing" class="nav-link"><%= t("menu.pricing") %></a>
+          <a href="<%= root_url %>#demo" class="nav-link"><%= t("menu.demo") %> 😍</a>
+        </li>
+        <li class="nav-item">
+          <a href="<%= root_url %>#pricing" class="nav-link"><%= t("menu.pricing") %> 🥸</a>
+        </li>
+        <li class="nav-item">
+          <a href="https://trello.com/b/R3MIhoKD/shopstory-development-roadmap" target="_blank" class="nav-link"><%= t("menu.live_backlog") %> 🚀 </a>
         </li>
       </ul>
       <ul class="navbar-nav">
         <% if merchant_signed_in? %>
           <li>
             <%= link_to t("buttons.go_to_store"), merchant_root_url(subdomain: current_merchant.shop.subdomain),
-              class: "btn btn-primary" %>
+              class: "btn btn-success" %>
           </li>
         <% else %>
           <li>

@@ -15,3 +15,9 @@ staging:
 production:
   <<: *default
   database: shopstory_production
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000

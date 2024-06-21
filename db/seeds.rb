@@ -12,3 +12,8 @@ admin = Admin.create([
     password_confirmation: "N3vermind"
   }
 ])
+
+plan = Plan.create(
+  name: "Pro",
+  price: 17.99
+)

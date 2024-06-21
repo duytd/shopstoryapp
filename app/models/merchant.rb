@@ -48,8 +48,8 @@ class Merchant < User
 
   validates :setup_step, inclusion: {in: %w(provide_business_info generate_sample_data done)}, allow_blank: true
 
-  def has_subscription?
-    subscription.present?
+  def has_active_subscription?
+    subscription&.active
   end
 
   def next_setup_step!

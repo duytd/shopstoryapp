@@ -76,7 +76,7 @@ export default class ShipmentForm extends React.Component {
             <input type="text" className="form-control" name="order[shipment_attributes][tracking_code]" defaultValue={(this.props.shipment) ? this.props.shipment.tracking_code : ""}/>
           </div>
 
-          <div className="mb-3 text-right">
+          <div className="mb-3 text-end">
             <button type="submit" className="btn btn-success" onClick={this.submit}>{I18n.t("merchant.admin.buttons.save")}</button>
           </div>
         </form>
