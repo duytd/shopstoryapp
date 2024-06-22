@@ -1,5 +1,5 @@
 app:
-  domains: ["shopstory.co.kr", "shopstory.com"]
+  domains: ["shopstory.xyz"]
   domain: shopstory.xyz
   root_subdomains: ["www"]
 shop:

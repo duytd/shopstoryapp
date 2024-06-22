@@ -36,3 +36,5 @@ COPY entrypoints/sidekiq-entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD ["bundle", "exec", "rails", "db:migrate"]
