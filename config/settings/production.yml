@@ -10,3 +10,5 @@ shop:
 tester:
   name: shopstory_staging
   password: n3vermind
+paging:
+  order: 20
