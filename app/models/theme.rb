@@ -15,7 +15,7 @@
 #  updated_at  :datetime         not null
 #
 class Theme < ApplicationRecord
-  ROOT_DIR = "#{Rails.root}/app/assets/javascripts/customer/themes"
+  ROOT_DIR = "#{Rails.root}/app/javascript/src/customer/themes"
   mount_uploader :image, ThemeImageUploader
 
   has_many :shops
@@ -29,7 +29,7 @@ class Theme < ApplicationRecord
   after_save :ensure_only_one_theme_is_default, if: Proc.new{|a| a.default_changed? && a.default?}
 
   def self.get_default_theme
-    find_by default: true
+    find_by(default: true)
   end
 
   def self.theme_dirs

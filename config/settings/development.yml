@@ -4,8 +4,8 @@ app:
   root_subdomains: ["www"]
 shop:
   default_name: ShopStory
-  default_currency: KRW
-  default_country: KR
-  default_timezone: Asia/Seoul
+  default_currency: USD
+  default_country: US
+  default_timezone: America/New_York
 paging:
   order: 20

@@ -1,19 +1,12 @@
-merchant = Merchant.create(
-  shop_name: "ShopStory",
-  email: "merchant@shopstoryapp.com",
-  password: "12345678",
-  password_confirmation: "12345678"
-)
-
-admin = Admin.create([
-  {
-    email: "ddtrinh93@gmail.com",
-    password: "N3vermind",
+unless Admin.exists?(email: "shopstoryxyz@gmail.com")
+  Admin.create(
+    email: "shopstoryxyz@gmail.com",
+    password: ENV['ADMIN_PASSWORD'] || "N3vermind",
     password_confirmation: "N3vermind"
-  }
-])
+  )
+end
 
-plan = Plan.create(
+Plan.find_or_create_by(
   name: "Pro",
   price: 17.99
 )

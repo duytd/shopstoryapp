@@ -64,16 +64,17 @@ class Plan < ApplicationRecord
   end
 
   private
+
   def enqueue_create_stripe_plan
-    PlanWorker.perform_async stripe_id, :create
+    # PlanWorker.perform_async stripe_id, :create
   end
 
   def enqueue_update_stripe_plan
-    PlanWorker.perform_async stripe_id, :update
+    # PlanWorker.perform_async stripe_id, :update
   end
 
   def enqueue_destroy_stripe_plan
-    PlanWorker.perform_async stripe_id, :destroy
+    # PlanWorker.perform_async stripe_id, :destroy
   end
 
   def generate_stripe_id
