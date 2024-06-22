@@ -28,6 +28,9 @@ COPY package.json yarn.lock ./
 RUN yarn install --check-files
 COPY . ./
 
+# Compile assets
+RUN bundle exec rails assets:precompile
+
 # Copy the entrypoint script (NEW)
 COPY entrypoints/docker-entrypoint.sh /usr/bin/
 COPY entrypoints/sidekiq-entrypoint.sh /usr/bin/
@@ -37,4 +40,4 @@ RUN chmod +x /usr/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-CMD ["bundle", "exec", "rails", "db:migrate"]
+RUN bundle exec rails db:migrate
