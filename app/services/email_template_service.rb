@@ -1,10 +1,6 @@
 class EmailTemplateService
   TEMPLATE_PATH = "#{Rails.root}/app/views/customer/template_mailer"
 
-  def initialize params
-    @shop = params[:shop]
-  end
-
   def create_initial_data
     templates = []
 

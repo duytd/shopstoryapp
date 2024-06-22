@@ -80,7 +80,7 @@ class Shop < ApplicationRecord
   validates :theme, presence: true
   validates :email, presence: true, on: :update
   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, allow_blank: true
-  validates :subdomain, presence: true, format: {with: /\A[a-zA-Z0-9]+\Z/}, uniqueness: true
+  validates :subdomain, presence: true, format: {with: %r{\A[a-z](?:[a-z0-9-]*[a-z0-9])?\z}i}, uniqueness: true
   validates :legal_name, presence: true, if: Proc.new{|a| a.setting_up && a.merchant.provide_business_info?}, on: :update
 
   before_validation :set_default_values, on: :create
