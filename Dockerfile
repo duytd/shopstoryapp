@@ -40,4 +40,4 @@ RUN chmod +x /usr/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-RUN bundle exec rails db:migrate
+CMD ["bundle", "exec", "rails", "db:migrate"]
