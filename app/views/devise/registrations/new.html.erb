@@ -26,36 +26,39 @@
     </div>
 
     <div class="mb-3">
-      <%= f.submit t("merchant.registrations.submit"), class: "btn btn-lg btn-success pull-right" %>
+      <%= f.submit t("merchant.registrations.submit"), class: "btn btn-lg btn-success pull-right", id: "submitBtn" %>
     </div>
   <% end %>
 </div>
 
 <%= javascript_tag do %>
-  $('#new_merchant').submit(function(e) {
-    e.preventDefault();
+  window.onload = function() {
+    $('#new_merchant').submit(function(e) {
+      e.preventDefault();
 
-    var data = $('#new_merchant').serialize();
-    $.ajax({
-      url: '<%= merchant_registration_path %>',
-      data: data,
-      method: "POST",
-      success: function(response) {
-        $('#new_merchant').find('.errors').empty();
-        window.location = response.redirect_url);
-      },
-      beforeSend: function() {
-        $("#new_merchant").find('.loading').removeClass('d-none');
-      },
-      error: function(xhr) {
-        $("#new_merchant").find('.loading').addClass('d-none');
-        html = '<ul class="alert alert-warning">';
-        xhr.responseJSON.errors.forEach(function(error) {
-          html+= '<li>' + error + '</li>';
-        })
-        html += '</ul>';
-        $('#new_merchant').find('.errors').html(html);
-      }
+      var data = $('#new_merchant').serialize();
+      $.ajax({
+        url: '<%= merchant_registration_path %>',
+        data: data,
+        method: "POST",
+        success: function(response) {
+          $('#new_merchant').find('.errors').empty();
+          window.location = response.redirect_url;
+        },
+        beforeSend: function() {
+          $("#new_merchant").find('.loading').removeClass('d-none');
+        },
+        error: function(xhr) {
+          $('#submitBtn').prop('disabled', false);
+          $("#new_merchant").find('.loading').addClass('d-none');
+          html = '<ul class="alert alert-warning">';
+          xhr.responseJSON.errors.forEach(function(error) {
+            html+= '<li>' + error + '</li>';
+          })
+          html += '</ul>';
+          $('#new_merchant').find('.errors').html(html);
+        }
+      })
     })
-  })
+  }
 <% end %>
