@@ -56,6 +56,9 @@ gem "flipper"
 gem "flipper-active_record"
 gem "flipper-ui"
 
+# Services
+gem "active_interaction", "~> 5.3"
+
 # SEO
 gem "meta-tags"
 gem "friendly_id"
@@ -99,12 +102,5 @@ group :development do
   gem "bullet"
   gem "rails_best_practices"
   gem "brakeman", require: false
-  gem "capistrano",         require: false
-  gem "capistrano-rvm",     require: false
-  gem "capistrano-rails",   require: false
-  gem "capistrano-bundler", require: false
-  gem "capistrano3-puma",   require: false
-  gem "capistrano-linked-files",   require: false
-  gem "capistrano-sidekiq"
   gem "better_errors"
 end

@@ -16,7 +16,6 @@ class ThemeService
   end
 
   def precompile
-    Apartment::Tenant.reset
     @asset_service.create_bundle("javascript")
     @asset_service.create_bundle("stylesheet")
     @asset_service.create_bundle("locale")
