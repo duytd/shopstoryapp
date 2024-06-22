@@ -61,16 +61,6 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.browserify_rails.commandline_options = ["--transform react-templatify"]
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  config.react.variant = :production
-
-  Rails.application.config.middleware.use ExceptionNotification::Rack,
-    hipchat: {
-      api_token: "butWFCK5HF0Xkh0cNsX5KJtTq1d7idXKnVkvunYI",
-      room_name: "2866216"
-    }
 end
