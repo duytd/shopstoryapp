@@ -62,7 +62,6 @@ gem "friendly_id"
 
 gem "actionpack-action_caching"
 gem "browser"
-gem "browserify-rails"
 gem "acts_as_tree"
 gem "sidekiq"
 gem "RedCloth"
