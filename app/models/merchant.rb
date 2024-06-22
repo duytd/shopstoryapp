@@ -39,12 +39,15 @@ class Merchant < User
 
   devise :database_authenticatable, :validatable, :registerable, :recoverable, :rememberable, :trackable
 
-  before_validation :generate_subdomain, on: :create, if: Proc.new {|a| a.email.present?}
   after_create :create_merchant_shop!
 
   has_one :shop, foreign_key: "user_id", dependent: :nullify
   has_one :theme, through: :shop
   has_one :subscription, foreign_key: :user_id, dependent: :destroy
+
+  validates :shop_name, format: {
+    with: %r{\A[a-z](?:[a-z0-9-]*[a-z0-9])?\z}i, message: "is not valid"
+  }, length: { in: 1..63 }, on: :create
 
   validates :setup_step, inclusion: {in: %w(provide_business_info generate_sample_data done)}, allow_blank: true
 
@@ -62,17 +65,6 @@ class Merchant < User
   private
 
   def create_merchant_shop!
-    self.shop_name = if shop_name.empty? then Settings.shop.default_name else shop_name end
-    self.create_shop! name: shop_name, subdomain: subdomain, email: email
-  end
-
-  def generate_subdomain
-    email_string = email.split("@").first.gsub /[^0-9a-z]/i, ""
-
-    while Shop.exists? subdomain: email_string do
-      email_string = email_string << Random.rand(100).to_s
-    end
-
-    self.subdomain = email_string
+    self.create_shop! name: shop_name, subdomain: shop_name, email: email
   end
 end

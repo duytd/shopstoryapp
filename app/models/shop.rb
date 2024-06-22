@@ -75,6 +75,7 @@ class Shop < ApplicationRecord
   belongs_to :privacy, class_name: "CustomPage", foreign_key: "privacy_id"
 
   validates :name, presence: true
+
   validates :merchant, presence: true
   validates :theme, presence: true
   validates :email, presence: true, on: :update
@@ -104,8 +105,9 @@ class Shop < ApplicationRecord
   end
 
   def setup_theme
-    Apartment::Tenant.switch! subdomain
-    self.theme.setup self
+    Apartment::Tenant.switch subdomain do
+      self.theme.setup self
+    end
   end
 
   private
