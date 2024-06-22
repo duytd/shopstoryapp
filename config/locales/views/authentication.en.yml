@@ -1,15 +1,15 @@
 en:
   merchant:
     registrations:
-      title: "Create your shop now !"
+      title: "Open your dream store now !"
       shop_name: "Shop name"
       email: "Email"
       password: "Password"
       new_password: "New password"
       password_confirmation: "Password confirmation"
-      submit: "Create your shop"
+      submit: "Open your store"
     login:
-      title: "Login to your shop"
+      title: "Login to your store"
       submit: "Login"
       forgot: "Forgot?"
       remember_me: "Remember me"

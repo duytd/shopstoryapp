@@ -1,4 +1,4 @@
-<div class="form login col-md-6 col-md-offset-3">
+<div class="form login col-md-6 offset-md-3">
   <% if resource.class.name == "Merchant" %>
     <h1 class="text-center"><%= t("merchant.login.title") %></h1>
   <% end %>
@@ -30,7 +30,7 @@
           <%= t "merchant.login.remember_me" %>
         <% end %>
       <% end %>
-      <%= f.submit t("merchant.login.submit"), class: "btn btn-lg btn-danger pull-right" %>
+      <%= f.submit t("merchant.login.submit"), class: "btn btn-lg btn-success pull-right" %>
     </div>
   <% end %>
 </div>
