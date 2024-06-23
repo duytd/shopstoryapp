@@ -2,6 +2,7 @@ import React from 'react';
 import I18n from 'i18n-js';
 
 import withDragMixin from '../../mixins/DragMixin';
+import MenuItem from './MenuItem';
 
 class WrappedComponent extends React.Component {
   constructor(props) {

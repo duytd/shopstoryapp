@@ -82,6 +82,11 @@ gem "dalli"
 gem "exception_notification"
 gem "hipchat"
 
+# Exceptions
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"
+
 group :development, :test do
   gem "pry"
   gem "web-console"
