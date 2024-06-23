@@ -58,6 +58,7 @@ gem "flipper-ui"
 
 # Services
 gem "active_interaction", "~> 5.3"
+gem "active_interaction-extras"
 
 # SEO
 gem "meta-tags"

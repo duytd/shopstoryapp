@@ -35,6 +35,13 @@ class Template < ApplicationRecord
     end
   end
 
+  def self.transform(file_content, file_name)
+    js_path = File.join(Rails.root, 'reactTemplates.js')
+    contents = File.read(js_path)
+    context = ExecJS.compile(contents)
+    context.call "reactTemplates.convertTemplateToReact", file_content, {modules: "none", name: "#{file_name}RT"}
+  end
+
   private
 
   def root_directory?
@@ -42,7 +49,7 @@ class Template < ApplicationRecord
   end
 
   def transform
-    self.transformed_content = TemplateService.transform(content, name)
+    self.transformed_content = Template.transform(content, name)
     update_bundle if theme_bundle
   end
 

@@ -12,9 +12,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource sign_up_params
-    resource.save
 
-    if resource.persisted?
+    outcome = Merchants::CreateNewMerchant.run(merchant: resource)
+
+    if outcome.valid?
       if resource.active_for_authentication?
         sign_in resource_name, resource
         return render json: {redirect_url: after_sign_up_path_for(resource)}, status: :ok
@@ -23,7 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
         return render json: {redirect_url: after_inactive_sign_up_path_for(resource)}, status: :ok
       end
     else
-      return render json: {errors: resource.errors.full_messages.uniq}, status: :unprocessable_entity
+      return render json: {errors: outcome.errors.full_messages.uniq}, status: :unprocessable_entity
     end
   end
 

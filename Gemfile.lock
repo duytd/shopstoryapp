@@ -30,6 +30,13 @@ GEM
     active_interaction (5.3.0)
       activemodel (>= 5.2, < 8)
       activesupport (>= 5.2, < 8)
+    active_interaction-active_job (0.3.2)
+      active_interaction
+      activejob
+      activesupport
+    active_interaction-extras (0.2.3)
+      active_interaction (>= 3.0.0)
+      active_interaction-active_job
     activejob (5.2.0)
       activesupport (= 5.2.0)
       globalid (>= 0.3.6)
@@ -494,6 +501,7 @@ DEPENDENCIES
   RedCloth
   actionpack-action_caching
   active_interaction (~> 5.3)
+  active_interaction-extras
   activerecord-import
   acts_as_tree
   annotate

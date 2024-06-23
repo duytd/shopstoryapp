@@ -4,13 +4,6 @@ class TemplateService
     @subdomain = params[:subdomain]
   end
 
-  def self.transform(file_content, file_name)
-    js_path = File.join(Rails.root, 'reactTemplates.js')
-    contents = File.read(js_path)
-    @context = ExecJS.compile(contents)
-    @context.call "reactTemplates.convertTemplateToReact", file_content, {modules: "none", name: "#{file_name}RT"}
-  end
-
   def get_compiled_code type
     Apartment::Tenant.switch @subdomain do
       content = ""

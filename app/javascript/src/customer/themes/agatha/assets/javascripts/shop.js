@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(function() {
   $(".owl-carousel").owlCarousel({
     items: 1,
     dots: false,
@@ -6,7 +6,7 @@ $(document).ready(() => {
     rewind: true
   });
 
-  $("#addToCart").click(() => {
+  $("#addToCart").click(function() {
     $("span.cart").scrollView();
   })
 });

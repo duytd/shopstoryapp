@@ -39,7 +39,7 @@ class Merchant < User
 
   devise :database_authenticatable, :validatable, :registerable, :recoverable, :rememberable, :trackable
 
-  after_create :create_merchant_shop!
+  # after_create :create_merchant_shop!
 
   has_one :shop, foreign_key: "user_id", dependent: :nullify
   has_one :theme, through: :shop
@@ -64,7 +64,7 @@ class Merchant < User
 
   private
 
-  def create_merchant_shop!
-    self.create_shop! name: shop_name, subdomain: shop_name, email: email
-  end
+  # def create_merchant_shop!
+  #   self.create_shop! name: shop_name, subdomain: shop_name, email: email
+  # end
 end
