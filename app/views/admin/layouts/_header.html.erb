@@ -1,20 +1,23 @@
-<div class="header">
-  <div class="container">
-    <div class="row">
-      <div class="col-5">
-        <div class="logo">
-          <h1><a href="/">Shopstory Admin</a></h1>
-        </div>
-      </div>
-      <div class="col-7">
-        <div class="navbar navbar-inverse" role="banner">
-          <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-            <ul class="nav navbar-nav">
-              <li><%= link_to t("admin.menu.logout"), destroy_admin_session_path %></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom container">
+  <a href="/admin" class="d-flex align-items-center text-dark text-decoration-none">
+    <span class="fs-4">Admin Panel</span>
+  </a>
+
+  <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+    <%= link_to admin_root_path do %>
+      <i class="me-3 py-2 text-dark text-decoration-none"></i> <%= t "admin.menu.dashboard" %>
+    <% end %>
+    <%= link_to admin_plans_path do %>
+      <i class="me-3 py-2 text-dark text-decoration-none"></i> <%= t "admin.menu.plans" %>
+    <% end %>
+    <%= link_to admin_shipping_methods_path do %>
+      <i class="me-3 py-2 text-dark text-decoration-none"></i> <%= t "admin.menu.shipping_methods" %>
+    <% end %>
+    <%= link_to admin_themes_path do %>
+      <i class="me-3 py-2 text-dark text-decoration-none"></i> <%= t "admin.menu.themes" %>
+    <% end %>
+    <%= link_to destroy_admin_session_path do %>
+     <i class="me-3 py-2 text-dark text-decoration-none"></i> <%= t "admin.menu.logout" %>
+    <% end %>
+  </nav>
 </div>
