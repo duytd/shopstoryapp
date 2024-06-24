@@ -1,3 +1,6 @@
+class InvalidAssetType < StandardError
+end
+
 class Themes::Assets::CreateFiles < ApplicationInteraction
   object :theme
   string :subdomain

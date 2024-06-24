@@ -33,7 +33,7 @@ class Merchant::AfterSignupsController < Merchant::BaseController
   end
 
   def generate_sample_data
-    ShopService.new({shop: current_shop}).create_sample_data
+    Shops::CreateSampleData.run!(shop: current_shop)
     current_merchant.next_setup_step!
     render json: {current_step: current_merchant.setup_step, redirect_url: merchant_root_path}, status: :ok
   end
