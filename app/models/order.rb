@@ -307,7 +307,9 @@ class Order < ApplicationRecord
   end
 
   def calculate_discount total_amount
-    DiscountService.new({discount: discount}).calculate(total_amount) unless discount.nil?
+    return 0 if discount.nil?
+
+    Discounts::Calculate.run!(discount: discount, amount: total_amount)
   end
 
   def calculate_shipping

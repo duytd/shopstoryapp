@@ -1,1 +1,0 @@
-class InvalidDiscountCode < StandardError; end

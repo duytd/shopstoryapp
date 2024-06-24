@@ -89,7 +89,6 @@ gem "sentry-rails"
 
 group :development, :test do
   gem "pry"
-  gem "web-console"
   gem "spring", "~> 3.1.1"
   gem "rspec-rails"
   gem "rspec-collection_matchers"
@@ -104,6 +103,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "web-console"
   gem "annotate"
   gem "bullet"
   gem "rails_best_practices"

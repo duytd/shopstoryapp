@@ -50,16 +50,13 @@ class Customer::OrdersController < Customer::BaseController
   end
 
   def verify_coupon
-    discount = DiscountService.verify params[:code], current_customer
-    current_order.add_discount discount, current_customer
+    outcome = Discounts::Verify.run(code: params[:code], customer: current_customer)
 
-    render json: present(current_order), status: :ok
-  rescue InvalidDiscountCode
-    render json: {message: I18n.t("discounts.invalid")}, status: :unprocessable_entity
-  rescue UnavailableDiscountCode
-    render json: {message: I18n.t("discounts.unavailable")}, status: :unprocessable_entity
-  rescue AlreadyUsedDiscountCode
-    render json: {message: I18n.t("discounts.already_used")}, status: :unprocessable_entity
+    if outcome.valid?
+      current_order.add_discount discount, current_customer
+    else
+      render json: {message: outcome.errors.full_messages.to_sentence}, status: :unprocessable_entity
+    end
   end
 
   def remove_coupon

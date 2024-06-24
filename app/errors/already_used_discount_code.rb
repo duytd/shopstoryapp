@@ -1,1 +1,0 @@
-class AlreadyUsedDiscountCode < StandardError; end

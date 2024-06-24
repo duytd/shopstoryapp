@@ -20,6 +20,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+
+    Theme.find_or_create_by(name: "Agatha", directory: "agatha", default: true)
   end
 
   config.before(:each) do

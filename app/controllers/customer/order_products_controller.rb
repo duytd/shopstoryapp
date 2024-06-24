@@ -36,6 +36,7 @@ class Customer::OrderProductsController < Customer::BaseController
   end
 
   private
+
   def order_product_params
     params.require(:order_product).permit :variation_id, :quantity
   end

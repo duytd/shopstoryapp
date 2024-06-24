@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.index ["product_id"], name: "index_category_products_on_product_id"
   end
 
-  create_table "category_translations", id: :serial, force: :cascade do |t|
+  create_table "category_translations", force: :cascade do |t|
     t.integer "category_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.index ["locale"], name: "index_category_translations_on_locale"
   end
 
-  create_table "custom_page_translations", id: :serial, force: :cascade do |t|
+  create_table "custom_page_translations", force: :cascade do |t|
     t.integer "custom_page_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
   end
 
-  create_table "menu_item_translations", id: :serial, force: :cascade do |t|
+  create_table "menu_item_translations", force: :cascade do |t|
     t.integer "menu_item_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -374,7 +374,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.index ["tag_id"], name: "index_product_tags_on_tag_id"
   end
 
-  create_table "product_translations", id: :serial, force: :cascade do |t|
+  create_table "product_translations", force: :cascade do |t|
     t.integer "product_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -404,7 +404,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.boolean "unlimited", default: true
   end
 
-  create_table "seo_tag_translations", id: :serial, force: :cascade do |t|
+  create_table "seo_tag_translations", force: :cascade do |t|
     t.integer "seo_tag_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -437,7 +437,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.index ["shipping_method_id"], name: "index_shipments_on_shipping_method_id"
   end
 
-  create_table "shipping_method_translations", id: :serial, force: :cascade do |t|
+  create_table "shipping_method_translations", force: :cascade do |t|
     t.integer "shipping_method_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -457,7 +457,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "shipping_rate_translations", id: :serial, force: :cascade do |t|
+  create_table "shipping_rate_translations", force: :cascade do |t|
     t.integer "shipping_rate_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -477,7 +477,7 @@ ActiveRecord::Schema.define(version: 2024_06_14_052537) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "shop_translations", id: :serial, force: :cascade do |t|
+  create_table "shop_translations", force: :cascade do |t|
     t.integer "shop_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
