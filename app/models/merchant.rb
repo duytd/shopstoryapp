@@ -39,8 +39,6 @@ class Merchant < User
 
   devise :database_authenticatable, :validatable, :registerable, :recoverable, :rememberable, :trackable
 
-  # after_create :create_merchant_shop!
-
   has_one :shop, foreign_key: "user_id", dependent: :nullify
   has_one :theme, through: :shop
   has_one :subscription, foreign_key: :user_id, dependent: :destroy
@@ -61,10 +59,4 @@ class Merchant < User
     next_step = Merchant.setup_steps.key(next_index)
     self.update_attributes!(setup_step: next_step) unless next_step.nil?
   end
-
-  private
-
-  # def create_merchant_shop!
-  #   self.create_shop! name: shop_name, subdomain: shop_name, email: email
-  # end
 end

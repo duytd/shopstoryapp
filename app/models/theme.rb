@@ -41,15 +41,6 @@ class Theme < ApplicationRecord
     JSON.parse settings
   end
 
-  # def setup shop, options={}
-  #   bundle = ThemeBundle.where(theme_id: id, shop_id: shop.id).first_or_initialize
-  #   ThemeService.new({theme: self, bundle: bundle, options: options.merge({subdomain: shop.subdomain})}).create_bundle
-  # end
-
-  # def precompile options={}
-  #   ThemeService.new({theme: self, options: options}).precompile
-  # end
-
   def read_file path
     File.read "#{ROOT_DIR}/#{directory}/#{path}"
   end

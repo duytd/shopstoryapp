@@ -88,8 +88,7 @@ class Shop < ApplicationRecord
   before_create :generate_api_key
   before_create :create_tenant
 
-  # after_create :setup_data
-  # after_save :setup_theme, if: :theme_id_changed?
+  after_update :reconfigure_theme, if: :theme_id_changed?
 
   before_destroy :drop_tenant
 
@@ -104,17 +103,15 @@ class Shop < ApplicationRecord
     self.country = Settings.shop.default_country
   end
 
-  # def setup_theme
-  #   Apartment::Tenant.switch subdomain do
-  #     self.theme.setup self
-  #   end
-  # end
+  def reconfigure_theme
+    # Create theme files
+    Themes::CreateFiles.run!(shop: self, theme: theme)
+
+    # Create theme bundles
+    Themes::CreateBundles.run!(shop: self, theme: theme)
+  end
 
   private
-
-  # def setup_data
-  #   ShopService.new({shop: self}).create_initial_data
-  # end
 
   def generate_api_key
     self.api_key = loop do

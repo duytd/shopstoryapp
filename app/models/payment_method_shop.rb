@@ -20,8 +20,6 @@
 #  fk_rails_...  (payment_method_id => payment_methods.id)
 #  fk_rails_...  (shop_id => shops.id)
 #
-require "zip"
-
 class PaymentMethodShop < ApplicationRecord
   mount_uploader :key, KeyUploader
 
@@ -39,8 +37,6 @@ class PaymentMethodShop < ApplicationRecord
 
   default_scope {order created_at: :asc}
   scope :active, -> {where active: true}
-
-  after_save :unzip_key
 
   accepts_nested_attributes_for :payment_method_option_shops, reject_if: :all_blank
 
@@ -63,24 +59,6 @@ class PaymentMethodShop < ApplicationRecord
   end
 
   private
-  def unzip_key
-    if key.url && key_changed?
-      current_zips = Dir.glob "#{File.dirname(key.url)}/*.zip"
-      current_zips.each do |zip_file|
-        FileUtils.rm(zip_file) unless zip_file == key.url
-      end
-
-      FileUtils.mkdir_p "#{File.dirname(key.url)}/log"
-      FileUtils.mkdir_p "#{File.dirname(key.url)}/key"
-
-      Zip::File.open(key.url) do |zip_file|
-        zip_file.each do |f|
-          f_path = File.join("#{File.dirname(key.url)}/key", f.name)
-          zip_file.extract(f, f_path){true}
-        end
-      end
-    end
-  end
 
   def active_and_key_required?
     active_changed? && active? && payment_method.key_required
