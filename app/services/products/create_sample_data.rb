@@ -9,5 +9,6 @@ class Products::CreateSampleData < ApplicationInteraction
       product.featured = true if i % 2 == 0
       product.save
       i = i + 1
+    end
   end
 end
