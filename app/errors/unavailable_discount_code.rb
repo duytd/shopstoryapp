@@ -1,0 +1,1 @@
+class UnavailableDiscountCode < StandardError; end

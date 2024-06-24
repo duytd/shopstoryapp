@@ -1,0 +1,1 @@
+class InvalidAssetType < StandardError; end

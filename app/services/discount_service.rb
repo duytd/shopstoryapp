@@ -1,12 +1,3 @@
-class UnavailableDiscountCode < StandardError
-end
-
-class InvalidDiscountCode < StandardError
-end
-
-class AlreadyUsedDiscountCode < StandardError
-end
-
 class DiscountService
   def initialize params
     @discount = params[:discount]
