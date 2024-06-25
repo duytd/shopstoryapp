@@ -6,7 +6,7 @@ en:
           attributes:
             email:
               blank: "cannot be blank"
-              invalid: "must be a valid address (E.g: example@shopstory.xyz)"
+              invalid: "must be a valid address (E.g: example@singularcart.com)"
               taken: "is already taken"
             password:
               too_short: "must be at least 8 characters"

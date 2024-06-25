@@ -1,9 +1,9 @@
 app:
-  domains: ["shopstory.xyz"]
-  domain: shopstory.xyz
+  domains: ["singularcart.com"]
+  domain: singularcart.com
   root_subdomains: ["www"]
 shop:
-  default_name: ShopStory
+  default_name: Singular Cart
   default_currency: KRW
   default_country: KR
   default_timezone: Asia/Seoul
