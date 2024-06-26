@@ -31,7 +31,7 @@ export default class ProductImageForm extends React.Component {
       });
 
       productDropzone.on("thumbnail", function(file) {
-        $element = $(".dz-preview i.fa-star:not(.added)");
+        var $element = $(".dz-preview i.fa-star:not(.added)");
         $element.bind("click", function() {
           var data = "product[product_images_attributes][0][id]=" + file.id +
             "&product[product_images_attributes][0][featured]=1";
