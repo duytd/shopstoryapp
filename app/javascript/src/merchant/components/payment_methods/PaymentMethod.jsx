@@ -74,8 +74,8 @@ export default class PaymentMethod extends React.Component {
     if (typeof e !== "undefined")
       e.preventDefault();
 
-    var loading = $(this.refs.loading),
-      form = $(this.refs.form);
+    var loading = $(this.refs.loading);
+    var form = $(this.refs.form);
 
     $.ajax({
       url: Routes.merchant_payment_method_path.localize(this.state.payment_method.id),

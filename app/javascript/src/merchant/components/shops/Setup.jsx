@@ -96,6 +96,7 @@ export default class Setup extends React.Component {
 
     var url = this.props.next_url;
     var data = null;
+    var loading = $(this.refs.loading);
 
     if (this.state.currentStep == "provide_business_info") {
       data = $(this.refs.shop_form).serialize();
@@ -105,6 +106,9 @@ export default class Setup extends React.Component {
       method: "PUT",
       url: url,
       data: data,
+      beforeSend: function() {
+        loading.removeClass("d-none");
+      },
       success: function(response) {
         var step = response.current_step;
 
@@ -117,6 +121,9 @@ export default class Setup extends React.Component {
           this.setState({currentStep: step, errors: []});
         }
       }.bind(this),
+      complete: function() {
+        loading.addClass("d-none");
+      },
       error: function(xhr) {
         this.setState({errors: xhr.responseJSON});
       }.bind(this)
@@ -147,7 +154,12 @@ export default class Setup extends React.Component {
           {(this.state.currentStep != "done") ?
           <div className="mt-3">
             <button className="btn btn-secondary" onClick={this.skip}>{I18n.t("merchant.admin.buttons.skip")}</button>
-            <button className="btn btn-success" onClick={this.next}>{I18n.t("merchant.admin.buttons.next")}</button>
+            <button className="btn btn-success" onClick={this.next}>
+              {I18n.t("merchant.admin.buttons.next")}
+              <span ref="loading" className="d-none">
+                <i className="fa fa-circle-o-notch fa-spin fa-fw"></i>
+              </span>
+            </button>
           </div> : null}
         </div>
       </div>
