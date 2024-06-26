@@ -16,16 +16,26 @@ export default class ProductImageForm extends React.Component {
                      '</div>';
 
       Dropzone.autoDiscover = false;
+
+      Dropzone.prototype._getParamName = function(n) {
+        if (typeof this.options.paramName === "function") {
+          return this.options.paramName(n);
+        } else {
+          return "" + this.options.paramName1 + (this.options.uploadMultiple ? "[" + n + "]" : "") + this.options.paramName2 + "";
+        }
+      };
+
+      var autoProcessQueue = this.props.product ? true : false
       var productDropzone = new Dropzone("div#product_dropzone", {
         previewTemplate: template,
-        acceptedFiles: ".png, .jpg, .jpeg, .gif",
+        acceptedFiles: "image/*",
         url: url,
         method: "put",
         headers: headers,
         paramName1: "product[product_images_attributes]",
         paramName2: "[image]",
         uploadMultiple: true,
-        autoProcessQueue: false,
+        autoProcessQueue: autoProcessQueue,
         thumbnailWidth: 200,
         thumbnailHeight: null,
       });
@@ -85,7 +95,7 @@ export default class ProductImageForm extends React.Component {
     )
   }
 
-  deleteImage(data) {
+  deleteImage = (data) => {
     var url = Routes.merchant_product_path.localize(this.props.product.slug);
 
     $.ajax({
@@ -96,7 +106,7 @@ export default class ProductImageForm extends React.Component {
     })
   }
 
-  featureImage(data) {
+  featureImage = (data) => {
     var url = Routes.merchant_product_path.localize(this.props.product.slug);
 
     $.ajax({

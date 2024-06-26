@@ -11,7 +11,6 @@ RUN echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       build-essential \
-      postgresql-client \
       zlib1g-dev liblzma-dev patch \
       curl \
       wkhtmltopdf \

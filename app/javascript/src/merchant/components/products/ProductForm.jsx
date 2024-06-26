@@ -494,7 +494,7 @@ class Form extends React.Component {
     this.submitProduct(form, callback);
   }
 
-  submitProduct(form, callback) {
+  submitProduct = (form, callback) => {
     var method = this.state.product ? "put" : "post";
     var url = this.state.product ? Routes.merchant_product_path.localize(this.state.product.id) : Routes.merchant_products_path.localize();
 
@@ -569,12 +569,12 @@ class Form extends React.Component {
     $("#variations").scrollView();
   }
 
-  updateUnlimited() {
+  updateUnlimited = () => {
     var checked = this.refs.unlimited.checked;
     this.setState({unlimited: checked});
   }
 
-  submitImages(productId, url) {
+  submitImages = (productId, url) => {
     var dropzone = this.state.dropzone;
 
     dropzone.on("sending", function(file, xhr, formData) {
