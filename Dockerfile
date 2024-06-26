@@ -12,6 +12,7 @@ RUN echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       build-essential \
       zlib1g-dev liblzma-dev patch \
+      imagemagick \
       curl \
       wkhtmltopdf \
       libpq-dev \
