@@ -3,8 +3,8 @@ class Shops::CreateSampleData < ApplicationInteraction
 
   def execute
     Apartment::Tenant.switch(shop.subdomain) do
-      compose(Products::CreateSampleData)
       compose(Categories::CreateSampleData)
+      compose(Products::CreateSampleData)
     end
   end
 end
