@@ -22,7 +22,7 @@ class Asset < ApplicationRecord
 
   attr_accessor :theme_bundle
 
-  after_save :update_theme_bundle, if: Proc.new{|a| a.content_changed? && a.theme_bundle.present?}
+  after_save :update_theme_bundle, if: Proc.new{|a| a.saved_change_to_content? && a.theme_bundle.present?}
 
   belongs_to :theme
 

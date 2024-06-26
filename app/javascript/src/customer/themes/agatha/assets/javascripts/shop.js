@@ -1,4 +1,4 @@
-$(document).ready(function() {
+window.onload = function() {
   $(".owl-carousel").owlCarousel({
     items: 1,
     dots: false,
@@ -9,4 +9,4 @@ $(document).ready(function() {
   $("#addToCart").click(function() {
     $("span.cart").scrollView();
   })
-});
+}

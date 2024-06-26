@@ -6,6 +6,8 @@
   Shopstory.rate = "<%= current_shop.exchange_rate.blank? ? 1000 : current_shop.exchange_rate %>";
 <% end %>
 
+<%= javascript_include_tag customer_locale_path %>
+
 <!-- Templates -->
 <% if Rails.env.development? %>
   <%= javascript_pack_tag "customer/themes/#{current_theme.directory}/templates/template" %>
@@ -19,5 +21,4 @@
 <!-- Custom Javascripts -->
 <% if Rails.env.staging? || Rails.env.production? %>
   <%= javascript_include_tag customer_scripts_path %>
-  <%= javascript_include_tag customer_locale_path %>
-<% end %>
+<% end%>

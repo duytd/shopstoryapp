@@ -88,7 +88,7 @@ class Shop < ApplicationRecord
   before_create :generate_api_key
   before_create :create_tenant
 
-  after_update :reconfigure_theme, if: :theme_id_changed?
+  after_update :reconfigure_theme, if: :saved_change_to_theme_id?
 
   before_destroy :drop_tenant
 

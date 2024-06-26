@@ -14,7 +14,7 @@ class Themes::Assets::GetCompiledCode < ApplicationInteraction
       when "stylesheet"
       when "locale"
         delimiter = ","
-        prefix = "I18n.translations = {"
+        prefix = "Shopstory.translations = {"
         postfix = "}"
       else
         raise InvalidAssetType

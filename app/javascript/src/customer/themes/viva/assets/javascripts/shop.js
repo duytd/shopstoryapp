@@ -1,4 +1,4 @@
-$(document).ready(function() {
+window.onload = function() {
   $(".owl-carousel").owlCarousel({
     items: 1,
     dots: true,
@@ -6,5 +6,5 @@ $(document).ready(function() {
     autoplay: true,
     rewind: true
   });
-});
+};
 
