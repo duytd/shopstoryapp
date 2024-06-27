@@ -2,7 +2,7 @@ module Merchant::SubscriptionsHelper
   PRODUCT_LIMIT = 5
 
   def free_plan? user
-    Product.count <= PRODUCT_LIMIT
+    Product.count <= PRODUCT_LIMIT || user.free?
   end
 
   def remaining_products user
