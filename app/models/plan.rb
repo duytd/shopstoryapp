@@ -82,6 +82,6 @@ class Plan < ApplicationRecord
   end
 
   def parsed_features
-    features.scan(/\{(.*?)\}/).map{|x| x[0].split("|")}
+    []
   end
 end
