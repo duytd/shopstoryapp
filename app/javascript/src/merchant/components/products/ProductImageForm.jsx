@@ -25,7 +25,6 @@ export default class ProductImageForm extends React.Component {
         }
       };
 
-      var autoProcessQueue = this.props.product ? true : false
       var productDropzone = new Dropzone("div#product_dropzone", {
         previewTemplate: template,
         acceptedFiles: "image/*",
@@ -35,7 +34,7 @@ export default class ProductImageForm extends React.Component {
         paramName1: "product[product_images_attributes]",
         paramName2: "[image]",
         uploadMultiple: true,
-        autoProcessQueue: autoProcessQueue,
+        autoProcessQueue: false,
         thumbnailWidth: 200,
         thumbnailHeight: null,
       });

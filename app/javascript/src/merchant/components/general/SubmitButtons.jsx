@@ -11,6 +11,9 @@ class SubmitButtons extends React.Component {
       <div className={(this.props.fixed == true) ? "form-submit fixed" : "form-submit"}>
         {goBackButton}
         <button type="submit" className="btn btn-success">
+          <span className={this.props.loading ? "" : "d-none"}>
+            <i className="fa fa-circle-o-notch fa-spin fa-fw"></i>
+          </span>
           {I18n.t("merchant.admin.buttons.save")}
         </button>
         {this.props.children}

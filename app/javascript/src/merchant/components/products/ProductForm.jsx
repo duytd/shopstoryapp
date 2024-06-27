@@ -33,6 +33,7 @@ class Form extends React.Component {
       errors: {},
       koCount: 0,
       enCount: 0,
+      loading: false,
       dropzone: null,
       unlimited: unlimited,
       product: this.props.product,
@@ -343,7 +344,7 @@ class Form extends React.Component {
         </div>
 
         <div className="col-md-9 text-end">
-          <SubmitButtons redirect_url={this.props.redirect_url} fixed={true} />
+          <SubmitButtons redirect_url={this.props.redirect_url} fixed={true} loading={this.state.loading} />
         </div>
       </form>
     )
@@ -471,6 +472,12 @@ class Form extends React.Component {
       $.ajax({
         url: url,
         method: "post",
+        beforeSend: () => {
+          this.setState({loading: true});
+        },
+        complete: () => {
+          this.setState({loading: false});
+        },
         success: function(variations) {
           this.setState({variations: variations, deletedVariations: []});
         }.bind(this),
@@ -566,7 +573,7 @@ class Form extends React.Component {
   }
 
   scrollToVariation() {
-    $("#variations").scrollView();
+    $("#variations")[0].scrollIntoView();
   }
 
   updateUnlimited = () => {
