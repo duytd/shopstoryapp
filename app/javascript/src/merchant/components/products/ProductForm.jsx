@@ -493,9 +493,6 @@ class Form extends React.Component {
       e.preventDefault();
     }
 
-    this.refs.description_en.value = "description_en";
-    this.refs.description_ko.value = "description_ko";
-
     var form = $(this.refs.form);
 
     this.submitProduct(form, callback);
@@ -512,6 +509,12 @@ class Form extends React.Component {
       dataType: "json",
       contentType: false,
       processData: false,
+      beforeSend: () => {
+        this.setState({loading: true});
+      },
+      complete: () => {
+        this.setState({loading: false});
+      },
       success: function(response) {
         var productId = response.product.id;
         var callbackDefined = (typeof callback === "function") ? true : false;
