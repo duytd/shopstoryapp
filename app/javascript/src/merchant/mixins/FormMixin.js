@@ -16,8 +16,7 @@ const withFormMixins = (WrappedComponent) => {
         const id = $(this).attr('id')
         const quill = new Quill(`#${id}`, {theme: 'snow'});
         const valueInput = $(`#${id}_value`);
-        const htmlContent = quill.clipboard.dangerouslyPasteHTML(valueInput.val());
-        quill.setContents(htmlContent);
+        quill.root.innerHTML = valueInput.val();
 
         quill.on('text-change', (_delta, _oldDelta, _source) => {
           valueInput.val(quill.root.innerHTML);
