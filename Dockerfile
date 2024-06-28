@@ -32,11 +32,5 @@ COPY . ./
 # Compile assets
 RUN bundle exec rails assets:precompile
 
-# Copy the entrypoint script (NEW)
-COPY entrypoints/docker-entrypoint.sh /usr/bin/
-COPY entrypoints/sidekiq-entrypoint.sh /usr/bin/
-
-# Ensure the entrypoint script is executable (NEW)
-RUN chmod +x /usr/bin/docker-entrypoint.sh
-
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN chmod +x entrypoints/run.sh
+CMD ["sh", "entrypoints/run.sh"]
