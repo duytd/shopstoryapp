@@ -32,4 +32,4 @@ COPY . ./
 # Compile assets
 RUN bundle exec rails assets:precompile
 
-RUN chmod +x entrypoints/run.sh
+RUN chmod +x entrypoints/run
