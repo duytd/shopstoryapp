@@ -1,7 +1,7 @@
 class Products::CreateSampleData < ApplicationInteraction
   def execute
     i = 0
-    5.times do
+    2.times do
       product = Product.create name_en: "Product #{i}", name_ko: "제품 #{i}"
       product.category_products.build category_id: Category.all.sample.id
       product.price = 1

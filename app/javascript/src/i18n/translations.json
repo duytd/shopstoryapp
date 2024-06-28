@@ -225,7 +225,7 @@
             "attributes": {
               "email": {
                 "blank": "cannot be blank",
-                "invalid": "must be a valid address (E.g: example@shopstoryapp.com)",
+                "invalid": "must be a valid address (E.g: example@singularcart.com)",
                 "taken": "is already taken"
               },
               "password": {

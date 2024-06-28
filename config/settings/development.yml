@@ -9,3 +9,5 @@ shop:
   default_timezone: America/New_York
 paging:
   order: 20
+queues:
+  default: default-development

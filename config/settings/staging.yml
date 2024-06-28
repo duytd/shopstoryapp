@@ -12,3 +12,5 @@ tester:
   password: n3vermind
 paging:
   order: 20
+queues:
+  default: default-staging

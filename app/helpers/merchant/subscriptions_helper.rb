@@ -1,5 +1,5 @@
 module Merchant::SubscriptionsHelper
-  PRODUCT_LIMIT = 5
+  PRODUCT_LIMIT = 3
 
   def free_plan? user
     Product.count <= PRODUCT_LIMIT || user.free?

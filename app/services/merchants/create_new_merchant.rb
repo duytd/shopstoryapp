@@ -18,11 +18,7 @@ class Merchants::CreateNewMerchant < ApplicationInteraction
     # Setup initial data
     compose(Shops::CreateInitialData, shop: shop)
 
-    # Create theme files
-    compose(Themes::CreateFiles, shop: shop, theme: shop.theme)
-
-    # Create theme bundles
-    compose(Themes::CreateBundles, shop: shop, theme: shop.theme)
+    PrepareThemeJob.perform_later(shop.id)
 
     merchant
   end

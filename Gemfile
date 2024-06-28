@@ -87,6 +87,10 @@ gem "stackprof"
 gem "sentry-ruby"
 gem "sentry-rails"
 
+# Queues
+gem "shoryuken"
+gem "aws-sdk-sqs"
+
 group :development, :test do
   gem "pry"
   gem "spring", "~> 3.1.1"

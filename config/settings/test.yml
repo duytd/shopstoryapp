@@ -9,3 +9,5 @@ shop:
   default_timezone: Asia/Seoul
 paging:
   order: 20
+queues:
+  default: default-test
