@@ -69,9 +69,6 @@ GEM
       parallel (>= 0.7.1)
       public_suffix (>= 2)
       rack (>= 1.3.6)
-    apartment-sidekiq (1.2.0)
-      apartment (>= 1.0)
-      sidekiq (>= 2.11)
     arel (9.0.0)
     aws-eventstream (1.3.0)
     aws-partitions (1.947.0)
@@ -400,8 +397,6 @@ GEM
       execjs (~> 2.5)
       rails (>= 5.2)
       rainbow (~> 3.0)
-    redis-client (0.22.2)
-      connection_pool
     regexp_parser (2.9.2)
     request_store (1.7.0)
       rack (>= 1.4)
@@ -473,11 +468,6 @@ GEM
       activesupport (>= 3)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
-    sidekiq (7.2.4)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      rack (>= 2.2.4)
-      redis-client (>= 0.19.0)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -531,7 +521,6 @@ DEPENDENCIES
   acts_as_tree
   annotate
   apartment
-  apartment-sidekiq
   aws-sdk-sqs
   better_errors
   brakeman
@@ -592,7 +581,6 @@ DEPENDENCIES
   shoryuken
   shoulda-callback-matchers
   shoulda-matchers
-  sidekiq
   spring (~> 3.1.1)
   stackprof
   stripe
