@@ -33,4 +33,3 @@ COPY . ./
 RUN bundle exec rails assets:precompile
 
 RUN chmod +x entrypoints/run.sh
-CMD ["sh", "entrypoints/run.sh"]
