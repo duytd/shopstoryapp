@@ -32,4 +32,6 @@ COPY . ./
 # Compile assets
 RUN bundle exec rails assets:precompile
 
+RUN bundle exec rake db:migrate
+
 RUN chmod +x entrypoints/run
