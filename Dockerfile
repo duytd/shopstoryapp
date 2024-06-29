@@ -22,8 +22,6 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get update && apt-get install -qq -y --no-install-recommends nodejs yarn
 
 RUN gem install bundler -v 2.1.2
-RUN echo ${DATABASE_HOST}
-RUN echo ${RAILS_ENV}
 WORKDIR /var/app
 COPY Gemfile Gemfile.lock ./
 RUN bundle config build.nokogiri --use-system-libraries
@@ -34,5 +32,3 @@ COPY . ./
 
 # Compile assets
 RUN bundle exec rails assets:precompile
-
-RUN chmod +x entrypoints/deploy
