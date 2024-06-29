@@ -1,13 +1,8 @@
 FROM ruby:2.7.0-slim
+
 ENV BUNDLER_VERSION=2.1.2
 ENV SKIP_YARN_COREPACK_CHECK=0
 ENV INSTALL_PATH=/var/app
-ENV RAILS_ENV=${RAILS_ENV}
-ENV SECRET_KEY_BASE=${SECRET_KEY_BASE}
-ENV DATABASE_HOST=${DATABASE_HOST}
-ENV DATABASE_PORT=${DATABASE_PORT}
-ENV DATABASE_USER=${DATABASE_USER}
-ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
 
 RUN mkdir -p $INSTALL_PATH
 RUN apt-get update && apt-get install -y gnupg2
@@ -27,6 +22,8 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get update && apt-get install -qq -y --no-install-recommends nodejs yarn
 
 RUN gem install bundler -v 2.1.2
+RUN echo ${DATABASE_HOST}
+RUN echo ${RAILS_ENV}
 WORKDIR /var/app
 COPY Gemfile Gemfile.lock ./
 RUN bundle config build.nokogiri --use-system-libraries
@@ -38,6 +35,4 @@ COPY . ./
 # Compile assets
 RUN bundle exec rails assets:precompile
 
-RUN bundle exec rake db:migrate
-
-RUN chmod +x entrypoints/run
+RUN chmod +x entrypoints/deploy
