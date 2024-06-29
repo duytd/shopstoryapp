@@ -1,9 +1,15 @@
 FROM ruby:2.7.0-slim
 ENV BUNDLER_VERSION=2.1.2
 ENV SKIP_YARN_COREPACK_CHECK=0
-ENV INSTALL_PATH /var/app
-RUN mkdir -p $INSTALL_PATH
+ENV INSTALL_PATH=/var/app
+ENV RAILS_ENV=${RAILS_ENV}
+ENV SECRET_KEY_BASE=${SECRET_KEY_BASE}
+ENV DATABASE_HOST=${DATABASE_HOST}
+ENV DATABASE_PORT=${DATABASE_PORT}
+ENV DATABASE_USER=${DATABASE_USER}
+ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
 
+RUN mkdir -p $INSTALL_PATH
 RUN apt-get update && apt-get install -y gnupg2
 ADD https://dl.yarnpkg.com/debian/pubkey.gpg /tmp/yarn-pubkey.gpg
 RUN apt-key add /tmp/yarn-pubkey.gpg && rm /tmp/yarn-pubkey.gpg
