@@ -3,11 +3,11 @@ String.prototype.capitalize = function() {
 }
 
 String.prototype.convert = function() {
-  if (Shopstory.currency.toLowerCase() == "krw") {
+  if (SingularCart.currency.toLowerCase() == "krw") {
     return parseFloat(this);
   }
   else {
-    return parseFloat(this)/Shopstory.rate;
+    return parseFloat(this)/SingularCart.rate;
   }
 }
 

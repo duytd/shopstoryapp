@@ -1,9 +1,9 @@
 <%= javascript_tag do %>
-  var Shopstory = {};
-  Shopstory.currency = "<%= current_currency %>";
-  Shopstory.defaultLocale = "<%= I18n.default_locale %>";
-  Shopstory.locale = "<%= I18n.locale %>";
-  Shopstory.rate = "<%= current_shop.exchange_rate.blank? ? 1000 : current_shop.exchange_rate %>";
+  var SingularCart = {};
+  SingularCart.currency = "<%= current_currency %>";
+  SingularCart.defaultLocale = "<%= I18n.default_locale %>";
+  SingularCart.locale = "<%= I18n.locale %>";
+  SingularCart.rate = "<%= current_shop.exchange_rate.blank? ? 1000 : current_shop.exchange_rate %>";
 <% end %>
 
 <%= javascript_include_tag customer_locale_path %>
