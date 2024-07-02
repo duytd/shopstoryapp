@@ -282,9 +282,9 @@
       }
     },
     "application": {
-      "brand": "ShopStory",
+      "brand": "SingularCart",
       "copyright": "Copyright",
-      "title": "ShopStory"
+      "title": "SingularCart"
     },
     "buttons": {
       "get_started": "Get Started"
@@ -78461,7 +78461,7 @@
               },
               "email": {
                 "blank": "이메일 주소를 입력해주세요.",
-                "invalid": "유효한 형식의 이메일 주소를 입력하세요. (예: example@shopstoryapp.com)",
+                "invalid": "유효한 형식의 이메일 주소를 입력하세요. (예: example@singularcart.com)",
                 "taken": "이미 가입되어 있는 이메일입니다."
               },
               "password": {
@@ -78508,9 +78508,9 @@
       }
     },
     "application": {
-      "brand": "ShopStory",
+      "brand": "SingularCart",
       "copyright": "Copyright",
-      "title": "ShopStory"
+      "title": "SingularCart"
     },
     "buttons": {
       "get_started": "시작하기"

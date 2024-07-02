@@ -10,8 +10,8 @@ window.bootstrap = bootstrap;
 import * as I18n from 'i18n-js';
 window.I18n = I18n;
 
-I18n.defaultLocale = Shopstory.defaultLocale;
-I18n.locale = Shopstory.locale;
+I18n.defaultLocale = SingularCart.defaultLocale;
+I18n.locale = SingularCart.locale;
 
 import * as _ from 'lodash';
 window._ = _;

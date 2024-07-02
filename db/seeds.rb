@@ -1,6 +1,6 @@
-unless Admin.exists?(email: "shopstoryxyz@gmail.com")
+unless Admin.exists?(email: "admin@singularcart.com")
   Admin.create(
-    email: "shopstoryxyz@gmail.com",
+    email: "admin@singularcart.com",
     password: ENV['ADMIN_PASSWORD'] || "N3vermind",
     password_confirmation: ENV['ADMIN_PASSWORD'] || "N3vermind",
   )

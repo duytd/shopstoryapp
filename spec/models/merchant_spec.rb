@@ -4,7 +4,7 @@ RSpec.describe Merchant, type: :model do
   let(:merchant) {build :merchant}
 
   it "should generate subdomain after create" do
-    merchant.email = "example@shopstoryapp.com"
+    merchant.email = "example@singularcart.com"
     merchant.save
     expect(merchant.subdomain).to eq "example"
   end

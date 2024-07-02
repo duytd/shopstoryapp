@@ -7,7 +7,7 @@ RSpec.describe Merchants::CreateNewMerchant do
       outcome = described_class.run(merchant: merchant)
       expect(outcome).not_to be_valid
 
-      expect(outcome.errors.full_messages).to include("Email must be a valid address (E.g: example@shopstory.xyz)")
+      expect(outcome.errors.full_messages).to include("Email must be a valid address (E.g: example@singularcart.com)")
       expect(outcome.errors.full_messages).to include("Password must be at least 8 characters")
     end
   end
