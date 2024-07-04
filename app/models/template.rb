@@ -23,7 +23,7 @@ class Template < ApplicationRecord
   validates :theme, presence: true
   validates :name, presence: true, uniqueness: {scope: :theme_id}
 
-  before_save :transform, if: :saved_change_to_content?
+  before_save :transform, if: :will_save_change_to_content?
 
   scope :filter_by_theme, ->theme{where theme_id: theme.id}
 
