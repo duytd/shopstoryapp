@@ -14,7 +14,6 @@
 #
 class Asset::Locale < Asset
   def update_theme_bundle
-    theme_bundle = ThemeBundle.last
     content = "SingularCart.translations = {"
     content << Asset::Locale.filter_by_theme(theme).map{|x| x.content}.join(",")
     content << "}"
