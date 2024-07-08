@@ -1,0 +1,171 @@
+"zh": {
+  "languages": {
+    "korean": "韩语",
+    "english": "英语"
+  },
+  "buttons": {
+    "login": "登录",
+    "register": "注册账户",
+    "logout": "登出",
+    "my_account": "我的账户",
+    "accept": "接受",
+    "decline": "拒绝",
+    "buy_now": "立即购买",
+    "apply": "应用",
+    "remove": "移除"
+  },
+  "customers": {
+    "login": {
+      "title": "登录",
+      "fields": {
+        "email": "邮箱",
+        "password": "密码"
+      },
+      "texts": {
+        "remember": "记住我",
+        "new_customer": "新客户？"
+      }
+    },
+    "register": {
+      "title": "注册",
+      "fields": {
+        "term": "条款和条件",
+        "privacy": "隐私"
+      },
+      "texts": {
+        "return_customer": "返回客户？"
+      }
+    },
+    "account": {
+      "title": "您的账户",
+      "orders": "订单",
+      "fields": {
+        "order": "订单",
+        "date": "日期",
+        "payment_status": "付款状态",
+        "status": "状态",
+        "total": "总计"
+      }
+    },
+    "order": {
+      "customer_contact": "客户联系方式",
+      "your_order": "您的订单",
+      "total": "总计",
+      "shipping_address": "送货地址",
+      "billing_address": "账单地址",
+      "payment": "支付",
+      "order_detail": "订单详情"
+    }
+  },
+  "categories": {
+    "products": "产品"
+  },
+  "products": {
+    "featured_products": "推荐产品",
+    "in_stock": "有货",
+    "out_of_order": "缺货",
+    "add_to_cart": "加入购物车"
+  },
+  "checkout": {
+    "buttons": {
+      "next": "下一步",
+      "place_order": "确认订单",
+      "save": "保存",
+      "cancel": "取消"
+    },
+    "texts": {
+      "shipping_info": "运送信息",
+      "new_customer": "新客户",
+      "returning_customer": "返回客户？",
+      "checkout_as_guest": "以访客身份结账",
+      "or": "或",
+      "thank_you": "谢谢您",
+      "order_info": "您的订单号是 %{order_number}",
+      "payment_info": "请在24小时内将付款存入以下银行账户，以完成您的购买。付款完成后将立即确认您的订单。",
+      "delivery_info": "交付时间为 %{delivery_range} 个工作日内",
+      "support": "如有任何问题，请通过电子邮件联系我们 %{email}"
+    },
+    "steps": {
+      "billing": "账单和订单回顾",
+      "shipping": "运送"
+    },
+    "summary": {
+      "title": "订单摘要",
+      "subtotal": "小计",
+      "shipping": "运费",
+      "not_yet_calculated": "尚未计算",
+      "total": "总计",
+      "coupon": "优惠券"
+    },
+    "shipping": {
+      "name": "姓名",
+      "first_name": "名字",
+      "last_name": "姓氏",
+      "email": "邮箱",
+      "address1": "地址",
+      "address2": "备用地址",
+      "city": "城市",
+      "country": "国家",
+      "state": "省份/州",
+      "zip_code": "邮政编码",
+      "phone_number": "电话号码",
+      "alternative_phone": "备用电话号码",
+      "fax": "传真",
+      "delivery_message": "送货留言"
+    },
+    "billing": {
+      "name": "姓名",
+      "first_name": "名字",
+      "last_name": "姓氏",
+      "email": "邮箱",
+      "address1": "地址",
+      "address2": "备用地址",
+      "city": "城市",
+      "country": "国家",
+      "state": "省份/州",
+      "zip_code": "邮政编码",
+      "phone_number": "电话号码",
+      "alternative_phone": "备用电话号码",
+      "fax": "传真",
+      "user_shipping_address": "使用送货地址"
+    }
+  },
+  "cart": {
+    "title": "您的购物车（%{item_count}）",
+    "empty": "您的购物车当前为空！",
+    "subtotal": "小计",
+    "buy_now": "立即购买",
+    "continue_shopping": "继续购物",
+    "remove": "移除"
+  },
+  "pagination": {
+    "first": "首页",
+    "last": "末页",
+    "previous": "上一页",
+    "next": "下一页",
+    "showing": "显示 %{size} / %{total} 个产品"
+  },
+  "filter": {
+    "all": "全部",
+    "vendor_filter": "供应商筛选",
+    "price_filter": "价格筛选"
+  },
+  "sorter": {
+    "title": "按以下方式排序产品",
+    "name_asc": "名称（升序）",
+    "name_desc": "名称（降序）",
+    "price_asc": "价格（低到高）",
+    "price_desc": "价格（高到低）"
+  },
+  "search": {
+    "results": {
+      "zero": "没有找到结果",
+      "one": "找到1个结果",
+      "other": "找到 %{count} 个结果"
+    },
+    "placeholder": "搜索"
+  },
+  "coupon": {
+    "title": "优惠券"
+  }
+}

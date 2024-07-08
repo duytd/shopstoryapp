@@ -1,0 +1,171 @@
+"ja": {
+  "languages": {
+    "korean": "韓国語",
+    "english": "英語"
+  },
+  "buttons": {
+    "login": "ログイン",
+    "register": "アカウント作成",
+    "logout": "ログアウト",
+    "my_account": "マイアカウント",
+    "accept": "承諾",
+    "decline": "拒否",
+    "buy_now": "今すぐ購入",
+    "apply": "適用",
+    "remove": "削除"
+  },
+  "customers": {
+    "login": {
+      "title": "ログイン",
+      "fields": {
+        "email": "メールアドレス",
+        "password": "パスワード"
+      },
+      "texts": {
+        "remember": "ログイン情報を記憶する",
+        "new_customer": "新規顧客？"
+      }
+    },
+    "register": {
+      "title": "新規登録",
+      "fields": {
+        "term": "利用規約",
+        "privacy": "プライバシー"
+      },
+      "texts": {
+        "return_customer": "既存顧客？"
+      }
+    },
+    "account": {
+      "title": "マイアカウント",
+      "orders": "注文履歴",
+      "fields": {
+        "order": "注文",
+        "date": "日付",
+        "payment_status": "支払状況",
+        "status": "状態",
+        "total": "合計"
+      }
+    },
+    "order": {
+      "customer_contact": "顧客連絡先",
+      "your_order": "ご注文内容",
+      "total": "合計",
+      "shipping_address": "配送先住所",
+      "billing_address": "請求先住所",
+      "payment": "お支払い方法",
+      "order_detail": "注文詳細"
+    }
+  },
+  "categories": {
+    "products": "製品"
+  },
+  "products": {
+    "featured_products": "おすすめ製品",
+    "in_stock": "在庫あり",
+    "out_of_order": "在庫切れ",
+    "add_to_cart": "カートに追加"
+  },
+  "checkout": {
+    "buttons": {
+      "next": "次へ",
+      "place_order": "注文確定",
+      "save": "保存",
+      "cancel": "キャンセル"
+    },
+    "texts": {
+      "shipping_info": "配送情報",
+      "new_customer": "新規顧客",
+      "returning_customer": "既存顧客？",
+      "checkout_as_guest": "ゲストとして注文する",
+      "or": "または",
+      "thank_you": "ご利用ありがとうございます",
+      "order_info": "注文番号は %{order_number} です",
+      "payment_info": "ご購入手続きを完了するため、以下の銀行口座に24時間以内にお振込みください。お支払いが確認され次第、ご注文が確定されます。",
+      "delivery_info": "配送時間は %{delivery_range} 営業日以内です",
+      "support": "ご質問がありましたら、%{email} までメールでお問い合わせください"
+    },
+    "steps": {
+      "billing": "請求情報と注文確認",
+      "shipping": "配送先情報入力"
+    },
+    "summary": {
+      "title": "注文概要",
+      "subtotal": "小計",
+      "shipping": "配送料",
+      "not_yet_calculated": "未計算",
+      "total": "合計",
+      "coupon": "クーポン"
+    },
+    "shipping": {
+      "name": "氏名",
+      "first_name": "名",
+      "last_name": "姓",
+      "email": "メールアドレス",
+      "address1": "住所",
+      "address2": "住所（別の場所）",
+      "city": "市区町村",
+      "country": "国",
+      "state": "都道府県",
+      "zip_code": "郵便番号",
+      "phone_number": "電話番号",
+      "alternative_phone": "別の電話番号",
+      "fax": "FAX",
+      "delivery_message": "配送メッセージ"
+    },
+    "billing": {
+      "name": "氏名",
+      "first_name": "名",
+      "last_name": "姓",
+      "email": "メールアドレス",
+      "address1": "住所",
+      "address2": "住所（別の場所）",
+      "city": "市区町村",
+      "country": "国",
+      "state": "都道府県",
+      "zip_code": "郵便番号",
+      "phone_number": "電話番号",
+      "alternative_phone": "別の電話番号",
+      "fax": "FAX",
+      "user_shipping_address": "配送先住所を使用する"
+    }
+  },
+  "cart": {
+    "title": "ショッピングカート（%{item_count}）",
+    "empty": "現在、カートに商品は入っていません。",
+    "subtotal": "小計",
+    "buy_now": "今すぐ購入",
+    "continue_shopping": "ショッピングを続ける",
+    "remove": "削除"
+  },
+  "pagination": {
+    "first": "最初",
+    "last": "最後",
+    "previous": "前へ",
+    "next": "次へ",
+    "showing": "全 %{total} 商品中 %{size} を表示"
+  },
+  "filter": {
+    "all": "全て",
+    "vendor_filter": "ベンダーフィルター",
+    "price_filter": "価格フィルター"
+  },
+  "sorter": {
+    "title": "商品の並び替え",
+    "name_asc": "名前（昇順）",
+    "name_desc": "名前（降順）",
+    "price_asc": "価格（安い順）",
+    "price_desc": "価格（高い順）"
+  },
+  "search": {
+    "results": {
+      "zero": "検索結果がありません",
+      "one": "1件の検索結果",
+      "other": "%{count}件の検索結果"
+    },
+    "placeholder": "検索"
+  },
+  "coupon": {
+    "title": "クーポン"
+  }
+}

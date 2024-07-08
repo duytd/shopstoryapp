@@ -38,7 +38,7 @@ class Merchant < User
   attr_accessor :shop_name, :subdomain
   enum setup_step: [:provide_business_info, :generate_sample_data, :done]
 
-  devise :database_authenticatable, :validatable, :registerable, :recoverable, :rememberable, :trackable
+  devise :database_authenticatable, :validatable, :registerable, :recoverable, :rememberable, :trackable, :confirmable
 
   has_one :shop, foreign_key: "user_id", dependent: :nullify
   has_one :theme, through: :shop
