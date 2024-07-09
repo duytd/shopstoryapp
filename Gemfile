@@ -111,4 +111,5 @@ group :development do
   gem "rails_best_practices"
   gem "brakeman", require: false
   gem "better_errors"
+  gem "letter_opener"
 end

@@ -1,0 +1,17 @@
+<div class="form password col-md-6 offset-md-3">
+  <h2>Resend email verification instructions</h2>
+
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <div class="mb-3 errors">
+      <%= render "shared/form_errors", object: f.object %>
+    </div>
+
+    <div class="mb-3">
+      <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input-lg", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: t("merchant.registrations.email") %></p>
+    </div>
+
+    <div class="mb-3">
+      <%= f.submit "Resend", class: "btn btn-lg btn-success" %>
+    </div>
+  <% end %>
+</div>
