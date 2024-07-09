@@ -1,10 +1,10 @@
 <div id="flash">
   <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %> text-center alert-dismissible fade show" role="alert">
-      <a href="#" data-bs-dismiss="alert" class="close">x</a>
       <ul>
         <li><%= value %></li>
       </ul>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 </div>
