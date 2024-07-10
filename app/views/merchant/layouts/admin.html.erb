@@ -26,17 +26,5 @@
         <%= yield %>
       </div>
     </section>
-
-    <% unless Rails.env.development? %>
-      <%= intercom_script_tag({
-        user_id: current_merchant.id,
-        email: current_merchant.email,
-        name: "#{current_merchant.first_name} #{current_merchant.last_name}",
-        created_at: current_merchant.created_at,
-        custom_data: {
-          plan: current_merchant.subscription.try(:plan).try(:name)
-        }
-      }) %>
-    <% end %>
   </body>
 </html>
