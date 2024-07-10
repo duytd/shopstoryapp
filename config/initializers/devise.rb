@@ -1,7 +1,7 @@
 require File.expand_path("lib/omniauth/strategies/doindie", Rails.root)
 
 Devise.setup do |config|
-  config.mailer_sender = "admin@singularcart.com"
+  config.mailer_sender = "'SingularCart' <no-reply@singularcart.com>"
   require "devise/orm/active_record"
   config.secret_key = ENV["SECRET_KEY_BASE"]
   config.case_insensitive_keys = [:email]
