@@ -116,11 +116,9 @@ class Product < ApplicationRecord
         option_value_array << op.variation_option_values if op.variation_option_values.size > 0
       end
 
-      if option_value_array.size == 0
-        return false
-      end
+      return false if option_value_array.size == 0
 
-      option_value_array.first.product(*option_value_array[1..-1]).each do |a|
+      option_value_array.first.to_a.product(*option_value_array[1..-1]).each do |a|
         variation = variations.build price: price, unlimited: unlimited
 
         a.each do |value|

@@ -37,12 +37,12 @@ export default class VariationOptionValue extends React.Component {
     )
   }
 
-  addOptionValue(e) {
+  addOptionValue = (e) => {
     e.preventDefault();
     this.props.addOptionValue(this.props.parentPosition);
   }
 
-  deleteOptionValue(e) {
+  deleteOptionValue = (e) => {
     e.preventDefault();
     this.refs.name.value = "";
     this.props.deleteOptionValue(this.props.parentPosition, this.props.index);

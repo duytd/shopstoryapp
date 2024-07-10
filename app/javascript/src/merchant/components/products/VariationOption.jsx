@@ -16,6 +16,7 @@ export default class VariationOption extends React.Component {
   render() {
     if (!this.props.deleted) {
       var nameNodes = this.props.defaultNames.map(function(name, index) {
+
         return <option key={"option_" + index} value={name.capitalize()}>{name.capitalize()}</option>
       })
     }
