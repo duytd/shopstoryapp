@@ -3,6 +3,8 @@ import I18n from 'i18n-js';
 
 import { translate } from '../../../functions';
 
+import Variation from './Variation';
+import VariationOption from './VariationOption';
 import ProductImageForm from './ProductImageForm';
 import FormErrors from '../../components/general/FormErrors';
 import SubmitButtons from '../../components/general/SubmitButtons';

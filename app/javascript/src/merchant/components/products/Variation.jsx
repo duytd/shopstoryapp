@@ -160,7 +160,7 @@ export default class Variation extends React.Component {
     )
   }
 
-  uploadImage(input) {
+  uploadImage = (input) => {
     var input = this.refs.imageFile;
 
     if (input.files && input.files[0]) {
@@ -174,25 +174,25 @@ export default class Variation extends React.Component {
     }
   }
 
-  addVariation(e) {
+  addVariation = (e) => {
     e.preventDefault();
     this.props.addVariation();
   }
 
-  deleteVariation(e) {
+  deleteVariation = (e) => {
     e.preventDefault();
     this.props.deleteVariation(this.props.index);
   }
 
-  validateInt(e) {
+  validateInt = (e) => {
     this.props.validateInt(e);
   }
 
-  validateNumber(e) {
+  validateNumber = (e) => {
     this.props.validateNumber(e);
   }
 
-  updateUnlimited() {
+  updateUnlimited = () => {
     var checked = this.refs.unlimited.checked;
     this.setState({unlimited: checked});
   }

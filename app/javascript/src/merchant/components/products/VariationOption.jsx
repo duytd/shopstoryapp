@@ -91,26 +91,26 @@ export default class VariationOption extends React.Component {
     )
   }
 
-  deleteVariationOption(e) {
+  deleteVariationOption = (e) => {
     e.preventDefault();
     this.props.deleteVariationOption(this.props.index);
   }
 
-  addOptionValue(parentIndex) {
+  addOptionValue = (parentIndex) => {
     this.props.addOptionValue(parentIndex);
   }
 
-  deleteOptionValue(parentIndex, index) {
+  deleteOptionValue = (parentIndex, index) => {
     this.props.deleteOptionValue(parentIndex, index);
   }
 
-  checkActiveSelector(e) {
+  checkActiveSelector = (e) => {
     if (e.target.value == "custom") {
       this.setState({activeSelector: false});
     }
   }
 
-  checkInputName() {
+  checkInputName = () => {
     if ($(this.refs.custom_name).val().length == 0) {
       this.setState({activeSelector: true});
     }
