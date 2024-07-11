@@ -1,7 +1,7 @@
 <div class="container px-4 py-5" id="pricing">
   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
     <h1 class="pb-2">Pricing</h1>
-    <p class="fs-5 text-muted">Simple pricing with no extra cost.</p>
+    <p class="fs-5 text-muted">Clear and simple pricing, no hidden costs</p>
   </div>
 
   <div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
@@ -13,8 +13,8 @@
         <div class="card-body">
           <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>3 product included</li>
-            <li>All current and future features are free to use</li>
+            <li>3 products included</li>
+            <li>Unlimited access to all current and upcoming features at no cost</li>
           </ul>
           <% if merchant_signed_in? && !current_merchant.has_active_subscription? %>
             <%= link_to "Upgrade now", merchant_account_url(subdomain: current_merchant.shop.subdomain), class: "w-100 btn btn-lg btn-outline-success" %>
@@ -33,7 +33,7 @@
           <h1 class="card-title pricing-card-title">$17.99<small class="text-muted fw-light">/mo</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
             <li>Unlimited products</li>
-            <li>All current and future features are free to use</li>
+            <li>Unlimited access to all current and upcoming features at no cost</li>
           </ul>
           <% if merchant_signed_in? && !current_merchant.has_active_subscription? %>
             <%= link_to "Upgrade now", merchant_account_url(subdomain: current_merchant.shop.subdomain), class: "w-100 btn btn-lg btn-outline-success" %>
