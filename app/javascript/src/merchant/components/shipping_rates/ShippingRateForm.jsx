@@ -96,20 +96,20 @@ export default class ShippingRateForm extends React.Component {
           <LocaleNavTab ko_errors_count={this.state.name_ko_count} en_errors_count={this.state.name_en_count} />
 
           <div className="tab-content">
-            <div id="ko" className="tab-pane fade show active">
-              <div className="mb-3">
-                <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
-                <FormErrors errors={this.state.errors.name_ko} />
-                <input ref="name_ko" type="text" name="shipping_rate[name_ko]"
-                  className="form-control" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.name_ko : ""} />
-              </div>
-            </div>
-            <div id="en" className="tab-pane fade">
+            <div id="en" className="tab-pane fade show active">
               <div className="mb-3">
                 <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
                 <FormErrors errors={this.state.errors.name_en} />
                 <input ref="name_en" type="text" name="shipping_rate[name_en]"
                   className="form-control" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.name_en : ""} />
+              </div>
+            </div>
+            <div id="ko" className="tab-pane fade">
+              <div className="mb-3">
+                <label className="form-label">{I18n.t("activerecord.attributes.shipping_rate.name")}</label>
+                <FormErrors errors={this.state.errors.name_ko} />
+                <input ref="name_ko" type="text" name="shipping_rate[name_ko]"
+                  className="form-control" defaultValue={(this.props.shipping_rate) ? this.props.shipping_rate.name_ko : ""} />
               </div>
             </div>
           </div>

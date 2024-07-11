@@ -28,23 +28,7 @@ class Form extends React.Component {
           <LocaleNavTab ko_errors_count={this.state.errors_ko_count} en_errors_count={this.state.errors_en_count} />
 
           <div className="tab-content">
-            <div id="ko" className="tab-pane fade show active">
-              <div className="mb-3">
-                <label className="form-label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
-                <FormErrors errors={this.state.errors.title_ko} />
-                <input ref="title_ko" type="text" name="custom_page[title_ko]"
-                  className="form-control" defaultValue={(this.props.custom_page) ? this.props.custom_page.title_ko : ""} />
-              </div>
-
-              <div className="mb-3">
-                <label className="form-label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
-                <FormErrors errors={this.state.errors.content_ko} />
-                <input name="custom_page[content_ko]" id="content_ko_value" ref="content_ko"
-                  type="hidden" defaultValue={(this.props.custom_page) ? this.props.custom_page.content_ko : ""} />
-                <div className="quill-editor" id="content_ko"></div>
-              </div>
-            </div>
-            <div id="en" className="tab-pane fade">
+            <div id="en" className="tab-pane fade show active">
               <div className="mb-3">
                 <label className="form-label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
                 <FormErrors errors={this.state.errors.title_en} />
@@ -60,6 +44,23 @@ class Form extends React.Component {
                 <div className="quill-editor" id="content_en"></div>
               </div>
             </div>
+            <div id="ko" className="tab-pane fade">
+              <div className="mb-3">
+                <label className="form-label">{I18n.t("activerecord.attributes.custom_page.title")}</label>
+                <FormErrors errors={this.state.errors.title_ko} />
+                <input ref="title_ko" type="text" name="custom_page[title_ko]"
+                  className="form-control" defaultValue={(this.props.custom_page) ? this.props.custom_page.title_ko : ""} />
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">{I18n.t("activerecord.attributes.custom_page.content")}</label>
+                <FormErrors errors={this.state.errors.content_ko} />
+                <input name="custom_page[content_ko]" id="content_ko_value" ref="content_ko"
+                  type="hidden" defaultValue={(this.props.custom_page) ? this.props.custom_page.content_ko : ""} />
+                <div className="quill-editor" id="content_ko"></div>
+              </div>
+            </div>
+
           </div>
 
           {(this.props.custom_page && this.props.custom_page.slug) ?

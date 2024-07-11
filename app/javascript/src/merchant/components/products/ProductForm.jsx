@@ -129,25 +129,7 @@ class Form extends React.Component {
             <LocaleNavTab ko_errors_count={this.state.koCount} en_errors_count={this.state.enCount} />
 
             <div className="tab-content">
-              <div id="ko" className="tab-pane fade show active">
-                <div className="mb-3">
-                  <label className="form-label">{I18n.t("activerecord.attributes.product.name")}</label>
-                  <div className="form-errors">
-                    { (this.state.errors.name_ko) ? this.state.errors.name_ko.map(function(object){
-                      return object;
-                    }) : ""}
-                  </div>
-                  <input ref="name_ko" type="text" name="product[name_ko]"
-                    className="form-control" defaultValue={this.state.product ? this.state.product.name_ko : ""} />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
-                  <input type="hidden" id="description_ko_value" ref="description_ko" name="product[description_ko]"
-                    defaultValue={this.state.product ? this.state.product.description_ko : ""} />
-                  <div className="quill-editor" id="description_ko"></div>
-                </div>
-              </div>
-              <div id="en" className="tab-pane fade">
+              <div id="en" className="tab-pane fade show active">
                 <div className="mb-3">
                   <label className="form-label">{I18n.t("activerecord.attributes.product.name")}</label>
                   <div className="form-errors">
@@ -168,6 +150,24 @@ class Form extends React.Component {
                   <input ref="description_en" id="description_en_value" name="product[description_en]"
                     type="hidden" defaultValue={this.state.product ? this.state.product.description_en : ""} />
                   <div className="quill-editor" id="description_en"></div>
+                </div>
+              </div>
+              <div id="ko" className="tab-pane fade">
+                <div className="mb-3">
+                  <label className="form-label">{I18n.t("activerecord.attributes.product.name")}</label>
+                  <div className="form-errors">
+                    { (this.state.errors.name_ko) ? this.state.errors.name_ko.map(function(object){
+                      return object;
+                    }) : ""}
+                  </div>
+                  <input ref="name_ko" type="text" name="product[name_ko]"
+                    className="form-control" defaultValue={this.state.product ? this.state.product.name_ko : ""} />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">{I18n.t("activerecord.attributes.product.description_ko")}</label>
+                  <input type="hidden" id="description_ko_value" ref="description_ko" name="product[description_ko]"
+                    defaultValue={this.state.product ? this.state.product.description_ko : ""} />
+                  <div className="quill-editor" id="description_ko"></div>
                 </div>
               </div>
             </div>
