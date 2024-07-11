@@ -29,12 +29,10 @@ class ProductImage < ApplicationRecord
 
   def self.default_image
     {
-      image: {
-        thumb: {
-          url: ActionController::Base.helpers.asset_path("fallback/product/" + ["thumb", "default.jpg"].compact.join('_'))
-        },
-        url: ActionController::Base.helpers.asset_path("fallback/product/default.jpg")
-      }
+      thumb: {
+        url: ActionController::Base.helpers.asset_path("fallback/product/" + ["thumb", "default.jpg"].compact.join('_'))
+      },
+      url: ActionController::Base.helpers.asset_path("fallback/product/default.jpg")
     }
   end
 
@@ -43,7 +41,7 @@ class ProductImage < ApplicationRecord
   end
 
   def as_json options={}
-    super.as_json(options).merge({name: image.filename, url: image.thumb.url})
+    image.as_json.merge!({featured: featured})
   end
 
   def ensure_only_one_image_is_active

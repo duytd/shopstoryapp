@@ -1,7 +1,7 @@
 <div class="owl-carousel owl-theme">
   <div rt-repeat="item in this.props.bannerItems" key="banner_item_{itemIndex}">
     <a href="{item.link}">
-      <img src="{item.image.image.url}" />
+      <img src="{item.image.url}" />
     </a>
   </div>
 </div>

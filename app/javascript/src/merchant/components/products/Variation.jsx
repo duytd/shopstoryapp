@@ -131,7 +131,7 @@ export default class Variation extends React.Component {
             <div className="col-3">
               {(typeof this.props.variation.id !== "undefined") ?
                 <div className="file-upload">
-                  <img src={this.props.variation.previewImage ? this.props.variation.previewImage : this.props.variation.image.image.thumb.url} width="30" height="30" />
+                  <img src={this.props.variation.previewImage ? this.props.variation.previewImage : this.props.variation.image.thumb.url} width="30" height="30" />
                   <input type="file" ref="imageFile" className="upload" onChange={this.uploadImage.bind(this, this)}
                     name={"product[variations_attributes][" + this.props.index + "][image]"} />
                 </div> :

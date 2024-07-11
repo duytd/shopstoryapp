@@ -39,7 +39,7 @@ export default class OrderForm extends React.Component {
       <tr key={"order_product_" + index}>
         <td>
           <a href={Routes.edit_merchant_product_path.localize(orderProduct.variation.product_slug)}>
-            <img src={orderProduct.variation.image.image.thumb.url} className="img-thumbnail" width="50" height="50" />
+            <img src={orderProduct.variation.image.thumb.url} className="img-thumbnail" width="50" height="50" />
           </a>
         </td>
         <td>

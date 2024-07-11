@@ -17,20 +17,23 @@ export default class VariationOptionValue extends React.Component {
           <div className="row">
             <div className="col-7">
               <input className="form-control"
+                disabled={this.props.hasVariations}
                 ref="name"
                 name={"product[variation_options_attributes][" + this.props.parentPosition + "][variation_option_values_attributes][" + this.props.index + "][name]"}
                 defaultValue={this.props.optionValue ? this.props.optionValue.name : null} />
             </div>
 
-            <div className="col-5">
-              {(!this.props.deleted && this.props.lastItem) ?
-                <button className="btn btn-default" onClick={this.addOptionValue}>
-                  <i className="fa fa-plus"></i>
-                </button> : null}
-              <button className="btn btn-default" onClick={this.deleteOptionValue }>
-                <i className="fa fa-trash"></i>
-              </button>
-            </div>
+            {!this.props.hasVariations &&
+              <div className="col-5">
+                {(!this.props.deleted && this.props.lastItem) ?
+                  <button className="btn btn-default" onClick={this.addOptionValue}>
+                    <i className="fa fa-plus"></i>
+                  </button> : null}
+                <button className="btn btn-default" onClick={this.deleteOptionValue }>
+                  <i className="fa fa-trash"></i>
+                </button>
+              </div>
+            }
           </div>
         )}
       </div>

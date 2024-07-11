@@ -29,6 +29,8 @@ class VariationOption < ApplicationRecord
 
   scope :relating_to_variations, ->{includes(:variation_variation_option_values).where.not(variation_variation_option_values: {id: nil})}
 
+  validates :name, uniqueness: {scope: :product_id}
+
   def self.default_names
     %w{ color size material style }
   end

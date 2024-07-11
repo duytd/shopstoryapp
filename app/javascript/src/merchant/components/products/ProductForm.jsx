@@ -80,6 +80,7 @@ class Form extends React.Component {
       <VariationOption
         key={"variation_option_" + index}
         index={index}
+        hasVariations={this.state.variations.length > 0}
         lastItem={(this.state.variationOptions.length == index + 1) ? true : false}
         defaultNames={this.props.default_option_names}
         addVariationOption={this.addVariationOption}

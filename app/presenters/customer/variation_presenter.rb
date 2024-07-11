@@ -8,7 +8,7 @@ class Customer::VariationPresenter < Customer::BasePresenter
       in_stock: @object.in_stock,
       sku: @object.sku,
       master: @object.master?,
-      image: { image: @object.image },
+      image: @object.variation_image,
       product_id: @object.product_id,
       product_slug: @object.product.slug,
       unlimited: @object.unlimited,

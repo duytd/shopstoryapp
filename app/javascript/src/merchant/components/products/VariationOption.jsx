@@ -25,6 +25,7 @@ export default class VariationOption extends React.Component {
       return (
         <VariationOptionValue
           key={"option_value_" + index}
+          hasVariations={this.props.hasVariations}
           optionValue={value}
           index={index}
           lastItem={(this.props.variationOption.option_values.length == index + 1) ? true : false}
@@ -59,7 +60,7 @@ export default class VariationOption extends React.Component {
             <div className="col-5">
               {(this.state.activeSelector) ? (
                   <div className="select" onChange={this.checkActiveSelector}>
-                    <select className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
+                    <select disabled={this.props.hasVariations} className="form-control" name={"product[variation_options_attributes][" + this.props.index + "][name]"}>
                       {nameNodes}
                       <option value="custom">{I18n.t("merchant.admin.variations.custom_name")}</option>
                     </select>
@@ -68,20 +69,23 @@ export default class VariationOption extends React.Component {
               : (
                   <input ref="custom_name" type="text" className="form-control input-sm"
                     name={"product[variation_options_attributes][" + this.props.index + "][name]"}
+                    disabled={this.props.hasVariations}
                     placeholder={I18n.t("merchant.admin.variations.custom_name_placeholder")}
                     defaultValue={this.props.variationOption ? this.props.variationOption.name : ""}  onChange={this.checkInputName} />
                 )
               }
             </div>
-            <div className="col-2">
-              {(!this.props.deleted && this.props.lastItem) ?
-              <button className="btn btn-default" onClick={this.props.addVariationOption}>
-                <i className="fa fa-plus"></i>
-              </button> : null}
-              <button className="btn btn-default" onClick={this.deleteVariationOption}>
-                <i className="fa fa-trash"></i>
-              </button>
-            </div>
+            {!this.props.hasVariations &&
+              <div className="col-2">
+                {(!this.props.deleted && this.props.lastItem) ?
+                <button className="btn btn-default" onClick={this.props.addVariationOption}>
+                  <i className="fa fa-plus"></i>
+                </button> : null}
+                <button className="btn btn-default" onClick={this.deleteVariationOption}>
+                  <i className="fa fa-trash"></i>
+                </button>
+              </div>
+            }
             <div className="col-5">
               {deletedOptionValueNodes}
               {optionValueNodes}

@@ -21,7 +21,7 @@ export default class Product extends React.Component {
         </td>
         <td>
           <a href={Routes.edit_merchant_product_path.localize(this.props.product.slug)}>
-            <img width="25" height="25" className="img-thumbnail" src={this.props.product.featured_image ? this.props.product.featured_image.image.thumb.url : null} />
+            <img width="25" height="25" className="img-thumbnail" src={this.props.product.featured_image ? this.props.product.featured_image.thumb.url : null} />
           </a>
         </td>
         <td className="name">

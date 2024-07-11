@@ -42,7 +42,7 @@ export default class Dashboard extends React.Component {
         {orderProducts.map(function(orderProduct, index) {
           return (
             <a key={"order_product_" + index} href={Routes.edit_merchant_product_path.localize(orderProduct.variation.product_slug)}>
-              <img src={orderProduct.variation.image.image.thumb.url} width="20" height="20" />
+              <img src={orderProduct.variation.image.thumb.url} width="20" height="20" />
             </a>
           )
         })}

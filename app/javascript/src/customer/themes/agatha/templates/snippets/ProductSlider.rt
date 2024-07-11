@@ -1,14 +1,14 @@
 <div class="ps-container">
   <ul class="ps-feature">
     <li rt-repeat="image in this.props.images" key="{imageIndex}" class="{(imageIndex == this.state.activeIndex) ? 'active' : null}" key="image_{imageIndex}">
-      <img src="{image.image.url}" alt="{image.name}" class="img-thumbnail" />
+      <img src="{image.url}" alt="{image.name}" class="img-thumbnail" />
     </li>
   </ul>
 
   <fieldset class="ps-navigation-container">
     <ul rt-if="this.props.images.length > 1" role="navigation" class="ps-navigation">
       <li rt-repeat="image in this.props.images" key="image_nav_{imageIndex}">
-        <img src="{image.image.thumb.url}" data-index="{imageIndex}" width="50" height="50"
+        <img src="{image.thumb.url}" data-index="{imageIndex}" width="50" height="50"
         class="image-controls" onClick="{this.activateImage}" />
       </li>
     </ul>
