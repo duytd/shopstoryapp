@@ -105,6 +105,7 @@ en:
         add_banner_item: "Add Banner Item"
         generate_code: "Generate Code"
         go_to_store: "Go To Your Store"
+        manage_store: "Manage Your Store"
       pagination:
         next: "Next"
         first: "First"

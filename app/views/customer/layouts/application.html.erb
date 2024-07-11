@@ -13,6 +13,14 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <% if current_merchant.present? %>
+      <div class="alert text-center alert-dismissible">
+        <ul>
+          <li><%= link_to t("merchant.admin.buttons.manage_store"), merchant_root_url(subdomain: current_merchant.shop.subdomain), class: "btn btn-success" %></li>
+        </ul>
+      </div>
+    <% end %>
+
     <%= render "layouts/flash" %>
     <%= yield %>
   </body>
