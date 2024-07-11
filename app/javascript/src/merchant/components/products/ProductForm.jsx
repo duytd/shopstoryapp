@@ -242,7 +242,7 @@ class Form extends React.Component {
                 <button className="btn btn-sm btn-success" onClick={this.addVariationOption}>
                   {I18n.t("merchant.admin.products.buttons.add_option_type")}
                 </button> : null}
-                <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "hide"}>
+                <div className={(this.state.variationOptions.length > 0) ? "row variation-options" : "d-none"}>
                   <div className="col-5">
                     <label className="form-label">{I18n.t("activerecord.attributes.variation_option.name")}</label>
                   </div>

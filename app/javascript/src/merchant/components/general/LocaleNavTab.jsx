@@ -14,7 +14,6 @@ export default class LocaleNavTab extends React.Component {
         <li className="nav-item" role="presentation">
           <a className="nav-link" data-bs-toggle="tab" href={this.props.koTabId ? "#" + this.props.koTabId : "#ko"}>
             {I18n.t("merchant.admin.forms.ko_lang")}
-
             {(this.props.ko_errors_count > 0) ? <span className="badge badge-danger">{this.props.ko_errors_count}</span> : null}
           </a>
         </li>
