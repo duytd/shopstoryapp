@@ -4,7 +4,7 @@ import I18n from 'i18n-js';
 export default class BulkAction extends React.Component {
   render() {
     return (
-      <div className={(this.props.checkCount > 0) ? "btn-group bulk-action" : "hide"} role="group">
+      <div className={(this.props.checkCount > 0) ? "btn-group bulk-action" : "d-none"} role="group">
         <button type="button" className="btn btn-default disabled">
           {this.props.checkCount + " " + I18n.t("merchant.admin.forms.selected")}
         </button>
