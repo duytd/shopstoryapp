@@ -1,7 +1,0 @@
-ko:
-  mailer:
-    subscription:
-      payment_succeeded:
-        title: "결제해주셔서 감사합니다."
-      payment_failed:
-        title: "알림: 결제 실패"
