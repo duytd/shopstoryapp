@@ -19,10 +19,6 @@ class Customer::VariationPresenter < Customer::BasePresenter
   private
 
   def image
-    if @object.image.present?
-      @object.variation_image
-    else
-      { image: @object.image }
-    end
+    { image: @object.image }
   end
 end
