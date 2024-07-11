@@ -8,21 +8,11 @@ class Merchant::VariationPresenter < Merchant::BasePresenter
       in_stock: @object.in_stock,
       sku: @object.sku,
       master: @object.master?,
-      image: image,
+      image: { image: @object.image },
       product_id: @object.product_id,
       product_slug: @object.product.slug,
       variation_option_values: @object.variation_variation_option_values,
       unlimited: @object.unlimited
     }
-  end
-
-  private
-
-  def image
-    if @object.image.present?
-      @object.variation_image
-    else
-      { image: @object.image }
-    end
   end
 end

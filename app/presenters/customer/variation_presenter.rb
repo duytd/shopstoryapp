@@ -8,17 +8,11 @@ class Customer::VariationPresenter < Customer::BasePresenter
       in_stock: @object.in_stock,
       sku: @object.sku,
       master: @object.master?,
-      image: image,
+      image: { image: @object.image },
       product_id: @object.product_id,
       product_slug: @object.product.slug,
       unlimited: @object.unlimited,
       values: @object.variation_option_values.map{|v| v.id}
     }
-  end
-
-  private
-
-  def image
-    { image: @object.image }
   end
 end
