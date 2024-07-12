@@ -116,13 +116,13 @@ export default class Dashboard extends React.Component {
             <h4>
               {I18n.t("merchant.admin.dashboard.last_7_days")}
             </h4>
-            <p>{I18n.toCurrency(this.props.last_7_days_revenue, {precision: 0, delimiter: ",", unit: "₩"})}</p>
+            <p>{I18n.toCurrency(this.props.last_7_days_revenue, {precision: 0, delimiter: ",", unit: "$"})}</p>
           </div>
           <div className="col-6 text-center">
             <h4>
               {I18n.t("merchant.admin.dashboard.last_30_days")}
             </h4>
-            <p>{I18n.toCurrency(this.props.last_30_days_revenue, {precision: 0, delimiter: ",", unit: "₩"})}</p>
+            <p>{I18n.toCurrency(this.props.last_30_days_revenue, {precision: 0, delimiter: ",", unit: "$"})}</p>
           </div>
         </div>
       </div>

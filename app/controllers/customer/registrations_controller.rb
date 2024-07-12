@@ -26,7 +26,7 @@ class Customer::RegistrationsController < Devise::RegistrationsController
         sign_in resource_name, resource
         return render json: {redirect_url: after_sign_up_path_for(resource)}, status: :ok
       else
-        expire_session_data_after_sign_in!
+        expire_data_after_sign_in!
         return render json: {redirect_url: after_inactive_sign_up_path_for(resource)}, status: :ok
       end
     else
