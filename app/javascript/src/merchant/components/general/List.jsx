@@ -285,6 +285,8 @@ export default class List extends React.Component {
       }
     })
 
+    let data = {};
+
     switch(this.props.type) {
       case "category":
         data = {category_ids: item_ids};
@@ -311,7 +313,6 @@ export default class List extends React.Component {
         data = {discount_ids: item_ids};
         break;
       default:
-        data = {};
         break;
     }
 
