@@ -14,7 +14,7 @@ export default class Plan extends React.Component {
       script.setAttribute("data-key", this.props.stripe_key);
       script.setAttribute("data-amount", this.props.price);
       script.setAttribute("data-email", this.props.email);
-      script.setAttribute("data-currency", "krw");
+      script.setAttribute("data-currency", "usd");
       script.setAttribute("data-label", label);
 
       stripe.parentNode.insertBefore(script, stripe);
@@ -38,7 +38,7 @@ export default class Plan extends React.Component {
             </div>
 
             <div className="price">
-              KRW {this.props.plan.price}
+              USD {this.props.plan.price}
             </div>
           </div>
           <ul>
