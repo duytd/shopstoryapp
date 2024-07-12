@@ -30,7 +30,7 @@ export default class EmailTemplateEditor extends React.Component {
     editor.$blockScrolling = Infinity;
     editor.setOptions({
       fontSize: "14px",
-      fontFamily: "Inconsolata",
+      fontFamily: "monospace",
       tabSize: 2,
       useSoftTabs: true
     });
