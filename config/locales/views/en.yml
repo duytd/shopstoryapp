@@ -9,6 +9,7 @@ en:
     language: "Language"
     korean: "Korean"
     english: "English"
+    blog: "Blog"
   pages:
     home:
       title: "Home"
