@@ -3,7 +3,7 @@
     <div class="row align-items-center g-5 py-5">
       <div class="col-sm-8 col-lg-7">
         <h1 class="display-3 fw-bold lh- mb-3 text-light text-uppercase">Start selling your incredible crafts in just minutes!</h1>
-        <p class="lead fw-normal text-light">SingularCart empowers local creators and small businesses to effortlessly launch comprehensive online stores in just minutes</p>
+        <p class="lead fw-normal text-light">SingularCart empowers local creators to effortlessly launch comprehensive online stores in just minutes</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
           <% if merchant_signed_in? %>
             <%= link_to t("buttons.go_to_store"), merchant_root_url(subdomain: current_merchant.shop.subdomain),
@@ -20,4 +20,3 @@
     </div>
   </div>
 </div>
-
