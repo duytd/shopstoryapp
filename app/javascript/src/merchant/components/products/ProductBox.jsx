@@ -92,7 +92,7 @@ export default class ProductBox extends React.Component {
     );
   }
 
-  updateData(data, url) {
+  updateData = (data, url) => {
     this.setState({
       products: data.products,
       page: data.page,
@@ -102,7 +102,7 @@ export default class ProductBox extends React.Component {
     })
   }
 
-  handleImport(form) {
+  handleImport = (form) => {
     var url = this.props.import_url;
 
     $.ajax({
@@ -121,7 +121,7 @@ export default class ProductBox extends React.Component {
     })
   }
 
-  handleExportAll() {
+  handleExportAll = () => {
     var url = this.props.export_url;
 
     $.ajax({
@@ -134,7 +134,7 @@ export default class ProductBox extends React.Component {
     })
   }
 
-  downloadCSV(data) {
+  downloadCSV = (data) => {
     var link = document.createElement("a");
     link.href = "data:text/csv;charset=utf-8," + encodeURI(data);
     link.style = "visibility:hidden";
