@@ -38,6 +38,7 @@ export default class Editor extends React.Component {
     editor.getSession().setUseWorker(false);
     editor.getSession().setMode(new CssMode());
     editor.setValue(this.props.data.content, -1);
+    editor.searchBox.show();
 
     const ps = new PerfectScrollbar('.ace_scroller');
 
