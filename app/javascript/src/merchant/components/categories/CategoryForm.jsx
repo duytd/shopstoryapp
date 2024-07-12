@@ -67,14 +67,14 @@ export default class CategoryForm extends React.Component {
     )
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     var formData = $(this.refs.form).serialize();
 
     this.handleCategorySubmit(formData, this.props.url, this.props.method);
   }
 
-  handleCategorySubmit(formData, action, method) {
+  handleCategorySubmit = (formData, action, method) => {
     $.ajax({
       data: formData,
       url: action,
