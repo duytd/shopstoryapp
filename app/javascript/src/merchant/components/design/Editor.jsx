@@ -7,6 +7,7 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-json';
+import 'ace-builds/src-noconflict/ext-searchbox';
 import PerfectScrollbar from 'perfect-scrollbar';
 import EditorMenu from './EditorMenu';
 import FormErrors from '../../components/general/FormErrors';
@@ -38,7 +39,17 @@ export default class Editor extends React.Component {
     editor.getSession().setUseWorker(false);
     editor.getSession().setMode(new CssMode());
     editor.setValue(this.props.data.content, -1);
-    editor.searchBox.show();
+
+    editor.commands.addCommand({
+      name: "showSearchBox",
+      bindKey: {win: "Ctrl-f", mac: "Command-f"},
+      exec: function(editor) {
+        ace.config.loadModule("ace/ext/searchbox", function(module) {
+            module.Search(editor);
+            editor.searchBox.show();
+        })
+      }
+    })
 
     const ps = new PerfectScrollbar('.ace_scroller');
 
