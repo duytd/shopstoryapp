@@ -12,5 +12,6 @@
 #  updated_at :datetime         not null
 #  theme_id   :integer
 #
-class Asset::ImageAsset < Asset
+class Asset::Image < Asset
+  mount_uploader :image, AssetImageUploader
 end

@@ -155,6 +155,7 @@ Rails.application.routes.draw do
     end
 
     resources :assets, only: [:edit, :update]
+    resources :image_assets, only: [:create]
     resources :templates, only: [:edit, :update]
     resources :email_templates, only: [:index, :edit, :update] do
       post :preview, on: :collection

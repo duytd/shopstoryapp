@@ -15,6 +15,7 @@ class Ability
       can [:read, :update], PaymentMethod
       can :manage, Order
       can :manage, ShippingRate
+      can :manage, Asset::Image
       can :manage, Customer
       can :manage, Menu
       can :manage, MenuItem

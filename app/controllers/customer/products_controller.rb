@@ -30,6 +30,7 @@ class Customer::ProductsController < Customer::BaseController
   end
 
   private
+
   def load_product
     @product = Product.find params[:id]
   end

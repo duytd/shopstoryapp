@@ -26,8 +26,8 @@ class Asset < ApplicationRecord
 
   belongs_to :theme
 
-  validates :theme_id, presence: true
-  validates :name, presence: true, uniqueness: {scope: :theme_id}
+  validates :theme_id, presence: true, unless: Proc.new{|a| a.is_a?(Asset::Image) }
+  validates :name, presence: true, uniqueness: {scope: :theme_id}, unless: Proc.new{|a| a.is_a?(Asset::Image) }
 
   scope :filter_by_theme, ->theme{where theme_id: theme.id}
 

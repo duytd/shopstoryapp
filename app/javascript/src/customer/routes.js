@@ -1245,6 +1245,14 @@
 
   /**
    * Generates rails route to
+   * /verification(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  merchant_confirmation_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"verification"],[1,[2,[8,"."],[3,"format"]]]]]),
+
+  /**
+   * Generates rails route to
    * /admin/credentials(.:format)
    * @param {object | undefined} options
    * @returns {string} route path
@@ -1351,6 +1359,14 @@
    * @returns {string} route path
    */
   merchant_email_templates_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"email_templates"],[1,[2,[8,"."],[3,"format"]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /admin/image_assets(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  merchant_image_assets_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"image_assets"],[1,[2,[8,"."],[3,"format"]]]]]]]),
 
   /**
    * Generates rails route to
@@ -1635,6 +1651,14 @@
    * @returns {string} route path
    */
   new_merchant_category_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"admin"],[2,[7,"/"],[2,[6,"categories"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]]]),
+
+  /**
+   * Generates rails route to
+   * /verification/new(.:format)
+   * @param {object | undefined} options
+   * @returns {string} route path
+   */
+  new_merchant_confirmation_path: __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"verification"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]),
 
   /**
    * Generates rails route to

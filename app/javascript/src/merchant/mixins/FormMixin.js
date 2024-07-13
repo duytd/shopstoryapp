@@ -1,6 +1,8 @@
 import React from 'react';
 import Quill from 'quill';
 import ImageCompress from 'quill-image-compress';
+import ImageUploader from "quill-image-uploader";
+import 'quill-image-uploader/dist/quill.imageUploader.min.css';
 
 const withFormMixins = (WrappedComponent) => {
   return class extends React.Component {
@@ -14,6 +16,7 @@ const withFormMixins = (WrappedComponent) => {
 
     loadSummernote = () => {
       Quill.register('modules/imageCompress', ImageCompress);
+      Quill.register("modules/imageUploader", ImageUploader);
 
       const toolbarOptions = [
         [{ 'header': [1, 2, 3, 4, 5, false] }],
@@ -31,13 +34,39 @@ const withFormMixins = (WrappedComponent) => {
           modules: {
             toolbar: toolbarOptions,
             imageCompress: {
-              quality: 0.5,
+              quality: 0.3,
               maxWidth: 1000,
               maxHeight: 1000,
               imageType: 'image/jpeg',
               debug: true,
               suppressErrorLogging: false,
               insertIntoEditor: undefined,
+            },
+            imageUploader: {
+              upload: (file) => {
+                return new Promise((resolve, reject) => {
+                  var url = Routes.merchant_image_assets_path.localize();
+                  var formData = new FormData();
+                  formData.append('image_asset[image]', file);
+
+                  $.ajax({
+                    url: url,
+                    method: "post",
+                    dataType: "json",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(asset) {
+                      const url = asset.image.url;
+                      resolve(url);
+                    },
+                    error: function(xhr) {
+                      alert(xhr.responseText);
+                      reject(xhr.responseText);
+                    }
+                  })
+                })
+              }
             }
           },
           theme: 'snow'
@@ -54,3 +83,6 @@ const withFormMixins = (WrappedComponent) => {
 }
 
 export default withFormMixins;
+
+
+Routes.merchant_image_assets
