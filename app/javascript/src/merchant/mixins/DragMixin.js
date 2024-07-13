@@ -9,7 +9,7 @@ const withDragMixin = (WrappedComponent) => {
       placeholder.className = "placeholder";
 
       this.state = {
-        placeholder: placeholder,
+        placeholder: placeholder
       };
     }
 
@@ -35,7 +35,18 @@ const withDragMixin = (WrappedComponent) => {
       var to = Number(this.over.dataset.index);
 
       this.dragged = null;
-      this.swapItem(from, to, this.props.menu_item);
+      if (this.props.swapItem) {
+        this.props.swapItem(from, to, this.props.menu_item);
+      }
+      else {
+        var event = new CustomEvent("swapItem", {
+          detail: {
+            from: from,
+            to: to
+          }
+        });
+        document.dispatchEvent(event);
+      }
     }
 
     dragOver = (e) => {
@@ -87,7 +98,7 @@ const withDragMixin = (WrappedComponent) => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent dragStart={this.dragStart} dragEnd={this.dragEnd} dragOver={this.dragOver} touchMove={this.touch} {...this.props} />;
     }
   }
 }

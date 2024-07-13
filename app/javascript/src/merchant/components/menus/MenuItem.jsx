@@ -8,7 +8,7 @@ class WrappedComponent extends React.Component {
     super(props);
 
     this.state = {
-      draggableKlass: "child_" + this.props.menu_item.id
+      draggableKlass: "child_" + this.props.menu_item.id,
     };
   }
 
@@ -20,12 +20,12 @@ class WrappedComponent extends React.Component {
           key={"menu_item_" + this.props.menu_item.id + "_child" + index} data-index={index}>
           <div className="dragger"
             draggable="true"
-            onDragOver={this.dragOver}
-            onDragEnd={this.dragEnd}
-            onDragStart={this.dragStart}
-            onTouchMove={this.touchMove}
-            onTouchEnd={this.dragEnd}
-            onTouchStart={this.dragStart}>
+            onDragOver={this.props.dragOver}
+            onDragEnd={this.props.dragEnd}
+            onDragStart={this.props.dragStart}
+            onTouchMove={this.props.touchMove}
+            onTouchEnd={this.props.dragEnd}
+            onTouchStart={this.props.dragStart}>
           </div>
           <input type="hidden" name={"menu[menu_items_attributes][" + child.id + "][id]"} value={child.id} />
           <input type="hidden" name={"menu[menu_items_attributes][" + child.id + "][position]"} value={index} />
@@ -44,7 +44,7 @@ class WrappedComponent extends React.Component {
     return (
       <div className="menu-item">
         <p className="draggable-title">
-          {this.props.menu_item.name_ko} - {this.props.menu_item.name_en}
+          {this.props.menu_item.name_en}
 
           {(this.props.showIcon) ?
             <span className="pull-right">

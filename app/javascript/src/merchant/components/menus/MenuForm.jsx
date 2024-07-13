@@ -21,8 +21,15 @@ class WrappedComponent extends React.Component {
       items: items,
       errors: {},
       name_ko_count: 0,
-      name_en_count: 0
+      name_en_count: 0,
     };
+  }
+
+  componentDidMount() {
+    document.addEventListener("swapItem", (e) => {
+      const { from, to } = e.detail;
+      this.swapItem(from, to, null);
+    });
   }
 
   render() {
@@ -31,12 +38,12 @@ class WrappedComponent extends React.Component {
         <div className={"draggable-item " + this.state.draggableKlass} data-index={index} key={"menu_item" + index}>
           <div className="dragger"
             draggable="true"
-            onDragOver={this.dragOver}
-            onDragEnd={this.dragEnd}
-            onDragStart={this.dragStart}
-            onTouchMove={this.touchMove}
-            onTouchEnd={this.dragEnd}
-            onTouchStart={this.dragStart}>
+            onDragOver={this.props.dragOver}
+            onDragEnd={this.props.dragEnd}
+            onDragStart={this.props.dragStart}
+            onTouchMove={this.props.touchMove}
+            onTouchEnd={this.props.dragEnd}
+            onTouchStart={this.props.dragStart}>
           </div>
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][id]"} value={item.id} />
           <input type="hidden" name={"menu[menu_items_attributes][" + item.id + "][position]"} value={index} />
@@ -149,8 +156,8 @@ class WrappedComponent extends React.Component {
   }
 
   submitDraggable = () => {
-    var id = this.state.menu.id;
-    data = $(this.refs.draggable).serialize();
+    const id = this.state.menu.id;
+    const data = $(this.refs.draggable).serialize();
 
     $.ajax({
       url: Routes.merchant_menu_path.localize(id),
@@ -267,7 +274,7 @@ class WrappedComponent extends React.Component {
       this.setState({menu_item: item, parent: parent});
     }
     else {
-      this.setState({menu_item: item})
+      this.setState({menu_item: item, parent: null})
     }
   }
 
