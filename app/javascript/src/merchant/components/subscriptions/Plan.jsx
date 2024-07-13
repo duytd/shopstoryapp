@@ -3,24 +3,6 @@ import I18n from 'i18n-js';
 
 
 export default class Plan extends React.Component {
-  componentDidMount() {
-    var script = document.createElement("script");
-    var stripe = document.getElementById("stripe_" + this.props.plan.id);
-    var label = I18n.t("merchant.admin.buttons.choose");
-
-    if (stripe != null) {
-      script.src = "https://checkout.stripe.com/checkout.js";
-      script.setAttribute("class", "stripe-button");
-      script.setAttribute("data-key", this.props.stripe_key);
-      script.setAttribute("data-amount", this.props.price);
-      script.setAttribute("data-email", this.props.email);
-      script.setAttribute("data-currency", "usd");
-      script.setAttribute("data-label", label);
-
-      stripe.parentNode.insertBefore(script, stripe);
-    }
-  }
-
   render() {
     var featureNodes = this.props.plan.parsed_features.map(function(feature, index) {
       return <li key={"feature" + index}><b>{feature[0].capitalize()}</b> {feature[1].capitalize()}</li>

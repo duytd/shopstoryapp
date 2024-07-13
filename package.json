@@ -44,6 +44,7 @@
     "pixeden-stroke-7-icon": "^1.2.3",
     "prop-types": "^15.8.1",
     "quill": "^2.0.2",
+    "quill-image-compress": "^1.2.33",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-on-rails": "13.4.0",
