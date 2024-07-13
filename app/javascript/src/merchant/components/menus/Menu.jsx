@@ -16,8 +16,11 @@ class WrappedComponent extends React.Component {
 
   componentDidMount() {
     document.addEventListener("swapItem", (e) => {
-      const { from, to } = e.detail;
-      this.swapItem(from, to, null);
+      const { from, to, menuId } = e.detail;
+
+      if (this.props.menu.id == menuId) {
+        this.swapItem(from, to, null);
+      }
     });
   }
 
