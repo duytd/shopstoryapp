@@ -47,6 +47,8 @@ class MenuItem < ApplicationRecord
 
   scope :is_parent, ->{where parent_id: nil}
 
+  default_scope { order(position: :asc) }
+
   def self.types
     TYPES_CLASSES_MAPPING.keys
   end
