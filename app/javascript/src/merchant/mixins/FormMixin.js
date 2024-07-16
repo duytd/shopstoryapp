@@ -3,6 +3,7 @@ import Quill from 'quill';
 import ImageCompress from 'quill-image-compress';
 import ImageUploader from "quill-image-uploader";
 import 'quill-image-uploader/dist/quill.imageUploader.min.css';
+import htmlEditButton from "quill-html-edit-button";
 
 const withFormMixins = (WrappedComponent) => {
   return class extends React.Component {
@@ -17,12 +18,13 @@ const withFormMixins = (WrappedComponent) => {
     loadSummernote = () => {
       Quill.register('modules/imageCompress', ImageCompress);
       Quill.register("modules/imageUploader", ImageUploader);
+      Quill.register("modules/htmlEditButton", htmlEditButton);
 
       const toolbarOptions = [
         [{ 'header': [1, 2, 3, 4, 5, false] }],
         [{ 'font': [] }],
         ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
+        ['blockquote'],
         ['link', 'image'],
         [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
         [{ 'align': [] }],
@@ -32,7 +34,9 @@ const withFormMixins = (WrappedComponent) => {
         const id = $(this).attr('id')
         const quill = new Quill(`#${id}`, {
           modules: {
-            toolbar: toolbarOptions,
+            toolbar: {
+              container: toolbarOptions
+            },
             imageCompress: {
               quality: 0.3,
               maxWidth: 1000,
@@ -66,8 +70,9 @@ const withFormMixins = (WrappedComponent) => {
                     }
                   })
                 })
-              }
-            }
+              },
+            },
+            htmlEditButton: { syntax: true }
           },
           theme: 'snow'
         });
