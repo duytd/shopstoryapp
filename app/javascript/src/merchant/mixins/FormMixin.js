@@ -72,7 +72,7 @@ const withFormMixins = (WrappedComponent) => {
                 })
               },
             },
-            htmlEditButton: { syntax: true }
+            htmlEditButton: {}
           },
           theme: 'snow'
         });
