@@ -96,6 +96,6 @@ export default class EditorMenu extends React.Component {
   }
 
   showSubitems(e) {
-    $(e.target).parent().parent().find(".subitems").slideToggle();
+    $(e.target).parent().find(".subitems").slideToggle();
   }
 }
