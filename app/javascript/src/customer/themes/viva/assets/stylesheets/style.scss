@@ -202,6 +202,14 @@ label {
 }
 
 /* Product, variation */
+.product {
+  .content {
+    img {
+      width: 100%;
+    }
+  }
+}
+
 .variation-selector {
   .selected {
     background: #2c3e50;

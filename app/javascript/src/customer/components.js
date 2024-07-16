@@ -1,3 +1,7 @@
+
+import StackGrid from "react-stack-grid";
+window.StackGrid = StackGrid;
+
 /* Layout */
 import Layout from '../../src/customer/components/layouts/Layout';
 window.Layout = Layout;
