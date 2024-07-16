@@ -42,7 +42,8 @@ const withDragMixin = (WrappedComponent) => {
         var event = new CustomEvent("swapItem", {
           detail: {
             from: from,
-            to: to
+            to: to,
+            menuId: this.props.menu.id
           }
         });
         document.dispatchEvent(event);

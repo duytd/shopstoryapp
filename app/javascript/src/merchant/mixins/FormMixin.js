@@ -83,6 +83,3 @@ const withFormMixins = (WrappedComponent) => {
 }
 
 export default withFormMixins;
-
-
-Routes.merchant_image_assets
