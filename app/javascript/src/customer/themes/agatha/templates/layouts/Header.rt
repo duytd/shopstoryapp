@@ -2,12 +2,6 @@
   <header id="header">
     <div class="container-fluid top">
       <div class="container">
-        <div class="pull-left hidden-xs">
-          <Currency
-            currency="{this.props.globalVars.currency}"
-            availableCurrencies="{this.props.globalVars.available_currencies}" />
-        </div>
-
         <div class="pull-right">
           <span rt-if="this.props.globalVars.current_customer == null" class="login">
             <a href="{Routes.new_customer_session_path.localize()}">{I18n.t("buttons.login")}</a>
@@ -52,30 +46,24 @@
       </a>
     </div>
 
-    <nav class="navbar navbar-default">
-      <div class="container">
+    <nav class="navbar navbar-default navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="https://www.singularcart.com"><img class="text-center" src="{this.props.globalVars.logo}" height="50" /></a>
         <div class="navbar-header">
-          <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
-            data-bs-target="#singular-cart-navbar-collapse" aria-controls="singular-cart-navbar-collapse" aria-expanded="false">
-            <span class="sr-only"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#singular-cart-navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
         </div>
 
         <div class="collapse navbar-collapse" id="singular-cart-navbar-collapse">
           <Menu menu="{this.props.globalVars.menu.main}" rt-if="this.props.globalVars.menu.main" />
+        </div>
 
-          <div class="hidden-sm hidden-md hidden-lg">
-            <Currency
-              currency="{this.props.globalVars.currency}"
-              availableCurrencies="{this.props.globalVars.available_currencies}" />
-          </div>
-
-          <form class="navbar-form navbar-right" action="{Routes.customer_search_path.localize()}" method="get">
-            <input name="q" type="text" placeholder="{I18n.t('search.placeholder')}" class="form-control" />
-          </form>
+        <div class="pull-right">
+          <span class="languages">
+            <a href="?locale=ko">{I18n.t("languages.korean")}</a>
+            <a href="?locale=en">{I18n.t("languages.english")}</a>
+          </span>
         </div>
       </div>
     </nav>

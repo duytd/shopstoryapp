@@ -143,6 +143,9 @@ label {
   .navbar-collapse {
     border-color: transparent;
   }
+  .navbar-toggler {
+    border: none;
+  }
   li > a {
     font-size: 22px;
     font-family: "Francois One", sans-serif;
@@ -497,10 +500,6 @@ label {
 }
 
 /* Banner */
-.owl-carousel {
-  margin-top: -20px;
-}
-
 .owl-item {
   max-height: 600px;
   .text {
