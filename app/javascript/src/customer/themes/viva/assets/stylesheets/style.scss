@@ -99,6 +99,8 @@ label {
 .header {
   .top {
     background: #f0f0f0;
+    height: 40px;
+    padding: 5px;
     a {
       color: #222;
       padding-right: 10px;
@@ -126,6 +128,9 @@ label {
     &:hover {
       color: #fafafa;
     }
+  }
+  .navbar-toggler {
+    border: none;
   }
   .navbar-collapse {
     border-color: transparent;

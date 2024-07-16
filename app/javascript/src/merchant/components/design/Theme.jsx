@@ -25,7 +25,7 @@ export default class Theme extends React.Component {
             <button className="btn btn-success disabled">{I18n.t("merchant.admin.buttons.current")}</button> :
             <button className="btn btn-primary" onClick={this.install}>
               {I18n.t("merchant.admin.buttons.choose")}
-              <i ref="loading" className="fa fa-circle-o-notch fa-spin fa-fw hide"></i>
+              <i ref="loading" className="fa fa-circle-o-notch fa-spin fa-fw d-none"></i>
             </button>
           }
         </div>
@@ -33,7 +33,7 @@ export default class Theme extends React.Component {
     )
   }
 
-  install() {
+  install = () => {
     var loading = $(this.refs.loading);
     var url = this.props.install_url;
     var themeId = this.props.theme.id;
