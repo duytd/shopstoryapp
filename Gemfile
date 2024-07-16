@@ -63,6 +63,7 @@ gem "active_interaction-extras"
 # SEO
 gem "meta-tags"
 gem "friendly_id"
+gem "sitemap_generator"
 
 gem "actionpack-action_caching"
 gem "browser"
@@ -88,6 +89,9 @@ gem "sentry-rails"
 # Queues
 gem "shoryuken"
 gem "aws-sdk-sqs"
+
+# Cron
+gem "whenever"
 
 group :development, :test do
   gem "pry"
