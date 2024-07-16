@@ -104,6 +104,8 @@ class Shop < ApplicationRecord
   end
 
   def reconfigure_theme
+    return if ThemeBundle.where(shop_id: id, theme_id: theme_id).present?
+
     # Create theme files
     Themes::CreateFiles.run!(shop: self, theme: theme)
 
