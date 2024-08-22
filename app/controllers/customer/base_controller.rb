@@ -20,6 +20,8 @@ class Customer::BaseController < ApplicationController
   end
 
   def set_default_meta_tags
+    return if current_shop.nil?
+
     meta_title = current_shop.meta_title.present? ? current_shop.meta_title : current_shop.name
     generate_meta_tags meta_title, current_shop.meta_description, current_shop.meta_keywords
   end

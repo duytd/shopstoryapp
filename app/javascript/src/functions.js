@@ -3,12 +3,7 @@ String.prototype.capitalize = function() {
 }
 
 String.prototype.convert = function() {
-  if (SingularCart.currency.toLowerCase() == "krw") {
-    return parseFloat(this);
-  }
-  else {
-    return parseFloat(this)/SingularCart.rate;
-  }
+  return parseFloat(this);
 }
 
 String.prototype.trimToLength = function(m) {
