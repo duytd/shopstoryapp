@@ -34,7 +34,7 @@ export default class ProductImageForm extends React.Component {
         paramName1: "product[product_images_attributes]",
         paramName2: "[image]",
         uploadMultiple: true,
-        autoProcessQueue: false,
+        autoProcessQueue: true,
         thumbnailWidth: 200,
         thumbnailHeight: null,
       });

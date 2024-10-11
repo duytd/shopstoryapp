@@ -522,8 +522,6 @@ class Form extends React.Component {
         var productId = response.product.id;
         var callbackDefined = (typeof callback === "function") ? true : false;
 
-        this.submitImages(productId, Routes.merchant_product_path.localize(productId));
-
         if (this.state.product && !callbackDefined) {
           window.location = this.props.redirect_url;
         }
@@ -585,17 +583,6 @@ class Form extends React.Component {
   updateUnlimited = () => {
     var checked = this.refs.unlimited.checked;
     this.setState({unlimited: checked});
-  }
-
-  submitImages = (productId, url) => {
-    var dropzone = this.state.dropzone;
-
-    dropzone.on("sending", function(file, xhr, formData) {
-      formData.append("product[id]", productId);
-    });
-
-    dropzone.options.url = url;
-    dropzone.processQueue();
   }
 
   updateDropzone = (dropzone) => {
