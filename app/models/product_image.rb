@@ -41,7 +41,7 @@ class ProductImage < ApplicationRecord
   end
 
   def as_json options={}
-    image.as_json.merge!({featured: featured})
+    image.as_json.merge!({id: id, featured: featured})
   end
 
   def ensure_only_one_image_is_active

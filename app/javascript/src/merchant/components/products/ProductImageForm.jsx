@@ -39,15 +39,15 @@ export default class ProductImageForm extends React.Component {
         thumbnailHeight: null,
       });
 
-      productDropzone.on("thumbnail", function(file) {
+      productDropzone.on("thumbnail", (file) => {
         var $element = $(".dz-preview i.fa-star:not(.added)");
-        $element.bind("click", function() {
+        $element.bind("click", () => {
           var data = "product[product_images_attributes][0][id]=" + file.id +
             "&product[product_images_attributes][0][featured]=1";
           $("#preview_image_" + file.id).parent().addClass("featured");
           $("#preview_image_" + file.id).parent().siblings().removeClass("featured");
           this.featureImage(data);
-        }.bind(this));
+        });
 
         $element.addClass("added");
 
@@ -61,9 +61,9 @@ export default class ProductImageForm extends React.Component {
         if (file.featured) {
           $element.parent().addClass("featured");
         }
-      }.bind(this))
+      })
 
-      productDropzone.on("removedfile", function(file) {
+      productDropzone.on("removedfile", (file) => {
         if (file.id) {
           var data = "product[id]=" + this.props.product.id +
             "&product[product_images_attributes][0][id]=" + file.id +
@@ -71,10 +71,10 @@ export default class ProductImageForm extends React.Component {
 
           this.deleteImage(data);
         }
-      }.bind(this));
+      });
     }
 
-    this.props.productImages.forEach(function (value) {
+    this.props.productImages.forEach((value) => {
       var mockFile = {id: value.id, name: value.name, featured: value.featured};
 
       productDropzone.emit("addedfile", mockFile);
