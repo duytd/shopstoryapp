@@ -12,11 +12,11 @@ class BannerImageUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
-    process resize_to_fit: [1200, 300]
+    process resize_to_fill: [1200, 300]
   end
 
   version :thumb do
-    process resize_to_fit: [400, 100]
+    process resize_to_fill: [400, 100]
   end
 
   def extension_white_list
