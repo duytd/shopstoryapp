@@ -98,11 +98,6 @@ class Product < ApplicationRecord
   after_save { IndexerWorker.perform_async(:index, self.id, "Product", "Customer::ProductPresenter") if Flipper.enabled?(:search) }
   after_destroy { IndexerWorker.perform_async(:delete, self.id, "Product", "Customer::ProductPresenter") if Flipper.enabled?(:search) }
 
-  def price=(price)
-    price = price.to_s.gsub ",", ""
-    self[:price] = price
-  end
-
   def total_sale
     order_products.joins(:order).where("orders.status = ?", Order.statuses[:processed]).inject(0){|sum, x| sum + x.quantity}
   end

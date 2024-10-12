@@ -26,7 +26,7 @@
               <td>{order.created_at}</td>
               <td>{order.status.toUpperCase()}</td>
               <td>{order.payment.state.toUpperCase()}</td>
-              <td>{I18n.toCurrency(order.total, {precision: 0, unit: order.currency})}</td>
+              <td>{I18n.toCurrency(order.total, {precision: 2, unit: order.currency})}</td>
             </tr>
           </tbody>
         </table>

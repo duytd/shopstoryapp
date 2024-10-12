@@ -93,7 +93,7 @@ export default class Variation extends React.Component {
               <input type="text" className="form-control input-sm"
                 name={"product[variations_attributes][" + this.props.index + "][price]"}
                 placeholder={I18n.t("merchant.admin.variations.price_placeholder")}
-                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.price.toString().toKoreanFormat() : ""} onBlur={this.props.validateNumber} />
+                defaultValue={(typeof this.props.variation.id !== "undefined") ? this.props.variation.price.toString() : ""} onBlur={this.props.validateNumber} />
 
               <div className="form-errors">
                 {(this.props.errors.price) ? this.props.errors.price.map(function(object){

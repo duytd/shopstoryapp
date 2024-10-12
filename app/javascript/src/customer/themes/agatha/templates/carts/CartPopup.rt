@@ -25,7 +25,7 @@
       </div>
 
       <div class="col-3">
-        <p class="price">{I18n.toCurrency(item.unit_price.convert(), {precision: 0, unit: this.props.globalVars.currency})}</p>
+        <p class="price">{I18n.toCurrency(item.unit_price.convert(), {precision: 2, unit: this.props.globalVars.currency})}</p>
       </div>
 
       <div class="col-3">

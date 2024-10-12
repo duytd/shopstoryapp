@@ -26,7 +26,7 @@ export default class Dashboard extends React.Component {
                   </td>
                   <td>{this.renderProducts(order.order_products)}</td>
                   <td><div className={"label " + this.getStatusKlass(order.status)}>#{order.status.toUpperCase()}</div></td>
-                  <td>{I18n.toNumber(order.total, {precision: 0, delimiter: ","})}</td>
+                  <td>{I18n.toNumber(order.total, {precision: 2, delimiter: ","})}</td>
                 </tr>
               )
             }.bind(this))}
@@ -110,19 +110,19 @@ export default class Dashboard extends React.Component {
           {I18n.t("merchant.admin.dashboard.today_revenue")}
         </h3>
 
-        <div className="highlight-number">{I18n.toNumber(this.props.today_revenue, {precision: 0, delimiter: ","})}</div>
+        <div className="highlight-number">{I18n.toNumber(this.props.today_revenue, {precision: 2, delimiter: ","})}</div>
         <div className="row">
           <div className="col-6 text-center">
             <h4>
               {I18n.t("merchant.admin.dashboard.last_7_days")}
             </h4>
-            <p>{I18n.toCurrency(this.props.last_7_days_revenue, {precision: 0, delimiter: ",", unit: "$"})}</p>
+            <p>{I18n.toCurrency(this.props.last_7_days_revenue, {precision: 2, delimiter: ",", unit: "$"})}</p>
           </div>
           <div className="col-6 text-center">
             <h4>
               {I18n.t("merchant.admin.dashboard.last_30_days")}
             </h4>
-            <p>{I18n.toCurrency(this.props.last_30_days_revenue, {precision: 0, delimiter: ",", unit: "$"})}</p>
+            <p>{I18n.toCurrency(this.props.last_30_days_revenue, {precision: 2, delimiter: ",", unit: "$"})}</p>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@ export default class Dashboard extends React.Component {
                   </div>
                   <div className="col-6">
                     <a href={d[4]}>
-                      <h3>{I18n.toNumber(d[3], {precision: 0, delimiter: ","})}</h3>
+                      <h3>{I18n.toNumber(d[3], {precision: 2, delimiter: ","})}</h3>
                     </a>
                     <p>{d[2]}</p>
                   </div>

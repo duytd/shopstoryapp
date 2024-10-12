@@ -46,7 +46,7 @@ export default class OrderForm extends React.Component {
           {orderProduct.variation.name}
         </td>
         <td>
-          {I18n.toCurrency(orderProduct.unit_price, {precision: 0, unit: this.state.order.currency})}
+          {I18n.toCurrency(orderProduct.unit_price, {precision: 2, unit: this.state.order.currency})}
         </td>
         <td>
           {orderProduct.quantity}
@@ -106,10 +106,10 @@ export default class OrderForm extends React.Component {
                       <h3>{I18n.t("activerecord.attributes.order.total")}</h3>
                     </td>
                     <td>
-                      <p>{this.state.order.subtotal.toKoreanFormat()}</p>
-                      <p>{this.state.order.shipping.toKoreanFormat()}</p>
-                      <p>{this.state.order.tax.toKoreanFormat()}</p>
-                      <h3>{this.state.order.total.toKoreanFormat()}</h3>
+                      <p>{this.state.order.subtotal}</p>
+                      <p>{this.state.order.shipping}</p>
+                      <p>{this.state.order.tax}</p>
+                      <h3>{this.state.order.total}</h3>
                     </td>
                   </tr>
                 </tfoot>

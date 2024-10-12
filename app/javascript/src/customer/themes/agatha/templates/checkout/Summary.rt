@@ -2,24 +2,24 @@
   <h2>{I18n.t("checkout.summary.title")}</h2>
   <p>
     <label>{I18n.t("checkout.summary.subtotal")} :</label>
-    {I18n.toCurrency(this.props.order.subtotal.convert(), {precision: 0, unit: this.props.currency})}
+    {I18n.toCurrency(this.props.order.subtotal.convert(), {precision: 2, unit: this.props.currency})}
   </p>
   <p>
     <label>{I18n.t("checkout.summary.shipping")} :</label>
-    <i>{I18n.toCurrency(this.props.order.shipping, {precision: 0, unit: this.props.currency})}</i>
+    <i>{I18n.toCurrency(this.props.order.shipping, {precision: 2, unit: this.props.currency})}</i>
   </p>
   <p rt-if="this.props.order.discount">
     <label>{I18n.t("checkout.summary.coupon")} :</label>
     <span rt-if="this.props.order.discount.discount_type == 'percentage'">
-      {I18n.toPercentage(this.props.order.discount.amount, {precision: 0})}
+      {I18n.toPercentage(this.props.order.discount.amount, {precision: 2})}
     </span>
     <span rt-if="this.props.order.discount.discount_type == 'fixed_amount'">
-      {I18n.toCurrency(this.props.order.discount.amount.convert(), {precision: 0, unit: this.props.currency})}
+      {I18n.toCurrency(this.props.order.discount.amount.convert(), {precision: 2, unit: this.props.currency})}
     </span>
   </p>
   <p rt-if="this.props.order.total > 0">
     <label>{I18n.t("checkout.summary.total")} :</label>
-    {I18n.toCurrency(this.props.order.total.convert(), {precision: 0, unit: this.props.currency})}
+    {I18n.toCurrency(this.props.order.total.convert(), {precision: 2, unit: this.props.currency})}
   </p>
   <div class="cart-items">
     <div rt-repeat="item in this.props.globalVars.order.cart" key="item_{itemIndex}" class="row item">
@@ -36,7 +36,7 @@
       </div>
 
       <div class="col-3">
-        <p class="price">{I18n.toCurrency(item.unit_price.convert(), {precision: 0, unit: this.props.currency})}</p>
+        <p class="price">{I18n.toCurrency(item.unit_price.convert(), {precision: 2, unit: this.props.currency})}</p>
       </div>
 
       <div class="col-3">

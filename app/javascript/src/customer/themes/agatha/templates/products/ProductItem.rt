@@ -9,12 +9,12 @@
     <h3 class="name">{translate(this.props.product, "name")}</h3>
   </a>
   <p rt-if="parseInt(this.props.product.sale_off) == 0">
-    <strong>{I18n.toCurrency(this.props.product.price.convert(), {precision: 0, unit: this.props.currency})}</strong>
+    <strong>{I18n.toCurrency(this.props.product.price.convert(), {precision: 2, unit: this.props.currency})}</strong>
   </p>
 
   <p rt-if="parseInt(this.props.product.sale_off) > 0">
-    <strong>{I18n.toCurrency((this.props.product.price - this.props.product.price * this.props.product.sale_off / 100).toString().convert(), {precision: 0, unit: this.props.currency})}</strong>
+    <strong>{I18n.toCurrency((this.props.product.price - this.props.product.price * this.props.product.sale_off / 100).toString().convert(), {precision: 2, unit: this.props.currency})}</strong>
     <br/>
-    <s>{I18n.toCurrency(this.props.product.price.convert(), {precision: 0, unit: this.props.currency})}</s>
+    <s>{I18n.toCurrency(this.props.product.price.convert(), {precision: 2, unit: this.props.currency})}</s>
   </p>
 </div>

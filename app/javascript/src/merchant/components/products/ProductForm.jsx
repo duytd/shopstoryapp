@@ -194,7 +194,7 @@ class Form extends React.Component {
                   }) : null}
                 </div>
                 <input ref="price" onChange={this.changePrice} type="text" onBlur={this.validateNumber} className="form-control" name="product[price]"
-                  defaultValue={(this.props.product) ? this.state.product.price.toString().toKoreanFormat() : 0} />
+                  defaultValue={(this.props.product) ? this.state.product.price.toString() : 0} />
               </div>
 
               <div className="mb-3 col-md-4">
@@ -205,7 +205,7 @@ class Form extends React.Component {
 
               <div className="mb-3 col-md-4">
                 <label className="form-label">{I18n.t("activerecord.attributes.product.discounted_price")}</label>
-                <p>{this.state.discountedPrice.toString().toKoreanFormat()}</p>
+                <p>{this.state.discountedPrice.toString()}</p>
               </div>
             </div>
           </div>

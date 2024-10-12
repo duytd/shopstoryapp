@@ -3,17 +3,13 @@ String.prototype.capitalize = function() {
 }
 
 String.prototype.convert = function() {
-  return parseFloat(this);
+  return this;
 }
 
 String.prototype.trimToLength = function(m) {
   return (this.length > m)
     ? jQuery.trim(this).substring(0, m).split(" ").slice(0, -1).join(" ") + "..."
     : this;
-}
-
-String.prototype.toKoreanFormat = function() {
-  return I18n.toNumber(this.toString(), {delimiter: ",", precision: 0});
 }
 
 String.prototype.addParams = function(key, value) {

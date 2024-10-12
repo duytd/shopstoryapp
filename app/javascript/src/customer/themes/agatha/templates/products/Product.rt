@@ -21,13 +21,13 @@
         <h2>{translate(this.state.variation, "name")}</h2>
         <p>{this.state.variation.sku}</p>
         <p rt-if="parseInt(this.props.product.sale_off) == 0">
-          <strong>{I18n.toCurrency(this.state.variation.price.convert(), {precision: 0, unit: this.props.globalVars.currency})}</strong>
+          <strong>{I18n.toCurrency(this.state.variation.price.convert(), {precision: 2, unit: this.props.globalVars.currency})}</strong>
         </p>
 
         <p rt-if="parseInt(this.props.product.sale_off) > 0">
-          <strong>{I18n.toCurrency((this.state.variation.price - this.state.variation.price * this.props.product.sale_off / 100).toString().convert(), {precision: 0, unit: this.props.globalVars.currency})}</strong>
+          <strong>{I18n.toCurrency((this.state.variation.price - this.state.variation.price * this.props.product.sale_off / 100).toString().convert(), {precision: 2, unit: this.props.globalVars.currency})}</strong>
           <br/>
-          <s>{I18n.toCurrency(this.state.variation.price.convert(), {precision: 0, unit: this.props.globalVars.currency})}</s>
+          <s>{I18n.toCurrency(this.state.variation.price.convert(), {precision: 2, unit: this.props.globalVars.currency})}</s>
         </p>
 
         <p rt-if="!this.state.variation.unlimited">

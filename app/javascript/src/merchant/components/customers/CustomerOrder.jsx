@@ -91,7 +91,7 @@ export default class CustomerOrder extends React.Component {
           </div>
         </td>
         <td>
-          {I18n.toCurrency(this.props.order.total, {precision: 0, unit: ""})}
+          {I18n.toCurrency(this.props.order.total, {precision: 2, unit: ""})}
         </td>
       </tr>
     );

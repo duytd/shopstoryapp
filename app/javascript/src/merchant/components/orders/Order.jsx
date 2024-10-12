@@ -124,7 +124,7 @@ export default class Order extends React.Component {
           {this.renderShipmentStatus(this.props.order.shipment)}
         </td>
         <td>
-          {I18n.toCurrency(this.props.order.total, {precision: 0, unit: ""})}
+          {I18n.toCurrency(this.props.order.total, {precision: 2, unit: ""})}
         </td>
       </Item>
     );

@@ -30,7 +30,7 @@ export default class Product extends React.Component {
           </a>
         </td>
         <td>
-          {this.props.product.price.toKoreanFormat()}
+          {this.props.product.price}
         </td>
         <td>
           {this.props.product.sku}
