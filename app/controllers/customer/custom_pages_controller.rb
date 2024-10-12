@@ -1,5 +1,7 @@
 class Customer::CustomPagesController < Customer::BaseController
   def show
+    load_global_variables
+    
     @custom_page = CustomPage.find params[:id]
 
     add_breadcrumb I18n.t("customer.breadcrumbs.home"), customer_root_path
