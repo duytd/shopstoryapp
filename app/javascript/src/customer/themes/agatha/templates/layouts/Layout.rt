@@ -9,5 +9,5 @@
     emptyCartErrors="{this.props.emptyCartErrors}"
   />
   {this.props.children}
-  <Footer businessInfo="{this.props.globalVars.business_information}" />
+  <Footer menu="{this.props.globalVars.menu.footer}" businessInfo="{this.props.globalVars.business_information}" />
 </div>
