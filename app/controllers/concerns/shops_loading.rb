@@ -21,15 +21,9 @@ module ShopsLoading
       shop_name: current_shop.name,
       logo: current_shop.logo.thumb.url,
       business_information: {
-        legal_name: current_shop.legal_name,
-        address: current_shop.street_ko,
-        business_number: current_shop.business_number,
-        ceo: current_shop.ceo,
-        email: current_shop.email,
-        service_phone: current_shop.service_phone,
-        online_retail_number: current_shop.online_retail_number,
-        privacy_manager: current_shop.privacy_manager,
-        privacy_email: current_shop.privacy_email
+        instagram_url: current_shop.instagram_url,
+        facebook_url: current_shop.facebook_url,
+        pinterest_url: current_shop.pinterest_url,
       },
       current_customer: current_customer ? present(current_customer) : nil,
       currency: current_currency,

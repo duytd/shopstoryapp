@@ -22,9 +22,14 @@ li {
   list-style-type: none;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
+a {
+  cursor: pointer;
+}
+
+footer {
+  ul.footer-menu {
+    padding: 0;
+  }
 }
 
 .btn {

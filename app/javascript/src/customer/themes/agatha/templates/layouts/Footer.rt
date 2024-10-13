@@ -1,23 +1,35 @@
 <div class="container">
   <footer class="py-5">
-    <div class="row">
-      <div class="col-6 col-md-2 mb-3">
-        <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-        </ul>
+    <ul class="footer-menu">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3" rt-repeat="item in this.props.menu.menu_items" key="menu_item_{itemIndex}">
+          <li class="nav-item {(item.children.length > 0) ? 'dropdown' : ''}">
+            <a href="{item.url.addParams('locale', I18n.locale)}" rt-if="item.children.length == 0" class="nav-link">
+              {translate(item, "name")}
+            </a>
+
+            <a href="{item.url.addParams('locale', I18n.locale)}" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rt-if="item.children.length > 0">
+              {translate(item, "name")} <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu" rt-if="item.children.length > 0">
+              <li rt-repeat="child in item.children" key="child_menu_{childIndex}" class="nav-item">
+                <a href="{child.url.addParams('locale', I18n.locale)}" class="nav-link">
+                  {translate(child, "name")}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </div>
       </div>
-    </div>
+    </ul>
 
     <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
       <p>Powered by <a href="http://www.singularcart.com">Singular Cart</a></p>
       <ul class="list-unstyled d-flex">
-        <li rt-if="this.props.businessInfo.instagram_url" class="ms-3"><a class="link-dark" href="{this.props.businessInfo.instagram_url}"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-        <li rt-if="this.props.businessInfo.facebook_url" class="ms-3"><a class="link-dark" href="{this.props.businessInfo.facebook_url}"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-        <li rt-if="this.props.businessInfo.pinterest_url" class="ms-3"><a class="link-dark" href="{this.props.businessInfo.pinterest_url}"><svg class="bi" width="24" height="24"><use xlink:href="#pinterest"></use></svg></a></li>
+        <li rt-if="this.props.businessInfo.instagram_url" class="ms-3"><a class="link-dark" href="{this.props.businessInfo.instagram_url}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li rt-if="this.props.businessInfo.facebook_url" class="ms-3"><a class="link-dark" href="{this.props.businessInfo.facebook_url}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        <li rt-if="this.props.businessInfo.pinterest_url" class="ms-3"><a class="link-dark" href="{this.props.businessInfo.pinterest_url}"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
       </ul>
     </div>
   </footer>
